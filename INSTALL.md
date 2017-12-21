@@ -77,7 +77,7 @@ cp app/config/parameters.yml.dist app/config/parameters.yml
 php app/console doctrine:schema:update --force
 
 12. Ładujemy dane podstawowe (słowniki, domyslny administrator admin - domyslne_haslo) do bazy danych aplikacji  
-php database-seeder.php 
+php DatabaseSeeder.php 
 
 13. W konfiguracji aplikacji w parametrze 'jasper_ssfz_report_path' definiujemy docelową ścieżkę, pod którą znajdują się raporty.
 
