@@ -108,7 +108,6 @@ class SpolkaRepository extends EntityRepository
         if (strcmp($historia->getNazwa(), $historia->getNazwaP())) {
             $this->createEntry('nazwa', $historia->getNazwa(), $historia->getNazwaP(), $historia);
         }
-       
         if (strcmp($historia->getForma(), $historia->getFormaP())) {
             $this->createEntry('forma', $historia->getForma(), $historia->getFormaP(), $historia);
         }
@@ -134,9 +133,6 @@ class SpolkaRepository extends EntityRepository
             $this->createEntry('nip', $historia->getNip(), $historia->getNipP(), $historia);
         }
         if (strcmp($historia->getKwInwestycji(), $historia->getKwInwestycjiP())) {
-            $this->createEntry('nip', $historia->getKwInwestycji(), $historia->getKwInwestycjiP(), $historia);
-        }
-        if (strcmp($historia->getKwInwestycji(), $historia->getKwInwestycjiP())) {
             $this->createEntry('kw_inwestycji', $historia->getKwInwestycji(), $historia->getKwInwestycjiP(), $historia);
         }
         if (strcmp($historia->getKwWsparcia(), $historia->getKwWsparciaP())) {
@@ -151,9 +147,6 @@ class SpolkaRepository extends EntityRepository
 
         if ($historia->getDataWyjscia() != $historia->getDataWyjsciaP()) {
             $this->createEntry('data_wyjscia', $historia->getDataWyjscia() != null ? $historia->getDataWyjscia()->format('Y-m-d H:i:s') : null, $historia->getDataWyjsciaP() != null ? $historia->getDataWyjsciaP()->format('Y-m-d H:i:s') : null, $historia);
-        }
-        if (strcmp($historia->getKwDezinwestycji(), $historia->getKwDezinwestycjiP())) {
-            $this->createEntry('kw_dezinwestycji', $historia->getKwDezinwestycji(), $historia->getKwDezinwestycjiP(), $historia);
         }
         if (strcmp($historia->getKwDezinwestycji(), $historia->getKwDezinwestycjiP())) {
             $this->createEntry('kw_dezinwestycji', $historia->getKwDezinwestycji(), $historia->getKwDezinwestycjiP(), $historia);
