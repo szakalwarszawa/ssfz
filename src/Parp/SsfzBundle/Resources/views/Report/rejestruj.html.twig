@@ -1,0 +1,102 @@
+{% extends "SsfzBundle::baseLayout.html.twig" %}
+{% block body %} 
+    <div class="panel panel-default"> 
+        <div class="panel-heading">Sprawozdanie</div>
+            {{ form_start(form) }}
+            <div class="panel-body">
+                {{ form_row(form.numerUmowy) }}
+                {{ form_row(form.okres) }}
+                {{ form_row(form.rok) }}
+                {{ form_row(form.uwagi) }}
+                        <div class="sprawozdaniaSpolek" data-prototype="{{ form_widget(form.sprawozdaniaSpolek.vars.prototype)|e('html_attr') }}">
+                        {% for sprawozdanie in form.sprawozdaniaSpolek %}
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Sprawozdanie spółki</div>
+                                    <div class=" panel-body">
+                                        <div class="row sprawozdanie-row">
+                                            <div>
+                                       <div>
+                                       {{ form_row(sprawozdanie.lp) }}
+                                       {{ form_row(sprawozdanie.nazwaSpolki) }}
+                                       {{ form_row(sprawozdanie.krs) }}
+                                       {{ form_row(sprawozdanie.uzyskanePrzychody) }}
+                                       {{ form_row(sprawozdanie.planowanePrzychody) }}
+                                       {{ form_row(sprawozdanie.ebitda) }}
+                                       {{ form_row(sprawozdanie.ncf) }}
+                                       {{ form_row(sprawozdanie.sumaBilansowa) }}
+                                       {{ form_row(sprawozdanie.zatrudnienieEtaty) }}
+                                       {{ form_row(sprawozdanie.zatrudnienieEtaty) }}
+                                       {{ form_row(sprawozdanie.zatrudnioneKobiety) }}
+                                       {{ form_row(sprawozdanie.zatrudnieniMezczyzni) }}
+                                       {{ form_row(sprawozdanie.zatrudnienieInneFormy) }}
+                                       {{ form_row(sprawozdanie.zatrudnienieInneFormyKobiety) }}
+                                       {{ form_row(sprawozdanie.zatrudnienieInneFormyMezczyzni) }}
+                                       {{ form_row(sprawozdanie.zatrudnieniewStosunkuDoPoprzedniegoRoku) }}
+                                       {{ form_row(sprawozdanie.zatrudnieniewStosunkuDoPoprzedniegoOkresu) }}
+                                        </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                <div>
+                <input type="hidden" id="umowaIdHidden" value="{{umowaId}}">       
+                
+                <input type="hidden" id="backToBeneficjent" name="backToBeneficjent" value="false"> 
+
+                        
+                <div id="form-submit-div" class="row btn-toolbar">     
+                    {% if form_mode == 'create' %}
+                        <span id="sprawozdanie-powrot" class="btn btn-danger pull-right"><span class="glyphicon glyphicon-chevron-left"></span> Powrót</span>
+                        <button type="submit" class="btn btnRegister btn-primary pull-right"><span class="glyphicon glyphicon-ok"></span> Zapisz</button>
+                    {% elseif form_mode == 'edit' %}
+                        <span id="sprawozdanie-powrot" class="btn btn-danger pull-right"><span class="glyphicon glyphicon-chevron-left"></span> Powrót</span>
+                        <button type="submit" class="btn btnRegister btn-primary pull-right"><span class="glyphicon glyphicon-ok"></span> Zapisz</button>
+                    {% elseif form_mode == 'read' %}
+                        <a href='{{ path('sprawozdanie_rejestracja', {'umowaId': umowaId })}}'><span  class="btn orange-button pull-right">Powrót</span></a>
+                    {% elseif form_mode == 'not_allowed' %}
+                        <a href='{{ path('beneficjent')}}'><span  class="btn orange-button pull-right">Powrót</span></a>
+                    {% endif %}
+                </div>
+            </div>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% if form_mode != 'read' %}    
+</br>
+</br>
+<div class="panel panel-default"> 
+    <div class="panel-heading">Sprawozdania</div>
+    <div class="panel-body">
+            {{ datatable({                
+                'id' : 'dta-sprawozdanie',
+                'class' : 'table table-striped table-hover',                
+                'js' : {
+                    'ajax' : path('datatableSprawozdanie', { 'umowaId' : app.request.get('umowaId') }), 
+                    'drawCallback' : 'function(settings) {
+                                        var pagination = $(this).closest(".dataTables_wrapper").find(".dataTables_paginate");
+                                        pagination.toggle(this.api().page.info().pages > 1);}'       
+                 }
+               })
+            }}            
+    </div>
+</div>
+{% endif %}
+ 
+<div id="send-to-parp" class="hide">
+    {{ form_start(form, {'action': path('send_to_parp'), 'method': 'POST'}) }}
+    <div>
+        <input type="hidden" id="sprawozdanieId" name="sprawozdanieId" value="">
+        <button type="submit" class="btn btn-primary pull-right btnSend"></button>
+    </div>
+    {{ form_end(form) }}
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts '@SsfzBundle/Resources/public/js/sprawozdanie.js'%}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}        
+{% endblock %}

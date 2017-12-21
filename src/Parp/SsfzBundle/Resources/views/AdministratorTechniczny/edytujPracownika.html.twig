@@ -1,0 +1,15 @@
+{% extends 'SsfzBundle::baseLayout.html.twig' %}
+{% block body %} 
+<div class="panel panel-default"> 
+<div class="panel-heading">Edytuj konto pracownika</div>
+    <div class="panel-body">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}                       
+            <div class="pull-right">                    
+                <button id="pracownicy" type="submit" value="zapisz" class="btn btn-primary">Zapisz dane</button> 
+                <a href="{{ path('utworzPracownika') }}" class="btn btn-default">Powrót</a>
+            </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

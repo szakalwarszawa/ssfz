@@ -1,0 +1,99 @@
+services:
+    ssfz.repository.uzytkownik_repository:
+        class: Parp\SsfzBundle\Repository\UzytkownikRepository
+        factory: ['@doctrine', getRepository]
+        arguments: ['SsfzBundle:Uzytkownik']
+        
+    ssfz.repository.rola_repository:
+        class: Parp\SsfzBundle\Repository\RolaRepository
+        factory: ['@doctrine', getRepository]
+        arguments: ['SsfzBundle:Rola']
+
+    ssfz.repository.beneficjent_repository:
+        class: Parp\SsfzBundle\Repository\BeneficjentRepository
+        factory: ['@doctrine', getRepository]
+        arguments: ['SsfzBundle:Beneficjent']
+        
+    ssfz.repository.umowa_repository:
+        class: Parp\SsfzBundle\Repository\UmowaRepository
+        factory: ['@doctrine', getRepository]
+        arguments: ['SsfzBundle:Umowa']     
+        
+    ssfz.repository.osoba_zatrudniona_repository:
+        class: Parp\SsfzBundle\Repository\OsobaZatrudnionaRepository
+        factory: ['@doctrine', getRepository]
+        arguments: ['SsfzBundle:OsobaZatrudniona']          
+        
+    ssfz.repository.beneficjent_forma_prawna_repository:
+        class: Parp\SsfzBundle\Repository\BeneficjentFormaPrawnaRepository
+        factory: ['@doctrine', getRepository]
+        arguments: ['SsfzBundle:BeneficjentFormaPrawna']         
+        
+    ssfz.repository.wojewodztwo_repository:
+        class: Parp\SsfzBundle\Repository\WojewodztwoRepository
+        factory: ['@doctrine', getRepository]
+        arguments: ['SsfzBundle:Wojewodztwo']           
+
+    ssfz.repository.gospodarka_dzial_repository:
+        class: Parp\SsfzBundle\Repository\GospodarkaDzialRepository
+        factory: ['@doctrine', getRepository]
+        arguments: ['SsfzBundle:GospodarkaDzial']   
+        
+    ssfz.repository.okresy_konfiguracja_repository:
+        class: Parp\SsfzBundle\Repository\OkresyKonfiguracjaRepository
+        factory: ['@doctrine', getRepository]
+        arguments: ['SsfzBundle:OkresyKonfiguracja']      
+        
+    ssfz.repository.sprawozdanie_repository:
+        class: Parp\SsfzBundle\Repository\SprawozdanieRepository
+        factory: ['@doctrine', getRepository]
+        arguments: ['SsfzBundle:Sprawozdanie']   
+        
+    ssfz.service.uzytkownik_service:
+        class: Parp\SsfzBundle\Service\UzytkownikService
+        arguments: ['@ssfz.repository.uzytkownik_repository', '@ssfz.repository.rola_repository']
+    
+    ssfz.service.beneficjent_service:
+        class: Parp\SsfzBundle\Service\BeneficjentService
+        arguments: ['@ssfz.repository.beneficjent_repository', '@ssfz.repository.umowa_repository', '@ssfz.repository.osoba_zatrudniona_repository']
+
+    ssfz.service.narzedzia_service:
+        class: Parp\SsfzBundle\Service\NarzedziaService
+        arguments: ['@ssfz.repository.beneficjent_forma_prawna_repository', '@ssfz.repository.wojewodztwo_repository', '@ssfz.repository.gospodarka_dzial_repository', '@ssfz.repository.okresy_konfiguracja_repository']
+
+    ssfz.service.sprawozdanie_service:
+        class: Parp\SsfzBundle\Service\SprawozdanieService
+        arguments: ['@ssfz.repository.sprawozdanie_repository']
+    ssfz.service.komunikaty_service:
+        class: Parp\SsfzBundle\Service\KomunikatyService
+        arguments: ['@session']
+    ssfz.security.user.provider.custom_ldap_user_provider:
+        class: Parp\SsfzBundle\Security\User\Provider\CustomLdapUserProvider
+        arguments:
+            - '@ssfz.service.uzytkownik_service'
+            - '@ldap'
+            - "@=container.getparameter('ldap')['baseDn']"
+            - "@=container.getparameter('ldap')['username']"
+            - "@=container.getparameter('ldap')['password']"
+            - []
+            - "%ldap_uid_key%"
+            - ({uid_key}={username})
+    ssfz.service.ldap_data_service:
+        class: Parp\SsfzBundle\Service\LdapDataService
+        arguments:  [ %ldap% , '%ldap_uid_key%']
+
+    ssfz.service.mailer_service:
+        class: Parp\SsfzBundle\Service\MailerService
+        arguments: 
+            - '%powiadomienie_nadawca%'
+            - '@mailer'
+            - '@templating'
+            
+    ssfz.service.jasperreports_service:
+        class: Parp\SsfzBundle\Service\JasperReportsService
+        arguments: 
+            - '%jasper_host%'
+            - '%jasper_user%'
+            - '%jasper_password%'
+            - '%jasper_org_id%'
+            - '%jasper_ssfz_report_path%'

@@ -1,0 +1,5 @@
+W dniu {{ dzien }} upłynął w Działaniu 3.1 PO IG termin składania sprawozdań za okres {{ okres }}. Nie odnotowano złożenia sprawozdań od następujących Beneficjentów:<br>
+{% for beneficjentZalegajacy in beneficjenciZalegajacy  %}
+    {{ beneficjentZalegajacy.nazwa }} {{ beneficjentZalegajacy.email }}<br>
+{% endfor %}
+

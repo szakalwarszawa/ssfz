@@ -1,0 +1,96 @@
+{% extends 'SsfzBundle::baseLayout.html.twig' %}
+
+{% block body %} 
+<div class="panel panel-default"> 
+    <div class="panel-heading"><h4>Beneficjent {{beneficjent_nazwa}}, portfel spółek umowy {{umowa.numer}}</h4></div>        
+    <div class="panel-body">
+        {% form_theme form 'bootstrap_3_layout.html.twig' %}
+    {{ form_start(form) }}
+        
+    {{ form_row(form._token) }}  
+        
+        <div id="parp-portfel-spolka" class="panel panel-default"> 
+        <div id="parp-portfel-spolka-header" class="panel-heading">Spółka</div>
+            <div class="panel-body">
+                
+                <div class="row">
+                    <div class="col-sm-6">{{ form_row(form.nazwa) }}</div>
+                    <div class="col-sm-6">{{ form_row(form.forma) }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">{{ form_row(form.siedzibaMiasto) }}</div>
+                    <div class="col-sm-4">{{ form_row(form.siedzibaWojewodztwo) }}</div>
+                    <div class="col-sm-4">{{ form_row(form.branza) }}</div>
+                </div>
+                {{ form_row(form.opis) }}
+                 <div class="row">
+                    <div class="col-sm-4">{{ form_row(form.dataPowolania) }}</div>
+                    <div class="col-sm-4">{{ form_row(form.krs) }}</div>
+                    <div class="col-sm-4">{{ form_row(form.nip) }}</div>
+                </div> 
+                  <div class="row">
+                    <div class="col-sm-4">{{ form_row(form.kwInwestycji) }}</div>
+                    <div class="col-sm-4">{{ form_row(form.kwWsparcia) }}</div>
+                    <div class="col-sm-4">{{ form_row(form.kwPryw) }}</div>
+                </div>  
+                <div class="row">
+                    <div class="col-sm-3">{{ form_row(form.zakonczona) }}</div>
+                </div>
+                <div id="zakonczonaDodatkowe" class="row">                    
+                    <div class="col-sm-3">{{ form_row(form.dataWyjscia) }}</div>
+                    <div class="col-sm-3">{{ form_row(form.kwDezinwestycji) }}</div>
+                    <div class="col-sm-3">{{ form_row(form.zwrotInwestycji) }} </div>
+                    <div class="col-sm-3">{{ form_row(form.npv) }}</div>                                      
+                </div>          
+                <div class="row">
+                    <div class="col-sm-4">{{ form_row(form.udzialowcy) }}</div>
+                    <div class="col-sm-4">{{ form_row(form.prezes) }}  </div>
+                    <div class="col-sm-4">{{ form_row(form.zarzadPozostali) }} </div>
+                </div>                                                                              
+                <div class="pull-right">                                        
+                    <button id="parp-portfel-zamknij" type="button" value="powrot" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Zamknij</button>                    
+                </div>
+            </div>
+        </div>
+    {{ form_end(form) }}
+        
+            {{ datatable({                
+                'id' : 'dta-spolki',
+                'class' : 'table table-striped table-hover',                
+                'js' : {
+                    'ajax' : path('parp_datatableSpolki', {'idUmowy': app.request.get('idUmowy') }), 
+                    'columnDefs' : [
+                        {'targets' : 2, 'visible' : false },
+                        {'targets' : 5, 'visible' : false },
+                        {'targets' : 6, 'visible' : false },
+                        {'targets' : 7, 'visible' : false },
+                        {'targets' : 10, 'visible' : false },
+                        {'targets' : 11, 'visible' : false },
+                        {'targets' : 12, 'visible' : false },
+                        {'targets' : 14, 'visible' : false },
+                        {'targets' : 15, 'visible' : false },
+                        {'targets' : 16, 'visible' : false },
+                        {'targets' : 17, 'visible' : false },
+                        {'targets' : 18, 'visible' : false },
+                        {'targets' : 19, 'visible' : false },
+                        {'targets' : 20, 'visible' : false },
+                        {'targets' : 21, 'visible' : false },
+                        {'targets' : 22, 'visible' : false },
+                        {'targets' : 23, 'orderable' : false },
+                        
+                    ],
+                    'drawCallback' : 'function(settings) {
+                                        var pagination = $(this).closest(".dataTables_wrapper").find(".dataTables_paginate");
+                                        pagination.toggle(this.api().page.info().pages > 1);}'       
+                 }
+               })
+            }}          
+        <a href="{{ path('parp')}}" class="btn btn-danger pull-right" role="button"><span class="glyphicon glyphicon-chevron-left"></span> Powrót</a>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+    {% javascripts '@SsfzBundle/Resources/public/js/parp_portfel.js'%}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}   
+{% endblock %}

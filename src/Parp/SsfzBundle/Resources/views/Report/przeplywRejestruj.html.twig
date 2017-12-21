@@ -1,0 +1,58 @@
+{% extends "SsfzBundle::baseLayout.html.twig" %}
+{% block body %} 
+    <div class="panel panel-default"> 
+        
+        <div class="panel-heading">Przepływ finansowy</div>
+            {{ form_start(form) }}
+            <div class="panel-body">
+                <div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label required">Numer umowy</label>
+                        <div class="col-sm-10"><label class="control-label required">{{sprawozdanie.numerUmowy}}</label></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label required">Okres sprawozdawczy</label>
+                        <div class="col-sm-10"><label class="control-label required">{{sprawozdanie.okres}} {{sprawozdanie.rok}}</label></div>
+                    </div>
+                </div>
+                                       {{ form_row(form.saldoPoczatkowe) }}
+                                       {{ form_row(form.wplywy) }}
+                                       {{ form_row(form.wyjsciaZInwestycji) }}
+                                       {{ form_row(form.udzialWZyskach) }}
+                                       {{ form_row(form.inneWplywy) }}
+                                       {{ form_row(form.wyplywy) }}
+                                       {{ form_row(form.wejsciaKapitalowe) }}
+                                       {{ form_row(form.preinkubacjaPomyslow) }}
+                                       {{ form_row(form.wydatkiOperacyjne) }}
+                                       {{ form_row(form.podatki) }}
+                                       {{ form_row(form.inneWyplywy) }}
+                                       {{ form_row(form.saldoKoncowe) }}
+                                       </br>
+                                       </br>
+                                       {{ form_row(form.liczbaPomyslowWInkubatorze) }}
+                                       {{ form_row(form.liczbaPomyslowOcenionych) }}
+                                       {{ form_row(form.liczbaPomyslowOcenionychPozytywnie) }}
+                                       {{ form_row(form.liczbaPomyslowOcenionychNegatywnie) }}
+                                       {{ form_row(form.liczbaZakonczonychPreinkubacji) }}
+                                       {{ form_row(form.liczbaDokonanychInwestycji) }}
+            <div>        
+                        
+                <div id="form-submit-div" class="row btn-toolbar"> 
+                        <input type="hidden" id="umowaIdHidden" value="{{sprawozdanie.umowaId}}">  
+                        <span id="przeplyw-powrot" class="btn btn-danger pull-right"><span class="glyphicon glyphicon-chevron-left"></span> Powrót</span>
+                        <button type="submit" class="btn btnRegister btn-primary pull-right"><span class="glyphicon glyphicon-ok"></span> Zapisz</button>
+                </div>
+            </div>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+            {{ form_end(form) }}
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts '@SsfzBundle/Resources/public/js/sprawozdanie.js'%}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}        
+{% endblock %}

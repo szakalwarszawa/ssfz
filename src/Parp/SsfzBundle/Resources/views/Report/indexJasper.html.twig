@@ -1,0 +1,17 @@
+{% extends "SsfzBundle::baseLayout.html.twig" %}
+
+{% block body %}
+    <h2>Raporty</h2>
+    {% for report in reports %}
+        <div class="row">
+            <div class="col-md-2">
+                <a href="/parp/raporty/pobierz?uri={{ report.uri|url_encode }}">
+                    <button class="btn orange-button" style="width: 100%; margin-top: 5px;">{{ report.label }}</button>
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block javascripts %}  
+{% endblock %}

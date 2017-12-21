@@ -1,0 +1,21 @@
+<p>Witaj {% if ((imie is defined) and (nazwisko is defined)) %}
+    {{ imie }} {{ nazwisko}}
+    {% else %}
+        {{ login }}
+    {% endif %}
+</p>
+
+<p>Twoje konto zostało zarejestrowane, jednak jest nieaktywne.<br>
+    Aby aktywować konto użyj poniższego linku:</p>
+
+<p><a href="{{ app.request.schemeAndHttpHost ~ app.request.baseUrl }}/uzytkownik/aktywacja/token={{ code|url_encode }}">
+    {{ app.request.schemeAndHttpHost ~ app.request.baseUrl }}/uzytkownik/aktywacja/token={{ code|url_encode }}
+</a></p>
+
+<p>Sposób logowania do systemu jest taki sam jak do Twojej stacji roboczej.<br>
+
+<p>Pozdrawiamy,<br>
+    Polska Agencja Rozwoju Przedsiębiorczości</p>
+
+<p>Wiadomość została wygenerowana automatycznie. Prosimy na nią nie odpowiadać.</p>
+

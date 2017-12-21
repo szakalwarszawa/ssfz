@@ -1,0 +1,75 @@
+{% extends 'SsfzBundle::baseLayout.html.twig' %}
+{% block body %}
+{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}   
+    {{ form_start(form) }}
+        {{ form_row(form._token) }}    
+        <div class="panel panel-default"> 
+        <div class="panel-heading">Profil beneficjenta</div>
+            <div class="panel-body">
+                {{ form_row(form.nazwa) }}        
+                <div class="panel panel-default">
+                    <div class="panel-heading">Umowy:</div>
+                    <div class="umowy panel-body" data-prototype="{{ form_widget(form.umowy.vars.prototype)|e('html_attr') }}">
+                        {% for umowa in form.umowy %}
+                            <div class="row umowa-row">
+                                <div class="umowa-col col-sm-11">{{ form_row(umowa.numer) }}</div>                                
+                            </div>
+                        {% endfor %}
+                    </div> 
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Adres:</div>
+                    <div class="panel-body">
+                        {{ form_row(form.adrWojewodztwo) }}
+                        {{ form_row(form.adrMiejscowosc) }}
+                        {{ form_row(form.adrUlica) }}
+                        {{ form_row(form.adrBudynek) }}
+                        {{ form_row(form.adrLokal) }}
+                        {{ form_row(form.adrKod) }}
+                        {{ form_row(form.adrPoczta) }}
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Dane kontaktowe:</div>
+                    <div class="panel-body">
+                        {{ form_row(form.telStacjonarny) }}
+                        {{ form_row(form.telKomorkowy) }}
+                        {{ form_row(form.email) }}
+                        {{ form_row(form.fax) }}
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Osoby zatrudnione:</div>
+                    <div class="osoby-zatrudnione panel-body" data-prototype="{{ form_widget(form.osobyZatrudnione.vars.prototype)|e('html_attr') }}">
+                        {% for osobaZatrudniona in form.osobyZatrudnione %}
+                            <div class="row osoba-row">
+                                <div class="osoba-col col-sm-11">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            {{ form_row(osobaZatrudniona.imie) }}
+                                            {{ form_row(osobaZatrudniona.nazwisko) }}
+                                            {{ form_row(osobaZatrudniona.umowaRodzaj) }}
+                                            {{ form_row(osobaZatrudniona.umowaData) }}
+                                            {{ form_row(osobaZatrudniona.rozpoczecieData) }}
+                                            {{ form_row(osobaZatrudniona.stanowisko) }}
+                                            {{ form_row(osobaZatrudniona.wymiar) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="pull-right">                    
+                    <button type="submit" value="zapisz" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Zapisz</button>
+                    <button id="beneficjent-profil-powrot" type="button" value="powrot" class="btn btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Powrót</button>                    
+                </div>
+            </div>
+        </div
+    {{ form_end(form) }}
+{% endblock %}
+{% block javascripts %}
+    {% javascripts '@SsfzBundle/Resources/public/js/beneficjent_profil.js'%}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}        
+{% endblock %}

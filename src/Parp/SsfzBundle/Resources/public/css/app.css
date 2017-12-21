@@ -1,0 +1,31 @@
+#login-form{
+    padding-top: 50px;
+}
+
+#password-label {
+    padding-top: 15px;
+}
+
+#form-submit-div {
+    padding-top: 20px;
+}
+
+.submit-button:hover{
+    color: white;
+    background-color: orangered;
+}
+
+.orange-button {
+    color: #FFFFFF;
+    background-color: orangered;
+}
+
+
+a:hover {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.btn-static {
+  pointer-events: none;
+}    

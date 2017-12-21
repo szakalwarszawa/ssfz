@@ -1,0 +1,560 @@
+<?php
+namespace Parp\SsfzBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+
+/**
+ * Uzytkownik
+ *
+ * @ORM\Table(name="sfz_uzytkownik")
+ * @ORM\Entity(repositoryClass="Parp\SsfzBundle\Repository\UzytkownikRepository")
+ * @UniqueEntity(fields="login",                                                  message="Login jest już w użyciu.")
+ * @UniqueEntity(fields="email",                                                  message="Adres email jest już w użyciu.")
+ * @ORM\HasLifecycleCallbacks
+ */
+class Uzytkownik implements AdvancedUserInterface, \Serializable
+{
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="login", type="string", length=64, unique=true)
+     * @Assert\NotBlank(groups={"rejestracja"})
+     * @Assert\Length(groups={"rejestracja"}, max=64)
+     * @Assert\Regex(groups={"rejestracja"}, pattern="/[0-9a-zA-Z]{5,}/", message="Pole login musi zawierać co najmniej 5 znaków i nie więcej niż 255 znaków.")
+     */
+    private $login;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="haslo", type="string", nullable=true)
+     * @Assert\NotBlank(groups={"rejestracja"})
+     * @Assert\Length(max=255, groups={"rejestracja"})
+     * @Assert\Regex(
+     *  groups={"rejestracja"},
+     *  pattern="/(?=.*[A-Z].*[A-Z])(?=.*[a-z])(?=.*[0-9].*[0-9])(?=.*[~!@#$&^&*()_+=\[\];',.<>?\/]).{8,}/",
+      message="Hasło musi zawierać co najmniej
+      8 znaków i maksymalnie 255,
+      2 duże litery,
+      2 cyfry,
+      1 znak specjalny z zakresu: ~!@#$%^&*()_+=[];',.<>?/", groups={"rejestracja"})
+     */
+    private $haslo;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="email", type="string", length=250, unique=true)
+     * @Assert\NotBlank(groups={"rejestracja"})
+     * @Assert\Email(groups={"rejestracja"}, message="Adres email nie zawiera poprawnej konstrukcji, sprawdź czy adres nie zawiera błedów.")
+     */
+    private $email;
+
+    /**
+     * @var int
+     * 
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Rola")
+     */
+    private $rola;
+
+    /**
+     * @var boolean
+     * 
+     * @ORM\Column(name="ban", type="boolean")
+     */
+    private $ban;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="kod_zapomniane_haslo", type="string", nullable=true) 
+     */
+    private $kodZapomnianeHaslo;
+
+    /**
+     * @var Carbon\Carbon
+     * 
+     * @ORM\Column(name="utworzony", type="datetime")
+     */
+    private $utworzony;
+
+    /**
+     * @var Carbon\Carbon
+     * 
+     * @ORM\Column(name="zmodyfikowany", type="datetime", nullable = true)
+     */
+    private $zmodyfikowany;
+
+    /**
+     * @var integer
+     * 
+     * @ORM\Column(name="status", type="integer")
+     */
+    private $status;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Beneficjent", inversedBy="uzytkownicy")
+     * @ORM\JoinColumn(name="beneficjent_id", referencedColumnName="id", nullable=true)
+     */
+    private $beneficjent;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="kod_aktywacja_konta", type="string", nullable=true) 
+     */
+    private $kodAktywacjaKonta;
+
+    /**
+     * @var string
+     */
+    private $imie;
+
+    /**
+     * @var string
+     */
+    private $nazwisko;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get login
+     *
+     * @return string 
+     */
+    public function getLogin()
+    {
+        return $this->login;
+    }
+
+    /**
+     * Get haslo
+     *
+     * @return string 
+     */
+    public function getHaslo()
+    {
+        return $this->haslo;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Get rolaId
+     *
+     * @return integet 
+     */
+    public function getRola()
+    {
+        return $this->rola;
+    }
+
+    /**
+     * Get ban
+     *
+     * @return boolean 
+     */
+    public function getBan()
+    {
+        return $this->ban;
+    }
+
+    /**
+     * Get kodZapomnianeHaslo
+     *
+     * @return string 
+     */
+    public function getKodZapomnianeHaslo()
+    {
+        return $this->kodZapomnianeHaslo;
+    }
+
+    /**
+     * Get utworzony
+     *
+     * @return Carbon\Carbon 
+     */
+    public function getUtworzony()
+    {
+        return $this->utworzony;
+    }
+
+    /**
+     * Get zmodyfikowany
+     *
+     * @return Carbon\Carbon 
+     */
+    public function getZmodyfikowany()
+    {
+        return $this->zmodyfikowany;
+    }
+
+    /**
+     * Get status
+     *
+     * @return integer
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Get beneficjent
+     *
+     * @return Beneficjent
+     */
+    public function getBeneficjent()
+    {
+        return $this->beneficjent;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getKodAktywacjaKonta()
+    {
+        return $this->kodAktywacjaKonta;
+    }
+
+    /**
+     * 
+     * @param string $login
+     */
+    public function setLogin($login)
+    {
+        $this->login = $login;
+    }
+
+    /**
+     * 
+     * @param string $haslo
+     */
+    public function setHaslo($haslo)
+    {
+        $this->haslo = $haslo;
+    }
+
+    /**
+     * 
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * 
+     * @param integer $rola
+     */
+    public function setRola($rola)
+    {
+        $this->rola = $rola;
+    }
+
+    /**
+     * 
+     * @param boolean $ban
+     */
+    public function setBan($ban)
+    {
+        $this->ban = $ban;
+    }
+
+    /**
+     * 
+     * @param string $kodZapomnianeHaslo
+     */
+    public function setKodZapomnianeHaslo($kodZapomnianeHaslo)
+    {
+        $this->kodZapomnianeHaslo = $kodZapomnianeHaslo;
+    }
+
+    /**
+     * 
+     * @param \Parp\SsfzBundle\Entity\Carbon\Carbon $utworzony
+     */
+    public function setUtworzony(\Carbon\Carbon $utworzony)
+    {
+        $this->utworzony = $utworzony;
+    }
+
+    /**
+     * 
+     * @param \Parp\SsfzBundle\Entity\Carbon\Carbon $zmodyfikowany
+     */
+    public function setZmodyfikowany(\Carbon\Carbon $zmodyfikowany)
+    {
+        $this->zmodyfikowany = $zmodyfikowany;
+    }
+
+    /**
+     * 
+     * @param integer $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * Set beneficjent
+     *
+     * @param Beneficjent $beneficjent     
+     */
+    public function setBeneficjent($beneficjent)
+    {
+        $this->beneficjent = $beneficjent;
+    }
+
+    /**
+     * 
+     * @param string $kodAktywacjaKonta
+     */
+    public function setKodAktywacjaKonta($kodAktywacjaKonta)
+    {
+        $this->kodAktywacjaKonta = $kodAktywacjaKonta;
+    }
+    /**
+     * Zwraca informację czy użytkownik jest pracownikiem PARP
+     * 
+     * Tzn. czy ma jedną z ról zdefiniowaną w Rola::NAZWY_ROL_PARP
+     *  
+     * @return boolean
+     */
+    public function czyPracownikParp()
+    {
+        return in_array($this->rola->getNazwa(), Rola::NAZWY_ROL_PARP);    
+    }
+    
+    /**
+     * Wyzwalane przy operacji INSERT
+
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $options = [
+            'cost' => 12,
+        ];
+        $this->haslo = $this->haslo !== null ? password_hash($this->haslo, PASSWORD_BCRYPT, $options) : $this->haslo;
+        $this->ban = false;
+        $this->status = 0;
+        $this->utworzony = new \Carbon\Carbon('Europe/Warsaw');
+    }
+
+    /**
+     * Wyzwalane przy operacji UPDATE
+
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->zmodyfikowany = new \Carbon\Carbon('Europe/Warsaw');
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->login;
+    }
+
+    /**
+     * 
+     * @return null
+     */
+    public function getSalt()
+    {
+        return null;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->haslo;
+    }
+
+    /**
+     * 
+     * @return array
+     */
+    public function getRoles()
+    {
+        return array($this->getRola()->getNazwa());
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getImie()
+    {
+        return $this->imie;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getNazwisko()
+    {
+        return $this->nazwisko;
+    }
+
+    /**
+     * 
+     * @param string $imie
+     */
+    public function setImie($imie)
+    {
+        $this->imie = $imie;
+    }
+
+    /**
+     * 
+     * @param string $nazwisko
+     */
+    public function setNazwisko($nazwisko)
+    {
+        $this->nazwisko = $nazwisko;
+    }
+    /**
+     * Usuwa dane poufne z użytkownika
+     * 
+     */
+    public function eraseCredentials()
+    {
+        
+    }
+
+    /**
+     *
+     * @see \Serializable::serialize()
+     * 
+     * @return Objects
+     */
+    public function serialize()
+    {
+        return serialize(
+            array(
+            $this->id,
+            $this->login,
+            $this->haslo,
+            $this->email,
+            $this->rola,
+            $this->ban,
+            $this->kodZapomnianeHaslo,
+            $this->utworzony,
+            $this->zmodyfikowany,
+            $this->status,
+            $this->kodAktywacjaKonta
+            )
+        );
+    }
+
+    /**
+     *
+     * @see \Serializable::unserialize()
+     *  
+     * @param Object $serialized
+     */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->login,
+            $this->haslo,
+            $this->email,
+            $this->rola,
+            $this->ban,
+            $this->kodZapomnianeHaslo,
+            $this->utworzony,
+            $this->zmodyfikowany,
+            $this->status,
+            $this->kodAktywacjaKonta
+            ) = unserialize($serialized);
+    }
+
+    /**
+     * 
+     * @return boolean
+     */
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    /**
+     * 
+     * @return boolean
+     */
+    public function isAccountNonLocked()
+    {
+        if ($this->ban === true) {
+            
+            return false;
+        }
+        
+        return true;
+    }
+
+    /**
+     * 
+     * @return boolean
+     */
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    /**
+     * 
+     * @return boolean
+     */
+    public function isEnabled()
+    {
+        if ($this->status == 0) {
+            
+            return false;
+        }
+
+        return true;
+    }
+}
