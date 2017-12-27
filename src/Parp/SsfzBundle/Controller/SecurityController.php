@@ -85,7 +85,7 @@ class SecurityController extends Controller
                 }
 
                 $randomHash = base64_encode(random_bytes(64));
-                $randomHash = str_replace('/', '', $randomHash);
+                $randomHash = str_replace(array('/', '+', '='), '', $randomHash);
                 $uzytkownik->setKodZapomnianeHaslo($randomHash);
 
                 $uzytkownikRepository->persist($uzytkownik);
