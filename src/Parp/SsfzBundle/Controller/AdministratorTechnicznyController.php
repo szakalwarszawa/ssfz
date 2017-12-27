@@ -161,7 +161,7 @@ class AdministratorTechnicznyController extends Controller
             return null;
         }
         $randomHash = base64_encode(random_bytes(64));
-        $randomHash = str_replace('/', '', $randomHash);
+        $randomHash = str_replace(array('/', '+', '='), '', $randomHash);
 
         $pracownik->setKodAktywacjaKonta($randomHash);
 
