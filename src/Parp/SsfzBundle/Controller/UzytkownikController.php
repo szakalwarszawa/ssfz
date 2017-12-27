@@ -49,13 +49,14 @@ class UzytkownikController extends Controller
             $uzytkownik->setRola($rolaBeneficjent);
 
             $randomHash = base64_encode(random_bytes(64));
-            $randomHash = str_replace('/', '', $randomHash);
+            $randomHash = str_replace(array('/', '+', '='), '', $randomHash);
 
             $uzytkownik->setKodAktywacjaKonta($randomHash);
 
-            $notExist = $uzytkownikRepository->findOneBy(['email' => $uzytkownik->getEmail()]) == null ? true : false;
+            //$notExist = $uzytkownikRepository->findOneBy(['email' => $uzytkownik->getEmail()]) == null ? true : false;
+            //$notExist = $uzytkownikRepository->findOneBy(['login' => $uzytkownik->getLogin()]) == null ? true : false;
 
-            if ($notExist) {
+            if (is_null($uzytkownikRepository->findOneBy(['email' => $uzytkownik->getEmail()])) && is_null($uzytkownikRepository->findOneBy(['login' => $uzytkownik->getLogin()]))) {
                 $topic = 'Utworzono konto';
                 $template = '@SsfzBundle/Resources/views/Email/registration.html.twig';
                 $templateParams = array(
