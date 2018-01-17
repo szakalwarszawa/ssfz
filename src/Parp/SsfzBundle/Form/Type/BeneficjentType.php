@@ -24,6 +24,8 @@ class BeneficjentType extends AbstractType
      * 
      * @param FormBuilderInterface $builder
      * @param array                $options
+     * 
+     * @SuppressWarnings("unused")
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

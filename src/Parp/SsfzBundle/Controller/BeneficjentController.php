@@ -35,8 +35,8 @@ class BeneficjentController extends Controller
         if (!$beneficjent || !$beneficjent->getWypelniony()) {
             return $this->redirectToRoute('beneficjent_uzupelnij');
         }
-        $this->getNarzedziaService()->datatableOsoby($this, $beneficjent->getId());        
-        $this->getNarzedziaService()->datatableUmowy($this, $beneficjent->getId());   
+        $this->get('ssfz.service.datatable_osoby_service')->datatableOsoby($this, $beneficjent->getId());        
+        $this->get('ssfz.service.datatable_umowy_service')->datatableUmowy($this, $beneficjent->getId());   
         
         return $this->render(
             'SsfzBundle:Beneficjent:index.html.twig',
@@ -81,14 +81,15 @@ class BeneficjentController extends Controller
         $form = $this->createForm(BeneficjentType::class, $beneficjent);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getBeneficjentService()
-                ->updateBeneficjent($beneficjent, $originalUmowy, $originalOsoby);
-            $this->addBeneficjentFormSuccessFlash();
+            if ($form->isValid()) {
+                $this->getBeneficjentService()
+                    ->updateBeneficjent($beneficjent, $originalUmowy, $originalOsoby);
+                $this->get('ssfz.service.komunikaty_service')->sukcesKomunikat('Dane zostały zapisane.');
             
-            return $this->redirectToRoute('beneficjent');
-        }
-        if ($form->isSubmitted() && !$form->isValid()) {
-            $this->addBeneficjentFormErrorFlash();
+                return $this->redirectToRoute('beneficjent');
+            } else {
+                $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Formularz nie został poprawnie wypełniony.');
+            }
         }
         
         return $this->render(
@@ -111,7 +112,7 @@ class BeneficjentController extends Controller
         $beneficjent = $uzytkownik->getBeneficjent();  
         $beneficjentId = $beneficjent->getId();
         
-        return $this->getNarzedziaService()
+        return $this->get('ssfz.service.datatable_osoby_service')
             ->datatableOsoby($this, $beneficjentId)->execute();
     }
     /**
@@ -127,7 +128,7 @@ class BeneficjentController extends Controller
         $beneficjent = $uzytkownik->getBeneficjent();
         $beneficjentId = $beneficjent->getId();        
         
-        return $this->getNarzedziaService()
+        return $this->get('ssfz.service.datatable_umowy_service')
             ->datatableUmowy($this, $beneficjentId)->execute();
     }            
     /**
@@ -140,56 +141,19 @@ class BeneficjentController extends Controller
         return $this->get('ssfz.service.beneficjent_service');
     }    
     /**
-     * Dodaje informację o pomyślnym zapisie danych z formularza
-     * 
-     * @return void
-     */
-    protected function addBeneficjentFormSuccessFlash()
-    {
-        $this->get('session')->getFlashBag()->add(
-            'notice', array(
-            'alert' => 'success',
-            'title' => '',
-            'message' => 'Dane zostały zapisane.'
-            )
-        );
-    }
-    /**
-     * Dodaje informację o nieprawidłowo wypełnionym formularzu
-     * 
-     * @return void
-     */
-    protected function addBeneficjentFormErrorFlash()
-    {
-        $this->get('session')->getFlashBag()->add(
-            'notice', array(
-            'alert' => 'danger',
-            'title' => 'Błąd.',
-            'message' => 'Formularz nie został poprawnie wypełniony.'
-            )
-        );
-    }
-    /**
      * Pobiera zalogowanego użytkownika
+     * 
+     * @throws AccessDeniedException
      * 
      * @return Uzytkownik
      */
     protected function getZalogowanyUzytkownik()
     {
         $uzytkownik = $this->get('security.token_storage')->getToken()->getUser();
-        if (!$uzytkownik) {
+        if (null == $uzytkownik) {
             throw $this->createAccessDeniedException();
         }        
         
         return $uzytkownik;
     }      
-    /**
-     * Pobiera serwis NarzedziaService
-     * 
-     * @return NarzedziaService
-     */
-    private function getNarzedziaService()
-    {
-        return $this->get('ssfz.service.narzedzia_service');
-    }
 }

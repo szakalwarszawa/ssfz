@@ -50,44 +50,36 @@ class AdministratorTechnicznyController extends Controller
         $uzytkRepo = $this->getDoctrine()->getRepository(Uzytkownik::class);
         $rolaRepo = $this->getDoctrine()->getRepository(Rola::class);
 
-        $form = $this->createForm(
-            PracownikParpRejestracjaType::class, [], [
-            'ssfz.service.ldap_data_service' => $ldapDataService,
-            'uzytk_repo' => $uzytkRepo,
-            ]
-        );
+        $form = $this->createForm(PracownikParpRejestracjaType::class, [], ['ssfz.service.ldap_data_service' => $ldapDataService, 'uzytk_repo' => $uzytkRepo]);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $entityManager = $this->getDoctrine()->getManager();
 
             $dane = $form->getData();
 
             $pracownik = $this->utworzPracownika($dane);
-            if ($pracownik === null) {
+            if (null === $pracownik) {
                 $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Utworzenie konta pracownika nie powiodło się.');
 
                 return $this->redirectToRoute('utworzPracownika');
             }
-            $em->persist($pracownik);
-            $em->flush();
-
+            $this->persistPracownik($pracownik);
             $this->wyslijWiadomoscAktywacyjna($pracownik);
-
             $this->get('ssfz.service.komunikaty_service')->sukcesKomunikat('Konto pracownika zostało utworzone poprawnie. Link aktywacyjny został wyslany na adres e-mail pracownika.');
 
             return $this->redirectToRoute('utworzPracownika');
         }
 
-        return $this->render(
-            'SsfzBundle:AdministratorTechniczny:utworzPracownika.html.twig', array(
-            'form' => $form->createView(),
-            'dostepniPracownicyParp' => count($ldapDataService->getUzytkownikLdapListaZEmail()) > 0,
-            'przegladPracownikow' => $pracownicy
-            )
+        return $this->render('SsfzBundle:AdministratorTechniczny:utworzPracownika.html.twig', array(
+                'form' => $form->createView(),
+                'dostepniPracownicyParp' => count($ldapDataService->getUzytkownikLdapListaZEmail()) > 0,
+                'przegladPracownikow' => $pracownicy
+                )
         );
     }
+
     /**
      * Akcja wyświetlająca formularz edycji użytkownika i zmieniająca dane użytkownika
      * na podstawie danych z tego formularza 
@@ -98,52 +90,33 @@ class AdministratorTechnicznyController extends Controller
      * 
      * @return Response
      */
-    public function edytujPracownika(Request $request) 
+    public function edytujPracownika(Request $request)
     {
-        
         $uzytkRepo = $this->getDoctrine()->getRepository(Uzytkownik::class);
         $uzytkId = $request->get('id_uzytkownika');
-        
         $uzytkownik = $uzytkRepo->find($uzytkId);
-
         $komunikat = $this->edycjaUzytkownikPoprawnyKomunikat($uzytkownik);
-        if ($komunikat !== null) {
+        if (null !== $komunikat) {
             $this->get('ssfz.service.komunikaty_service')->bladKomunikat($komunikat);
 
             return $this->redirectToRoute('utworzPracownika');
         }
-        
         $form = $this->createForm(
-            PracownikParpEdycjaType::class, $uzytkownik,
-            [
-                'uzytk_repo' => $uzytkRepo,
-            ]
+            PracownikParpEdycjaType::class, $uzytkownik, ['uzytk_repo' => $uzytkRepo]
         );
-
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
+            $entityManager = $this->getDoctrine()->getManager();
             $pracownik = $form->getData();
-            
-            $em->persist($pracownik);
-            $em->flush();
-           
+            $this->persistPracownik($pracownik);
             $this->get('ssfz.service.komunikaty_service')->sukcesKomunikat('Dane pracownika zostały zaktualizowane.');
 
             return $this->redirectToRoute('utworzPracownika');
         }
 
-        return $this->render(
-            'SsfzBundle:AdministratorTechniczny:edytujPracownika.html.twig', 
-            array(
-                'form' => $form->createView(), 
-            )
-        );
-        
+        return $this->render('SsfzBundle:AdministratorTechniczny:edytujPracownika.html.twig', array('form' => $form->createView()));
     }
-    
+
     /**
      * Tworzy nowego użytkownika - pracownika PARP
      * 
@@ -155,19 +128,28 @@ class AdministratorTechnicznyController extends Controller
      */
     private function utworzPracownika($dane)
     {
-
         $pracownik = $this->utworzPracownikaZDanychILdap($dane);
-        if ($pracownik === null) {
+        if (null === $pracownik) {
             return null;
         }
         $randomHash = base64_encode(random_bytes(64));
         $randomHash = str_replace(array('/', '+', '='), '', $randomHash);
-
         $pracownik->setKodAktywacjaKonta($randomHash);
-
         $pracownik->setRola($dane['rola']);
 
         return $pracownik;
+    }
+
+    /**
+     * Dodaje nowego użytkownika do bazy
+     * 
+     * @param Uzytkownik $pracownik
+     */
+    private function persistPracownik($pracownik)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($pracownik);
+        $entityManager->flush();
     }
 
     /**
@@ -191,13 +173,11 @@ class AdministratorTechnicznyController extends Controller
         $uzytkownik->setLogin($login);
         $uzytkownik->setImie($uzytkownikLdap->getImie());
         $uzytkownik->setNazwisko($uzytkownik->getNazwisko());
-        //$uzytkownik->setHaslo('');
         $uzytkownik->setEmail($uzytkownikLdap->getEmail());
         $uzytkownik->setStatus(0);
 
         return $uzytkownik;
     }
-
 
     /**
      * Wysyła wiadomość aktywacyjną do podanego użytkownika
@@ -222,10 +202,10 @@ class AdministratorTechnicznyController extends Controller
 
         $rolePracownikow = Rola::NAZWY_ROL_PARP;
         $rolaRepo = $this->getDoctrine()->getRepository(Rola::class);
-        
+
         return $this->getDoctrine()
-            ->getRepository(Uzytkownik::class)
-            ->znajdzPoRolach($rolaRepo->znajdzPoNazwach($rolePracownikow));
+                ->getRepository(Uzytkownik::class)
+                ->znajdzPoRolach($rolaRepo->znajdzPoNazwach($rolePracownikow));
     }
 
     /**
@@ -247,18 +227,16 @@ class AdministratorTechnicznyController extends Controller
      * @param  Uzytkownik $uzytkownik użytkownik do zweryfikowania
      * @return string komunikat błedu lub null jesli wszystko ok
      */
-    private function edycjaUzytkownikPoprawnyKomunikat(Uzytkownik $uzytkownik) 
+    private function edycjaUzytkownikPoprawnyKomunikat(Uzytkownik $uzytkownik)
     {
         $blad = null;
-        if (!$uzytkownik === null) {
+        if (null === !$uzytkownik  ) {
             return 'Użytkownik nie istnieje';
-            
-        }    
+        }
         if (!$uzytkownik->czyPracownikParp()) {
             return 'Edytowany uzytkownik nie jest Pracownikiem PARP';
         }
 
         return null;
-        
     }
 }

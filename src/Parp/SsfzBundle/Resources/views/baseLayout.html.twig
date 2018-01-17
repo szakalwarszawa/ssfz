@@ -89,7 +89,7 @@
                             {% if is_granted('ROLE_KOORDYNATOR_TECHNICZNY') %}
                             <li><a href="{{ path('utworzPracownika') }}">Dodaj pracownika PARP</a></li>
                             {%endif %}  
-                            {% if is_granted('ROLE_PRACOWNIK_PARP') %}
+                            {% if is_granted('ROLE_KOORDYNATOR_MERYTORYCZNY') or is_granted('ROLE_PRACOWNIK_PARP') %}
                             <li><a href="{{ path('raporty') }}">Raporty</a></li>
                             {%endif %}  
                     </ul>

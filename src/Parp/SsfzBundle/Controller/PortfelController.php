@@ -10,6 +10,8 @@ use Parp\SsfzBundle\Entity\Uzytkownik;
 use Parp\SsfzBundle\Form\Type\SpolkaType;
 use Parp\SsfzBundle\Entity\Spolka;
 use Parp\SsfzBundle\Entity\Umowa;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 /**
  * Kontroler obsługujący funkcjonalności po stronie Beneficjenta
  * 
@@ -31,6 +33,8 @@ class PortfelController extends Controller
      * @Route("/portfel/{idUmowy}",            name="portfel_dodanie") 
      * @Route("/portfel/{idUmowy}/{idSpolki}", name="portfel_edycja") 
      * 
+     * @throws NotFoundHttpException
+     * 
      * @return Response
      */
     public function indexAction(Request $request, $idUmowy, $idSpolki=null)
@@ -38,16 +42,16 @@ class PortfelController extends Controller
         $uzytkownik = $this->getZalogowanyUzytkownik();
         $beneficjent = $uzytkownik->getBeneficjent();
         if (!$beneficjent) {
-            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException('Profil beneficjenta nie został znaleziony');
+            throw new NotFoundHttpException('Profil beneficjenta nie został znaleziony');
         }
         $umowa= $this->getDoctrine()->getRepository(Umowa::class)->find($idUmowy);
         if (!$umowa) {
-            $this->getNarzedziaService()->dodajFlash($this, 'Błąd.', 'Nie znaleziono umowy o przekazanym identyfikatorze.', 'danger');
+            $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Nie znaleziono umowy o przekazanym identyfikatorze.');
             
             return $this->redirectToRoute('beneficjent');
         }
         if (false === $beneficjent->getUmowy()->contains($umowa)) {
-            $this->getNarzedziaService()->dodajFlash($this, 'Błąd.', 'Brak dostępu do umowy o podanym identyfikatorze.', 'danger');
+            $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Brak dostępu do umowy o podanym identyfikatorze.');
             
             return $this->redirectToRoute('beneficjent');
         }
@@ -64,18 +68,19 @@ class PortfelController extends Controller
         $form = $this->createForm(SpolkaType::class, $spolka, array('narzedzia_svc' => $this->get('ssfz.service.narzedzia_service')));
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getRepository(Spolka::class)->persistSpolka($spolka, $spolkaP, $uzytkownik->getId());
-            $this->getNarzedziaService()->dodajFlash($this, '', 'Dane zostały zapisane.', 'success');
-            if ($form['przekierowanie']->getData() == 'beneficjent') {                
-                return $this->redirectToRoute('beneficjent');
-            }            
+            if ($form->isValid()) {
+                $this->getDoctrine()->getRepository(Spolka::class)->persistSpolka($spolka, $spolkaP, $uzytkownik->getId());
+                $this->get('ssfz.service.komunikaty_service')->sukcesKomunikat('Dane zostały zapisane.');
+                if ('beneficjent' === $form['przekierowanie']->getData()) {                
+                    return $this->redirectToRoute('beneficjent');
+                }            
             
-            return $this->redirectToRoute('portfel_dodanie', array('idUmowy' => $idUmowy));
+                return $this->redirectToRoute('portfel_dodanie', array('idUmowy' => $idUmowy));               
+            } else {
+                $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Formularz nie został poprawnie wypełniony.');
+            }
         }
-        if ($form->isSubmitted() && !$form->isValid()) {
-            $this->getNarzedziaService()->dodajFlash($this, 'Błąd.', 'Formularz nie został poprawnie wypełniony.', 'danger');
-        }
-        $this->get('ssfz.service.narzedzia_service')->datatableSpolki($this, $umowa->getId()); 
+        $this->get('ssfz.service.datatable_spolki_service')->datatableSpolki($this, $umowa->getId()); 
         
         return $this->render(
             'SsfzBundle:Portfel:index.html.twig',
@@ -92,27 +97,32 @@ class PortfelController extends Controller
      * 
      * @Route("/gridSpolki/{idUmowy}", name="datatableSpolki")
      * 
+     * @throws NotFoundHttpException
+     * @throws AccessDeniedException
+     * 
      * @return Response
      */
     public function spolkiGridAction($idUmowy)
     {
         $umowa= $this->getDoctrine()->getRepository(Umowa::class)->find($idUmowy);
         if (!$umowa) {
-            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException('Nie znaleziono umowy o przekazanym identyfikatorze.');
+            throw new NotFoundHttpException('Nie znaleziono umowy o przekazanym identyfikatorze.');
         }
         $uzytkownik = $this->getZalogowanyUzytkownik();
         $beneficjent = $uzytkownik->getBeneficjent();
         
         if (false === $beneficjent->getUmowy()->contains($umowa)) {
-            throw new \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException('Brak dostępu do umowy o podanym identyfikatorze.');
+            throw new AccessDeniedHttpException('Brak dostępu do umowy o podanym identyfikatorze.');
         }                
         $umowaId = $umowa->getId();
         
-        return $this->get('ssfz.service.narzedzia_service')->datatableSpolki($this, $umowaId)->execute();
+        return $this->get('ssfz.service.datatable_spolki_service')->datatableSpolki($this, $umowaId)->execute();
     }     
        
     /**
      * Pobiera zalogowanego użytkownika
+     * 
+     * @throws AccessDeniedException
      * 
      * @return Uzytkownik
      */
@@ -126,13 +136,4 @@ class PortfelController extends Controller
         return $uzytkownik;
     }    
     
-    /**
-     * pobiera serwis NarzedziaService
-     * 
-     * @return NarezdziaService
-     */
-    private function getNarzedziaService()
-    {
-        return $this->get('ssfz.service.narzedzia_service');
-    }
 }

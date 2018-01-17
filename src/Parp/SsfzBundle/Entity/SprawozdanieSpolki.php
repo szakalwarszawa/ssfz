@@ -37,7 +37,7 @@ class SprawozdanieSpolki
      *
      * @ORM\Column(name="lp", type="integer")
      */
-    private $lp;
+    private $liczbaPorzadkowa;
 
     /**
      * @var string
@@ -200,9 +200,9 @@ class SprawozdanieSpolki
      *
      * @return int
      */
-    public function getLp()
+    public function getLiczbaPorzadkowa()
     {
-        return $this->lp;
+        return $this->liczbaPorzadkowa;
     }
 
     /**
@@ -376,13 +376,13 @@ class SprawozdanieSpolki
     }
 
     /**
-     * ustawia $lp
+     * ustawia $liczbaPorzadkowa
      * 
-     * @param int $lp
+     * @param int $liczbaPorzadkowa
      */
-    public function setLp($lp)
+    public function setLiczbaPorzadkowa($liczbaPorzadkowa)
     {
-        $this->lp = $lp;
+        $this->liczbaPorzadkowa = $liczbaPorzadkowa;
     }
 
     /**

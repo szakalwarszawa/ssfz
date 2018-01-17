@@ -6,5 +6,4 @@ namespace Parp\SsfzBundle\Entity;
  */
 class UzytkownikLdap extends Uzytkownik
 {
-    
 }

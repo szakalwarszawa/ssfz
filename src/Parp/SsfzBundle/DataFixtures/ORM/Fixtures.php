@@ -155,8 +155,8 @@ class Fixtures implements FixtureInterface
         $sprawozdanie = new Sprawozdanie();
         $sprawozdanie->setUmowa($umowa);
         $sprawozdanie->setCreatorId($userBeneficjent->getId());
-        $s = '1/1/2017 11:36:12 AM';
-        $value = new \DateTime($s);
+        $dateTimeString = '1/1/2017 11:36:12 AM';
+        $value = new \DateTime($dateTimeString);
         $sprawozdanie->setDataRejestracji($value);
         $sprawozdanie->setNumerUmowy($umowa->getNumer());
         $sprawozdanie->setOkres('styczeń - czwerwiec');
@@ -171,8 +171,8 @@ class Fixtures implements FixtureInterface
         $sprawozdanie2 = new Sprawozdanie();
         $sprawozdanie2->setUmowa($umowa);
         $sprawozdanie2->setCreatorId($beneficjentKonto->getId());
-        $s = '1/1/2017 11:36:12 AM';
-        $value = new \DateTime($s);
+        $dateTimeString = '1/1/2017 11:36:12 AM';
+        $value = new \DateTime($dateTimeString);
         $sprawozdanie2->setDataRejestracji($value);
         $sprawozdanie2->setNumerUmowy($umowa->getNumer());
         $sprawozdanie2->setOkres('styczeń - czwerwiec');
@@ -187,8 +187,8 @@ class Fixtures implements FixtureInterface
         $sprawozdanie3 = new Sprawozdanie();
         $sprawozdanie3->setUmowa($umowa);
         $sprawozdanie3->setCreatorId($beneficjentKonto->getId());
-        $s = '1/1/2017 11:36:12 AM';
-        $value = new \DateTime($s);
+        $dateTimeString = '1/1/2017 11:36:12 AM';
+        $value = new \DateTime($dateTimeString);
         $sprawozdanie3->setDataRejestracji($value);
         $sprawozdanie3->setNumerUmowy($umowa->getNumer());
         $sprawozdanie3->setOkres('styczeń - czwerwiec');
@@ -203,8 +203,8 @@ class Fixtures implements FixtureInterface
         $sprawozdanie4 = new Sprawozdanie();
         $sprawozdanie4->setUmowa($umowa);
         $sprawozdanie4->setCreatorId($beneficjentKonto->getId());
-        $s = '1/1/2017 11:36:12 AM';
-        $value = new \DateTime($s);
+        $dateTimeString = '1/1/2017 11:36:12 AM';
+        $value = new \DateTime($dateTimeString);
         $sprawozdanie4->setDataRejestracji($value);
         $sprawozdanie4->setNumerUmowy($umowa->getNumer());
         $sprawozdanie4->setOkres('styczeń - czwerwiec');

@@ -5,6 +5,8 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
+use Parp\SsfzBundle\Entity\Uzytkownik;
+use Parp\SsfzBundle\Entity\Rola;
 
 /**
  * UzytkownikRepository
@@ -21,12 +23,58 @@ class UzytkownikRepository extends EntityRepository implements UserProviderInter
      * @param \Parp\SsfzBundle\Entity\Uzytkownik $user
      * @return Uzytkownik
      */
-    public function persist(\Parp\SsfzBundle\Entity\Uzytkownik $user)
+    public function persist(Uzytkownik $user)
     {
         $this->_em->persist($user);
         $this->_em->flush();
 
         return $user;
+    }
+
+    /**
+     * Dodaje nowego użytkownika
+     * 
+     * @param Uzytkownik $user
+     * @param Rola       $role
+     */
+    public function persistNewUser(Uzytkownik $user, Rola $role)
+    {
+        $user->newUser($role);
+        $this->persist($user);
+    }
+
+    /**
+     * Aktywuje konto użytkownika
+     * 
+     * @param Uzytkownik $user
+     */
+    public function activateUserAccount(Uzytkownik $user)
+    {
+        $user->activateAccount();
+        $this->persist($user);
+    }
+
+    /**
+     * Ustawia kod zapomnianego hasła
+     * 
+     * @param Uzytkownik $user
+     */
+    public function forgottenPassword(Uzytkownik $user)
+    {
+        $user->forgottenPassword();
+        $this->persist($user);
+    }
+
+    /**
+     * Ustawia nowe hasło
+     * 
+     * @param Uzytkownik $user
+     * @param string     $newPassword
+     */
+    public function newPassword(Uzytkownik $user, $newPassword)
+    {
+        $user->newPassword($newPassword);
+        $this->persist($user);
     }
 
     /**
@@ -56,7 +104,6 @@ class UzytkownikRepository extends EntityRepository implements UserProviderInter
     public function loadUserByUsername($username)
     {
         $user = $this->findBy(['login' => $username]);
-
         if (!$user) {
             throw new UsernameNotFoundException('No user found for username ' . $username);
         }

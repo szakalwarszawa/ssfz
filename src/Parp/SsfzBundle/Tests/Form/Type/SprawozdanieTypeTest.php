@@ -47,32 +47,9 @@ class SprawozdanieTypeTest extends TypeTestCase
      */
     public function testSubmitValidData()
     {
-        $dateNow = new \DateTime('now');
         $umowa = new \Parp\SsfzBundle\Entity\Umowa();
         $umowa->setNumer('1/2017');
         $sprawozdanieSpolek = new \Parp\SsfzBundle\Entity\SprawozdanieSpolki();
-        $lista =  array($sprawozdanieSpolek);
-        /*$formData = array(
-            'id' => 5,
-            'creatorId' => 2,
-            'dataRejestracji' => $dateNow,
-            'umowaId' => 3,
-            'previousVersionId' => 4,
-            'umowa' => $umowa,
-            'numerUmowy' => '1/2017',
-            'okres' => 'styczeń - czerwiec',
-            'okresId' => 0,
-            'rok' => '2016',
-            'status' => 1,
-            'wersja' => 1,
-            'czyNajnowsza' => true,
-            'dataPrzeslaniaDoParp' => $dateNow,
-            'oceniajacyId' => 12,
-            'dataZatwierdzenia' => $dateNow,
-            'uwagi' => 'Brak uwag',
-            'sprawozdaniaSpolek' => $lista,
-            'idStatus' => 1,
-        );*/ 
         
         $formData = array(
             'numerUmowy' => '1/2017',
@@ -80,28 +57,9 @@ class SprawozdanieTypeTest extends TypeTestCase
             'rok' => 2016,
             'uwagi' => 'uwagi',
         );
-        $form = $this->factory->create(\Parp\SsfzBundle\Form\Type\SprawozdanieType::class);
+        $form = $this->factory->create(\Parp\SsfzBundle\Form\Type\SprawozdanieType::class, null, ['okresy' => ['2016' => '2016', '2017' => '2017', '2018' => '2018', '2019' => '2019']]);
         $object = new \Parp\SsfzBundle\Entity\Sprawozdanie();
         
-        /*$object->setId(7);
-        $object->setCreatorId(2);
-        $object->setDataRejestracji($dateNow);
-        $object->setUmowaId(3);
-        $object->setPreviousVersionId(4);
-        $object->setUmowa($umowa);
-        $object->setNumerUmowy('1/2017');
-        $object->setOkres('styczeń - czerwiec');
-        $object->setOkresId(0);
-        $object->setRok('2016');
-        $object->setStatus(1);
-        $object->setWersja(1);
-        $object->setCzyNajnowsza(true);
-        $object->setDataPrzeslaniaDoParp($dateNow);
-        $object->setOceniajacyId(12);
-        $object->setDataZatwierdzenia($dateNow);
-        $object->setUwagi('Brak uwag');
-        $object->setSprawozdaniaSpolek($lista);
-        $object->setIdStatus(1);*/
         
         $object->setNumerUmowy('1/2017');
         $object->setOkres('styczeń - czerwiec');

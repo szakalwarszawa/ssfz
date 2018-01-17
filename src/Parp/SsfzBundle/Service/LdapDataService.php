@@ -76,11 +76,9 @@ class LdapDataService
             'accountDomainName' => '',
             'baseDn' => '',
         );
-
         $resolver = new OptionsResolver();
         $resolver->setDefaults($defaults);
         $parameters = $resolver->resolve($parameters);
-
         $this->parameters = $parameters;
 
         return $parameters;
@@ -97,7 +95,6 @@ class LdapDataService
     public function getOption($optionName, $defaultValue = null)
     {
         $result = $defaultValue;
-
         $options = $this->parameters;
         if (array_key_exists($optionName, $options)) {
             $result = $options[$optionName];
@@ -117,20 +114,17 @@ class LdapDataService
     public function getUzytkownikLdapLista()
     {
         $result = array();
-
         $baseDn = $this->getOption('baseDn', '');
         $searchScope = Ldap::SEARCH_SCOPE_SUB;
-
         $employees = $this
             ->ldap
             ->searchEntries('objectClass=organizationalPerson', $baseDn, $searchScope);
         foreach ($employees as $employee) {
             $uzytkownikLdap = $this->convertLdapDataToUzytkownikLdap($employee);
-            if ($uzytkownikLdap != null) {
+            if (null !== $uzytkownikLdap) {
                 $result[] = $uzytkownikLdap;
             }
         }
-
         //sortuje tablicę wg loginu
         uasort($result, function (UzytkownikLdap $a, UzytkownikLdap $b) {
             return strcmp($a->getLogin(), $b->getLogin());
@@ -151,7 +145,7 @@ class LdapDataService
         $uzytkLdap = $this->getUzytkownikLdapLista();
         $out = array();
         foreach ($uzytkLdap as $u) {
-            if ($u->getEmail() === null) {
+            if (null === $u->getEmail()) {
                 continue;
             }
             $out[] = $u;
@@ -175,10 +169,8 @@ class LdapDataService
 
         $baseDn = $this->getOption('baseDn', '');
         $searchScope = Ldap::SEARCH_SCOPE_SUB;
-
         $employee = $this->ldap->searchEntries('(&(objectClass=organizationalPerson)(' . $this->uidKey . '=' . $login . '))', $baseDn, $searchScope);
-
-        if (count($employee) != 1) {
+        if (1 !== count($employee)) {
             throw new \LdapDataServiceException('Niejednoznaczny login LDAP');
         }
 
@@ -196,15 +188,12 @@ class LdapDataService
     {
         $wynik = array();
         $pracownicyLdap = $this->getUzytkownikLdapListaZEmail();
-
         $loginy = $this->pobierzLoginy($uzytkRepo);
-
         foreach ($pracownicyLdap as $pracownik) {
             //nie dodawaj loginow ktore sa juz w bazie
             if (in_array($pracownik->getLogin(), $loginy)) {
                 continue;
             }
-
             $wynik[] = $pracownik;
         }
 
@@ -222,7 +211,6 @@ class LdapDataService
     {
         $uzytkownicy = $uzytkRepo->findAll();
         $out = [];
-
         foreach ($uzytkownicy as $u) {
             $out[] = $u->getLogin();
         }
@@ -243,15 +231,12 @@ class LdapDataService
     {
         $uzytkownikLdap = new UzytkownikLdap();
         $uzytkownikLdap->setLogin($data[$this->uidKey][0]);
-
         if (key_exists('mail', $data)) {
             $uzytkownikLdap->setEmail($data['mail'][0]);
         }
-
         if (key_exists('givenName', $data)) {
             $uzytkownikLdap->setImie($data['givenName'][0]);
         }
-
         if (key_exists('sn', $data)) {
             $uzytkownikLdap->setNazwisko($data['sn'][0]);
         }

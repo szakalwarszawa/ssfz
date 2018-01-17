@@ -27,12 +27,14 @@ class SprawozdanieSpolkiType extends AbstractType
     /**
      * Buduje formularz do wypełniania sprawozdania spolki
      * 
+     * @SuppressWarnings("unused")
+     * 
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {  
-        $builder->add('lp', null, array(
+        $builder->add('liczbaPorzadkowa', null, array(
             'label' => 'Lp.',   
             'attr' => array('readonly' => true)         
         ));

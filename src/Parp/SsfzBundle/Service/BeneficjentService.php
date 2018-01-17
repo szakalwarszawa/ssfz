@@ -23,27 +23,28 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class BeneficjentService
 {
+
     /**
      * Repozytorium encji Beneficjent
      * 
      * @var BeneficjentRepository
      */
     private $beneficjentRepository;
-    
+
     /**
      * Repozytorium encji Umowa
      *
      * @var UmowaRepository
      */
     private $umowaRepository;
-    
+
     /**
      * Repozytorium encji OsobaZatrudniona
      * 
      * @var OsobaZatrudnionaRepository
      */
     private $osobaZatrudnionaRepository;
-    
+
     /**
      * Konstruktor parametryczny
      * 
@@ -55,9 +56,9 @@ class BeneficjentService
     {
         $this->beneficjentRepository = $beneficjentRepository;
         $this->umowaRepository = $umowaRepository;
-        $this->osobaZatrudnionaRepository = $osobaZatrudnionaRepository;        
+        $this->osobaZatrudnionaRepository = $osobaZatrudnionaRepository;
     }
-    
+
     /**
      * Pobiera listę encji Umowa powiązanych z encją Beneficjent
      * 
@@ -71,10 +72,10 @@ class BeneficjentService
         foreach ($beneficjent->getUmowy() as $umowa) {
             $result->add($umowa);
         }
-        
+
         return $result;
     }
-    
+
     /**
      * Pobiera listę encji OsobaZatrudniona powiązabych z encją Beneficjent 
      * 
@@ -88,10 +89,10 @@ class BeneficjentService
         foreach ($beneficjent->getOsobyZatrudnione() as $osoba) {
             $result->add($osoba);
         }
-        
+
         return $result;
-    }    
-    
+    }
+
     /**
      * Dodaje do profilu beneficjebta pustą umowę i/lub osobę zatrudnioną, 
      * jeżeli nie ma innych powiązanych
@@ -102,14 +103,14 @@ class BeneficjentService
      */
     public function addUmowaOsobaIfEmpty(Beneficjent &$beneficjent)
     {
-        if (count($beneficjent->getUmowy()) == 0) {
+        if (0 === count($beneficjent->getUmowy())) {
             $beneficjent->addUmowa(new Umowa());
         }
-        if (count($beneficjent->getOsobyZatrudnione()) == 0) {
+        if (0 === count($beneficjent->getOsobyZatrudnione())) {
             $beneficjent->addOsobaZatrudniona(new OsobaZatrudniona());
         }
     }
-    
+
     /**
      * Dodaje nową encję Beneficjent powiązaną z podaną w parametrze encją 
      * Uzytkownik
@@ -120,9 +121,9 @@ class BeneficjentService
      */
     public function addBeneficjent(Uzytkownik $uzytkownik)
     {
-        return  $this->beneficjentRepository->addNewBeneficjent($uzytkownik);
+        return $this->beneficjentRepository->addNewBeneficjent($uzytkownik);
     }
-    
+
     /**
      * Aktualizuje encję Beneficjent
      * 
@@ -132,11 +133,11 @@ class BeneficjentService
      * 
      * @return void
      */
-    public function updateBeneficjent(Beneficjent &$beneficjent, ArrayCollection $originalUmowy, ArrayCollection $originalOsoby) 
+    public function updateBeneficjent(Beneficjent &$beneficjent, ArrayCollection $originalUmowy, ArrayCollection $originalOsoby)
     {
         $this->beneficjentRepository->updateBeneficjent($beneficjent, $originalUmowy, $originalOsoby);
-    }    
-    
+    }
+
     /**
      * Zwraca repozytorium BeneficjentRepository
      * 
@@ -146,7 +147,7 @@ class BeneficjentService
     {
         return $this->beneficjentRepository;
     }
-    
+
     /**
      * Zwraca repozytorium UmowaRepository
      * 
@@ -156,7 +157,7 @@ class BeneficjentService
     {
         return $this->umowaRepository;
     }
-    
+
     /**
      * Zwraca repozytorium OsobaZatrudnionaRepository
      * 
@@ -165,5 +166,5 @@ class BeneficjentService
     public function getOsobaZatrudnionaRepository()
     {
         return $this->osobaZatrudnionaRepository;
-    }    
+    }
 }

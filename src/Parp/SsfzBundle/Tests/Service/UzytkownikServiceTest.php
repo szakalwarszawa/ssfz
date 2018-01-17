@@ -62,13 +62,4 @@ class UzytkownikServiceTest extends TestCase
         $this->assertInstanceOf(UzytkownikRepository::class, $uzytkownikRepository);
     }
 
-    /**
-     * Testuje metodę getRolaRepository
-     */
-    public function testGetRolaRepository()
-    {
-        $rolaRepository = $this->service->getRolaRepository();
-        $this->assertNotNull($rolaRepository);
-        $this->assertInstanceOf(RolaRepository::class, $rolaRepository);
-    }
 }

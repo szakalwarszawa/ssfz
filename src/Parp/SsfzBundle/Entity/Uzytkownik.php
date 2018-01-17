@@ -5,6 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Parp\SsfzBundle\Entity\Rola;
 
 /**
  * Uzytkownik
@@ -346,6 +347,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     {
         $this->kodAktywacjaKonta = $kodAktywacjaKonta;
     }
+
     /**
      * Zwraca informację czy użytkownik jest pracownikiem PARP
      * 
@@ -355,9 +357,9 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
      */
     public function czyPracownikParp()
     {
-        return in_array($this->rola->getNazwa(), Rola::NAZWY_ROL_PARP);    
+        return in_array($this->rola->getNazwa(), Rola::NAZWY_ROL_PARP);
     }
-    
+
     /**
      * Wyzwalane przy operacji INSERT
 
@@ -474,17 +476,17 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     {
         return serialize(
             array(
-            $this->id,
-            $this->login,
-            $this->haslo,
-            $this->email,
-            $this->rola,
-            $this->ban,
-            $this->kodZapomnianeHaslo,
-            $this->utworzony,
-            $this->zmodyfikowany,
-            $this->status,
-            $this->kodAktywacjaKonta
+                $this->id,
+                $this->login,
+                $this->haslo,
+                $this->email,
+                $this->rola,
+                $this->ban,
+                $this->kodZapomnianeHaslo,
+                $this->utworzony,
+                $this->zmodyfikowany,
+                $this->status,
+                $this->kodAktywacjaKonta
             )
         );
     }
@@ -528,10 +530,9 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     public function isAccountNonLocked()
     {
         if ($this->ban === true) {
-            
             return false;
         }
-        
+
         return true;
     }
 
@@ -550,11 +551,47 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
      */
     public function isEnabled()
     {
-        if ($this->status == 0) {
-            
+        if (0 === $this->status) {
             return false;
         }
 
         return true;
+    }
+
+    /**
+     * Aktywuje konto użytkownika
+     */
+    public function activateAccount()
+    {
+        $this->setStatus(1);
+        $this->setKodAktywacjaKonta(null);
+    }
+
+    /**
+     * Ustawia rolę nowemu użytkownikowi
+     * 
+     * @param Rola $role
+     */
+    public function newUser(Rola $role)
+    {
+        $this->setRola($role);
+        $this->setKodAktywacjaKonta(str_replace(array('/', '+', '='), '', base64_encode(random_bytes(64))));
+    }
+    /**
+     * Generuje token do resetu hasła
+     */
+    public function forgottenPassword()
+    {
+        $this->setKodZapomnianeHaslo(str_replace(array('/', '+', '='), '', base64_encode(random_bytes(64))));
+    }
+    /**
+     * Zmiana hasła
+     *  
+     * @param type $newPassword
+     */
+    public function newPassword($newPassword)
+    {
+        $this->setHaslo(password_hash($newPassword, PASSWORD_BCRYPT, array('cost' => 12)));
+        $this->setKodZapomnianeHaslo(null);
     }
 }

@@ -45,11 +45,7 @@ class ResetLinkType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(
-            array(
-            'data_class' => 'Parp\SsfzBundle\Form\Model\ResetLink',
-            )
-        );
+        $resolver->setDefaults(array('data_class' => 'Parp\SsfzBundle\Form\Model\ResetLink'));
     }
 
     /**

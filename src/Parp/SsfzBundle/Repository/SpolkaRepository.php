@@ -6,6 +6,7 @@ use Parp\SsfzBundle\Entity\Spolka;
 use Parp\SsfzBundle\Entity\SpolkaHistoria;
 use Parp\SsfzBundle\Entity\SpolkaHistoriaZmian;
 use Carbon\Carbon;
+use stdClass;
 
 /**
  * SpolkaRepository
@@ -25,10 +26,10 @@ class SpolkaRepository extends EntityRepository
      */
     public function persistSpolka(Spolka $spolka, $spolkaP, $idUzytkownika)
     {
-        if (!$spolka->getLp()) {
+        if (null === $spolka->getLp()) {
             $spolka->setLp($this->getNastepnaLp($spolka->getUmowa()->getId()));
         }
-        if ($spolka->getZakonczona() != 1) {
+        if (1 !== $spolka->getZakonczona()) {
             $spolka->setDataWyjscia(null);
             $spolka->setKwDezinwestycji(null);
             $spolka->setZwrotInwestycji(null);
@@ -38,63 +39,84 @@ class SpolkaRepository extends EntityRepository
         /*
          * Zapisz aktualne dane w historii spółek
          */
-        $historia = new SpolkaHistoria();
-        $historia->setDataZmiany(new Carbon('Europe/Warsaw'));
-        $historia->setUzytkownikId($idUzytkownika);
-        $historia->setUmowaId($spolka->getUmowa()->getId());
-        $historia->setLp($spolka->getLp());
-        $historia->setNazwa($spolka->getNazwa());
-        $historia->setForma($spolka->getForma());
-        $historia->setSiedzibaMiasto($spolka->getSiedzibaMiasto());
-        $historia->setSiedzibaWojewodztwo($spolka->getSiedzibaWojewodztwo());
-        $historia->setBranza($spolka->getBranza());
-        $historia->setOpis($spolka->getOpis());
-        $historia->setDataPowolania($spolka->getDataPowolania());
-        $historia->setKrs($spolka->getKrs());
-        $historia->setNip($spolka->getNip());
-        $historia->setKwInwestycji($spolka->getKwInwestycji());
-        $historia->setKwWsparcia($spolka->getKwWsparcia());
-        $historia->setKwPryw($spolka->getKwPryw());
-        $historia->setZakonczona($spolka->getZakonczona());
-        $historia->setDataWyjscia($spolka->getDataWyjscia());
-        $historia->setKwDezinwestycji($spolka->getKwDezinwestycji());
-        $historia->setZwrotInwestycji($spolka->getZwrotInwestycji());
-        $historia->setNpv($spolka->getNpv());
-        $historia->setUdzialowcy($spolka->getUdzialowcy());
-        $historia->setPrezes($spolka->getPrezes());
-        $historia->setZarzadPozostali($spolka->getZarzadPozostali());
+        $historia = new stdClass;
+        $historia->dataZmiany = new Carbon('Europe/Warsaw');
+        $historia->uzytkownikId = $idUzytkownika;
+        $historia->umowaId = $spolka->getUmowa()->getId();
+        $historia->lp = $spolka->getLp();
+        $historia->nazwa = $spolka->getNazwa();
+        $historia->forma = $spolka->getForma();
+        $historia->siedzibaMiasto = $spolka->getSiedzibaMiasto();
+        $historia->siedzibaWojewodztwo = $spolka->getSiedzibaWojewodztwo();
+        $historia->branza = $spolka->getBranza();
+        $historia->opis = $spolka->getOpis();
+        $historia->dataPowolania = $spolka->getDataPowolania();
+        $historia->krs = $spolka->getKrs();
+        $historia->nip = $spolka->getNip();
+        $historia->kwInwestycji = $spolka->getKwInwestycji();
+        $historia->kwWsparcia = $spolka->getKwWsparcia();
+        $historia->kwPryw = $spolka->getKwPryw();
+        $historia->zakonczona = $spolka->getZakonczona();
+        $historia->dataWyjscia = $spolka->getDataWyjscia();
+        $historia->kwDezinwestycji = $spolka->getKwDezinwestycji();
+        $historia->zwrotInwestycji = $spolka->getZwrotInwestycji();
+        $historia->npv = $spolka->getNpv();
+        $historia->udzialowcy = $spolka->getUdzialowcy();
+        $historia->prezes = $spolka->getPrezes();
+        $historia->zarzadPozostali = $spolka->getZarzadPozostali();
+        $historia->lpP = null;
+        $historia->nazwaP = null;
+        $historia->formaP = null;
+        $historia->siedzibaMiastoP = null;
+        $historia->siedzibaWojewodztwoP = null;
+        $historia->branzaP = null;
+        $historia->opisP = null;
+        $historia->dataPowolaniaP = null;
+        $historia->krsP = null;
+        $historia->nipP = null;
+        $historia->kwInwestycjiP = null;
+        $historia->kwWsparciaP = null;
+        $historia->kwPrywP = null;
+        $historia->zakonczonaP = null;
+        $historia->dataWyjsciaP = null;
+        $historia->kwDezinwestycjiP = null;
+        $historia->zwrotInwestycjiP = null;
+        $historia->npvP = null;
+        $historia->udzialowcyP = null;
+        $historia->prezesP = null;
+        $historia->zarzadPozostaliP = null;
         /*
          * Jeżeli nastąpiły zmiany w spółkach
          */
         if ($spolkaP) {
-            $historia->setLpP($spolkaP->getLp());
-            $historia->setNazwaP($spolkaP->getNazwa());
-            $historia->setFormaP($spolkaP->getForma());
-            $historia->setSiedzibaMiastoP($spolkaP->getSiedzibaMiasto());
-            $historia->setSiedzibaWojewodztwoP($spolkaP->getSiedzibaWojewodztwo());
-            $historia->setBranzaP($spolkaP->getBranza());
-            $historia->setOpisP($spolkaP->getOpis());
-            $historia->setDataPowolaniaP($spolkaP->getDataPowolania());
-            $historia->setKrsP($spolkaP->getKrs());
-            $historia->setNipP($spolkaP->getNip());
-            $historia->setKwInwestycjiP($spolkaP->getKwInwestycji());
-            $historia->setKwWsparciaP($spolkaP->getKwWsparcia());
-            $historia->setKwPrywP($spolkaP->getKwPryw());
-            $historia->setZakonczonaP($spolkaP->getZakonczona());
-            $historia->setDataWyjsciaP($spolkaP->getDataWyjscia());
-            $historia->setKwDezinwestycjiP($spolkaP->getKwDezinwestycji());
-            $historia->setZwrotInwestycjiP($spolkaP->getZwrotInwestycji());
-            $historia->setNpvP($spolkaP->getNpv());
-            $historia->setUdzialowcyP($spolkaP->getUdzialowcy());
-            $historia->setPrezesP($spolkaP->getPrezes());
-            $historia->setZarzadPozostaliP($spolkaP->getZarzadPozostali());
+            $historia->lpP = $spolkaP->getLp();
+            $historia->nazwaP = $spolkaP->getNazwa();
+            $historia->formaP = $spolkaP->getForma();
+            $historia->siedzibaMiastoP = $spolkaP->getSiedzibaMiasto();
+            $historia->siedzibaWojewodztwoP = $spolkaP->getSiedzibaWojewodztwo();
+            $historia->branzaP = $spolkaP->getBranza();
+            $historia->opisP = $spolkaP->getOpis();
+            $historia->dataPowolaniaP = $spolkaP->getDataPowolania();
+            $historia->krsP = $spolkaP->getKrs();
+            $historia->nipP = $spolkaP->getNip();
+            $historia->kwInwestycjiP = $spolkaP->getKwInwestycji();
+            $historia->kwWsparciaP = $spolkaP->getKwWsparcia();
+            $historia->kwPrywP = $spolkaP->getKwPryw();
+            $historia->zakonczonaP = $spolkaP->getZakonczona();
+            $historia->dataWyjsciaP = $spolkaP->getDataWyjscia();
+            $historia->kwDezinwestycjiP = $spolkaP->getKwDezinwestycji();
+            $historia->zwrotInwestycjiP = $spolkaP->getZwrotInwestycji();
+            $historia->npvP = $spolkaP->getNpv();
+            $historia->udzialowcyP = $spolkaP->getUdzialowcy();
+            $historia->prezesP = $spolkaP->getPrezes();
+            $historia->zarzadPozostaliP = $spolkaP->getZarzadPozostali();
         }
-        $this->_em->persist($historia);
+        //$this->_em->persist($historia);
         $this->_em->flush();
-        $historia->setSpolkaId($spolka->getId());
-        $this->_em->persist($historia);
-        $this->_em->flush();
-
+        //$historia->setSpolkaId($spolka->getId());
+        //$this->_em->persist($historia);
+        //$this->_em->flush();
+        $historia->spolkaId = $spolka->getId();
         $this->compareHistoricalData($historia);
     }
 
@@ -105,66 +127,65 @@ class SpolkaRepository extends EntityRepository
      */
     private function compareHistoricalData($historia)
     {
-        if (strcmp($historia->getNazwa(), $historia->getNazwaP())) {
-            $this->createEntry('nazwa', $historia->getNazwa(), $historia->getNazwaP(), $historia);
+        if (strcmp($historia->nazwa, $historia->nazwaP)) {
+            $this->createEntry('nazwa', $historia->nazwa, $historia->nazwaP, $historia);
         }
-        if (strcmp($historia->getForma(), $historia->getFormaP())) {
-            $this->createEntry('forma', $historia->getForma(), $historia->getFormaP(), $historia);
+        if (strcmp($historia->forma, $historia->formaP)) {
+            $this->createEntry('forma', $historia->forma, $historia->formaP, $historia);
         }
-        if (strcmp($historia->getSiedzibaMiasto(), $historia->getSiedzibaMiastoP())) {
-            $this->createEntry('siedziba_miasto', $historia->getSiedzibaMiasto(), $historia->getSiedzibaMiastoP(), $historia);
+        if (strcmp($historia->siedzibaMiasto, $historia->siedzibaMiastoP)) {
+            $this->createEntry('siedziba_miasto', $historia->siedzibaMiasto, $historia->siedzibaMiastoP, $historia);
         }
-        if (strcmp($historia->getSiedzibaWojewodztwo(), $historia->getSiedzibaWojewodztwoP())) {
-            $this->createEntry('siedziba_wojewodztwo', $historia->getSiedzibaWojewodztwo(), $historia->getSiedzibaWojewodztwoP(), $historia);
-        }     
-        if (strcmp($historia->getBranza(), $historia->getBranzaP())) {
-            $this->createEntry('branza', $historia->getBranza(), $historia->getBranzaP(), $historia);
+        if (strcmp($historia->siedzibaWojewodztwo, $historia->siedzibaWojewodztwoP)) {
+            $this->createEntry('siedziba_wojewodztwo', $historia->siedzibaWojewodztwo, $historia->siedzibaWojewodztwoP, $historia);
         }
-        if (strcmp($historia->getOpis(), $historia->getOpisP())) {
-            $this->createEntry('opis', $historia->getOpis(), $historia->getOpisP(), $historia);
+        if (strcmp($historia->branza, $historia->branzaP)) {
+            $this->createEntry('branza', $historia->branza, $historia->branzaP, $historia);
         }
-        if ($historia->getDataPowolania() != $historia->getDataPowolaniaP()) {
-            $this->createEntry('data_powolania', $historia->getDataPowolania() != null ? $historia->getDataPowolania()->format('Y-m-d H:i:s') : null, $historia->getDataPowolaniaP() != null ? $historia->getDataPowolaniaP()->format('Y-m-d H:i:s') : null, $historia);
+        if (strcmp($historia->opis, $historia->opisP)) {
+            $this->createEntry('opis', $historia->opis, $historia->opisP, $historia);
         }
-        if (strcmp($historia->getKrs(), $historia->getKrsP())) {
-            $this->createEntry('krs', $historia->getKrs(), $historia->getKrsP(), $historia);
+        if ($historia->dataPowolania != $historia->dataPowolaniaP) {
+            $this->createEntry('data_powolania', $historia->dataPowolania != null ? $historia->dataPowolania->format('Y-m-d H:i:s') : null, $historia->dataPowolaniaP != null ? $historia->dataPowolaniaP->format('Y-m-d H:i:s') : null, $historia);
         }
-        if (strcmp($historia->getNip(), $historia->getNipP())) {
-            $this->createEntry('nip', $historia->getNip(), $historia->getNipP(), $historia);
+        if (strcmp($historia->krs, $historia->krsP)) {
+            $this->createEntry('krs', $historia->krs, $historia->krsP, $historia);
         }
-        if (strcmp($historia->getKwInwestycji(), $historia->getKwInwestycjiP())) {
-            $this->createEntry('kw_inwestycji', $historia->getKwInwestycji(), $historia->getKwInwestycjiP(), $historia);
+        if (strcmp($historia->nip, $historia->nipP)) {
+            $this->createEntry('nip', $historia->nip, $historia->nip, $historia);
         }
-        if (strcmp($historia->getKwWsparcia(), $historia->getKwWsparciaP())) {
-            $this->createEntry('kw_wsparcia', $historia->getKwWsparcia(), $historia->getKwWsparciaP(), $historia);
+        if (strcmp($historia->kwInwestycji, $historia->kwInwestycjiP)) {
+            $this->createEntry('kw_inwestycji', $historia->kwInwestycji, $historia->kwInwestycjiP, $historia);
         }
-        if (strcmp($historia->getKwPryw(), $historia->getKwPrywP())) {
-            $this->createEntry('kw_pryw', $historia->getKwPryw(), $historia->getKwPrywP(), $historia);
+        if (strcmp($historia->kwWsparcia, $historia->kwWsparciaP)) {
+            $this->createEntry('kw_wsparcia', $historia->kwWsparcia, $historia->kwWsparciaP, $historia);
         }
-        if ($historia->getZakonczona() != $historia->getZakonczonaP()) {
-            $this->createEntry('zakonczona', $historia->getZakonczona(), $historia->getZakonczonaP(), $historia);
+        if (strcmp($historia->kwPryw, $historia->kwPrywP)) {
+            $this->createEntry('kw_pryw', $historia->kwPryw, $historia->kwPrywP, $historia);
         }
-
-        if ($historia->getDataWyjscia() != $historia->getDataWyjsciaP()) {
-            $this->createEntry('data_wyjscia', $historia->getDataWyjscia() != null ? $historia->getDataWyjscia()->format('Y-m-d H:i:s') : null, $historia->getDataWyjsciaP() != null ? $historia->getDataWyjsciaP()->format('Y-m-d H:i:s') : null, $historia);
+        if ($historia->zakonczona != $historia->zakonczonaP) {
+            $this->createEntry('zakonczona', $historia->zakonczona, $historia->zakonczonaP, $historia);
         }
-        if (strcmp($historia->getKwDezinwestycji(), $historia->getKwDezinwestycjiP())) {
-            $this->createEntry('kw_dezinwestycji', $historia->getKwDezinwestycji(), $historia->getKwDezinwestycjiP(), $historia);
+        if ($historia->dataWyjscia != $historia->dataWyjsciaP) {
+            $this->createEntry('data_wyjscia', $historia->dataWyjscia != null ? $historia->dataWyjscia->format('Y-m-d H:i:s') : null, $historia->dataWyjsciaP != null ? $historia->dataWyjsciaP->format('Y-m-d H:i:s') : null, $historia);
         }
-        if (strcmp($historia->getZwrotInwestycji(), $historia->getZwrotInwestycjiP())) {
-            $this->createEntry('zwrot_inwestycji', $historia->getZwrotInwestycji(), $historia->getZwrotInwestycjiP(), $historia);
+        if (strcmp($historia->kwDezinwestycji, $historia->kwDezinwestycjiP)) {
+            $this->createEntry('kw_dezinwestycji', $historia->kwDezinwestycji, $historia->kwDezinwestycjiP, $historia);
         }
-        if (strcmp($historia->getNpv(), $historia->getNpvP())) {
-            $this->createEntry('npv', $historia->getNpv(), $historia->getNpvP(), $historia);
+        if (strcmp($historia->zwrotInwestycji, $historia->zwrotInwestycjiP)) {
+            $this->createEntry('zwrot_inwestycji', $historia->zwrotInwestycji, $historia->zwrotInwestycjiP, $historia);
         }
-        if (strcmp($historia->getUdzialowcy(), $historia->getUdzialowcyP())) {
-            $this->createEntry('udzialowcy', $historia->getUdzialowcy(), $historia->getUdzialowcyP(), $historia);
+        if (strcmp($historia->npv, $historia->npvP)) {
+            $this->createEntry('npv', $historia->npv, $historia->npvP, $historia);
         }
-        if (strcmp($historia->getPrezes(), $historia->getPrezesP())) {
-            $this->createEntry('prezes', $historia->getPrezes(), $historia->getPrezesP(), $historia);
+        if (strcmp($historia->udzialowcy, $historia->udzialowcyP)) {
+            $this->createEntry('udzialowcy', $historia->udzialowcy, $historia->udzialowcyP, $historia);
         }
-        if (strcmp($historia->getZarzadPozostali(), $historia->getZarzadPozostaliP())) {
-            $this->createEntry('zarzad_pozostali', $historia->getZarzadPozostali(), $historia->getZarzadPozostaliP(), $historia);
+        if (strcmp($historia->prezes, $historia->prezesP)) {
+            $this->createEntry('prezes', $historia->prezes, $historia->prezesP, $historia);
+        }
+        if (strcmp($historia->zarzadPozostali, $historia->zarzadPozostaliP)) {
+            $this->createEntry('zarzad_pozostali', $historia->zarzadPozostali, $historia->zarzadPozostaliP, $historia);
         }
     }
 
@@ -180,12 +201,12 @@ class SpolkaRepository extends EntityRepository
     public function createEntry($fieldName, $actual, $previous, $historia)
     {
         $spolkaHistoriaZmian = new SpolkaHistoriaZmian();
-        $spolkaHistoriaZmian->setSpolkaId($historia->getSpolkaId());
-        $spolkaHistoriaZmian->setNazwa($historia->getNazwa());
+        $spolkaHistoriaZmian->setSpolkaId($historia->spolkaId);
+        $spolkaHistoriaZmian->setNazwa($historia->nazwa);
         $spolkaHistoriaZmian->setPole($fieldName);
         $spolkaHistoriaZmian->setStaraWartosc($previous);
         $spolkaHistoriaZmian->setNowaWartosc($actual);
-        $spolkaHistoriaZmian->setDataModyfikacji($historia->getDataZmiany());
+        $spolkaHistoriaZmian->setDataModyfikacji($historia->dataZmiany);
         $this->_em->persist($spolkaHistoriaZmian);
         $this->_em->flush();
     }
@@ -202,11 +223,11 @@ class SpolkaRepository extends EntityRepository
         if (!$spolki) {
             return 1;
         }
-        $qb = $this->createQueryBuilder('s');
-        $qb->select('MAX(s.lp) as maxLp')
+        $queryBuilder = $this->createQueryBuilder('s');
+        $queryBuilder->select('MAX(s.liczbaPorzadkowa) as maxLp')
             ->where('s.umowaId = :umowaId')
             ->setParameter('umowaId', $umowaId);
 
-        return $qb->getQuery()->getSingleScalarResult() + 1;
+        return $queryBuilder->getQuery()->getSingleScalarResult() + 1;
     }
 }

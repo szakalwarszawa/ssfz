@@ -48,13 +48,13 @@ class SprawozdanieSpolkiTest extends TestCase
     } 
 
     /**
-     * Testownaia pola Lp
+     * Testownaia pola liczbaPorzadkowa
      */
-    public function testLp() 
+    public function testLiczbaPorzadkowa() 
     {
         $var = 5;
-        $this->sprawozdanieSpolki->setLp($var);
-        $this->assertEquals($var, $this->sprawozdanieSpolki->getLp());
+        $this->sprawozdanieSpolki->setLiczbaPorzadkowa($var);
+        $this->assertEquals($var, $this->sprawozdanieSpolki->getLiczbaPorzadkowa());
     } 
     
     

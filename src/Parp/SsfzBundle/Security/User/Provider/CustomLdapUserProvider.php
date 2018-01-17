@@ -80,11 +80,11 @@ class CustomLdapUserProvider extends LdapUserProvider
             throw new UsernameNotFoundException(sprintf('User "%s" not found.', $username), 0, $e);
         }
 
-        if ($search['count'] === 0) {
+        if (0 === $search['count']) {
             throw new UsernameNotFoundException(sprintf('User "%s" not found.', $username));
         }
 
-        if ($search['count'] != 1) {
+        if (1 !== $search['count']) {
             throw new UsernameNotFoundException('More than one user found');
         }
 

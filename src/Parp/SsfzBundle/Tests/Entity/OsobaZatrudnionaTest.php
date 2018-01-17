@@ -84,8 +84,8 @@ class OsobaZartrudnionaTest extends TestCase
      */
     public function testUmowaData() 
     {
-        $s = '1/1/2017 11:36:12 AM';
-        $value = new \DateTime($s);
+        $dateTimeString = '1/1/2017 11:36:12 AM';
+        $value = new \DateTime($dateTimeString);
         $this->osobaZatrudniona->setUmowaData($value);
         $this->assertEquals($value, $this->osobaZatrudniona->getUmowaData());
     }      
@@ -95,8 +95,8 @@ class OsobaZartrudnionaTest extends TestCase
      */
     public function testRozpoczecieData() 
     {
-        $s = '1/1/2017 11:36:12 AM';
-        $value = new \DateTime($s);
+        $dateTimeString = '1/1/2017 11:36:12 AM';
+        $value = new \DateTime($dateTimeString);
         $this->osobaZatrudniona->setRozpoczecieData($value);
         $this->assertEquals($value, $this->osobaZatrudniona->getRozpoczecieData());
     }  

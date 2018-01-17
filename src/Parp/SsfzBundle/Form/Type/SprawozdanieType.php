@@ -77,13 +77,7 @@ class SprawozdanieType extends AbstractType
         $builder->add(
             'rok', ChoiceType::class, array(
             'label' => 'Rok',
-            'choices' => array(
-                '' => '',
-                '2016' => '2016',
-                '2017' => '2017',
-                '2018' => '2018',
-                '2019' => '2019',
-            ),
+            'choices' => $options['okresy'],
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
@@ -109,6 +103,7 @@ class SprawozdanieType extends AbstractType
             'data_class' => \Parp\SsfzBundle\Entity\Sprawozdanie::class,
             'attr' => array('novalidate' => 'novalidate'),
             'showRemarks' => null,
+            'okresy' => null,
             'allow_extra_fields' => true,
         ));
     }

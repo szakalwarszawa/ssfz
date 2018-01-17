@@ -48,32 +48,6 @@ class PrzeplywFinansowyTypeTest extends TypeTestCase
      */
     public function testSubmitValidData()
     {
-        $dateNow = new \DateTime('now');
-        
-        /*$formData = array(
-            'id' => 1,
-            'creatorId' => 2,
-            'dataRejestracji' => $dateNow,
-            'sprawozdanieId' => 3,
-            'saldoPoczatkowe' => 0.00,
-            'wplywy' => 100.60,
-            'wyjsciaZInwestycji' => 20.10,
-            'udzialWZyskach' => 20.20,
-            'inneWplywy' => 60.30,
-            'wyplywy' => 151.50,
-            'wejsciaKapitalowe' => 10.10,
-            'preinkubacjaPomyslow' => 20.20,
-            'wydatkiOperacyjne' => 30.30,
-            'podatki' => 40.40,
-            'inneWyplywy' => 50.50,
-            'saldoKoncowe' => -50.90,
-            'liczbaPomyslowWInkubatorze' => 1,
-            'liczbaPomyslowOcenionych' => 2,
-            'liczbaPomyslowOcenionychPozytywnie' => 3,
-            'liczbaPomyslowOcenionychNegatywnie' => 4,
-            'liczbaZakonczonychPreinkubacji' => 5,
-            'liczbaDokonanychInwestycji' => 6,
-        );*/
 
         $formData = array(
             'saldoPoczatkowe' => '0.00',

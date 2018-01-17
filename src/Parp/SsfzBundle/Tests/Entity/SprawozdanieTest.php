@@ -217,12 +217,12 @@ class SprawozdanieTest extends TestCase
         $sprawozdanieSpolki = new \Parp\SsfzBundle\Entity\SprawozdanieSpolki();
         $sprawozdanieSpolki->setNazwaSpolki('Spolka testowa 1');
         $sprawozdanieSpolki->setKrs('11111111');
-        $sprawozdanieSpolki->setLp(1);
+        $sprawozdanieSpolki->setLiczbaPorzadkowa(1);
         $this->sprawozdanie->addSprawozdaniaSpolek($sprawozdanieSpolki);
         $sprawozdanieSpolki2 = new \Parp\SsfzBundle\Entity\SprawozdanieSpolki();
         $sprawozdanieSpolki2->setNazwaSpolki('Spolka testowa 2');
         $sprawozdanieSpolki2->setKrs('22222222');
-        $sprawozdanieSpolki2->setLp(2);
+        $sprawozdanieSpolki2->setLiczbaPorzadkowa(2);
         $this->sprawozdanie->addSprawozdaniaSpolek($sprawozdanieSpolki2);
         $this->assertEquals(2, count($this->sprawozdanie->getSprawozdaniaSpolek())); 
         $this->sprawozdanie->removeSprawozdaniaSpolek($sprawozdanieSpolki);
@@ -237,11 +237,11 @@ class SprawozdanieTest extends TestCase
         $sprawozdanieSpolki = new \Parp\SsfzBundle\Entity\SprawozdanieSpolki();
         $sprawozdanieSpolki->setNazwaSpolki('Spolka testowa 1');
         $sprawozdanieSpolki->setKrs('11111111');
-        $sprawozdanieSpolki->setLp(1);
+        $sprawozdanieSpolki->setLiczbaPorzadkowa(1);
         $sprawozdanieSpolki2 = new \Parp\SsfzBundle\Entity\SprawozdanieSpolki();
         $sprawozdanieSpolki2->setNazwaSpolki('Spolka testowa 2');
         $sprawozdanieSpolki2->setKrs('22222222');
-        $sprawozdanieSpolki2->setLp(2);
+        $sprawozdanieSpolki2->setLiczbaPorzadkowa(2);
         $spolki = array($sprawozdanieSpolki,$sprawozdanieSpolki2);
         $this->sprawozdanie->setSprawozdaniaSpolek($spolki);
         $this->assertEquals(2, count($this->sprawozdanie->getSprawozdaniaSpolek())); 

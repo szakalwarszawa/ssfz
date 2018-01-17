@@ -12,17 +12,4 @@ use Doctrine\ORM\EntityRepository;
  */
 class HistoriaZmianRepository extends EntityRepository
 {
-
-    /**
-     * 
-     * @param SpolkaHistoriaZmian $spolkaHistoriaZmian
-     * @return SpolkaHistoriaZmian
-     */
-    public function persist(SpolkaHistoriaZmian $spolkaHistoriaZmian)
-    {
-        $this->_em->persist($spolkaHistoriaZmian);
-        $this->_em->flush();
-
-        return $spolkaHistoriaZmian;
-    }
 }

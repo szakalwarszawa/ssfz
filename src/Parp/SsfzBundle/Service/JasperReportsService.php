@@ -72,9 +72,7 @@ class JasperReportsService
      */
     public function getReport($filePath)
     {
-        $jasperReportService = $this->client->reportService();
-        $report = $jasperReportService->runReport($filePath, 'xls');
-        $response = new Response($report);
+        $response = new Response($this->client->reportService()->runReport($filePath, 'xls'));
         $response->headers->set('Content-type', 'application/excel');
         $response->headers->set('Content-Disposition', 'inline; filename=Raport.xls');
         $response->headers->set('Cache-Control', 'must-revalidate');

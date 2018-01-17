@@ -41,7 +41,7 @@ class Spolka
      *
      * @ORM\Column(name="lp", type="integer", nullable=true)
      */
-    private $lp;
+    private $liczbaPorzadkowa;
 
     /**
      * @var string
@@ -294,12 +294,12 @@ class Spolka
     /**
      * Set lp
      *
-     * @param  integer $lp
+     * @param  integer $liczbaPorzadkowa
      * @return Spolka
      */
-    public function setLp($lp)
+    public function setLp($liczbaPorzadkowa)
     {
-        $this->lp = $lp;
+        $this->liczbaPorzadkowa = $liczbaPorzadkowa;
 
         return $this;
     }
@@ -311,7 +311,7 @@ class Spolka
      */
     public function getLp()
     {
-        return $this->lp;
+        return $this->liczbaPorzadkowa;
     }
 
     /**
@@ -785,22 +785,22 @@ class Spolka
      */
     public function validate(ExecutionContextInterface $context)
     {
-        if ($this->getZakonczona() == 1 && ($this->getDataWyjscia() === null || $this->getDataWyjscia() === '')) {
+        if (1 === $this->getZakonczona() && (null === $this->getDataWyjscia() || '' === $this->getDataWyjscia())) {
             $context->buildViolation('Należy wypełnić pole')
                 ->atPath('dataWyjscia')
                 ->addViolation();         
         }
-        if ($this->getZakonczona() == 1 && ($this->getKwDezinwestycji() === null || $this->getKwDezinwestycji() === '')) {
+        if (1 === $this->getZakonczona() && (null === $this->getKwDezinwestycji() || '' === $this->getKwDezinwestycji())) {
             $context->buildViolation('Należy wypełnić pole')
                 ->atPath('kwDezinwestycji')
                 ->addViolation();         
         }
-        if ($this->getZakonczona() == 1 && ($this->getZwrotInwestycji() === null || $this->getZwrotInwestycji() === '')) {
+        if (1 === $this->getZakonczona() && (null === $this->getZwrotInwestycji() || '' === $this->getZwrotInwestycji())) {
             $context->buildViolation('Należy wypełnić pole')
                 ->atPath('zwrotInwestycji')
                 ->addViolation();         
         }
-        if ($this->getZakonczona() == 1 && ($this->getNpv() === null || $this->getNpv() === '')) {
+        if (1 === $this->getZakonczona() && (null === $this->getNpv() || '' === $this->getNpv())) {
             $context->buildViolation('Należy wypełnić pole')
                 ->atPath('npv')
                 ->addViolation();         

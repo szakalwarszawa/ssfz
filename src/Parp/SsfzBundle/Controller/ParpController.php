@@ -7,9 +7,16 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Parp\SsfzBundle\Entity\Umowa;
 use Parp\SsfzBundle\Entity\Uzytkownik;
+use Parp\SsfzBundle\Entity\Sprawozdanie;
 use Parp\SsfzBundle\Form\Type\SpolkaType;
 use Parp\SsfzBundle\Form\Type\SprawozdanieOcenType;
 use Carbon\Carbon;
+use Parp\SsfzBundle\Form\Type\SprawozdanieType;
+use Parp\SsfzBundle\Entity\PrzeplywFinansowy;
+use Parp\SsfzBundle\Form\Type\PrzeplywFinansowyType;
+use Parp\SsfzBundle\Entity\Beneficjent;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Parp\SsfzBundle\Entity\Spolka;
 
 /**
  * @Route("/parp", name="parp")
@@ -26,8 +33,8 @@ class ParpController extends Controller
      */
     public function indexAction()
     {
-        $this->getNarzedziaService()->datatableParp($this);
-        
+        $this->get('ssfz.service.datatable_parp_service')->datatableParp($this);
+
         return $this->render('SsfzBundle:Parp:index.html.twig');
     }
 
@@ -44,44 +51,59 @@ class ParpController extends Controller
     public function ocenAction(Request $request, $idSprawozdania)
     {
         $uzytkownik = $this->get('security.token_storage')->getToken()->getUser();
-        $em = $this->getDoctrine()->getManager();
-        $sprawozdanie = $em->getRepository(\Parp\SsfzBundle\Entity\Sprawozdanie::class)->find($idSprawozdania);
-        if ($sprawozdanie == null) {
-            $this->getNarzedziaService()->dodajFlash($this, 'Błąd.', 'Nie znaleziono sprawozdania o podanym identyfikatorze.', 'danger');
+        $entityManager = $this->getDoctrine()->getManager();
+        $sprawozdanie = $entityManager->getRepository(Sprawozdanie::class)->find($idSprawozdania);
+        if (null == $sprawozdanie) {
+            $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Nie znaleziono sprawozdania o podanym identyfikatorze.');
             
             return $this->redirectToRoute('parp');
         }
-        if ($sprawozdanie->getStatus() != 2) {
-            $this->getNarzedziaService()->dodajFlash($this, '', 'Sprawozdanie nie ma statusu "przesłane". Ocena sprawozdania z innym statusem jest niemożliwa.', 'warning');
+        if (2 !== $sprawozdanie->getStatus()) {            
+            $this->addFlash(
+                'notice', array(
+                'alert' => 'warning',
+                'title' => '',
+                'message' => 'Sprawozdanie nie ma statusu "przesłane". Ocena sprawozdania z innym statusem jest niemożliwa.'
+                )
+            );
             
             return $this->redirectToRoute('parp_sprawozdanie', array('idSprawozdania' => $idSprawozdania));
         }
-        if ($sprawozdanie->getStatus() == 2 && $sprawozdanie->getOceniajacyId() != null && $uzytkownik->getId() != $sprawozdanie->getOceniajacyId()) {
-            $this->getNarzedziaService()->dodajFlash($this, '', 'Sprawozdanie jest zajęte do oceny przez innego użytkownika.', 'warning');
+        if (2 === $sprawozdanie->getStatus() && null !== $sprawozdanie->getOceniajacyId() && $uzytkownik->getId() !== $sprawozdanie->getOceniajacyId()) {            
+            $this->addFlash(
+                'notice', array(
+                'alert' => 'warning',
+                'title' => '',
+                'message' => 'Sprawozdanie jest zajęte do oceny przez innego użytkownika.'
+                )
+            );
             
             return $this->redirectToRoute('parp_sprawozdanie', array('idSprawozdania' => $idSprawozdania));
         }
-        $formS = $this->createForm(\Parp\SsfzBundle\Form\Type\SprawozdanieType::class, $sprawozdanie, array('disabled' => true));
-        $przeplyw = $em->getRepository(\Parp\SsfzBundle\Entity\PrzeplywFinansowy::class)->findBy(array('sprawozdanieId' => $sprawozdanie->getId()));
+        $okresy = $this->getOkresySprawozdawcze();
+        $formS = $this->createForm(SprawozdanieType::class, $sprawozdanie, array('disabled' => true, 'okresy' => $okresy));
+        $przeplyw = $entityManager->getRepository(PrzeplywFinansowy::class)->findBy(array('sprawozdanieId' => $sprawozdanie->getId()));
         $formP = null;
         if ($przeplyw != null) {
-            $formP = $this->createForm(\Parp\SsfzBundle\Form\Type\PrzeplywFinansowyType::class, $przeplyw[0], array('disabled' => true))->createView();             
+            $formP = $this->createForm(PrzeplywFinansowyType::class, $przeplyw[0], array('disabled' => true))->createView();             
         }
         
         $sprawozdanie->setOceniajacyId($uzytkownik->getId());
         $form = $this->createForm(SprawozdanieOcenType::class, $sprawozdanie);
-        $em->getRepository(\Parp\SsfzBundle\Entity\Sprawozdanie::class)->persist($sprawozdanie);
+        $entityManager->getRepository(Sprawozdanie::class)->persist($sprawozdanie);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            if ($sprawozdanie->getStatus() == 2) {
-                $sprawozdanie->setOceniajacyId(null);
-            }            
-            if ($sprawozdanie->getStatus() != 2) {
-                $sprawozdanie->setDataZatwierdzenia(new Carbon('Europe/Warsaw'));
-            }                         
-            $em->getRepository(\Parp\SsfzBundle\Entity\Sprawozdanie::class)->persist($sprawozdanie);
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {                            
+                if (2 === $sprawozdanie->getStatus()) {
+                    $sprawozdanie->setOceniajacyId(null);
+                }            
+                if (2 !== $sprawozdanie->getStatus()) {
+                    $sprawozdanie->setDataZatwierdzenia(new Carbon('Europe/Warsaw'));
+                }                         
+                $entityManager->getRepository(Sprawozdanie::class)->persist($sprawozdanie);
             
-            return $this->redirectToRoute('parp');
+                return $this->redirectToRoute('parp');
+            }
         }        
         
         return $this->render(
@@ -98,27 +120,28 @@ class ParpController extends Controller
     /**
      * Akcja podglądu sprawozdania
      * 
-     * @param Request $request        request
-     * @param int     $idSprawozdania identyfikator sprawozdania
+     * @param int $idSprawozdania identyfikator sprawozdania
      * 
      * @Route("/sprawozdanie/{idSprawozdania}", name="parp_sprawozdanie")
      * 
      * @return Response
      */
-    public function sprawozdanieAction(Request $request, $idSprawozdania)
+    public function sprawozdanieAction($idSprawozdania)
     {
-        $em = $this->getDoctrine()->getManager();
-        $sprawozdanie = $em->getRepository(\Parp\SsfzBundle\Entity\Sprawozdanie::class)->find($idSprawozdania);
-        if ($sprawozdanie == null) {
-            $this->getNarzedziaService()->dodajFlash($this, 'Błąd.', 'Nie znaleziono sprawozdania o podanym identyfikatorze.', 'danger');
+        $entityManager = $this->getDoctrine()->getManager();
+        $sprawozdanie = $entityManager->getRepository(Sprawozdanie::class)->find($idSprawozdania);
+        if (null == $sprawozdanie) {
+            $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Nie znaleziono sprawozdania o podanym identyfikatorze.');
             
             return $this->redirectToRoute('parp');
         }           
-        $formS = $this->createForm(\Parp\SsfzBundle\Form\Type\SprawozdanieType::class, $sprawozdanie, array('disabled' => true));
-        $przeplyw = $em->getRepository(\Parp\SsfzBundle\Entity\PrzeplywFinansowy::class)->findBy(array('sprawozdanieId' => $sprawozdanie->getId()));
+        $okresy = $this->getOkresySprawozdawcze();
+        $formS = $this->createForm(SprawozdanieType::class, $sprawozdanie, array('disabled' => true, 'okresy' => $okresy));
+        $przeplyw = null;
+        $przeplyw = $entityManager->getRepository(PrzeplywFinansowy::class)->findBy(array('sprawozdanieId' => $sprawozdanie->getId()));
         $formP = null;
-        if ($przeplyw != null) {
-            $formP = $this->createForm(\Parp\SsfzBundle\Form\Type\PrzeplywFinansowyType::class, $przeplyw[0], array('disabled' => true))->createView();             
+        if (null != $przeplyw) {
+            $formP = $this->createForm(PrzeplywFinansowyType::class, $przeplyw[0], array('disabled' => true))->createView();             
         }
         
         return $this->render(
@@ -134,23 +157,22 @@ class ParpController extends Controller
     /**
      * Akcja podglądu profilu beneficjenta
      * 
-     * @param Request $request        request
-     * @param int     $idBeneficjenta identyfikator profilu beneficjenta
+     * @param int $idBeneficjenta identyfikator profilu beneficjenta
      * 
      * @Route("/beneficjent/{idBeneficjenta}", name="parp_beneficjent")
      * 
      * @return Response
      */
-    public function beneficjentAction(Request $request, $idBeneficjenta)
+    public function beneficjentAction($idBeneficjenta)
     {
-        $em = $this->getDoctrine()->getManager();
-        $beneficjent = $em->getRepository(\Parp\SsfzBundle\Entity\Beneficjent::class)->find($idBeneficjenta);
-        if ($beneficjent == null) {
-            $this->getNarzedziaService()->dodajFlash($this, 'Błąd.', 'Nie znaleziono beneficjenta o podanym identyfikatorze.', 'danger');
+        $entityManager = $this->getDoctrine()->getManager();
+        $beneficjent = $entityManager->getRepository(Beneficjent::class)->find($idBeneficjenta);
+        if (null == $beneficjent) {
+            $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Nie znaleziono beneficjenta o podanym identyfikatorze.');
             
             return $this->redirectToRoute('parp');
         }        
-        $this->get('ssfz.service.narzedzia_service')->datatableOsoby($this, $beneficjent->getId())->execute();        
+        $this->get('ssfz.service.datatable_osoby_service')->datatableOsoby($this, $beneficjent->getId())->execute();        
         
         return $this->render(
             'SsfzBundle:Parp:beneficjent.html.twig',
@@ -167,40 +189,41 @@ class ParpController extends Controller
      * 
      * @Route("/gridSpolki/{idUmowy}", name="parp_datatableSpolki")
      * 
+     * @throws NotFoundHttpException
+     * 
      * @return Response
      */
     public function spolkiGridAction($idUmowy)
     {
-        $umowa= $this->getDoctrine()->getRepository(Umowa::class)->find($idUmowy);
+        $umowa = $this->getDoctrine()->getRepository(Umowa::class)->find($idUmowy);
         if (!$umowa) {
-            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException('Nie znaleziono umowy o przekazanym identyfikatorze.');
+            throw new NotFoundHttpException('Nie znaleziono umowy o przekazanym identyfikatorze.');
         }             
         $umowaId = $umowa->getId();
         
-        return $this->get('ssfz.service.narzedzia_service')->datatableSpolki($this, $umowaId)->execute();
+        return $this->get('ssfz.service.datatable_spolki_service')->datatableSpolki($this, $umowaId)->execute();
     }     
              
     /**
      * Akcja wyświetlenia portfela spółek
      * 
-     * @param Request $request request
-     * @param int     $idUmowy identyfikator umowy
+     * @param int $idUmowy identyfikator umowy
      * 
      * @Route("/portfel/{idUmowy}", name="parp_portfel")
      * 
      * @return Response
      */
-    public function portfelAction(Request $request, $idUmowy)
+    public function portfelAction($idUmowy)
     {
-        $em = $this->getDoctrine()->getManager();
-        $umowa = $em->getRepository(\Parp\SsfzBundle\Entity\Umowa::class)->find($idUmowy);
-        if ($umowa == null) {
-            $this->getNarzedziaService()->dodajFlash($this, 'Błąd.', 'Nie znaleziono umowy o podanym identyfikatorze.', 'danger');
+        $entityManager = $this->getDoctrine()->getManager();
+        $umowa = $entityManager->getRepository(Umowa::class)->find($idUmowy);
+        if (null == $umowa) {            
+            $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Nie znaleziono umowy o podanym identyfikatorze.');
             
             return $this->redirectToRoute('parp');
         }        
-        $this->get('ssfz.service.narzedzia_service')->datatableSpolki($this, $umowa->getId())->execute();
-        $spolka = new \Parp\SsfzBundle\Entity\Spolka();
+        $this->get('ssfz.service.datatable_spolki_service')->datatableSpolki($this, $umowa->getId())->execute();
+        $spolka = new Spolka();
         $form = $this->createForm(SpolkaType::class, $spolka, array('disabled' => true, 'narzedzia_svc' => $this->get('ssfz.service.narzedzia_service')));
         
         return $this->render(
@@ -224,19 +247,9 @@ class ParpController extends Controller
      */
     public function osobyGridAction($idBeneficjenta)
     {
-        return $this->get('ssfz.service.narzedzia_service')->datatableOsoby($this, $idBeneficjenta)->execute();
+        return $this->get('ssfz.service.datatable_osoby_service')->datatableOsoby($this, $idBeneficjenta)->execute();
     }    
-    
-    /**
-     * Pobiera serwis NarzedziaService
-     * 
-     * @return NarzedziaService
-     */
-    private function getNarzedziaService()
-    {
-        return $this->get('ssfz.service.narzedzia_service');
-    }
-    
+        
     /**
      * Akcja pobrania danych do tabeli kontroli sprawozdawczości
      *
@@ -244,12 +257,14 @@ class ParpController extends Controller
      * @return             Response
      */
     public function parpGridAction()
-    {
-        return $this->getNarzedziaService()->datatableParp($this)->execute();
+    {        
+        return $this->get('ssfz.service.datatable_parp_service')->datatableParp($this)->execute();
     }
     
     /**
      * Pobiera zalogowanego użytkownika
+     * 
+     * @throws AccessDeniedException
      * 
      * @return Uzytkownik
      */
@@ -261,5 +276,22 @@ class ParpController extends Controller
         }        
         
         return $uzytkownik;
-    }       
+    }   
+
+     /**
+     * Metoda umożliwia pobranie okresów sprawozdawczych z bazy danych 
+     * 
+     * @return array
+     */
+    private function getOkresySprawozdawcze()
+    {
+        $array = array(); 
+        $entityManager = $this->getDoctrine()->getManager();
+        $okresySprawozdawcze = $entityManager->getRepository(\Parp\SsfzBundle\Entity\OkresyKonfiguracja::class)->findBy(array(), array('rok' => 'ASC'));
+        foreach ($okresySprawozdawcze as $okres) {
+            $array[$okres->getRok()]  = $okres->getRok();
+        }
+
+        return $array;
+    }    
 }

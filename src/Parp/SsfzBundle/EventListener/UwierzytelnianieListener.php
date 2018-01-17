@@ -82,14 +82,12 @@ class UwierzytelnianieListener implements EventSubscriberInterface
     EntityManager $entityManager, Request $requestStack, FormFactory $formFactory, EncoderFactory $encoderFactory, Router $router, $defaultPasswordEncoder
     )
     {
-
         $this->entityManager = $entityManager;
         $this->request = $requestStack;
         $this->formFactory = $formFactory;
         $this->encoderFactory = $encoderFactory;
         $this->router = $router;
         $this->defaultPasswordEncoder = $defaultPasswordEncoder;
-
         $this->log = new WpisDziennikaUwierzytelnienia();
         $this->walidujFormularzLogowania();
     }
@@ -129,12 +127,9 @@ class UwierzytelnianieListener implements EventSubscriberInterface
     {
         $this->zbierzDaneZadania($this->request);
         $token = $event->getAuthenticationToken();
-
         $this->zbierzDaneTokena($token);
         $exception = $event->getAuthenticationException();
-
         $this->zbierzDaneBledu($exception);
-
         $entityManager = $this->entityManager;
         // Wykonanie clear() jest konieczne w celu uniknięcia utrwalenia danych użytkownika, które
         // w tym miejscu są już po wykonaniu eraseCredentials() (np. mają usuniętą sól).
@@ -164,18 +159,12 @@ class UwierzytelnianieListener implements EventSubscriberInterface
         $this->zbierzDaneZadania($this->request);
         $token = $event->getAuthenticationToken();
         $this->zbierzDaneTokena($token);
-
         $entityManager = $this->entityManager;
         $entityManager->detach($this->log);
         $entityManager->persist($this->log);
         $entityManager->flush($this->log);
-
-        /**
-         * @var Uzytkownik $uzytkownik 
-         */
         $uzytkownik = $token->getUser();
         $cel = $this->przekierujNaStroneDomowa($token);
-
         if ($uzytkownik->musiZmienicHaslo()) {
             $cel = array(
                 'route' => 'konto_uzytkownika_zmiana_hasla',
@@ -184,14 +173,9 @@ class UwierzytelnianieListener implements EventSubscriberInterface
             $session = $this->request->getSession();
             $session->set('wymuszona_zmiana_hasla', true);
         }
-
         $params = isset($cel['params']) ? $cel['params'] : array();
         $url = $router->generate($cel['route'], $params, true);
-
-        $this
-            ->request
-            ->request
-            ->set('_target_path', $url);
+        $this->request->request->set('_target_path', $url);
 
         return true;
     }
@@ -207,47 +191,30 @@ class UwierzytelnianieListener implements EventSubscriberInterface
     {
         $request = $event->getRequest();
         $user = $event->getAuthenticationToken()->getUser();
-
         $userPasswordEncoderName = null;
         if ($user instanceof Uzytkownik) {
             $userPasswordEncoderName = $user->getEncoderName();
         }
-
         $defaultPasswordEncoderName = $this->defaultPasswordEncoder;
         if (null !== $defaultPasswordEncoderName) {
             $entityManager = $this->entityManager;
-
             if ($userPasswordEncoderName !== $defaultPasswordEncoderName) {
                 $user->setEncoderName($defaultPasswordEncoderName);
-                $passwordEncoder = $this
-                    ->encoderFactory
-                    ->getEncoder($user);
-
-                $plainPassword = $request
-                    ->request
-                    ->get('_password');
+                $passwordEncoder = $this->encoderFactory->getEncoder($user);
+                $plainPassword = $request->request->get('_password');
                 $salt = $user->getSalt();
                 $encodedPassword = $passwordEncoder->encodePassword($plainPassword, $salt);
-
-                $user
-                    ->setEncoderName($defaultPasswordEncoderName)
-                    ->setHaslo($encodedPassword);
-
+                $user->setEncoderName($defaultPasswordEncoderName)->setHaslo($encodedPassword);
                 $entityManager->flush($user);
             }
-
-            $ostatniaZmianaHasla = $entityManager
-                ->getRepository('Parp\UzytkownikBundle\Entity\ZmianaHasla')
-                ->findOstatniaZmianaHasla($user);
+            $ostatniaZmianaHasla = $entityManager->getRepository('Parp\UzytkownikBundle\Entity\ZmianaHasla')->findOstatniaZmianaHasla($user);
             if (null === $ostatniaZmianaHasla) {
                 $wpisHistorii = new ZmianaHasla();
-
                 // Historycznie obiekt Uzytkownik nie posiadał informacji o dacie ostatniej zmiany hasła.
                 // Jeśli data ta jest pusta zwraca datę utworzenia konta. Dodatkowo jeśli i ta data
                 // byłaby pusta, to za datę ostatniej zmiany hasła zostanie przyjęty aktualny znacznik czasu.
                 $kiedyZmienione = $user->getDataOstatniejZmianyHasla();
                 $kiedyZmienione = ($kiedyZmienione instanceof \DateTime) ? $kiedyZmienione : new \DateTime('now');
-
                 $wpisHistorii
                     ->setUzytkownik($user)
                     ->setKiedyZmienione($kiedyZmienione)
@@ -275,17 +242,11 @@ class UwierzytelnianieListener implements EventSubscriberInterface
     {
         if (isset($request)) {
             $log = $this->log;
-
             $ip = $request->getClientIp();
             $port = $request->getPort();
             $log->setIpKlienta($ip . ':' . $port);
-
-            $post = $request->request;
-
-            $nazwaUzytkownika = $post->get('_username', null);
-            $log
-                ->setPodanaNazwaUzytkownika($nazwaUzytkownika)
-                ->setPodaneHasloUzytkownika('Nieprawidłowe hasło');
+            $nazwaUzytkownika = $request->request->get('_username', null);
+            $log->setPodanaNazwaUzytkownika($nazwaUzytkownika)->setPodaneHasloUzytkownika('Nieprawidłowe hasło');
         }
 
         return true;
@@ -307,19 +268,16 @@ class UwierzytelnianieListener implements EventSubscriberInterface
             $request = $this->request;
             $clientIp = $request->getClientIp();
             $token->setAttribute('adres_ip', $clientIp);
-
             $uzytkownik = $token->getUser();
             if ($uzytkownik instanceof UserInterface) {
                 $sessionId = $request->getSession()->getId();
                 $log = $this->log;
                 $zakodowaneHaslo = $this->zakodujHaslo($log->getPodaneHasloUzytkownika(), $uzytkownik);
-                $log
-                    ->setIdUzytkownika($uzytkownik->getId())
+                $log->setIdUzytkownika($uzytkownik->getId())
                     ->setPodaneHasloUzytkownika($zakodowaneHaslo)
                     ->setHasloUzytkownika($uzytkownik->getHaslo())
                     ->setIdentyfikatorSesji($sessionId);
             }
-
             $this
                 ->log
                 ->setZakonczonePowodzeniem($token->isAuthenticated());
@@ -361,16 +319,12 @@ class UwierzytelnianieListener implements EventSubscriberInterface
     {
         $request = $this->request;
         $session = $request->getSession();
-
         if ($session->has('formularz_logowanie_bledy')) {
             $session->remove('formularz_logowanie_bledy');
         }
-
-        $post = ($request->getMethod() === 'POST');
-        if ($post) {
+        if ($request->getMethod() === 'POST') {
             $formularz = $this->formFactory->create(new LogowanieFormType());
             $formularz->handleRequest($request);
-
             if (!$formularz->isValid()) {
                 $bledy = array();
                 $trescBledow = array();
@@ -388,9 +342,7 @@ class UwierzytelnianieListener implements EventSubscriberInterface
                 // na nowy obiekt tego samego typu, ale pomijany jest parametr $cause (domyślnie null).
                 foreach ($formularz->get('_username')->getErrors() as $blad) {
                     if ($blad instanceof FormError) {
-                        $properFormError = new FormError(
-                            $blad->getMessage(), $blad->getMessageTemplate(), $blad->getMessageParameters(), $blad->getMessagePluralization()
-                        );
+                        $properFormError = new FormError($blad->getMessage(), $blad->getMessageTemplate(), $blad->getMessageParameters(), $blad->getMessagePluralization());
                         $trescBledow[] = $blad->getMessage();
                         $bledy['_username'][] = $properFormError;
                     }

@@ -56,10 +56,27 @@ services:
     ssfz.service.beneficjent_service:
         class: Parp\SsfzBundle\Service\BeneficjentService
         arguments: ['@ssfz.repository.beneficjent_repository', '@ssfz.repository.umowa_repository', '@ssfz.repository.osoba_zatrudniona_repository']
-
+        
+    ssfz.service.osoba_zatrudniona_service:
+        class: Parp\SsfzBundle\Service\BeneficjentService
+        arguments: ['@ssfz.repository.osoba_zatrudniona_repository']
+        
     ssfz.service.narzedzia_service:
         class: Parp\SsfzBundle\Service\NarzedziaService
-        arguments: ['@ssfz.repository.beneficjent_forma_prawna_repository', '@ssfz.repository.wojewodztwo_repository', '@ssfz.repository.gospodarka_dzial_repository', '@ssfz.repository.okresy_konfiguracja_repository']
+        arguments: ['@ssfz.repository.beneficjent_forma_prawna_repository', '@ssfz.repository.wojewodztwo_repository', '@ssfz.repository.gospodarka_dzial_repository']
+
+    ssfz.service.datatable_parp_service:
+        class: Parp\SsfzBundle\Service\DatatableParpService
+        arguments: ['@ssfz.repository.okresy_konfiguracja_repository']
+        
+    ssfz.service.datatable_spolki_service:
+        class: Parp\SsfzBundle\Service\DatatableSpolkiService    
+        
+    ssfz.service.datatable_umowy_service:
+        class: Parp\SsfzBundle\Service\DatatableUmowyService        
+        
+    ssfz.service.datatable_osoby_service:
+        class: Parp\SsfzBundle\Service\DatatableOsobyService          
 
     ssfz.service.sprawozdanie_service:
         class: Parp\SsfzBundle\Service\SprawozdanieService
@@ -67,6 +84,7 @@ services:
     ssfz.service.komunikaty_service:
         class: Parp\SsfzBundle\Service\KomunikatyService
         arguments: ['@session']
+
     ssfz.security.user.provider.custom_ldap_user_provider:
         class: Parp\SsfzBundle\Security\User\Provider\CustomLdapUserProvider
         arguments:
@@ -97,3 +115,8 @@ services:
             - '%jasper_password%'
             - '%jasper_org_id%'
             - '%jasper_ssfz_report_path%'
+
+
+    ssfz.service.rola_service:
+        class: Parp\SsfzBundle\Service\RolaService
+        arguments: ['@ssfz.repository.rola_repository']

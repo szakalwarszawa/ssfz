@@ -32,6 +32,8 @@ class PrzeplywFinansowyType extends AbstractType
     /**
      * Buduje formularz do wypełniania przeplywu finansowego
      * 
+     * @SuppressWarnings("unused")
+     * 
      * @param FormBuilderInterface $builder
      * @param array                $options
      */

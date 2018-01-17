@@ -83,7 +83,6 @@ class MailerService
             ->setFrom($this->sender)
             ->setTo($receiver->getEmail())
             ->setBody($this->templating->render($templateName, $templateParams), 'text/html');
-
         $this->mailer->send($message);
     }
 
@@ -102,7 +101,6 @@ class MailerService
             ->setFrom($this->sender)
             ->setTo($receivers)
             ->setBody($this->templating->render($templateName, $templateParams), 'text/html');
-
         $this->mailer->send($message);
     }
 }
