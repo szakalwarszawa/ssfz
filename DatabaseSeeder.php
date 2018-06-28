@@ -1,8 +1,9 @@
 <?php
-$servername = "test7-db";
-$username = "sprawozdaw_app";
-$password = "eDuFCoAXd8iz6w4Zbeai";
-$dbName = "sprawozdawczosc";
+$servername = "localhost";
+$username = "parp";
+$password = "b@2@PARP";
+$dbName = "parp";
+
 
 $conn = mysqli_connect($servername, $username, $password, $dbName);
 
