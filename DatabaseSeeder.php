@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "parp";
-$password = "b@2@PARP";
-$dbName = "parp";
+$servername = "test7-db";
+$username = "sprawozdaw_app";
+$password = "eDuFCoAXd8iz6w4Zbeai";
+$dbName = "sprawozdawczosc";
 
 $conn = mysqli_connect($servername, $username, $password, $dbName);
 
@@ -119,7 +119,7 @@ foreach ($gospodarkaDzialQueries as $query) {
 echo "Seeding sfz_uzytkownik table" . "\n";
 $koordynatorTechnicznyRoleId = $conn->query('SELECT id FROM sfz_rola WHERE nazwa like "ROLE_KOORDYNATOR_TECHNICZNY"')->fetch_assoc()['id'];
 //Values (ID, ROLA_ID, BENEFICJENT_ID, LOGIN, HASLO, EMAIL, KOD_ZAPOMNIANE_HASLO, UTWORZONY, ZMODYFIKOWANY, BAN, STATUS, KOD_AKTYWACJA_KONTA)
-$adminQuery = 'INSERT INTO sfz_uzytkownik VALUES (DEFAULT, ' . $koordynatorTechnicznyRoleId . ', null, "admin", "' . password_hash("domyslne_haslo", PASSWORD_BCRYPT) . '", "email@example.com", null, now(), now(), 0, 1, null)';
+$adminQuery = 'INSERT INTO sfz_uzytkownik VALUES (DEFAULT, ' . $koordynatorTechnicznyRoleId . ', null, "admin", "' . password_hash("domyslne_haslo", PASSWORD_BCRYPT) . '", "email@example.com", 0, now(), now(), 0, 1, null)';
 if ($conn->query($adminQuery) === TRUE) {
     echo "New record created successfully\n";
 } else {
