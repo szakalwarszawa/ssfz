@@ -82,7 +82,7 @@ class SprawozdanieSpolkiType extends AbstractType
         ));
         $builder->add('ebitda', TextType::class, array(
             'label' => 'EBITDA',   
-            'attr' => array('class' => 'decimal'),
+            'attr' => array('class' => 'ndecimal'),
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
@@ -94,7 +94,7 @@ class SprawozdanieSpolkiType extends AbstractType
         ));
         $builder->add('ncf', TextType::class, array(
             'label' => 'NCF',   
-            'attr' => array('class' => 'decimal'),
+            'attr' => array('class' => 'ndecimal'),
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
@@ -106,7 +106,7 @@ class SprawozdanieSpolkiType extends AbstractType
         ));
         $builder->add('sumaBilansowa', TextType::class, array(
             'label' => 'Suma bilansowa',
-            'attr' => array('class' => 'decimal'),
+            'attr' => array('class' => 'ndecimal'),
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')

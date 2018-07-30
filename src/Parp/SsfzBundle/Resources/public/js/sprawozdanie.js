@@ -204,8 +204,9 @@ jQuery(document).ready(function() {
             $("#przeplyw_finansowy_saldoKoncowe").val(value3.toFixed(2).replace(',','.'));
         });
     }
-    
-    $('.decimal').on('keypress',function (event) {
+    // negative bool - czy pozwolić na wprowadzanie wartości ujemnych
+    // el - element do którego przypiety jest handler
+    var decimalKeypressEventHandler = function (event, el, negative) {
         // Allow: backspace, delete, tab, escape, enter and .
         if ($.inArray(event.keyCode, [8, 9, 27, 13, 110, 190]) !== -1 ||
              // Allow: Ctrl+A, Command+A
@@ -217,10 +218,10 @@ jQuery(document).ready(function() {
         }
         if(event.which == 44)
             event.which = 46;
-        if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+        if ((event.which != 46 || $(el).val().indexOf('.') != -1) && ((event.which < 48 || event.which > 57) && (event.which != 45 || !negative))) {
             event.preventDefault();
         }
-        var input = $(this).val();
+        var input = $(el).val();
         if ((input.indexOf('.') != -1) && (input.substring(input.indexOf('.')).length > 2)) {
             event.preventDefault();
         }
@@ -228,8 +229,17 @@ jQuery(document).ready(function() {
         {
             event.preventDefault();
         }
+
+    }
+
+    $('.decimal').on('keypress',function (event) {
+        decimalKeypressEventHandler(event, this, false);
     });
-    
+
+    $('.ndecimal').on('keypress',function (event) {
+        decimalKeypressEventHandler(event, this, true);
+    });
+
     $('.integer').on('keypress',function (event) {
         // Allow: backspace, delete, tab, escape, enter and .
         if ($.inArray(event.keyCode, [ 8, 9, 27, 13, 110, 190]) !== -1 ||
@@ -250,7 +260,7 @@ jQuery(document).ready(function() {
         }
     });
     
-    $( ".decimal" ).focusout(function() {
+    $( ".decimal, .ndecimal" ).focusout(function() {
         prepareMoneyFormat(this);
     });    
     
