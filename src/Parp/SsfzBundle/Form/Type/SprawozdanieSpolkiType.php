@@ -58,7 +58,7 @@ class SprawozdanieSpolkiType extends AbstractType
         ));
         $builder->add('uzyskanePrzychody', TextType::class, array(
             'label' => 'Uzyskane przychody w okresie sprawozdawczym', 
-            'attr' => array('class' => 'decimal'),
+            'attr' => array('class' => 'ndecimal'),
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
