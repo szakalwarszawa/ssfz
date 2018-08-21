@@ -52,7 +52,7 @@ jQuery(document).ready(function() {
     $('.ssfz-digits').on('keyup', function(){
         $value = $(this).val();
         if(isNaN($value)){            
-            $value = $value.replace(/[^0-9]/g,'');                     
+            $value = $value.replace(/[^0-9]/g,'');
         }
         $(this).val($value);
     });
@@ -64,8 +64,7 @@ jQuery(document).ready(function() {
         $(this).val(formatMoney($(this).val()));
         $(this).val(prepareMoney($(this).val()));
     });   
-    $('#spolka_kwInwestycji').on('change', function(e) {
-
+    $('#spolka_kwInwestycji').on('blur', function(e) {
         if($(this).val() && $('#spolka_kwDezinwestycji').val()){
             $('#spolka_zwrotInwestycji').val(calculateZwrot($(this).val(), $('#spolka_kwDezinwestycji').val()));
         } else {
@@ -73,7 +72,7 @@ jQuery(document).ready(function() {
         }        
     });
     
-    $('#spolka_kwDezinwestycji').on('change', function(e) {       
+    $('#spolka_kwDezinwestycji').on('blur', function(e) {
         if($(this).val() && $('#spolka_kwInwestycji').val()){
             $('#spolka_zwrotInwestycji').val(calculateZwrot($('#spolka_kwInwestycji').val(), $(this).val()));
         } else {
