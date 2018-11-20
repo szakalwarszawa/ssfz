@@ -593,6 +593,22 @@ class Sprawozdanie
     }
 
     /**
+     * Znajduje sprawozdanie dla spółki o podanej nazwie
+     *
+     * @param string $nazwa Nazwa spółki której sprawozdania szukać
+     */
+    public function findSprawozdanieSpolkiByNazwaSpolki($nazwa)
+    {
+        foreach ($this->sprawozdaniaSpolek as $sprawozdanie) {
+            if ($sprawozdanie->getNazwaSpolki() == $nazwa) {
+                return $sprawozdanie;
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * Konstruktor
      */
     public function __construct()

@@ -136,6 +136,13 @@ class SprawozdanieController extends Controller
         $umowaId = $report->getUmowaId();
         $this->getSprawozdanieService()->datatableSprawozdanie($this, $beneficjentId, $umowaId);
         $okresy = $this->getOkresySprawozdawcze();
+
+        if ($request->query->get('odswiezSpolki') !== null) {
+            $spolki = $this->getSpolkiList($umowaId);
+            $report = $this->setSpolki($spolki, $report);
+
+        }
+
         $form = $this->createForm(\Parp\SsfzBundle\Form\Type\SprawozdanieType::class, $report, array('okresy' => $okresy));
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -279,13 +286,17 @@ class SprawozdanieController extends Controller
      */
     public function setSpolki($spolki, $report) 
     {
+
         $counter = 1;
         foreach ($spolki as $spolka) {
-            $sprawozdanieSpolki = new \Parp\SsfzBundle\Entity\SprawozdanieSpolki();
-            $sprawozdanieSpolki->setNazwaSpolki($spolka->getNazwa());
-            $sprawozdanieSpolki->setKrs($spolka->getKrs());
-            $sprawozdanieSpolki->setLiczbaPorzadkowa($counter);
-            $report->addSprawozdaniaSpolek($sprawozdanieSpolki);
+            //Dodaj tylko te dla których już nie ma sprawozdań
+            if ($report->findSprawozdanieSpolkiByNazwaSpolki($spolka->getNazwa()) === null) {
+                $sprawozdanieSpolki = new \Parp\SsfzBundle\Entity\SprawozdanieSpolki();
+                $sprawozdanieSpolki->setNazwaSpolki($spolka->getNazwa());
+                $sprawozdanieSpolki->setKrs($spolka->getKrs());
+                $sprawozdanieSpolki->setLiczbaPorzadkowa($counter);
+                $report->addSprawozdaniaSpolek($sprawozdanieSpolki);
+            }
             $counter = $counter + 1;
         }
         

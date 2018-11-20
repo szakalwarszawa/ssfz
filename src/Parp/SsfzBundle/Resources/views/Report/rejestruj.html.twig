@@ -45,12 +45,12 @@
                 
                 <input type="hidden" id="backToBeneficjent" name="backToBeneficjent" value="false"> 
 
-                        
                 <div id="form-submit-div" class="row btn-toolbar">     
                     {% if form_mode == 'create' %}
                         <span id="sprawozdanie-powrot" class="btn btn-danger pull-right"><span class="glyphicon glyphicon-chevron-left"></span> Powrót</span>
                         <button type="submit" class="btn btnRegister btn-primary pull-right"><span class="glyphicon glyphicon-ok"></span> Zapisz</button>
                     {% elseif form_mode == 'edit' %}
+                        <a href="?odswiezSpolki" class="btn btn-success"><span class="glyphicon glyphicon-refresh"></span> Odśweż portfel spółek</a>
                         <span id="sprawozdanie-powrot" class="btn btn-danger pull-right"><span class="glyphicon glyphicon-chevron-left"></span> Powrót</span>
                         <button type="submit" class="btn btnRegister btn-primary pull-right"><span class="glyphicon glyphicon-ok"></span> Zapisz</button>
                     {% elseif form_mode == 'read' %}
