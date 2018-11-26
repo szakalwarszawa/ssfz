@@ -39,6 +39,9 @@ class DatatableUmowyService
     public function getDatatableUmowyRenderers()
     {
         return array(
+            0 => array(
+                'view' => 'SsfzBundle:Datatable:_escapeJs.html.twig',
+            ),
             1 => array(
                 'view' => 'SsfzBundle:Beneficjent:_umowaActions.html.twig',
             )

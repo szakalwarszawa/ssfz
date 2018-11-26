@@ -53,7 +53,15 @@ class DatatableOsobyService
             ),
             4 => array(
                 'view' => 'SsfzBundle:Beneficjent:_date.html.twig',
+            ),
+            5 => array(
+                'view' => 'SsfzBundle:Datatable:_escapeJs.html.twig',
+            ),
+            6 => array(
+                'view' => 'SsfzBundle:Datatable:_escapeJs.html.twig',
             )
+
+
         );
     }
 
