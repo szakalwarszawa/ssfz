@@ -60,6 +60,7 @@ security:
         - { path: ^/uzytkownik/rejestracja, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/uzytkownik/aktywacja, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/administrator/pracownik/utworz, roles: ROLE_KOORDYNATOR_TECHNICZNY } 
+        - { path: ^/administrator/pracownik/edytuj, roles: ROLE_KOORDYNATOR_TECHNICZNY } 
         - { path: ^/beneficjent, roles: ROLE_BENEFICJENT }
         - { path: ^/beneficjent/profil, roles: ROLE_BENEFICJENT }
         - { path: ^/beneficjent/uzupelnij, roles: ROLE_BENEFICJENT }
