@@ -60,9 +60,27 @@ class DatatableSpolkiService
      */
     public function getDatatableSpolkiRenderers()
     {
-        $renderers[14]['view'] = 'SsfzBundle:Beneficjent:_date.html.twig';
+        $renderers[1]['view'] = 'SsfzBundle:Datatable:_escapeJs.html.twig';
+        $renderers[2]['view'] = 'SsfzBundle:Datatable:_escapeJs.html.twig';
+        $renderers[3]['view'] = 'SsfzBundle:Datatable:_escapeJs.html.twig';
+        $renderers[4]['view'] = 'SsfzBundle:Datatable:_escapeJs.html.twig';
+        $renderers[5]['view'] = 'SsfzBundle:Datatable:_escapeJs.html.twig';
+        $renderers[6]['view'] = 'SsfzBundle:Datatable:_escapeJs.html.twig';
         $renderers[7]['view'] = 'SsfzBundle:Beneficjent:_date.html.twig';
+        $renderers[8]['view'] = 'SsfzBundle:Datatable:_escapeJs.html.twig';
+        $renderers[9]['view'] = 'SsfzBundle:Datatable:_escapeJs.html.twig';
+        $renderers[10]['view'] = 'SsfzBundle:Datatable:_escapeJs.html.twig';
+        $renderers[11]['view'] = 'SsfzBundle:Datatable:_escapeJs.html.twig';
+        $renderers[12]['view'] = 'SsfzBundle:Datatable:_escapeJs.html.twig';
         $renderers[13]['view'] = 'SsfzBundle:Portfel:_zakonczona.html.twig';
+        $renderers[14]['view'] = 'SsfzBundle:Beneficjent:_date.html.twig';
+        $renderers[15]['view'] = 'SsfzBundle:Portfel:_zakonczona.html.twig';
+        $renderers[16]['view'] = 'SsfzBundle:Portfel:_zakonczona.html.twig';
+        $renderers[17]['view'] = 'SsfzBundle:Portfel:_zakonczona.html.twig';
+        $renderers[18]['view'] = 'SsfzBundle:Portfel:_zakonczona.html.twig';
+        $renderers[19]['view'] = 'SsfzBundle:Portfel:_zakonczona.html.twig';
+        $renderers[20]['view'] = 'SsfzBundle:Portfel:_zakonczona.html.twig';
+        $renderers[21]['view'] = 'SsfzBundle:Portfel:_zakonczona.html.twig';
         $renderers[22]['view'] = 'SsfzBundle:Portfel:_spolkaActions.html.twig';
         $renderers[23]['view'] = 'SsfzBundle:Parp:_portfelActions.html.twig';
 
