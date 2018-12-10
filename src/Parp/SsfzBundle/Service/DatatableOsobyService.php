@@ -45,8 +45,14 @@ class DatatableOsobyService
     public function getDatatableOsobyRenderers()
     {
         return array(
+            0 => array(
+                'view' => 'SsfzBundle:Datatable:_escapeJs.html.twig',
+            ),
             1 => array(
                 'view' => 'SsfzBundle:Beneficjent:_osobaZatrudnionaFullName.html.twig',
+            ),
+            2 => array(
+                'view' => 'SsfzBundle:Datatable:_escapeJs.html.twig',
             ),
             3 => array(
                 'view' => 'SsfzBundle:Beneficjent:_date.html.twig',
