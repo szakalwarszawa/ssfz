@@ -1,1 +1,1 @@
-{{ dt_obj.imie|escape('js') ~ ' ' ~ dt_obj.nazwisko|escape('js') }}
+{{ dt_obj.imie|purify ~ ' ' ~ dt_obj.nazwisko|purify }}
