@@ -5,34 +5,32 @@
 {% if dt_obj.zakonczona == true %}
     {% set var_zak = 1 %}
 {% endif %}
-{% set var_line18 = dt_line[18]|replace({"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "}) %} 
-{% set var_line6 = dt_line[6]|replace({"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "}) %} 
-{% set var_line20 = dt_line[20]|replace({"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "}) %} 
+{% set replace_map = {"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "} %}
 <script>    
 jQuery(document).ready(function() {
     $('#parp-portfel-podglad{{dt_id}}').on('click', function(e) {
         $('#parp-portfel-spolka').show(); 
-        $('#parp-portfel-spolka-header').text('Szczegóły spółki '+'{{dt_line[1]}}');        
-        $('#spolka_nazwa').val('{{dt_line[1]}}');
-        $('#spolka_forma').val('{{dt_line[2]}}');
-        $('#spolka_siedzibaMiasto').val('{{dt_line[3]}}');
-        $('#spolka_siedzibaWojewodztwo').val('{{dt_line[4]}}');
-        $('#spolka_branza').val('{{dt_line[5]}}');
-        $('#spolka_opis').val('{{var_line6}}');
-        $('#spolka_dataPowolania').val('{{dt_line[7]}}');
-        $('#spolka_krs').val('{{dt_line[8]}}');
-        $('#spolka_nip').val('{{dt_line[9]}}');
-        $('#spolka_kwInwestycji').val('{{dt_line[10]}}');
-        $('#spolka_kwWsparcia').val('{{dt_line[11]}}');
-        $('#spolka_kwPryw').val('{{dt_line[12]}}');
+        $('#parp-portfel-spolka-header').text('Szczegóły spółki '+'{{dt_line[1]|replace(replace_map)}}');        
+        $('#spolka_nazwa').val('{{dt_line[1]|replace(replace_map)}}');
+        $('#spolka_forma').val('{{dt_line[2]|replace(replace_map)}}');
+        $('#spolka_siedzibaMiasto').val('{{dt_line[3]|replace(replace_map)}}');
+        $('#spolka_siedzibaWojewodztwo').val('{{dt_line[4]|replace(replace_map)}}');
+        $('#spolka_branza').val('{{dt_line[5]|replace(replace_map)}}');
+        $('#spolka_opis').val('{{dt_line[6]|replace(replace_map)}}');
+        $('#spolka_dataPowolania').val('{{dt_line[7]|replace(replace_map)}}');
+        $('#spolka_krs').val('{{dt_line[8]|replace(replace_map)}}');
+        $('#spolka_nip').val('{{dt_line[9]|replace(replace_map)}}');
+        $('#spolka_kwInwestycji').val('{{dt_line[10]|replace(replace_map)}}');
+        $('#spolka_kwWsparcia').val('{{dt_line[11]|replace(replace_map)}}');
+        $('#spolka_kwPryw').val('{{dt_line[12]|replace(replace_map)}}');
         $('#spolka_zakonczona').val({{var_zak}});
-        $('#spolka_dataWyjscia').val('{{dt_line[14]}}');
-        $('#spolka_kwDezinwestycji').val('{{dt_line[15]}}');
-        $('#spolka_zwrotInwestycji').val('{{dt_line[16]}}');
-        $('#spolka_npv').val('{{dt_line[17]}}');
-        $('#spolka_udzialowcy').val('{{var_line18}}');
-        $('#spolka_prezes').val('{{dt_line[19]}}');
-        $('#spolka_zarzadPozostali').val('{{var_line20}}');
+        $('#spolka_dataWyjscia').val('{{dt_line[14]|replace(replace_map)}}');
+        $('#spolka_kwDezinwestycji').val('{{dt_line[15]|replace(replace_map)}}');
+        $('#spolka_zwrotInwestycji').val('{{dt_line[16]|replace(replace_map)}}');
+        $('#spolka_npv').val('{{dt_line[17]|replace(replace_map)}}');
+        $('#spolka_udzialowcy').val('{{dt_line[18]|replace(replace_map)}}');
+        $('#spolka_prezes').val('{{dt_line[19]|replace(replace_map)}}');
+        $('#spolka_zarzadPozostali').val('{{dt_line[20]|replace(replace_map)}}');
     }); 
 });    
 </script>
