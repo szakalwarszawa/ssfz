@@ -188,6 +188,12 @@ class SprawozdanieController extends Controller
             throw $this->createNotFoundException('Nie można poprawić sprawozdania');
         }
         $okresy = $this->getOkresySprawozdawcze();
+
+        if ($request->query->get('odswiezSpolki') !== null) {
+            $spolki = $this->getSpolkiList($umowaId);
+            $report = $this->setSpolki($spolki, $report);
+
+        }
         $form = $this->createForm(\Parp\SsfzBundle\Form\Type\SprawozdanieType::class, clone $report, array('showRemarks' => true, 'okresy' => $okresy));
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
