@@ -1,8 +1,8 @@
 {
-    "name": "symfony/framework-standard-edition",
+    "name": "parp/ssfz",
     "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "description": "System Sprawozdawczości 2.0",
     "autoload": {
         "psr-4": {
             "": "src/"
