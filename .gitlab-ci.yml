@@ -21,7 +21,7 @@ parallellint:
     stage: tests
     allow_failure: true
     script:
-        - /root/.composer/vendor/bin/parallel-lint --colors --blame .
+        - /root/.composer/vendor/bin/parallel-lint --colors --blame --exclude vendor .
 
 yamllint:
     stage: tests
@@ -44,7 +44,7 @@ twigcs:
 
 phpmd:
     stage: standards
-    allow_failure: false
+    allow_failure: true
     script:
         - /root/.composer/vendor/bin/phpmd src/ text ".gitlab-ci/phpmd.xml"
 
