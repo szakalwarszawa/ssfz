@@ -42,7 +42,7 @@ RUN php -d memory_limit=2G composer.phar global require \
         "phpmd/phpmd" \
         "hexmedia/yaml-linter" \
         "escapestudios/symfony2-coding-standard" \
-        "block8/php-docblock-checker" \
+        "dancryer/php-docblock-checker" \
     --prefer-dist --no-suggest --no-progress --no-interaction --no-scripts
 RUN curl -OL http://get.sensiolabs.org/sami.phar
 RUN cp sami.phar /usr/bin/sami.phar

@@ -48,6 +48,12 @@ phpmd:
     script:
         - /root/.composer/vendor/bin/phpmd src/ text ".gitlab-ci/phpmd.xml"
 
+phpdoc:
+    stage: standards
+    allow_failure: true
+    script:
+        - /root/.composer/vendor/bin/phpdoccheck --directory="src/"
+
 phpcpd:
     stage: stats
     allow_failure: true
