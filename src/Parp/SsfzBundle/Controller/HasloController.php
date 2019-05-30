@@ -13,11 +13,7 @@ use Parp\SsfzBundle\Form\Model\ChangePassword;
 /**
  * Kontroler obsługujący funkcjonalności 
  * związane z modyfikacjami hasła
- * 
- * @category Class
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
- * 
+ *
  * @Route("/haslo")
  */
 class HasloController extends Controller
@@ -26,11 +22,11 @@ class HasloController extends Controller
     /**
      * Metoda do wygenerowania klucza zmiany kasła.
      * Wysyłka klucza resetującego hasło na podany adres email.
-     * 
+     *
      * @Route("/przypomnij")
-     * 
+     *
      * @param Request $request
-     * 
+     *
      * @return Response
      */
     public function recoverPassword(Request $request)
@@ -55,17 +51,15 @@ class HasloController extends Controller
             }
 
             return $this->render('SsfzBundle:Security:passwordRecover.html.twig', array(
-                    'form' => $form->createView(),
-                    'error' => 'Konto nie istnieje w systemie.'
-                    )
-            );
+                'form' => $form->createView(),
+                'error' => 'Konto nie istnieje w systemie.'
+            ));
         }
 
         return $this->render('SsfzBundle:Security:passwordRecover.html.twig', array(
-                'form' => $form->createView(),
-                'error' => ''
-                )
-        );
+            'form' => $form->createView(),
+            'error' => ''
+        ));
     }
 
     /**
@@ -96,12 +90,11 @@ class HasloController extends Controller
         }
 
         return $this->render('SsfzBundle:Security:passwordReset.html.twig', array(
-                'form' => $form->createView(),
-                'error' => '',
-                'title' => 'Odzyskiwanie hasła',
-                'submitButtonName' => 'Zapisz'
-                )
-        );
+            'form' => $form->createView(),
+            'error' => '',
+            'title' => 'Odzyskiwanie hasła',
+            'submitButtonName' => 'Zapisz'
+        ));
     }
 
     /**
@@ -131,21 +124,19 @@ class HasloController extends Controller
             }
 
             return $this->render('SsfzBundle:Security:passwordReset.html.twig', array(
-                    'form' => $form->createView(),
-                    'error' => 'Aktualne hasło nie zgadza się.',
-                    'title' => 'Zmiana hasła',
-                    'submitButtonName' => 'Zmień hasło'
-                    )
-            );
+                'form' => $form->createView(),
+                'error' => 'Aktualne hasło nie zgadza się.',
+                'title' => 'Zmiana hasła',
+                'submitButtonName' => 'Zmień hasło'
+            ));
         }
 
         return $this->render('SsfzBundle:Security:passwordReset.html.twig', array(
-                'form' => $form->createView(),
-                'error' => '',
-                'title' => 'Zmiana hasła',
-                'submitButtonName' => 'Zmień hasło'
-                )
-        );
+            'form' => $form->createView(),
+            'error' => '',
+            'title' => 'Zmiana hasła',
+            'submitButtonName' => 'Zmień hasło'
+        ));
     }
 
     /**

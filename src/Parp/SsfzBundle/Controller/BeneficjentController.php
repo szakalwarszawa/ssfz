@@ -11,11 +11,7 @@ use Parp\SsfzBundle\Form\Type\BeneficjentType;
 
 /**
  * Kontroler obsługujący funkcjonalności po stronie Beneficjenta
- * 
- * @category Class
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
- * 
+ *
  * @Route("/beneficjent", name="beneficjent")
  */
 class BeneficjentController extends Controller
@@ -152,8 +148,8 @@ class BeneficjentController extends Controller
         $uzytkownik = $this->get('security.token_storage')->getToken()->getUser();
         if (null == $uzytkownik) {
             throw $this->createAccessDeniedException();
-        }        
+        }
         
         return $uzytkownik;
-    }      
+    }
 }

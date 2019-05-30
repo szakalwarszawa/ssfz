@@ -9,7 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  */
 class DefaultController extends Controller
 {
-
     /**
      * Metoda kierująca użytkowników na odpowiednią część systemu,
      * zgodnie z rolą uwierzytelnionego użytkownika

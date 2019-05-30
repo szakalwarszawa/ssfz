@@ -11,11 +11,7 @@ use Parp\SsfzBundle\Entity\Rola;
 
 /**
  * Kontroler obsługujący funkcjonalności po stronie Użytkownika
- * 
- * @category Class
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
- * 
+ *
  * @Route("/uzytkownik")
  */
 class UzytkownikController extends Controller {
@@ -79,8 +75,6 @@ class UzytkownikController extends Controller {
         $uzytkownikService->activateUserAccount($uzytkownik);
         $komunikatyService->sukcesKomunikat('Konto zostało aktywowane. Proszę zalogować się.');
 
-
         return $this->redirectToRoute('login');
     }
-
 }

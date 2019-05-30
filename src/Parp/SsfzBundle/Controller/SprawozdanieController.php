@@ -16,12 +16,6 @@ use Parp\SsfzBundle\Entity\Report;
 
 /**
  * Kontroler obsługujący funkcjonalności Sprawozdania
- * 
- * @category Class
- * @package  SsfzBundle
- * @author   CI ZETO
- * @license  Commercial ZETO
- * @link     http://zeto.bialystok.pl
  */
 class SprawozdanieController extends Controller
 {
@@ -70,7 +64,7 @@ class SprawozdanieController extends Controller
         if ($form->isSubmitted() && !$form->isValid()) {
             $this->getKomunikatyService()->bladKomunikat('Formularz nie został poprawnie wypełniony.');
         }
-        
+
         return $this->pokarzFormularzRejestracji($form, 'create', $umowaId);
     }
    
@@ -309,8 +303,6 @@ class SprawozdanieController extends Controller
         return $report;
     }
 
-    
-
     /**
      * Grid action
      * 
@@ -326,7 +318,7 @@ class SprawozdanieController extends Controller
         
         return $this->getSprawozdanieService()->datatableSprawozdanie($this, $beneficjentId, $umowaId)->execute();
     }
-    
+
     /**
      * Pomocnicza metoda 
      * 
@@ -336,7 +328,7 @@ class SprawozdanieController extends Controller
     {
         return $this->get('ssfz.service.sprawozdanie_service');
     }   
-    
+
     /**
      * Pomocnicza metoda 
      * 
@@ -453,10 +445,10 @@ class SprawozdanieController extends Controller
         $warunek3 = $warunek1 | $warunek2; 
         if ($warunek3) {
             $this->getKomunikatyService()->bladKomunikat('Podano błędny okres lub rok', 'Błąd podczas próby zapisu sprawozdania'); 
-                        
+
             return false;
         }
-        
+
         return true;
     }
 
@@ -473,7 +465,7 @@ class SprawozdanieController extends Controller
         if (!$uzytkownik) {
             throw $this->createAccessDeniedException();
         }
-        
+
         return $uzytkownik;
     }
     
@@ -488,7 +480,6 @@ class SprawozdanieController extends Controller
      */    
     public function pokarzFormularzRejestracji($form, $mode, $umowaId)
     {
-        
         return $this->render(
             'SsfzBundle:Report:rejestruj.html.twig', array(
                     'form' => $form->createView(),
@@ -508,7 +499,7 @@ class SprawozdanieController extends Controller
         $uzytkownik = $this->getZalogowanyUzytkownik();
         $beneficjent = $uzytkownik->getBeneficjent();
         $beneficjentId = $beneficjent->getId();
-        
+
         return $beneficjentId;
     }
     
@@ -527,13 +518,9 @@ class SprawozdanieController extends Controller
         $result2 = $this->chekSprawozdanieForGoodPeriod($report->getOkres(), $report->getRok());
         $warunek = $result & $result2;
         if ($warunek == false) {
-            
             return false;
         }
-          
+
         return true;
     }
-    
-
-
 }

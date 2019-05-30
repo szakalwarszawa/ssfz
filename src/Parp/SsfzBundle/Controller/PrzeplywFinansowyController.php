@@ -15,12 +15,9 @@ use Parp\SsfzBundle\Entity\Report;
 
 /**
  * Description of PrzeplywFinansowyController
- *
- * @author CI ZETO
  */
 class PrzeplywFinansowyController extends Controller
 {
-
     /**
      * Akcja zapisu przeplywu finansowego
      * 
@@ -80,21 +77,20 @@ class PrzeplywFinansowyController extends Controller
         }
 
         return $this->render('SsfzBundle:Report:przeplywRejestruj.html.twig', array(
-                'form' => $form->createView(),
-                'form_mode' => 'create',
-                'sprawozdanieId' => $sprawozdanieId,
-                'sprawozdanie' => $report,
-                )
-        );
+            'form' => $form->createView(),
+            'form_mode' => 'create',
+            'sprawozdanieId' => $sprawozdanieId,
+            'sprawozdanie' => $report,
+        ));
     }
 
     /**
      * Pobiera saldo koncowe za poprzedni okres
-     * 
+     *
      * @param Sprawozdanie $report
      * @param integer      $beneficjentId
      * @param Manager      $entityManager
-     * 
+     *
      * @return saldo koncowe
      */
     private function getSaldoPoczatkowe($report, $beneficjentId, $entityManager)

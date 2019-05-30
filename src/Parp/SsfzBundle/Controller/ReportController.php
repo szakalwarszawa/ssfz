@@ -8,16 +8,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Kontroler obsługujący raportowanie
- * 
- * @category Class
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
- * 
+ *
  * @Route("/parp/raporty", name="raporty")
  */
 class ReportController extends Controller
 {
-
     /**
      * Wyświetlanie widoku raportów
      * 

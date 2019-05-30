@@ -14,17 +14,11 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 /**
  * Kontroler obsługujący funkcjonalności po stronie Beneficjenta
- * 
- * @category Class
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
  */
 class PortfelController extends Controller
 {
-
     /**
-     * Akcja główna - wyświetla formularz dodania/edycji spółki,
-     * oraz listę spółek
+     * Akcja główna - wyświetla formularz dodania/edycji spółki, oraz listę spółek
      * 
      * @param Request $request
      * @param int     $idUmowy
@@ -87,9 +81,9 @@ class PortfelController extends Controller
             array(
                 'form' => $form->createView(),
             )
-        );           
+        );
     }
-    
+
     /**
      * Akcja pobrania danych do tabeli spółek
      * 
@@ -113,12 +107,12 @@ class PortfelController extends Controller
         
         if (false === $beneficjent->getUmowy()->contains($umowa)) {
             throw new AccessDeniedHttpException('Brak dostępu do umowy o podanym identyfikatorze.');
-        }                
+        }
         $umowaId = $umowa->getId();
         
         return $this->get('ssfz.service.datatable_spolki_service')->datatableSpolki($this, $umowaId)->execute();
-    }     
-       
+    }
+
     /**
      * Pobiera zalogowanego użytkownika
      * 
@@ -134,6 +128,5 @@ class PortfelController extends Controller
         }
         
         return $uzytkownik;
-    }    
-    
+    }
 }

@@ -23,7 +23,6 @@ use Parp\SsfzBundle\Entity\Spolka;
  */
 class ParpController extends Controller
 {
-
     /**
      * Akcja domyślana - wyświetla panel kontroli sprawozdawczości
      * 
@@ -104,18 +103,18 @@ class ParpController extends Controller
             
                 return $this->redirectToRoute('parp');
             }
-        }        
-        
+        }
+
         return $this->render(
             'SsfzBundle:Parp:ocen.html.twig',
             array(
                 'form' => $form->createView(),
                 'sprawozdanie' => $sprawozdanie,
                 'formS' => $formS->createView(),
-                'formP' => $formP                
+                'formP' => $formP,
             )
-        );          
-    }    
+        ); 
+    }
 
     /**
      * Akcja podglądu sprawozdania
@@ -151,9 +150,9 @@ class ParpController extends Controller
                 'formS' => $formS->createView(),
                 'formP' => $formP
             )
-        );          
-    }     
-    
+        );
+    }
+
     /**
      * Akcja podglądu profilu beneficjenta
      * 
@@ -179,8 +178,8 @@ class ParpController extends Controller
             array(
                 'beneficjent' => $beneficjent,
             )
-        );        
-    }        
+        );
+    }
 
     /**
      * Akcja pobrania danych do tabeli spółek
@@ -202,8 +201,8 @@ class ParpController extends Controller
         $umowaId = $umowa->getId();
         
         return $this->get('ssfz.service.datatable_spolki_service')->datatableSpolki($this, $umowaId)->execute();
-    }     
-             
+    }
+
     /**
      * Akcja wyświetlenia portfela spółek
      * 
@@ -233,9 +232,9 @@ class ParpController extends Controller
                 'beneficjent_nazwa' => $umowa->getBeneficjent()->getNazwa(),  
                 'form' => $form->createView(),
             )
-        );        
-    } 
-    
+        );
+    }
+
     /**
      * Akcja pobierająca dane do tabeli Osoby zatrudnione
      * 
@@ -248,8 +247,8 @@ class ParpController extends Controller
     public function osobyGridAction($idBeneficjenta)
     {
         return $this->get('ssfz.service.datatable_osoby_service')->datatableOsoby($this, $idBeneficjenta)->execute();
-    }    
-        
+    }
+
     /**
      * Akcja pobrania danych do tabeli kontroli sprawozdawczości
      *
@@ -257,10 +256,10 @@ class ParpController extends Controller
      * @return             Response
      */
     public function parpGridAction()
-    {        
+    {
         return $this->get('ssfz.service.datatable_parp_service')->datatableParp($this)->execute();
     }
-    
+
     /**
      * Pobiera zalogowanego użytkownika
      * 
@@ -273,25 +272,28 @@ class ParpController extends Controller
         $uzytkownik = $this->get('security.token_storage')->getToken()->getUser();
         if (!$uzytkownik) {
             throw $this->createAccessDeniedException();
-        }        
-        
+        }
+
         return $uzytkownik;
-    }   
+    }
 
      /**
      * Metoda umożliwia pobranie okresów sprawozdawczych z bazy danych 
-     * 
+     *
      * @return array
      */
     private function getOkresySprawozdawcze()
     {
         $array = array(); 
         $entityManager = $this->getDoctrine()->getManager();
-        $okresySprawozdawcze = $entityManager->getRepository(\Parp\SsfzBundle\Entity\OkresyKonfiguracja::class)->findBy(array(), array('rok' => 'ASC'));
+        $okresySprawozdawcze = $entityManager
+            ->getRepository(\Parp\SsfzBundle\Entity\OkresyKonfiguracja::class)
+            ->findBy(array(), array('rok' => 'ASC'))
+        ;
         foreach ($okresySprawozdawcze as $okres) {
             $array[$okres->getRok()]  = $okres->getRok();
         }
 
         return $array;
-    }    
+    }
 }

@@ -10,10 +10,6 @@ use Carbon\Carbon;
 
 /**
  * Zadanie CRON do wysyłki powiadomień o niezłożonym sprawozdaniu
- *
- * @category Class
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
  */
 class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand {
 
@@ -58,9 +54,11 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand {
      * Konfiguracja zadania
      */
     protected function configure() {
-        $this->setName('sfz:sendRemind')
-                ->setDescription('Wysyłka powiadomień.')
-                ->setHelp('This command allows you to create test...');
+        $this
+            ->setName('sfz:sendRemind')
+            ->setDescription('Wysyłka powiadomień.')
+            ->setHelp('This command allows you to create test...')
+        ;
     }
 
     /**
@@ -156,5 +154,4 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand {
     protected function getUzytkownikRepository() {
         return $this->getContainer()->get('ssfz.service.uzytkownik_service')->getUzytkownikRepository();
     }
-
 }
