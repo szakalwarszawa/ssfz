@@ -5,8 +5,10 @@
     {{ form_start(form) }}
     {{ form_row(form._token) }}
     {{ form_end(form) }}
-    <div class="panel panel-default"> 
-        <div class="panel-heading"><h4>Sprawozdanie do umowy {{ sprawozdanie.numerUmowy }} za okres {{ sprawozdanie.okres }} {{ sprawozdanie.rok }}</h4></div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>Sprawozdanie do umowy {{ sprawozdanie.numerUmowy }} za okres {{ sprawozdanie.okres }} {{ sprawozdanie.rok }}</h4>
+        </div>
         <div class="panel-body">
             {% include 'SsfzBundle:Parp:sprawozdanieForm.html.twig' with {'formS': formS, 'formP': formP } %}
             <div class="pull-right">
@@ -32,7 +34,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    Czy odesłać sprawozdanie do poprawy? 
+                    Czy odesłać sprawozdanie do poprawy?
                 </div>
                 <div class="modal-body">
                     <div class="form-group">

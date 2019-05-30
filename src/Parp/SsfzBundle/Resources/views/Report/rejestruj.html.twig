@@ -54,7 +54,7 @@
                     {% elseif form_mode == 'read' %}
                         <a href='{{ path('sprawozdanie_rejestracja', {'umowaId': umowaId }) }}'><span  class="btn orange-button pull-right">Powrót</span></a>
                     {% elseif form_mode == 'not_allowed' %}
-                        <a href='{{ path('beneficjent')}}'><span class="btn orange-button pull-right">Powrót</span></a>
+                        <a href='{{ path('beneficjent') }}'><span class="btn orange-button pull-right">Powrót</span></a>
                     {% endif %}
                 </div>
             </div>
@@ -64,8 +64,8 @@
     </div>
 
     {% if form_mode != 'read' %}
-        </br>
-        </br>
+        <br />
+        <br />
         <div class="panel panel-default"> 
             <div class="panel-heading">Sprawozdania</div>
             <div class="panel-body">

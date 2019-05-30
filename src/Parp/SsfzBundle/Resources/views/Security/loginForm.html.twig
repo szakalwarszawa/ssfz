@@ -7,19 +7,23 @@
             <form action="{{ path('login') }}" method="post">
                 <div class="row">
                     {% if error %}
-                        <div>{{ error.message|replace({"User account is disabled.": "Konto nie zostało aktywowane. Skorzystaj z linku aktywacyjnego przesłanego na adres mailowy podany przy zakładaniu konta.",
-"Bad credentials.": "Nieprawidłowy login lub hasło."}) }}</div>
+                        <div>{{ error.message|replace({"User account is disabled.": "Konto nie zostało aktywowane. Skorzystaj z linku aktywacyjnego przesłanego na adres mailowy podany przy zakładaniu konta.", "Bad credentials.": "Nieprawidłowy login lub hasło."}) }}</div>
                     {% endif %}
                     <div class="row">
                         <div class="col-md-3">
                             <label for="username" id="username-label">Login:</label>
                         </div>
                         <div>
-                            <input type="text" id="username" class="form-control" name="_username" value="{{ last_username }}" required
+                            <input type="text"
+                                   id="username"
+                                   class="form-control"
+                                   name="_username"
+                                   value="{{ last_username }}"
                                    oninvalid="this.setCustomValidity('Pole login nie zostało wypełnione.')"
-                                   oninput ="setCustomValidity('')"/>
+                                   oninput ="setCustomValidity('')"
+                                   required />
                         </div>
-                    </div>     
+                    </div> 
                     <div class="row">
                         <div class="col-md-3" id="password-label">
                             <label for="password">Hasło:</label>
@@ -39,8 +43,7 @@
             </form>
             <div class="row">
                 <div id="form-submit-div" class="row">
-                    <hr/>
-
+                    <hr />
                     <a href="/uzytkownik/rejestracja">
                         <button class="form-control submit-button">Zarejestruj konto</button>
                     </a>
