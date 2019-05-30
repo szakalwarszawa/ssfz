@@ -66,23 +66,23 @@
     {% if form_mode != 'read' %}
         <br />
         <br />
-        <div class="panel panel-default"> 
+        <div class="panel panel-default">
             <div class="panel-heading">Sprawozdania</div>
             <div class="panel-body">
-                    {{ datatable({
-                        'id': 'dta-sprawozdanie',
-                        'class': 'table table-striped table-hover',
-                        'js': {
-                            'ajax': path('datatableSprawozdanie', { 'umowaId' : app.request.get('umowaId') }),
-                            'drawCallback': 'function(settings) {
-                                var pagination = $(this).closest(".dataTables_wrapper").find(".dataTables_paginate");
-                                pagination.toggle(this.api().page.info().pages > 1);}'
-                        }
-                    }) }}
+                {{ datatable({
+                    'id': 'dta-sprawozdanie',
+                    'class': 'table table-striped table-hover',
+                    'js': {
+                        'ajax': path('datatableSprawozdanie', { 'umowaId': app.request.get('umowaId') }),
+                        'drawCallback': 'function(settings) {
+                            var pagination = $(this).closest(".dataTables_wrapper").find(".dataTables_paginate");
+                            pagination.toggle(this.api().page.info().pages > 1);}'
+                    }
+                }) }}
             </div>
         </div>
     {% endif %}
- 
+
     <div id="send-to-parp" class="hide">
         {{ form_start(form, {'action': path('send_to_parp'), 'method': 'POST'}) }}
         <div>

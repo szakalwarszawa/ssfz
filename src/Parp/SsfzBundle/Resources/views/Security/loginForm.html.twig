@@ -20,8 +20,8 @@
                                    name="_username"
                                    value="{{ last_username }}"
                                    oninvalid="this.setCustomValidity('Pole login nie zostało wypełnione.')"
-                                   oninput ="setCustomValidity('')"
-                                   required />
+                                   oninput="setCustomValidity('')"
+                                   required/>
                         </div>
                     </div> 
                     <div class="row">
@@ -29,13 +29,16 @@
                             <label for="password">Hasło:</label>
                         </div>
                         <div>
-                            <input type="password" id="password" class="form-control" name="_password" required
+                            <input type="password"
+                                   id="password" class="form-control"
+                                   name="_password"
                                    oninvalid="this.setCustomValidity('Pole hasło nie zostało wypełnione.')"
-                                   oninput ="setCustomValidity('')"/>
+                                   oninput ="setCustomValidity('')"
+                                   required/>
                         </div>
                     </div>
                     <div id="form-submit-div" class="row">
-                        <input type="hidden" name="/" value="/account" />
+                        <input type="hidden" name="/" value="/account"/>
                         <button class="form-control orange-button" type="submit">Zaloguj</button>
                     </div>
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
