@@ -3,8 +3,9 @@
 // Sprawdzenie czy adres uzytkownika (lub jego czesc) jest na liscie dozwolonych IP.
 $ipDozwolone = array(
        '10.10.120.',  // VLAN BI.
-        '10.10.225.', // VPN Admin FortiClient
-        '10.10.50.' // VPN Admin IPSec
+       '10.10.225.',  // VPN Admin FortiClient
+       '10.10.50.',   // VPN Admin IPSec
+       '127.0.0.1'    // localhost
 );
 
 $remoteAddr = @$_SERVER['REMOTE_ADDR'];
