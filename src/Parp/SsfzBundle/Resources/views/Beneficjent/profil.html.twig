@@ -6,13 +6,13 @@
         <div class="panel panel-default"> 
         <div class="panel-heading">Profil beneficjenta</div>
             <div class="panel-body">
-                {{ form_row(form.nazwa) }}        
+                {{ form_row(form.nazwa) }}
                 <div class="panel panel-default">
                     <div class="panel-heading">Umowy:</div>
                     <div class="umowy panel-body" data-prototype="{{ form_widget(form.umowy.vars.prototype)|e('html_attr') }}">
                         {% for umowa in form.umowy %}
                             <div class="row umowa-row">
-                                <div class="umowa-col col-sm-11">{{ form_row(umowa.numer) }}</div>                                
+                                <div class="umowa-col col-sm-11">{{ form_row(umowa.numer) }}</div>
                             </div>
                         {% endfor %}
                     </div> 
@@ -60,16 +60,20 @@
                         {% endfor %}
                     </div>
                 </div>
-                <div class="pull-right">                    
-                    <button type="submit" value="zapisz" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Zapisz</button>
-                    <button id="beneficjent-profil-powrot" type="button" value="powrot" class="btn btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Powrót</button>                    
+                <div class="pull-right">
+                    <button type="submit"
+                            value="zapisz"
+                            class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Zapisz</button>
+                    <button id="beneficjent-profil-powrot"
+                            type="button" value="powrot"
+                            class="btn btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Powrót</button>
                 </div>
             </div>
         </div
     {{ form_end(form) }}
 {% endblock %}
 {% block javascripts %}
-    {% javascripts '@SsfzBundle/Resources/public/js/beneficjent_profil.js'%}
+    {% javascripts '@SsfzBundle/Resources/public/js/beneficjent_profil.js' %}
     <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}        
+    {% endjavascripts %}
 {% endblock %}

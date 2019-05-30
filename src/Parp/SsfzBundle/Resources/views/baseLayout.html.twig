@@ -23,40 +23,40 @@
     </head>
 
     <body>
-        {% javascripts '@SsfzBundle/Resources/public/node_modules/jquery/dist/jquery.min.js'%}
+        {% javascripts '@SsfzBundle/Resources/public/node_modules/jquery/dist/jquery.min.js' %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
-        {% javascripts '@SsfzBundle/Resources/public/node_modules/bootstrap/dist/js/bootstrap.min.js'%}
+        {% javascripts '@SsfzBundle/Resources/public/node_modules/bootstrap/dist/js/bootstrap.min.js' %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
-        {% javascripts '@SsfzBundle/Resources/public/node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js'%}
+        {% javascripts '@SsfzBundle/Resources/public/node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
-        {% javascripts '@SsfzBundle/Resources/public/node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pl.min.js'%}
+        {% javascripts '@SsfzBundle/Resources/public/node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pl.min.js' %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
-        {% javascripts '@SsfzBundle/Resources/public/node_modules/bootbox/bootbox.min.js'%}
+        {% javascripts '@SsfzBundle/Resources/public/node_modules/bootbox/bootbox.min.js' %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
-        {% javascripts '@SsfzBundle/Resources/public/js/ssfz_common.js'%}
+        {% javascripts '@SsfzBundle/Resources/public/js/ssfz_common.js' %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %} 
-        {% javascripts '@SsfzBundle/Resources/public/node_modules/datatables.net/js/jquery.dataTables.js'%}
+        {% javascripts '@SsfzBundle/Resources/public/node_modules/datatables.net/js/jquery.dataTables.js' %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
-        {% javascripts '@SsfzBundle/Resources/public/node_modules/datatables.net-bs/js/dataTables.bootstrap.js'%}
+        {% javascripts '@SsfzBundle/Resources/public/node_modules/datatables.net-bs/js/dataTables.bootstrap.js' %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
-        {% javascripts '@SsfzBundle/Resources/public/node_modules/datatables.net-buttons/js/dataTables.buttons.min.js'%}
+        {% javascripts '@SsfzBundle/Resources/public/node_modules/datatables.net-buttons/js/dataTables.buttons.min.js' %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
-        {% javascripts '@SsfzBundle/Resources/public/node_modules/datatables.net-buttons-bs/js/buttons.bootstrap.min.js'%}
+        {% javascripts '@SsfzBundle/Resources/public/node_modules/datatables.net-buttons-bs/js/buttons.bootstrap.min.js' %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
-        {% javascripts '@SsfzBundle/Resources/public/node_modules/datatables.net-buttons/js/buttons.colVis.min.js'%}
+        {% javascripts '@SsfzBundle/Resources/public/node_modules/datatables.net-buttons/js/buttons.colVis.min.js' %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
-        {% javascripts '@SsfzBundle/Resources/public/node_modules/datatables.net-buttons/js/buttons.print.min.js'%}
+        {% javascripts '@SsfzBundle/Resources/public/node_modules/datatables.net-buttons/js/buttons.print.min.js' %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
         {% block javascripts %}{% endblock %}
@@ -87,12 +87,12 @@
                             </li>
                         </ul>
                         <ul class="nav navbar-nav">
-                                {% if is_granted('ROLE_KOORDYNATOR_TECHNICZNY') %}
+                            {% if is_granted('ROLE_KOORDYNATOR_TECHNICZNY') %}
                                 <li><a href="{{ path('utworzPracownika') }}">Dodaj pracownika PARP</a></li>
-                                {%endif %}  
-                                {% if is_granted('ROLE_KOORDYNATOR_MERYTORYCZNY') or is_granted('ROLE_PRACOWNIK_PARP') %}
+                            {% endif %}
+                            {% if is_granted('ROLE_KOORDYNATOR_MERYTORYCZNY') or is_granted('ROLE_PRACOWNIK_PARP') %}
                                 <li><a href="{{ path('raporty') }}">Raporty</a></li>
-                                {%endif %}  
+                            {% endif %}
                         </ul>
                     </div>
                 {% endif %}

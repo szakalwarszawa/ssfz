@@ -1,5 +1,5 @@
 {% extends "SsfzBundle::baseLayout.html.twig" %}
-{% block body %} 
+{% block body %}
     <div class="panel panel-default"> 
         <div class="panel-heading">Sprawozdanie</div>
             {{ form_start(form) }}
@@ -12,31 +12,31 @@
                     {% for sprawozdanie in form.sprawozdaniaSpolek %}
                         <div class="panel panel-default">
                             <div class="panel-heading">Sprawozdanie spółki</div>
-                                <div class=" panel-body">
-                                    <div class="row sprawozdanie-row">
-                                        <div>
+                            <div class=" panel-body">
+                                <div class="row sprawozdanie-row">
                                     <div>
-                                    {{ form_row(sprawozdanie.liczbaPorzadkowa) }}
-                                    {{ form_row(sprawozdanie.nazwaSpolki) }}
-                                    {{ form_row(sprawozdanie.krs) }}
-                                    {{ form_row(sprawozdanie.uzyskanePrzychody) }}
-                                    {{ form_row(sprawozdanie.planowanePrzychody) }}
-                                    {{ form_row(sprawozdanie.ebitda) }}
-                                    {{ form_row(sprawozdanie.ncf) }}
-                                    {{ form_row(sprawozdanie.sumaBilansowa) }}
-                                    {{ form_row(sprawozdanie.zatrudnienieEtaty) }}
-                                    {{ form_row(sprawozdanie.zatrudnienieEtaty) }}
-                                    {{ form_row(sprawozdanie.zatrudnioneKobiety) }}
-                                    {{ form_row(sprawozdanie.zatrudnieniMezczyzni) }}
-                                    {{ form_row(sprawozdanie.zatrudnienieInneFormy) }}
-                                    {{ form_row(sprawozdanie.zatrudnienieInneFormyKobiety) }}
-                                    {{ form_row(sprawozdanie.zatrudnienieInneFormyMezczyzni) }}
-                                    {{ form_row(sprawozdanie.zatrudnieniewStosunkuDoPoprzedniegoRoku) }}
-                                    {{ form_row(sprawozdanie.zatrudnieniewStosunkuDoPoprzedniegoOkresu) }}
-                                    </div>
+                                        <div>
+                                            {{ form_row(sprawozdanie.liczbaPorzadkowa) }}
+                                            {{ form_row(sprawozdanie.nazwaSpolki) }}
+                                            {{ form_row(sprawozdanie.krs) }}
+                                            {{ form_row(sprawozdanie.uzyskanePrzychody) }}
+                                            {{ form_row(sprawozdanie.planowanePrzychody) }}
+                                            {{ form_row(sprawozdanie.ebitda) }}
+                                            {{ form_row(sprawozdanie.ncf) }}
+                                            {{ form_row(sprawozdanie.sumaBilansowa) }}
+                                            {{ form_row(sprawozdanie.zatrudnienieEtaty) }}
+                                            {{ form_row(sprawozdanie.zatrudnienieEtaty) }}
+                                            {{ form_row(sprawozdanie.zatrudnioneKobiety) }}
+                                            {{ form_row(sprawozdanie.zatrudnieniMezczyzni) }}
+                                            {{ form_row(sprawozdanie.zatrudnienieInneFormy) }}
+                                            {{ form_row(sprawozdanie.zatrudnienieInneFormyKobiety) }}
+                                            {{ form_row(sprawozdanie.zatrudnienieInneFormyMezczyzni) }}
+                                            {{ form_row(sprawozdanie.zatrudnieniewStosunkuDoPoprzedniegoRoku) }}
+                                            {{ form_row(sprawozdanie.zatrudnieniewStosunkuDoPoprzedniegoOkresu) }}
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                         </div>
                     {% endfor %}
                 </div>
@@ -52,7 +52,7 @@
                         <span id="sprawozdanie-powrot" class="btn btn-danger pull-right"><span class="glyphicon glyphicon-chevron-left"></span> Powrót</span>
                         <button type="submit" class="btn btnRegister btn-primary pull-right"><span class="glyphicon glyphicon-ok"></span> Zapisz</button>
                     {% elseif form_mode == 'read' %}
-                        <a href='{{ path('sprawozdanie_rejestracja', {'umowaId': umowaId })}}'><span  class="btn orange-button pull-right">Powrót</span></a>
+                        <a href='{{ path('sprawozdanie_rejestracja', {'umowaId': umowaId }) }}'><span  class="btn orange-button pull-right">Powrót</span></a>
                     {% elseif form_mode == 'not_allowed' %}
                         <a href='{{ path('beneficjent')}}'><span  class="btn orange-button pull-right">Powrót</span></a>
                     {% endif %}

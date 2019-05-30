@@ -1,12 +1,11 @@
 {% extends 'SsfzBundle::baseLayout.html.twig' %}
 {% block body %}
 {% form_theme form 'bootstrap_3_layout.html.twig' %}
-    {{ form_start(form) }}        
-    {{ form_row(form._token) }}          
-        <div class="panel panel-default"> 
+    {{ form_start(form) }}
+    {{ form_row(form._token) }}
+        <div class="panel panel-default">
         <div class="panel-heading">Spółka</div>
             <div class="panel-body">
-                
                 <div class="row">
                     <div class="col-sm-6">{{ form_row(form.nazwa) }}</div>
                     <div class="col-sm-6">{{ form_row(form.forma) }}</div>
@@ -21,12 +20,12 @@
                     <div class="col-sm-4">{{ form_row(form.dataPowolania) }}</div>
                     <div class="col-sm-4">{{ form_row(form.krs) }}</div>
                     <div class="col-sm-4">{{ form_row(form.nip) }}</div>
-                </div> 
+                </div>
                   <div class="row">
                     <div class="col-sm-4">{{ form_row(form.kwInwestycji) }}</div>
                     <div class="col-sm-4">{{ form_row(form.kwWsparcia) }}</div>
                     <div class="col-sm-4">{{ form_row(form.kwPryw) }}</div>
-                </div>  
+                </div>
                 <div class="row">
                     <div class="col-sm-3">{{ form_row(form.zakonczona) }}</div>
                 </div>
@@ -35,57 +34,57 @@
                     <div class="col-sm-3">{{ form_row(form.kwDezinwestycji) }}</div>
                     <div class="col-sm-3">{{ form_row(form.zwrotInwestycji) }} </div>
                     <div class="col-sm-3">{{ form_row(form.npv) }}</div>
-                </div>          
+                </div>
                 <div class="row">
                     <div class="col-sm-4">{{ form_row(form.udzialowcy) }}</div>
-                    <div class="col-sm-4">{{ form_row(form.prezes) }}  </div>
+                    <div class="col-sm-4">{{ form_row(form.prezes) }} </div>
                     <div class="col-sm-4">{{ form_row(form.zarzadPozostali) }} </div>
                 </div>
                 <div class="pull-right">
                     <button id="portfel-zapisz" name="portfel-zapisz" type="submit" value="portfel-zapisz" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Zapisz</button>
-                    <button id="portfel-powrot" type="button" value="powrot" class="btn btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Powrót</button>                    
+                    <button id="portfel-powrot" type="button" value="powrot" class="btn btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Powrót</button>
                 </div>
             </div>
         </div>
     {{ form_end(form) }}
-    <div class="panel panel-default"> 
+    <div class="panel panel-default">
         <div class="panel-heading">Spółki</div>
         <div class="panel-body">
             {{ datatable({
                 'id': 'dta-spolki',
                 'class': 'table table-striped table-hover',
                 'js': {
-                    'ajax': path('datatableSpolki', {'idUmowy': app.request.get('idUmowy') }), 
+                    'ajax': path('datatableSpolki', {'idUmowy': app.request.get('idUmowy') }),
                     'columnDefs': [
-                        {'targets' : 2, 'visible' : false },
-                        {'targets' : 5, 'visible' : false },
-                        {'targets' : 6, 'visible' : false },
-                        {'targets' : 7, 'visible' : false },
-                        {'targets' : 10, 'visible' : false },
-                        {'targets' : 11, 'visible' : false },
-                        {'targets' : 12, 'visible' : false },
-                        {'targets' : 14, 'visible' : false },
-                        {'targets' : 15, 'visible' : false },
-                        {'targets' : 16, 'visible' : false },
-                        {'targets' : 17, 'visible' : false },
-                        {'targets' : 18, 'visible' : false },
-                        {'targets' : 19, 'visible' : false },
-                        {'targets' : 20, 'visible' : false },
-                        {'targets' : 21, 'visible' : false },
-                        {'targets' : 22, 'orderable' : false },
-                        {'targets' : 23, 'visible' : false },
+                        {'targets': 2, 'visible': false},
+                        {'targets': 5, 'visible': false},
+                        {'targets': 6, 'visible': false},
+                        {'targets': 7, 'visible': false},
+                        {'targets': 10, 'visible': false},
+                        {'targets': 11, 'visible': false},
+                        {'targets': 12, 'visible': false},
+                        {'targets': 14, 'visible': false},
+                        {'targets': 15, 'visible': false},
+                        {'targets': 16, 'visible': false},
+                        {'targets': 17, 'visible': false},
+                        {'targets': 18, 'visible': false},
+                        {'targets': 19, 'visible': false},
+                        {'targets': 20, 'visible': false},
+                        {'targets': 21, 'visible': false},
+                        {'targets': 22, 'orderable': false},
+                        {'targets': 23, 'visible': false},
                     ],
-                    'drawCallback' : 'function(settings) {
-                                        var pagination = $(this).closest(".dataTables_wrapper").find(".dataTables_paginate");
-                                        pagination.toggle(this.api().page.info().pages > 1);}'       
+                    'drawCallback': 'function(settings) {
+                        var pagination = $(this).closest(".dataTables_wrapper").find(".dataTables_paginate");
+                        pagination.toggle(this.api().page.info().pages > 1);}'
                  }
-               })
-            }}
+            }) }}
         </div>
     </div>
 {% endblock %}
+
 {% block javascripts %}
-    {% javascripts '@SsfzBundle/Resources/public/js/portfel.js'%}
+    {% javascripts '@SsfzBundle/Resources/public/js/portfel.js' %}
         <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}           
+    {% endjavascripts %}
 {% endblock %}

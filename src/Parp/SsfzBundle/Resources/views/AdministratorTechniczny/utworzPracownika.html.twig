@@ -1,6 +1,6 @@
 {% extends 'SsfzBundle::baseLayout.html.twig' %}
 
-{% block body %} 
+{% block body %}
     {% if dostepniPracownicyParp %}
         <div class="panel panel-default">
             <div class="panel-heading">Utwórz konto pracownika</div>
@@ -16,7 +16,7 @@
     {% else %}
         <div class="alert alert-warning">Brak dostępnych pracowników PARP w LDAP.</div>
     {% endif %}
-        
+
     <div class="panel panel-default">
         <div class="panel-heading">Lista pracowników</div>
         <div class="panel-body">
@@ -33,8 +33,8 @@
                 {% for key in przegladPracownikow %}
                     <tbody>
                         <tr>
-                            <td>{{key.login}}</td>
-                            <td>{{key.rola.opis is defined ? key.rola.opis : key.rola}}</td>
+                            <td>{{ key.login }}</td>
+                            <td>{{ key.rola.opis is defined ? key.rola.opis : key.rola }}</td>
                             {% if key.status == 0 %}
                                 <td>Nieaktywny</td>
                             {% else %}
@@ -52,7 +52,7 @@
 {% endblock %}
 
 {% block javascripts %}
-    {% javascripts '@SsfzBundle/Resources/public/js/pracownik_dodaj.js'%}
+    {% javascripts '@SsfzBundle/Resources/public/js/pracownik_dodaj.js' %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}
