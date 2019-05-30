@@ -48,12 +48,12 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets"
         ],
         "post-install-cmd": [
-            "@symfony-scripts",
-            "yarn --cwd ./src/Parp/SsfzBundle/Resources/public install"
+            "yarn --cwd ./src/Parp/SsfzBundle/Resources/public install",
+            "@symfony-scripts"
         ],
         "post-update-cmd": [
-            "@symfony-scripts",
-            "yarn --cwd ./src/Parp/SsfzBundle/Resources/public install"
+            "yarn --cwd ./src/Parp/SsfzBundle/Resources/public install",
+            "@symfony-scripts"
         ]
     },
     "config": {
