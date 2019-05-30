@@ -1,6 +1,6 @@
 {% extends "SsfzBundle::baseLayout.html.twig" %}
 {% block body %}
-    <div class="panel panel-default"> 
+    <div class="panel panel-default">
         <div class="panel-heading">Sprawozdanie</div>
             {{ form_start(form) }}
             <div class="panel-body">
@@ -42,7 +42,7 @@
                 </div>
                 <div>
                 <input type="hidden" id="umowaIdHidden" value="{{ umowaId }}">
-                <input type="hidden" id="backToBeneficjent" name="backToBeneficjent" value="false"> 
+                <input type="hidden" id="backToBeneficjent" name="backToBeneficjent" value="false">
                 <div id="form-submit-div" class="row btn-toolbar">
                     {% if form_mode == 'create' %}
                         <span id="sprawozdanie-powrot" class="btn btn-danger pull-right"><span class="glyphicon glyphicon-chevron-left"></span> Powrót</span>
@@ -54,7 +54,7 @@
                     {% elseif form_mode == 'read' %}
                         <a href='{{ path('sprawozdanie_rejestracja', {'umowaId': umowaId }) }}'><span  class="btn orange-button pull-right">Powrót</span></a>
                     {% elseif form_mode == 'not_allowed' %}
-                        <a href='{{ path('beneficjent')}}'><span  class="btn orange-button pull-right">Powrót</span></a>
+                        <a href='{{ path('beneficjent')}}'><span class="btn orange-button pull-right">Powrót</span></a>
                     {% endif %}
                 </div>
             </div>

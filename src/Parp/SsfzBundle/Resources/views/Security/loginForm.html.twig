@@ -1,13 +1,13 @@
 {% extends "SsfzBundle::baseLayout.html.twig" %}
 
 {% block body %}
-    <div id="login-form" class="col-md-12"> 
+    <div id="login-form" class="col-md-12">
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <form action="{{ path('login') }}" method="post">
                 <div class="row">
                     {% if error %}
-                        <div>{{ error.message | replace({"User account is disabled.": "Konto nie zostało aktywowane. Skorzystaj z linku aktywacyjnego przesłanego na adres mailowy podany przy zakładaniu konta.",
+                        <div>{{ error.message|replace({"User account is disabled.": "Konto nie zostało aktywowane. Skorzystaj z linku aktywacyjnego przesłanego na adres mailowy podany przy zakładaniu konta.",
 "Bad credentials.": "Nieprawidłowy login lub hasło."}) }}</div>
                     {% endif %}
                     <div class="row">
