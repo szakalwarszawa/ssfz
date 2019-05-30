@@ -19,7 +19,7 @@ build:
 
 parallellint:
     stage: tests
-    allow_failure: true
+    allow_failure: false
     script:
         - /root/.composer/vendor/bin/parallel-lint --colors --blame --exclude vendor .
 
