@@ -14,18 +14,19 @@ ldap, json, mbstring, mysql, xml, curl
 1. Kopiujemy kod źródłowy do wybranego katalogu, konfigurujemy serwer HTTP (document root w podkatalogu web). Następne komendy wykonujemy z katalogu z kodem źródłowym.
 
 2. Instalujemy zależności projektu:
-composer install
+composer install  
+**Uwaga! Kolejne punkty 3, 4, 5 i 6 powinny wykonać się automatycznie w ramach polecenia composer update/install o ile nie włączono opcji --no-scripts!**
 
-3. Instalujemy zależności do frontendu:
+3. *Instalujemy zależności do frontendu:
 yarn --cwd=src/Parp/SsfzBundle/Resources/public/ install
 
-4. Instalujemy assety
+4. *Instalujemy assety
 php app/console assets:install
 
-5. Wykonujemy zrzut assetów z Assetic-a
+5. *Wykonujemy zrzut assetów z Assetic-a
 php app/console assetic:dump
 
-6. Czyścimy cache
+6. *Czyścimy cache
 php app/console cache:clear -e prod
 
 7. Może wystąpić potrzeba ustawienia grupy serwera www na katalogu z cache
@@ -112,4 +113,3 @@ test_database_password
 # miesiąc i dzień (mm-dd) w którym wysyłane są powiadomienia o zaległych sprawozdaniach (dwa terminy) 
 przypomnienie_pierwszy_termin_miesiac_dzien - pierwszy termin mm-dd
 przypomnienie_drugi_termin_miesiac_dzien - drugi termin mm-dd
-
