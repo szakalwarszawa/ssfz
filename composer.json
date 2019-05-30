@@ -21,7 +21,7 @@
         "jaspersoft/rest-client": "^2.0",
         "nesbot/carbon": "^1.22",
         "phpmetrics/phpmetrics": "~1.10.0",
-        "sensio/distribution-bundle": "~4.0",
+        "sensio/distribution-bundle": "^4.0",
         "sensio/framework-extra-bundle": "^3.0.2",
         "svajiraya/ldap-bundle": "2.4.7",
         "symfony/assetic-bundle": "^2.8",
@@ -49,11 +49,11 @@
         ],
         "post-install-cmd": [
             "@symfony-scripts",
-            "yarn --cwd src\\Parp\\SsfzBundle\\Resources\\public install"
+            "yarn --cwd ./src/Parp/SsfzBundle/Resources/public install"
         ],
         "post-update-cmd": [
             "@symfony-scripts",
-            "yarn --cwd src\\Parp\\SsfzBundle\\Resources\\public install"
+            "yarn --cwd ./src/Parp/SsfzBundle/Resources/public install"
         ]
     },
     "config": {
