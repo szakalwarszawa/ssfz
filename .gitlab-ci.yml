@@ -38,7 +38,7 @@ psr2:
 
 twigcs:
     stage: standards
-    allow_failure: true
+    allow_failure: false
     script:
         - /root/.composer/vendor/bin/twigcs lint src/
 
