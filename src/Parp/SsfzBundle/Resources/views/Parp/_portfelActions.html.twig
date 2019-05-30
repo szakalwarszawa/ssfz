@@ -1,36 +1,39 @@
 <div class="row pull-right">
-    <a href="#" id="parp-portfel-podglad{{dt_id}}" class="btn btn-sm btn-primary" role="button"><span class="glyphicon glyphicon-search"></span>&nbsp;Podgląd</a>    
+    <a href="#"
+       id="parp-portfel-podglad{ dt_id }}"
+       class="btn btn-sm btn-primary"
+       role="button"><span class="glyphicon glyphicon-search"></span>&nbsp;Podgląd</a>    
 </div>
 {% set var_zak = 0 %}
 {% if dt_obj.zakonczona == true %}
     {% set var_zak = 1 %}
 {% endif %}
 {% set replace_map = {"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "} %}
-<script>    
-jQuery(document).ready(function() {
-    $('#parp-portfel-podglad{{dt_id}}').on('click', function(e) {
-        $('#parp-portfel-spolka').show(); 
-        $('#parp-portfel-spolka-header').text('Szczegóły spółki '+'{{dt_line[1]|replace(replace_map)}}');        
-        $('#spolka_nazwa').val('{{dt_line[1]|replace(replace_map)}}');
-        $('#spolka_forma').val('{{dt_line[2]|replace(replace_map)}}');
-        $('#spolka_siedzibaMiasto').val('{{dt_line[3]|replace(replace_map)}}');
-        $('#spolka_siedzibaWojewodztwo').val('{{dt_line[4]|replace(replace_map)}}');
-        $('#spolka_branza').val('{{dt_line[5]|replace(replace_map)}}');
-        $('#spolka_opis').val('{{dt_line[6]|replace(replace_map)}}');
-        $('#spolka_dataPowolania').val('{{dt_line[7]|replace(replace_map)}}');
-        $('#spolka_krs').val('{{dt_line[8]|replace(replace_map)}}');
-        $('#spolka_nip').val('{{dt_line[9]|replace(replace_map)}}');
-        $('#spolka_kwInwestycji').val('{{dt_line[10]|replace(replace_map)}}');
-        $('#spolka_kwWsparcia').val('{{dt_line[11]|replace(replace_map)}}');
-        $('#spolka_kwPryw').val('{{dt_line[12]|replace(replace_map)}}');
-        $('#spolka_zakonczona').val({{var_zak}});
-        $('#spolka_dataWyjscia').val('{{dt_line[14]|replace(replace_map)}}');
-        $('#spolka_kwDezinwestycji').val('{{dt_line[15]|replace(replace_map)}}');
-        $('#spolka_zwrotInwestycji').val('{{dt_line[16]|replace(replace_map)}}');
-        $('#spolka_npv').val('{{dt_line[17]|replace(replace_map)}}');
-        $('#spolka_udzialowcy').val('{{dt_line[18]|replace(replace_map)}}');
-        $('#spolka_prezes').val('{{dt_line[19]|replace(replace_map)}}');
-        $('#spolka_zarzadPozostali').val('{{dt_line[20]|replace(replace_map)}}');
-    }); 
-});    
+<script>
+    jQuery(document).ready(function() {
+        $('#parp-portfel-podglad{{ dt_id }}').on('click', function (e) {
+            $('#parp-portfel-spolka').show();
+            $('#parp-portfel-spolka-header').text('Szczegóły spółki '+'{{ dt_line[1]|replace(replace_map) }}');
+            $('#spolka_nazwa').val('{{ dt_line[1]|replace(replace_map) }}');
+            $('#spolka_forma').val('{{ dt_line[2]|replace(replace_map) }}');
+            $('#spolka_siedzibaMiasto').val('{{ dt_line[3]|replace(replace_map) }}');
+            $('#spolka_siedzibaWojewodztwo').val('{{ dt_line[4]|replace(replace_map) }}');
+            $('#spolka_branza').val('{{ dt_line[5]|replace(replace_map) }}');
+            $('#spolka_opis').val('{{ dt_line[6]|replace(replace_map) }}');
+            $('#spolka_dataPowolania').val('{{ dt_line[7]|replace(replace_map) }}');
+            $('#spolka_krs').val('{{ dt_line[8]|replace(replace_map) }}');
+            $('#spolka_nip').val('{{ dt_line[9]|replace(replace_map) }}');
+            $('#spolka_kwInwestycji').val('{{ dt_line[10]|replace(replace_map) }}');
+            $('#spolka_kwWsparcia').val('{{ dt_line[11]|replace(replace_map) }}');
+            $('#spolka_kwPryw').val('{{ dt_line[12]|replace(replace_map) }}');
+            $('#spolka_zakonczona').val({{ var_zak }});
+            $('#spolka_dataWyjscia').val('{{ dt_line[14]|replace(replace_map) }}');
+            $('#spolka_kwDezinwestycji').val('{{ dt_line[15]|replace(replace_map) }}');
+            $('#spolka_zwrotInwestycji').val('{{ dt_line[16]|replace(replace_map) }}');
+            $('#spolka_npv').val('{{ dt_line[17]|replace(replace_map) }}');
+            $('#spolka_udzialowcy').val('{{ dt_line[18]|replace(replace_map) }}');
+            $('#spolka_prezes').val('{{ dt_line[19]|replace(replace_map) }}');
+            $('#spolka_zarzadPozostali').val('{{ dt_line[20]|replace(replace_map) }}');
+        });
+    });
 </script>

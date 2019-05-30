@@ -6,9 +6,9 @@
     {{ form_end(form) }}
     <div class="panel panel-default"> 
         <div class="panel-heading"><h4>Sprawozdanie do umowy {{ sprawozdanie.numerUmowy }} za okres {{ sprawozdanie.okres }} {{ sprawozdanie.rok }}</h4></div>
-            <div class="panel-body">                                                                                             
-                {% include 'SsfzBundle:Parp:sprawozdanieForm.html.twig' with {'formS' : formS, 'formP' : formP } %}                                
-                <div class="pull-right">                    
+            <div class="panel-body">
+                {% include 'SsfzBundle:Parp:sprawozdanieForm.html.twig' with {'formS' : formS, 'formP' : formP } %}
+                <div class="pull-right">
                     <button id="ocena-zatwierdz" name="ocena-zatwierdz" type="button" value="ocena-zatwierdz" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Zatwierdź</button>
                     <button id="ocena-popraw" data-toggle="modal" data-target="#confirm-ocena-popraw" type="button" value="ocena-popraw" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> Do poprawy</button>                    
                     <button id="ocena-powrot" type="button" value="powrot" class="btn btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Powrót</button>                    
@@ -27,7 +27,7 @@
                         <textarea class="form-control" rows="3" id="ocen-uwagi"></textarea>
                     </div>
                 </div>
-                <div class="modal-footer">            
+                <div class="modal-footer">
                     <a href="#" id="ocena-popraw-submit" class="btn btn-primary success">Tak</a>
                     <button id="ocena-popraw-nie" type="button" class="btn btn-danger" data-dismiss="modal">Nie</button>
                 </div>
@@ -38,6 +38,5 @@
 {% block javascripts %}  
     {% javascripts '@SsfzBundle/Resources/public/js/parp_ocen.js'%}
         <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}      
+    {% endjavascripts %}
 {% endblock %}
- 

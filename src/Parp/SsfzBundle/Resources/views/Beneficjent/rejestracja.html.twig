@@ -1,10 +1,10 @@
 {% extends 'SsfzBundle::baseLayout.html.twig' %}
 
-{% block body %} 
+{% block body %}
     <div id="login-form" class="col-md-12">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            {% form_theme form 'bootstrap_3_layout.html.twig' %} 
+            {% form_theme form 'bootstrap_3_layout.html.twig' %}
             {{ form_start(form) }}
             <h3>
                 <span>Rejestracja konta Beneficjenta</span>
@@ -20,15 +20,15 @@
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
             {{ form_end(form) }}
             <div id="form-submit-div">
-                <a href="/login">                
+                <a href="/login">
                     <button class="form-control submit-button">Anuluj</button>
-                </a>                
+                </a>
             </div>
         </div>
     </div>
 {% endblock %}
 
-{% block javascripts %} 
+{% block javascripts %}
     <script type="text/javascript">
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();

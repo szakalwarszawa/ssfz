@@ -16,104 +16,105 @@
         {% endstylesheets %}    
         {% stylesheets 'bundles/ssfz/node_modules/datatables.net-bs/css/dataTables.bootstrap.css' filter='cssrewrite' %}
         <link rel="stylesheet" href="{{ asset_url }}" />
-        {% endstylesheets %}               
+        {% endstylesheets %}
         {% stylesheets 'bundles/ssfz/node_modules/datatables.net-buttons-bs/css/buttons.bootstrap.min.css' filter='cssrewrite' %}
         <link rel="stylesheet" href="{{ asset_url }}" />
-        {% endstylesheets %}         
+        {% endstylesheets %}
     </head>
+
     <body>
         {% javascripts '@SsfzBundle/Resources/public/node_modules/jquery/dist/jquery.min.js'%}
-        <script src="{{ asset_url }}"></script>
+            <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
         {% javascripts '@SsfzBundle/Resources/public/node_modules/bootstrap/dist/js/bootstrap.min.js'%}
-        <script src="{{ asset_url }}"></script>
+            <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
         {% javascripts '@SsfzBundle/Resources/public/node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js'%}
-        <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}        
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
         {% javascripts '@SsfzBundle/Resources/public/node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pl.min.js'%}
-        <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}         
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
         {% javascripts '@SsfzBundle/Resources/public/node_modules/bootbox/bootbox.min.js'%}
-        <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}        
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
         {% javascripts '@SsfzBundle/Resources/public/js/ssfz_common.js'%}
-        <script src="{{ asset_url }}"></script>
+            <script src="{{ asset_url }}"></script>
         {% endjavascripts %} 
         {% javascripts '@SsfzBundle/Resources/public/node_modules/datatables.net/js/jquery.dataTables.js'%}
-        <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}            
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
         {% javascripts '@SsfzBundle/Resources/public/node_modules/datatables.net-bs/js/dataTables.bootstrap.js'%}
-        <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}      
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
         {% javascripts '@SsfzBundle/Resources/public/node_modules/datatables.net-buttons/js/dataTables.buttons.min.js'%}
-        <script src="{{ asset_url }}"></script>        
-        {% endjavascripts %}           
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
         {% javascripts '@SsfzBundle/Resources/public/node_modules/datatables.net-buttons-bs/js/buttons.bootstrap.min.js'%}
-        <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}         
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
         {% javascripts '@SsfzBundle/Resources/public/node_modules/datatables.net-buttons/js/buttons.colVis.min.js'%}
-        <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}                         
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
         {% javascripts '@SsfzBundle/Resources/public/node_modules/datatables.net-buttons/js/buttons.print.min.js'%}
-        <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}         
-    {% block javascripts %}{% endblock %}        
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="{{ path('default') }}">SSFZ</a>
-            </div>
-            {% if app.user %}
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">{{ app.user.login }}<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                {% if is_granted('ROLE_BENEFICJENT') %}
-                                <li><a href="/haslo/zmiana">Zmiana hasła<span class="sr-only">(current)</span></a></li>
-                                <li class="divider"></li>
-                                {% endif %}
-                                <li class="active"><a href="/logout">Wyloguj<span class="sr-only">(current)</span></a></li>     
-                            </ul>
-                        </li>
-                    </ul>
-                    <ul class="nav navbar-nav">
-                            {% if is_granted('ROLE_KOORDYNATOR_TECHNICZNY') %}
-                            <li><a href="{{ path('utworzPracownika') }}">Dodaj pracownika PARP</a></li>
-                            {%endif %}  
-                            {% if is_granted('ROLE_KOORDYNATOR_MERYTORYCZNY') or is_granted('ROLE_PRACOWNIK_PARP') %}
-                            <li><a href="{{ path('raporty') }}">Raporty</a></li>
-                            {%endif %}  
-                    </ul>
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        {% block javascripts %}{% endblock %}
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ path('default') }}">SSFZ</a>
                 </div>
-            {% endif %}
-        </div>
-    </nav>
+                {% if app.user %}
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">{{ app.user.login }}<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    {% if is_granted('ROLE_BENEFICJENT') %}
+                                    <li><a href="/haslo/zmiana">Zmiana hasła<span class="sr-only">(current)</span></a></li>
+                                    <li class="divider"></li>
+                                    {% endif %}
+                                    <li class="active"><a href="/logout">Wyloguj<span class="sr-only">(current)</span></a></li>     
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav">
+                                {% if is_granted('ROLE_KOORDYNATOR_TECHNICZNY') %}
+                                <li><a href="{{ path('utworzPracownika') }}">Dodaj pracownika PARP</a></li>
+                                {%endif %}  
+                                {% if is_granted('ROLE_KOORDYNATOR_MERYTORYCZNY') or is_granted('ROLE_PRACOWNIK_PARP') %}
+                                <li><a href="{{ path('raporty') }}">Raporty</a></li>
+                                {%endif %}  
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+        </nav>
 
-    <div class="container">    
-        <div class="row">
-            <div id="content">
-                {% if app.session.started %}
-                    {% for flashMessage in app.session.flashbag.get('notice') %}
-                        <div class="fade-out alert alert-{{ flashMessage.alert }} alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert">
-                                <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                            </button>
-                            <strong>{{ flashMessage.title }}</strong> {{ flashMessage.message }}
-                        </div>
-                    {% endfor %}
-                {% endif %}                       
-            {% block body %}{% endblock %}
+        <div class="container">
+            <div class="row">
+                <div id="content">
+                    {% if app.session.started %}
+                        {% for flashMessage in app.session.flashbag.get('notice') %}
+                            <div class="fade-out alert alert-{{ flashMessage.alert }} alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert">
+                                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                                </button>
+                                <strong>{{ flashMessage.title }}</strong> {{ flashMessage.message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    {% block body %}{% endblock %}
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-</body>
+    </body>
 </html>

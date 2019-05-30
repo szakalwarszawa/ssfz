@@ -3,7 +3,7 @@
             <div>
                 {{ form_row(formS.numerUmowy) }}
                 {{ form_row(formS.okres) }}
-                {{ form_row(formS.rok) }}                                
+                {{ form_row(formS.rok) }}
                 <div class="sprawozdaniaSpolek panel-body" data-prototype="{{ form_widget(formS.sprawozdaniaSpolek.vars.prototype)|e('html_attr') }}">
                     {% for sprawozdanie in formS.sprawozdaniaSpolek %}
                         <div class="row sprawozdanie-row">
@@ -64,7 +64,7 @@
                     
                         </div>
                     {{ form_end(formP) }}
-                </div>                  
-            </div>       
+                </div>
+            </div>
         </div>
-    {% endif %} 
+    {% endif %}

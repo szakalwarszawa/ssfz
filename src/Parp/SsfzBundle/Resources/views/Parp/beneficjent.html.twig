@@ -1,6 +1,6 @@
 {% extends 'SsfzBundle::baseLayout.html.twig' %}
 
-{% block body %} 
+{% block body %}
 <div class="panel panel-default"> 
     <div class="panel-heading"><h4>{{ beneficjent.nazwa }}</h4></div>
     <div class="panel-body">
@@ -9,48 +9,49 @@
                 <div class="panel panel-default"> 
                     <div class="panel-heading">Adres</div>
                     <div class="panel-body">
-                        <div>{{ beneficjent.adrUlica}} {{ beneficjent.adrBudynek}}
-                            {%if beneficjent.adrLokal %}
-                            /{{ beneficjent.adrLokal}} 
-                            {%endif%}</div>
-                        <div>{{ beneficjent.adrKod}} {{ beneficjent.adrPoczta}}, woj. {{ beneficjent.adrWojewodztwo}}</div>                        
+                        <div>{{ beneficjent.adrUlica }} {{ beneficjent.adrBudynek }}
+                            {% if beneficjent.adrLokal %}
+                                /{{ beneficjent.adrLokal }}
+                            {% endif %}
+                        </div>
+                        <div>{{ beneficjent.adrKod }} {{ beneficjent.adrPoczta }}, woj. {{ beneficjent.adrWojewodztwo }}</div>
                     </div>
-                </div>                        
+                </div>
             </div>
             <div class="col-sm-6">
                 <div class="panel panel-default"> 
                     <div class="panel-heading">Dane kontaktowe</div>
                     <div class="panel-body">
                         <div>
-                            tel. {{ beneficjent.telStacjonarny}}, 
-                            kom.{{ beneficjent.telKomorkowy}}{%if beneficjent.fax%}, fax. {{ beneficjent.fax}}
-                            {%endif%}
+                            tel. {{ beneficjent.telStacjonarny }},
+                            kom.{{ beneficjent.telKomorkowy }}{% if beneficjent.fax %}, fax. {{ beneficjent.fax }}
+                            {% endif %}
                         </div>
-                        <div>e-mail {{ beneficjent.email}}</div>                           
+                        <div>e-mail {{ beneficjent.email }}</div>
                     </div>
-                </div>                          
-            </div>                    
+                </div>
+            </div>
         </div>
-        <div class="panel panel-default">     
-            <div class="panel-heading">Osoby zatrudnione</div>            
-            <div class="panel-body">         
-            {{ datatable({                
-                'id' : 'dta-osoby',
-                'class' : 'table table-striped',                
-                'js' : {                    
-                    'ajax' : path('parp_datatableOsoby', {'idBeneficjenta': beneficjent.id }),                      
-                    'pageLength' : 5,
+        <div class="panel panel-default">
+            <div class="panel-heading">Osoby zatrudnione</div>
+            <div class="panel-body">
+            {{ datatable({
+                'id': 'dta-osoby',
+                'class': 'table table-striped',
+                'js': {
+                    'ajax': path('parp_datatableOsoby', {'idBeneficjenta': beneficjent.id}),
+                    'pageLength': 5,
                     'lengthMenu': [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Wszystkie"]],
-                    'columnDefs' : [{'targets' : 0, 'visible' : false }],
-                    'drawCallback' : 'function(settings) {
-                                        var pagination = $(this).closest(".dataTables_wrapper").find(".dataTables_paginate");
-                                        pagination.toggle(this.api().page.info().pages > 1);}'       
+                    'columnDefs': [{'targets' : 0, 'visible' : false}],
+                    'drawCallback': 'function(settings) {
+                        var pagination = $(this).closest(".dataTables_wrapper").find(".dataTables_paginate");
+                        pagination.toggle(this.api().page.info().pages > 1);}'
                  }
                })
             }}
             </div>
-        </div>           
-        <a href="{{ path('parp')}}" class="btn btn-danger pull-right" role="button"><span class="glyphicon glyphicon-chevron-left"></span> Powrót</a>
+        </div>
+        <a href="{{ path('parp') }}" class="btn btn-danger pull-right" role="button"><span class="glyphicon glyphicon-chevron-left"></span> Powrót</a>
     </div>
 </div>
 {% endblock %}
