@@ -21,7 +21,7 @@
         "jaspersoft/rest-client": "^2.0",
         "nesbot/carbon": "^1.22",
         "phpmetrics/phpmetrics": "~1.10.0",
-        "sensio/distribution-bundle": "~4.0",
+        "sensio/distribution-bundle": "^4.0",
         "sensio/framework-extra-bundle": "^3.0.2",
         "svajiraya/ldap-bundle": "2.4.7",
         "symfony/assetic-bundle": "^2.8",
@@ -34,29 +34,26 @@
         "zendframework/zend-ldap": "~2.4"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^2.4",
-        "leaphub/phpcs-symfony2-standard": "^2.0",
-        "overtrue/phplint": "^0.2.4",
-        "phpmd/phpmd": "@stable",
-        "phpunit/phpunit": "~5.7.23",
         "sensio/generator-bundle": "~3.0",
-        "squizlabs/php_codesniffer": "*",
-        "symfony/phpunit-bridge": "~2.7"
+        "phpunit/phpunit": "~5.7.23",
+        "symfony/phpunit-bridge": "~2.7",
+        "doctrine/doctrine-fixtures-bundle": "^2.4"
     },
     "scripts": {
         "symfony-scripts": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets"
         ],
         "post-install-cmd": [
-            "@symfony-scripts"
+            "@symfony-scripts",
+            "yarn --cwd ./src/Parp/SsfzBundle/Resources/public install"
         ],
         "post-update-cmd": [
-            "@symfony-scripts"
+            "@symfony-scripts",
+            "yarn --cwd ./src/Parp/SsfzBundle/Resources/public install"
         ]
     },
     "config": {

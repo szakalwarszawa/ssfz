@@ -79,7 +79,7 @@ assetic:
     use_controller: '%kernel.debug%'
     filters:
         cssrewrite: ~
-           
+
 waldo_datatable:
     all:    ~
     js:    
@@ -109,4 +109,3 @@ waldo_datatable:
             aria:
                 sortAscending:  ": aktywuj, by posortować kolumnę rosnąco"
                 sortDescending: ": aktywuj, by posortować kolumnę malejąco"
-            
