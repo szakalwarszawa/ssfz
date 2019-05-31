@@ -99,7 +99,7 @@ class AdministratorTechnicznyController extends Controller
 
             return $this->redirectToRoute('utworzPracownika');
         }
-        $form = $this->createForm(PracownikParpEdycjaType::class, $uzytkownik,[
+        $form = $this->createForm(PracownikParpEdycjaType::class, $uzytkownik, [
             'uzytk_repo' => $uzytkRepo,
         ]);
         $form->handleRequest($request);
