@@ -5,7 +5,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
-use Parp\SsfzBundle\Entity\Rola;
 
 /**
  * Uzytkownik
@@ -25,7 +24,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -35,7 +34,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
      * @Assert\Length(groups={"rejestracja"}, max=64)
      * @Assert\Regex(groups={"rejestracja"}, pattern="/[0-9a-zA-Z]{5,}/", message="Pole login musi zawierać co najmniej 5 znaków i nie więcej niż 255 znaków.")
      */
-    private $login;
+    protected $login;
 
     /**
      * @var string
@@ -52,7 +51,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
       2 cyfry,
       1 znak specjalny z zakresu: ~!@#$%^&*()_+=[];',.<>?/", groups={"rejestracja"})
      */
-    private $haslo;
+    protected $haslo;
 
     /**
      * @var string
@@ -61,72 +60,81 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
      * @Assert\NotBlank(groups={"rejestracja"})
      * @Assert\Email(groups={"rejestracja"}, message="Adres email nie zawiera poprawnej konstrukcji, sprawdź czy adres nie zawiera błedów.")
      */
-    private $email;
+    protected $email;
 
     /**
      * @var int
      *
      * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Rola")
      */
-    private $rola;
+    protected $rola;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="ban", type="boolean")
      */
-    private $ban;
+    protected $ban;
 
     /**
      * @var string
      *
      * @ORM\Column(name="kod_zapomniane_haslo", type="string", nullable=true)
      */
-    private $kodZapomnianeHaslo;
+    protected $kodZapomnianeHaslo;
 
     /**
      * @var Carbon\Carbon
      *
      * @ORM\Column(name="utworzony", type="datetime")
      */
-    private $utworzony;
+    protected $utworzony;
 
     /**
      * @var Carbon\Carbon
      *
      * @ORM\Column(name="zmodyfikowany", type="datetime", nullable = true)
      */
-    private $zmodyfikowany;
+    protected $zmodyfikowany;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="status", type="integer")
      */
-    private $status;
+    protected $status;
 
     /**
      * @ORM\ManyToOne(targetEntity="Beneficjent", inversedBy="uzytkownicy")
      * @ORM\JoinColumn(name="beneficjent_id", referencedColumnName="id", nullable=true)
      */
-    private $beneficjent;
+    protected $beneficjent;
 
     /**
      * @var string
      *
      * @ORM\Column(name="kod_aktywacja_konta", type="string", nullable=true)
      */
-    private $kodAktywacjaKonta;
+    protected $kodAktywacjaKonta;
 
     /**
      * @var string
      */
-    private $imie;
+    protected $imie;
 
     /**
      * @var string
      */
-    private $nazwisko;
+    protected $nazwisko;
+
+    /**
+     * Program, do którego beneficjent aktualnie tworzy sprawozdanie.
+     *
+     * @var int
+     *
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Program")
+     */
+    protected $aktywnyProgram;
 
     /**
      * Get id
@@ -573,5 +581,29 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     {
         $this->setHaslo(password_hash($newPassword, PASSWORD_BCRYPT, array('cost' => 12)));
         $this->setKodZapomnianeHaslo(null);
+    }
+
+    /**
+     * Set aktywnyProgram
+     *
+     * @param Program $aktywnyProgram
+     *
+     * @return Uzytkownik
+     */
+    public function setAktywnyProgram(Program $aktywnyProgram = null)
+    {
+        $this->aktywnyProgram = $aktywnyProgram;
+
+        return $this;
+    }
+
+    /**
+     * Get aktywnyProgram
+     *
+     * @return Program
+     */
+    public function getAktywnyProgram()
+    {
+        return $this->aktywnyProgram;
     }
 }
