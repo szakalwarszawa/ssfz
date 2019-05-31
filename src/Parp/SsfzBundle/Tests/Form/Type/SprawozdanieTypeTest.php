@@ -46,14 +46,13 @@ class SprawozdanieTypeTest extends TypeTestCase
     {
         $umowa = new \Parp\SsfzBundle\Entity\Umowa();
         $umowa->setNumer('1/2017');
-        $sprawozdanieSpolek = new \Parp\SsfzBundle\Entity\SprawozdanieSpolki();
 
-        $formData = array(
+        $formData = [
             'numerUmowy' => '1/2017',
-            'okres' => 'styczeń - czerwiec',
-            'rok' => 2016,
-            'uwagi' => 'uwagi',
-        );
+            'okres'      => 'styczeń - czerwiec',
+            'rok'        => 2016,
+            'uwagi'      => 'uwagi',
+        ];
         $form = $this->factory->create(\Parp\SsfzBundle\Form\Type\SprawozdanieType::class, null, ['okresy' => ['2016' => '2016', '2017' => '2017', '2018' => '2018', '2019' => '2019']]);
         $object = new \Parp\SsfzBundle\Entity\Sprawozdanie();
 

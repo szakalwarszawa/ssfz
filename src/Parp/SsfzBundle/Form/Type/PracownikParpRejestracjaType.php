@@ -2,8 +2,7 @@
 
 namespace Parp\SsfzBundle\Form\Type;
 
-use Doctrine\ORM\EntityRepository;
-use Parp\SsfzBundle\Service\LdapDataService;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -11,6 +10,9 @@ use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Doctrine\ORM\EntityRepository;
+use Parp\SsfzBundle\Service\LdapDataService;
 
 /**
  * Typ dla formularza rejestracj apracownika PARP
@@ -24,13 +26,13 @@ class PracownikParpRejestracjaType extends AbstractType
      * tylko tych którzy nie dodani zostali do aplikacji.
      *
      * @param  LdapDataService $ldapService usługa LDAP
-     * @param  type            $uzytkRepo   repozytorium użytkowników
+     *
      * @return string[] tablica loginów pracowników PARP
      */
-    private function pobierzLoginyPracownikowParp(LdapDataService $ldapService, $uzytkRepo)
+    private function pobierzLoginyPracownikowParp(LdapDataService $ldapService)
     {
         $pracownicy = $ldapService->getUzytkownikLdapListaZEmail();
-        $wynik = array();
+        $wynik = [];
         foreach ($pracownicy as $p) {
             $login = $p->getLogin();
             $wynik[$login] = $login;
@@ -43,14 +45,17 @@ class PracownikParpRejestracjaType extends AbstractType
      * Buduje formularz
      *
      * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param array $options
+     *
      * @return Response
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $ldapService = $options['ssfz.service.ldap_data_service'];
         $uzytkRepo = $options['uzytk_repo'];
-        $builder->add('login', \Symfony\Component\Form\Extension\Core\Type\ChoiceType::class, [
+        $builder->add('login', ChoiceType::class, [
             'label' => 'Pracownik',
             'choices' => $this->pobierzLoginyPracownikowParp($ldapService, $uzytkRepo),
             'constraints' => [
@@ -68,14 +73,17 @@ class PracownikParpRejestracjaType extends AbstractType
             ]
         ]);
 
-        $builder->add('rola', \Symfony\Bridge\Doctrine\Form\Type\EntityType::class, [
-            'class' => 'SsfzBundle:Rola',
-            'property' => 'opis',
-            'label' => 'Rola',
+        $builder->add('rola', EntityType::class, [
+            'class'         => 'SsfzBundle:Rola',
+            'property'      => 'opis',
+            'label'         => 'Rola',
             'query_builder' => function (EntityRepository $er) {
-                return $er->createQueryBuilder('n')
+                $idRoliBeneficjenta = '4';
+
+                return $er
+                    ->createQueryBuilder('n')
                     ->where('n.id not in (:marray)')
-                    ->setParameter('marray', array('4')); //id roli beneficjenta
+                    ->setParameter('marray', [$idRoliBeneficjenta]);
             },
             'constraints' => [
                 new NotBlank(),

@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Form\Type;
 
 use Doctrine\ORM\EntityRepository;
@@ -18,9 +19,12 @@ class PracownikParpEdycjaType extends AbstractType
      * Buduje formularz
      *
      * @param FormBuilderInterface $builder
+     *
      * @param array                $options
      *
      * @return Response
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

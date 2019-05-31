@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Service;
 
 use Parp\SsfzBundle\Repository\UzytkownikRepository;
@@ -8,14 +9,9 @@ use Parp\SsfzBundle\Entity\Uzytkownik;
 
 /**
  * Dostęp do repozytorium użytkowników i ról.
- *
- * @category Class
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
  */
 class UzytkownikService
 {
-
     /**
      * @var UzytkownikRepository
      */
@@ -27,18 +23,12 @@ class UzytkownikService
     private $rolaRepository;
 
     /**
-     *
-     * @var MailerService
-     */
-    private $mailerService;
-
-    /**
      * Konstruktor
      *
      * @param UzytkownikRepository $uzytkownikRepository
-     * @param RolaRepository       $rolaRepository
+     * @param RolaRepository $rolaRepository
      */
-    public function __construct($uzytkownikRepository, $rolaRepository)
+    public function __construct(UzytkownikRepository $uzytkownikRepository, RolaRepository $rolaRepository)
     {
         $this->uzytkownikRepository = $uzytkownikRepository;
         $this->rolaRepository = $rolaRepository;
@@ -58,9 +48,10 @@ class UzytkownikService
      * Wyszukuje uzytkownika po kryteriach
      *
      * @param array $criteria
+     *
      * @return Uzytkownik
      */
-    public function findOneByCriteria(array $criteria = array())
+    public function findOneByCriteria(array $criteria = [])
     {
         return $this->uzytkownikRepository->findOneBy($criteria);
     }
@@ -69,9 +60,10 @@ class UzytkownikService
      * Wyszukuje uzytkownika po kryteriach
      *
      * @param array $criteria
+     *
      * @return Uzytkownik
      */
-    public function findByCriteria(array $criteria = array())
+    public function findByCriteria(array $criteria = [])
     {
         return $this->uzytkownikRepository->findBy($criteria);
     }
@@ -80,7 +72,8 @@ class UzytkownikService
      * Dodaje nowego użytkownika
      *
      * @param Uzytkownik $user
-     * @param Rola       $role
+     *
+     * @param Rola $role
      */
     public function persistNewUser(Uzytkownik $user, Rola $role)
     {
@@ -111,7 +104,7 @@ class UzytkownikService
      * Nowe hasło
      *
      * @param Uzytkownik $user
-     * @param string     $password
+     * @param string $password
      */
     public function newPassword(Uzytkownik $user, $password)
     {

@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -16,23 +17,26 @@ class ResetLinkType extends AbstractType
      * Buduje formularz do generowania linku resetującego hasło
      *
      * @param FormBuilderInterface $builder
-     * @param array                $options
+     *
+     * @param array $options
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('login', TextType::class, array(
-            'attr' => array(
+        $builder->add('login', TextType::class, [
+            'attr' => [
                 'oninvalid' => 'this.setCustomValidity(\'Pole nie może pozostać puste.\')',
-                'oninput' => 'setCustomValidity(\'\')'
-            )
-        ));
+                'oninput'   => 'setCustomValidity(\'\')'
+            ]
+        ]);
 
-        $builder->add('email', EmailType::class, array(
-            'attr' => array(
+        $builder->add('email', EmailType::class, [
+            'attr' => [
                 'oninvalid' => 'this.setCustomValidity(\'Adres email nie zawiera poprawnej konstrukcji, sprawdź czy adres nie zawiera błędów.\')',
-                'oninput' => 'setCustomValidity(\'\')'
-            )
-        ));
+                'oninput'   => 'setCustomValidity(\'\')'
+            ]
+        ]);
     }
 
     /**
@@ -42,9 +46,9 @@ class ResetLinkType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Parp\SsfzBundle\Form\Model\ResetLink'
-        ));
+        ]);
     }
 
     /**

@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -29,6 +30,7 @@ class HasloController extends Controller
      */
     public function recoverPassword(Request $request)
     {
+        $error = '';
         $resetLink = new ResetLink();
         $form = $this->createForm(new ResetLinkType(), $resetLink);
         $form->handleRequest($request);
@@ -38,26 +40,25 @@ class HasloController extends Controller
             $uzytkownik = $uzytkownikService->findOneByCriteria(['login' => $resetLink->getLogin(), 'email' => $resetLink->getEmail()]);
             if (!is_null($uzytkownik)) {
                 if (0 === $uzytkownik->getStatus()) {
-                    return $this->render('SsfzBundle:Security:passwordRecoverInfo.html.twig', array('info' => 'Konto nie zostało aktywowane. Skorzystaj z linku aktywacyjnego przesłanego na adres mailowy podany przy zakładaniu konta.'));
+                    return $this->render('SsfzBundle:Security:passwordRecoverInfo.html.twig', [
+                        'info' => 'Konto nie zostało aktywowane. Skorzystaj z linku aktywacyjnego przesłanego na adres mailowy podany przy zakładaniu konta.',
+                    ]);
                 }
                 $uzytkownikService->forgottenPassword($uzytkownik);
                 $this->getMailerService()->sendMail($uzytkownik, 'Zmiana hasła', '@SsfzBundle/Resources/views/Email/resetPassword.html.twig', array('code' => $uzytkownik->getKodZapomnianeHaslo(), 'login' => $resetLink->getLogin()));
 
-                return $this->render('SsfzBundle:Security:passwordRecoverInfo.html.twig', array(
+                return $this->render('SsfzBundle:Security:passwordRecoverInfo.html.twig', [
                     'info' => 'Wysłano link zmiany hasła na adres email ' . $uzytkownik->getEmail() . '. Na twojej skrzynce mailowej znajdują się dalsze instrukcje, które umożliwią odzyskanie hasła do konta.'
-                ));
+                ]);
             }
 
-            return $this->render('SsfzBundle:Security:passwordRecover.html.twig', array(
-                'form' => $form->createView(),
-                'error' => 'Konto nie istnieje w systemie.'
-            ));
+            $error = 'Konto nie istnieje w systemie.';
         }
 
-        return $this->render('SsfzBundle:Security:passwordRecover.html.twig', array(
-            'form' => $form->createView(),
-            'error' => ''
-        ));
+        return $this->render('SsfzBundle:Security:passwordRecover.html.twig', [
+            'form'  => $form->createView(),
+            'error' => $error,
+        ]);
     }
 
     /**
@@ -84,15 +85,17 @@ class HasloController extends Controller
             $resetPassword = $form->getData();
             $uzytkownikService->newPassword($uzytkownik, $resetPassword->getNewPassword());
 
-            return $this->render('SsfzBundle:Security:passwordRecoverInfo.html.twig', array('info' => 'Hasło zostało zmienione, zaloguj się do serwisu.'));
+            return $this->render('SsfzBundle:Security:passwordRecoverInfo.html.twig', [
+                'info' => 'Hasło zostało zmienione, zaloguj się do serwisu.',
+            ]);
         }
 
-        return $this->render('SsfzBundle:Security:passwordReset.html.twig', array(
-            'form' => $form->createView(),
-            'error' => '',
-            'title' => 'Odzyskiwanie hasła',
+        return $this->render('SsfzBundle:Security:passwordReset.html.twig', [
+            'form'             => $form->createView(),
+            'error'            => '',
+            'title'            => 'Odzyskiwanie hasła',
             'submitButtonName' => 'Zapisz'
-        ));
+        ]);
     }
 
     /**
@@ -106,6 +109,7 @@ class HasloController extends Controller
      */
     public function changePassword(Request $request)
     {
+        $error = '';
         $resetPassword = new ChangePassword();
         $form = $this->createForm(new ChangePasswordType(), $resetPassword);
         $form->handleRequest($request);
@@ -113,28 +117,20 @@ class HasloController extends Controller
             $uzytkownikService = $this->get('ssfz.service.uzytkownik_service');
             $resetPassword = $form->getData();
             $uzytkownik = $this->get('security.token_storage')->getToken()->getUser();
-            $haslo = password_hash($resetPassword->getNewPassword(), PASSWORD_BCRYPT, array('cost' => 12));
             if (password_verify($resetPassword->getOldPassword(), $uzytkownik->getHaslo())) {
                 $uzytkownikService->newPassword($uzytkownik, $resetPassword->getNewPassword());
                 $this->get('ssfz.service.komunikaty_service')->sukcesKomunikat('Hasło zostało zmienione.');
-
                 return $this->redirect(($this->generateUrl('default')));
             }
-
-            return $this->render('SsfzBundle:Security:passwordReset.html.twig', array(
-                'form' => $form->createView(),
-                'error' => 'Aktualne hasło nie zgadza się.',
-                'title' => 'Zmiana hasła',
-                'submitButtonName' => 'Zmień hasło'
-            ));
+            $error = 'Aktualne hasło nie zgadza się.';
         }
 
-        return $this->render('SsfzBundle:Security:passwordReset.html.twig', array(
-            'form' => $form->createView(),
-            'error' => '',
-            'title' => 'Zmiana hasła',
+        return $this->render('SsfzBundle:Security:passwordReset.html.twig', [
+            'form'             => $form->createView(),
+            'error'            => $error,
+            'title'            => 'Zmiana hasła',
             'submitButtonName' => 'Zmień hasło'
-        ));
+        ]);
     }
 
     /**

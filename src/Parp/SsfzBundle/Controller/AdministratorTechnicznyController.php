@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Controller;
 
 use Parp\SsfzBundle\Entity\Rola;
@@ -46,13 +47,15 @@ class AdministratorTechnicznyController extends Controller
         $uzytkRepo = $this->getDoctrine()->getRepository(Uzytkownik::class);
         $rolaRepo = $this->getDoctrine()->getRepository(Rola::class);
 
-        $form = $this->createForm(PracownikParpRejestracjaType::class, [], ['ssfz.service.ldap_data_service' => $ldapDataService, 'uzytk_repo' => $uzytkRepo]);
+        $form = $this->createForm(PracownikParpRejestracjaType::class, [], [
+            'ssfz.service.ldap_data_service' => $ldapDataService,
+            'uzytk_repo'                     => $uzytkRepo,
+            'rola_repo'                      => $rolaRepo,
+        ]);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-
             $dane = $form->getData();
 
             $pracownik = $this->utworzPracownika($dane);
@@ -68,11 +71,11 @@ class AdministratorTechnicznyController extends Controller
             return $this->redirectToRoute('utworzPracownika');
         }
 
-        return $this->render('SsfzBundle:AdministratorTechniczny:utworzPracownika.html.twig', array(
-            'form' => $form->createView(),
+        return $this->render('SsfzBundle:AdministratorTechniczny:utworzPracownika.html.twig', [
+            'form'                   => $form->createView(),
             'dostepniPracownicyParp' => count($ldapDataService->getUzytkownikLdapListaZEmail()) > 0,
-            'przegladPracownikow' => $pracownicy
-        ));
+            'przegladPracownikow'    => $pracownicy
+        ]);
     }
 
     /**
@@ -96,14 +99,11 @@ class AdministratorTechnicznyController extends Controller
 
             return $this->redirectToRoute('utworzPracownika');
         }
-        $form = $this->createForm(
-            PracownikParpEdycjaType::class,
-            $uzytkownik,
-            ['uzytk_repo' => $uzytkRepo]
-        );
+        $form = $this->createForm(PracownikParpEdycjaType::class, $uzytkownik, [
+            'uzytk_repo' => $uzytkRepo,
+        ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
             $pracownik = $form->getData();
             $this->persistPracownik($pracownik);
             $this->get('ssfz.service.komunikaty_service')->sukcesKomunikat('Dane pracownika zostały zaktualizowane.');
@@ -226,7 +226,6 @@ class AdministratorTechnicznyController extends Controller
      */
     private function edycjaUzytkownikPoprawnyKomunikat(Uzytkownik $uzytkownik)
     {
-        $blad = null;
         if (null === !$uzytkownik) {
             return 'Użytkownik nie istnieje';
         }

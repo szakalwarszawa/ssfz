@@ -128,8 +128,8 @@ class LdapDataService
             }
         }
         //sortuje tablicę wg loginu
-        uasort($result, function (UzytkownikLdap $a, UzytkownikLdap $b) {
-            return strcmp($a->getLogin(), $b->getLogin());
+        uasort($result, function (UzytkownikLdap $uzytkownik1, UzytkownikLdap $uzytkownik2) {
+            return strcmp($uzytkownik1->getLogin(), $uzytkownik2->getLogin());
         });
 
         return $result;

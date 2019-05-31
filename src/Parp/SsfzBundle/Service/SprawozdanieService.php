@@ -11,11 +11,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class SprawozdanieService
 {
     /**
-     * @var SprawozdanieRepository
-     */
-    private $uzytkownikRepository;
-
-    /**
      * Konstruktor
      *
      * @param SprawozdanieRepository $sprawozdanieRepository

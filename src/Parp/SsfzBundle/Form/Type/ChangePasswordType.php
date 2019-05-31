@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -18,7 +19,9 @@ class ChangePasswordType extends AbstractType
      *
      * @param FormBuilderInterface $builder
      *
-     * @param array                $options
+     * @param array $options
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
