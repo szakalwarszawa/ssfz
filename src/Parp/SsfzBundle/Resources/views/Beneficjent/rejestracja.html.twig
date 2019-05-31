@@ -20,7 +20,7 @@
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
             {{ form_end(form) }}
             <div id="form-submit-div">
-                <a href="/login">
+                <a href="{{ path('login') }}">
                     <button class="form-control submit-button">Anuluj</button>
                 </a>
             </div>
