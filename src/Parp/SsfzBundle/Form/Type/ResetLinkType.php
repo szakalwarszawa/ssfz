@@ -20,21 +20,19 @@ class ResetLinkType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add(
-            'login', TextType::class, array(
+        $builder->add('login', TextType::class, array(
             'attr' => array(
                 'oninvalid' => 'this.setCustomValidity(\'Pole nie może pozostać puste.\')',
                 'oninput' => 'setCustomValidity(\'\')'
-            ))
-        );
+            )
+        ));
 
-        $builder->add(
-            'email', EmailType::class, array(
+        $builder->add('email', EmailType::class, array(
             'attr' => array(
                 'oninvalid' => 'this.setCustomValidity(\'Adres email nie zawiera poprawnej konstrukcji, sprawdź czy adres nie zawiera błędów.\')',
                 'oninput' => 'setCustomValidity(\'\')'
-            ))
-        );
+            )
+        ));
     }
 
     /**

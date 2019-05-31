@@ -22,49 +22,49 @@ class UzytkownikType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('login', TextType::class, array(
-                'label' => 'Login',
-                'attr' => array(
-                    'oninvalid' => 'this.setCustomValidity(\'Pole nie może pozostać puste.\')',
-                    'oninput' => 'setCustomValidity(\'\')'
-                ))
+        $builder->add('login', TextType::class, array(
+            'label' => 'Login',
+            'attr' => array(
+                'oninvalid' => 'this.setCustomValidity(\'Pole nie może pozostać puste.\')',
+                'oninput' => 'setCustomValidity(\'\')'
             )
-            ->add('haslo', RepeatedType::class, array(
-                'type' => PasswordType::class,
-                'first_options' => array(
-                    'label' => 'Hasło',
-                    'attr' => array(
-                        'data-toggle' => 'tooltip',
-                        'data-placement' => 'right',
-                        'title' => 'Hasło musi zawierać co najmniej
-                                    8 znaków i maksymalnie 255,
-                                    2 duże litery,
-                                    2 cyfry,
-                                    1 znak specjalny'
-                    )
-                ),
-                'second_options' => array(
-                    'label' => 'Powtórz hasło',
-                    'attr' => array(
-                        'data-toggle' => 'tooltip',
-                        'data-placement' => 'right',
-                        'title' => 'Hasło musi zawierać co najmniej
-                                    8 znaków i maksymalnie 255,
-                                    2 duże litery,
-                                    2 cyfry,
-                                    1 znak specjalny'
-                    )
-                ),
-                'invalid_message' => 'W polach Hasło i Powtórz hasło wpisano różne hasła.'
+        ));
+
+        $builder->add('haslo', RepeatedType::class, array(
+            'type' => PasswordType::class,
+            'first_options' => array(
+                'label' => 'Hasło',
+                'attr' => array(
+                    'data-toggle' => 'tooltip',
+                    'data-placement' => 'right',
+                    'title' => 'Hasło musi zawierać co najmniej
+                                8 znaków i maksymalnie 255,
+                                2 duże litery,
+                                2 cyfry,
+                                1 znak specjalny'
                 )
-            )
-            ->add('email', EmailType::class, array(
+            ),
+            'second_options' => array(
+                'label' => 'Powtórz hasło',
                 'attr' => array(
-                    'oninvalid' => 'this.setCustomValidity(\'Adres email nie zawiera poprawnej konstrukcji, sprawdź czy adres nie zawiera błędów.\')',
-                    'oninput' => 'setCustomValidity(\'\')'
-                ))
-            );
+                    'data-toggle' => 'tooltip',
+                    'data-placement' => 'right',
+                    'title' => 'Hasło musi zawierać co najmniej
+                                8 znaków i maksymalnie 255,
+                                2 duże litery,
+                                2 cyfry,
+                                1 znak specjalny'
+                )
+            ),
+            'invalid_message' => 'W polach Hasło i Powtórz hasło wpisano różne hasła.'
+        ));
+
+        $builder->add('email', EmailType::class, array(
+            'attr' => array(
+                'oninvalid' => 'this.setCustomValidity(\'Adres email nie zawiera poprawnej konstrukcji, sprawdź czy adres nie zawiera błędów.\')',
+                'oninput' => 'setCustomValidity(\'\')'
+            )
+        ));
     }
 
     /**

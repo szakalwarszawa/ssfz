@@ -72,7 +72,7 @@ class PracownikParpRejestracjaType extends AbstractType
             'class' => 'SsfzBundle:Rola',
             'property' => 'opis',
             'label' => 'Rola',
-            'query_builder' => function (EntityRepository $er ) {
+            'query_builder' => function (EntityRepository $er) {
                 return $er->createQueryBuilder('n')
                     ->where('n.id not in (:marray)')
                     ->setParameter('marray', array('4')); //id roli beneficjenta

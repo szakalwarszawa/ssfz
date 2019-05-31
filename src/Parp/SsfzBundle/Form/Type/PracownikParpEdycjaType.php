@@ -33,7 +33,7 @@ class PracownikParpEdycjaType extends AbstractType
             'class' => Rola::class,
             'property' => 'opis',
             'label' => 'Rola',
-            'query_builder' => function (EntityRepository $er ) {
+            'query_builder' => function (EntityRepository $er) {
                 return $er->createQueryBuilder('n')
                     ->where('n.id not in (:marray)')
                     ->setParameter('marray', array('4'))
