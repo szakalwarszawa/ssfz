@@ -6,7 +6,7 @@ use Exception;
 use Parp\SsfzBundle\Entity\UzytkownikLdap;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Zend\Ldap\Ldap;
-use use Parp\SsfzBundle\Exception\LdapDataServiceException;
+use Parp\SsfzBundle\Exception\LdapDataServiceException;
 
 /**
  * Klasa zapewniająca dostęp do danych zgromadzonych w bazie LDAP
