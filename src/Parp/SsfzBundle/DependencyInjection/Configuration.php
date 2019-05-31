@@ -10,7 +10,7 @@ class Configuration implements ConfigurationInterface
     /**
      * {@inheritdoc}
      *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     public function getConfigTreeBuilder()
     {

@@ -89,6 +89,8 @@ class SecurityControllerTest extends WebTestCase
 
     /**
      * Test przypomnienia hasła
+     *
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     public function testRecoverPassword()
     {
@@ -99,6 +101,8 @@ class SecurityControllerTest extends WebTestCase
 
     /**
      * Test resetu hasła
+     *
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     public function testResetPassword()
     {
@@ -114,6 +118,8 @@ class SecurityControllerTest extends WebTestCase
 
     /**
      * Test zmiany hasła
+     *
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     public function testChangePassword()
     {

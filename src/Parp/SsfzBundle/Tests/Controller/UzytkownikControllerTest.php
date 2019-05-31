@@ -40,6 +40,7 @@ class UzytkownikControllerTest extends WebTestCase
      * Wywołuje komendę z konsoli aplikacji
      *
      * @param  string $command
+     *
      * @return void
      */
     protected static function runCommand($command)
@@ -68,6 +69,8 @@ class UzytkownikControllerTest extends WebTestCase
 
     /**
      * Test rejestracji
+     *
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     public function testRejestracja()
     {
@@ -78,6 +81,8 @@ class UzytkownikControllerTest extends WebTestCase
 
     /**
      * Test aktywacji konta
+     *
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     public function testAktywacjaKonta()
     {
