@@ -218,11 +218,6 @@ class Spolka
     private $zarzadPozostali;
 
     /**
-     * @var type
-     */
-    private $zakonczonaDodatkowe;
-
-    /**
      * @return type
      */
     public function getZakonczonaDodatkowe()

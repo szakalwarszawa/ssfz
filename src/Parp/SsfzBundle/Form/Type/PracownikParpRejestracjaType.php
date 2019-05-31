@@ -2,8 +2,7 @@
 
 namespace Parp\SsfzBundle\Form\Type;
 
-use Doctrine\ORM\EntityRepository;
-use Parp\SsfzBundle\Service\LdapDataService;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -11,6 +10,9 @@ use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Doctrine\ORM\EntityRepository;
+use Parp\SsfzBundle\Service\LdapDataService;
 
 /**
  * Typ dla formularza rejestracj apracownika PARP
@@ -44,13 +46,16 @@ class PracownikParpRejestracjaType extends AbstractType
      *
      * @param FormBuilderInterface $builder
      * @param array                $options
+     *
      * @return Response
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $ldapService = $options['ssfz.service.ldap_data_service'];
         $uzytkRepo = $options['uzytk_repo'];
-        $builder->add('login', \Symfony\Component\Form\Extension\Core\Type\ChoiceType::class, [
+        $builder->add('login', ChoiceType::class, [
             'label' => 'Pracownik',
             'choices' => $this->pobierzLoginyPracownikowParp($ldapService, $uzytkRepo),
             'constraints' => [
@@ -68,7 +73,7 @@ class PracownikParpRejestracjaType extends AbstractType
             ]
         ]);
 
-        $builder->add('rola', \Symfony\Bridge\Doctrine\Form\Type\EntityType::class, [
+        $builder->add('rola', EntityType::class, [
             'class' => 'SsfzBundle:Rola',
             'property' => 'opis',
             'label' => 'Rola',

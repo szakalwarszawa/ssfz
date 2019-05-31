@@ -11,6 +11,8 @@ class SsfzExtension extends Extension
 {
     /**
      * {@inheritdoc}
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function load(array $configs, ContainerBuilder $container)
     {
