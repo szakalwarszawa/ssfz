@@ -109,3 +109,9 @@ waldo_datatable:
             aria:
                 sortAscending:  ": aktywuj, by posortować kolumnę rosnąco"
                 sortDescending: ": aktywuj, by posortować kolumnę malejąco"
+
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/../setup/migrations"
+    namespace: 'Application\Migrations'
+    table_name: 'migration_versions'
+    name: 'Application Migrations'
