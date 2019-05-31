@@ -44,7 +44,7 @@ twigcs:
 
 phpmd:
     stage: standards
-    allow_failure: true
+    allow_failure: false
     script:
         - /root/.composer/vendor/bin/phpmd src/ text ".gitlab-ci/phpmd.xml"
 
@@ -63,7 +63,7 @@ phpcpd:
 
 phploc:
     stage: stats
-    allow_failure: true
+    allow_failure: false
     script:
         - /root/.composer/vendor/bin/phploc src/
 
