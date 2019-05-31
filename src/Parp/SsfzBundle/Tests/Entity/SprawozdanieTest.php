@@ -1,14 +1,9 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace Parp\SsfzBundle\Tests\Entity;
 
 use PHPUnit\Framework\TestCase;
+
 /**
  * Description of SprawozdanieTest
  *
@@ -16,52 +11,50 @@ use PHPUnit\Framework\TestCase;
  */
 class SprawozdanieTest extends TestCase
 {
-    
-    
     private $sprawozdanie;
-    
+
     /**
      * Ustawienie środowiska testowego
      */
-    public function setUp() 
+    public function setUp()
     {
-        $this->sprawozdanie = new \Parp\SsfzBundle\Entity\Sprawozdanie();        
+        $this->sprawozdanie = new \Parp\SsfzBundle\Entity\Sprawozdanie();
     }
 
     /**
      * Testowanie pola id
      */
-    public function testId() 
+    public function testId()
     {
         $var = 5;
         $this->sprawozdanie->setId($var);
         $this->assertEquals($var, $this->sprawozdanie->getId());
-    }  
-    
+    }
+
     /**
      * Testowanie pola creatorId
      */
-    public function testCreatorId() 
+    public function testCreatorId()
     {
         $var = 5;
         $this->sprawozdanie->setCreatorId($var);
         $this->assertEquals($var, $this->sprawozdanie->getCreatorId());
-    }  
+    }
 
     /**
      * Testowanie pola DataRejestracji
      */
-    public function testDataRejestracji() 
+    public function testDataRejestracji()
     {
         $var = 5;
         $this->sprawozdanie->setDataRejestracji($var);
         $this->assertEquals($var, $this->sprawozdanie->getDataRejestracji());
     }
-    
+
     /**
      * Testowanie pola umowaId
      */
-    public function testUmowaId() 
+    public function testUmowaId()
     {
         $var = 5;
         $this->sprawozdanie->setUmowaId($var);
@@ -71,28 +64,28 @@ class SprawozdanieTest extends TestCase
     /**
      * Testowanie pola previousVersionId
      */
-    public function testPreviousVersionId() 
+    public function testPreviousVersionId()
     {
         $var = 5;
         $this->sprawozdanie->setPreviousVersionId($var);
         $this->assertEquals($var, $this->sprawozdanie->getPreviousVersionId());
     }
-    
+
     /**
      * Testowanie pola umowa
      */
-    public function testUmowa() 
+    public function testUmowa()
     {
         $umowa = new \Parp\SsfzBundle\Entity\Umowa();
         $umowa->setBeneficjentId(12);
         $this->sprawozdanie->setUmowa($umowa);
         $this->assertEquals($umowa->getBeneficjentId(), $this->sprawozdanie->getUmowa()->getBeneficjentId());
     }
-    
+
     /**
      * Testowanie pola numerUmowy
      */
-    public function testNumerUmowy() 
+    public function testNumerUmowy()
     {
         $var = '1/1/2017';
         $this->sprawozdanie->setNumerUmowy($var);
@@ -102,47 +95,47 @@ class SprawozdanieTest extends TestCase
     /**
      * Testowanie pola okres
      */
-    public function testOkres() 
+    public function testOkres()
     {
         $var = 'styczeń - czerwiec';
         $this->sprawozdanie->setOkres($var);
         $this->assertEquals($var, $this->sprawozdanie->getOkres());
     }
-    
+
     /**
      * Testowanie pola okresId
      */
-    public function testOkresId() 
+    public function testOkresId()
     {
         $var = 1;
         $this->sprawozdanie->setOkresId($var);
         $this->assertEquals($var, $this->sprawozdanie->getOkresId());
     }
-    
+
     /**
      * Testowanie pola rok
      */
-    public function testRok() 
+    public function testRok()
     {
         $var = '2015';
         $this->sprawozdanie->setRok($var);
         $this->assertEquals($var, $this->sprawozdanie->getRok());
     }
-    
+
     /**
      * Testowanie pola status
      */
-    public function testStatus() 
+    public function testStatus()
     {
         $var = 2;
         $this->sprawozdanie->setStatus($var);
         $this->assertEquals($var, $this->sprawozdanie->getStatus());
     }
-    
+
     /**
      * Testowanie pola wersja
      */
-    public function testWersja() 
+    public function testWersja()
     {
         $var = 1;
         $this->sprawozdanie->setWersja($var);
@@ -152,27 +145,27 @@ class SprawozdanieTest extends TestCase
     /**
      * Testowanie pola czyNajnowsza
      */
-    public function testCzyNajnowsza() 
+    public function testCzyNajnowsza()
     {
         $var = true;
         $this->sprawozdanie->setCzyNajnowsza($var);
         $this->assertEquals($var, $this->sprawozdanie->getCzyNajnowsza());
     }
-    
+
     /**
      * Testowanie pola dataPrzeslaniaDoParp
      */
-    public function testDataPrzeslaniaDoParp() 
+    public function testDataPrzeslaniaDoParp()
     {
         $var = new \DateTime('now');
         $this->sprawozdanie->setDataPrzeslaniaDoParp($var);
         $this->assertEquals($var, $this->sprawozdanie->getDataPrzeslaniaDoParp());
     }
-    
+
     /**
      * Testowanie pola oceniajacyId
      */
-    public function testOceniajacyId() 
+    public function testOceniajacyId()
     {
         $var = 12;
         $this->sprawozdanie->setOceniajacyId($var);
@@ -182,7 +175,7 @@ class SprawozdanieTest extends TestCase
     /**
      * Testowanie pola dataZatwierdzenia
      */
-    public function testDataZatwierdzenia() 
+    public function testDataZatwierdzenia()
     {
         $var = new \DateTime('now');
         $this->sprawozdanie->setDataZatwierdzenia($var);
@@ -192,27 +185,27 @@ class SprawozdanieTest extends TestCase
     /**
      * Testowanie pola uwagi
      */
-    public function testUwagi() 
+    public function testUwagi()
     {
         $var = 12;
         $this->sprawozdanie->setUwagi($var);
         $this->assertEquals($var, $this->sprawozdanie->getUwagi());
     }
-    
+
     /**
      * Testowanie pola idStatus
      */
-    public function testIdStatus() 
+    public function testIdStatus()
     {
         $var = 12;
         $this->sprawozdanie->setIdStatus($var);
         $this->assertEquals($var, $this->sprawozdanie->getIdStatus());
     }
-    
+
     /**
      * Testowanie pola sprawozdaniaSpolek
      */
-    public function testSprawozdaniaSpolek() 
+    public function testSprawozdaniaSpolek()
     {
         $sprawozdanieSpolki = new \Parp\SsfzBundle\Entity\SprawozdanieSpolki();
         $sprawozdanieSpolki->setNazwaSpolki('Spolka testowa 1');
@@ -224,15 +217,15 @@ class SprawozdanieTest extends TestCase
         $sprawozdanieSpolki2->setKrs('22222222');
         $sprawozdanieSpolki2->setLiczbaPorzadkowa(2);
         $this->sprawozdanie->addSprawozdaniaSpolek($sprawozdanieSpolki2);
-        $this->assertEquals(2, count($this->sprawozdanie->getSprawozdaniaSpolek())); 
+        $this->assertEquals(2, count($this->sprawozdanie->getSprawozdaniaSpolek()));
         $this->sprawozdanie->removeSprawozdaniaSpolek($sprawozdanieSpolki);
-        $this->assertEquals(1, count($this->sprawozdanie->getSprawozdaniaSpolek())); 
+        $this->assertEquals(1, count($this->sprawozdanie->getSprawozdaniaSpolek()));
     }
-    
+
     /**
      * Testowanie pola sprawozdaniaSpolek
      */
-    public function testSprawozdaniaSpolek2() 
+    public function testSprawozdaniaSpolek2()
     {
         $sprawozdanieSpolki = new \Parp\SsfzBundle\Entity\SprawozdanieSpolki();
         $sprawozdanieSpolki->setNazwaSpolki('Spolka testowa 1');
@@ -244,16 +237,14 @@ class SprawozdanieTest extends TestCase
         $sprawozdanieSpolki2->setLiczbaPorzadkowa(2);
         $spolki = array($sprawozdanieSpolki,$sprawozdanieSpolki2);
         $this->sprawozdanie->setSprawozdaniaSpolek($spolki);
-        $this->assertEquals(2, count($this->sprawozdanie->getSprawozdaniaSpolek())); 
+        $this->assertEquals(2, count($this->sprawozdanie->getSprawozdaniaSpolek()));
     }
-    
+
     /**
      * Czyszczenie środowiska testowego
      */
-    public function tearDown() 
+    public function tearDown()
     {
         $this->sprawozdanie = null;
-    }    
-    
-    
+    }
 }

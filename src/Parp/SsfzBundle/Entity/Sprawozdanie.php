@@ -14,7 +14,6 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  */
 class Sprawozdanie
 {
-
     /**
      * @var int
      *
@@ -144,17 +143,25 @@ class Sprawozdanie
 
     /**
      * @var type
-     *  
+     *
      * @ORM\Column(name="id_status", type="string", length=100, nullable=true)
      */
     private $idStatus;
 
     /**
-     * @var boolean
-     * 
+     * @var bool
+     *
      * @ORM\Column(name="powiadomienie_wyslane", type="boolean", nullable=false)
      */
     private $powiadomienieWyslane = false;
+
+    /**
+     * Konstruktor
+     */
+    public function __construct()
+    {
+        $this->sprawozdaniaSpolek = new ArrayCollection();
+    }
 
     /**
      * zwraca nazwa
@@ -168,7 +175,7 @@ class Sprawozdanie
 
     /**
      * ustawia idStatus
-     * 
+     *
      * @param int $idStatus
      */
     public function setIdStatus($idStatus)
@@ -348,7 +355,7 @@ class Sprawozdanie
 
     /**
      * zwraca czy powiadomienie wyslane
-     * 
+     *
      * @return boolean
      */
     public function getPowiadomienieWyslane()
@@ -358,7 +365,7 @@ class Sprawozdanie
 
     /**
      * ustawia id
-     * 
+     *
      * @param int $id
      */
     public function setId($id)
@@ -368,7 +375,7 @@ class Sprawozdanie
 
     /**
      * ustawia creatorId
-     * 
+     *
      * @param int $creatorId
      */
     public function setCreatorId($creatorId)
@@ -378,7 +385,7 @@ class Sprawozdanie
 
     /**
      * ustawia dateRejestracji
-     * 
+     *
      * @param datetime $dataRejestracji
      */
     public function setDataRejestracji($dataRejestracji)
@@ -388,7 +395,7 @@ class Sprawozdanie
 
     /**
      * Ustawia datePrzeslaniaDoParp
-     * 
+     *
      * @param datetime $dataPrzeslaniaDoParp
      */
     public function setDataPrzeslaniaDoParp($dataPrzeslaniaDoParp)
@@ -398,7 +405,7 @@ class Sprawozdanie
 
     /**
      * Ustawia umowaId
-     * 
+     *
      * @param int $umowaId
      */
     public function setUmowaId($umowaId)
@@ -408,7 +415,7 @@ class Sprawozdanie
 
     /**
      * Ustawia previousVersionID
-     * 
+     *
      * @param int $previousVersionId
      */
     public function setPreviousVersionId($previousVersionId)
@@ -420,6 +427,7 @@ class Sprawozdanie
      * Ustawia umowa
      *
      * @param  Umowa $umowa
+     *
      * @return Spolka
      */
     public function setUmowa($umowa)
@@ -431,7 +439,7 @@ class Sprawozdanie
 
     /**
      * Ustawia numerUmowy
-     * 
+     *
      * @param string $numerUmowy
      */
     public function setNumerUmowy($numerUmowy)
@@ -441,7 +449,7 @@ class Sprawozdanie
 
     /**
      * Ustawia okres
-     * 
+     *
      * @param string $okres
      */
     public function setOkres($okres)
@@ -457,7 +465,7 @@ class Sprawozdanie
 
     /**
      * Ustawia okres
-     * 
+     *
      * @param int $okresId
      */
     public function setOkresId($okresId)
@@ -467,7 +475,7 @@ class Sprawozdanie
 
     /**
      * Ustawia rok
-     * 
+     *
      * @param string $rok
      */
     public function setRok($rok)
@@ -477,7 +485,7 @@ class Sprawozdanie
 
     /**
      * Ustawia status
-     * 
+     *
      * @param int $status
      */
     public function setStatus($status)
@@ -490,7 +498,7 @@ class Sprawozdanie
 
     /**
      * Ustawia wersję
-     * 
+     *
      * @param int $wersja
      */
     public function setWersja($wersja)
@@ -500,7 +508,7 @@ class Sprawozdanie
 
     /**
      * Ustawia  flage czy najnowsza
-     * 
+     *
      * @param bool $czyNajnowsza
      */
     public function setCzyNajnowsza($czyNajnowsza)
@@ -510,7 +518,7 @@ class Sprawozdanie
 
     /**
      * Ustawia oceniajacyId
-     * 
+     *
      * @param int $oceniajacyId
      */
     public function setOceniajacyId($oceniajacyId)
@@ -520,7 +528,7 @@ class Sprawozdanie
 
     /**
      * Ustawia dataZatwierdzenia
-     * 
+     *
      * @param datetime $dataZatwierdzenia
      */
     public function setDataZatwierdzenia($dataZatwierdzenia)
@@ -530,7 +538,7 @@ class Sprawozdanie
 
     /**
      * Ustawia uwagi
-     * 
+     *
      * @param string $uwagi
      */
     public function setUwagi($uwagi)
@@ -540,7 +548,7 @@ class Sprawozdanie
 
     /**
      * Ustawia status powiadomienia
-     * 
+     *
      * @param type $powiadomienieWyslane
      */
     public function setPowiadomienieWyslane($powiadomienieWyslane)
@@ -552,6 +560,7 @@ class Sprawozdanie
      * Set sprawozdaniaSpolek
      *
      * @param  SprawozdanieSpolki $spr
+     *
      * @return Sprawozdanie
      */
     public function setSprawozdaniaSpolek($spr)
@@ -563,7 +572,7 @@ class Sprawozdanie
 
     /**
      * Get sprawozdaniaSpolek
-     * 
+     *
      * @return Collection
      */
     public function getSprawozdaniaSpolek()
@@ -573,7 +582,7 @@ class Sprawozdanie
 
     /**
      * Funkcja dodająca sprawozdanie spolki do sprawozdania
-     * 
+     *
      * @param \Parp\SsfzBundle\Entity\SprawozdanieSpolki $sprSpolki
      */
     public function addSprawozdaniaSpolek(SprawozdanieSpolki $sprSpolki)
@@ -584,7 +593,7 @@ class Sprawozdanie
 
     /**
      * Funkcja usuwająca sprawozdanie spolki ze sprawozdania
-     * 
+     *
      * @param \Parp\SsfzBundle\Entity\SprawozdanieSpolki $sprSpolki
      */
     public function removeSprawozdaniaSpolek(SprawozdanieSpolki $sprSpolki)
@@ -609,18 +618,10 @@ class Sprawozdanie
     }
 
     /**
-     * Konstruktor
-     */
-    public function __construct()
-    {
-        $this->sprawozdaniaSpolek = new ArrayCollection();
-    }
-
-    /**
      * @Assert\Callback
-     * 
+     *
      * Metoda sprawdza parametry zdefiniowane dla spolek
-     * 
+     *
      * @param ExecutionContextInterface $context
      */
     public function validate(ExecutionContextInterface $context)

@@ -1,11 +1,12 @@
 <?php
+
 namespace Parp\SsfzBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * SpolkaHistoriaZmian
- * 
+ *
  * Historia zmian w spółkach
  * Encja niezbędna do wykonania raportu wg Jasperreports
  *
@@ -14,7 +15,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class SpolkaHistoriaZmian
 {
-
     /**
      * @var int
      *
@@ -34,14 +34,14 @@ class SpolkaHistoriaZmian
     /**
      *
      * @var string
-     * 
+     *
      * @ORM\Column(name="nazwa", type="string", length=140, nullable=true)
      */
     private $nazwa;
 
     /**
      * @var string
-     * 
+     *
      * @ORM\Column(name="pole", type="string", nullable=true)
      */
     private $pole;
@@ -68,8 +68,7 @@ class SpolkaHistoriaZmian
     private $dataModyfikacji;
 
     /**
-     * 
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -77,8 +76,7 @@ class SpolkaHistoriaZmian
     }
 
     /**
-     * 
-     * @return integer
+     * @return int
      */
     public function getSpolkaId()
     {
@@ -86,7 +84,6 @@ class SpolkaHistoriaZmian
     }
 
     /**
-     * 
      * @return string
      */
     public function getNazwa()
@@ -95,7 +92,6 @@ class SpolkaHistoriaZmian
     }
 
     /**
-     * 
      * @return string
      */
     public function getPole()
@@ -104,7 +100,6 @@ class SpolkaHistoriaZmian
     }
 
     /**
-     * 
      * @return string
      */
     public function getStaraWartosc()
@@ -113,7 +108,6 @@ class SpolkaHistoriaZmian
     }
 
     /**
-     * 
      * @return string
      */
     public function getNowaWartosc()
@@ -122,7 +116,6 @@ class SpolkaHistoriaZmian
     }
 
     /**
-     * 
      * @return \Parp\SsfzBundle\Entity\Carbon\Carbon
      */
     public function getDataModyfikacji()
@@ -131,7 +124,6 @@ class SpolkaHistoriaZmian
     }
 
     /**
-     * 
      * @param integer $id
      */
     public function setId($id)
@@ -140,7 +132,6 @@ class SpolkaHistoriaZmian
     }
 
     /**
-     * 
      * @param integer $spolkaId
      */
     public function setSpolkaId($spolkaId)
@@ -149,7 +140,6 @@ class SpolkaHistoriaZmian
     }
 
     /**
-     * 
      * @param string $nazwa
      */
     public function setNazwa($nazwa)
@@ -158,7 +148,6 @@ class SpolkaHistoriaZmian
     }
 
     /**
-     * 
      * @param string $pole
      */
     public function setPole($pole)
@@ -167,7 +156,6 @@ class SpolkaHistoriaZmian
     }
 
     /**
-     * 
      * @param string $staraWartosc
      */
     public function setStaraWartosc($staraWartosc)
@@ -176,7 +164,6 @@ class SpolkaHistoriaZmian
     }
 
     /**
-     * 
      * @param string $nowaWartosc
      */
     public function setNowaWartosc($nowaWartosc)
@@ -185,7 +172,6 @@ class SpolkaHistoriaZmian
     }
 
     /**
-     * 
      * @param \Parp\SsfzBundle\Entity\Carbon\Carbon $dataModyfikacji
      */
     public function setDataModyfikacji(\Carbon\Carbon $dataModyfikacji)
@@ -195,7 +181,7 @@ class SpolkaHistoriaZmian
 
     /**
      * Wyzwalane przy operacji INSERT
-
+     *
      * @ORM\PrePersist
      */
     public function onPrePersist()
@@ -205,6 +191,7 @@ class SpolkaHistoriaZmian
 
     /**
      * Wyzwalane przy operacji UPDATE
+     *
      * @ORM\PreUpdate
      */
     public function onPreUpdate()

@@ -15,22 +15,19 @@ use Parp\SsfzBundle\Entity\Report;
 
 /**
  * Description of PrzeplywFinansowyController
- *
- * @author CI ZETO
  */
 class PrzeplywFinansowyController extends Controller
 {
-
     /**
      * Akcja zapisu przeplywu finansowego
-     * 
+     *
      * @param Request $request
      * @param integer $sprawozdanieId
-     * 
+     *
      * @Route("przeplyw/rejestracja/{sprawozdanieId}", name="przeplyw_rejestracja")
-     * 
+     *
      * @throws NotFoundHttpException
-     * 
+     *
      * @return Response
      */
     public function createPrzeplyw(Request $request, $sprawozdanieId)
@@ -80,21 +77,20 @@ class PrzeplywFinansowyController extends Controller
         }
 
         return $this->render('SsfzBundle:Report:przeplywRejestruj.html.twig', array(
-                'form' => $form->createView(),
-                'form_mode' => 'create',
-                'sprawozdanieId' => $sprawozdanieId,
-                'sprawozdanie' => $report,
-                )
-        );
+            'form' => $form->createView(),
+            'form_mode' => 'create',
+            'sprawozdanieId' => $sprawozdanieId,
+            'sprawozdanie' => $report,
+        ));
     }
 
     /**
      * Pobiera saldo koncowe za poprzedni okres
-     * 
+     *
      * @param Sprawozdanie $report
      * @param integer      $beneficjentId
      * @param Manager      $entityManager
-     * 
+     *
      * @return saldo koncowe
      */
     private function getSaldoPoczatkowe($report, $beneficjentId, $entityManager)
@@ -106,7 +102,6 @@ class PrzeplywFinansowyController extends Controller
         if ($previousReport) {
             $przeplyw = $entityManager->getRepository(\Parp\SsfzBundle\Entity\PrzeplywFinansowy::class)->findBy(array('sprawozdanieId' => $previousReport[0]->getId()));
             if ($przeplyw) {
-
                 return $przeplyw[0]->getSaldoKoncowe();
             }
         }
@@ -116,9 +111,9 @@ class PrzeplywFinansowyController extends Controller
 
     /**
      * Pobiera zalogowanego użytkownika
-     * 
+     *
      * @throws AccessDeniedException
-     * 
+     *
      * @return Uzytkownik
      */
     public function getZalogowanyUzytkownik()
@@ -133,7 +128,7 @@ class PrzeplywFinansowyController extends Controller
 
     /**
      * Pobiera identyfikator beneficjenta
-     * 
+     *
      * @return Identyfikator beneficjenta
      */
     private function getBeneficjentId()
@@ -144,10 +139,10 @@ class PrzeplywFinansowyController extends Controller
 
         return $beneficjentId;
     }
-    
+
     /**
-     * Pomocnicza metoda 
-     * 
+     * Pomocnicza metoda
+     *
      * @return KomunikatyService z kontenera
      */
 

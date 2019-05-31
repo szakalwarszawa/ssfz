@@ -10,13 +10,9 @@ use Carbon\Carbon;
 
 /**
  * Zadanie CRON do wysyłki powiadomień o niezłożonym sprawozdaniu
- *
- * @category Class
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
  */
-class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand {
-
+class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand
+{
     /**
      *
      * @var Carbon\Carbon
@@ -41,15 +37,16 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand {
 
     /**
      * Kontstruktor
-     * 
+     *
      * Ustawiane są daty:
      * dzisiejsza,
      * pierwszego terminu rozliczenia ze złożenia sprawozdzania,
      * drugiego terminu rozliczenia ze złożenia sprawozdania
-     * 
+     *
      * @param string $name
      */
-    public function __construct($name = null) {
+    public function __construct($name = null)
+    {
         parent::__construct($name);
         $this->dzisiejszaData = new Carbon('Europe/Warsaw');
     }
@@ -57,10 +54,13 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand {
     /**
      * Konfiguracja zadania
      */
-    protected function configure() {
-        $this->setName('sfz:sendRemind')
-                ->setDescription('Wysyłka powiadomień.')
-                ->setHelp('This command allows you to create test...');
+    protected function configure()
+    {
+        $this
+            ->setName('sfz:sendRemind')
+            ->setDescription('Wysyłka powiadomień.')
+            ->setHelp('This command allows you to create test...')
+        ;
     }
 
     /**
@@ -69,7 +69,8 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand {
      * @param InputInterface  $input
      * @param OutputInterface $output
      */
-    protected function execute(InputInterface $input, OutputInterface $output) {
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
         $this->pierwszyTermin = new Carbon($this->dzisiejszaData->year . '-' . $this->getContainer()->getParameter('przypomnienie_pierwszy_termin_miesiac_dzien'));
         $this->drugiTermin = new Carbon($this->dzisiejszaData->year . '-' . $this->getContainer()->getParameter('przypomnienie_drugi_termin_miesiac_dzien'));
         $okres = $this->getOkresRozliczenia();
@@ -102,7 +103,7 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand {
                     }
                 }
             }
-            if(!empty($this->beneficjenciZalegajacy)) {
+            if (!empty($this->beneficjenciZalegajacy)) {
                 $topic = 'Lista Beneficjentów Działania 3.1 zalegających ze złożeniem sprawozdania za okres ' . $okres;
                 $template = '@SsfzBundle/Resources/views/Email/unsubmittedReport.html.twig';
                 $templateParams = array(
@@ -117,10 +118,11 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand {
 
     /**
      * Zwraca okres rozliczenia
-     * 
+     *
      * @return string
      */
-    private function getOkresRozliczenia() {
+    private function getOkresRozliczenia()
+    {
         $okres = 'lipiec - grudzień';
         if ($this->dzisiejszaData->month < 7) {
             $okres = 'styczeń – czerwiec';
@@ -135,7 +137,8 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand {
      *
      * @return MailerService
      */
-    protected function getMailerService() {
+    protected function getMailerService()
+    {
         return $this->getContainer()->get('ssfz.service.mailer_service');
     }
 
@@ -144,7 +147,8 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand {
      *
      * @return SprawozdanieRepository
      */
-    protected function getSprawozdanieRepository() {
+    protected function getSprawozdanieRepository()
+    {
         return $this->getContainer()->get('ssfz.service.sprawozdanie_service')->getSprawozdanieRepository();
     }
 
@@ -153,8 +157,8 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand {
      *
      * @return SprawozdanieRepository
      */
-    protected function getUzytkownikRepository() {
+    protected function getUzytkownikRepository()
+    {
         return $this->getContainer()->get('ssfz.service.uzytkownik_service')->getUzytkownikRepository();
     }
-
 }

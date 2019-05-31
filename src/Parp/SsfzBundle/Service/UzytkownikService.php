@@ -8,7 +8,7 @@ use Parp\SsfzBundle\Entity\Uzytkownik;
 
 /**
  * Dostęp do repozytorium użytkowników i ról.
- * 
+ *
  * @category Class
  * @package  SsfzBundle
  * @link     http://zeto.bialystok.pl
@@ -34,7 +34,7 @@ class UzytkownikService
 
     /**
      * Konstruktor
-     * 
+     *
      * @param UzytkownikRepository $uzytkownikRepository
      * @param RolaRepository       $rolaRepository
      */
@@ -46,7 +46,7 @@ class UzytkownikService
 
     /**
      * Zwraca repozytorium encji Uzytkownik
-     * 
+     *
      * @return UzytkownikRepository
      */
     public function getUzytkownikRepository()
@@ -56,7 +56,7 @@ class UzytkownikService
 
     /**
      * Wyszukuje uzytkownika po kryteriach
-     * 
+     *
      * @param array $criteria
      * @return Uzytkownik
      */
@@ -67,7 +67,7 @@ class UzytkownikService
 
     /**
      * Wyszukuje uzytkownika po kryteriach
-     * 
+     *
      * @param array $criteria
      * @return Uzytkownik
      */
@@ -78,7 +78,7 @@ class UzytkownikService
 
     /**
      * Dodaje nowego użytkownika
-     * 
+     *
      * @param Uzytkownik $user
      * @param Rola       $role
      */
@@ -89,7 +89,7 @@ class UzytkownikService
 
     /**
      * Aktywuje konto użytkownika
-     * 
+     *
      * @param Uzytkownik $user
      */
     public function activateUserAccount(Uzytkownik $user)
@@ -99,7 +99,7 @@ class UzytkownikService
 
     /**
      * Zapomniane hasło
-     * 
+     *
      * @param Uzytkownik $user
      */
     public function forgottenPassword(Uzytkownik $user)
@@ -109,7 +109,7 @@ class UzytkownikService
 
     /**
      * Nowe hasło
-     * 
+     *
      * @param Uzytkownik $user
      * @param string     $password
      */

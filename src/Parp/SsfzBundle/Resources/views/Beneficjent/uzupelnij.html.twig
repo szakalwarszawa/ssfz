@@ -1,6 +1,10 @@
 {% extends 'SsfzBundle::baseLayout.html.twig' %}
 
-{% block body %} 
-    <h3 class="text-center">Witaj w systemie Sprawozdawczości Funduszy Zalążkowych.</br> Aby korzystać z funkcjonalności systemu koniecznie uzupełnij swój profil aktualnymi danymi.</h3>    
-    <a href="{{ path('beneficjent_profil')}}" class="btn btn-info btn-lg btn-block" role="button">Uzupełnij swój profil</a>
+{% block body %}
+    <h3 class="text-center">
+        Witaj w systemie Sprawozdawczości Funduszy Zalążkowych.
+        </br>
+        Aby korzystać z funkcjonalności systemu koniecznie uzupełnij swój profil aktualnymi danymi.
+    </h3>
+    <a href="{{ path('beneficjent_profil') }}" class="btn btn-info btn-lg btn-block" role="button">Uzupełnij swój profil</a>
 {% endblock %}

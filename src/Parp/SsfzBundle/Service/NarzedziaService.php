@@ -1,26 +1,15 @@
 <?php
-/**
- * Serwis obsługujący operacje pomocnicze
- *
- * @category Service
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
- */
+
 namespace Parp\SsfzBundle\Service;
 
 /**
  * Serwis obsługujący operacje pomocnicze
- *
- * @category Class
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
  */
 class NarzedziaService
 {
-
     /**
      * Repozytorium encji BeneficjentFormaPrawna
-     * 
+     *
      * @var BeneficjentFormaPrawnaRepository
      */
     private $dictFormaRepo;
@@ -34,14 +23,14 @@ class NarzedziaService
 
     /**
      * Repozytorium encji GospodarkaDzial
-     * 
+     *
      * @var GospodarkaDzialRepository
      */
     private $dictDzialRepo;
 
     /**
      * Konstruktor parametryczny
-     * 
+     *
      * @param BeneficjentFormaPrawnaRepository $dictFormaRepo repozytorium BeneficjentFormaPrawnaRepository
      * @param WojewodztwoRepository            $dictWojRepo   repozytorium WojewodztwoRepository
      * @param GospodarkaDzialRepository        $dictDzialRepo repozytorium GospodarkaDzialRepository
@@ -55,14 +44,13 @@ class NarzedziaService
 
     /**
      * Zwraca słownik form prawnych beneficjenta
-     * 
+     *
      * @param  string $sort
      * @return array
      */
     public function getSlownikBeneficjentFormaPrawna($sort = null)
     {
         if (!$sort) {
-
             return $this->dictFormaRepo->findBy(array(), array('id' => 'ASC'));
         }
 
@@ -71,14 +59,13 @@ class NarzedziaService
 
     /**
      * Zwraca słownik województw
-     * 
+     *
      * @param  string $sort
      * @return array
      */
     public function getSlownikWojewodztwo($sort = null)
     {
         if (!$sort) {
-
             return $this->dictWojRepo->findBy(array(), array('id' => 'ASC'));
         }
 
@@ -87,14 +74,13 @@ class NarzedziaService
 
     /**
      * Zwraca słownik działów gospodarki
-     * 
+     *
      * @param  string $sort
      * @return array
      */
     public function getSlownikGospodarkaDzial($sort = null)
     {
         if (!$sort) {
-
             return $this->dictDzialRepo->findBy(array(), array('id' => 'ASC'));
         }
 
@@ -103,7 +89,7 @@ class NarzedziaService
 
     /**
      * Zwraca repozytorium BeneficjentFormaPrawnaRepository
-     * 
+     *
      * @return BeneficjentFormaPrawnaRepository
      */
     public function getBeneficjentFormaPrawnaRepo()
@@ -113,7 +99,7 @@ class NarzedziaService
 
     /**
      * Zwraca repozytorium GospodarkaDzialRepository
-     * 
+     *
      * @return GospodarkaDzialRepository
      */
     public function getGospodarkaDzialRepo()
@@ -123,7 +109,7 @@ class NarzedziaService
 
     /**
      * Zwraca repozytorium WojewodztwoRepository
-     * 
+     *
      * @return WojewodztwoRepository
      */
     public function getWojewodztwoRepo()

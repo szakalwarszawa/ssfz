@@ -1,13 +1,10 @@
 <?php
+
 namespace Parp\SsfzBundle\Twig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
-/**
- * Description of AppExtension
- *
- * @author adamp
- */
+
 class AppExtension extends AbstractExtension
 {
     private $htmlPurifier;

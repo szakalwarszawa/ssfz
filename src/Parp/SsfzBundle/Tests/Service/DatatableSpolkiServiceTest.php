@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Tests\Service;
 
 use PHPUnit\Framework\TestCase;
@@ -6,19 +7,19 @@ use Parp\SsfzBundle\Service\DatatableSpolkiService;
 
 /**
  * Testuje klasę DatatableSpolkiService
- * 
+ *
  * @covers \Parp\SsfzBundle\Service\DatatableSpolkiService
  */
 class DatatableSpolkiServiceTest extends TestCase
 {
-    
     /**
      * Ustawienie środowiska testowego
      */
-    public function setUp() 
-    {                       
-        $this->service = new DatatableSpolkiService();       
+    public function setUp()
+    {
+        $this->service = new DatatableSpolkiService();
     }
+
     /**
      * Testuje metodę getDatatableSpolkiFields
      */
@@ -45,15 +46,16 @@ class DatatableSpolkiServiceTest extends TestCase
                     'NPV' => 's.npv',
                     'Udziałowcy' => 's.udzialowcy',
                     'Prezes Zarządu' => 's.prezes',
-                    'Pozostali Członkowie Zarządu' => 's.zarzadPozostali',                    
+                    'Pozostali Członkowie Zarządu' => 's.zarzadPozostali',
                     'ZakonczonaRaw' => 's.zakonczona',
                     ' ' => 's.id',
-                    '  ' => 's.id',                    
+                    '  ' => 's.id',
                     '_identifier_' => 's.id');
         $value = $this->service->getDatatableSpolkiFields();
         $this->assertNotNull($value);
-        $this->assertEquals($value, $fields);         
+        $this->assertEquals($value, $fields);
     }
+
     /**
      * Testuje metodę getDatatableSpolkiRenderers
      */
@@ -66,6 +68,6 @@ class DatatableSpolkiServiceTest extends TestCase
         $renderers[23]['view'] = 'SsfzBundle:Parp:_portfelActions.html.twig';
         $value = $this->service->getDatatableSpolkiRenderers();
         $this->assertNotNull($value);
-        $this->assertEquals($value, $renderers); 
-    }             
+        $this->assertEquals($value, $renderers);
+    }
 }

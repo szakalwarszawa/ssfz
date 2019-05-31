@@ -34,7 +34,6 @@ use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
  */
 class UwierzytelnianieListener implements EventSubscriberInterface
 {
-
     /**
      * @var EntityManager
      */
@@ -79,9 +78,13 @@ class UwierzytelnianieListener implements EventSubscriberInterface
      * @throws InvalidOptionsException
      */
     public function __construct(
-    EntityManager $entityManager, Request $requestStack, FormFactory $formFactory, EncoderFactory $encoderFactory, Router $router, $defaultPasswordEncoder
-    )
-    {
+        EntityManager $entityManager,
+        Request $requestStack,
+        FormFactory $formFactory,
+        EncoderFactory $encoderFactory,
+        Router $router,
+        $defaultPasswordEncoder
+    ) {
         $this->entityManager = $entityManager;
         $this->request = $requestStack;
         $this->formFactory = $formFactory;
@@ -351,7 +354,10 @@ class UwierzytelnianieListener implements EventSubscriberInterface
                 foreach ($formularz->get('_password')->getErrors() as $blad) {
                     if ($blad instanceof FormError) {
                         $properFormError = new FormError(
-                            $blad->getMessage(), $blad->getMessageTemplate(), $blad->getMessageParameters(), $blad->getMessagePluralization()
+                            $blad->getMessage(),
+                            $blad->getMessageTemplate(),
+                            $blad->getMessageParameters(),
+                            $blad->getMessagePluralization()
                         );
 
                         $trescBledow[] = $blad->getMessage();

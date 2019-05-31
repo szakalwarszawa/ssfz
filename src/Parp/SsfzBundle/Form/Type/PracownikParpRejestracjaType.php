@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Form\Type;
 
 use Doctrine\ORM\EntityRepository;
@@ -16,13 +17,12 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  */
 class PracownikParpRejestracjaType extends AbstractType
 {
-
     /**
      * Pobiera loginy pracowników PARP z LDAP
-     * 
-     * Korzystając z LdapDataService pobiera loginy pracowników LDAP 
+     *
+     * Korzystając z LdapDataService pobiera loginy pracowników LDAP
      * tylko tych którzy nie dodani zostali do aplikacji.
-     * 
+     *
      * @param  LdapDataService $ldapService usługa LDAP
      * @param  type            $uzytkRepo   repozytorium użytkowników
      * @return string[] tablica loginów pracowników PARP
@@ -41,56 +41,51 @@ class PracownikParpRejestracjaType extends AbstractType
 
     /**
      * Buduje formularz
-     * 
+     *
      * @param FormBuilderInterface $builder
      * @param array                $options
      * @return Response
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        //pole testowe, korzystające z powyżej metody
         $ldapService = $options['ssfz.service.ldap_data_service'];
         $uzytkRepo = $options['uzytk_repo'];
-        $builder
-            ->add(
-                'login', \Symfony\Component\Form\Extension\Core\Type\ChoiceType::class, [
-                'label' => 'Pracownik',
-                'choices' => $this->pobierzLoginyPracownikowParp($ldapService, $uzytkRepo),
-                'constraints' => [
-                    new NotBlank(),
-                    new Length(['max' => '255']),
-                    new Callback(
-                        [
-                        'callback' => function ($login, ExecutionContextInterface $context) use ($uzytkRepo) {
-                            if ($uzytkRepo->loginIstnieje($login)) {
-                                $context->buildViolation('Użytkownik o podanym loginie został już dodany')
-                                ->atPath('login')
-                                ->addViolation();
-                            }
-                        }]
-                    )
-                ]
-                ]
-            )
-            ->add(
-                'rola', \Symfony\Bridge\Doctrine\Form\Type\EntityType::class, [
-                'class' => 'SsfzBundle:Rola',
-                'property' => 'opis',
-                'label' => 'Rola',
-                'query_builder' => function (EntityRepository $er ) {
-                    return $er->createQueryBuilder('n')
-                        ->where('n.id not in (:marray)')
-                        ->setParameter('marray', array('4')); //id roli beneficjenta
-                },
-                'constraints' => [
-                    new NotBlank(),
-                ]]
-            );
+        $builder->add('login', \Symfony\Component\Form\Extension\Core\Type\ChoiceType::class, [
+            'label' => 'Pracownik',
+            'choices' => $this->pobierzLoginyPracownikowParp($ldapService, $uzytkRepo),
+            'constraints' => [
+                new NotBlank(),
+                new Length(['max' => '255']),
+                new Callback([
+                    'callback' => function ($login, ExecutionContextInterface $context) use ($uzytkRepo) {
+                        if ($uzytkRepo->loginIstnieje($login)) {
+                            $context->buildViolation('Użytkownik o podanym loginie został już dodany')
+                            ->atPath('login')
+                            ->addViolation();
+                        }
+                    }
+                ])
+            ]
+        ]);
+
+        $builder->add('rola', \Symfony\Bridge\Doctrine\Form\Type\EntityType::class, [
+            'class' => 'SsfzBundle:Rola',
+            'property' => 'opis',
+            'label' => 'Rola',
+            'query_builder' => function (EntityRepository $er) {
+                return $er->createQueryBuilder('n')
+                    ->where('n.id not in (:marray)')
+                    ->setParameter('marray', array('4')); //id roli beneficjenta
+            },
+            'constraints' => [
+                new NotBlank(),
+            ]
+        ]);
     }
 
     /**
      * Opcje formularza
-     * 
+     *
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)

@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace Parp\SsfzBundle\Tests\Form\Type;
 
 use Symfony\Component\Form\Test\TypeTestCase;
@@ -14,6 +8,7 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+
 /**
  * Description of SprawozdanieSpolkiTypeTest
  *
@@ -21,11 +16,9 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  */
 class SprawozdanieSpolkiTypeTest
 {
-    
-    
     /**
      * Dodaje rozszerzenia formularzy
-     * 
+     *
      * @return collection
      */
     protected function getExtensions()
@@ -49,8 +42,8 @@ class SprawozdanieSpolkiTypeTest
     public function testSubmitValidData()
     {
         $dateNow = new \DateTime('now');
-        $sprawozdanie = new \Parp\SsfzBundle\Entity\Sprawozdanie(); 
-        
+        $sprawozdanie = new \Parp\SsfzBundle\Entity\Sprawozdanie();
+
         $formData = array(
             '$id' => 1,
             '$sprawozdanieId' => 2,
@@ -73,10 +66,10 @@ class SprawozdanieSpolkiTypeTest
             'sprawozdanie' =>$sprawozdanie,
         );
 
-    
+
         $form = $this->factory->create(\Parp\SsfzBundle\Form\Type\SprawozdanieSpolkiType::class);
         $object = new \Parp\SsfzBundle\Entity\SprawozdanieSpolki();
-        
+
         $object->setId(1);
         $object->setSprawozdanieId(2);
         $object->setLp($dateNow);
@@ -95,7 +88,7 @@ class SprawozdanieSpolkiTypeTest
         $object->setZatrudnieniewStosunkuDoPoprzedniegoRoku(1);
         $object->setZatrudnieniewStosunkuDoPoprzedniegoOkresu(2);
         $object->setSprawozdanie($sprawozdanie);
-                            
+
         $form->submit($formData);
 
         $this->assertTrue($form->isSynchronized());

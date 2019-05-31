@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Tests\Entity;
 
 use PHPUnit\Framework\TestCase;
@@ -6,9 +7,10 @@ use Parp\SsfzBundle\Entity\Uzytkownik;
 use Parp\SsfzBundle\Entity\Rola;
 use Parp\SsfzBundle\Entity\Beneficjent;
 use Carbon\Carbon;
+
 /**
  * Test encji Uzytkownik
- * 
+ *
  * @covers \Parp\SsfzBundle\Entity\Uzytkownik
  */
 class UzytkownikTest extends TestCase
@@ -100,7 +102,7 @@ class UzytkownikTest extends TestCase
     {
         $kodZapomnianeHaslo = base64_encode(random_bytes(64));
         $kodZapomnianeHaslo = str_replace('/', '', $kodZapomnianeHaslo);
-        
+
         $this->uzytkownik->setKodZapomnianeHaslo($kodZapomnianeHaslo);
         $this->assertEquals($kodZapomnianeHaslo, $this->uzytkownik->getKodZapomnianeHaslo());
     }
@@ -153,7 +155,7 @@ class UzytkownikTest extends TestCase
     {
         $kodAktywacjaKonta = base64_encode(random_bytes(64));
         $kodAktywacjaKonta = str_replace('/', '', $kodAktywacjaKonta);
-        
+
         $this->uzytkownik->setKodAktywacjaKonta($kodAktywacjaKonta);
         $this->assertEquals($kodAktywacjaKonta, $this->uzytkownik->getKodAktywacjaKonta());
     }

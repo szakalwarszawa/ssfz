@@ -16,17 +16,12 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 /**
  * Seeder danych testowych
- * 
- * @category Class
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
  */
 class Fixtures implements FixtureInterface
 {
-
     /**
      * Załadowanie danych do bazy
-     * 
+     *
      * @param ObjectManager $manager
      */
     public function load(ObjectManager $manager)
@@ -80,7 +75,7 @@ class Fixtures implements FixtureInterface
         $userBeneficjent->setStatus(1);
         $manager->persist($userBeneficjent);
         $manager->flush();
-        
+
         $userParpPass = 'Zeto#2017!';
         $userParp = new Uzytkownik();
         $userParp->setLogin('bzk666');
@@ -91,15 +86,15 @@ class Fixtures implements FixtureInterface
         $manager->flush();
         $userParp->setStatus(1);
         $manager->persist($userParp);
-        $manager->flush();          
-        
+        $manager->flush();
+
         $okresyKonfiguracja = new OkresyKonfiguracja();
         $okresyKonfiguracja->setRok(2016);
         $okresyKonfiguracja->setO1u(0);
         $okresyKonfiguracja->setO2u(0);
         $manager->persist($okresyKonfiguracja);
         $manager->flush();
-        
+
         $okresyKonfiguracja = new OkresyKonfiguracja();
         $okresyKonfiguracja->setRok(2017);
         $okresyKonfiguracja->setO1u(0);
@@ -119,14 +114,14 @@ class Fixtures implements FixtureInterface
         $okresyKonfiguracja->setO1u(0);
         $okresyKonfiguracja->setO2u(0);
         $manager->persist($okresyKonfiguracja);
-        $manager->flush();        
-        
+        $manager->flush();
+
         $beneficjentKonto = new Beneficjent();
         $beneficjentKonto->setNazwa('BeneficjentTestowy');
         $beneficjentKonto->setAdrWojewodztwo('podlaskie');
         $beneficjentKonto->setAdrMiejscowosc('MiejscowoscTest');
         $beneficjentKonto->setAdrUlica('UlicaTest');
-        $beneficjentKonto->setAdrBudynek('1'); 
+        $beneficjentKonto->setAdrBudynek('1');
         $beneficjentKonto->setAdrLokal('1');
         $beneficjentKonto->setAdrKod('11-111');
         $beneficjentKonto->setAdrPoczta('PocztaTest');
@@ -137,21 +132,21 @@ class Fixtures implements FixtureInterface
         $beneficjentKonto->setWypelniony('1');
         $manager->persist($beneficjentKonto);
         $manager->flush();
-                
+
         $userBeneficjent->setBeneficjent($beneficjentKonto);
         $manager->persist($userBeneficjent);
-        $manager->flush();        
-        
+        $manager->flush();
+
         $umowa = new Umowa();
         $umowa->setNumer('123456');
         $umowa->setBeneficjent($beneficjentKonto);
         $manager->persist($umowa);
-        $manager->flush();        
+        $manager->flush();
         $spolka = new Spolka();
         $spolka->setUmowa($umowa);
         $manager->persist($spolka);
-        $manager->flush();          
-        
+        $manager->flush();
+
         $sprawozdanie = new Sprawozdanie();
         $sprawozdanie->setUmowa($umowa);
         $sprawozdanie->setCreatorId($userBeneficjent->getId());
@@ -166,8 +161,8 @@ class Fixtures implements FixtureInterface
         $sprawozdanie->setWersja(1);
         $sprawozdanie->setCzyNajnowsza(1);
         $manager->persist($sprawozdanie);
-        $manager->flush();    
-        
+        $manager->flush();
+
         $sprawozdanie2 = new Sprawozdanie();
         $sprawozdanie2->setUmowa($umowa);
         $sprawozdanie2->setCreatorId($beneficjentKonto->getId());
@@ -182,8 +177,8 @@ class Fixtures implements FixtureInterface
         $sprawozdanie2->setWersja(1);
         $sprawozdanie2->setCzyNajnowsza(1);
         $manager->persist($sprawozdanie2);
-        $manager->flush();     
-        
+        $manager->flush();
+
         $sprawozdanie3 = new Sprawozdanie();
         $sprawozdanie3->setUmowa($umowa);
         $sprawozdanie3->setCreatorId($beneficjentKonto->getId());
@@ -198,8 +193,8 @@ class Fixtures implements FixtureInterface
         $sprawozdanie3->setWersja(1);
         $sprawozdanie3->setCzyNajnowsza(1);
         $manager->persist($sprawozdanie3);
-        $manager->flush();     
-        
+        $manager->flush();
+
         $sprawozdanie4 = new Sprawozdanie();
         $sprawozdanie4->setUmowa($umowa);
         $sprawozdanie4->setCreatorId($beneficjentKonto->getId());
@@ -215,13 +210,14 @@ class Fixtures implements FixtureInterface
         $sprawozdanie4->setCzyNajnowsza(1);
         $manager->persist($sprawozdanie4);
         $manager->flush();
-        
-        
-        $beneficjentFormaPrawnaNames = ['Spółka z o.o.',
+
+        $beneficjentFormaPrawnaNames = [
+            'Spółka z o.o.',
             'Spółka akcyjna',
             'Spółka komandytowa / SKA',
             'Inna forma prawna',
-            'Spółka w likwidacji / zlikwidowana'];
+            'Spółka w likwidacji / zlikwidowana',
+        ];
 
         foreach ($beneficjentFormaPrawnaNames as $beneficjentFormaPrawnaName) {
             $record = new BeneficjentFormaPrawna();
@@ -231,7 +227,8 @@ class Fixtures implements FixtureInterface
 
         $manager->flush();
 
-        $gospodarkaDzialNames = ['ICT (Hardware)',
+        $gospodarkaDzialNames = [
+            'ICT (Hardware)',
             'ICT (Software)',
             'ICT (Big Data)',
             'ICT (Smart Technologies)',
@@ -284,9 +281,10 @@ class Fixtures implements FixtureInterface
 
     /**
      * Metoda sortująca tablicę elementów z
-     * polskimi znakami 
-     * 
+     * polskimi znakami
+     *
      * @param  array $array
+     *
      * @return array
      */
     private function sortPl($array)
@@ -304,7 +302,7 @@ class Fixtures implements FixtureInterface
         $text2 = implode('^^^', $newArray);
         $newtext2 = str_replace($arrayNew, $arrayPol, $text2);
         $final = explode('^^^', $newtext2);
-        
+
         return $final;
     }
 }

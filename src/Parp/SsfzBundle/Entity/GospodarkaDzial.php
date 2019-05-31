@@ -13,7 +13,6 @@ use Carbon\Carbon;
  */
 class GospodarkaDzial
 {
-
     /**
      * @var int
      *
@@ -33,7 +32,7 @@ class GospodarkaDzial
     /**
      * Get id
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -43,7 +42,7 @@ class GospodarkaDzial
     /**
      * Get nazwa
      *
-     * @return string 
+     * @return string
      */
     public function getNazwa()
     {
@@ -51,7 +50,7 @@ class GospodarkaDzial
     }
 
     /**
-     * 
+     *
      * @param string $nazwa
      */
     public function setNazwa($nazwa)

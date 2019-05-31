@@ -12,16 +12,16 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Testuje klasę UmowaType
- * 
+ *
  * @covers \Parp\SsfzBundle\Form\Type\UmowaType
  */
 class UmowaTypeTest extends TypeTestCase
 {
     /**
      * Dodaje rozszerzenia formularzy
-     * 
+     *
      * @return collection
-     */      
+     */
     protected function getExtensions()
     {
         $this->validator = $this->createMock(ValidatorInterface::class);
@@ -35,10 +35,11 @@ class UmowaTypeTest extends TypeTestCase
         return array(
             new ValidatorExtension($this->validator),
         );
-    }    
+    }
+
     /**
      * Testuje submit formularza
-     */    
+     */
     public function testSubmitValidData()
     {
         $formData = array(

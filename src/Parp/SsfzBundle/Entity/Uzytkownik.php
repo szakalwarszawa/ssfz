@@ -12,13 +12,12 @@ use Parp\SsfzBundle\Entity\Rola;
  *
  * @ORM\Table(name="sfz_uzytkownik")
  * @ORM\Entity(repositoryClass="Parp\SsfzBundle\Repository\UzytkownikRepository")
- * @UniqueEntity(fields="login",                                                  message="Login jest już w użyciu.")
- * @UniqueEntity(fields="email",                                                  message="Adres email jest już w użyciu.")
+ * @UniqueEntity(fields="login", message="Login jest już w użyciu.")
+ * @UniqueEntity(fields="email", message="Adres email jest już w użyciu.")
  * @ORM\HasLifecycleCallbacks
  */
 class Uzytkownik implements AdvancedUserInterface, \Serializable
 {
-
     /**
      * @var int
      *
@@ -30,7 +29,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
 
     /**
      * @var string
-     * 
+     *
      * @ORM\Column(name="login", type="string", length=64, unique=true)
      * @Assert\NotBlank(groups={"rejestracja"})
      * @Assert\Length(groups={"rejestracja"}, max=64)
@@ -40,7 +39,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
 
     /**
      * @var string
-     * 
+     *
      * @ORM\Column(name="haslo", type="string", nullable=true)
      * @Assert\NotBlank(groups={"rejestracja"})
      * @Assert\Length(max=255, groups={"rejestracja"})
@@ -57,7 +56,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
 
     /**
      * @var string
-     * 
+     *
      * @ORM\Column(name="email", type="string", length=250, unique=true)
      * @Assert\NotBlank(groups={"rejestracja"})
      * @Assert\Email(groups={"rejestracja"}, message="Adres email nie zawiera poprawnej konstrukcji, sprawdź czy adres nie zawiera błedów.")
@@ -66,42 +65,42 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
 
     /**
      * @var int
-     * 
+     *
      * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Rola")
      */
     private $rola;
 
     /**
      * @var boolean
-     * 
+     *
      * @ORM\Column(name="ban", type="boolean")
      */
     private $ban;
 
     /**
      * @var string
-     * 
-     * @ORM\Column(name="kod_zapomniane_haslo", type="string", nullable=true) 
+     *
+     * @ORM\Column(name="kod_zapomniane_haslo", type="string", nullable=true)
      */
     private $kodZapomnianeHaslo;
 
     /**
      * @var Carbon\Carbon
-     * 
+     *
      * @ORM\Column(name="utworzony", type="datetime")
      */
     private $utworzony;
 
     /**
      * @var Carbon\Carbon
-     * 
+     *
      * @ORM\Column(name="zmodyfikowany", type="datetime", nullable = true)
      */
     private $zmodyfikowany;
 
     /**
      * @var integer
-     * 
+     *
      * @ORM\Column(name="status", type="integer")
      */
     private $status;
@@ -114,8 +113,8 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
 
     /**
      * @var string
-     * 
-     * @ORM\Column(name="kod_aktywacja_konta", type="string", nullable=true) 
+     *
+     * @ORM\Column(name="kod_aktywacja_konta", type="string", nullable=true)
      */
     private $kodAktywacjaKonta;
 
@@ -132,7 +131,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -142,7 +141,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     /**
      * Get login
      *
-     * @return string 
+     * @return string
      */
     public function getLogin()
     {
@@ -152,7 +151,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     /**
      * Get haslo
      *
-     * @return string 
+     * @return string
      */
     public function getHaslo()
     {
@@ -162,7 +161,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -172,7 +171,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     /**
      * Get rolaId
      *
-     * @return integet 
+     * @return integet
      */
     public function getRola()
     {
@@ -182,7 +181,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     /**
      * Get ban
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getBan()
     {
@@ -192,7 +191,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     /**
      * Get kodZapomnianeHaslo
      *
-     * @return string 
+     * @return string
      */
     public function getKodZapomnianeHaslo()
     {
@@ -202,7 +201,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     /**
      * Get utworzony
      *
-     * @return Carbon\Carbon 
+     * @return Carbon\Carbon
      */
     public function getUtworzony()
     {
@@ -212,7 +211,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     /**
      * Get zmodyfikowany
      *
-     * @return Carbon\Carbon 
+     * @return Carbon\Carbon
      */
     public function getZmodyfikowany()
     {
@@ -240,7 +239,6 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * 
      * @return string
      */
     public function getKodAktywacjaKonta()
@@ -249,7 +247,6 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * 
      * @param string $login
      */
     public function setLogin($login)
@@ -258,7 +255,6 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * 
      * @param string $haslo
      */
     public function setHaslo($haslo)
@@ -267,7 +263,6 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * 
      * @param string $email
      */
     public function setEmail($email)
@@ -276,8 +271,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * 
-     * @param integer $rola
+     * @param int $rola
      */
     public function setRola($rola)
     {
@@ -285,8 +279,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * 
-     * @param boolean $ban
+     * @param bool $ban
      */
     public function setBan($ban)
     {
@@ -294,7 +287,6 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * 
      * @param string $kodZapomnianeHaslo
      */
     public function setKodZapomnianeHaslo($kodZapomnianeHaslo)
@@ -303,7 +295,6 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * 
      * @param \Parp\SsfzBundle\Entity\Carbon\Carbon $utworzony
      */
     public function setUtworzony(\Carbon\Carbon $utworzony)
@@ -312,7 +303,6 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * 
      * @param \Parp\SsfzBundle\Entity\Carbon\Carbon $zmodyfikowany
      */
     public function setZmodyfikowany(\Carbon\Carbon $zmodyfikowany)
@@ -321,8 +311,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * 
-     * @param integer $status
+     * @param int $status
      */
     public function setStatus($status)
     {
@@ -332,7 +321,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     /**
      * Set beneficjent
      *
-     * @param Beneficjent $beneficjent     
+     * @param Beneficjent $beneficjent
      */
     public function setBeneficjent($beneficjent)
     {
@@ -340,7 +329,6 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * 
      * @param string $kodAktywacjaKonta
      */
     public function setKodAktywacjaKonta($kodAktywacjaKonta)
@@ -350,9 +338,9 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
 
     /**
      * Zwraca informację czy użytkownik jest pracownikiem PARP
-     * 
+     *
      * Tzn. czy ma jedną z ról zdefiniowaną w Rola::NAZWY_ROL_PARP
-     *  
+     *
      * @return boolean
      */
     public function czyPracownikParp()
@@ -362,7 +350,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
 
     /**
      * Wyzwalane przy operacji INSERT
-
+     *
      * @ORM\PrePersist
      */
     public function onPrePersist()
@@ -378,7 +366,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
 
     /**
      * Wyzwalane przy operacji UPDATE
-
+     *
      * @ORM\PreUpdate
      */
     public function onPreUpdate()
@@ -387,7 +375,6 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * 
      * @return string
      */
     public function getUsername()
@@ -396,7 +383,6 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * 
      * @return null
      */
     public function getSalt()
@@ -405,7 +391,6 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * 
      * @return string
      */
     public function getPassword()
@@ -414,7 +399,6 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * 
      * @return array
      */
     public function getRoles()
@@ -423,7 +407,6 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * 
      * @return string
      */
     public function getImie()
@@ -432,7 +415,6 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * 
      * @return string
      */
     public function getNazwisko()
@@ -441,7 +423,6 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * 
      * @param string $imie
      */
     public function setImie($imie)
@@ -450,26 +431,23 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * 
      * @param string $nazwisko
      */
     public function setNazwisko($nazwisko)
     {
         $this->nazwisko = $nazwisko;
     }
+
     /**
      * Usuwa dane poufne z użytkownika
-     * 
      */
     public function eraseCredentials()
     {
-        
     }
 
     /**
-     *
      * @see \Serializable::serialize()
-     * 
+     *
      * @return Objects
      */
     public function serialize()
@@ -494,7 +472,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     /**
      *
      * @see \Serializable::unserialize()
-     *  
+     *
      * @param Object $serialized
      */
     public function unserialize($serialized)
@@ -515,7 +493,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * 
+     *
      * @return boolean
      */
     public function isAccountNonExpired()
@@ -524,7 +502,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * 
+     *
      * @return boolean
      */
     public function isAccountNonLocked()
@@ -537,7 +515,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * 
+     *
      * @return boolean
      */
     public function isCredentialsNonExpired()
@@ -546,7 +524,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * 
+     *
      * @return boolean
      */
     public function isEnabled()
@@ -569,7 +547,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
 
     /**
      * Ustawia rolę nowemu użytkownikowi
-     * 
+     *
      * @param Rola $role
      */
     public function newUser(Rola $role)
@@ -577,6 +555,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
         $this->setRola($role);
         $this->setKodAktywacjaKonta(str_replace(array('/', '+', '='), '', base64_encode(random_bytes(64))));
     }
+
     /**
      * Generuje token do resetu hasła
      */
@@ -584,9 +563,10 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     {
         $this->setKodZapomnianeHaslo(str_replace(array('/', '+', '='), '', base64_encode(random_bytes(64))));
     }
+
     /**
      * Zmiana hasła
-     *  
+     *
      * @param type $newPassword
      */
     public function newPassword($newPassword)

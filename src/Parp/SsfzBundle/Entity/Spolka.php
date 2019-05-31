@@ -13,7 +13,6 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  */
 class Spolka
 {
-
     /**
      * @var int
      *
@@ -45,24 +44,24 @@ class Spolka
 
     /**
      * @var string
-     * 
-     * @Assert\Length(     
+     *
+     * @Assert\Length(
      *      max = 1000,
      *      maxMessage = "W polu nie może znajdować się więcej niż {{ limit }} znaków."
-     * )  
-     * 
+     * )
+     *
      * @ORM\Column(name="nazwa", type="string", length=140, nullable=true)
      */
     private $nazwa;
 
     /**
      * @var string
-     *  
-     * @Assert\Length(     
+     *
+     * @Assert\Length(
      *      max = 140,
      *      maxMessage = "W polu nie może znajdować się więcej niż {{ limit }} znaków."
      * )
-     *   
+     *
      * @ORM\Column(name="forma", type="string", length=140, nullable=true)
      */
     private $forma;
@@ -70,11 +69,11 @@ class Spolka
     /**
      * @var string
      *
-     *  @Assert\Length(     
+     *  @Assert\Length(
      *      max = 140,
      *      maxMessage = "W polu nie może znajdować się więcej niż {{ limit }} znaków."
-     * )       
-     * 
+     * )
+     *
      * @ORM\Column(name="siedziba_miasto", type="string", length=140, nullable=true)
      */
     private $siedzibaMiasto;
@@ -95,11 +94,11 @@ class Spolka
 
     /**
      * @var string
-     *  @Assert\Length(     
+     *  @Assert\Length(
      *      max = 1000,
      *      maxMessage = "W polu nie może znajdować się więcej niż {{ limit }} znaków."
-     * )     
-     * 
+     * )
+     *
      * @ORM\Column(name="opis", type="text", nullable=true)
      */
     private $opis;
@@ -113,7 +112,7 @@ class Spolka
 
     /**
      * @var int
-     * 
+     *
      * @Assert\Regex(pattern="'/^[0-9]{10}$/'", match = false, message="Niepoprawny nr KRS.")
      *
      * @ORM\Column(name="krs", type="string", length=15, nullable=true)
@@ -123,7 +122,6 @@ class Spolka
     /**
      * @var int
      *
-     * 
      * @ORM\Column(name="nip", type="string", length=15, nullable=true)
      */
     private $nip;
@@ -178,7 +176,6 @@ class Spolka
     private $zwrotInwestycji;
 
     /**
-     *      
      * @var string
      *
      * @ORM\Column(name="npv", type="decimal", precision=15, scale=2, nullable=true)
@@ -187,47 +184,45 @@ class Spolka
 
     /**
      * @var string
-     * 
-     * @Assert\Length(     
+     *
+     * @Assert\Length(
      *      max = 1000,
      *      maxMessage = "W polu nie może znajdować się więcej niż {{ limit }} znaków."
-     * )  
-     * 
+     * )
+     *
      * @ORM\Column(name="udzialowcy", type="text", nullable=true)
      */
     private $udzialowcy;
 
     /**
      * @var string
-     * 
-     * @Assert\Length(     
+     *
+     * @Assert\Length(
      *      max = 140,
      *      maxMessage = "W polu nie może znajdować się więcej niż {{ limit }} znaków."
      * )
-     *   
+     *
      * @ORM\Column(name="prezes", type="string", length=140, nullable=true)
      */
     private $prezes;
 
     /**
      * @var string
-     *  @Assert\Length(     
+     *  @Assert\Length(
      *      max = 1000,
      *      maxMessage = "W polu nie może znajdować się więcej niż {{ limit }} znaków."
-     * )  
-     * 
+     * )
+     *
      * @ORM\Column(name="zarzad_pozostali", type="text", nullable=true)
      */
     private $zarzadPozostali;
 
     /**
-     *
-     * @var type 
+     * @var type
      */
     private $zakonczonaDodatkowe;
 
     /**
-     * 
      * @return type
      */
     public function getZakonczonaDodatkowe()
@@ -238,7 +233,7 @@ class Spolka
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -249,6 +244,7 @@ class Spolka
      * Set umowaId
      *
      * @param  integer $umowaId
+     *
      * @return Spolka
      */
     public function setUmowaId($umowaId)
@@ -261,7 +257,7 @@ class Spolka
     /**
      * Get umowaId
      *
-     * @return integer 
+     * @return integer
      */
     public function getUmowaId()
     {
@@ -295,6 +291,7 @@ class Spolka
      * Set lp
      *
      * @param  integer $liczbaPorzadkowa
+     *
      * @return Spolka
      */
     public function setLp($liczbaPorzadkowa)
@@ -307,7 +304,7 @@ class Spolka
     /**
      * Get lp
      *
-     * @return integer 
+     * @return int
      */
     public function getLp()
     {
@@ -318,6 +315,7 @@ class Spolka
      * Set nazwa
      *
      * @param  string $nazwa
+     *
      * @return Spolka
      */
     public function setNazwa($nazwa)
@@ -330,7 +328,7 @@ class Spolka
     /**
      * Get nazwa
      *
-     * @return string 
+     * @return string
      */
     public function getNazwa()
     {
@@ -353,7 +351,7 @@ class Spolka
     /**
      * Get forma
      *
-     * @return string 
+     * @return string
      */
     public function getForma()
     {
@@ -364,6 +362,7 @@ class Spolka
      * Set siedzibaMiasto
      *
      * @param  string $siedzibaMiasto
+     *
      * @return Spolka
      */
     public function setSiedzibaMiasto($siedzibaMiasto)
@@ -376,7 +375,7 @@ class Spolka
     /**
      * Get siedzibaMiasto
      *
-     * @return string 
+     * @return string
      */
     public function getSiedzibaMiasto()
     {
@@ -387,6 +386,7 @@ class Spolka
      * Set siedzibaWojewodztwo
      *
      * @param  string $siedzibaWojewodztwo
+     *
      * @return Spolka
      */
     public function setSiedzibaWojewodztwo($siedzibaWojewodztwo)
@@ -399,7 +399,7 @@ class Spolka
     /**
      * Get siedzibaWojewodztwo
      *
-     * @return string 
+     * @return string
      */
     public function getSiedzibaWojewodztwo()
     {
@@ -410,6 +410,7 @@ class Spolka
      * Set branza
      *
      * @param  string $branza
+     *
      * @return Spolka
      */
     public function setBranza($branza)
@@ -422,7 +423,7 @@ class Spolka
     /**
      * Get branza
      *
-     * @return string 
+     * @return string
      */
     public function getBranza()
     {
@@ -433,6 +434,7 @@ class Spolka
      * Set opis
      *
      * @param  string $opis
+     *
      * @return Spolka
      */
     public function setOpis($opis)
@@ -445,7 +447,7 @@ class Spolka
     /**
      * Get opis
      *
-     * @return string 
+     * @return string
      */
     public function getOpis()
     {
@@ -456,6 +458,7 @@ class Spolka
      * Set dataPowolania
      *
      * @param  \DateTime $dataPowolania
+     *
      * @return Spolka
      */
     public function setDataPowolania($dataPowolania)
@@ -468,7 +471,7 @@ class Spolka
     /**
      * Get dataPowolania
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDataPowolania()
     {
@@ -491,7 +494,7 @@ class Spolka
     /**
      * Get krs
      *
-     * @return string 
+     * @return string
      */
     public function getKrs()
     {
@@ -502,6 +505,7 @@ class Spolka
      * Set nip
      *
      * @param  string $nip
+     *
      * @return Spolka
      */
     public function setNip($nip)
@@ -525,6 +529,7 @@ class Spolka
      * Set kwInwestycji
      *
      * @param  string $kwInwestycji
+     *
      * @return Spolka
      */
     public function setKwInwestycji($kwInwestycji)
@@ -537,7 +542,7 @@ class Spolka
     /**
      * Get kwInwestycji
      *
-     * @return string 
+     * @return string
      */
     public function getKwInwestycji()
     {
@@ -548,6 +553,7 @@ class Spolka
      * Set kwWsparcia
      *
      * @param  string $kwWsparcia
+     *
      * @return Spolka
      */
     public function setKwWsparcia($kwWsparcia)
@@ -560,7 +566,7 @@ class Spolka
     /**
      * Get kwWsparcia
      *
-     * @return string 
+     * @return string
      */
     public function getKwWsparcia()
     {
@@ -571,6 +577,7 @@ class Spolka
      * Set kwPryw
      *
      * @param  string $kwPryw
+     *
      * @return Spolka
      */
     public function setKwPryw($kwPryw)
@@ -583,7 +590,7 @@ class Spolka
     /**
      * Get kwPryw
      *
-     * @return string 
+     * @return string
      */
     public function getKwPryw()
     {
@@ -594,6 +601,7 @@ class Spolka
      * Set zakonczona
      *
      * @param  boolean $zakonczona
+     *
      * @return Spolka
      */
     public function setZakonczona($zakonczona)
@@ -606,7 +614,7 @@ class Spolka
     /**
      * Get zakonczona
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getZakonczona()
     {
@@ -617,6 +625,7 @@ class Spolka
      * Set dataWyjscia
      *
      * @param  \DateTime $dataWyjscia
+     *
      * @return Spolka
      */
     public function setDataWyjscia($dataWyjscia)
@@ -629,7 +638,7 @@ class Spolka
     /**
      * Get dataWyjscia
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDataWyjscia()
     {
@@ -640,6 +649,7 @@ class Spolka
      * Set kwDezinwestycji
      *
      * @param  string $kwDezinwestycji
+     *
      * @return Spolka
      */
     public function setKwDezinwestycji($kwDezinwestycji)
@@ -652,7 +662,7 @@ class Spolka
     /**
      * Get kwDezinwestycji
      *
-     * @return string 
+     * @return string
      */
     public function getKwDezinwestycji()
     {
@@ -663,6 +673,7 @@ class Spolka
      * Set zwrotInwestycji
      *
      * @param  string $zwrotInwestycji
+     *
      * @return Spolka
      */
     public function setZwrotInwestycji($zwrotInwestycji)
@@ -675,7 +686,7 @@ class Spolka
     /**
      * Get zwrotInwestycji
      *
-     * @return string 
+     * @return string
      */
     public function getZwrotInwestycji()
     {
@@ -686,6 +697,7 @@ class Spolka
      * Set npv
      *
      * @param  string $npv
+     *
      * @return Spolka
      */
     public function setNpv($npv)
@@ -698,7 +710,7 @@ class Spolka
     /**
      * Get npv
      *
-     * @return string 
+     * @return string
      */
     public function getNpv()
     {
@@ -709,6 +721,7 @@ class Spolka
      * Set udzialowcy
      *
      * @param  string $udzialowcy
+     *
      * @return Spolka
      */
     public function setUdzialowcy($udzialowcy)
@@ -721,7 +734,7 @@ class Spolka
     /**
      * Get udzialowcy
      *
-     * @return string 
+     * @return string
      */
     public function getUdzialowcy()
     {
@@ -732,6 +745,7 @@ class Spolka
      * Set prezes
      *
      * @param  string $prezes
+     *
      * @return Spolka
      */
     public function setPrezes($prezes)
@@ -744,7 +758,7 @@ class Spolka
     /**
      * Get prezes
      *
-     * @return string 
+     * @return string
      */
     public function getPrezes()
     {
@@ -755,6 +769,7 @@ class Spolka
      * Set zarzadPozostali
      *
      * @param  string $zarzadPozostali
+     *
      * @return Spolka
      */
     public function setZarzadPozostali($zarzadPozostali)
@@ -767,20 +782,20 @@ class Spolka
     /**
      * Get zarzadPozostali
      *
-     * @return string 
+     * @return string
      */
     public function getZarzadPozostali()
     {
         return $this->zarzadPozostali;
     }
-    
+
     /**
      * Walidacje
-     * 
+     *
      * @param ExecutionContextInterface $context kontekst wywołania
-     * 
+     *
      * @Assert\Callback
-     * 
+     *
      * @return void
      */
     public function validate(ExecutionContextInterface $context)
@@ -788,36 +803,36 @@ class Spolka
         if (1 === $this->getZakonczona() && (null === $this->getDataWyjscia() || '' === $this->getDataWyjscia())) {
             $context->buildViolation('Należy wypełnić pole')
                 ->atPath('dataWyjscia')
-                ->addViolation();         
+                ->addViolation();
         }
         if (1 === $this->getZakonczona() && (null === $this->getKwDezinwestycji() || '' === $this->getKwDezinwestycji())) {
             $context->buildViolation('Należy wypełnić pole')
                 ->atPath('kwDezinwestycji')
-                ->addViolation();         
+                ->addViolation();
         }
         if (1 === $this->getZakonczona() && (null === $this->getZwrotInwestycji() || '' === $this->getZwrotInwestycji())) {
             $context->buildViolation('Należy wypełnić pole')
                 ->atPath('zwrotInwestycji')
-                ->addViolation();         
+                ->addViolation();
         }
         if (1 === $this->getZakonczona() && (null === $this->getNpv() || '' === $this->getNpv())) {
             $context->buildViolation('Należy wypełnić pole')
                 ->atPath('npv')
-                ->addViolation();         
-        }        
+                ->addViolation();
+        }
         if (preg_match('/^([-])?[0-9]{1,13}[\.\,][0-9]{2}$/', $this->getKwPryw())
             && preg_match('/^([-])?[0-9]{1,13}[\.\,][0-9]{2}$/', $this->getKwWsparcia())
             && preg_match('/^([-])?[0-9]{1,13}[\.\,][0-9]{2}$/', $this->getKwInwestycji())
         ) {
             $sum = number_format(($this->getKwPryw() + $this->getKwWsparcia()), 2, '.', '');
-            if ((float) number_format($this->getKwInwestycji(), 2, '.', '') !== (float) $sum) {           
+            if ((float) number_format($this->getKwInwestycji(), 2, '.', '') !== (float) $sum) {
                 $context->buildViolation('Suma kwot ze środków wsparcia i środków prywatnych musi równać się kwocie inwestycji.')
                     ->atPath('kwPryw')
-                    ->addViolation();      
+                    ->addViolation();
                 $context->buildViolation('Suma kwot ze środków wsparcia i środków prywatnych musi równać się kwocie inwestycji.')
                     ->atPath('kwWsparcia')
-                    ->addViolation();   
+                    ->addViolation();
             }
         }
-    }      
+    }
 }

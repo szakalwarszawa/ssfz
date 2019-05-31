@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Tests\Service;
 
 use PHPUnit\Framework\TestCase;
@@ -8,14 +9,12 @@ use Parp\SsfzBundle\Service\DatatableParpService;
 
 /**
  * Testuje klasę DatatableParpService
- * 
+ *
  * @covers \Parp\SsfzBundle\Service\DatatableParpService
  */
 class DatatableParpServiceTest extends TestCase
 {
-
     /**
-     *
      * @var OkresyKonfiguracjaRepository
      */
     private $okresyKonfiguracjaRepo;

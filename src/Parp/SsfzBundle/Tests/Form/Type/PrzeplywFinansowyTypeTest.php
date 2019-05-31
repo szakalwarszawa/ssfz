@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace Parp\SsfzBundle\Tests\Form\Type;
 
 use Symfony\Component\Form\Test\TypeTestCase;
@@ -15,17 +9,16 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+
 /**
  * Description of PrzeplywTypeTest
- *
- * @author adamw
  */
 class PrzeplywFinansowyTypeTest extends TypeTestCase
 {
-    
+
     /**
      * Dodaje rozszerzenia formularzy
-     * 
+     *
      * @return collection
      */
     protected function getExtensions()
@@ -69,10 +62,10 @@ class PrzeplywFinansowyTypeTest extends TypeTestCase
             'liczbaZakonczonychPreinkubacji' => 5,
             'liczbaDokonanychInwestycji' => 6,
         );
-        
+
         $form = $this->factory->create(\Parp\SsfzBundle\Form\Type\PrzeplywFinansowyType::class);
         $object = new \Parp\SsfzBundle\Entity\PrzeplywFinansowy();
-        
+
 
         $object->setSaldoPoczatkowe('0.00');
         $object->setWplywy('100.60');
@@ -92,7 +85,7 @@ class PrzeplywFinansowyTypeTest extends TypeTestCase
         $object->setLiczbaPomyslowOcenionychNegatywnie('4');
         $object->setLiczbaZakonczonychPreinkubacji('5');
         $object->setLiczbaDokonanychInwestycji('6');
-        
+
 
         $form->submit($formData);
 

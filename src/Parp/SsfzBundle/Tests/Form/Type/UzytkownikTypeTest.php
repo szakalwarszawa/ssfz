@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Tests\Form\Type;
 
 use Parp\SsfzBundle\Form\Type\UzytkownikType;
@@ -11,15 +12,14 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Testuje klasę UzytkownikType
- * 
+ *
  * @covers \Parp\SsfzBundle\Form\Type\UzytkownikType
  */
 class UzytkownikTypeTest extends TypeTestCase
 {
-
     /**
      * Dodaje rozszerzenia formularzy
-     * 
+     *
      * @return collection
      */
     protected function getExtensions()
@@ -63,7 +63,7 @@ class UzytkownikTypeTest extends TypeTestCase
 
         $view = $form->createView();
         $children = $view->children;
-        
+
         foreach (array_keys($formData) as $key) {
             $this->assertArrayHasKey($key, $children);
         }

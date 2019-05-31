@@ -11,25 +11,22 @@ use Parp\SsfzBundle\Entity\Rola;
 
 /**
  * Kontroler obsługujący funkcjonalności po stronie Użytkownika
- * 
- * @category Class
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
- * 
+ *
  * @Route("/uzytkownik")
  */
-class UzytkownikController extends Controller {
-
+class UzytkownikController extends Controller
+{
     /**
      * Metoda rejestracji użytkownika
-     * 
+     *
      * @param Request $request
-     * 
+     *
      * @Route("/rejestracja")
-     * 
+     *
      * @return Response
      */
-    public function rejestracja(Request $request) {
+    public function rejestracja(Request $request)
+    {
         $uzytkownik = new Uzytkownik();
         $form = $this->createForm(UzytkownikType::class, $uzytkownik);
         $form->handleRequest($request);
@@ -61,14 +58,15 @@ class UzytkownikController extends Controller {
 
     /**
      * Metoda aktywacji konta użytkownika
-     * 
+     *
      * @param Request $request
-     * 
+     *
      * @Route("/aktywacja/token={token}")
-     * 
+     *
      * @return Response
      */
-    public function aktywacjaKonta(Request $request) {
+    public function aktywacjaKonta(Request $request)
+    {
         $token = $request->get('token');
         $uzytkownikService = $this->get('ssfz.service.uzytkownik_service');
         $komunikatyService = $this->get('ssfz.service.komunikaty_service');
@@ -79,8 +77,6 @@ class UzytkownikController extends Controller {
         $uzytkownikService->activateUserAccount($uzytkownik);
         $komunikatyService->sukcesKomunikat('Konto zostało aktywowane. Proszę zalogować się.');
 
-
         return $this->redirectToRoute('login');
     }
-
 }

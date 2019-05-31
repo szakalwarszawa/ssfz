@@ -11,26 +11,20 @@ use Parp\SsfzBundle\Form\Type\ChangePasswordType;
 use Parp\SsfzBundle\Form\Model\ChangePassword;
 
 /**
- * Kontroler obsługujący funkcjonalności 
- * związane z modyfikacjami hasła
- * 
- * @category Class
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
- * 
+ * Kontroler obsługujący funkcjonalności z wiązane z modyfikacjami hasła
+ *
  * @Route("/haslo")
  */
 class HasloController extends Controller
 {
-
     /**
      * Metoda do wygenerowania klucza zmiany kasła.
      * Wysyłka klucza resetującego hasło na podany adres email.
-     * 
+     *
      * @Route("/przypomnij")
-     * 
+     *
      * @param Request $request
-     * 
+     *
      * @return Response
      */
     public function recoverPassword(Request $request)
@@ -50,31 +44,29 @@ class HasloController extends Controller
                 $this->getMailerService()->sendMail($uzytkownik, 'Zmiana hasła', '@SsfzBundle/Resources/views/Email/resetPassword.html.twig', array('code' => $uzytkownik->getKodZapomnianeHaslo(), 'login' => $resetLink->getLogin()));
 
                 return $this->render('SsfzBundle:Security:passwordRecoverInfo.html.twig', array(
-                        'info' => 'Wysłano link zmiany hasła na adres email ' . $uzytkownik->getEmail() . '. Na twojej skrzynce mailowej znajdują się dalsze instrukcje, które umożliwią odzyskanie hasła do konta.')
-                );
+                    'info' => 'Wysłano link zmiany hasła na adres email ' . $uzytkownik->getEmail() . '. Na twojej skrzynce mailowej znajdują się dalsze instrukcje, które umożliwią odzyskanie hasła do konta.'
+                ));
             }
 
             return $this->render('SsfzBundle:Security:passwordRecover.html.twig', array(
-                    'form' => $form->createView(),
-                    'error' => 'Konto nie istnieje w systemie.'
-                    )
-            );
+                'form' => $form->createView(),
+                'error' => 'Konto nie istnieje w systemie.'
+            ));
         }
 
         return $this->render('SsfzBundle:Security:passwordRecover.html.twig', array(
-                'form' => $form->createView(),
-                'error' => ''
-                )
-        );
+            'form' => $form->createView(),
+            'error' => ''
+        ));
     }
 
     /**
      * Medota do resetu hasła.
-     * 
+     *
      * @Route("/reset/token={token}")
-     * 
+     *
      * @param Request $request
-     * 
+     *
      * @return Response
      */
     public function resetPassword(Request $request)
@@ -96,21 +88,20 @@ class HasloController extends Controller
         }
 
         return $this->render('SsfzBundle:Security:passwordReset.html.twig', array(
-                'form' => $form->createView(),
-                'error' => '',
-                'title' => 'Odzyskiwanie hasła',
-                'submitButtonName' => 'Zapisz'
-                )
-        );
+            'form' => $form->createView(),
+            'error' => '',
+            'title' => 'Odzyskiwanie hasła',
+            'submitButtonName' => 'Zapisz'
+        ));
     }
 
     /**
      * Metoda do zmiany hasła.
-     * 
+     *
      * @Route("/zmiana")
-     * 
+     *
      * @param Request $request
-     * 
+     *
      * @return Response
      */
     public function changePassword(Request $request)
@@ -131,27 +122,25 @@ class HasloController extends Controller
             }
 
             return $this->render('SsfzBundle:Security:passwordReset.html.twig', array(
-                    'form' => $form->createView(),
-                    'error' => 'Aktualne hasło nie zgadza się.',
-                    'title' => 'Zmiana hasła',
-                    'submitButtonName' => 'Zmień hasło'
-                    )
-            );
+                'form' => $form->createView(),
+                'error' => 'Aktualne hasło nie zgadza się.',
+                'title' => 'Zmiana hasła',
+                'submitButtonName' => 'Zmień hasło'
+            ));
         }
 
         return $this->render('SsfzBundle:Security:passwordReset.html.twig', array(
-                'form' => $form->createView(),
-                'error' => '',
-                'title' => 'Zmiana hasła',
-                'submitButtonName' => 'Zmień hasło'
-                )
-        );
+            'form' => $form->createView(),
+            'error' => '',
+            'title' => 'Zmiana hasła',
+            'submitButtonName' => 'Zmień hasło'
+        ));
     }
 
     /**
      * Załadowanie serwisu MailerService
      * odpowiedzialnego za wysyłkę powiadomień
-     * 
+     *
      * @return MailerService
      */
     protected function getMailerService()

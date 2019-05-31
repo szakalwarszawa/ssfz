@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Tests\Service;
 
 use PHPUnit\Framework\TestCase;
@@ -10,12 +11,11 @@ use Parp\SsfzBundle\Service\UzytkownikService;
 
 /**
  * Testuje klasę UzytkownikService
- * 
+ *
  * @covers \Parp\SsfzBundle\Service\UzytkownikService
  */
 class UzytkownikServiceTest extends TestCase
 {
-
     /**
      *
      * @var UzytkownikRepository
@@ -61,5 +61,4 @@ class UzytkownikServiceTest extends TestCase
         $this->assertNotNull($uzytkownikRepository);
         $this->assertInstanceOf(UzytkownikRepository::class, $uzytkownikRepository);
     }
-
 }

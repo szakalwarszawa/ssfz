@@ -8,27 +8,29 @@ use Parp\SsfzBundle\Entity\Spolka;
 
 /**
  *  Tesy encji Spolka
- * 
+ *
  * @covers \Parp\SsfzBundle\Entity\Spolka
  */
 class SpolkaTest extends TestCase
 {
     private $spolka;
+
     /**
      * Ustawienie środowiska testowego
      */
-    public function setUp() 
+    public function setUp()
     {
-        $this->spolka = new Spolka();        
+        $this->spolka = new Spolka();
     }
-    
+
     /**
      * Test pola Id
      */
-    public function testId() 
+    public function testId()
     {
         $this->assertNull($this->spolka->getId());
     }
+
     /**
      * Test pola ZakonczonaDodatkowe
      */
@@ -38,6 +40,7 @@ class SpolkaTest extends TestCase
         $this->spolka->setZakonczona($value);
         $this->assertEquals($value, $this->spolka->getZakonczonaDodatkowe());
     }
+
     /**
      * Test pola UmowaId
      */
@@ -47,6 +50,7 @@ class SpolkaTest extends TestCase
         $this->spolka->setUmowaId($value);
         $this->assertEquals($value, $this->spolka->getUmowaId());
     }
+
     /**
      * Test pola Umowa
      */
@@ -56,6 +60,7 @@ class SpolkaTest extends TestCase
         $this->spolka->setUmowa($value);
         $this->assertEquals($value, $this->spolka->getUmowa());
     }
+
     /**
      * Test pola Lp
      */
@@ -65,6 +70,7 @@ class SpolkaTest extends TestCase
         $this->spolka->setLp($value);
         $this->assertEquals($value, $this->spolka->getLp());
     }
+
     /**
      * Test pola Nazwa
      */
@@ -74,6 +80,7 @@ class SpolkaTest extends TestCase
         $this->spolka->setNazwa($value);
         $this->assertEquals($value, $this->spolka->getNazwa());
     }
+
     /**
      * Test pola Forma
      */
@@ -83,6 +90,7 @@ class SpolkaTest extends TestCase
         $this->spolka->setForma($value);
         $this->assertEquals($value, $this->spolka->getForma());
     }
+
     /**
      * Test pola SiedzibaMiasto
      */
@@ -92,6 +100,7 @@ class SpolkaTest extends TestCase
         $this->spolka->setSiedzibaMiasto($value);
         $this->assertEquals($value, $this->spolka->getSiedzibaMiasto());
     }
+
     /**
      * Test pola SiedzibaWojewodztwo
      */
@@ -101,6 +110,7 @@ class SpolkaTest extends TestCase
         $this->spolka->setSiedzibaWojewodztwo($value);
         $this->assertEquals($value, $this->spolka->getSiedzibaWojewodztwo());
     }
+
     /**
      * Test pola Branza
      */
@@ -110,6 +120,7 @@ class SpolkaTest extends TestCase
         $this->spolka->setBranza($value);
         $this->assertEquals($value, $this->spolka->getBranza());
     }
+
     /**
      * Test pola Opis
      */
@@ -119,6 +130,7 @@ class SpolkaTest extends TestCase
         $this->spolka->setOpis($value);
         $this->assertEquals($value, $this->spolka->getOpis());
     }
+
     /**
      * Test pola DataPowolania
      */
@@ -128,6 +140,7 @@ class SpolkaTest extends TestCase
         $this->spolka->setDataPowolania($value);
         $this->assertEquals($value, $this->spolka->getDataPowolania());
     }
+
     /**
      * Test pola Krs
      */
@@ -137,6 +150,7 @@ class SpolkaTest extends TestCase
         $this->spolka->setKrs($value);
         $this->assertEquals($value, $this->spolka->getKrs());
     }
+
     /**
      * Test pola Nip
      */
@@ -146,6 +160,7 @@ class SpolkaTest extends TestCase
         $this->spolka->setNip($value);
         $this->assertEquals($value, $this->spolka->getNip());
     }
+
     /**
      * Test pola KwInwestycji
      */
@@ -155,6 +170,7 @@ class SpolkaTest extends TestCase
         $this->spolka->setKwInwestycji($value);
         $this->assertEquals($value, $this->spolka->getKwInwestycji());
     }
+
     /**
      * Test pola KwWsparcia
      */
@@ -164,6 +180,7 @@ class SpolkaTest extends TestCase
         $this->spolka->setKwWsparcia($value);
         $this->assertEquals($value, $this->spolka->getKwWsparcia());
     }
+
     /**
      * Test pola KwPryw
      */
@@ -173,6 +190,7 @@ class SpolkaTest extends TestCase
         $this->spolka->setKwPryw($value);
         $this->assertEquals($value, $this->spolka->getKwPryw());
     }
+
     /**
      * Test pola Zakonczona
      */
@@ -182,6 +200,7 @@ class SpolkaTest extends TestCase
         $this->spolka->setZakonczona($value);
         $this->assertEquals($value, $this->spolka->getZakonczona());
     }
+
     /**
      * Test pola DataWyjscia(
      */
@@ -191,6 +210,7 @@ class SpolkaTest extends TestCase
         $this->spolka->setDataWyjscia($value);
         $this->assertEquals($value, $this->spolka->getDataWyjscia());
     }
+
     /**
      * Test pola KwDezinwestycji
      */
@@ -200,6 +220,7 @@ class SpolkaTest extends TestCase
         $this->spolka->setKwDezinwestycji($value);
         $this->assertEquals($value, $this->spolka->getKwDezinwestycji());
     }
+
     /**
      * Test pola ZwrotInwestycji
      */
@@ -209,6 +230,7 @@ class SpolkaTest extends TestCase
         $this->spolka->setZwrotInwestycji($value);
         $this->assertEquals($value, $this->spolka->getZwrotInwestycji());
     }
+
     /**
      * Test pola Npv
      */
@@ -218,6 +240,7 @@ class SpolkaTest extends TestCase
         $this->spolka->setNpv($value);
         $this->assertEquals($value, $this->spolka->getNpv());
     }
+
     /**
      * Test pola Udzialowcy
      */
@@ -227,6 +250,7 @@ class SpolkaTest extends TestCase
         $this->spolka->setUdzialowcy($value);
         $this->assertEquals($value, $this->spolka->getUdzialowcy());
     }
+
     /**
      * Test pola Prezes
      */
@@ -236,6 +260,7 @@ class SpolkaTest extends TestCase
         $this->spolka->setPrezes($value);
         $this->assertEquals($value, $this->spolka->getPrezes());
     }
+
     /**
      * Test pola ZarzadPozostali
      */
@@ -245,10 +270,11 @@ class SpolkaTest extends TestCase
         $this->spolka->setZarzadPozostali($value);
         $this->assertEquals($value, $this->spolka->getZarzadPozostali());
     }
+
     /**
      * Czyszczenie środowiska testowego
      */
-    public function tearDown() 
+    public function tearDown()
     {
         $this->spolka = null;
     }

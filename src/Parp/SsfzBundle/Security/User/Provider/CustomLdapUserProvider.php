@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Security\User\Provider;
 
 use Symfony\Component\Security\Core\User\LdapUserProvider;
@@ -6,14 +7,9 @@ use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 
 /**
  * Provider uzytkowników uwierzytelnianych przez LDAP
- * 
- * @category Class
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
  */
 class CustomLdapUserProvider extends LdapUserProvider
 {
-
     /**
      *
      * @var UserService
@@ -22,7 +18,7 @@ class CustomLdapUserProvider extends LdapUserProvider
 
     /**
      * Konstruktor
-     * 
+     *
      * @param UserService                                 $userService
      * @param \Symfony\Component\Ldap\LdapClientInterface $ldap
      * @param string                                      $baseDn
@@ -32,8 +28,16 @@ class CustomLdapUserProvider extends LdapUserProvider
      * @param string                                      $uidKey
      * @param string                                      $filter
      */
-    public function __construct($userService, \Symfony\Component\Ldap\LdapClientInterface $ldap, $baseDn, $searchDn, $searchPassword, array $defaultRoles = array(), $uidKey = 'sAMAccountName', $filter = '({uid_key}={username})')
-    {
+    public function __construct(
+        $userService,
+        \Symfony\Component\Ldap\LdapClientInterface $ldap,
+        $baseDn,
+        $searchDn,
+        $searchPassword,
+        array $defaultRoles = array(),
+        $uidKey = 'sAMAccountName',
+        $filter = '({uid_key}={username})'
+    ) {
         parent::__construct($ldap, $baseDn, $searchDn, $searchPassword, $defaultRoles, $uidKey, $filter);
         $this->ldap = $ldap;
         $this->userService = $userService;
@@ -42,12 +46,12 @@ class CustomLdapUserProvider extends LdapUserProvider
         $this->searchPassword = $searchPassword;
         $this->defaultSearch = str_replace('{uid_key}', $uidKey, $filter);
     }
-    
+
     /**
      * Metoda pobierająca użytkownika.
      * Jeśli użytkownik zostaje prawidłowo pobrany,
      * zostaje mu nadana rola ROLE_BENEFICJENT.
-     * 
+     *
      * @param  type $username
      * @param  type $user
      * @return \Symfony\Component\Security\Core\User\User
@@ -64,7 +68,7 @@ class CustomLdapUserProvider extends LdapUserProvider
         return new \Symfony\Component\Security\Core\User\User($username, $password, $roles);
     }
     /**
-     * 
+     *
      * @param string $username
      * @return function
      * @throws UsernameNotFoundException
@@ -92,6 +96,4 @@ class CustomLdapUserProvider extends LdapUserProvider
 
         return $this->loadUser($username, $user);
     }
-     
-     
 }

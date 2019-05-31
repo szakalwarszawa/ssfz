@@ -1,56 +1,58 @@
 {% extends 'SsfzBundle::baseLayout.html.twig' %}
 
-{% block body %} 
+{% block body %}
     {% if dostepniPracownicyParp %}
-    <div class="panel panel-default"> 
-    <div class="panel-heading">Utwórz konto pracownika</div>
-        <div class="panel-body">
-            {{ form_start(form) }}
-            {{ form_widget(form) }}                       
-                <div class="pull-right">                    
-                    <button id="pracownicy" type="submit" value="zapisz" class="btn btn-primary">Utwórz konto</button> 
-                </div>
-            {{ form_end(form) }}
+        <div class="panel panel-default">
+            <div class="panel-heading">Utwórz konto pracownika</div>
+            <div class="panel-body">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                    <div class="pull-right">
+                        <button id="pracownicy" type="submit" value="zapisz" class="btn btn-primary">Utwórz konto</button>
+                    </div>
+                {{ form_end(form) }}
+            </div>
         </div>
-    </div>
     {% else %}
         <div class="alert alert-warning">Brak dostępnych pracowników PARP w LDAP.</div>
     {% endif %}
-        
-    <div class="panel panel-default"> 
-    <div class="panel-heading">Lista pracowników</div>
-        <div class="panel-body">     
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Pracownik</th>
-                <th>Rola</th>
-                <th>Status</th>
-                <th></th>
-              </tr>
-            </thead>
-            {% for key in przegladPracownikow %}
-            <tbody>
-              <tr>
-                <td>{{key.login}}</td>
-                <td>{{key.rola.opis is defined ? key.rola.opis : key.rola}}</td>
-                {% if key.status == 0 %}
-                <td>Nieaktywny</td>
-                {% else %}
-                <td>Aktywny</td>
-                {% endif %}          
-                <td class="text-right"><a href="{{ path('edytujPracownika', {'id_uzytkownika': key.id}) }}" class="btn btn-primary">Edytuj</a>
-              </tr>
-            </tbody>
-            {% endfor %}
-          </table>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Lista pracowników</div>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Pracownik</th>
+                        <th>Rola</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                {% for key in przegladPracownikow %}
+                    <tbody>
+                        <tr>
+                            <td>{{ key.login }}</td>
+                            <td>{{ key.rola.opis is defined ? key.rola.opis : key.rola }}</td>
+                            {% if key.status == 0 %}
+                                <td>Nieaktywny</td>
+                            {% else %}
+                                <td>Aktywny</td>
+                            {% endif %}
+                            <td class="text-right">
+                                <a href="{{ path('edytujPracownika', {'id_uzytkownika': key.id}) }}" class="btn btn-primary">Edytuj</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                {% endfor %}
+            </table>
         </div>
-    </div>
     </div>
 {% endblock %}
 
 {% block javascripts %}
-    {% javascripts '@SsfzBundle/Resources/public/js/pracownik_dodaj.js'%}
-    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}        
+    {% javascripts '@SsfzBundle/Resources/public/js/pracownik_dodaj.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

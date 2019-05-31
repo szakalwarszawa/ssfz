@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Tests\Service;
 
 use PHPUnit\Framework\TestCase;
@@ -13,43 +14,42 @@ use Parp\SsfzBundle\Service\BeneficjentService;
 
 /**
  * Testuje klasę BeneficjentService
- * 
+ *
  * @covers \Parp\SsfzBundle\Service\BeneficjentService
  */
 class BeneficjentServiceTest extends TestCase
 {
     /**
-     *
      * @var BeneficjentRepository
      */
     private $beneficjentRepository;
+
     /**
-     *
      * @var UmowaRepository
      */
     private $umowaRepository;
+
     /**
-     *
      * @var OsobaZatrudnionaRepository
      */
     private $osobaZatrudnionaRepository;
-    
+
     /**
      * Ustawienie środowiska testowego
      */
-    public function setUp() 
+    public function setUp()
     {
         $this->beneficjentRepository = $this
             ->getMockBuilder(BeneficjentRepository::class)
             ->disableOriginalConstructor()
             ->getMock();
- 
+
         $beneficjent = new Beneficjent();
         $this->beneficjentRepository
             ->method('addNewBeneficjent')
             ->will($this->returnValue($beneficjent));
-        
-        
+
+
         $this->umowaRepository = $this
             ->getMockBuilder(UmowaRepository::class)
             ->disableOriginalConstructor()
@@ -58,14 +58,15 @@ class BeneficjentServiceTest extends TestCase
         $this->osobaZatrudnionaRepository = $this
             ->getMockBuilder(OsobaZatrudnionaRepository::class)
             ->disableOriginalConstructor()
-            ->getMock();        
-        
-        $this->service = new BeneficjentService($this->beneficjentRepository, $this->umowaRepository, $this->osobaZatrudnionaRepository);       
+            ->getMock();
+
+        $this->service = new BeneficjentService($this->beneficjentRepository, $this->umowaRepository, $this->osobaZatrudnionaRepository);
     }
+
     /**
      * Testuje metodę getBeneficjentUmowy
      */
-    public function testGetBeneficjentUmowy() 
+    public function testGetBeneficjentUmowy()
     {
         $beneficjent = new Beneficjent();
         $beneficjent->addUmowa(new Umowa());
@@ -75,10 +76,11 @@ class BeneficjentServiceTest extends TestCase
             $this->assertInstanceOf(Umowa::class, $umowa);
         }
     }
+
     /**
      * Testuje metodę getBeneficjentOsoby
      */
-    public function testGetBeneficjentOsoby() 
+    public function testGetBeneficjentOsoby()
     {
         $beneficjent = new Beneficjent();
         $beneficjent->addOsobaZatrudniona(new OsobaZatrudniona());
@@ -87,7 +89,8 @@ class BeneficjentServiceTest extends TestCase
         foreach ($osoby as $osoba) {
             $this->assertInstanceOf(OsobaZatrudniona::class, $osoba);
         }
-    } 
+    }
+
     /**
      * Testuje metodę addUmowaOsobaIfEmpty
      */
@@ -103,9 +106,10 @@ class BeneficjentServiceTest extends TestCase
             $this->assertInstanceOf(OsobaZatrudniona::class, $osoba);
         }
         foreach ($beneficjent->getUmowy() as $umowa) {
-            $this->assertInstanceOf(Umowa::class, $umowa);            
+            $this->assertInstanceOf(Umowa::class, $umowa);
         }
-    }    
+    }
+
     /**
      * Testuje metodę addBeneficjent
      */
@@ -114,8 +118,9 @@ class BeneficjentServiceTest extends TestCase
         $uzytkownik = new Uzytkownik();
         $beneficjent = $this->service->addBeneficjent($uzytkownik);
         $this->assertNotNull($beneficjent);
-        $this->assertNotNull($beneficjent->getUzytkownicy());                          
-    }    
+        $this->assertNotNull($beneficjent->getUzytkownicy());
+    }
+
     /**
      * Testuje metodę updateBeneficjent
      */
@@ -124,7 +129,8 @@ class BeneficjentServiceTest extends TestCase
         $beneficjent = new Beneficjent();
         $this->service->updateBeneficjent($beneficjent, new \Doctrine\Common\Collections\ArrayCollection(), new \Doctrine\Common\Collections\ArrayCollection());
         $this->assertNotNull($beneficjent);
-    }      
+    }
+
     /**
      * Testuje metodę getBeneficjentRepository
      */
@@ -134,6 +140,7 @@ class BeneficjentServiceTest extends TestCase
         $this->assertNotNull($beneficjentRepository);
         $this->assertInstanceOf(BeneficjentRepository::class, $beneficjentRepository);
     }
+
     /**
      * Testuje metodę getUmowaRepository
      */
@@ -143,6 +150,7 @@ class BeneficjentServiceTest extends TestCase
         $this->assertNotNull($umowaRepository);
         $this->assertInstanceOf(UmowaRepository::class, $umowaRepository);
     }
+
     /**
      * Testuje metodę getOsobaZatrudnionaRepository
      */
@@ -151,5 +159,5 @@ class BeneficjentServiceTest extends TestCase
         $osobaZatrudnionaRepository = $this->service->getOsobaZatrudnionaRepository();
         $this->assertNotNull($osobaZatrudnionaRepository);
         $this->assertInstanceOf(OsobaZatrudnionaRepository::class, $osobaZatrudnionaRepository);
-    }    
+    }
 }

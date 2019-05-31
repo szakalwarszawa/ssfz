@@ -21,8 +21,6 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  */
 class PrzeplywFinansowy
 {
-
-    
     /**
      * @var int
      *
@@ -31,170 +29,170 @@ class PrzeplywFinansowy
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * @var int
      *
      * @ORM\Column(name="creator_id", type="integer", nullable=false)
      */
     private $creatorId;
-    
+
     /**
      * @var datetime
      *
      * @ORM\Column(name="data_rejestracji", type="datetime", nullable=false)
      */
     private $dataRejestracji;
-    
+
     /**
      * @var int
      *
      * @ORM\Column(name="sprawozdanie_id", type="integer", nullable=false)
      */
     private $sprawozdanieId;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="$saldo_poczatkowe", type="decimal",precision=15, scale=2,  nullable=false)
      */
     private $saldoPoczatkowe;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="wplywy", type="decimal",precision=15, scale=2,  nullable=false)
      */
     private $wplywy;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="wyjscia_z_inwestycji", type="decimal",precision=15, scale=2,  nullable=false)
      */
     private $wyjsciaZInwestycji;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="udzial_w_zyskach", type="decimal",precision=15, scale=2,  nullable=false)
      */
     private $udzialWZyskach;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="inne_wplywy", type="decimal",precision=15, scale=2,  nullable=false)
      */
     private $inneWplywy;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="wyplywy", type="decimal",precision=15, scale=2,  nullable=false)
      */
     private $wyplywy;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="wejcia_kapitalowe", type="decimal",precision=15, scale=2,  nullable=false)
      */
     private $wejsciaKapitalowe;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="preinkubacja_pomyslow", type="decimal",precision=15, scale=2,  nullable=false)
      */
     private $preinkubacjaPomyslow;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="wydatki_operacyjne", type="decimal",precision=15, scale=2,  nullable=false)
      */
     private $wydatkiOperacyjne;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="podatki", type="decimal",precision=15, scale=2,  nullable=false)
      */
     private $podatki;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="inne_wyplywy", type="decimal",precision=15, scale=2,  nullable=false)
      */
     private $inneWyplywy;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="saldo_koncowe", type="decimal",precision=15, scale=2,  nullable=false)
      */
     private $saldoKoncowe;
-    
+
     /**
      * @var int
      *
      * @ORM\Column(name="liczba_pomyslow_w_inkubatorze", type="integer", nullable=false)
      */
     private $liczbaPomyslowWInkubatorze;
-    
+
     /**
      * @var int
      *
      * @ORM\Column(name="liczba_pomyslow_ocenionych", type="integer", nullable=false)
      */
     private $liczbaPomyslowOcenionych;
-    
+
     /**
      * @var int
      *
      * @ORM\Column(name="liczba_pomyslow_ocenionych_pozytywnie", type="integer", nullable=false)
      */
     private $liczbaPomyslowOcenionychPozytywnie;
-    
+
     /**
      * @var int
      *
      * @ORM\Column(name="liczba_pomyslow_ocenionych_negatywnie", type="integer", nullable=false)
      */
     private $liczbaPomyslowOcenionychNegatywnie;
-    
+
     /**
      * @var int
      *
      * @ORM\Column(name="liczba_zakonczonych_preinkubacji", type="integer", nullable=false)
      */
     private $liczbaZakonczonychPreinkubacji;
-    
+
     /**
      * @var int
      *
      * @ORM\Column(name="liczba_dokonanych_inwestycji", type="integer", nullable=false)
      */
     private $liczbaDokonanychInwestycji;
-    
+
     /**
      * zwraca Id
      *
      * @return int
      */
-    public function getId() 
+    public function getId()
     {
         return $this->id;
     }
-    
+
     /**
      * zwraca creatorId
      *
      * @return int
      */
-    public function getCreatorId() 
+    public function getCreatorId()
     {
         return $this->creatorId;
     }
@@ -204,7 +202,7 @@ class PrzeplywFinansowy
      *
      * @return DateTime
      */
-    public function getDataRejestracji() 
+    public function getDataRejestracji()
     {
         return $this->dataRejestracji;
     }
@@ -214,7 +212,7 @@ class PrzeplywFinansowy
      *
      * @return int
      */
-    public function getSprawozdanieId() 
+    public function getSprawozdanieId()
     {
         return $this->sprawozdanieId;
     }
@@ -224,7 +222,7 @@ class PrzeplywFinansowy
      *
      * @return decimal
      */
-    public function getSaldoPoczatkowe() 
+    public function getSaldoPoczatkowe()
     {
         return $this->saldoPoczatkowe;
     }
@@ -234,7 +232,7 @@ class PrzeplywFinansowy
      *
      * @return decimal
      */
-    public function getWplywy() 
+    public function getWplywy()
     {
         return $this->wplywy;
     }
@@ -244,7 +242,7 @@ class PrzeplywFinansowy
      *
      * @return decimal
      */
-    public function getWyjsciaZInwestycji() 
+    public function getWyjsciaZInwestycji()
     {
         return $this->wyjsciaZInwestycji;
     }
@@ -254,7 +252,7 @@ class PrzeplywFinansowy
      *
      * @return decimal
      */
-    public function getUdzialWZyskach() 
+    public function getUdzialWZyskach()
     {
         return $this->udzialWZyskach;
     }
@@ -264,7 +262,7 @@ class PrzeplywFinansowy
      *
      * @return decimal
      */
-    public function getInneWplywy() 
+    public function getInneWplywy()
     {
         return $this->inneWplywy;
     }
@@ -274,7 +272,7 @@ class PrzeplywFinansowy
      *
      * @return decimal
      */
-    public function getWyplywy() 
+    public function getWyplywy()
     {
         return $this->wyplywy;
     }
@@ -284,7 +282,7 @@ class PrzeplywFinansowy
      *
      * @return decimal
      */
-    public function getWejsciaKapitalowe() 
+    public function getWejsciaKapitalowe()
     {
         return $this->wejsciaKapitalowe;
     }
@@ -304,7 +302,7 @@ class PrzeplywFinansowy
      *
      * @return decimal
      */
-    public function getWydatkiOperacyjne() 
+    public function getWydatkiOperacyjne()
     {
         return $this->wydatkiOperacyjne;
     }
@@ -314,7 +312,7 @@ class PrzeplywFinansowy
      *
      * @return decimal
      */
-    public function getPodatki() 
+    public function getPodatki()
     {
         return $this->podatki;
     }
@@ -324,7 +322,7 @@ class PrzeplywFinansowy
      *
      * @return decimal
      */
-    public function getInneWyplywy() 
+    public function getInneWyplywy()
     {
         return $this->inneWyplywy;
     }
@@ -334,7 +332,7 @@ class PrzeplywFinansowy
      *
      * @return decimal
      */
-    public function getSaldoKoncowe() 
+    public function getSaldoKoncowe()
     {
         return $this->saldoKoncowe;
     }
@@ -344,17 +342,17 @@ class PrzeplywFinansowy
      *
      * @return int
      */
-    public function getLiczbaPomyslowWInkubatorze() 
+    public function getLiczbaPomyslowWInkubatorze()
     {
         return $this->liczbaPomyslowWInkubatorze;
     }
 
     /**
      * zwraca liczbaPomyslowOcenionych
-     * 
+     *
      * @return int
      */
-    public function getLiczbaPomyslowOcenionych() 
+    public function getLiczbaPomyslowOcenionych()
     {
         return $this->liczbaPomyslowOcenionych;
     }
@@ -364,7 +362,7 @@ class PrzeplywFinansowy
      *
      * @return int
      */
-    public function getLiczbaPomyslowOcenionychPozytywnie() 
+    public function getLiczbaPomyslowOcenionychPozytywnie()
     {
         return $this->liczbaPomyslowOcenionychPozytywnie;
     }
@@ -374,7 +372,7 @@ class PrzeplywFinansowy
      *
      * @return int
      */
-    public function getLiczbaPomyslowOcenionychNegatywnie() 
+    public function getLiczbaPomyslowOcenionychNegatywnie()
     {
         return $this->liczbaPomyslowOcenionychNegatywnie;
     }
@@ -384,7 +382,7 @@ class PrzeplywFinansowy
      *
      * @return int
      */
-    public function getLiczbaZakonczonychPreinkubacji() 
+    public function getLiczbaZakonczonychPreinkubacji()
     {
         return $this->liczbaZakonczonychPreinkubacji;
     }
@@ -394,237 +392,236 @@ class PrzeplywFinansowy
      *
      * @return int
      */
-    public function getLiczbaDokonanychInwestycji() 
+    public function getLiczbaDokonanychInwestycji()
     {
         return $this->liczbaDokonanychInwestycji;
     }
 
-    
     /**
      * ustawia $id
-     * 
+     *
      * @param int $id
      */
-    public function setId($id) 
+    public function setId($id)
     {
         $this->id = $id;
     }
 
     /**
      * ustawia $creatorId
-     * 
+     *
      * @param int $creatorId
      */
-    public function setCreatorId($creatorId)       
+    public function setCreatorId($creatorId)
     {
         $this->creatorId = $creatorId;
     }
 
     /**
      * ustawia $dataRejestracji
-     * 
+     *
      * @param DateTime $dataRejestracji
      */
-    public function setDataRejestracji($dataRejestracji) 
+    public function setDataRejestracji($dataRejestracji)
     {
         $this->dataRejestracji = $dataRejestracji;
     }
 
     /**
      * ustawia $sprawozdanieId
-     * 
+     *
      * @param int $sprawozdanieId
      */
-    public function setSprawozdanieId($sprawozdanieId) 
+    public function setSprawozdanieId($sprawozdanieId)
     {
         $this->sprawozdanieId = $sprawozdanieId;
     }
 
     /**
      * ustawia $saldoPoczatkowe
-     * 
+     *
      * @param decimal $saldoPoczatkowe
      */
-    public function setSaldoPoczatkowe($saldoPoczatkowe) 
+    public function setSaldoPoczatkowe($saldoPoczatkowe)
     {
         $this->saldoPoczatkowe = $saldoPoczatkowe;
     }
 
     /**
      * ustawia $wplywy
-     * 
+     *
      * @param decimal $wplywy
      */
-    public function setWplywy($wplywy) 
+    public function setWplywy($wplywy)
     {
         $this->wplywy = $wplywy;
     }
 
     /**
      * ustawia $wyjsciaZInwestycji
-     * 
+     *
      * @param decimal $wyjsciaZInwestycji
      */
-    public function setWyjsciaZInwestycji($wyjsciaZInwestycji) 
+    public function setWyjsciaZInwestycji($wyjsciaZInwestycji)
     {
         $this->wyjsciaZInwestycji = $wyjsciaZInwestycji;
     }
 
     /**
      * ustawia $udzialWZyskach
-     * 
+     *
      * @param decimal $udzialWZyskach
      */
-    public function setUdzialWZyskach($udzialWZyskach) 
+    public function setUdzialWZyskach($udzialWZyskach)
     {
         $this->udzialWZyskach = $udzialWZyskach;
     }
 
     /**
      * ustawia $inneWplywy
-     * 
+     *
      * @param decimal $inneWplywy
      */
-    public function setInneWplywy($inneWplywy) 
+    public function setInneWplywy($inneWplywy)
     {
         $this->inneWplywy = $inneWplywy;
     }
 
     /**
      * ustawia $wyplywy
-     * 
+     *
      * @param decimal $wyplywy
      */
-    public function setWyplywy($wyplywy) 
+    public function setWyplywy($wyplywy)
     {
         $this->wyplywy = $wyplywy;
     }
 
     /**
      * ustawia $wejsciaKapitalowe
-     * 
+     *
      * @param decimal $wejsciaKapitalowe
      */
-    public function setWejsciaKapitalowe($wejsciaKapitalowe) 
+    public function setWejsciaKapitalowe($wejsciaKapitalowe)
     {
         $this->wejsciaKapitalowe = $wejsciaKapitalowe;
     }
 
     /**
      * ustawia $preinkubacjaPomyslow
-     * 
+     *
      * @param decimal $preinkubacjaPomyslow
      */
-    public function setPreinkubacjaPomyslow($preinkubacjaPomyslow) 
+    public function setPreinkubacjaPomyslow($preinkubacjaPomyslow)
     {
         $this->preinkubacjaPomyslow = $preinkubacjaPomyslow;
     }
 
     /**
      * ustawia $wydatkiOperacyjne
-     * 
+     *
      * @param decimal $wydatkiOperacyjne
      */
-    public function setWydatkiOperacyjne($wydatkiOperacyjne) 
+    public function setWydatkiOperacyjne($wydatkiOperacyjne)
     {
         $this->wydatkiOperacyjne = $wydatkiOperacyjne;
     }
 
     /**
      * ustawia $podatki
-     * 
+     *
      * @param decimal $podatki
      */
-    public function setPodatki($podatki) 
+    public function setPodatki($podatki)
     {
         $this->podatki = $podatki;
     }
 
     /**
      * ustawia $inneWyplywy
-     * 
+     *
      * @param decimal $inneWyplywy
      */
-    public function setInneWyplywy($inneWyplywy) 
+    public function setInneWyplywy($inneWyplywy)
     {
         $this->inneWyplywy = $inneWyplywy;
     }
 
     /**
      * ustawia $saldoKoncowe
-     * 
+     *
      * @param decimal $saldoKoncowe
      */
-    public function setSaldoKoncowe($saldoKoncowe) 
+    public function setSaldoKoncowe($saldoKoncowe)
     {
         $this->saldoKoncowe = $saldoKoncowe;
     }
 
     /**
      * ustawia $liczbaPomyslowWInkubatorze
-     * 
+     *
      * @param int $liczbaPomyslowWInkubatorze
      */
-    public function setLiczbaPomyslowWInkubatorze($liczbaPomyslowWInkubatorze) 
+    public function setLiczbaPomyslowWInkubatorze($liczbaPomyslowWInkubatorze)
     {
         $this->liczbaPomyslowWInkubatorze = $liczbaPomyslowWInkubatorze;
     }
 
     /**
      * ustawia $liczbaPomyslowOcenionych
-     * 
+     *
      * @param int $liczbaPomyslowOcenionych
      */
-    public function setLiczbaPomyslowOcenionych($liczbaPomyslowOcenionych) 
+    public function setLiczbaPomyslowOcenionych($liczbaPomyslowOcenionych)
     {
         $this->liczbaPomyslowOcenionych = $liczbaPomyslowOcenionych;
     }
 
     /**
      * ustawia $liczbaPomyslowOcenionychPozytywnie
-     * 
+     *
      * @param int $liczbaPomyslowOcenionychPozytywnie
      */
-    public function setLiczbaPomyslowOcenionychPozytywnie($liczbaPomyslowOcenionychPozytywnie) 
+    public function setLiczbaPomyslowOcenionychPozytywnie($liczbaPomyslowOcenionychPozytywnie)
     {
         $this->liczbaPomyslowOcenionychPozytywnie = $liczbaPomyslowOcenionychPozytywnie;
     }
 
     /**
      * ustawia $liczbaPomyslowOcenionychNegatywnie
-     * 
+     *
      * @param int $liczbaPomyslowOcenionychNegatywnie
      */
-    public function setLiczbaPomyslowOcenionychNegatywnie($liczbaPomyslowOcenionychNegatywnie) 
+    public function setLiczbaPomyslowOcenionychNegatywnie($liczbaPomyslowOcenionychNegatywnie)
     {
         $this->liczbaPomyslowOcenionychNegatywnie = $liczbaPomyslowOcenionychNegatywnie;
     }
 
     /**
      * ustawia $liczbaZakonczonychPreinkubacji
-     * 
+     *
      * @param int $liczbaZakonczonychPreinkubacji
      */
-    public function setLiczbaZakonczonychPreinkubacji($liczbaZakonczonychPreinkubacji) 
+    public function setLiczbaZakonczonychPreinkubacji($liczbaZakonczonychPreinkubacji)
     {
         $this->liczbaZakonczonychPreinkubacji = $liczbaZakonczonychPreinkubacji;
     }
 
     /**
      * ustawia $liczbaDokonanychInwestycji
-     * 
+     *
      * @param int $liczbaDokonanychInwestycji
      */
-    public function setLiczbaDokonanychInwestycji($liczbaDokonanychInwestycji) 
+    public function setLiczbaDokonanychInwestycji($liczbaDokonanychInwestycji)
     {
         $this->liczbaDokonanychInwestycji = $liczbaDokonanychInwestycji;
     }
 
     /**
      * Metoda waliduje obiekt
-     * 
+     *
      * @param ExecutionContextInterface $context
-     * 
+     *
      * @Assert\Callback
      */
     public function validate(ExecutionContextInterface $context)
@@ -636,7 +633,7 @@ class PrzeplywFinansowy
                 ->atPath('wplywy')
                 ->addViolation();
         }
-        
+
         $wyplywySum = floatval(str_replace(',', '.', $this->getWejsciaKapitalowe())) + floatval(str_replace(',', '.', $this->getPreinkubacjaPomyslow())) + floatval(str_replace(',', '.', $this->getWydatkiOperacyjne())) + floatval(str_replace(',', '.', $this->getPodatki())) + floatval(str_replace(',', '.', $this->getInneWyplywy()));
         $wyplywy = floatval(str_replace(',', '.', $this->getWyplywy()));
         if (number_format((float) $wyplywy, 2, '.', '') != number_format((float) $wyplywySum, 2, '.', '')) {
@@ -654,5 +651,4 @@ class PrzeplywFinansowy
                 ->addViolation();
         }
     }
-
 }

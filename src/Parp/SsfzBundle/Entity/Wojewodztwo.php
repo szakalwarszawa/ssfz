@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -12,7 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Wojewodztwo
 {
-
     /**
      * @var int
      *
@@ -32,7 +32,7 @@ class Wojewodztwo
     /**
      * Get id
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -42,7 +42,7 @@ class Wojewodztwo
     /**
      * Get kod
      *
-     * @return string 
+     * @return string
      */
     public function getKod()
     {
@@ -52,7 +52,7 @@ class Wojewodztwo
     /**
      * Get nazwa
      *
-     * @return string 
+     * @return string
      */
     public function getNazwa()
     {
@@ -60,7 +60,7 @@ class Wojewodztwo
     }
 
     /**
-     * 
+     *
      * @param string $nazwa
      */
     public function setNazwa($nazwa)

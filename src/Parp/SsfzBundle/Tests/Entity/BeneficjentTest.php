@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Tests\Entity;
 
 use PHPUnit\Framework\TestCase;
@@ -9,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  *  Tesy encji Beneficjent
- * 
+ *
  * @covers \Parp\SsfzBundle\Entity\Beneficjent
  */
 class BeneficjentTest extends TestCase
@@ -18,10 +19,11 @@ class BeneficjentTest extends TestCase
     /**
      * Ustawienie środowiska testowego
      */
-    public function setUp() 
+    public function setUp()
     {
-        $this->beneficjent = new Beneficjent();        
+        $this->beneficjent = new Beneficjent();
     }
+
     /**
      * Test konstruktora
      */
@@ -32,139 +34,139 @@ class BeneficjentTest extends TestCase
         $this->assertCount(0, $beneficjent->getUzytkownicy());
         $this->assertCount(0, $beneficjent->getOsobyZatrudnione());
     }
-    
+
     /**
      * Test pola Id
      */
-    public function testId() 
+    public function testId()
     {
         $this->assertNull($this->beneficjent->getId());
     }
-    
+
     /**
      * Testownaia pola adrWojewodztwo
      */
-    public function testAdrWojewodztwo() 
+    public function testAdrWojewodztwo()
     {
         $adrWojewodztwo = 'podlaskie';
         $this->beneficjent->setAdrWojewodztwo($adrWojewodztwo);
         $this->assertEquals($adrWojewodztwo, $this->beneficjent->getAdrWojewodztwo());
-    }    
- 
+    }
+
     /**
      * Testownaia pola adrMiejscowosc
      */
-    public function testAdrMiejscowosc() 
+    public function testAdrMiejscowosc()
     {
         $adrMiejscowosc = 'Lorem Ipsum';
         $this->beneficjent->setAdrMiejscowosc($adrMiejscowosc);
         $this->assertEquals($adrMiejscowosc, $this->beneficjent->getAdrMiejscowosc());
-    }   
+    }
 
     /**
      * Testownaia pola adrUlica
      */
-    public function testAdrUlica() 
+    public function testAdrUlica()
     {
         $adrUlica = 'Lorem Ipsum';
         $this->beneficjent->setAdrUlica($adrUlica);
         $this->assertEquals($adrUlica, $this->beneficjent->getAdrUlica());
-    }     
+    }
 
     /**
      * Testownaia pola adrBudynek
      */
-    public function testAdrBudynek() 
+    public function testAdrBudynek()
     {
         $adrBudynek = '12A';
         $this->beneficjent->setAdrBudynek($adrBudynek);
         $this->assertEquals($adrBudynek, $this->beneficjent->getAdrBudynek());
-    } 
+    }
 
     /**
      * Testownaia pola adrLokal
      */
-    public function testAdrLokal() 
+    public function testAdrLokal()
     {
         $adrLokal = '1b';
         $this->beneficjent->setAdrLokal($adrLokal);
         $this->assertEquals($adrLokal, $this->beneficjent->getAdrLokal());
-    } 
+    }
 
     /**
      * Testownaia pola adrKod
      */
-    public function testAdrKod() 
+    public function testAdrKod()
     {
         $adrKod = '12-345';
         $this->beneficjent->setAdrKod($adrKod);
         $this->assertEquals($adrKod, $this->beneficjent->getAdrKod());
-    }     
-    
+    }
+
     /**
      * Testownaia pola adrPoczta
      */
-    public function testAdrPoczta() 
+    public function testAdrPoczta()
     {
         $adrPoczta = 'Lorem Ipsum';
         $this->beneficjent->setAdrPoczta($adrPoczta);
         $this->assertEquals($adrPoczta, $this->beneficjent->getAdrPoczta());
-    } 
+    }
 
     /**
      * Testownaia pola telStacjonarny
      */
-    public function testTelStacjonarny() 
+    public function testTelStacjonarny()
     {
         $telStacjonarny = '000 0000-0000';
         $this->beneficjent->setTelStacjonarny($telStacjonarny);
         $this->assertEquals($telStacjonarny, $this->beneficjent->getTelStacjonarny());
-    } 
+    }
 
     /**
      * Testownaia pola telKomorkowy
      */
-    public function testTelKomorkowy() 
+    public function testTelKomorkowy()
     {
         $telKomorkowy = '000 0000-0000';
         $this->beneficjent->setTelKomorkowy($telKomorkowy);
         $this->assertEquals($telKomorkowy, $this->beneficjent->getTelKomorkowy());
-    } 
-    
+    }
+
     /**
      * Testownaia pola email
      */
-    public function testEmail() 
+    public function testEmail()
     {
         $email = 'lorem@ipsum.dolor';
         $this->beneficjent->setEmail($email);
         $this->assertEquals($email, $this->beneficjent->getEmail());
-    } 
+    }
 
     /**
      * Testownaia pola fax
      */
-    public function testFax() 
+    public function testFax()
     {
         $fax = '000 0000-0000';
         $this->beneficjent->setFax($fax);
         $this->assertEquals($fax, $this->beneficjent->getFax());
-    }     
- 
+    }
+
     /**
      * Testownaia pola wypelniony
      */
-    public function testWypelniony() 
+    public function testWypelniony()
     {
         $wypelniony = true;
         $this->beneficjent->setWypelniony($wypelniony);
         $this->assertEquals($wypelniony, $this->beneficjent->getWypelniony());
-    } 
+    }
 
     /**
      * Testownaia pola osobyZatrudnione
      */
-    public function testOsobyZatrudnione() 
+    public function testOsobyZatrudnione()
     {
         $osobaZatrudniona1 = new OsobaZatrudniona();
         $osobaZatrudniona2 = new OsobaZatrudniona();
@@ -173,12 +175,12 @@ class BeneficjentTest extends TestCase
         $this->assertCount(2, $this->beneficjent->getOsobyZatrudnione());
         $this->beneficjent->setOsobyZatrudnione(new ArrayCollection());
         $this->assertCount(0, $this->beneficjent->getOsobyZatrudnione());
-    }     
-    
+    }
+
     /**
      * Testownaia pola umowy
      */
-    public function testUmowy() 
+    public function testUmowy()
     {
         $umowa1 = new Umowa();
         $umowa2 = new Umowa();
@@ -189,7 +191,7 @@ class BeneficjentTest extends TestCase
         $this->assertCount(1, $this->beneficjent->getUmowy());
         $this->beneficjent->setUmowy(new ArrayCollection());
         $this->assertCount(0, $this->beneficjent->getUmowy());
-    } 
+    }
     /**
      * Testowanie pola uzytkownicy
      */
@@ -200,7 +202,7 @@ class BeneficjentTest extends TestCase
     /**
      * Czyszczenie środowiska testowego
      */
-    public function tearDown() 
+    public function tearDown()
     {
         $this->beneficjent = null;
     }

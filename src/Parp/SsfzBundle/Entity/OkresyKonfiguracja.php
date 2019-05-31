@@ -42,11 +42,10 @@ class OkresyKonfiguracja
      */
     private $o2u;
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -57,6 +56,7 @@ class OkresyKonfiguracja
      * Set rok
      *
      * @param  string $rok
+     *
      * @return OkresyKonfiguracja
      */
     public function setRok($rok)
@@ -69,7 +69,7 @@ class OkresyKonfiguracja
     /**
      * Get rok
      *
-     * @return string 
+     * @return string
      */
     public function getRok()
     {
@@ -80,6 +80,7 @@ class OkresyKonfiguracja
      * Set o1u
      *
      * @param  boolean $o1u
+     *
      * @return OkresyKonfiguracja
      */
     public function setO1u($o1u)
@@ -92,7 +93,7 @@ class OkresyKonfiguracja
     /**
      * Get o1u
      *
-     * @return boolean 
+     * @return bool
      */
     public function getO1u()
     {
@@ -103,6 +104,7 @@ class OkresyKonfiguracja
      * Set o2u
      *
      * @param  boolean $o2u
+     *
      * @return OkresyKonfiguracja
      */
     public function setO2u($o2u)
@@ -115,7 +117,7 @@ class OkresyKonfiguracja
     /**
      * Get o2u
      *
-     * @return boolean 
+     * @return bool
      */
     public function getO2u()
     {

@@ -13,7 +13,6 @@ use Carbon\Carbon;
  */
 class BeneficjentFormaPrawna
 {
-
     /**
      * @var int
      *
@@ -33,7 +32,7 @@ class BeneficjentFormaPrawna
     /**
      * Get id
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -43,7 +42,7 @@ class BeneficjentFormaPrawna
     /**
      * Get nazwa
      *
-     * @return string 
+     * @return string
      */
     public function getNazwa()
     {
@@ -51,7 +50,6 @@ class BeneficjentFormaPrawna
     }
 
     /**
-     * 
      * @param string $nazwa
      */
     public function setNazwa($nazwa)

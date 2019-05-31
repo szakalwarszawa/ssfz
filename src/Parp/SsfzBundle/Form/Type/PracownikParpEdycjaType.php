@@ -14,42 +14,40 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class PracownikParpEdycjaType extends AbstractType
 {
-    
     /**
      * Buduje formularz
-     * 
+     *
      * @param FormBuilderInterface $builder
      * @param array                $options
+     *
      * @return Response
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {   
-        $builder
-            ->add(
-                'login', TextType::class, [
-                'label' => 'Login',
-                'disabled' => true,
-                ]
-            )->add(
-                'rola', EntityType::class, [
-                    'class' => Rola::class,
-                    'property' => 'opis',
-                    'label' => 'Rola',
-                    'query_builder' => function (EntityRepository $er ) {
-                        return $er->createQueryBuilder('n')
-                            ->where('n.id not in (:marray)')
-                            ->setParameter('marray', array('4')); //id roli beneficjenta
-                    },
-                    ]
-            );
+    {
+        $builder->add('login', TextType::class, [
+            'label' => 'Login',
+            'disabled' => true,
+        ]);
+
+        $builder->add('rola', EntityType::class, [
+            'class' => Rola::class,
+            'property' => 'opis',
+            'label' => 'Rola',
+            'query_builder' => function (EntityRepository $er) {
+                return $er->createQueryBuilder('n')
+                    ->where('n.id not in (:marray)')
+                    ->setParameter('marray', array('4'))
+                ;
+            },
+        ]);
     }
-    
+
     /**
      * Opcje formularza
-     * 
+     *
      * @param OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver) 
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setRequired('uzytk_repo');
     }

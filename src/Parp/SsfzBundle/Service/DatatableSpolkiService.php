@@ -1,26 +1,15 @@
 <?php
-/**
- * Serwis obsługujący grid spółek
- *
- * @category Service
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
- */
+
 namespace Parp\SsfzBundle\Service;
 
 /**
  * Serwis obsługujący grid spółek
- *
- * @category Class
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
  */
 class DatatableSpolkiService
 {
-
     /**
      * Zwraca pola tabeli spółek
-     * 
+     *
      * @return array
      */
     public function getDatatableSpolkiFields()
@@ -55,7 +44,7 @@ class DatatableSpolkiService
 
     /**
      * Zwraca tablicę rendererów tabeli spółek
-     * 
+     *
      * @return array
      */
     public function getDatatableSpolkiRenderers()
@@ -89,22 +78,22 @@ class DatatableSpolkiService
 
     /**
      * Zwraca datatable spółek
-     * 
+     *
      * @param Controller $parentObj
      * @param int        $umowaId
-     * 
+     *
      * @return datatable
      */
     public function datatableSpolki($parentObj, $umowaId)
     {
-        return $parentObj->get('datatable')
-                ->setDatatableId('dta-spolki')
-                ->setEntity('SsfzBundle:Spolka', 's')
-                ->setFields($this->getDatatableSpolkiFields())
-                ->setSearch(true)
-                ->setRenderers($this->getDatatableSpolkiRenderers())
-                ->setWhere(
-                    's.umowaId = :umowaId', array('umowaId' => (string) $umowaId)
-                );
+        return $parentObj
+            ->get('datatable')
+            ->setDatatableId('dta-spolki')
+            ->setEntity('SsfzBundle:Spolka', 's')
+            ->setFields($this->getDatatableSpolkiFields())
+            ->setSearch(true)
+            ->setRenderers($this->getDatatableSpolkiRenderers())
+            ->setWhere('s.umowaId = :umowaId', array('umowaId' => (string) $umowaId))
+        ;
     }
 }

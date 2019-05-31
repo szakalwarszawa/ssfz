@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -8,38 +9,33 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Kontroler obsługujący raportowanie
- * 
- * @category Class
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
- * 
+ *
  * @Route("/parp/raporty", name="raporty")
  */
 class ReportController extends Controller
 {
-
     /**
      * Wyświetlanie widoku raportów
-     * 
+     *
      * @Route("", name="raporty")
-     * 
+     *
      * @return Response
      */
     public function index()
     {
         return $this->render('SsfzBundle:Report:indexJasper.html.twig', array(
-                'reports' => $this->get('ssfz.service.jasperreports_service')->listAllReports())
-        );
+            'reports' => $this->get('ssfz.service.jasperreports_service')->listAllReports()
+        ));
     }
 
     /**
      * Odwołanie do metody serwisu JasperReportsService
      * umożliwiającej pobranie raportu
-     * 
+     *
      * @Route("/pobierz", name="pobierz")
      *
      * @param Request $request
-     * 
+     *
      * @return Response
      */
     public function reportAction(Request $request)

@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Form\Type;
 
 use Parp\SsfzBundle\Entity\Beneficjent;
@@ -20,19 +21,18 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
  */
 class SprawozdanieType extends AbstractType
 {
-
     /**
      * Buduje formularz do wypełniania sprawozdania
-     * 
+     *
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {   
+    {
         $this->showRemarks = $options['showRemarks'];
         if ($this->showRemarks === true) {
             $builder->add('uwagi', TextareaType::class, array(
-                'label' => 'Komentarz PARP',  
+                'label' => 'Komentarz PARP',
                 'attr' => array('readonly' => true, 'rows' => '5'),
                 'constraints' => array( )
             ));
@@ -43,24 +43,21 @@ class SprawozdanieType extends AbstractType
             ));
         }
 
-        $builder->add(
-            'numerUmowy', null, array(
+        $builder->add('numerUmowy', null, array(
             'label' => 'Numer umowy',
             'attr' => array('readonly' => true),
             'constraints' => array()
-            )
-        );
-        $builder->add(
-            'sprawozdaniaSpolek', CollectionType::class, array(
+        ));
+
+        $builder->add('sprawozdaniaSpolek', CollectionType::class, array(
             'entry_type' => SprawozdanieSpolkiType::class,
             'entry_options' => array('label' => false),
             'allow_add' => true,
             'by_reference' => false,
             'allow_delete' => true,
-            )
-        );
-        $builder->add(
-            'okres', ChoiceType::class, array(
+        ));
+
+        $builder->add('okres', ChoiceType::class, array(
             'label' => 'Sprawozdanie za okres',
             'choices' => array(
                 '' => '',
@@ -72,10 +69,9 @@ class SprawozdanieType extends AbstractType
                     array('message' => 'Należy wypełnić pole')
                 )
             )
-            )
-        );
-        $builder->add(
-            'rok', ChoiceType::class, array(
+        ));
+
+        $builder->add('rok', ChoiceType::class, array(
             'label' => 'Rok',
             'choices' => $options['okresy'],
             'constraints' => array(
@@ -83,18 +79,16 @@ class SprawozdanieType extends AbstractType
                     array('message' => 'Należy wypełnić pole')
                 )
             )
-            )
-        );
-        $builder->add(
-            'przekierowanie', HiddenType::class, array(
+        ));
+
+        $builder->add('przekierowanie', HiddenType::class, array(
             'mapped' => false,
-            )
-        );
+        ));
     }
 
     /**
      * Ustawia opcje konfiguracji
-     * 
+     *
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)

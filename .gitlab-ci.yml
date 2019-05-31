@@ -19,26 +19,26 @@ build:
 
 parallellint:
     stage: tests
-    allow_failure: true
+    allow_failure: false
     script:
         - /root/.composer/vendor/bin/parallel-lint --colors --blame --exclude vendor .
 
 yamllint:
     stage: tests
-    allow_failure: true
+    allow_failure: false
     script:
         - /root/.composer/vendor/bin/yaml-lint --format txt src/
         - /root/.composer/vendor/bin/yaml-lint --format txt app/
 
 psr2:
     stage: standards
-    allow_failure: true
+    allow_failure: false
     script:
         - /root/.composer/vendor/bin/phpcs -n --colors --report=full --standard=PSR2 --extensions=php src/
 
 twigcs:
     stage: standards
-    allow_failure: true
+    allow_failure: false
     script:
         - /root/.composer/vendor/bin/twigcs lint src/
 

@@ -1,5 +1,9 @@
 <?php
 
+namespace  Parp\SsfzBundle\Exception;
+
+use Exception;
+
 /**
  * Klasa wyjątku generowanego z klasy LdapDataServiceException
  *
@@ -8,7 +12,7 @@ class LdapDataServiceException extends Exception
 {
     /**
      * Konstruktor
-     * 
+     *
      * @param string    $message  wiadomość powiązana z wyjątkiem
      * @param integer   $code     kod wyjątku
      * @param Exception $previous

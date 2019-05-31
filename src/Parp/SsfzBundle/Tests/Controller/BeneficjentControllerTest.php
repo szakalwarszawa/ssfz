@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
+
 /**
  * Description of BeneficjentControllerTest
  *
@@ -16,27 +17,29 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 class BeneficjentControllerTest extends WebTestCase
 {
     private $client = null;
-    protected static $application;    
+    protected static $application;
     /**
      * Ustawienie środowiska testowego
-     */    
+     */
     protected function setUp()
     {
         self::runCommand('doctrine:database:drop --force');
         self::runCommand('doctrine:database:create');
         self::runCommand('doctrine:schema:update --force');
         self::runCommand('doctrine:fixtures:load --no-interaction');
-    }    
+    }
+
     /**
      * Czyszczenie środowiska testowego
      */
-    protected function tearDown() 
+    protected function tearDown()
     {
         self::runCommand('doctrine:database:drop --force');
-    }        
+    }
+
     /**
      * Wywołuje komendę z konsoli aplikacji
-     * 
+     *
      * @param  string $command
      * @return void
      */
@@ -45,10 +48,11 @@ class BeneficjentControllerTest extends WebTestCase
         $command = sprintf('%s --quiet', $command);
 
         return self::getApplication()->run(new StringInput($command));
-    }    
+    }
+
     /**
      * Pobiera obiekt Application do wywołania komedy konsolowej
-     * 
+     *
      * @return Application
      */
     protected static function getApplication()
@@ -61,7 +65,8 @@ class BeneficjentControllerTest extends WebTestCase
         }
 
         return self::$application;
-    }       
+    }
+
     /**
      * Testuje akcję domyślną
      */
@@ -70,15 +75,14 @@ class BeneficjentControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/beneficjent');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk777',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('GET', '/beneficjent');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }
+
     /**
      * Testuje akcję uzupelnij
      */
@@ -87,15 +91,14 @@ class BeneficjentControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/beneficjent/uzupelnij');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk777',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('GET', '/beneficjent/uzupelnij');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
-    }    
+    }
+
     /**
      * Testuje akcję profil
      */
@@ -104,15 +107,14 @@ class BeneficjentControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/beneficjent/profil');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk777',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('GET', '/beneficjent/profil');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
-    }       
+    }
+
     /**
      * Testuje akcję osobyGrid
      */
@@ -121,30 +123,27 @@ class BeneficjentControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/beneficjent/gridOsoby');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk777',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('GET', '/beneficjent/gridOsoby');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
-    }  
+    }
+
     /**
-     * testuje akcję umowyGrid
+     * Testuje akcję umowyGrid
      */
     public function testUmowyGrid()
     {
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/beneficjent/gridUmowy');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk777',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('GET', '/beneficjent/gridUmowy');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
-    }  
+    }
 }

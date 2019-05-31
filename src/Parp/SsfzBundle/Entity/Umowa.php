@@ -22,82 +22,82 @@ class Umowa
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * @var int
-     * 
+     *
      * @ORM\Column(name="beneficjent_id", type="integer")
      */
-    private $beneficjentId;    
-    
+    private $beneficjentId;
+
     /**
      * @ORM\ManyToOne(targetEntity="Beneficjent", inversedBy="umowy")
      * @ORM\JoinColumn(name="beneficjent_id", referencedColumnName="id")
-     */    
+     */
     private $beneficjent;
-    
-    /**       
-     * @var string       
+
+    /**
+     * @var string
      * @ORM\Column(name="numer", type="string", length=26)
      */
     private $numer;
-    
+
     /**
      * Encje Spolka powiazane z umową - spółki składające się na portfel
      *
      * @ORM\OneToMany(targetEntity="Spolka", mappedBy="umowa", cascade={"persist"})
      */
-    private $spolki;  
-    
+    private $spolki;
+
     /**
      * Encje Spolka powiazane z umową - spółki składające się na portfel
      *
      * @ORM\OneToMany(targetEntity="Sprawozdanie", mappedBy="umowa", cascade={"persist"})
      */
-    private $sprawozdania;    
+    private $sprawozdania;
 
     /**
      * Publiczny konstruktor
      */
-    public function __construct() 
-    {        
+    public function __construct()
+    {
         $this->spolki = new ArrayCollection();
         $this->sprawozdania = new ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
-    
+
     /**
      * Set beneficjentId
-     * 
+     *
      * @param  integer $beneficjentId
      * @return Umowa
      */
     public function setBeneficjentId($beneficjentId)
     {
         $this->beneficjentId = $beneficjentId;
-        
+
         return $this;
-    }    
-    
+    }
+
     /**
      * Get beneficjentId
      *
-     * @return integer 
+     * @return integer
      */
-    public  function getBeneficjentId()
+    public function getBeneficjentId()
     {
         return $this->beneficjentId;
-    }    
-    
+    }
+
     /**
      * Set beneficjent
      *
@@ -114,13 +114,13 @@ class Umowa
     /**
      * Get beneficjent
      *
-     * @return Beneficjent 
+     * @return Beneficjent
      */
     public function getBeneficjent()
     {
         return $this->beneficjent;
     }
-    
+
     /**
      * Set numer
      *
@@ -137,13 +137,13 @@ class Umowa
     /**
      * Get numer
      *
-     * @return string 
+     * @return string
      */
     public function getNumer()
     {
         return $this->numer;
-    }    
-    
+    }
+
     /**
      * Set spolki
      *
@@ -156,16 +156,16 @@ class Umowa
 
         return $this;
     }
-    
+
     /**
      * Get spolki
-     * 
+     *
      * @return Collection
      */
     public function getSpolki()
     {
         return $this->spolki;
-    }   
+    }
 
     /**
      * Set spolki
@@ -179,36 +179,36 @@ class Umowa
 
         return $this;
     }
-    
+
     /**
      * Get sprawozdania
-     * 
+     *
      * @return Collection
      */
     public function getSprawozdania()
     {
         return $this->sprawozdania;
-    }  
-    
+    }
+
     /**
      * Funkcja dodająca spółkę do portfela spółek umowy
-     * 
+     *
      * @param \Parp\SsfzBundle\Entity\Spolka $spolka
      */
     public function addSpolka(Spolka $spolka)
     {
         $spolka->setUmowa($this);
         $this->spolki->add($spolka);
-    }    
-    
+    }
+
     /**
      * Funkcja dodająca spółkę do portfela spółek umowy
-     * 
+     *
      * @param \Parp\SsfzBundle\Entity\Sprawozdanie $sprawozdanie
      */
     public function addSprawozdanie(Sprawozdanie $sprawozdanie)
     {
         $sprawozdanie->setUmowa($this);
         $this->sprawozdania->add($sprawozdanie);
-    }     
+    }
 }

@@ -1,37 +1,44 @@
 {% extends "SsfzBundle::baseLayout.html.twig" %}
 
 {% block body %}
-    <div id="login-form" class="col-md-12">    
+    <div id="login-form" class="col-md-12">
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <form action="{{ path('login') }}" method="post">
                 <div class="row">
                     {% if error %}
-                        <div>{{ error.message | replace({"User account is disabled.": "Konto nie zostało aktywowane. Skorzystaj z linku aktywacyjnego przesłanego na adres mailowy podany przy zakładaniu konta.",
-"Bad credentials.": "Nieprawidłowy login lub hasło."}) }}</div>
+                        <div>{{ error.message|replace({"User account is disabled.": "Konto nie zostało aktywowane. Skorzystaj z linku aktywacyjnego przesłanego na adres mailowy podany przy zakładaniu konta.", "Bad credentials.": "Nieprawidłowy login lub hasło."}) }}</div>
                     {% endif %}
                     <div class="row">
                         <div class="col-md-3">
                             <label for="username" id="username-label">Login:</label>
                         </div>
                         <div>
-                            <input type="text" id="username" class="form-control" name="_username" value="{{ last_username }}" required
+                            <input type="text"
+                                   id="username"
+                                   class="form-control"
+                                   name="_username"
+                                   value="{{ last_username }}"
                                    oninvalid="this.setCustomValidity('Pole login nie zostało wypełnione.')"
-                                   oninput ="setCustomValidity('')"/>
+                                   oninput="setCustomValidity('')"
+                                   required/>
                         </div>
-                    </div>     
+                    </div>
                     <div class="row">
                         <div class="col-md-3" id="password-label">
                             <label for="password">Hasło:</label>
                         </div>
                         <div>
-                            <input type="password" id="password" class="form-control" name="_password" required
+                            <input type="password"
+                                   id="password" class="form-control"
+                                   name="_password"
                                    oninvalid="this.setCustomValidity('Pole hasło nie zostało wypełnione.')"
-                                   oninput ="setCustomValidity('')"/>
+                                   oninput ="setCustomValidity('')"
+                                   required/>
                         </div>
                     </div>
                     <div id="form-submit-div" class="row">
-                        <input type="hidden" name="/" value="/account" />
+                        <input type="hidden" name="/" value="/account"/>
                         <button class="form-control orange-button" type="submit">Zaloguj</button>
                     </div>
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
@@ -39,12 +46,11 @@
             </form>
             <div class="row">
                 <div id="form-submit-div" class="row">
-                    <hr/>
-
-                    <a href="/uzytkownik/rejestracja">                
+                    <hr />
+                    <a href="/uzytkownik/rejestracja">
                         <button class="form-control submit-button">Zarejestruj konto</button>
                     </a>
-                    <a href="/haslo/przypomnij">                
+                    <a href="/haslo/przypomnij">
                         <button class="form-control submit-button">Nie pamiętam hasła</button>
                     </a>
                 </div>

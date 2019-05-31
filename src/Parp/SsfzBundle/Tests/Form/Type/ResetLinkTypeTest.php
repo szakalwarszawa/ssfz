@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Tests\Form\Type;
 
 use Parp\SsfzBundle\Form\Type\ResetLinkType;
@@ -11,15 +12,14 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Testuje klasę ResetLinkType
- * 
+ *
  * @covers \Parp\SsfzBundle\Form\Type\ResetLinkType
  */
 class ResetLinkTypeTest extends TypeTestCase
 {
-
     /**
      * Dodaje rozszerzenia formularzy
-     * 
+     *
      * @return collection
      */
     protected function getExtensions()
