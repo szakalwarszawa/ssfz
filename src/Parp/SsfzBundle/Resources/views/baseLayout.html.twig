@@ -13,13 +13,13 @@
         {% endstylesheets %}
         {% stylesheets 'bundles/ssfz/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css' filter='cssrewrite' %}
         <link rel="stylesheet" href="{{ asset_url }}" />
-        {% endstylesheets %}    
+        {% endstylesheets %}
         {% stylesheets 'bundles/ssfz/node_modules/datatables.net-bs/css/dataTables.bootstrap.css' filter='cssrewrite' %}
         <link rel="stylesheet" href="{{ asset_url }}" />
-        {% endstylesheets %}               
+        {% endstylesheets %}
         {% stylesheets 'bundles/ssfz/node_modules/datatables.net-buttons-bs/css/buttons.bootstrap.min.css' filter='cssrewrite' %}
         <link rel="stylesheet" href="{{ asset_url }}" />
-        {% endstylesheets %}         
+        {% endstylesheets %}
     </head>
     <body>
         {% javascripts '@SsfzBundle/Resources/public/node_modules/jquery/dist/jquery.min.js'%}
@@ -30,35 +30,35 @@
         {% endjavascripts %}
         {% javascripts '@SsfzBundle/Resources/public/node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js'%}
         <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}        
+        {% endjavascripts %}
         {% javascripts '@SsfzBundle/Resources/public/node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pl.min.js'%}
         <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}         
+        {% endjavascripts %}
         {% javascripts '@SsfzBundle/Resources/public/node_modules/bootbox/bootbox.min.js'%}
         <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}        
+        {% endjavascripts %}
         {% javascripts '@SsfzBundle/Resources/public/js/ssfz_common.js'%}
         <script src="{{ asset_url }}"></script>
-        {% endjavascripts %} 
+        {% endjavascripts %}
         {% javascripts '@SsfzBundle/Resources/public/node_modules/datatables.net/js/jquery.dataTables.js'%}
         <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}            
+        {% endjavascripts %}
         {% javascripts '@SsfzBundle/Resources/public/node_modules/datatables.net-bs/js/dataTables.bootstrap.js'%}
         <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}      
+        {% endjavascripts %}
         {% javascripts '@SsfzBundle/Resources/public/node_modules/datatables.net-buttons/js/dataTables.buttons.min.js'%}
-        <script src="{{ asset_url }}"></script>        
-        {% endjavascripts %}           
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
         {% javascripts '@SsfzBundle/Resources/public/node_modules/datatables.net-buttons-bs/js/buttons.bootstrap.min.js'%}
         <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}         
+        {% endjavascripts %}
         {% javascripts '@SsfzBundle/Resources/public/node_modules/datatables.net-buttons/js/buttons.colVis.min.js'%}
         <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}                         
+        {% endjavascripts %}
         {% javascripts '@SsfzBundle/Resources/public/node_modules/datatables.net-buttons/js/buttons.print.min.js'%}
         <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}         
-    {% block javascripts %}{% endblock %}        
+        {% endjavascripts %}
+    {% block javascripts %}{% endblock %}
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -81,24 +81,24 @@
                                 <li><a href="/haslo/zmiana">Zmiana hasła<span class="sr-only">(current)</span></a></li>
                                 <li class="divider"></li>
                                 {% endif %}
-                                <li class="active"><a href="/logout">Wyloguj<span class="sr-only">(current)</span></a></li>     
+                                <li class="active"><a href="{{ path('logout') }}">Wyloguj<span class="sr-only">(current)</span></a></li>
                             </ul>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav">
                             {% if is_granted('ROLE_KOORDYNATOR_TECHNICZNY') %}
                             <li><a href="{{ path('utworzPracownika') }}">Dodaj pracownika PARP</a></li>
-                            {%endif %}  
+                            {%endif %}
                             {% if is_granted('ROLE_KOORDYNATOR_MERYTORYCZNY') or is_granted('ROLE_PRACOWNIK_PARP') %}
                             <li><a href="{{ path('raporty') }}">Raporty</a></li>
-                            {%endif %}  
+                            {%endif %}
                     </ul>
                 </div>
             {% endif %}
         </div>
     </nav>
 
-    <div class="container">    
+    <div class="container">
         <div class="row">
             <div id="content">
                 {% if app.session.started %}
@@ -110,7 +110,7 @@
                             <strong>{{ flashMessage.title }}</strong> {{ flashMessage.message }}
                         </div>
                     {% endfor %}
-                {% endif %}                       
+                {% endif %}
             {% block body %}{% endblock %}
         </div>
     </div>
