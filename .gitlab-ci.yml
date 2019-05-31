@@ -69,7 +69,7 @@ phploc:
 
 sami:
     stage: doc
-    allow_failure: true
+    allow_failure: false
     script:
         - mkdir -p doc/api
         - php -d memory_limit=1G /usr/bin/sami.phar update "./.gitlab-ci/sami.conf" -v
