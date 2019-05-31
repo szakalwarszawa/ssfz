@@ -25,7 +25,7 @@ class UzytkownikController extends Controller {
      * 
      * @param Request $request
      * 
-     * @Route("/rejestracja")
+     * @Route("/rejestracja", name="rejestracja_konta_beneficjenta")
      * 
      * @return Response
      */
