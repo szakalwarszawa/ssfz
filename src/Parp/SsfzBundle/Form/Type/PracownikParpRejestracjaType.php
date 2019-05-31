@@ -68,7 +68,7 @@ class PracownikParpRejestracjaType extends AbstractType
             ]
         ]);
 
-        builder->->add('rola', \Symfony\Bridge\Doctrine\Form\Type\EntityType::class, [
+        $builder->add('rola', \Symfony\Bridge\Doctrine\Form\Type\EntityType::class, [
             'class' => 'SsfzBundle:Rola',
             'property' => 'opis',
             'label' => 'Rola',
