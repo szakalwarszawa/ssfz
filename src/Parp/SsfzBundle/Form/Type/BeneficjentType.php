@@ -21,28 +21,28 @@ class BeneficjentType extends AbstractType
 {
     /**
      * Buduje formularz do wypełniania profilu beneficjenta
-     * 
+     *
      * @param FormBuilderInterface $builder
      * @param array                $options
-     * 
+     *
      * @SuppressWarnings("unused")
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add(
             'nazwa', null, array(
-            'label' => 'Nazwa',   
+            'label' => 'Nazwa',
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )          
+            )
             )
         );
-        
+
         $builder->add(
             'umowy', CollectionType::class, array(
-            'entry_type' => UmowaType::class,            
+            'entry_type' => UmowaType::class,
             'entry_options' => array('label' => false),
             'allow_add' => true,
             'by_reference' => false,
@@ -69,121 +69,122 @@ class BeneficjentType extends AbstractType
                 'świętokrzyskie' => 'świętokrzyskie',
                 'warmińsko-mazurskie' => 'warmińsko-mazurskie',
                 'wielkopolskie' => 'wielkopolskie',
-                'zachodniopomorskie' => 'zachodniopomorskie',                 
+                'zachodniopomorskie' => 'zachodniopomorskie',
             ),
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )          
+            )
             )
         );
         $builder->add(
             'adrMiejscowosc', null, array(
-            'label' => 'Miejscowość',   
+            'label' => 'Miejscowość',
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )          
+            )
             )
         );
         $builder->add(
             'adrUlica', null, array(
-            'label' => 'Ulica',   
+            'label' => 'Ulica',
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )          
+            )
             )
         );
         $builder->add(
             'adrBudynek', null, array(
-            'label' => 'Nr budynku',   
+            'label' => 'Nr budynku',
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )          
+            )
             )
         );
         $builder->add(
             'adrLokal', null, array(
-            'label' => 'Nr lokalu'            
+            'label' => 'Nr lokalu'
             )
         );
         $builder->add(
             'adrKod', null, array(
-            'label' => 'Kod pocztowy',   
+            'label' => 'Kod pocztowy',
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )          
+            )
             )
         );
         $builder->add(
             'adrPoczta', null, array(
-            'label' => 'Poczta',   
+            'label' => 'Poczta',
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )          
+            )
             )
         );
         $builder->add(
             'telStacjonarny', null, array(
-            'label' => 'Telefon stacjonarny',   
+            'label' => 'Telefon stacjonarny',
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )          
+            )
             )
         );
         $builder->add(
             'telKomorkowy', null, array(
-            'label' => 'Telefon komórkowy',   
+            'label' => 'Telefon komórkowy',
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )          
+            )
             )
         );
         $builder->add(
             'email', null, array(
-            'label' => 'Adres e-mail',   
+            'label' => 'Adres e-mail',
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 ),
                 new Email(
                     array('message' => 'Adres email nie zawiera poprawnej konstrukcji, sprawdź czy adres nie zawiera błędów.')
-                )                
-            )          
+                )
+            )
             )
         );
         $builder->add(
             'fax', null, array(
-            'label' => 'Fax'         
+            'label' => 'Fax'
             )
-        );        
+        );
         $builder->add(
             'osobyZatrudnione', CollectionType::class, array(
-            'entry_type' => OsobaZatrudnionaType::class,            
+            'entry_type' => OsobaZatrudnionaType::class,
             'entry_options' => array('label' => false),
             'allow_add' => true,
             'by_reference' => false,
-            'allow_delete' => true,            
+            'allow_delete' => true,
             )
-        );        
+        );
     }
+
     /**
      * Ustawia opcje konfiguracji
-     * 
+     *
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
@@ -196,5 +197,3 @@ class BeneficjentType extends AbstractType
         );
     }
 }
-
-

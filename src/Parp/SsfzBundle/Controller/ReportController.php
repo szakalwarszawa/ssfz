@@ -15,9 +15,9 @@ class ReportController extends Controller
 {
     /**
      * Wyświetlanie widoku raportów
-     * 
+     *
      * @Route("", name="raporty")
-     * 
+     *
      * @return Response
      */
     public function index()
@@ -30,11 +30,11 @@ class ReportController extends Controller
     /**
      * Odwołanie do metody serwisu JasperReportsService
      * umożliwiającej pobranie raportu
-     * 
+     *
      * @Route("/pobierz", name="pobierz")
      *
      * @param Request $request
-     * 
+     *
      * @return Response
      */
     public function reportAction(Request $request)

@@ -11,14 +11,12 @@ use Parp\SsfzBundle\Form\Type\ChangePasswordType;
 use Parp\SsfzBundle\Form\Model\ChangePassword;
 
 /**
- * Kontroler obsługujący funkcjonalności 
- * związane z modyfikacjami hasła
+ * Kontroler obsługujący funkcjonalności z wiązane z modyfikacjami hasła
  *
  * @Route("/haslo")
  */
 class HasloController extends Controller
 {
-
     /**
      * Metoda do wygenerowania klucza zmiany kasła.
      * Wysyłka klucza resetującego hasło na podany adres email.
@@ -64,11 +62,11 @@ class HasloController extends Controller
 
     /**
      * Medota do resetu hasła.
-     * 
+     *
      * @Route("/reset/token={token}")
-     * 
+     *
      * @param Request $request
-     * 
+     *
      * @return Response
      */
     public function resetPassword(Request $request)
@@ -99,11 +97,11 @@ class HasloController extends Controller
 
     /**
      * Metoda do zmiany hasła.
-     * 
+     *
      * @Route("/zmiana")
-     * 
+     *
      * @param Request $request
-     * 
+     *
      * @return Response
      */
     public function changePassword(Request $request)
@@ -142,7 +140,7 @@ class HasloController extends Controller
     /**
      * Załadowanie serwisu MailerService
      * odpowiedzialnego za wysyłkę powiadomień
-     * 
+     *
      * @return MailerService
      */
     protected function getMailerService()

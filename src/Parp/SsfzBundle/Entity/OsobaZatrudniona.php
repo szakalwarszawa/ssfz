@@ -23,15 +23,15 @@ class OsobaZatrudniona
 
     /**
      * @var int
-     * 
+     *
      * @ORM\Column(name="beneficjent_id", type="integer")
      */
     private $beneficjentId;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Beneficjent", inversedBy="osobyZatrudnione")
      * @ORM\JoinColumn(name="beneficjent_id", referencedColumnName="id")
-     */    
+     */
     private $beneficjent;
 
     /**
@@ -83,40 +83,40 @@ class OsobaZatrudniona
      */
     private $wymiar;
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
         return $this->id;
     }
-    
+
     /**
      * Set beneficjentId
-     * 
+     *
      * @param  integer $beneficjentId
+     *
      * @return OsobaZatrudniona
      */
     public function setBeneficjentId($beneficjentId)
     {
         $this->beneficjentId = $beneficjentId;
-        
+
         return $this;
-    }    
-    
+    }
+
     /**
      * Get beneficjentId
      *
-     * @return integer 
+     * @return integer
      */
     public function getBeneficjentId()
     {
         return $this->beneficjentId;
     }
-    
+
     /**
      * Set beneficjent
      *
@@ -144,6 +144,7 @@ class OsobaZatrudniona
      * Set imie
      *
      * @param  string $imie
+     *
      * @return OsobaZatrudniona
      */
     public function setImie($imie)
@@ -156,7 +157,7 @@ class OsobaZatrudniona
     /**
      * Get imie
      *
-     * @return string 
+     * @return string
      */
     public function getImie()
     {
@@ -167,6 +168,7 @@ class OsobaZatrudniona
      * Set nazwisko
      *
      * @param  string $nazwisko
+     *
      * @return OsobaZatrudniona
      */
     public function setNazwisko($nazwisko)
@@ -179,7 +181,7 @@ class OsobaZatrudniona
     /**
      * Get nazwisko
      *
-     * @return string 
+     * @return string
      */
     public function getNazwisko()
     {
@@ -190,6 +192,7 @@ class OsobaZatrudniona
      * Set umowaRodzaj
      *
      * @param  string $umowaRodzaj
+     *
      * @return OsobaZatrudniona
      */
     public function setUmowaRodzaj($umowaRodzaj)
@@ -202,7 +205,7 @@ class OsobaZatrudniona
     /**
      * Get umowaRodzaj
      *
-     * @return string 
+     * @return string
      */
     public function getUmowaRodzaj()
     {
@@ -225,7 +228,7 @@ class OsobaZatrudniona
     /**
      * Get umowaData
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUmowaData()
     {
@@ -248,7 +251,7 @@ class OsobaZatrudniona
     /**
      * Get rozpoczecieData
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getRozpoczecieData()
     {
@@ -271,7 +274,7 @@ class OsobaZatrudniona
     /**
      * Get stanowisko
      *
-     * @return string 
+     * @return string
      */
     public function getStanowisko()
     {
@@ -294,7 +297,7 @@ class OsobaZatrudniona
     /**
      * Get wymiar
      *
-     * @return string 
+     * @return string
      */
     public function getWymiar()
     {

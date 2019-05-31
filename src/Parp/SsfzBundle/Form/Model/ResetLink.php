@@ -9,10 +9,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class ResetLink
 {
-
     /**
      * @var string
-     * 
+     *
      * @Assert\NotBlank()
      * @Assert\Length(max=64)
      */
@@ -20,7 +19,7 @@ class ResetLink
 
     /**
      * @var string
-     * 
+     *
      * @Assert\NotBlank()
      * @Assert\Email(message="Adres email nie zawiera poprawnej konstrukcji, sprawdź czy adres nie zawiera błędów.")
      */

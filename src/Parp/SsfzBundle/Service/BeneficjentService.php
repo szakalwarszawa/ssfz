@@ -1,11 +1,5 @@
 <?php
-/**
- * Serwis obsługujący operacje na profilu beneficjenta
- *
- * @category Service
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
- */
+
 namespace Parp\SsfzBundle\Service;
 
 use Parp\SsfzBundle\Entity\Beneficjent;
@@ -16,17 +10,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Serwis obsługujący operacje na profilu beneficjenta
- *
- * @category Class
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
  */
 class BeneficjentService
 {
-
     /**
      * Repozytorium encji Beneficjent
-     * 
+     *
      * @var BeneficjentRepository
      */
     private $beneficjentRepository;
@@ -40,16 +29,16 @@ class BeneficjentService
 
     /**
      * Repozytorium encji OsobaZatrudniona
-     * 
+     *
      * @var OsobaZatrudnionaRepository
      */
     private $osobaZatrudnionaRepository;
 
     /**
      * Konstruktor parametryczny
-     * 
+     *
      * @param BeneficjentRepository      $beneficjentRepository      reopzytorium BeneficjentRepository
-     * @param UmowaRepository            $umowaRepository            repozytorium UmowaRepository 
+     * @param UmowaRepository            $umowaRepository            repozytorium UmowaRepository
      * @param OsobaZatrudnionaRepository $osobaZatrudnionaRepository repozytorium OsobaZatrudnionaRepository
      */
     public function __construct($beneficjentRepository, $umowaRepository, $osobaZatrudnionaRepository)
@@ -61,9 +50,9 @@ class BeneficjentService
 
     /**
      * Pobiera listę encji Umowa powiązanych z encją Beneficjent
-     * 
+     *
      * @param Beneficjent $beneficjent profil beneficjenta
-     * 
+     *
      * @return ArrayCollection
      */
     public function getBeneficjentUmowy(Beneficjent $beneficjent)
@@ -77,10 +66,10 @@ class BeneficjentService
     }
 
     /**
-     * Pobiera listę encji OsobaZatrudniona powiązabych z encją Beneficjent 
-     * 
+     * Pobiera listę encji OsobaZatrudniona powiązabych z encją Beneficjent
+     *
      * @param Beneficjent $beneficjent profil beneficjenta
-     * 
+     *
      * @return ArrayCollection
      */
     public function getBeneficjentOsoby(Beneficjent $beneficjent)
@@ -94,11 +83,11 @@ class BeneficjentService
     }
 
     /**
-     * Dodaje do profilu beneficjebta pustą umowę i/lub osobę zatrudnioną, 
+     * Dodaje do profilu beneficjebta pustą umowę i/lub osobę zatrudnioną,
      * jeżeli nie ma innych powiązanych
-     * 
+     *
      * @param Beneficjent $beneficjent profil beneficjenta
-     * 
+     *
      * @return void
      */
     public function addUmowaOsobaIfEmpty(Beneficjent &$beneficjent)
@@ -112,11 +101,11 @@ class BeneficjentService
     }
 
     /**
-     * Dodaje nową encję Beneficjent powiązaną z podaną w parametrze encją 
+     * Dodaje nową encję Beneficjent powiązaną z podaną w parametrze encją
      * Uzytkownik
-     * 
+     *
      * @param Uzytkownik $uzytkownik zalogowany użytkownik
-     * 
+     *
      * @return Beneficjent
      */
     public function addBeneficjent(Uzytkownik $uzytkownik)
@@ -126,11 +115,11 @@ class BeneficjentService
 
     /**
      * Aktualizuje encję Beneficjent
-     * 
+     *
      * @param Beneficjent     $beneficjent   profil beneficjenta
      * @param ArrayCollection $originalUmowy lista umów przed zmianą
      * @param ArrayCollection $originalOsoby lista osób przed zmianą
-     * 
+     *
      * @return void
      */
     public function updateBeneficjent(Beneficjent &$beneficjent, ArrayCollection $originalUmowy, ArrayCollection $originalOsoby)
@@ -140,7 +129,7 @@ class BeneficjentService
 
     /**
      * Zwraca repozytorium BeneficjentRepository
-     * 
+     *
      * @return BeneficjentRepository
      */
     public function getBeneficjentRepository()
@@ -150,7 +139,7 @@ class BeneficjentService
 
     /**
      * Zwraca repozytorium UmowaRepository
-     * 
+     *
      * @return UmowaRepository
      */
     public function getUmowaRepository()
@@ -160,7 +149,7 @@ class BeneficjentService
 
     /**
      * Zwraca repozytorium OsobaZatrudnionaRepository
-     * 
+     *
      * @return OsobaZatrudnionaRepository
      */
     public function getOsobaZatrudnionaRepository()

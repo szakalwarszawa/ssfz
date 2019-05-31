@@ -15,10 +15,10 @@ class Beneficjent
 {
     /**
      * Identyfikator beneficjenta
-     * 
+     *
      * @var int
      *
-     * @ORM\Column(name="id",               type="integer")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -26,7 +26,7 @@ class Beneficjent
 
     /**
      * Nazwa beneficjenta
-     * 
+     *
      * @var string
      *
      * @ORM\Column(name="nazwa", type="string", length=255, nullable=true)
@@ -35,7 +35,7 @@ class Beneficjent
 
     /**
      * Dane adresowe - województwo
-     * 
+     *
      * @var string
      *
      * @ORM\Column(name="adr_wojewodztwo", type="string", length=100, nullable=true)
@@ -44,7 +44,7 @@ class Beneficjent
 
     /**
      * Dane adresowe - miejscowość
-     * 
+     *
      * @var string
      *
      * @ORM\Column(name="adr_miejscowosc", type="string", length=100, nullable=true)
@@ -53,7 +53,7 @@ class Beneficjent
 
     /**
      * Dane adresowe - ulica
-     * 
+     *
      * @var string
      *
      * @ORM\Column(name="adr_ulica", type="string", length=100, nullable=true)
@@ -62,7 +62,7 @@ class Beneficjent
 
     /**
      * Dane adresowe - nr budynku
-     * 
+     *
      * @var string
      *
      * @ORM\Column(name="adr_budynek", type="string", length=10, nullable=true)
@@ -71,7 +71,7 @@ class Beneficjent
 
     /**
      * Dane adresowe - nr lokalu
-     * 
+     *
      * @var string
      *
      * @ORM\Column(name="adr_lokal", type="string", length=10, nullable=true)
@@ -80,7 +80,7 @@ class Beneficjent
 
     /**
      * Dane adresowe - kod pocztowy
-     * 
+     *
      * @var string
      *
      * @ORM\Column(name="adr_kod", type="string", length=6, nullable=true)
@@ -89,7 +89,7 @@ class Beneficjent
 
     /**
      * Dane adresowe - poczta
-     * 
+     *
      * @var string
      *
      * @ORM\Column(name="adr_poczta", type="string", length=50, nullable=true)
@@ -98,7 +98,7 @@ class Beneficjent
 
     /**
      * Dane kobtakotowe - telefon stacjonarny
-     * 
+     *
      * @var string
      *
      * @ORM\Column(name="tel_stacjonarny", type="string", length=15, nullable=true)
@@ -107,7 +107,7 @@ class Beneficjent
 
     /**
      * Dane kontaktowe - telefon komórkowy
-     * 
+     *
      * @var string
      *
      * @ORM\Column(name="tel_komorkowy", type="string", length=15, nullable=true)
@@ -116,7 +116,7 @@ class Beneficjent
 
     /**
      * Dane kontaktowe - adres e-mail
-     * 
+     *
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=250, nullable=true)
@@ -125,7 +125,7 @@ class Beneficjent
 
     /**
      * Dane kontaktowe - fax
-     * 
+     *
      * @var string
      *
      * @ORM\Column(name="fax", type="string", length=15, nullable=true)
@@ -134,7 +134,7 @@ class Beneficjent
 
     /**
      * Określa, czy profil jest kompletny (czy wszystkie wymagane pola są wypełnione)
-     * 
+     *
      * @var bool
      *
      * @ORM\Column(name="wypelniony", type="boolean", nullable=true)
@@ -147,35 +147,35 @@ class Beneficjent
      * @ORM\OneToMany(targetEntity="OsobaZatrudniona", mappedBy="beneficjent", cascade={"persist", "remove"})
      */
     private $osobyZatrudnione;
-        
+
     /**
      * Encje Umowa powiazane z beneficjentem - umowy
      *
      * @ORM\OneToMany(targetEntity="Umowa", mappedBy="beneficjent", cascade={"persist", "remove"})
      */
     private $umowy;
-    
+
     /**
      * Encje Uzytkownik powiązane z beneficjentem - użytkownicy powiązaniu z profilem beneficjenta
      *
      * @ORM\OneToMany(targetEntity="Uzytkownik", mappedBy="beneficjent")
      */
     private $uzytkownicy;
-    
+
     /**
      * Publiczny konstruktor
      */
-    public function __construct() 
-    {        
+    public function __construct()
+    {
         $this->osobyZatrudnione = new ArrayCollection();
         $this->umowy = new ArrayCollection();
         $this->uzytkownicy = new ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -198,7 +198,7 @@ class Beneficjent
     /**
      * Get nazwa
      *
-     * @return string 
+     * @return string
      */
     public function getNazwa()
     {
@@ -221,7 +221,7 @@ class Beneficjent
     /**
      * Get adrWojewodztwo
      *
-     * @return string 
+     * @return string
      */
     public function getAdrWojewodztwo()
     {
@@ -232,6 +232,7 @@ class Beneficjent
      * Set adrMiejscowosc
      *
      * @param  string $adrMiejscowosc
+     *
      * @return Beneficjent
      */
     public function setAdrMiejscowosc($adrMiejscowosc)
@@ -244,7 +245,7 @@ class Beneficjent
     /**
      * Get adrMiejscowosc
      *
-     * @return string 
+     * @return string
      */
     public function getAdrMiejscowosc()
     {
@@ -255,6 +256,7 @@ class Beneficjent
      * Set adrUlica
      *
      * @param  string $adrUlica
+     *
      * @return Beneficjent
      */
     public function setAdrUlica($adrUlica)
@@ -267,7 +269,7 @@ class Beneficjent
     /**
      * Get adrUlica
      *
-     * @return string 
+     * @return string
      */
     public function getAdrUlica()
     {
@@ -278,6 +280,7 @@ class Beneficjent
      * Set adrBudynek
      *
      * @param  string $adrBudynek
+     *
      * @return Beneficjent
      */
     public function setAdrBudynek($adrBudynek)
@@ -290,7 +293,7 @@ class Beneficjent
     /**
      * Get adrBudynek
      *
-     * @return string 
+     * @return string
      */
     public function getAdrBudynek()
     {
@@ -313,7 +316,7 @@ class Beneficjent
     /**
      * Get adrLokal
      *
-     * @return string 
+     * @return string
      */
     public function getAdrLokal()
     {
@@ -324,6 +327,7 @@ class Beneficjent
      * Set adrKod
      *
      * @param  string $adrKod
+     *
      * @return Beneficjent
      */
     public function setAdrKod($adrKod)
@@ -336,7 +340,7 @@ class Beneficjent
     /**
      * Get adrKod
      *
-     * @return string 
+     * @return string
      */
     public function getAdrKod()
     {
@@ -347,6 +351,7 @@ class Beneficjent
      * Set adrPoczta
      *
      * @param  string $adrPoczta
+     *
      * @return Beneficjent
      */
     public function setAdrPoczta($adrPoczta)
@@ -359,7 +364,7 @@ class Beneficjent
     /**
      * Get adrPoczta
      *
-     * @return string 
+     * @return string
      */
     public function getAdrPoczta()
     {
@@ -382,7 +387,7 @@ class Beneficjent
     /**
      * Get telStacjonarny
      *
-     * @return string 
+     * @return string
      */
     public function getTelStacjonarny()
     {
@@ -405,7 +410,7 @@ class Beneficjent
     /**
      * Get telKomorkowy
      *
-     * @return string 
+     * @return string
      */
     public function getTelKomorkowy()
     {
@@ -416,6 +421,7 @@ class Beneficjent
      * Set email
      *
      * @param  string $email
+     *
      * @return Beneficjent
      */
     public function setEmail($email)
@@ -428,7 +434,7 @@ class Beneficjent
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -439,6 +445,7 @@ class Beneficjent
      * Set fax
      *
      * @param  string $fax
+     *
      * @return Beneficjent
      */
     public function setFax($fax)
@@ -451,7 +458,7 @@ class Beneficjent
     /**
      * Get fax
      *
-     * @return string 
+     * @return string
      */
     public function getFax()
     {
@@ -462,6 +469,7 @@ class Beneficjent
      * Set wypelniony
      *
      * @param  boolean $wypelniony
+     *
      * @return Beneficjent
      */
     public function setWypelniony($wypelniony)
@@ -474,7 +482,7 @@ class Beneficjent
     /**
      * Get wypelniony
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getWypelniony()
     {
@@ -485,6 +493,7 @@ class Beneficjent
      * Set umowy
      *
      * @param  Umowa $umowy
+     *
      * @return Beneficjent
      */
     public function setUmowy($umowy)
@@ -493,52 +502,53 @@ class Beneficjent
 
         return $this;
     }
-    
+
     /**
      * Get umowy
-     * 
+     *
      * @return Collection
      */
     public function getUmowy()
     {
         return $this->umowy;
     }
- 
+
     /**
      * set osobyZatrudnione
-     * 
-     * @param  Collection $osobyZatrudnione     
+     *
+     * @param  Collection $osobyZatrudnione
      * @return Beneficjent
      */
     public function setOsobyZatrudnione($osobyZatrudnione)
     {
         $this->osobyZatrudnione = $osobyZatrudnione;
-        
+
         return $this;
     }
-    
+
     /**
      * Get osobyZatrudnione
-     * 
+     *
      * @return Collection
      */
     public function getOsobyZatrudnione()
     {
         return $this->osobyZatrudnione;
     }
-    
+
     /**
      * Get uzytkownicy
-     * 
+     *
      * @return Collection
      */
     public function getUzytkownicy()
     {
         return $this->uzytkownicy;
     }
+
     /**
      * Funkcja dodająca umowę do porfilu beneficjenta
-     * 
+     *
      * @param \Parp\SsfzBundle\Entity\Umowa $umowa
      */
     public function addUmowa(Umowa $umowa)
@@ -546,9 +556,10 @@ class Beneficjent
         $umowa->setBeneficjent($this);
         $this->umowy->add($umowa);
     }
+
      /**
-     * Funkcja dodająca osobę zatrudnioną do profilu beneficjenta 
-     * 
+     * Funkcja dodająca osobę zatrudnioną do profilu beneficjenta
+     *
      * @param OsobaZatrudniona $osoba
      */
     public function addOsobaZatrudniona(OsobaZatrudniona $osoba)
@@ -556,10 +567,10 @@ class Beneficjent
         $osoba->setBeneficjent($this);
         $this->osobyZatrudnione->add($osoba);
     }
-    
+
     /**
      * Funkcja usuwająca umowę z profilu beneficjenta
-     * 
+     *
      * @param \Parp\SsfzBundle\Entity\Umowa $umowa
      */
     public function removeUmowa(Umowa $umowa)

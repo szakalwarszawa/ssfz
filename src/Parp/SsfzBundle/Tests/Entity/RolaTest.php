@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Tests\Entity;
 
 use PHPUnit\Framework\TestCase;
@@ -6,7 +7,7 @@ use Parp\SsfzBundle\Entity\Rola;
 
 /**
  * Test encji Rola
- * 
+ *
  * @covers \Parp\SsfzBundle\Entity\Rola
  */
 class RolaTest extends TestCase

@@ -18,11 +18,11 @@ class UzytkownikController extends Controller {
 
     /**
      * Metoda rejestracji użytkownika
-     * 
+     *
      * @param Request $request
-     * 
+     *
      * @Route("/rejestracja")
-     * 
+     *
      * @return Response
      */
     public function rejestracja(Request $request) {
@@ -57,11 +57,11 @@ class UzytkownikController extends Controller {
 
     /**
      * Metoda aktywacji konta użytkownika
-     * 
+     *
      * @param Request $request
-     * 
+     *
      * @Route("/aktywacja/token={token}")
-     * 
+     *
      * @return Response
      */
     public function aktywacjaKonta(Request $request) {

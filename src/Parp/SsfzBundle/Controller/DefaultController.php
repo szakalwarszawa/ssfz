@@ -12,9 +12,9 @@ class DefaultController extends Controller
     /**
      * Metoda kierująca użytkowników na odpowiednią część systemu,
      * zgodnie z rolą uwierzytelnionego użytkownika
-     * 
+     *
      * @Route(path = "/", name="default")
-     * 
+     *
      * @return Response
      */
     public function indexAction()

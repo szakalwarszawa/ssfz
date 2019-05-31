@@ -1,26 +1,15 @@
 <?php
-/**
- * Serwis obsługujący grid osób zatrudnionych
- *
- * @category Service
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
- */
+
 namespace Parp\SsfzBundle\Service;
 
 /**
  * Serwis obsługujący grid osób zatrudnionych
- *
- * @category Class
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
  */
 class DatatableOsobyService
 {
-
     /**
      * Zwraca pola tabeli osób zatrudnionych
-     * 
+     *
      * @return array
      */
     public function getDatatableOsobyFields()
@@ -39,7 +28,7 @@ class DatatableOsobyService
 
     /**
      * Zwraca tablicę rendererów tabeli osób zatrudnionych
-     * 
+     *
      * @return array
      */
     public function getDatatableOsobyRenderers()
@@ -73,10 +62,10 @@ class DatatableOsobyService
 
     /**
      * Zwraca datatable z osobami zatrudnionymi beneficjenta
-     * 
+     *
      * @param Controller $parentObj
      * @param int        $beneficjentId
-     * 
+     *
      * @return datatable
      */
     public function datatableOsoby($parentObj, $beneficjentId)

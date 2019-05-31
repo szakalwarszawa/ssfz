@@ -13,30 +13,35 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 /**
  * Testuje klasę BemeficjentType
- * 
+ *
  * @covers \Parp\SsfzBundle\Form\Type\BeneficjentType
  */
 class BeneficjentTypeTest extends TypeTestCase
 {
     /**
      * Dodaje rozszerzenia formularzy
-     * 
+     *
      * @return collection
      */
     protected function getExtensions()
-    {                        
-        $this->validator = $this->createMock(ValidatorInterface::class);        
-        $this->validator
+    {
+        $this->validator = $this->createMock(ValidatorInterface::class);
+        $this
+            ->validator
             ->method('validate')
-            ->will($this->returnValue(new ConstraintViolationList()));
-        $this->validator
+            ->will($this->returnValue(new ConstraintViolationList()))
+        ;
+        $this
+            ->validator
             ->method('getMetadataFor')
-            ->will($this->returnValue(new ClassMetadata(Form::class)));
-        
+            ->will($this->returnValue(new ClassMetadata(Form::class)))
+        ;
+
         return array(
-            new ValidatorExtension($this->validator),            
+            new ValidatorExtension($this->validator),
         );
-    }    
+    }
+
     /**
      * Testuje submit formularza
      */
@@ -47,14 +52,14 @@ class BeneficjentTypeTest extends TypeTestCase
             'adrWojewodztwo' => 'podlaskie',
             'adrMiejscowosc' => 'MiejscowoscTest',
             'adrUlica' => 'UlicaTest',
-            'adrBudynek' =>'1', 
+            'adrBudynek' =>'1',
             'adrLokal' =>'1',
             'adrKod' =>'11-111',
             'adrPoczta' =>'PocztaTest',
             'telStacjonarny' =>'123456789',
             'telKomorkowy' =>'123456789',
             'email' =>'test@test.pl',
-            'fax' =>'123456789',   
+            'fax' =>'123456789',
             'umowy' => new CollectionType(),
             'osobyZatrudnione' => new CollectionType(),
         );
@@ -65,7 +70,7 @@ class BeneficjentTypeTest extends TypeTestCase
         $object->setAdrWojewodztwo('podlaskie');
         $object->setAdrMiejscowosc('MiejscowoscTest');
         $object->setAdrUlica('UlicaTest');
-        $object->setAdrBudynek('1'); 
+        $object->setAdrBudynek('1');
         $object->setAdrLokal('1');
         $object->setAdrKod('11-111');
         $object->setAdrPoczta('PocztaTest');

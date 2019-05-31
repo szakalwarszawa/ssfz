@@ -1,18 +1,19 @@
 <?php
+
 namespace Parp\SsfzBundle\Service;
 
 use Exception;
 use Parp\SsfzBundle\Entity\UzytkownikLdap;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Zend\Ldap\Ldap;
+
 /**
- * Klasa zapewniająca dostęp do danych zgromadzonych w bazie LDAP 
- * 
- * Umożliwia pobieranie informacji o użytkownikach  
+ * Klasa zapewniająca dostęp do danych zgromadzonych w bazie LDAP
+ *
+ * Umożliwia pobieranie informacji o użytkownikach
  */
 class LdapDataService
 {
-
     /**
      * Klasa \Zend\Ldap\Ldap reprezentuje wiązanie do pojedynczego serwera LDAP (OpenLDAP
      * lub ActiveDirectory) i pozwala na wykonanie na nim operacji.
@@ -31,15 +32,15 @@ class LdapDataService
     private $parameters;
 
     /**
-     * Pole LADAP które jest loginem użytkownika  
+     * Pole LADAP które jest loginem użytkownika
      */
     private $uidKey;
-    
+
     /**
      * Publiczny konstruktor.
-     * 
+     *
      * @param array  $parameters
-     * @param string $uidKey 
+     * @param string $uidKey
      */
     public function __construct(array $parameters = array(), $uidKey = 'samaccountname')
     {
@@ -105,10 +106,10 @@ class LdapDataService
 
     /**
      * Pobiera z katalogu LDAP listę użytkowników
-     * 
+     *
      * Uzytkonik w liście jest reprezentowany przez klasę UzytkownikLdap. Użytkownicy są wyszukiwani
      * względem zdefiniowanego w konstruktorze baseDn.
-     * 
+     *
      * @return UzytkownikLdap[]
      */
     public function getUzytkownikLdapLista()
@@ -135,9 +136,9 @@ class LdapDataService
 
     /**
      * Pobiera użytkowników z LDAP z ustawionym adresem e-mail
-     * 
+     *
      * Wybiera tylko uzytkowników z ustawionym polem mail. Zwraca tablicę z UzytkownikLdap
-     *  
+     *
      * @return UzytkownikLdap[]
      */
     public function getUzytkownikLdapListaZEmail()
@@ -156,12 +157,12 @@ class LdapDataService
 
     /**
      * Pobiera obiekt UzytkownikLdap na podstawie podanego loginu
-     * 
+     *
      * Zwraca obiekt UzytkownikLdap dla podanego loginu. W przypdku gdy login jest niejednoznaczny
-     * tzn. więcej niż jeden rekord z LDAP pasuje do podanego loginu wyrzuca LdapDataServiceexception  
-     * 
+     * tzn. więcej niż jeden rekord z LDAP pasuje do podanego loginu wyrzuca LdapDataServiceexception
+     *
      * @param  string $login
-     * @return UzytkownikLdap 
+     * @return UzytkownikLdap
      * @throws \LdapDataServiceException
      */
     public function getUzytkownikLdap($login)
@@ -178,9 +179,9 @@ class LdapDataService
     }
     /**
      * Zwraca tylko dostępnych użytkowników z LDAP
-     * 
+     *
      * Tzn. tylko tych który nie zostali już dodani do aplikacji
-     * 
+     *
      * @param \Parp\SsfzBundle\Repository\UzytkownikRepository $uzytkRepo
      * @return type
      */
@@ -190,7 +191,6 @@ class LdapDataService
         $pracownicyLdap = $this->getUzytkownikLdapListaZEmail();
         $loginy = $this->pobierzLoginy($uzytkRepo);
         foreach ($pracownicyLdap as $pracownik) {
-            //nie dodawaj loginow ktore sa juz w bazie
             if (in_array($pracownik->getLogin(), $loginy)) {
                 continue;
             }
@@ -201,10 +201,10 @@ class LdapDataService
     }
 
     /**
-     * Pobiera loginy użytkowników
-     * z Active Directory
-     * 
+     * Pobiera loginy użytkowników z Active Directory
+     *
      * @param UzytkownikRepository $uzytkRepo
+     *
      * @return array
      */
     private function pobierzLoginy($uzytkRepo)
@@ -220,10 +220,10 @@ class LdapDataService
 
     /**
      * Konwertuje tablicę z informacjami na temat użytkownika na obiekt UzytkonikLdap.
-     * 
-     * Tablica konwertowana powinna mieć strukturę taką jaka pojawia sie na 
+     *
+     * Tablica konwertowana powinna mieć strukturę taką jaka pojawia sie na
      * wyjściu \Zend\Ldap\Ldap::searchEntries()
-     * 
+     *
      * @param  type $data
      * @return UzytkownikLdap
      */

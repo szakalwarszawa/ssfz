@@ -12,39 +12,39 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 /**
  * Description of sprawozdanieControllerTest
  *
- * 
+ *
  * @covers \Parp\SsfzBundle\Controller\sprawozdanieController
  */
 class SprawozdanieControllerTest extends WebTestCase
 {
     /**
-     *
      * @var Client
      */
     private $client = null;
-    protected static $application; 
-    
+
+    protected static $application;
+
     /**
      * Ustawienie środowiska testowego
-     */    
+     */
     protected function setUp()
     {
         self::runCommand('doctrine:database:drop --force');
         self::runCommand('doctrine:database:create');
         self::runCommand('doctrine:schema:update --force');
         self::runCommand('doctrine:fixtures:load --no-interaction');
-    }    
+    }
     /**
      * Czyszczenie środowiska testowego
      */
-    protected function tearDown() 
+    protected function tearDown()
     {
         self::runCommand('doctrine:database:drop --force');
-    }  
-    
+    }
+
     /**
      * Wywołuje komendę z konsoli aplikacji
-     * 
+     *
      * @param string $command
      * @return void
      */
@@ -53,10 +53,10 @@ class SprawozdanieControllerTest extends WebTestCase
         $command = sprintf('%s --quiet', $command);
 
         return self::getApplication()->run(new StringInput($command));
-    }    
+    }
     /**
      * Pobiera obiekt Application do wywołania komedy konsolowej
-     * 
+     *
      * @return Application
      */
     protected static function getApplication()
@@ -69,11 +69,11 @@ class SprawozdanieControllerTest extends WebTestCase
         }
 
         return self::$application;
-    }    
-    
+    }
+
     /**
      * Testuje akcję rejestracja
-     * 
+     *
      */
     public function testRejestracja()
     {
@@ -105,7 +105,7 @@ class SprawozdanieControllerTest extends WebTestCase
         );
         $crawler = $this->client->request('GET', '/sprawozdanie/edycja/1/2');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
-    }    
+    }
     /**
      * Testuje akcję poprawa
      */
@@ -122,7 +122,7 @@ class SprawozdanieControllerTest extends WebTestCase
         );
         $crawler = $this->client->request('GET', '/sprawozdanie/poprawa/1/4');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
-    }       
+    }
     /**
      * Testuje akcję podglad
      */
@@ -139,7 +139,7 @@ class SprawozdanieControllerTest extends WebTestCase
         );
         $crawler = $this->client->request('GET', '/sprawozdanie/podglad/2');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
-    }  
+    }
     /**
      * testuje akcję gridSprawozdanie
      */
@@ -156,8 +156,8 @@ class SprawozdanieControllerTest extends WebTestCase
         );
         $crawler = $this->client->request('GET', '/gridSprawozdanie/1');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
-    }   
-    
+    }
+
      /**
      * testuje akcję WyslijDoParpAction
      */
@@ -174,8 +174,8 @@ class SprawozdanieControllerTest extends WebTestCase
         );
         $crawler = $this->client->request('POST', '/sprawozdanie/wyslijDoParp', array('sprawozdanieId'=> 3), array(), array());
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-    } 
-    
+    }
+
     /**
      * testuje metodę SetDefaultValues
      */
@@ -191,9 +191,9 @@ class SprawozdanieControllerTest extends WebTestCase
         $this->assertSame($report->getCzyNajnowsza(), true);
         $this->assertSame($report->getStatus(), 1);
         $this->assertSame($report->getDataRejestracji()->format('Y-m-d'), $creationDate->format('Y-m-d'));
-        
+
     }
-    
+
     /**
      * testuje metodę SetSpolki
      */
@@ -207,7 +207,7 @@ class SprawozdanieControllerTest extends WebTestCase
         $report = $sprawozdanieControler->setSpolki($spolki, $report);
         $this->assertSame(count($report->getSprawozdaniaSpolek()), count($spolki));
     }
-    
+
     /**
      * testuje metodę setDefaultValuesAfterRepait
      */
@@ -220,7 +220,7 @@ class SprawozdanieControllerTest extends WebTestCase
         $report = new \Parp\SsfzBundle\Entity\Sprawozdanie();
 
         $sprawozdanieControler = new \Parp\SsfzBundle\Controller\SprawozdanieController();
-        
+
         $report = $sprawozdanieControler->setDefaultValuesAfterRepait($report, $oldReport);
         $this->assertSame($report->getWersja(), $wersja +1);
         $this->assertSame($report->getPreviousVersionId(), 1);
@@ -230,7 +230,7 @@ class SprawozdanieControllerTest extends WebTestCase
         $this->assertSame($report->getDataPrzeslaniaDoParp(), null);
         $this->assertSame($report->getDataZatwierdzenia(), null);
     }
-    
+
     /**
      * testuje metodę getNumerUmowy
      */
@@ -246,13 +246,13 @@ class SprawozdanieControllerTest extends WebTestCase
         $objectManager = $this->createMock(ObjectManager::class);
         $objectManager->expects($this->any())
             ->method('getRepository')
-            ->willReturn($umowaRepository);  
-        
+            ->willReturn($umowaRepository);
+
         $sprawozdanieControler = new \Parp\SsfzBundle\Controller\SprawozdanieController();
         $numerUmowy = $sprawozdanieControler->getNumerUmowy(1);
         $this->assertSame($numerUmowy,'1/2015');*/
     }
-    
+
     /**
      * testuje metodę getSpolkiList
      */
@@ -268,12 +268,11 @@ class SprawozdanieControllerTest extends WebTestCase
         $objectManager = $this->createMock(ObjectManager::class);
         $objectManager->expects($this->any())
             ->method('getRepository')
-            ->willReturn($umowaRepository); 
-        
+            ->willReturn($umowaRepository);
+
         $sprawozdanieControler = new \Parp\SsfzBundle\Controller\SprawozdanieController();
-        
+
         $spolki = $sprawozdanieControler->getSpolkiList(1);
         $this->assertSame(count($spolki),1);*/
     }
-    
 }

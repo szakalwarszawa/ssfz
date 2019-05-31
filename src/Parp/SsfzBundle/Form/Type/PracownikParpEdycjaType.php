@@ -14,16 +14,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class PracownikParpEdycjaType extends AbstractType
 {
-    
     /**
      * Buduje formularz
-     * 
+     *
      * @param FormBuilderInterface $builder
      * @param array                $options
+     *
      * @return Response
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {   
+    {
         $builder
             ->add(
                 'login', TextType::class, [
@@ -40,16 +40,16 @@ class PracownikParpEdycjaType extends AbstractType
                             ->where('n.id not in (:marray)')
                             ->setParameter('marray', array('4')); //id roli beneficjenta
                     },
-                    ]
+                ]
             );
     }
-    
+
     /**
      * Opcje formularza
-     * 
+     *
      * @param OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver) 
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setRequired('uzytk_repo');
     }

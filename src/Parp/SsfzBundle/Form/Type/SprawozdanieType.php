@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Form\Type;
 
 use Parp\SsfzBundle\Entity\Beneficjent;
@@ -20,19 +21,18 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
  */
 class SprawozdanieType extends AbstractType
 {
-
     /**
      * Buduje formularz do wypełniania sprawozdania
-     * 
+     *
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {   
+    {
         $this->showRemarks = $options['showRemarks'];
         if ($this->showRemarks === true) {
             $builder->add('uwagi', TextareaType::class, array(
-                'label' => 'Komentarz PARP',  
+                'label' => 'Komentarz PARP',
                 'attr' => array('readonly' => true, 'rows' => '5'),
                 'constraints' => array( )
             ));
@@ -94,7 +94,7 @@ class SprawozdanieType extends AbstractType
 
     /**
      * Ustawia opcje konfiguracji
-     * 
+     *
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)

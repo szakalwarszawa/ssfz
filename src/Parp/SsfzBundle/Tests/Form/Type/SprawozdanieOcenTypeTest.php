@@ -13,30 +13,31 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 /**
  * Testuje klasę SprawozdanieOcenType
- * 
+ *
  * @covers \Parp\SsfzBundle\Form\Type\SprawozdanieOcenType
  */
 class SprawozdanieOcenTypeTest extends TypeTestCase
 {
     /**
      * Dodaje rozszerzenia formularzy
-     * 
+     *
      * @return collection
      */
     protected function getExtensions()
-    {                        
-        $this->validator = $this->createMock(ValidatorInterface::class);        
+    {
+        $this->validator = $this->createMock(ValidatorInterface::class);
         $this->validator
             ->method('validate')
             ->will($this->returnValue(new ConstraintViolationList()));
         $this->validator
             ->method('getMetadataFor')
             ->will($this->returnValue(new ClassMetadata(Form::class)));
-        
+
         return array(
-            new ValidatorExtension($this->validator),            
+            new ValidatorExtension($this->validator),
         );
-    }    
+    }
+
     /**
      * Testuje submit formularza
      */

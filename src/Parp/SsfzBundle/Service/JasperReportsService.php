@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Service;
 
 use Parp\SsfzBundle\Entity\Uzytkownik;
@@ -7,16 +8,10 @@ use Jaspersoft\Service\Criteria\RepositorySearchCriteria;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Serwis obsługujący raportowanie
- * JasperReports
- *
- * @category Class
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
+ * Serwis obsługujący raportowanie JasperReports
  */
 class JasperReportsService
 {
-
     /**
      *
      * @var Client
@@ -35,7 +30,7 @@ class JasperReportsService
      * Tworzone jest połączenie z JasperReports server
      * Określana jest ścieżka główna, pod którą
      * znajdują się pliki raportów
-     * 
+     *
      * @param string $host
      * @param string $user
      * @param string $password
@@ -52,7 +47,7 @@ class JasperReportsService
      * Zwraca listę dostępnych raportów,
      * znajdujących się pod ścieżką, zdefiniowaną
      * w pliku parameters.yml
-     * 
+     *
      * @return array
      */
     public function listAllReports()
@@ -66,7 +61,7 @@ class JasperReportsService
     /**
      * Metoda umożliwiająca pobranie pliku
      * raportu w formacie xls
-     * 
+     *
      * @param  string $filePath
      * @return Response
      */

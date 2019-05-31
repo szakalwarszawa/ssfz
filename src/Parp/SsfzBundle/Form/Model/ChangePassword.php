@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Form\Model;
 
 use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;
@@ -9,7 +10,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class ChangePassword
 {
-
     /**
      * @var string
      */
@@ -17,7 +17,7 @@ class ChangePassword
 
     /**
      * @var string
-     * 
+     *
      * @Assert\NotBlank
      * @Assert\Length(max=255)
      * @Assert\Regex(

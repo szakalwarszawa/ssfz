@@ -20,14 +20,14 @@ class PrzeplywFinansowyController extends Controller
 {
     /**
      * Akcja zapisu przeplywu finansowego
-     * 
+     *
      * @param Request $request
      * @param integer $sprawozdanieId
-     * 
+     *
      * @Route("przeplyw/rejestracja/{sprawozdanieId}", name="przeplyw_rejestracja")
-     * 
+     *
      * @throws NotFoundHttpException
-     * 
+     *
      * @return Response
      */
     public function createPrzeplyw(Request $request, $sprawozdanieId)
@@ -112,9 +112,9 @@ class PrzeplywFinansowyController extends Controller
 
     /**
      * Pobiera zalogowanego użytkownika
-     * 
+     *
      * @throws AccessDeniedException
-     * 
+     *
      * @return Uzytkownik
      */
     public function getZalogowanyUzytkownik()
@@ -129,7 +129,7 @@ class PrzeplywFinansowyController extends Controller
 
     /**
      * Pobiera identyfikator beneficjenta
-     * 
+     *
      * @return Identyfikator beneficjenta
      */
     private function getBeneficjentId()
@@ -140,10 +140,10 @@ class PrzeplywFinansowyController extends Controller
 
         return $beneficjentId;
     }
-    
+
     /**
-     * Pomocnicza metoda 
-     * 
+     * Pomocnicza metoda
+     *
      * @return KomunikatyService z kontenera
      */
 

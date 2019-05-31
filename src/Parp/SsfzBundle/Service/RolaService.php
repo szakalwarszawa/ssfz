@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Service;
 
 use Parp\SsfzBundle\Repository\UzytkownikRepository;
@@ -6,14 +7,9 @@ use Parp\SsfzBundle\Repository\RolaRepository;
 
 /**
  * Dostęp do repozytorium ról.
- * 
- * @category Class
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
  */
 class RolaService
 {
-
     /**
      * @var RolaRepository
      */
@@ -21,7 +17,7 @@ class RolaService
 
     /**
      * Konstruktor
-     * 
+     *
      * @param RolaRepository $rolaRepository
      */
     public function __construct($rolaRepository)
@@ -31,7 +27,7 @@ class RolaService
 
     /**
      * Wyszukuje rolę po kryteriach
-     * 
+     *
      * @param array $criteria
      * @return Rola
      */

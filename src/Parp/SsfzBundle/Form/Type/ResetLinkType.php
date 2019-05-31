@@ -12,10 +12,9 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
  */
 class ResetLinkType extends AbstractType
 {
-
     /**
      * Buduje formularz do generowania linku resetującego hasło
-     * 
+     *
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
@@ -40,7 +39,7 @@ class ResetLinkType extends AbstractType
 
     /**
      * Ustawia opcje konfiguracji
-     * 
+     *
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
@@ -50,7 +49,7 @@ class ResetLinkType extends AbstractType
 
     /**
      * Ustawia prefix
-     * 
+     *
      * @return string
      */
     public function getBlockPrefix()

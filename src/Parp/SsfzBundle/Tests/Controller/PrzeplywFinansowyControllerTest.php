@@ -9,7 +9,6 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 
-
 /**
  * Description of sprawozdanieControllerTest
  *
@@ -18,29 +17,31 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 class PrzeplywFinansowyControllerTest extends WebTestCase
 {
     private $client = null;
-    protected static $application; 
-    
+
+    protected static $application;
+
     /**
      * Ustawienie środowiska testowego
-     */    
+     */
     protected function setUp()
     {
         self::runCommand('doctrine:database:drop --force');
         self::runCommand('doctrine:database:create');
         self::runCommand('doctrine:schema:update --force');
         self::runCommand('doctrine:fixtures:load --no-interaction');
-    }    
+    }
+
     /**
      * Czyszczenie środowiska testowego
      */
-    protected function tearDown() 
+    protected function tearDown()
     {
         self::runCommand('doctrine:database:drop --force');
-    }  
-    
+    }
+
     /**
      * Wywołuje komendę z konsoli aplikacji
-     * 
+     *
      * @param string $command
      * @return void
      */
@@ -49,10 +50,11 @@ class PrzeplywFinansowyControllerTest extends WebTestCase
         $command = sprintf('%s --quiet', $command);
 
         return self::getApplication()->run(new StringInput($command));
-    }    
+    }
+
     /**
      * Pobiera obiekt Application do wywołania komedy konsolowej
-     * 
+     *
      * @return Application
      */
     protected static function getApplication()
@@ -65,8 +67,8 @@ class PrzeplywFinansowyControllerTest extends WebTestCase
         }
 
         return self::$application;
-    }     
-    
+    }
+
     /**
      * Testuje akcję rejestracja
      */
@@ -84,5 +86,4 @@ class PrzeplywFinansowyControllerTest extends WebTestCase
         $crawler = $this->client->request('GET', '/przeplyw/rejestracja/2');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }
-    
 }

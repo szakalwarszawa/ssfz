@@ -8,10 +8,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
  * SsfzBundle
- *
- * @category Class
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
  */
 class SsfzBundle extends Bundle
 {

@@ -14,10 +14,9 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
  */
 class UzytkownikType extends AbstractType
 {
-
     /**
      * Buduje formularz rejestracji użytkownika
-     * 
+     *
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
@@ -73,7 +72,7 @@ class UzytkownikType extends AbstractType
 
     /**
      * Ustawia opcje konfiguracji
-     * 
+     *
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
@@ -88,7 +87,7 @@ class UzytkownikType extends AbstractType
 
     /**
      * Ustawia prefix
-     * 
+     *
      * @return string
      */
     public function getBlockPrefix()

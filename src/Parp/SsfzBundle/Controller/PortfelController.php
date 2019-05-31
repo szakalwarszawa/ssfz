@@ -19,16 +19,16 @@ class PortfelController extends Controller
 {
     /**
      * Akcja główna - wyświetla formularz dodania/edycji spółki, oraz listę spółek
-     * 
+     *
      * @param Request $request
      * @param int     $idUmowy
      * @param int     $idSpolki
-     * 
-     * @Route("/portfel/{idUmowy}",            name="portfel_dodanie") 
-     * @Route("/portfel/{idUmowy}/{idSpolki}", name="portfel_edycja") 
-     * 
+     *
+     * @Route("/portfel/{idUmowy}",            name="portfel_dodanie")
+     * @Route("/portfel/{idUmowy}/{idSpolki}", name="portfel_edycja")
+     *
      * @throws NotFoundHttpException
-     * 
+     *
      * @return Response
      */
     public function indexAction(Request $request, $idUmowy, $idSpolki=null)
@@ -41,12 +41,12 @@ class PortfelController extends Controller
         $umowa= $this->getDoctrine()->getRepository(Umowa::class)->find($idUmowy);
         if (!$umowa) {
             $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Nie znaleziono umowy o przekazanym identyfikatorze.');
-            
+
             return $this->redirectToRoute('beneficjent');
         }
         if (false === $beneficjent->getUmowy()->contains($umowa)) {
             $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Brak dostępu do umowy o podanym identyfikatorze.');
-            
+
             return $this->redirectToRoute('beneficjent');
         }
         $spolkaP = null;
@@ -54,28 +54,28 @@ class PortfelController extends Controller
             $spolka = new Spolka();
             $spolka->setUmowa($umowa);
             $umowa->addSpolka($spolka);
-        } 
+        }
         if ($idSpolki) {
             $spolka = $this->getDoctrine()->getRepository(Spolka::class)->find($idSpolki);
             $spolkaP = clone $spolka;
-        }        
+        }
         $form = $this->createForm(SpolkaType::class, $spolka, array('narzedzia_svc' => $this->get('ssfz.service.narzedzia_service')));
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form->isValid()) {
                 $this->getDoctrine()->getRepository(Spolka::class)->persistSpolka($spolka, $spolkaP, $uzytkownik->getId());
                 $this->get('ssfz.service.komunikaty_service')->sukcesKomunikat('Dane zostały zapisane.');
-                if ('beneficjent' === $form['przekierowanie']->getData()) {                
+                if ('beneficjent' === $form['przekierowanie']->getData()) {
                     return $this->redirectToRoute('beneficjent');
-                }            
-            
-                return $this->redirectToRoute('portfel_dodanie', array('idUmowy' => $idUmowy));               
+                }
+
+                return $this->redirectToRoute('portfel_dodanie', array('idUmowy' => $idUmowy));
             } else {
                 $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Formularz nie został poprawnie wypełniony.');
             }
         }
-        $this->get('ssfz.service.datatable_spolki_service')->datatableSpolki($this, $umowa->getId()); 
-        
+        $this->get('ssfz.service.datatable_spolki_service')->datatableSpolki($this, $umowa->getId());
+
         return $this->render(
             'SsfzBundle:Portfel:index.html.twig',
             array(
@@ -86,14 +86,14 @@ class PortfelController extends Controller
 
     /**
      * Akcja pobrania danych do tabeli spółek
-     * 
+     *
      * @param int $idUmowy identyfikator umowy
-     * 
+     *
      * @Route("/gridSpolki/{idUmowy}", name="datatableSpolki")
-     * 
+     *
      * @throws NotFoundHttpException
      * @throws AccessDeniedException
-     * 
+     *
      * @return Response
      */
     public function spolkiGridAction($idUmowy)
@@ -104,20 +104,20 @@ class PortfelController extends Controller
         }
         $uzytkownik = $this->getZalogowanyUzytkownik();
         $beneficjent = $uzytkownik->getBeneficjent();
-        
+
         if (false === $beneficjent->getUmowy()->contains($umowa)) {
             throw new AccessDeniedHttpException('Brak dostępu do umowy o podanym identyfikatorze.');
         }
         $umowaId = $umowa->getId();
-        
+
         return $this->get('ssfz.service.datatable_spolki_service')->datatableSpolki($this, $umowaId)->execute();
     }
 
     /**
      * Pobiera zalogowanego użytkownika
-     * 
+     *
      * @throws AccessDeniedException
-     * 
+     *
      * @return Uzytkownik
      */
     protected function getZalogowanyUzytkownik()
@@ -126,7 +126,7 @@ class PortfelController extends Controller
         if (!$uzytkownik) {
             throw $this->createAccessDeniedException();
         }
-        
+
         return $uzytkownik;
     }
 }

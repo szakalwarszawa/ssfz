@@ -12,19 +12,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Kontroler obsługujący funkcjonalności po stronie Użytkownika z rolą administrator techniczny
- * 
- * @category Class
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
  */
 class AdministratorTechnicznyController extends Controller
 {
-
     /**
      * Akcja domyślna - wyświetla widok główny.
-     * 
+     *
      * @Route("/administrator", name="administrator")
-     * 
+     *
      * @return Response
      */
     public function indexAction()
@@ -33,13 +28,13 @@ class AdministratorTechnicznyController extends Controller
     }
 
     /**
-     * Akcja wyświetlająca formularz i tworzaca nowego użytkownika na podstawie 
+     * Akcja wyświetlająca formularz i tworzaca nowego użytkownika na podstawie
      * danych z katalogu LDAP (pracowników PARP)
-     * 
+     *
      * @param Request $request
-     * 
+     *
      * @Route("administrator/pracownik/utworz", name="utworzPracownika")
-     * 
+     *
      * @return Response
      */
     public function utworzPracownikaAction(Request $request)
@@ -73,21 +68,20 @@ class AdministratorTechnicznyController extends Controller
         }
 
         return $this->render('SsfzBundle:AdministratorTechniczny:utworzPracownika.html.twig', array(
-                'form' => $form->createView(),
-                'dostepniPracownicyParp' => count($ldapDataService->getUzytkownikLdapListaZEmail()) > 0,
-                'przegladPracownikow' => $pracownicy
-                )
-        );
+            'form' => $form->createView(),
+            'dostepniPracownicyParp' => count($ldapDataService->getUzytkownikLdapListaZEmail()) > 0,
+            'przegladPracownikow' => $pracownicy
+        ));
     }
 
     /**
      * Akcja wyświetlająca formularz edycji użytkownika i zmieniająca dane użytkownika
-     * na podstawie danych z tego formularza 
-     * 
+     * na podstawie danych z tego formularza
+     *
      * @Route("administrator/pracownik/edytuj/{id_uzytkownika}", name="edytujPracownika")
-     * 
+     *
      * @param Request $request
-     * 
+     *
      * @return Response
      */
     public function edytujPracownika(Request $request)
@@ -119,11 +113,12 @@ class AdministratorTechnicznyController extends Controller
 
     /**
      * Tworzy nowego użytkownika - pracownika PARP
-     * 
+     *
      * Tworzy nowe konto użytkownika - pracownika PARP na podstawie danych z formularza i LDAP.
      * Wypełnia obiekt kodem aktywacyjnym i ustawia rolę
-     * 
+     *
      * @param  array $dane dane z formularza musi zawierać pole: login z loginem pracownika i rola z Rola
+     *
      * @return Uzytkownik użytkownik wypełniony danycmi z formularza i LDAP
      */
     private function utworzPracownika($dane)
@@ -142,7 +137,7 @@ class AdministratorTechnicznyController extends Controller
 
     /**
      * Dodaje nowego użytkownika do bazy
-     * 
+     *
      * @param Uzytkownik $pracownik
      */
     private function persistPracownik($pracownik)
@@ -154,9 +149,9 @@ class AdministratorTechnicznyController extends Controller
 
     /**
      * Tworzy obiekt pracownika na podstawie danych z formularza i LDAP
-     * 
+     *
      * @param array $dane dane z formularza powinny miec pole login z loginem uzytkownika
-     * 
+     *
      * @return Uzytkownik
      */
     private function utworzPracownikaZDanychILdap($dane)
@@ -181,10 +176,10 @@ class AdministratorTechnicznyController extends Controller
 
     /**
      * Wysyła wiadomość aktywacyjną do podanego użytkownika
-     * 
+     *
      * Treść wiadomości jest tworzona na podstawie szablonu:
      * SsfzBundle/Resources/views/Email/registrationPracownikParp.html.twig
-     *  
+     *
      * @param Uzytkownik $pracownik
      */
     private function wyslijWiadomoscAktywacyjna(Uzytkownik $pracownik)
@@ -199,7 +194,6 @@ class AdministratorTechnicznyController extends Controller
 
     private function pobierzPracownikow()
     {
-
         $rolePracownikow = Rola::NAZWY_ROL_PARP;
         $rolaRepo = $this->getDoctrine()->getRepository(Rola::class);
 
@@ -209,9 +203,8 @@ class AdministratorTechnicznyController extends Controller
     }
 
     /**
-     * Załadowanie serwisu MailerService
-     * odpowiedzialnego za wysyłkę powiadomień
-     * 
+     * Załadowanie serwisu MailerService odpowiedzialnego za wysyłkę powiadomień
+     *
      * @return MailerService
      */
     protected function getMailerService()
@@ -221,10 +214,11 @@ class AdministratorTechnicznyController extends Controller
 
     /**
      * Sprawdza czy użytkownik przeznaczony do edycji jest poprawny
-     * 
+     *
      * Użytkownik powinien byc not null i mieć role pracownika PARP
-     * 
+     *
      * @param  Uzytkownik $uzytkownik użytkownik do zweryfikowania
+     *
      * @return string komunikat błedu lub null jesli wszystko ok
      */
     private function edycjaUzytkownikPoprawnyKomunikat(Uzytkownik $uzytkownik)

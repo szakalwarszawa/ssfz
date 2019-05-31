@@ -1,14 +1,12 @@
 <?php
+
 namespace Parp\SsfzBundle\Service;
 
 use Parp\SsfzBundle\Repository\SprawozdanieRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 /**
  * Dostęp do repozytorium sprawozdań
- * 
- * @category Class
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
  */
 class SprawozdanieService
 {
@@ -20,7 +18,7 @@ class SprawozdanieService
 
     /**
      * Konstruktor
-     * 
+     *
      * @param SprawozdanieRepository $sprawozdanieRepository
      */
     public function __construct($sprawozdanieRepository)
@@ -30,7 +28,7 @@ class SprawozdanieService
 
     /**
      * Zwraca repozytorium encji Sprawozdanie
-     * 
+     *
      * @return SprawozdanieRepository
      */
     public function getSprawozdanieRepository()
@@ -40,11 +38,11 @@ class SprawozdanieService
 
     /**
      * Metoda pobiera sprawozdania
-     * 
-     * @param Sprawozdanie $parentObject 
+     *
+     * @param Sprawozdanie $parentObject
      * @param int          $beneficjentId
      * @param int          $umowaId
-     * 
+     *
      * @return Listę sprawozdań
      */
     public function datatableSprawozdanie($parentObject, $beneficjentId, $umowaId)
@@ -87,11 +85,11 @@ class SprawozdanieService
 
     /**
      * Dodaje informację o pomyślnym zakończeniu operacji
-     * 
+     *
      * @param Sprawozdanie $parentObject
      * @param string       $title
      * @param string       $message
-     * 
+     *
      * @return void
      */
     public function addSuccessFlash($parentObject, $title, $message)
@@ -107,11 +105,11 @@ class SprawozdanieService
 
     /**
      * Dodaje komunikat błędu
-     * 
+     *
      * @param Sprawozdanie $parentObject
      * @param string       $title
      * @param string       $message
-     * 
+     *
      * @return void
      */
     public function addErrorFlash($parentObject, $title, $message)
@@ -127,12 +125,12 @@ class SprawozdanieService
 
     /**
      * Sprawdza uprawnienia do sprawozdania
-     * 
+     *
      * @param Sprawozdanie $report
      * @param int          $beneficjentId
-     * 
-     * @throws NotFoundHttpException 
-     * 
+     *
+     * @throws NotFoundHttpException
+     *
      * @return void
      */
     public function checkSprawozdaniePermission($report, $beneficjentId)
@@ -145,10 +143,10 @@ class SprawozdanieService
             throw $this->createNotFoundException($errorMessage);
         }
     }
-    
+
     /**
      * Wypisuje komunikat błędu
-     * 
+     *
      * @param type $message
      * @param \Exception $previous
      * @return NotFoundHttpException

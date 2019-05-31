@@ -13,10 +13,9 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
  */
 class ResetPasswordType extends AbstractType
 {
-
     /**
      * Buduje formularz resetującego hasło
-     * 
+     *
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
@@ -57,7 +56,7 @@ class ResetPasswordType extends AbstractType
 
     /**
      * Ustawia opcje konfiguracji
-     * 
+     *
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
@@ -71,7 +70,7 @@ class ResetPasswordType extends AbstractType
 
     /**
      * Ustawia prefix
-     * 
+     *
      * @return string
      */
     public function getBlockPrefix()

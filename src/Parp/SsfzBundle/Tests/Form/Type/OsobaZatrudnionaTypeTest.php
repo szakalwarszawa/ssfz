@@ -14,33 +14,38 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 /**
  * Testuje klasę OsobaZatrudnionaType
- * 
+ *
  * @covers \Parp\SsfzBundle\Form\Type\OsobaZatrudnionaType
  */
 class OsobaZatrudnionaTypeTest extends TypeTestCase
 {
     /**
      * Dodaje rozszerzenia formularzy
-     * 
+     *
      * @return collection
-     */    
+     */
     protected function getExtensions()
-    {                        
-        $this->validator = $this->createMock(ValidatorInterface::class);        
-        $this->validator
+    {
+        $this->validator = $this->createMock(ValidatorInterface::class);
+        $this
+            ->validator
             ->method('validate')
-            ->will($this->returnValue(new ConstraintViolationList()));
-        $this->validator
+            ->will($this->returnValue(new ConstraintViolationList()))
+        ;
+        $this
+            ->validator
             ->method('getMetadataFor')
-            ->will($this->returnValue(new ClassMetadata(Form::class)));
-        
+            ->will($this->returnValue(new ClassMetadata(Form::class)))
+        ;
+
         return array(
-            new ValidatorExtension($this->validator),            
+            new ValidatorExtension($this->validator),
         );
-    }    
+    }
+
     /**
      * Testuje submit formularza
-     */    
+     */
     public function testSubmitValidData()
     {
         $formData = array(
@@ -58,7 +63,7 @@ class OsobaZatrudnionaTypeTest extends TypeTestCase
         $object->setUmowaRodzaj('na czas nieokreślony');
         $object->setStanowisko('stanowisko');
         $object->setWymiar('1/1');
-        
+
         $form->submit($formData);
 
         $this->assertTrue($form->isSynchronized());

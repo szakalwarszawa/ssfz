@@ -12,39 +12,39 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * Typ formularza OsobaZatrudniona - podformularz profilu beneficjenta
- */ 
+ */
 class OsobaZatrudnionaType extends AbstractType
 {
     /**
      * Buduje formularz do wypełnienia danych osoby zatrudnionej
-     * 
+     *
      * @param FormBuilderInterface $builder
      * @param array                $options
-     * 
+     *
      * @SuppressWarnings("unused")
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add(
             'imie', null, array(
-            'label' => 'Imię',   
+            'label' => 'Imię',
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )          
+            )
             )
         );
         $builder->add(
             'nazwisko', null, array(
-            'label' => 'Nazwisko',   
+            'label' => 'Nazwisko',
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )          
             )
-        );
+        ));
+
         $builder->add(
             'umowaRodzaj', ChoiceType::class, array(
             'choices' => array(
@@ -52,15 +52,15 @@ class OsobaZatrudnionaType extends AbstractType
                 'na czas nieokreślony' => 'na czas nieokreślony',
                 'na czas określony' => 'na czas określony',
                 'na czas wykonywania określonej pracy' => 'na czas wykonywania określonej pracy',
-                'na okres próbny' => 'na okres próbny',                
+                'na okres próbny' => 'na okres próbny',
             ),
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )                      
             )
-        );
+        ));
+
         $builder->add(
             'umowaData', DateTimeType::class, array(
             'widget' => 'single_text',
@@ -75,9 +75,9 @@ class OsobaZatrudnionaType extends AbstractType
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )                      
             )
-        );
+        ));
+
         $builder->add(
             'rozpoczecieData', DateTimeType::class, array(
             'widget' => 'single_text',
@@ -92,9 +92,9 @@ class OsobaZatrudnionaType extends AbstractType
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )                      
             )
-        );
+        ));
+
         $builder->add(
             'stanowisko', null, array(
             'label' => 'Stanowisko',
@@ -102,9 +102,9 @@ class OsobaZatrudnionaType extends AbstractType
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )                      
             )
-        );
+        ));
+
         $builder->add(
             'wymiar', null, array(
             'label' => 'Wymiar etatu',
@@ -112,21 +112,21 @@ class OsobaZatrudnionaType extends AbstractType
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )                      
             )
-        );        
+        ));
     }
+
     /**
      * Ustawia opcje konfiguracji
-     * 
+     *
      * @param OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver) 
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
             array(
             'data_class' => OsobaZatrudniona::class,
             )
         );
-    }       
+    }
 }

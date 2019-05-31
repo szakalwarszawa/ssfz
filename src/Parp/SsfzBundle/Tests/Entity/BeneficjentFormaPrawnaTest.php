@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Tests\Entity;
 
 use PHPUnit\Framework\TestCase;
@@ -6,12 +7,11 @@ use Parp\SsfzBundle\Entity\BeneficjentFormaPrawna;
 
 /**
  * Test encji BeneficjentFormaPrawna
- * 
+ *
  * @covers \Parp\SsfzBundle\Entity\BeneficjentFormaPrawna
  */
 class BeneficjentFormaPrawnaTest extends TestCase
 {
-
     private $beneficjentFormaPrawna;
 
     /**

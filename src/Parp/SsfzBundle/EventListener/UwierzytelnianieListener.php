@@ -34,7 +34,6 @@ use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
  */
 class UwierzytelnianieListener implements EventSubscriberInterface
 {
-
     /**
      * @var EntityManager
      */

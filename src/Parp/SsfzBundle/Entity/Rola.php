@@ -11,7 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Rola implements \Serializable
 {
-
     /**
      * @var int
      *
@@ -23,14 +22,14 @@ class Rola implements \Serializable
 
     /**
      * @var string
-     * 
+     *
      * @ORM\Column(name="nazwa", type="string", length=64, unique=true)
      */
     private $nazwa;
 
     /**
      * @var string
-     * 
+     *
      * @ORM\Column(name="opis", type="string", length=64, unique=true, nullable=true)
      */
     private $opis;
@@ -39,7 +38,7 @@ class Rola implements \Serializable
     /**
      * Get id
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -49,7 +48,7 @@ class Rola implements \Serializable
     /**
      * Get nazwa
      *
-     * @return string 
+     * @return string
      */
     public function getNazwa()
     {
@@ -58,7 +57,7 @@ class Rola implements \Serializable
 
     /**
      * Set nazwa
-     * 
+     *
      * @param string $nazwa
      */
     public function setNazwa($nazwa)
@@ -68,7 +67,7 @@ class Rola implements \Serializable
 
     /**
      * Zwraca opis roli
-     * 
+     *
      * @return string
      */
     public function getOpis()
@@ -78,7 +77,7 @@ class Rola implements \Serializable
 
     /**
      * Ustawia opis roli
-     * 
+     *
      * @param type $opis
      */
     public function setOpis($opis)
@@ -87,7 +86,6 @@ class Rola implements \Serializable
     }
 
     /**
-     * 
      * @return Object
      */
     public function serialize()
@@ -102,7 +100,6 @@ class Rola implements \Serializable
     }
 
     /**
-     * 
      * @param Object $serialized
      */
     public function unserialize($serialized)
@@ -115,7 +112,6 @@ class Rola implements \Serializable
     }
 
     /**
-     * 
      * @return string
      */
     public function __toString()

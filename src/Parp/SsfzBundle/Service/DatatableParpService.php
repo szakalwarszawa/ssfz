@@ -1,33 +1,22 @@
 <?php
-/**
- * Serwis obsługujący operacje pomocnicze
- *
- * @category Service
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
- */
+
 namespace Parp\SsfzBundle\Service;
 
 /**
  * Serwis obsługujący operacje pomocnicze
- *
- * @category Class
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
  */
 class DatatableParpService
 {
-
     /**
      * Repozytorium encji OkresyKonfiguracja
-     * 
+     *
      * @var OkresyKonfiguracjaRepository
      */
     private $okresyKonfiguracjaRepo;
 
     /**
      * Konstruktor parametryczny
-     * 
+     *
      * @param OkresyKonfiguracjaRepository $okresyKonfiguracjaRepo repozytorium OkresyKonfiguracjaRepository
      */
     public function __construct($okresyKonfiguracjaRepo)
@@ -37,7 +26,7 @@ class DatatableParpService
 
     /**
      * Zwraca konfigurację tabeli Parp
-     * 
+     *
      * @return array
      */
     public function getParpKonfiguracja()
@@ -47,9 +36,9 @@ class DatatableParpService
 
     /**
      * Zwraca tablicę rendererów tabeli parp
-     * 
+     *
      * @param array $config
-     * 
+     *
      * @return array
      */
     public function getDatatableParpRenderers($config)
@@ -69,9 +58,9 @@ class DatatableParpService
 
     /**
      * Zwraca pola tabeli parp
-     * 
+     *
      * @param array $config
-     * 
+     *
      * @return array
      */
     public function getDatatableParpFields($config)
@@ -93,15 +82,15 @@ class DatatableParpService
 
     /**
      * Ustawia joiny w podanej w parametrze datatable
-     * 
+     *
      * @param type  $datatable
      * @param array $config
-     * 
+     *
      * @return datatable
      */
     public function datatableParpAddJoins($datatable, $config)
     {
-        $datatable->addJoin('u.beneficjent', 'b', \Doctrine\ORM\Query\Expr\Join::INNER_JOIN); //, \Doctrine\ORM\Query\Expr\Join::WITH, 'b.id = u.beneficjentId');  
+        $datatable->addJoin('u.beneficjent', 'b', \Doctrine\ORM\Query\Expr\Join::INNER_JOIN); //, \Doctrine\ORM\Query\Expr\Join::WITH, 'b.id = u.beneficjentId');
         $idx = 1;
         foreach ($config as $cfg) {
             $datatable->addJoin('u.sprawozdania', 's' . $idx, \Doctrine\ORM\Query\Expr\Join::LEFT_JOIN, \Doctrine\ORM\Query\Expr\Join::WITH, 'u.id = s' . $idx . '.umowaId and s' . $idx . '.rok = ' . $cfg->getRok() . ' and s' . $idx . '.okresId = 0 and s' . $idx . '.czyNajnowsza = 1');
@@ -115,9 +104,9 @@ class DatatableParpService
 
     /**
      * Zwraca datatable parp
-     * 
+     *
      * @param Controller $parentObj
-     * 
+     *
      * @return datatable
      */
     public function datatableParp($parentObj)

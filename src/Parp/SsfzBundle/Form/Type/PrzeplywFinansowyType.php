@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace Parp\SsfzBundle\Form\Type;
 
 use Parp\SsfzBundle\Entity\Beneficjent;
@@ -27,56 +21,54 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
  */
 class PrzeplywFinansowyType extends AbstractType
 {
-    
-    
     /**
      * Buduje formularz do wypełniania przeplywu finansowego
-     * 
+     *
      * @SuppressWarnings("unused")
-     * 
+     *
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        
+
         $builder->add(
             'saldoPoczatkowe', TextType::class, array(
-            'label' => 'Saldo początkowe',   
+            'label' => 'Saldo początkowe',
             'attr' => array('class' => 'decimal'),
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 ),
-                new Regex(                
-                    array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')                
+                new Regex(
+                    array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')
                 )
-            )          
+            )
             )
         );
         $builder->add(
             'wplywy', TextType::class, array(
-            'label' => 'Wpływy',   
+            'label' => 'Wpływy',
             'attr' => array('readonly' => true),
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )          
+            )
             )
         );
         $builder->add(
             'wyjsciaZInwestycji', TextType::class, array(
-            'label' => 'Wyjścia z inwestycji', 
+            'label' => 'Wyjścia z inwestycji',
             'attr' => array('class' => 'decimal'),
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 ),
-                new Regex(                
-                    array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')                
+                new Regex(
+                    array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')
                 )
-            )          
+            )
             )
         );
         $builder->add(
@@ -87,54 +79,54 @@ class PrzeplywFinansowyType extends AbstractType
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 ),
-                new Regex(                
-                    array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')                
+                new Regex(
+                    array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')
                 )
-            )          
+            )
             )
         );
         $builder->add(
             'inneWplywy', TextType::class, array(
-            'label' => 'Inne', 
+            'label' => 'Inne',
             'attr' => array('class' => 'decimal'),
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 ),
-                new Regex(                
-                    array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')                
+                new Regex(
+                    array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')
                 )
-            )          
+            )
             )
         );
-                
+
         $builder->add(
             'wyplywy', TextType::class, array(
-            'label' => 'Wypływy',   
+            'label' => 'Wypływy',
             'attr' => array('readonly' => true),
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )          
             )
-        );        
-                
+            )
+        );
+
         $builder->add(
             'wejsciaKapitalowe', TextType::class, array(
-            'label' => 'Wejścia kapitałowe', 
+            'label' => 'Wejścia kapitałowe',
             'attr' => array('class' => 'decimal'),
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 ),
-                new Regex(                
-                    array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')                
+                new Regex(
+                    array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')
                 )
-            )          
             )
-        );        
-            
+            )
+        );
+
         $builder->add(
             'preinkubacjaPomyslow', TextType::class, array(
             'label' => 'Preinkubacja pomysłów',
@@ -143,140 +135,140 @@ class PrzeplywFinansowyType extends AbstractType
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 ),
-                new Regex(                
-                    array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')                
+                new Regex(
+                    array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')
                 )
-            )          
             )
-        );        
-            
+            )
+        );
+
         $builder->add(
             'wydatkiOperacyjne', TextType::class, array(
-            'label' => 'Wydatki operacyjne', 
+            'label' => 'Wydatki operacyjne',
             'attr' => array('class' => 'decimal'),
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 ),
-                new Regex(                
-                    array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')                
+                new Regex(
+                    array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')
                 )
-            )          
             )
-        );        
-            
+            )
+        );
+
         $builder->add(
             'podatki', TextType::class, array(
-            'label' => 'Podatki',   
+            'label' => 'Podatki',
             'attr' => array('class' => 'decimal'),
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 ),
-                new Regex(                
-                    array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')                
+                new Regex(
+                    array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')
                 )
-            )          
             )
-        );        
-            
+            )
+        );
+
         $builder->add(
             'inneWyplywy', TextType::class, array(
-            'label' => 'Inne',   
+            'label' => 'Inne',
             'attr' => array('class' => 'decimal'),
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 ),
-                new Regex(                
-                    array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')                
+                new Regex(
+                    array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')
                 )
-            )          
+            )
             )
         );
         $builder->add(
             'saldoKoncowe', TextType::class, array(
-            'label' => 'Saldo końcowe',   
+            'label' => 'Saldo końcowe',
             'attr' => array('readonly' => true),
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )          
+            )
             )
         );
-        
+
         $builder->add(
             'liczbaPomyslowWInkubatorze', null, array(
-            'label' => 'Liczba pomysłów, które wpłynęły do inkubatora w okresie',  
+            'label' => 'Liczba pomysłów, które wpłynęły do inkubatora w okresie',
             'attr' => array('class' => 'integer'),
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )          
+            )
             )
         );
         $builder->add(
             'liczbaPomyslowOcenionych', null, array(
-            'label' => 'Liczba pomysłów ocenionych w okresie',   
+            'label' => 'Liczba pomysłów ocenionych w okresie',
             'attr' => array('class' => 'integer'),
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )          
+            )
             )
         );
         $builder->add(
             'liczbaPomyslowOcenionychPozytywnie', null, array(
-            'label' => '- w tym pozytywnie',   
+            'label' => '- w tym pozytywnie',
             'attr' => array('class' => 'integer'),
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )          
+            )
             )
         );
         $builder->add(
             'liczbaPomyslowOcenionychNegatywnie', null, array(
-            'label' => '- w tym negatywnie',   
+            'label' => '- w tym negatywnie',
             'attr' => array('class' => 'integer'),
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )          
+            )
             )
         );
         $builder->add(
             'liczbaZakonczonychPreinkubacji', null, array(
-            'label' => 'Liczba zakończonych preinkubacji w okresie', 
+            'label' => 'Liczba zakończonych preinkubacji w okresie',
             'attr' => array('class' => 'integer'),
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )          
+            )
             )
         );
         $builder->add(
             'liczbaDokonanychInwestycji', null, array(
-            'label' => 'Liczba dokonanych inwestycji w okresie',   
+            'label' => 'Liczba dokonanych inwestycji w okresie',
             'attr' => array('class' => 'integer'),
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
-            )          
+            )
             )
         );
     }
-    
+
     /**
      * Ustawia opcje konfiguracji
-     * 
+     *
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
@@ -288,5 +280,5 @@ class PrzeplywFinansowyType extends AbstractType
             )
         );
     }
-    
+
 }

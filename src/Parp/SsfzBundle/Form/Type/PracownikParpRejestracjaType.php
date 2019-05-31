@@ -16,13 +16,12 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  */
 class PracownikParpRejestracjaType extends AbstractType
 {
-
     /**
      * Pobiera loginy pracowników PARP z LDAP
-     * 
-     * Korzystając z LdapDataService pobiera loginy pracowników LDAP 
+     *
+     * Korzystając z LdapDataService pobiera loginy pracowników LDAP
      * tylko tych którzy nie dodani zostali do aplikacji.
-     * 
+     *
      * @param  LdapDataService $ldapService usługa LDAP
      * @param  type            $uzytkRepo   repozytorium użytkowników
      * @return string[] tablica loginów pracowników PARP
@@ -41,7 +40,7 @@ class PracownikParpRejestracjaType extends AbstractType
 
     /**
      * Buduje formularz
-     * 
+     *
      * @param FormBuilderInterface $builder
      * @param array                $options
      * @return Response
@@ -90,7 +89,7 @@ class PracownikParpRejestracjaType extends AbstractType
 
     /**
      * Opcje formularza
-     * 
+     *
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)

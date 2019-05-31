@@ -1,23 +1,14 @@
 <?php
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 namespace Parp\SsfzBundle\Service;
 
 use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * Usługa do wyświetlania komunkatów poprzez flashBag
- *
- * @category Class
- * @package  SsfzBundle
- * @link     http://zeto.bialystok.pl
  */
 class KomunikatyService
 {
-
     /**
      *
      * @var Session
@@ -35,7 +26,7 @@ class KomunikatyService
 
     /**
      * Dodaje do sesji (FlashBag) komunikat o operacji zakończonej sukcesem
-     * 
+     *
      * @param string $komunikat komunikat do wyświetlenia
      * @param string $tytul     tytuł komunikatu
      */
@@ -46,7 +37,7 @@ class KomunikatyService
 
     /**
      * Dodaje do sesji (FlashBag) komunikat o operacji zakończonej błędem
-     * 
+     *
      * @param string $komunikat komunikat do wyświetlenia
      * @param string $tytul     tytuł komunikatu
      */
@@ -55,8 +46,8 @@ class KomunikatyService
         $this->wyswietlKomunikat($komunikat, 'blad', $tytul);
     }
     /**
-     * Dodaje do sesji (FlashBag) komunkat o operacji zakończonej ostrzeżeniem 
-     * 
+     * Dodaje do sesji (FlashBag) komunkat o operacji zakończonej ostrzeżeniem
+     *
      * @param type   $komunikat komunikat do wyświetlenia
      * @param string $tytul     tytuł komunikatu
      */
@@ -67,9 +58,9 @@ class KomunikatyService
 
     /**
      * Dodaje do sesji komunikat podanego typu
-     * 
+     *
      * Umozliwia dodanie komunikatu o błędzie i sukcesie
-     * 
+     *
      * @param string $komunikat treść komunikatu
      * @param string $typ       typ komunikatu. Możliwe wartosci to: blad, sukces
      * @param string $tytul     tytuł komunikatu

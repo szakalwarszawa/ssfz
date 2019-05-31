@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Tests\Entity;
 
 use PHPUnit\Framework\TestCase;
@@ -6,7 +7,7 @@ use Parp\SsfzBundle\Entity\Wojewodztwo;
 
 /**
  * Test encji Wojewodztwo
- * 
+ *
  * @covers \Parp\SsfzBundle\Entity\Wojewodztwo
  */
 class WojewodztwoTest extends TestCase

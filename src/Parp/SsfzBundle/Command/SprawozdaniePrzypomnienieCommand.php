@@ -11,8 +11,8 @@ use Carbon\Carbon;
 /**
  * Zadanie CRON do wysyłki powiadomień o niezłożonym sprawozdaniu
  */
-class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand {
-
+class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand
+{
     /**
      *
      * @var Carbon\Carbon
@@ -37,12 +37,12 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand {
 
     /**
      * Kontstruktor
-     * 
+     *
      * Ustawiane są daty:
      * dzisiejsza,
      * pierwszego terminu rozliczenia ze złożenia sprawozdzania,
      * drugiego terminu rozliczenia ze złożenia sprawozdania
-     * 
+     *
      * @param string $name
      */
     public function __construct($name = null) {
@@ -115,7 +115,7 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand {
 
     /**
      * Zwraca okres rozliczenia
-     * 
+     *
      * @return string
      */
     private function getOkresRozliczenia() {

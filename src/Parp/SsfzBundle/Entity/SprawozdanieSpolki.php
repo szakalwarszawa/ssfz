@@ -1,11 +1,11 @@
 <?php
+
 namespace Parp\SsfzBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
-
 
 /**
  * SprawozdanieSpolki
@@ -15,7 +15,6 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  */
 class SprawozdanieSpolki
 {
-
     /**
      * @var int
      *
@@ -48,7 +47,7 @@ class SprawozdanieSpolki
 
     /**
      * @var int
-     * 
+     *
      * @Assert\Regex(pattern="'/^[0-9]{10}$/'", match = false, message="Niepoprawny nr KRS.")
      *
      * @ORM\Column(name="krs", type="string", length=15, nullable=true)
@@ -168,7 +167,7 @@ class SprawozdanieSpolki
     /**
      * Get sprawozdanie
      *
-     * @return Sprawozdanie 
+     * @return Sprawozdanie
      */
     public function getSprawozdanie()
     {
@@ -357,7 +356,7 @@ class SprawozdanieSpolki
 
     /**
      * ustawia id
-     * 
+     *
      * @param int $id
      */
     public function setId($id)
@@ -367,7 +366,7 @@ class SprawozdanieSpolki
 
     /**
      * ustawia $sprawozdanieId
-     * 
+     *
      * @param int $sprawozdanieId
      */
     public function setSprawozdanieId($sprawozdanieId)
@@ -377,7 +376,7 @@ class SprawozdanieSpolki
 
     /**
      * ustawia $liczbaPorzadkowa
-     * 
+     *
      * @param int $liczbaPorzadkowa
      */
     public function setLiczbaPorzadkowa($liczbaPorzadkowa)
@@ -387,7 +386,7 @@ class SprawozdanieSpolki
 
     /**
      * ustawia $nazwaSpolki
-     * 
+     *
      * @param string $nazwaSpolki
      */
     public function setNazwaSpolki($nazwaSpolki)
@@ -397,7 +396,7 @@ class SprawozdanieSpolki
 
     /**
      * ustawia $krs
-     * 
+     *
      * @param string $krs
      */
     public function setKrs($krs)
@@ -407,7 +406,7 @@ class SprawozdanieSpolki
 
     /**
      * ustawia $uzyskanePrzychody
-     * 
+     *
      * @param decimal $uzyskanePrzychody
      */
     public function setUzyskanePrzychody($uzyskanePrzychody)
@@ -417,7 +416,7 @@ class SprawozdanieSpolki
 
     /**
      * ustawia $planowanePrzychody
-     * 
+     *
      * @param decimal $planowanePrzychody
      */
     public function setPlanowanePrzychody($planowanePrzychody)
@@ -427,7 +426,7 @@ class SprawozdanieSpolki
 
     /**
      * ustawia $ebitda
-     * 
+     *
      * @param decimal $ebitda
      */
     public function setEbitda($ebitda)
@@ -437,7 +436,7 @@ class SprawozdanieSpolki
 
     /**
      * ustawia $ncf
-     * 
+     *
      * @param decimal $ncf
      */
     public function setNcf($ncf)
@@ -447,7 +446,7 @@ class SprawozdanieSpolki
 
     /**
      * ustawia $sumaBilansowa
-     * 
+     *
      * @param decimal $sumaBilansowa
      */
     public function setSumaBilansowa($sumaBilansowa)
@@ -457,7 +456,7 @@ class SprawozdanieSpolki
 
     /**
      * ustawia $zatrudnienieEtaty
-     * 
+     *
      * @param int $zatrudnienieEtaty
      */
     public function setZatrudnienieEtaty($zatrudnienieEtaty)
@@ -467,7 +466,7 @@ class SprawozdanieSpolki
 
     /**
      * ustawia $zatrudnioneKobiety
-     * 
+     *
      * @param int $zatrudnioneKobiety
      */
     public function setZatrudnioneKobiety($zatrudnioneKobiety)
@@ -477,7 +476,7 @@ class SprawozdanieSpolki
 
     /**
      * ustawia $zatrudnieniMezczyzni
-     * 
+     *
      * @param int $zatrudnieniMezczyzni
      */
     public function setZatrudnieniMezczyzni($zatrudnieniMezczyzni)
@@ -487,7 +486,7 @@ class SprawozdanieSpolki
 
     /**
      * ustawia $zatrudnienieInneFormy
-     * 
+     *
      * @param int $zatrudnienieInneFormy
      */
     public function setZatrudnienieInneFormy($zatrudnienieInneFormy)
@@ -497,7 +496,7 @@ class SprawozdanieSpolki
 
     /**
      * ustawia $zatrudnienieInneFormyKobiety
-     * 
+     *
      * @param int $zatrudnienieInneFormyKobiety
      */
     public function setZatrudnienieInneFormyKobiety($zatrudnienieInneFormyKobiety)
@@ -507,7 +506,7 @@ class SprawozdanieSpolki
 
     /**
      * ustawia $zatrudnienieInneFormyMezczyzni
-     * 
+     *
      * @param int $zatrudnienieInneFormyMezczyzni
      */
     public function setZatrudnienieInneFormyMezczyzni($zatrudnienieInneFormyMezczyzni)
@@ -517,7 +516,7 @@ class SprawozdanieSpolki
 
     /**
      * ustawia $zatrudnieniewStosunkuDoPoprzedniegoRoku
-     * 
+     *
      * @param int $zatrudnieniewStosunkuDoPoprzedniegoRoku
      */
     public function setZatrudnieniewStosunkuDoPoprzedniegoRoku($zatrudnieniewStosunkuDoPoprzedniegoRoku)
@@ -527,7 +526,7 @@ class SprawozdanieSpolki
 
     /**
      * ustawia $zatrudnieniewStosunkuDoPoprzedniegoOkresu
-     * 
+     *
      * @param int $zatrudnieniewStosunkuDoPoprzedniegoOkresu
      */
     public function setZatrudnieniewStosunkuDoPoprzedniegoOkresu($zatrudnieniewStosunkuDoPoprzedniegoOkresu)
@@ -536,20 +535,12 @@ class SprawozdanieSpolki
     }
 
     /**
-     * Konstruktor
-     */
-    public function __construct()
-    {
-        
-    }
-    
-    /**
      * @Assert\Callback
-     * 
+     *
      * @param ExecutionContextInterface $context
      */
     public function validate(ExecutionContextInterface $context)
-    {    
+    {
         if ($this->getZatrudnienieEtaty() != ($this->getZatrudnieniMezczyzni() + $this->getZatrudnioneKobiety())) {
             $context->buildViolation('Suma pól "w tym kobiety" oraz "w tym mężczyźni" musi być równa wartości w polu "Zatrudnienie (etaty)" spółka ( '.$this->getNazwaSpolki().' )')
                 ->atPath('rok')
