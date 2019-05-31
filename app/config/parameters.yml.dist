@@ -13,7 +13,7 @@ parameters:
     mailer_encryption: tls
 
     # Zawartość pola "From" w przesyłkach z powiadomieniem  
-    powiadomienie_nadawca: "test@test.test (=?utf-8?Q?PARP - System Sprawozdawczo=C5=9Bci Funduszy Zal=C4=85=C5=BCkowych?=)"
+    powiadomienie_nadawca: "test@test.test (=?utf-8?Q?PARP - System Sprawozdawczo=C5=9Bci Funduszy Zal=C4=85=C5=BCkowych, Po=C5=BCyczkowych i Por=C4=99czeniowych?=)"
 
     secret: ThisTokenIsNotSoSecretChangeIt
 
