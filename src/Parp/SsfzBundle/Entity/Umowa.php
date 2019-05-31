@@ -93,7 +93,7 @@ class Umowa
      *
      * @return integer
      */
-    public  function getBeneficjentId()
+    public function getBeneficjentId()
     {
         return $this->beneficjentId;
     }

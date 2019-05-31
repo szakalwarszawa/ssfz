@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
+
 /**
  * Description of BeneficjentControllerTest
  *
@@ -13,40 +14,44 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
  */
 class ParpControllerTest extends WebTestCase
 {
-    private $client = null;    
+    private $client = null;
+
     protected static $application;
     /**
      * Ustawienie środowiska testowego
-     */     
+     */
     protected function setUp()
     {
         self::runCommand('doctrine:database:drop --force');
         self::runCommand('doctrine:database:create');
         self::runCommand('doctrine:schema:update --force');
         self::runCommand('doctrine:fixtures:load --no-interaction');
-    }    
+    }
+
     /**
      * Czyszczenie środowiska testowego
      */
-    protected function tearDown() 
+    protected function tearDown()
     {
         self::runCommand('doctrine:database:drop --force');
-    }        
+    }
+
     /**
      * Wywołuje komendę z konsoli aplikacji
-     * 
+     *
      * @param  string $command
      * @return void
-     */    
+     */
     protected static function runCommand($command)
     {
         $command = sprintf('%s --quiet', $command);
 
         return self::getApplication()->run(new StringInput($command));
     }
+
     /**
      * Pobiera obiekt Application do wywołania komedy konsolowej
-     * 
+     *
      * @return Application
      */
     protected static function getApplication()
@@ -59,7 +64,8 @@ class ParpControllerTest extends WebTestCase
         }
 
         return self::$application;
-    }     
+    }
+
     /**
      * Testuje akcję domyślną
      */
@@ -68,15 +74,14 @@ class ParpControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/parp');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk666',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('GET', '/parp');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }
+
     /**
      * Testuje akcję ocen
      */
@@ -85,15 +90,14 @@ class ParpControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/parp/ocen/1');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk666',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('GET', '/parp/ocen/1');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
-    }    
+    }
+
     /**
      * Testuje akcję sprawozdanie
      */
@@ -102,15 +106,14 @@ class ParpControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/parp/sprawozdanie/1');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk666',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('GET', '/parp/sprawozdanie/1');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
-    }       
+    }
+
     /**
      * Testuje akcję beneficjent
      */
@@ -119,15 +122,14 @@ class ParpControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/parp/beneficjent/1');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk666',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('GET', '/parp/beneficjent/1');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
-    }  
+    }
+
     /**
      * testuje akcję spolkiGrid
      */
@@ -136,15 +138,14 @@ class ParpControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/parp/gridSpolki/1');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk666',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('GET', '/parp/gridSpolki/1');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
-    }  
+    }
+
     /**
      * testuje akcję portfel
      */
@@ -153,15 +154,15 @@ class ParpControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/parp/portfel/1');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk666',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        )
+    );
         $crawler = $this->client->request('GET', '/parp/portfel/1');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
-    }          
+    }
+
     /**
      * testuje akcję osobyGrid
      */
@@ -170,15 +171,14 @@ class ParpControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/parp/gridOsoby/1');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk666',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('GET', '/parp/gridOsoby/1');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
-    }        
+    }
+
     /**
      * testuje akcję parpGrid
      */
@@ -187,13 +187,11 @@ class ParpControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/parp/gridParp');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk666',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('GET', '/parp/gridParp');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
-    }      
+    }
 }

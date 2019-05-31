@@ -474,13 +474,11 @@ class SprawozdanieController extends Controller
      */
     public function pokarzFormularzRejestracji($form, $mode, $umowaId)
     {
-        return $this->render(
-            'SsfzBundle:Report:rejestruj.html.twig', array(
-                    'form' => $form->createView(),
-                    'form_mode' => $mode,
-                    'umowaId' => $umowaId,
-            )
-        );
+        return $this->render('SsfzBundle:Report:rejestruj.html.twig', array(
+            'form' => $form->createView(),
+            'form_mode' => $mode,
+            'umowaId' => $umowaId,
+        ) );
     }
 
     /**

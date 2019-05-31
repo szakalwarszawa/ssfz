@@ -75,12 +75,10 @@ class PortfelControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/portfel/1');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk777',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('GET', '/portfel/1');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }
@@ -93,12 +91,10 @@ class PortfelControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/gridSpolki/1');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk777',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('GET', '/gridSpolki/1');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }

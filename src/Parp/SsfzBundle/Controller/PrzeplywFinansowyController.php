@@ -102,7 +102,6 @@ class PrzeplywFinansowyController extends Controller
         if ($previousReport) {
             $przeplyw = $entityManager->getRepository(\Parp\SsfzBundle\Entity\PrzeplywFinansowy::class)->findBy(array('sprawozdanieId' => $previousReport[0]->getId()));
             if ($przeplyw) {
-
                 return $przeplyw[0]->getSaldoKoncowe();
             }
         }

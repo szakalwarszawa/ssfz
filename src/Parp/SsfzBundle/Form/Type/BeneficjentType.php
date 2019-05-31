@@ -29,28 +29,24 @@ class BeneficjentType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add(
-            'nazwa', null, array(
+        $builder->add('nazwa', null, array(
             'label' => 'Nazwa',
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
             )
-            )
-        );
+        ));
 
-        $builder->add(
-            'umowy', CollectionType::class, array(
+        $builder->add('umowy', CollectionType::class, array(
             'entry_type' => UmowaType::class,
             'entry_options' => array('label' => false),
             'allow_add' => true,
             'by_reference' => false,
             'allow_delete' => true,
-            )
-        );
-        $builder->add(
-            'adrWojewodztwo', ChoiceType::class, array(
+        ));
+
+        $builder->add('adrWojewodztwo', ChoiceType::class, array(
             'label' => 'Województwo',
             'choices' => array(
                 '' => '',
@@ -76,85 +72,76 @@ class BeneficjentType extends AbstractType
                     array('message' => 'Należy wypełnić pole')
                 )
             )
-            )
-        );
-        $builder->add(
-            'adrMiejscowosc', null, array(
+        ));
+
+        $builder->add('adrMiejscowosc', null, array(
             'label' => 'Miejscowość',
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
             )
-            )
-        );
-        $builder->add(
-            'adrUlica', null, array(
+        ));
+
+        $builder->add('adrUlica', null, array(
             'label' => 'Ulica',
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
             )
-            )
-        );
-        $builder->add(
-            'adrBudynek', null, array(
+        ));
+
+        $builder->add('adrBudynek', null, array(
             'label' => 'Nr budynku',
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
             )
-            )
-        );
-        $builder->add(
-            'adrLokal', null, array(
+        ));
+
+        $builder->add('adrLokal', null, array(
             'label' => 'Nr lokalu'
-            )
-        );
-        $builder->add(
-            'adrKod', null, array(
+        ));
+
+        $builder->add('adrKod', null, array(
             'label' => 'Kod pocztowy',
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
             )
-            )
-        );
-        $builder->add(
-            'adrPoczta', null, array(
+        ));
+
+        $builder->add('adrPoczta', null, array(
             'label' => 'Poczta',
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
             )
-            )
-        );
-        $builder->add(
-            'telStacjonarny', null, array(
+        ));
+
+        $builder->add('telStacjonarny', null, array(
             'label' => 'Telefon stacjonarny',
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
             )
-            )
-        );
-        $builder->add(
-            'telKomorkowy', null, array(
+        ));
+
+        $builder->add('telKomorkowy', null, array(
             'label' => 'Telefon komórkowy',
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
             )
-            )
-        );
-        $builder->add(
-            'email', null, array(
+        ));
+
+        $builder->add('email', null, array(
             'label' => 'Adres e-mail',
             'constraints' => array(
                 new NotBlank(
@@ -164,22 +151,19 @@ class BeneficjentType extends AbstractType
                     array('message' => 'Adres email nie zawiera poprawnej konstrukcji, sprawdź czy adres nie zawiera błędów.')
                 )
             )
-            )
-        );
-        $builder->add(
-            'fax', null, array(
+        ));
+
+        $builder->add('fax', null, array(
             'label' => 'Fax'
-            )
-        );
-        $builder->add(
-            'osobyZatrudnione', CollectionType::class, array(
+        ));
+
+        $builder->add('osobyZatrudnione', CollectionType::class, array(
             'entry_type' => OsobaZatrudnionaType::class,
             'entry_options' => array('label' => false),
             'allow_add' => true,
             'by_reference' => false,
             'allow_delete' => true,
-            )
-        );
+        ));
     }
 
     /**
@@ -189,11 +173,9 @@ class BeneficjentType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(
-            array(
+        $resolver->setDefaults(array(
             'data_class' => Beneficjent::class,
             'attr' => array('novalidate' => 'novalidate'),
-            )
-        );
+        ));
     }
 }

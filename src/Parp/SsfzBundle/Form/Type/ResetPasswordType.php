@@ -21,37 +21,34 @@ class ResetPasswordType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add(
-                'newPassword', RepeatedType::class, array(
-                'type' => PasswordType::class,
-                'first_options' => array(
-                    'label' => 'Nowe hasło',
-                    'attr' => array(
-                        'data-toggle' => 'tooltip',
-                        'data-placement' => 'right',
-                        'title' => 'Hasło musi zawierać co najmniej
-                                    8 znaków i maksymalnie 255,
-                                    2 duże litery,
-                                    2 cyfry,
-                                    1 znak specjalny'
-                    )
-                ),
-                'second_options' => array(
-                    'label' => 'Powtórz hasło',
-                    'attr' => array(
-                        'data-toggle' => 'tooltip',
-                        'data-placement' => 'right',
-                        'title' => 'Hasło musi zawierać co najmniej
-                                    8 znaków i maksymalnie 255,
-                                    2 duże litery,
-                                    2 cyfry,
-                                    1 znak specjalny'
-                    )
-                ),
-                'invalid_message' => 'Podane hasła nie zgadzają się.'
+        $builder->add('newPassword', RepeatedType::class, array(
+            'type' => PasswordType::class,
+            'first_options' => array(
+                'label' => 'Nowe hasło',
+                'attr' => array(
+                    'data-toggle' => 'tooltip',
+                    'data-placement' => 'right',
+                    'title' => 'Hasło musi zawierać co najmniej
+                                8 znaków i maksymalnie 255,
+                                2 duże litery,
+                                2 cyfry,
+                                1 znak specjalny'
                 )
-            );
+            ),
+            'second_options' => array(
+                'label' => 'Powtórz hasło',
+                'attr' => array(
+                    'data-toggle' => 'tooltip',
+                    'data-placement' => 'right',
+                    'title' => 'Hasło musi zawierać co najmniej
+                                8 znaków i maksymalnie 255,
+                                2 duże litery,
+                                2 cyfry,
+                                1 znak specjalny'
+                )
+            ),
+            'invalid_message' => 'Podane hasła nie zgadzają się.'
+        ));
     }
 
     /**
@@ -61,11 +58,9 @@ class ResetPasswordType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(
-            array(
+        $resolver->setDefaults(array(
             'data_class' => 'Parp\SsfzBundle\Form\Model\ChangePassword',
-            )
-        );
+        ));
     }
 
     /**

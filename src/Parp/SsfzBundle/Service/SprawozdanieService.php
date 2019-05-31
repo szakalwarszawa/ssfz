@@ -10,7 +10,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class SprawozdanieService
 {
-
     /**
      * @var SprawozdanieRepository
      */
@@ -74,10 +73,11 @@ class SprawozdanieService
                     )
                 )
                 ->setWhere(
-                    'r.creatorId = :creatorId and r.umowaId = :umowaId and r.czyNajnowsza = :czyNajnowsza', array(
-                    'creatorId' => (string) $beneficjentId,
-                    'czyNajnowsza' => (string) true,
-                    'umowaId' => (string) $umowaId,
+                    'r.creatorId = :creatorId and r.umowaId = :umowaId and r.czyNajnowsza = :czyNajnowsza',
+                    array(
+                        'creatorId' => (string) $beneficjentId,
+                        'czyNajnowsza' => (string) true,
+                        'umowaId' => (string) $umowaId,
                     )
                 )
                 ->setOrder('r.dataRejestracji', 'desc');
@@ -94,13 +94,14 @@ class SprawozdanieService
      */
     public function addSuccessFlash($parentObject, $title, $message)
     {
-        $parentObject->get('session')->getFlashBag()->add(
-            'notice', array(
-            'alert' => 'success',
-            'title' => $title,
-            'message' => $message
-            )
-        );
+        $parentObject
+            ->get('session')
+            ->getFlashBag()
+            ->add('notice', array(
+                'alert' => 'success',
+                'title' => $title,
+                'message' => $message
+        ));
     }
 
     /**
@@ -114,13 +115,14 @@ class SprawozdanieService
      */
     public function addErrorFlash($parentObject, $title, $message)
     {
-        $parentObject->get('session')->getFlashBag()->add(
-            'notice', array(
-            'alert' => 'danger',
-            'title' => $title,
-            'message' => $message
-            )
-        );
+        $parentObject
+            ->get('session')
+            ->getFlashBag()
+            ->add('notice', array(
+                'alert' => 'danger',
+                'title' => $title,
+                'message' => $message
+        ));
     }
 
     /**
@@ -149,6 +151,7 @@ class SprawozdanieService
      *
      * @param type $message
      * @param \Exception $previous
+     *
      * @return NotFoundHttpException
      */
     public function createNotFoundException($message = 'Not Found', \Exception $previous = null)

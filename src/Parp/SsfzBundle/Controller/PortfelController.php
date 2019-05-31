@@ -12,6 +12,7 @@ use Parp\SsfzBundle\Entity\Spolka;
 use Parp\SsfzBundle\Entity\Umowa;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+
 /**
  * Kontroler obsługujący funkcjonalności po stronie Beneficjenta
  */
@@ -31,14 +32,14 @@ class PortfelController extends Controller
      *
      * @return Response
      */
-    public function indexAction(Request $request, $idUmowy, $idSpolki=null)
+    public function indexAction(Request $request, $idUmowy, $idSpolki = null)
     {
         $uzytkownik = $this->getZalogowanyUzytkownik();
         $beneficjent = $uzytkownik->getBeneficjent();
         if (!$beneficjent) {
             throw new NotFoundHttpException('Profil beneficjenta nie został znaleziony');
         }
-        $umowa= $this->getDoctrine()->getRepository(Umowa::class)->find($idUmowy);
+        $umowa = $this->getDoctrine()->getRepository(Umowa::class)->find($idUmowy);
         if (!$umowa) {
             $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Nie znaleziono umowy o przekazanym identyfikatorze.');
 

@@ -31,9 +31,7 @@ class PrzeplywFinansowyType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
-        $builder->add(
-            'saldoPoczatkowe', TextType::class, array(
+        $builder->add('saldoPoczatkowe', TextType::class, array(
             'label' => 'Saldo początkowe',
             'attr' => array('class' => 'decimal'),
             'constraints' => array(
@@ -44,10 +42,9 @@ class PrzeplywFinansowyType extends AbstractType
                     array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')
                 )
             )
-            )
-        );
-        $builder->add(
-            'wplywy', TextType::class, array(
+        ));
+
+        $builder->add('wplywy', TextType::class, array(
             'label' => 'Wpływy',
             'attr' => array('readonly' => true),
             'constraints' => array(
@@ -55,10 +52,9 @@ class PrzeplywFinansowyType extends AbstractType
                     array('message' => 'Należy wypełnić pole')
                 )
             )
-            )
-        );
-        $builder->add(
-            'wyjsciaZInwestycji', TextType::class, array(
+        ));
+
+        $builder->add('wyjsciaZInwestycji', TextType::class, array(
             'label' => 'Wyjścia z inwestycji',
             'attr' => array('class' => 'decimal'),
             'constraints' => array(
@@ -69,10 +65,9 @@ class PrzeplywFinansowyType extends AbstractType
                     array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')
                 )
             )
-            )
-        );
-        $builder->add(
-            'udzialWZyskach', TextType::class, array(
+        ));
+
+        $builder->add('udzialWZyskach', TextType::class, array(
             'label' => 'Udział w zyskach',
             'attr' => array('class' => 'decimal'),
             'constraints' => array(
@@ -83,10 +78,9 @@ class PrzeplywFinansowyType extends AbstractType
                     array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')
                 )
             )
-            )
-        );
-        $builder->add(
-            'inneWplywy', TextType::class, array(
+        ));
+
+        $builder->add('inneWplywy', TextType::class, array(
             'label' => 'Inne',
             'attr' => array('class' => 'decimal'),
             'constraints' => array(
@@ -97,11 +91,9 @@ class PrzeplywFinansowyType extends AbstractType
                     array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')
                 )
             )
-            )
-        );
+        ));
 
-        $builder->add(
-            'wyplywy', TextType::class, array(
+        $builder->add('wyplywy', TextType::class, array(
             'label' => 'Wypływy',
             'attr' => array('readonly' => true),
             'constraints' => array(
@@ -109,11 +101,9 @@ class PrzeplywFinansowyType extends AbstractType
                     array('message' => 'Należy wypełnić pole')
                 )
             )
-            )
-        );
+        ));
 
-        $builder->add(
-            'wejsciaKapitalowe', TextType::class, array(
+        $builder->add('wejsciaKapitalowe', TextType::class, array(
             'label' => 'Wejścia kapitałowe',
             'attr' => array('class' => 'decimal'),
             'constraints' => array(
@@ -124,11 +114,9 @@ class PrzeplywFinansowyType extends AbstractType
                     array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')
                 )
             )
-            )
-        );
+        ));
 
-        $builder->add(
-            'preinkubacjaPomyslow', TextType::class, array(
+        $builder->add('preinkubacjaPomyslow', TextType::class, array(
             'label' => 'Preinkubacja pomysłów',
             'attr' => array('class' => 'decimal'),
             'constraints' => array(
@@ -139,11 +127,9 @@ class PrzeplywFinansowyType extends AbstractType
                     array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')
                 )
             )
-            )
-        );
+        ));
 
-        $builder->add(
-            'wydatkiOperacyjne', TextType::class, array(
+        $builder->add('wydatkiOperacyjne', TextType::class, array(
             'label' => 'Wydatki operacyjne',
             'attr' => array('class' => 'decimal'),
             'constraints' => array(
@@ -154,11 +140,9 @@ class PrzeplywFinansowyType extends AbstractType
                     array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')
                 )
             )
-            )
-        );
+        ));
 
-        $builder->add(
-            'podatki', TextType::class, array(
+        $builder->add('podatki', TextType::class, array(
             'label' => 'Podatki',
             'attr' => array('class' => 'decimal'),
             'constraints' => array(
@@ -169,11 +153,9 @@ class PrzeplywFinansowyType extends AbstractType
                     array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')
                 )
             )
-            )
-        );
+        ));
 
-        $builder->add(
-            'inneWyplywy', TextType::class, array(
+        $builder->add('inneWyplywy', TextType::class, array(
             'label' => 'Inne',
             'attr' => array('class' => 'decimal'),
             'constraints' => array(
@@ -184,8 +166,8 @@ class PrzeplywFinansowyType extends AbstractType
                     array('message' => 'Niepoprawny format', 'pattern' => '/^([-])?[0-9]{1,13}[\.\,][0-9]{0,2}$/')
                 )
             )
-            )
-        );
+        ));
+
         $builder->add(
             'saldoKoncowe', TextType::class, array(
             'label' => 'Saldo końcowe',
@@ -195,8 +177,7 @@ class PrzeplywFinansowyType extends AbstractType
                     array('message' => 'Należy wypełnić pole')
                 )
             )
-            )
-        );
+        ));
 
         $builder->add(
             'liczbaPomyslowWInkubatorze', null, array(
@@ -207,8 +188,8 @@ class PrzeplywFinansowyType extends AbstractType
                     array('message' => 'Należy wypełnić pole')
                 )
             )
-            )
-        );
+        ));
+
         $builder->add(
             'liczbaPomyslowOcenionych', null, array(
             'label' => 'Liczba pomysłów ocenionych w okresie',
@@ -218,8 +199,8 @@ class PrzeplywFinansowyType extends AbstractType
                     array('message' => 'Należy wypełnić pole')
                 )
             )
-            )
-        );
+        ));
+
         $builder->add(
             'liczbaPomyslowOcenionychPozytywnie', null, array(
             'label' => '- w tym pozytywnie',
@@ -229,8 +210,8 @@ class PrzeplywFinansowyType extends AbstractType
                     array('message' => 'Należy wypełnić pole')
                 )
             )
-            )
-        );
+        ));
+
         $builder->add(
             'liczbaPomyslowOcenionychNegatywnie', null, array(
             'label' => '- w tym negatywnie',
@@ -240,8 +221,8 @@ class PrzeplywFinansowyType extends AbstractType
                     array('message' => 'Należy wypełnić pole')
                 )
             )
-            )
-        );
+        ));
+
         $builder->add(
             'liczbaZakonczonychPreinkubacji', null, array(
             'label' => 'Liczba zakończonych preinkubacji w okresie',
@@ -251,8 +232,8 @@ class PrzeplywFinansowyType extends AbstractType
                     array('message' => 'Należy wypełnić pole')
                 )
             )
-            )
-        );
+        ));
+
         $builder->add(
             'liczbaDokonanychInwestycji', null, array(
             'label' => 'Liczba dokonanych inwestycji w okresie',
@@ -262,8 +243,7 @@ class PrzeplywFinansowyType extends AbstractType
                     array('message' => 'Należy wypełnić pole')
                 )
             )
-            )
-        );
+        ));
     }
 
     /**
@@ -273,12 +253,9 @@ class PrzeplywFinansowyType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(
-            array(
+        $resolver->setDefaults(array(
             'data_class' => \Parp\SsfzBundle\Entity\PrzeplywFinansowy::class,
             'attr' => array('novalidate' => 'novalidate'),
-            )
-        );
+        ));
     }
-
 }

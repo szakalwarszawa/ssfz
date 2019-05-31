@@ -25,18 +25,16 @@ class OsobaZatrudnionaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add(
-            'imie', null, array(
+        $builder->add('imie', null, array(
             'label' => 'Imię',
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')
                 )
             )
-            )
-        );
-        $builder->add(
-            'nazwisko', null, array(
+        ));
+
+        $builder->add('nazwisko', null, array(
             'label' => 'Nazwisko',
             'constraints' => array(
                 new NotBlank(
@@ -45,8 +43,7 @@ class OsobaZatrudnionaType extends AbstractType
             )
         ));
 
-        $builder->add(
-            'umowaRodzaj', ChoiceType::class, array(
+        $builder->add('umowaRodzaj', ChoiceType::class, array(
             'choices' => array(
                 '' => '',
                 'na czas nieokreślony' => 'na czas nieokreślony',
@@ -61,8 +58,7 @@ class OsobaZatrudnionaType extends AbstractType
             )
         ));
 
-        $builder->add(
-            'umowaData', DateTimeType::class, array(
+        $builder->add('umowaData', DateTimeType::class, array(
             'widget' => 'single_text',
             'format' => 'yyyy-MM-dd',
             'attr' => array(
@@ -78,8 +74,7 @@ class OsobaZatrudnionaType extends AbstractType
             )
         ));
 
-        $builder->add(
-            'rozpoczecieData', DateTimeType::class, array(
+        $builder->add('rozpoczecieData', DateTimeType::class, array(
             'widget' => 'single_text',
             'format' => 'yyyy-MM-dd',
             'attr' => array(
@@ -95,8 +90,7 @@ class OsobaZatrudnionaType extends AbstractType
             )
         ));
 
-        $builder->add(
-            'stanowisko', null, array(
+        $builder->add('stanowisko', null, array(
             'label' => 'Stanowisko',
             'constraints' => array(
                 new NotBlank(
@@ -105,8 +99,7 @@ class OsobaZatrudnionaType extends AbstractType
             )
         ));
 
-        $builder->add(
-            'wymiar', null, array(
+        $builder->add('wymiar', null, array(
             'label' => 'Wymiar etatu',
             'constraints' => array(
                 new NotBlank(
@@ -123,10 +116,8 @@ class OsobaZatrudnionaType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(
-            array(
+        $resolver->setDefaults(array(
             'data_class' => OsobaZatrudniona::class,
-            )
-        );
+        ));
     }
 }

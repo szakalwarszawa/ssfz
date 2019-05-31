@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,7 +24,7 @@ class ReportController extends Controller
     public function index()
     {
         return $this->render('SsfzBundle:Report:indexJasper.html.twig', array(
-                'reports' => $this->get('ssfz.service.jasperreports_service')->listAllReports())
+            'reports' => $this->get('ssfz.service.jasperreports_service')->listAllReports())
         );
     }
 

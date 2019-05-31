@@ -29,7 +29,8 @@ class CustomLdapUserProvider extends LdapUserProvider
      * @param string                                      $filter
      */
     public function __construct(
-        $userService, \Symfony\Component\Ldap\LdapClientInterface $ldap,
+        $userService,
+        \Symfony\Component\Ldap\LdapClientInterface $ldap,
         $baseDn,
         $searchDn,
         $searchPassword,

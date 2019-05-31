@@ -70,14 +70,14 @@ class DatatableOsobyService
      */
     public function datatableOsoby($parentObj, $beneficjentId)
     {
-        return $parentObj->get('datatable')
-                ->setDatatableId('dta-osoby')
-                ->setEntity('SsfzBundle:OsobaZatrudniona', 'o')
-                ->setFields($this->getDatatableOsobyFields())
-                ->setSearch(true)
-                ->setRenderers($this->getDatatableOsobyRenderers())
-                ->setWhere(
-                    'o.beneficjentId = :beneficjentId', array('beneficjentId' => (string) $beneficjentId)
-                );
+        return $parentObj
+            ->get('datatable')
+            ->setDatatableId('dta-osoby')
+            ->setEntity('SsfzBundle:OsobaZatrudniona', 'o')
+            ->setFields($this->getDatatableOsobyFields())
+            ->setSearch(true)
+            ->setRenderers($this->getDatatableOsobyRenderers())
+            ->setWhere('o.beneficjentId = :beneficjentId', array('beneficjentId' => (string) $beneficjentId))
+        ;
     }
 }

@@ -24,8 +24,7 @@ class UmowaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add(
-            'numer', null, array(
+        $builder->add('numer', null, array(
             'label' => 'Numer umowy',
             'constraints' => array(
                 new NotBlank(array('message' => 'Należy wypełnić pole'))
@@ -40,10 +39,8 @@ class UmowaType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(
-            array(
+        $resolver->setDefaults(array(
             'data_class' => Umowa::class
-            )
-        );
+        ));
     }
 }

@@ -47,14 +47,14 @@ class DatatableUmowyService
      */
     public function datatableUmowy($parentObj, $beneficjentId)
     {
-        return $parentObj->get('datatable')
-                ->setDatatableId('dta-umowy')
-                ->setEntity('SsfzBundle:Umowa', 'u')
-                ->setFields($this->getDatatableUmowyFields())
-                ->setSearch(true)
-                ->setRenderers($this->getDatatableUmowyRenderers())
-                ->setWhere(
-                    'u.beneficjentId = :beneficjentId', array('beneficjentId' => (string) $beneficjentId)
-                );
+        return $parentObj
+            ->get('datatable')
+            ->setDatatableId('dta-umowy')
+            ->setEntity('SsfzBundle:Umowa', 'u')
+            ->setFields($this->getDatatableUmowyFields())
+            ->setSearch(true)
+            ->setRenderers($this->getDatatableUmowyRenderers())
+            ->setWhere('u.beneficjentId = :beneficjentId', array('beneficjentId' => (string) $beneficjentId))
+        ;
     }
 }

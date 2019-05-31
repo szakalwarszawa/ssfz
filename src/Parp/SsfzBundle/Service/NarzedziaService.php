@@ -51,7 +51,6 @@ class NarzedziaService
     public function getSlownikBeneficjentFormaPrawna($sort = null)
     {
         if (!$sort) {
-
             return $this->dictFormaRepo->findBy(array(), array('id' => 'ASC'));
         }
 
@@ -67,7 +66,6 @@ class NarzedziaService
     public function getSlownikWojewodztwo($sort = null)
     {
         if (!$sort) {
-
             return $this->dictWojRepo->findBy(array(), array('id' => 'ASC'));
         }
 
@@ -83,7 +81,6 @@ class NarzedziaService
     public function getSlownikGospodarkaDzial($sort = null)
     {
         if (!$sort) {
-
             return $this->dictDzialRepo->findBy(array(), array('id' => 'ASC'));
         }
 

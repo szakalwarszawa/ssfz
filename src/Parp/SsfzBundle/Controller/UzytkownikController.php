@@ -14,8 +14,8 @@ use Parp\SsfzBundle\Entity\Rola;
  *
  * @Route("/uzytkownik")
  */
-class UzytkownikController extends Controller {
-
+class UzytkownikController extends Controller
+{
     /**
      * Metoda rejestracji użytkownika
      *
@@ -25,7 +25,8 @@ class UzytkownikController extends Controller {
      *
      * @return Response
      */
-    public function rejestracja(Request $request) {
+    public function rejestracja(Request $request)
+    {
         $uzytkownik = new Uzytkownik();
         $form = $this->createForm(UzytkownikType::class, $uzytkownik);
         $form->handleRequest($request);
@@ -64,7 +65,8 @@ class UzytkownikController extends Controller {
      *
      * @return Response
      */
-    public function aktywacjaKonta(Request $request) {
+    public function aktywacjaKonta(Request $request)
+    {
         $token = $request->get('token');
         $uzytkownikService = $this->get('ssfz.service.uzytkownik_service');
         $komunikatyService = $this->get('ssfz.service.komunikaty_service');

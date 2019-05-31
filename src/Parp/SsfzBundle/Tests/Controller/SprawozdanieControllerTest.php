@@ -73,19 +73,16 @@ class SprawozdanieControllerTest extends WebTestCase
 
     /**
      * Testuje akcję rejestracja
-     *
      */
     public function testRejestracja()
     {
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/sprawozdanie/rejestracja/1');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk777',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('GET', '/sprawozdanie/rejestracja/1');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }
@@ -97,12 +94,10 @@ class SprawozdanieControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/sprawozdanie/edycja/1/2');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk777',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('GET', '/sprawozdanie/edycja/1/2');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }
@@ -114,12 +109,10 @@ class SprawozdanieControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/sprawozdanie/poprawa/1/4');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk777',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('GET', '/sprawozdanie/poprawa/1/4');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }
@@ -131,12 +124,10 @@ class SprawozdanieControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/sprawozdanie/podglad/2');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk777',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('GET', '/sprawozdanie/podglad/2');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }
@@ -148,12 +139,10 @@ class SprawozdanieControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/gridSprawozdanie/1');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk777',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('GET', '/gridSprawozdanie/1');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }
@@ -166,12 +155,10 @@ class SprawozdanieControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('POST', '/sprawozdanie/wyslijDoParp', array('sprawozdanieId'=> 3), array(), array());
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk777',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('POST', '/sprawozdanie/wyslijDoParp', array('sprawozdanieId'=> 3), array(), array());
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
     }
@@ -191,7 +178,6 @@ class SprawozdanieControllerTest extends WebTestCase
         $this->assertSame($report->getCzyNajnowsza(), true);
         $this->assertSame($report->getStatus(), 1);
         $this->assertSame($report->getDataRejestracji()->format('Y-m-d'), $creationDate->format('Y-m-d'));
-
     }
 
     /**

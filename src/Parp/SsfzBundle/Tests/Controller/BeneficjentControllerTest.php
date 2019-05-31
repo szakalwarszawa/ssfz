@@ -75,12 +75,10 @@ class BeneficjentControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/beneficjent');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk777',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('GET', '/beneficjent');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }
@@ -93,12 +91,10 @@ class BeneficjentControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/beneficjent/uzupelnij');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk777',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('GET', '/beneficjent/uzupelnij');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }
@@ -111,12 +107,10 @@ class BeneficjentControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/beneficjent/profil');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk777',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('GET', '/beneficjent/profil');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }
@@ -129,12 +123,10 @@ class BeneficjentControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/beneficjent/gridOsoby');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk777',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('GET', '/beneficjent/gridOsoby');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }
@@ -147,12 +139,10 @@ class BeneficjentControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/beneficjent/gridUmowy');
         $this->assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
+        $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk777',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-            )
-        );
+        ));
         $crawler = $this->client->request('GET', '/beneficjent/gridUmowy');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }

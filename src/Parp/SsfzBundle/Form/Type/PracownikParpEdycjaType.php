@@ -24,24 +24,21 @@ class PracownikParpEdycjaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add(
-                'login', TextType::class, [
-                'label' => 'Login',
-                'disabled' => true,
-                ]
-            )->add(
-                'rola', EntityType::class, [
+        $builder->add('login', TextType::class, [
+            'label' => 'Login',
+            'disabled' => true,
+        ]);
+            
+        $builder->add('rola', EntityType::class, [
                     'class' => Rola::class,
-                    'property' => 'opis',
-                    'label' => 'Rola',
-                    'query_builder' => function (EntityRepository $er ) {
-                        return $er->createQueryBuilder('n')
-                            ->where('n.id not in (:marray)')
-                            ->setParameter('marray', array('4')); //id roli beneficjenta
-                    },
-                ]
-            );
+            'property' => 'opis',
+            'label' => 'Rola',
+            'query_builder' => function (EntityRepository $er ) {
+                return $er->createQueryBuilder('n')
+                    ->where('n.id not in (:marray)')
+                    ->setParameter('marray', array('4')); //id roli beneficjenta
+            },
+        ]);
     }
 
     /**

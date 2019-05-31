@@ -437,12 +437,12 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     {
         $this->nazwisko = $nazwisko;
     }
+
     /**
      * Usuwa dane poufne z użytkownika
      */
     public function eraseCredentials()
     {
-
     }
 
     /**

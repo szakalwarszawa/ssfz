@@ -17,6 +17,11 @@ class SecurityControllerTest extends WebTestCase
     protected static $application;
 
     /**
+     * @var Client
+     */
+    private $client;
+
+    /**
      * Ustawienie środowiska testowego
      */
     protected function setUp()
@@ -67,11 +72,6 @@ class SecurityControllerTest extends WebTestCase
     }
 
     /**
-     * @var Client
-     */
-    private $client;
-
-    /**
      * Test logowania
      */
     public function testLoginAction()
@@ -79,12 +79,10 @@ class SecurityControllerTest extends WebTestCase
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/login');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
-        $this->client = static::createClient(
-            array(), array(
-                'PHP_AUTH_USER' => 'admin',
-                'PHP_AUTH_PW' => 'pawiany_wchodza_na_sciany',
-            )
-        );
+        $this->client = static::createClient(array(), array(
+            'PHP_AUTH_USER' => 'admin',
+            'PHP_AUTH_PW' => 'pawiany_wchodza_na_sciany',
+        ));
         $crawler = $this->client->request('GET', '/');
         $this->assertContains($this->client->getResponse()->getStatusCode(), [Response::HTTP_OK, Response::HTTP_FOUND]);
     }
@@ -106,12 +104,10 @@ class SecurityControllerTest extends WebTestCase
     {
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/haslo/reset/token=');
-        $this->client = static::createClient(
-            array(), array(
-                'PHP_AUTH_USER' => 'admin',
-                'PHP_AUTH_PW' => 'pawiany_wchodza_na_sciany',
-            )
-        );
+        $this->client = static::createClient(array(), array(
+            'PHP_AUTH_USER' => 'admin',
+            'PHP_AUTH_PW' => 'pawiany_wchodza_na_sciany',
+        ));
         $crawler = $this->client->request('GET', '/haslo/reset/token=12345567');
         $this->assertContains($this->client->getResponse()->getStatusCode(), [Response::HTTP_OK, Response::HTTP_FOUND]);
     }
