@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -18,53 +19,55 @@ class UzytkownikType extends AbstractType
      * Buduje formularz rejestracji użytkownika
      *
      * @param FormBuilderInterface $builder
-     * @param array                $options
+     *
+     * @param array $options
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('login', TextType::class, array(
+        $passwordStrengthMessage = '
+            Hasło musi zawierać co najmniej:
+            8 znaków i maksymalnie 255,
+            2 duże litery,
+            2 cyfry,
+            1 znak specjalny';
+
+        $builder->add('login', TextType::class, [
             'label' => 'Login',
-            'attr' => array(
+            'attr'  => [
                 'oninvalid' => 'this.setCustomValidity(\'Pole nie może pozostać puste.\')',
-                'oninput' => 'setCustomValidity(\'\')'
-            )
-        ));
+                'oninput'   => 'setCustomValidity(\'\')'
+            ]
+        ]);
 
-        $builder->add('haslo', RepeatedType::class, array(
-            'type' => PasswordType::class,
-            'first_options' => array(
+        $builder->add('haslo', RepeatedType::class, [
+            'type'          => PasswordType::class,
+            'first_options' => [
                 'label' => 'Hasło',
-                'attr' => array(
-                    'data-toggle' => 'tooltip',
+                'attr'  => [
+                    'data-toggle'    => 'tooltip',
                     'data-placement' => 'right',
-                    'title' => 'Hasło musi zawierać co najmniej
-                                8 znaków i maksymalnie 255,
-                                2 duże litery,
-                                2 cyfry,
-                                1 znak specjalny'
-                )
-            ),
-            'second_options' => array(
+                    'title'          => $passwordStrengthMessage,
+                ]
+            ],
+            'second_options' => [
                 'label' => 'Powtórz hasło',
-                'attr' => array(
-                    'data-toggle' => 'tooltip',
+                'attr'  => [
+                    'data-toggle'    => 'tooltip',
                     'data-placement' => 'right',
-                    'title' => 'Hasło musi zawierać co najmniej
-                                8 znaków i maksymalnie 255,
-                                2 duże litery,
-                                2 cyfry,
-                                1 znak specjalny'
-                )
-            ),
+                    'title'          => $passwordStrengthMessage,
+                ]
+            ],
             'invalid_message' => 'W polach Hasło i Powtórz hasło wpisano różne hasła.'
-        ));
+        ]);
 
-        $builder->add('email', EmailType::class, array(
-            'attr' => array(
+        $builder->add('email', EmailType::class, [
+            'attr' => [
                 'oninvalid' => 'this.setCustomValidity(\'Adres email nie zawiera poprawnej konstrukcji, sprawdź czy adres nie zawiera błędów.\')',
-                'oninput' => 'setCustomValidity(\'\')'
-            )
-        ));
+                'oninput'   => 'setCustomValidity(\'\')'
+            ]
+        ]);
     }
 
     /**
