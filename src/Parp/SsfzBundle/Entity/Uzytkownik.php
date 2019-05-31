@@ -451,6 +451,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
      */
     public function eraseCredentials()
     {
+        $this->aktywnyProgram = null;
     }
 
     /**

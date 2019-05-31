@@ -28,4 +28,20 @@ a:hover {
 
 .btn-static {
   pointer-events: none;
-}    
+}
+
+.width-short {
+    width: 100px;
+}
+
+.width-medium {
+    width: 250px;
+}
+
+.width-long {
+    width: 500px;
+}
+
+.center {
+    text-align: center;
+}
