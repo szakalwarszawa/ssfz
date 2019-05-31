@@ -1,5 +1,9 @@
 <?php
 
+namespace  Parp\SsfzBundle\Exception;
+
+use Exception;
+
 /**
  * Klasa wyjątku generowanego z klasy LdapDataServiceException
  *

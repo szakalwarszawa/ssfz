@@ -6,6 +6,7 @@ use Exception;
 use Parp\SsfzBundle\Entity\UzytkownikLdap;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Zend\Ldap\Ldap;
+use use Parp\SsfzBundle\Exception\LdapDataServiceException;
 
 /**
  * Klasa zapewniająca dostęp do danych zgromadzonych w bazie LDAP
@@ -162,8 +163,10 @@ class LdapDataService
      * tzn. więcej niż jeden rekord z LDAP pasuje do podanego loginu wyrzuca LdapDataServiceexception
      *
      * @param  string $login
+     *
      * @return UzytkownikLdap
-     * @throws \LdapDataServiceException
+     *
+     * @throws LdapDataServiceException
      */
     public function getUzytkownikLdap($login)
     {
@@ -172,7 +175,7 @@ class LdapDataService
         $searchScope = Ldap::SEARCH_SCOPE_SUB;
         $employee = $this->ldap->searchEntries('(&(objectClass=organizationalPerson)(' . $this->uidKey . '=' . $login . '))', $baseDn, $searchScope);
         if (1 !== count($employee)) {
-            throw new \LdapDataServiceException('Niejednoznaczny login LDAP');
+            throw new LdapDataServiceException('Niejednoznaczny login LDAP');
         }
 
         return $this->convertLdapDataToUzytkownikLdap($employee[0]);
