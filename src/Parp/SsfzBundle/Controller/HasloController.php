@@ -21,7 +21,7 @@ class HasloController extends Controller
      * Metoda do wygenerowania klucza zmiany kasła.
      * Wysyłka klucza resetującego hasło na podany adres email.
      *
-     * @Route("/przypomnij")
+     * @Route("/przypomnij", name="przypomnienie_hasla")
      *
      * @param Request $request
      *
