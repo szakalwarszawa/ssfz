@@ -43,24 +43,21 @@ class SprawozdanieType extends AbstractType
             ));
         }
 
-        $builder->add(
-            'numerUmowy', null, array(
+        $builder->add('numerUmowy', null, array(
             'label' => 'Numer umowy',
             'attr' => array('readonly' => true),
             'constraints' => array()
-            )
-        );
-        $builder->add(
-            'sprawozdaniaSpolek', CollectionType::class, array(
+        ));
+
+        $builder->add('sprawozdaniaSpolek', CollectionType::class, array(
             'entry_type' => SprawozdanieSpolkiType::class,
             'entry_options' => array('label' => false),
             'allow_add' => true,
             'by_reference' => false,
             'allow_delete' => true,
-            )
-        );
-        $builder->add(
-            'okres', ChoiceType::class, array(
+        ));
+
+        $builder->add('okres', ChoiceType::class, array(
             'label' => 'Sprawozdanie za okres',
             'choices' => array(
                 '' => '',
@@ -72,10 +69,9 @@ class SprawozdanieType extends AbstractType
                     array('message' => 'Należy wypełnić pole')
                 )
             )
-            )
-        );
-        $builder->add(
-            'rok', ChoiceType::class, array(
+        ));
+
+        $builder->add('rok', ChoiceType::class, array(
             'label' => 'Rok',
             'choices' => $options['okresy'],
             'constraints' => array(
@@ -83,13 +79,11 @@ class SprawozdanieType extends AbstractType
                     array('message' => 'Należy wypełnić pole')
                 )
             )
-            )
-        );
-        $builder->add(
-            'przekierowanie', HiddenType::class, array(
+        ));
+
+        $builder->add('przekierowanie', HiddenType::class, array(
             'mapped' => false,
-            )
-        );
+        ));
     }
 
     /**

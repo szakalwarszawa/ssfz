@@ -157,8 +157,7 @@ class ParpControllerTest extends WebTestCase
         $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'bzk666',
             'PHP_AUTH_PW'   => 'Zeto#2017!',
-        )
-    );
+        ));
         $crawler = $this->client->request('GET', '/parp/portfel/1');
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }

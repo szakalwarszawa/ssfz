@@ -101,7 +101,7 @@ class SprawozdanieService
                 'alert' => 'success',
                 'title' => $title,
                 'message' => $message
-        ));
+            ));
     }
 
     /**
@@ -122,7 +122,7 @@ class SprawozdanieService
                 'alert' => 'danger',
                 'title' => $title,
                 'message' => $message
-        ));
+            ));
     }
 
     /**

@@ -82,20 +82,22 @@ class UzytkownikRepository extends EntityRepository implements UserProviderInter
      */
     public function getPracownicyAdresyEmailArray()
     {
-        return array_column(
-            $adresy = $this->getEntityManager()
-            ->createQuery(
-                'SELECT u.email FROM SsfzBundle:Uzytkownik u JOIN SsfzBundle:Rola r WITH u.rola = r.id where r.nazwa = \'ROLE_PRACOWNIK_PARP\''
-            )
-            ->getResult(), 'email'
-        );
+        $adresy = $this
+            ->getEntityManager()
+            ->createQuery('SELECT u.email FROM SsfzBundle:Uzytkownik u JOIN SsfzBundle:Rola r WITH u.rola = r.id where r.nazwa = \'ROLE_PRACOWNIK_PARP\'')
+            ->getResult()
+        ;
+
+        return array_column($adresy, 'email');
     }
 
     /**
      * Metoda pobierająca użytkownika ze wskazanym loginem
      *
      * @param  string $username
+     *
      * @return User
+     *
      * @throws UsernameNotFoundException
      */
     public function loadUserByUsername($username)
@@ -112,31 +114,37 @@ class UzytkownikRepository extends EntityRepository implements UserProviderInter
      * Sprawdza czy podany login uzytkownika istnieje
      *
      * @param  string $login
+     *
      * @return bool
      */
     public function loginIstnieje($login)
     {
-        return count($this->findBy(['login' => $login])) == 1;
+        return count($this->findBy(['login' => $login])) === 1;
     }
 
     /**
      * Wyszukuje użytkowników po rolach
      *
      * @param string $role
+     *
      * @return array
      */
     public function znajdzPoRolach($role)
     {
-        return $this->createQueryBuilder('u')
-                ->where('u.rola in (?1)')
-                ->setParameter(1, $role)
-                ->getQuery()
-                ->getResult();
+        return $this
+            ->createQueryBuilder('u')
+            ->where('u.rola in (?1)')
+            ->setParameter(1, $role)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     /**
      * @param \Symfony\Component\Security\Core\User\UserInterface $user
+     *
      * @return User
+     *
      * @throws UnsupportedUserException
      * @throws UsernameNotFoundException
      */
@@ -144,11 +152,7 @@ class UzytkownikRepository extends EntityRepository implements UserProviderInter
     {
         $class = get_class($user);
         if (!$this->supportsClass($class)) {
-            throw new UnsupportedUserException(
-                sprintf(
-                    'Instances of "%s" are not supported.', $class
-                )
-            );
+            throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', $class));
         }
 
         if (!$refreshedUser = $this->find($user->getId())) {

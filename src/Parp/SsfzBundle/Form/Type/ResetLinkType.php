@@ -20,21 +20,21 @@ class ResetLinkType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add(
-                'login', TextType::class, array(
-                'attr' => array(
-                    'oninvalid' => 'this.setCustomValidity(\'Pole nie może pozostać puste.\')',
-                    'oninput' => 'setCustomValidity(\'\')'
-                ))
-            )
-            ->add(
-                'email', EmailType::class, array(
-                'attr' => array(
-                    'oninvalid' => 'this.setCustomValidity(\'Adres email nie zawiera poprawnej konstrukcji, sprawdź czy adres nie zawiera błędów.\')',
-                    'oninput' => 'setCustomValidity(\'\')'
-                ))
-            );
+        $builder->add(
+            'login', TextType::class, array(
+            'attr' => array(
+                'oninvalid' => 'this.setCustomValidity(\'Pole nie może pozostać puste.\')',
+                'oninput' => 'setCustomValidity(\'\')'
+            ))
+        );
+
+        $builder->add(
+            'email', EmailType::class, array(
+            'attr' => array(
+                'oninvalid' => 'this.setCustomValidity(\'Adres email nie zawiera poprawnej konstrukcji, sprawdź czy adres nie zawiera błędów.\')',
+                'oninput' => 'setCustomValidity(\'\')'
+            ))
+        );
     }
 
     /**
@@ -44,7 +44,9 @@ class ResetLinkType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array('data_class' => 'Parp\SsfzBundle\Form\Model\ResetLink'));
+        $resolver->setDefaults(array(
+            'data_class' => 'Parp\SsfzBundle\Form\Model\ResetLink'
+        ));
     }
 
     /**

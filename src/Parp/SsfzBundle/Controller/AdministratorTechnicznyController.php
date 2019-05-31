@@ -96,7 +96,9 @@ class AdministratorTechnicznyController extends Controller
             return $this->redirectToRoute('utworzPracownika');
         }
         $form = $this->createForm(
-            PracownikParpEdycjaType::class, $uzytkownik, ['uzytk_repo' => $uzytkRepo]
+            PracownikParpEdycjaType::class,
+            $uzytkownik,
+            ['uzytk_repo' => $uzytkRepo]
         );
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -224,7 +226,7 @@ class AdministratorTechnicznyController extends Controller
     private function edycjaUzytkownikPoprawnyKomunikat(Uzytkownik $uzytkownik)
     {
         $blad = null;
-        if (null === !$uzytkownik  ) {
+        if (null === !$uzytkownik) {
             return 'Użytkownik nie istnieje';
         }
         if (!$uzytkownik->czyPracownikParp()) {

@@ -168,8 +168,7 @@ class PrzeplywFinansowyType extends AbstractType
             )
         ));
 
-        $builder->add(
-            'saldoKoncowe', TextType::class, array(
+        $builder->add('saldoKoncowe', TextType::class, array(
             'label' => 'Saldo końcowe',
             'attr' => array('readonly' => true),
             'constraints' => array(
@@ -179,8 +178,7 @@ class PrzeplywFinansowyType extends AbstractType
             )
         ));
 
-        $builder->add(
-            'liczbaPomyslowWInkubatorze', null, array(
+        $builder->add('liczbaPomyslowWInkubatorze', null, array(
             'label' => 'Liczba pomysłów, które wpłynęły do inkubatora w okresie',
             'attr' => array('class' => 'integer'),
             'constraints' => array(
@@ -190,8 +188,7 @@ class PrzeplywFinansowyType extends AbstractType
             )
         ));
 
-        $builder->add(
-            'liczbaPomyslowOcenionych', null, array(
+        $builder->add('liczbaPomyslowOcenionych', null, array(
             'label' => 'Liczba pomysłów ocenionych w okresie',
             'attr' => array('class' => 'integer'),
             'constraints' => array(
@@ -201,8 +198,7 @@ class PrzeplywFinansowyType extends AbstractType
             )
         ));
 
-        $builder->add(
-            'liczbaPomyslowOcenionychPozytywnie', null, array(
+        $builder->add('liczbaPomyslowOcenionychPozytywnie', null, array(
             'label' => '- w tym pozytywnie',
             'attr' => array('class' => 'integer'),
             'constraints' => array(
@@ -212,8 +208,7 @@ class PrzeplywFinansowyType extends AbstractType
             )
         ));
 
-        $builder->add(
-            'liczbaPomyslowOcenionychNegatywnie', null, array(
+        $builder->add('liczbaPomyslowOcenionychNegatywnie', null, array(
             'label' => '- w tym negatywnie',
             'attr' => array('class' => 'integer'),
             'constraints' => array(
@@ -223,8 +218,7 @@ class PrzeplywFinansowyType extends AbstractType
             )
         ));
 
-        $builder->add(
-            'liczbaZakonczonychPreinkubacji', null, array(
+        $builder->add('liczbaZakonczonychPreinkubacji', null, array(
             'label' => 'Liczba zakończonych preinkubacji w okresie',
             'attr' => array('class' => 'integer'),
             'constraints' => array(
@@ -234,8 +228,7 @@ class PrzeplywFinansowyType extends AbstractType
             )
         ));
 
-        $builder->add(
-            'liczbaDokonanychInwestycji', null, array(
+        $builder->add('liczbaDokonanychInwestycji', null, array(
             'label' => 'Liczba dokonanych inwestycji w okresie',
             'attr' => array('class' => 'integer'),
             'constraints' => array(

@@ -478,7 +478,7 @@ class SprawozdanieController extends Controller
             'form' => $form->createView(),
             'form_mode' => $mode,
             'umowaId' => $umowaId,
-        ) );
+        ));
     }
 
     /**

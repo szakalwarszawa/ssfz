@@ -71,6 +71,7 @@ class KomunikatyService
             'message' => $komunikat,
             'title' => $tytul
         );
+
         switch ($typ) {
             case 'blad':
                 $komInfo['alert'] = 'danger';
@@ -82,8 +83,11 @@ class KomunikatyService
                 $komInfo['alert'] = 'warning';
                 break;
         }
-        $this->session->getFlashBag()->add(
-            'notice', $komInfo
-        );
+
+        $this
+            ->session
+            ->getFlashBag()
+            ->add('notice', $komInfo)
+        ;
     }
 }

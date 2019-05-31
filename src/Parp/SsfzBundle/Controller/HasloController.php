@@ -44,8 +44,8 @@ class HasloController extends Controller
                 $this->getMailerService()->sendMail($uzytkownik, 'Zmiana hasła', '@SsfzBundle/Resources/views/Email/resetPassword.html.twig', array('code' => $uzytkownik->getKodZapomnianeHaslo(), 'login' => $resetLink->getLogin()));
 
                 return $this->render('SsfzBundle:Security:passwordRecoverInfo.html.twig', array(
-                    'info' => 'Wysłano link zmiany hasła na adres email ' . $uzytkownik->getEmail() . '. Na twojej skrzynce mailowej znajdują się dalsze instrukcje, które umożliwią odzyskanie hasła do konta.')
-                );
+                    'info' => 'Wysłano link zmiany hasła na adres email ' . $uzytkownik->getEmail() . '. Na twojej skrzynce mailowej znajdują się dalsze instrukcje, które umożliwią odzyskanie hasła do konta.'
+                ));
             }
 
             return $this->render('SsfzBundle:Security:passwordRecover.html.twig', array(

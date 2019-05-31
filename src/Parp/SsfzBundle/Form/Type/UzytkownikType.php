@@ -23,16 +23,14 @@ class UzytkownikType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add(
-                'login', TextType::class, array(
+            ->add('login', TextType::class, array(
                 'label' => 'Login',
                 'attr' => array(
                     'oninvalid' => 'this.setCustomValidity(\'Pole nie może pozostać puste.\')',
                     'oninput' => 'setCustomValidity(\'\')'
                 ))
             )
-            ->add(
-                'haslo', RepeatedType::class, array(
+            ->add('haslo', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'first_options' => array(
                     'label' => 'Hasło',
@@ -61,8 +59,7 @@ class UzytkownikType extends AbstractType
                 'invalid_message' => 'W polach Hasło i Powtórz hasło wpisano różne hasła.'
                 )
             )
-            ->add(
-                'email', EmailType::class, array(
+            ->add('email', EmailType::class, array(
                 'attr' => array(
                     'oninvalid' => 'this.setCustomValidity(\'Adres email nie zawiera poprawnej konstrukcji, sprawdź czy adres nie zawiera błędów.\')',
                     'oninput' => 'setCustomValidity(\'\')'
@@ -77,12 +74,10 @@ class UzytkownikType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(
-            array(
+        $resolver->setDefaults(array(
             'data_class' => 'Parp\SsfzBundle\Entity\Uzytkownik',
             'validation_groups' => array('rejestracja'),
-            )
-        );
+        ));
     }
 
     /**

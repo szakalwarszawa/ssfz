@@ -28,15 +28,16 @@ class PracownikParpEdycjaType extends AbstractType
             'label' => 'Login',
             'disabled' => true,
         ]);
-            
+
         $builder->add('rola', EntityType::class, [
-                    'class' => Rola::class,
+            'class' => Rola::class,
             'property' => 'opis',
             'label' => 'Rola',
             'query_builder' => function (EntityRepository $er ) {
                 return $er->createQueryBuilder('n')
                     ->where('n.id not in (:marray)')
-                    ->setParameter('marray', array('4')); //id roli beneficjenta
+                    ->setParameter('marray', array('4'))
+                ;
             },
         ]);
     }

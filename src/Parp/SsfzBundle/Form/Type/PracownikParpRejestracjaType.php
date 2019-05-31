@@ -79,8 +79,8 @@ class PracownikParpRejestracjaType extends AbstractType
             },
             'constraints' => [
                 new NotBlank(),
-            ]]
-        );
+            ]
+        ]);
     }
 
     /**
