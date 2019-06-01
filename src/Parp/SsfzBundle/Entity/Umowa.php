@@ -21,43 +21,44 @@ class Umowa
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var int
      *
      * @ORM\Column(name="beneficjent_id", type="integer")
      */
-    private $beneficjentId;
+    protected $beneficjentId;
 
     /**
      * @ORM\ManyToOne(targetEntity="Beneficjent", inversedBy="umowy")
      * @ORM\JoinColumn(name="beneficjent_id", referencedColumnName="id")
      */
-    private $beneficjent;
+    protected $beneficjent;
 
     /**
      * @var string
+     *
      * @ORM\Column(name="numer", type="string", length=26)
      */
-    private $numer;
+    protected $numer;
 
     /**
      * Encje Spolka powiazane z umową - spółki składające się na portfel
      *
      * @ORM\OneToMany(targetEntity="Spolka", mappedBy="umowa", cascade={"persist"})
      */
-    private $spolki;
+    protected $spolki;
 
     /**
      * Encje Spolka powiazane z umową - spółki składające się na portfel
      *
      * @ORM\OneToMany(targetEntity="Sprawozdanie", mappedBy="umowa", cascade={"persist"})
      */
-    private $sprawozdania;
+    protected $sprawozdania;
 
     /**
-     * Publiczny konstruktor
+     * Konstruktor.
      */
     public function __construct()
     {
@@ -68,7 +69,7 @@ class Umowa
     /**
      * Get id
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -78,7 +79,8 @@ class Umowa
     /**
      * Set beneficjentId
      *
-     * @param  integer $beneficjentId
+     * @param  int $beneficjentId
+     *
      * @return Umowa
      */
     public function setBeneficjentId($beneficjentId)
@@ -91,7 +93,7 @@ class Umowa
     /**
      * Get beneficjentId
      *
-     * @return integer
+     * @return int
      */
     public function getBeneficjentId()
     {
@@ -101,7 +103,8 @@ class Umowa
     /**
      * Set beneficjent
      *
-     * @param  Beneficjent $beneficjent
+     * @param Beneficjent $beneficjent
+     *
      * @return Umowa
      */
     public function setBeneficjent($beneficjent)
@@ -124,7 +127,8 @@ class Umowa
     /**
      * Set numer
      *
-     * @param  string $numer
+     * @param string $numer
+     *
      * @return Umowa
      */
     public function setNumer($numer)
@@ -147,7 +151,8 @@ class Umowa
     /**
      * Set spolki
      *
-     * @param  collection Spolka $spolki
+     * @param Collection Spolka $spolki
+     *
      * @return Umowa
      */
     public function setSpolki($spolki)
@@ -170,7 +175,8 @@ class Umowa
     /**
      * Set spolki
      *
-     * @param  collection Sprawozdanie $sprawozdania
+     * @param Collection $sprawozdania
+     *
      * @return Umowa
      */
     public function setSprawozdania($sprawozdania)
@@ -191,7 +197,7 @@ class Umowa
     }
 
     /**
-     * Funkcja dodająca spółkę do portfela spółek umowy
+     * Dodaje spółkę do portfela spółek umowy
      *
      * @param \Parp\SsfzBundle\Entity\Spolka $spolka
      */
@@ -202,7 +208,7 @@ class Umowa
     }
 
     /**
-     * Funkcja dodająca spółkę do portfela spółek umowy
+     * Dodaje sprawozdanie do wykazu sprawozdań.
      *
      * @param \Parp\SsfzBundle\Entity\Sprawozdanie $sprawozdanie
      */

@@ -20,27 +20,27 @@ class Spolka
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var int
      *
      * @ORM\Column(name="umowa_id", type="integer", nullable=true)
      */
-    private $umowaId;
+    protected $umowaId;
 
     /**
      * @ORM\ManyToOne(targetEntity="Umowa", inversedBy="spolki")
      * @ORM\JoinColumn(name="umowa_id", referencedColumnName="id")
      */
-    private $umowa;
+    protected $umowa;
 
     /**
      * @var int
      *
      * @ORM\Column(name="lp", type="integer", nullable=true)
      */
-    private $liczbaPorzadkowa;
+    protected $liczbaPorzadkowa;
 
     /**
      * @var string
@@ -52,7 +52,7 @@ class Spolka
      *
      * @ORM\Column(name="nazwa", type="string", length=140, nullable=true)
      */
-    private $nazwa;
+    protected $nazwa;
 
     /**
      * @var string
@@ -64,7 +64,7 @@ class Spolka
      *
      * @ORM\Column(name="forma", type="string", length=140, nullable=true)
      */
-    private $forma;
+    protected $forma;
 
     /**
      * @var string
@@ -76,21 +76,21 @@ class Spolka
      *
      * @ORM\Column(name="siedziba_miasto", type="string", length=140, nullable=true)
      */
-    private $siedzibaMiasto;
+    protected $siedzibaMiasto;
 
     /**
      * @var string
      *
      * @ORM\Column(name="siedziba_wojewodztwo", type="string", length=100, nullable=true)
      */
-    private $siedzibaWojewodztwo;
+    protected $siedzibaWojewodztwo;
 
     /**
      * @var string
      *
      * @ORM\Column(name="branza", type="string", length=100, nullable=true)
      */
-    private $branza;
+    protected $branza;
 
     /**
      * @var string
@@ -101,14 +101,14 @@ class Spolka
      *
      * @ORM\Column(name="opis", type="text", nullable=true)
      */
-    private $opis;
+    protected $opis;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="data_powolania", type="datetime", nullable=true)
      */
-    private $dataPowolania;
+    protected $dataPowolania;
 
     /**
      * @var int
@@ -117,70 +117,70 @@ class Spolka
      *
      * @ORM\Column(name="krs", type="string", length=15, nullable=true)
      */
-    private $krs;
+    protected $krs;
 
     /**
      * @var int
      *
      * @ORM\Column(name="nip", type="string", length=15, nullable=true)
      */
-    private $nip;
+    protected $nip;
 
     /**
      * @var string
      *
      * @ORM\Column(name="kw_inwestycji", type="decimal", precision=15, scale=2, nullable=true)
      */
-    private $kwInwestycji;
+    protected $kwInwestycji;
 
     /**
      * @var string
      *
      * @ORM\Column(name="kw_wsparcia", type="decimal", precision=15, scale=2, nullable=true)
      */
-    private $kwWsparcia;
+    protected $kwWsparcia;
 
     /**
      * @var string
      *
      * @ORM\Column(name="kw_pryw", type="decimal", precision=15, scale=2, nullable=true)
      */
-    private $kwPryw;
+    protected $kwPryw;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="zakonczona", type="boolean", nullable=true)
      */
-    private $zakonczona;
+    protected $zakonczona;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="data_wyjscia", type="datetime", nullable=true)
      */
-    private $dataWyjscia;
+    protected $dataWyjscia;
 
     /**
      * @var string
      *
      * @ORM\Column(name="kw_dezinwestycji", type="decimal", precision=15, scale=2, nullable=true)
      */
-    private $kwDezinwestycji;
+    protected $kwDezinwestycji;
 
     /**
      * @var string
      *
      * @ORM\Column(name="zwrot_inwestycji", type="decimal", precision=15, scale=2, nullable=true)
      */
-    private $zwrotInwestycji;
+    protected $zwrotInwestycji;
 
     /**
      * @var string
      *
      * @ORM\Column(name="npv", type="decimal", precision=15, scale=2, nullable=true)
      */
-    private $npv;
+    protected $npv;
 
     /**
      * @var string
@@ -192,7 +192,7 @@ class Spolka
      *
      * @ORM\Column(name="udzialowcy", type="text", nullable=true)
      */
-    private $udzialowcy;
+    protected $udzialowcy;
 
     /**
      * @var string
@@ -204,7 +204,7 @@ class Spolka
      *
      * @ORM\Column(name="prezes", type="string", length=140, nullable=true)
      */
-    private $prezes;
+    protected $prezes;
 
     /**
      * @var string
@@ -215,7 +215,7 @@ class Spolka
      *
      * @ORM\Column(name="zarzad_pozostali", type="text", nullable=true)
      */
-    private $zarzadPozostali;
+    protected $zarzadPozostali;
 
     /**
      * @return type
@@ -238,7 +238,7 @@ class Spolka
     /**
      * Set umowaId
      *
-     * @param  integer $umowaId
+     * @param int $umowaId
      *
      * @return Spolka
      */
@@ -252,7 +252,7 @@ class Spolka
     /**
      * Get umowaId
      *
-     * @return integer
+     * @return int
      */
     public function getUmowaId()
     {
@@ -262,7 +262,8 @@ class Spolka
     /**
      * Set umowa
      *
-     * @param  Umowa $umowa
+     * @param Umowa $umowa
+     *
      * @return Spolka
      */
     public function setUmowa($umowa)
@@ -285,7 +286,7 @@ class Spolka
     /**
      * Set lp
      *
-     * @param  integer $liczbaPorzadkowa
+     * @param int $liczbaPorzadkowa
      *
      * @return Spolka
      */
@@ -309,7 +310,7 @@ class Spolka
     /**
      * Set nazwa
      *
-     * @param  string $nazwa
+     * @param string $nazwa
      *
      * @return Spolka
      */
@@ -333,7 +334,8 @@ class Spolka
     /**
      * Set forma
      *
-     * @param  string $forma
+     * @param string $forma
+     *
      * @return Spolka
      */
     public function setForma($forma)
@@ -356,7 +358,7 @@ class Spolka
     /**
      * Set siedzibaMiasto
      *
-     * @param  string $siedzibaMiasto
+     * @param string $siedzibaMiasto
      *
      * @return Spolka
      */
@@ -404,7 +406,7 @@ class Spolka
     /**
      * Set branza
      *
-     * @param  string $branza
+     * @param string $branza
      *
      * @return Spolka
      */
@@ -428,7 +430,7 @@ class Spolka
     /**
      * Set opis
      *
-     * @param  string $opis
+     * @param string $opis
      *
      * @return Spolka
      */
@@ -452,7 +454,7 @@ class Spolka
     /**
      * Set dataPowolania
      *
-     * @param  \DateTime $dataPowolania
+     * @param \DateTime $dataPowolania
      *
      * @return Spolka
      */
@@ -476,7 +478,8 @@ class Spolka
     /**
      * Set krs
      *
-     * @param  string $krs
+     * @param string $krs
+     *
      * @return Spolka
      */
     public function setKrs($krs)
@@ -499,7 +502,7 @@ class Spolka
     /**
      * Set nip
      *
-     * @param  string $nip
+     * @param string $nip
      *
      * @return Spolka
      */
@@ -523,7 +526,7 @@ class Spolka
     /**
      * Set kwInwestycji
      *
-     * @param  string $kwInwestycji
+     * @param string $kwInwestycji
      *
      * @return Spolka
      */
@@ -547,7 +550,7 @@ class Spolka
     /**
      * Set kwWsparcia
      *
-     * @param  string $kwWsparcia
+     * @param string $kwWsparcia
      *
      * @return Spolka
      */
@@ -571,7 +574,7 @@ class Spolka
     /**
      * Set kwPryw
      *
-     * @param  string $kwPryw
+     * @param string $kwPryw
      *
      * @return Spolka
      */
@@ -595,7 +598,7 @@ class Spolka
     /**
      * Set zakonczona
      *
-     * @param  boolean $zakonczona
+     * @param bool $zakonczona
      *
      * @return Spolka
      */
@@ -609,7 +612,7 @@ class Spolka
     /**
      * Get zakonczona
      *
-     * @return boolean
+     * @return bool
      */
     public function getZakonczona()
     {
@@ -619,7 +622,7 @@ class Spolka
     /**
      * Set dataWyjscia
      *
-     * @param  \DateTime $dataWyjscia
+     * @param \DateTime $dataWyjscia
      *
      * @return Spolka
      */
@@ -643,7 +646,7 @@ class Spolka
     /**
      * Set kwDezinwestycji
      *
-     * @param  string $kwDezinwestycji
+     * @param string $kwDezinwestycji
      *
      * @return Spolka
      */
@@ -667,7 +670,7 @@ class Spolka
     /**
      * Set zwrotInwestycji
      *
-     * @param  string $zwrotInwestycji
+     * @param string $zwrotInwestycji
      *
      * @return Spolka
      */
@@ -691,7 +694,7 @@ class Spolka
     /**
      * Set npv
      *
-     * @param  string $npv
+     * @param string $npv
      *
      * @return Spolka
      */
@@ -715,7 +718,7 @@ class Spolka
     /**
      * Set udzialowcy
      *
-     * @param  string $udzialowcy
+     * @param string $udzialowcy
      *
      * @return Spolka
      */
@@ -739,7 +742,7 @@ class Spolka
     /**
      * Set prezes
      *
-     * @param  string $prezes
+     * @param string $prezes
      *
      * @return Spolka
      */
@@ -763,7 +766,7 @@ class Spolka
     /**
      * Set zarzadPozostali
      *
-     * @param  string $zarzadPozostali
+     * @param string $zarzadPozostali
      *
      * @return Spolka
      */

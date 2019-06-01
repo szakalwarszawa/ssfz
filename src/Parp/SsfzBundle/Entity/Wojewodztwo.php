@@ -20,14 +20,14 @@ class Wojewodztwo
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nazwa", type="string", length=60)
      */
-    private $nazwa;
+    protected $nazwa;
 
     /**
      * Get id
@@ -60,6 +60,7 @@ class Wojewodztwo
     }
 
     /**
+     * Set nazwa
      *
      * @param string $nazwa
      */

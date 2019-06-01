@@ -7,6 +7,9 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
+/**
+ * Dodaje do DIC usługi z danego bundlea.
+ */
 class SsfzExtension extends Extension
 {
     /**

@@ -2,14 +2,14 @@
 
 namespace Parp\SsfzBundle\Controller;
 
-use Parp\SsfzBundle\Entity\Rola;
-use Parp\SsfzBundle\Entity\Uzytkownik;
-use Parp\SsfzBundle\Form\Type\PracownikParpEdycjaType;
-use Parp\SsfzBundle\Form\Type\PracownikParpRejestracjaType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Parp\SsfzBundle\Entity\Rola;
+use Parp\SsfzBundle\Entity\Uzytkownik;
+use Parp\SsfzBundle\Form\Type\PracownikParpEdycjaType;
+use Parp\SsfzBundle\Form\Type\PracownikParpRejestracjaType;
 use Parp\SsfzBundle\Exception\LdapDataServiceException;
 
 /**
@@ -145,7 +145,10 @@ class AdministratorTechnicznyController extends Controller
      */
     private function persistPracownik($pracownik)
     {
-        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager = $this
+            ->getDoctrine()
+            ->getManager()
+        ;
         $entityManager->persist($pracownik);
         $entityManager->flush();
     }
@@ -195,14 +198,24 @@ class AdministratorTechnicznyController extends Controller
         $this->getMailerService()->sendMail($pracownik, $topic, $template, $templateParams);
     }
 
+    /**
+     * Pobiera wykaz pracowników.
+     *
+     * @return array
+     */
     private function pobierzPracownikow()
     {
         $rolePracownikow = Rola::NAZWY_ROL_PARP;
-        $rolaRepo = $this->getDoctrine()->getRepository(Rola::class);
+        $rolaRepo = $this
+            ->getDoctrine()
+            ->getRepository(Rola::class)
+        ;
 
-        return $this->getDoctrine()
-                ->getRepository(Uzytkownik::class)
-                ->znajdzPoRolach($rolaRepo->znajdzPoNazwach($rolePracownikow));
+        return $this
+            ->getDoctrine()
+            ->getRepository(Uzytkownik::class)
+            ->znajdzPoRolach($rolaRepo->znajdzPoNazwach($rolePracownikow))
+        ;
     }
 
     /**
