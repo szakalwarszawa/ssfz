@@ -50,7 +50,7 @@ phpmd:
 
 phpdoc:
     stage: standards
-    allow_failure: true
+    allow_failure: false
     script:
         - /root/.composer/vendor/bin/phpdoccheck --directory="src/"
 
