@@ -2,6 +2,7 @@
 
 namespace Parp\SsfzBundle\Entity;
 
+use Serializable;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="sfz_rola")
  * @ORM\Entity(repositoryClass="Parp\SsfzBundle\Repository\RolaRepository")
  */
-class Rola implements \Serializable
+class Rola implements Serializable
 {
     const NAZWY_ROL_PARP = [
         'ROLE_KOORDYNATOR_TECHNICZNY',
@@ -92,7 +93,7 @@ class Rola implements \Serializable
     }
 
     /**
-     * @return Object
+     * @return string
      */
     public function serialize()
     {
@@ -104,7 +105,7 @@ class Rola implements \Serializable
     }
 
     /**
-     * @param Object $serialized
+     * @param string $serialized
      */
     public function unserialize($serialized)
     {

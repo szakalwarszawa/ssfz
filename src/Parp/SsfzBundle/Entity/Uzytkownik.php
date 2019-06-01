@@ -1,10 +1,13 @@
 <?php
+
 namespace Parp\SsfzBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use Serializable;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\ORM\Mapping as ORM;
+use Carbon\Carbon;
 use Parp\SsfzBundle\Entity\Rola;
 
 /**
@@ -12,11 +15,12 @@ use Parp\SsfzBundle\Entity\Rola;
  *
  * @ORM\Table(name="sfz_uzytkownik")
  * @ORM\Entity(repositoryClass="Parp\SsfzBundle\Repository\UzytkownikRepository")
+ * @ORM\HasLifecycleCallbacks
+ *
  * @UniqueEntity(fields="login", message="Login jest już w użyciu.")
  * @UniqueEntity(fields="email", message="Adres email jest już w użyciu.")
- * @ORM\HasLifecycleCallbacks
  */
-class Uzytkownik implements AdvancedUserInterface, \Serializable
+class Uzytkownik implements AdvancedUserInterface, Serializable
 {
     /**
      * @var int
@@ -31,6 +35,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="login", type="string", length=64, unique=true)
+     *
      * @Assert\NotBlank(groups={"rejestracja"})
      * @Assert\Length(groups={"rejestracja"}, max=64)
      * @Assert\Regex(groups={"rejestracja"}, pattern="/[0-9a-zA-Z]{5,}/", message="Pole login musi zawierać co najmniej 5 znaków i nie więcej niż 255 znaków.")
@@ -41,6 +46,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="haslo", type="string", nullable=true)
+     *
      * @Assert\NotBlank(groups={"rejestracja"})
      * @Assert\Length(max=255, groups={"rejestracja"})
      * @Assert\Regex(
@@ -58,6 +64,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=250, unique=true)
+     *
      * @Assert\NotBlank(groups={"rejestracja"})
      * @Assert\Email(groups={"rejestracja"}, message="Adres email nie zawiera poprawnej konstrukcji, sprawdź czy adres nie zawiera błedów.")
      */
@@ -71,7 +78,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     protected $rola;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="ban", type="boolean")
      */
@@ -99,7 +106,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     protected $zmodyfikowany;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="status", type="integer")
      */
@@ -295,17 +302,17 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @param \Parp\SsfzBundle\Entity\Carbon\Carbon $utworzony
+     * @param Carbon $utworzony
      */
-    public function setUtworzony(\Carbon\Carbon $utworzony)
+    public function setUtworzony(Carbon $utworzony)
     {
         $this->utworzony = $utworzony;
     }
 
     /**
-     * @param \Parp\SsfzBundle\Entity\Carbon\Carbon $zmodyfikowany
+     * @param Carbon $zmodyfikowany
      */
-    public function setZmodyfikowany(\Carbon\Carbon $zmodyfikowany)
+    public function setZmodyfikowany(Carbon $zmodyfikowany)
     {
         $this->zmodyfikowany = $zmodyfikowany;
     }
@@ -361,7 +368,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
         $this->haslo = $this->haslo !== null ? password_hash($this->haslo, PASSWORD_BCRYPT, $options) : $this->haslo;
         $this->ban = false;
         $this->status = 0;
-        $this->utworzony = new \Carbon\Carbon('Europe/Warsaw');
+        $this->utworzony = new Carbon('Europe/Warsaw');
     }
 
     /**
@@ -371,7 +378,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
      */
     public function onPreUpdate()
     {
-        $this->zmodyfikowany = new \Carbon\Carbon('Europe/Warsaw');
+        $this->zmodyfikowany = new Carbon('Europe/Warsaw');
     }
 
     /**
@@ -446,9 +453,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @see \Serializable::serialize()
-     *
-     * @return Objects
+     * @return string
      */
     public function serialize()
     {
@@ -468,10 +473,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     *
-     * @see \Serializable::unserialize()
-     *
-     * @param Object $serialized
+     * @param string $serialized
      */
     public function unserialize($serialized)
     {
