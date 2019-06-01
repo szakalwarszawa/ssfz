@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

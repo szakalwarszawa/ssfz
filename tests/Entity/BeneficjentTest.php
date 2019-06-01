@@ -9,7 +9,7 @@ use Parp\SsfzBundle\Entity\Umowa;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- *  Tesy encji Beneficjent
+ * Tesy encji Beneficjent
  *
  * @covers \Parp\SsfzBundle\Entity\Beneficjent
  */
