@@ -19,69 +19,69 @@ class OsobaZatrudniona
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var int
      *
      * @ORM\Column(name="beneficjent_id", type="integer")
      */
-    private $beneficjentId;
+    protected $beneficjentId;
 
     /**
      * @ORM\ManyToOne(targetEntity="Beneficjent", inversedBy="osobyZatrudnione")
      * @ORM\JoinColumn(name="beneficjent_id", referencedColumnName="id")
      */
-    private $beneficjent;
+    protected $beneficjent;
 
     /**
      * @var string
      *
      * @ORM\Column(name="imie", type="string", length=100, nullable=true)
      */
-    private $imie;
+    protected $imie;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nazwisko", type="string", length=100, nullable=true)
      */
-    private $nazwisko;
+    protected $nazwisko;
 
     /**
      * @var string
      *
      * @ORM\Column(name="umowa_rodzaj", type="string", length=100, nullable=true)
      */
-    private $umowaRodzaj;
+    protected $umowaRodzaj;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="umowa_data", type="datetime", nullable=true)
      */
-    private $umowaData;
+    protected $umowaData;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="rozpoczecie_data", type="datetime", nullable=true)
      */
-    private $rozpoczecieData;
+    protected $rozpoczecieData;
 
     /**
      * @var string
      *
      * @ORM\Column(name="stanowisko", type="string", length=100, nullable=true)
      */
-    private $stanowisko;
+    protected $stanowisko;
 
     /**
      * @var string
      *
      * @ORM\Column(name="wymiar", type="string", length=10, nullable=true)
      */
-    private $wymiar;
+    protected $wymiar;
 
     /**
      * Get id
@@ -96,7 +96,7 @@ class OsobaZatrudniona
     /**
      * Set beneficjentId
      *
-     * @param  integer $beneficjentId
+     * @param int $beneficjentId
      *
      * @return OsobaZatrudniona
      */
@@ -110,7 +110,7 @@ class OsobaZatrudniona
     /**
      * Get beneficjentId
      *
-     * @return integer
+     * @return int
      */
     public function getBeneficjentId()
     {
@@ -120,7 +120,8 @@ class OsobaZatrudniona
     /**
      * Set beneficjent
      *
-     * @param  Beneficjent $beneficjent
+     * @param Beneficjent $beneficjent
+     *
      * @return OsobaZatrudniona
      */
     public function setBeneficjent($beneficjent)
@@ -143,7 +144,7 @@ class OsobaZatrudniona
     /**
      * Set imie
      *
-     * @param  string $imie
+     * @param string $imie
      *
      * @return OsobaZatrudniona
      */
@@ -167,7 +168,7 @@ class OsobaZatrudniona
     /**
      * Set nazwisko
      *
-     * @param  string $nazwisko
+     * @param string $nazwisko
      *
      * @return OsobaZatrudniona
      */
@@ -191,7 +192,7 @@ class OsobaZatrudniona
     /**
      * Set umowaRodzaj
      *
-     * @param  string $umowaRodzaj
+     * @param string $umowaRodzaj
      *
      * @return OsobaZatrudniona
      */
@@ -215,7 +216,8 @@ class OsobaZatrudniona
     /**
      * Set umowaData
      *
-     * @param  \DateTime $umowaData
+     * @param \DateTime $umowaData
+     *
      * @return OsobaZatrudniona
      */
     public function setUmowaData($umowaData)
@@ -238,7 +240,8 @@ class OsobaZatrudniona
     /**
      * Set rozpoczecieData
      *
-     * @param  \DateTime $rozpoczecieData
+     * @param \DateTime $rozpoczecieData
+     *
      * @return OsobaZatrudniona
      */
     public function setRozpoczecieData($rozpoczecieData)
@@ -261,7 +264,8 @@ class OsobaZatrudniona
     /**
      * Set stanowisko
      *
-     * @param  string $stanowisko
+     * @param string $stanowisko
+     *
      * @return OsobaZatrudniona
      */
     public function setStanowisko($stanowisko)
@@ -284,7 +288,8 @@ class OsobaZatrudniona
     /**
      * Set wymiar
      *
-     * @param  string $wymiar
+     * @param string $wymiar
+     *
      * @return OsobaZatrudniona
      */
     public function setWymiar($wymiar)

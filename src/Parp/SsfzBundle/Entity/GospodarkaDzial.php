@@ -20,14 +20,14 @@ class GospodarkaDzial
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nazwa", type="string", length=200)
      */
-    private $nazwa;
+    protected $nazwa;
 
     /**
      * Get id
@@ -50,6 +50,7 @@ class GospodarkaDzial
     }
 
     /**
+     * Set nazwa
      *
      * @param string $nazwa
      */

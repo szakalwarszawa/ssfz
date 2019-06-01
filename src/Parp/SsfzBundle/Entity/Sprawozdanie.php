@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -21,139 +22,139 @@ class Sprawozdanie
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var int
      *
      * @ORM\Column(name="creator_id", type="integer", nullable=false)
      */
-    private $creatorId;
+    protected $creatorId;
 
     /**
-     * @var datetime
+     * @var \DateTime
      *
      * @ORM\Column(name="data_rejestracji", type="datetime", nullable=false)
      */
-    private $dataRejestracji;
+    protected $dataRejestracji;
 
     /**
      * @var int
      *
      * @ORM\Column(name="umowa_id", type="integer", nullable=false)
      */
-    private $umowaId;
+    protected $umowaId;
 
     /**
      * @var int
      *
      * @ORM\Column(name="previous_version_id", type="integer", nullable=true)
      */
-    private $previousVersionId;
+    protected $previousVersionId;
 
     /**
      * @ORM\ManyToOne(targetEntity="Umowa", inversedBy="sprawozdania")
      * @ORM\JoinColumn(name="umowa_id", referencedColumnName="id")
      */
-    private $umowa;
+    protected $umowa;
 
     /**
      * @var string
      *
      * @ORM\Column(name="numer_umowy", type="string", length=26, nullable=false)
      */
-    private $numerUmowy;
+    protected $numerUmowy;
 
     /**
      * @var string
      *
      * @ORM\Column(name="okres", type="string", nullable=false)
      */
-    private $okres;
+    protected $okres;
 
     /**
      * @var int
      *
      * @ORM\Column(name="okres_id", type="integer", nullable=false)
      */
-    private $okresId;
+    protected $okresId;
 
     /**
      * @var string
      *
      * @ORM\Column(name="rok", type="string",length=4, nullable=false)
      */
-    private $rok;
+    protected $rok;
 
     /**
      * @var int
      *
      * @ORM\Column(name="status", type="integer", nullable=false)
      */
-    private $status;
+    protected $status;
 
     /**
      * @var int
      *
      * @ORM\Column(name="wersja", type="integer", length=500, nullable=false)
      */
-    private $wersja;
+    protected $wersja;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="czy_najnowsza_wersja", type="boolean", nullable=false)
      */
-    private $czyNajnowsza;
+    protected $czyNajnowsza;
 
     /**
      * @var datetime
      *
      * @ORM\Column(name="data_przeslania_do_parp", type="datetime", nullable=true)
      */
-    private $dataPrzeslaniaDoParp;
+    protected $dataPrzeslaniaDoParp;
 
     /**
      * @var int
      *
      * @ORM\Column(name="oceniajacy_parp_id", type="integer", nullable=true)
      */
-    private $oceniajacyId;
+    protected $oceniajacyId;
 
     /**
      * @var datetime
      *
      * @ORM\Column(name="data_zatwierdzenia_odeslania", type="datetime", nullable=true)
      */
-    private $dataZatwierdzenia;
+    protected $dataZatwierdzenia;
 
     /**
      * @var string
      *
      * @ORM\Column(name="uwagi", type="string", nullable=true)
      */
-    private $uwagi;
+    protected $uwagi;
 
     /**
      * Encje SprawozdanieSpolki powiazane ze sprawozdaniem - sprawozdania spolek
      *
      * @ORM\OneToMany(targetEntity="SprawozdanieSpolki", mappedBy="sprawozdanie", cascade={"persist", "remove"})
      */
-    private $sprawozdaniaSpolek;
+    protected $sprawozdaniaSpolek;
 
     /**
-     * @var type
+     * @var string
      *
      * @ORM\Column(name="id_status", type="string", length=100, nullable=true)
      */
-    private $idStatus;
+    protected $idStatus;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="powiadomienie_wyslane", type="boolean", nullable=false)
      */
-    private $powiadomienieWyslane = false;
+    protected $powiadomienieWyslane = false;
 
     /**
      * Konstruktor

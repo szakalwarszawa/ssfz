@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -11,6 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Rola implements \Serializable
 {
+    const NAZWY_ROL_PARP = [
+        'ROLE_KOORDYNATOR_TECHNICZNY',
+        'ROLE_KOORDYNATOR_MERYTORYCZNY',
+        'ROLE_PRACOWNIK_PARP',
+    ];
+
     /**
      * @var int
      *
@@ -18,23 +25,22 @@ class Rola implements \Serializable
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nazwa", type="string", length=64, unique=true)
      */
-    private $nazwa;
+    protected $nazwa;
 
     /**
      * @var string
      *
      * @ORM\Column(name="opis", type="string", length=64, unique=true, nullable=true)
      */
-    private $opis;
+    protected $opis;
 
-    const NAZWY_ROL_PARP = ['ROLE_KOORDYNATOR_TECHNICZNY', 'ROLE_KOORDYNATOR_MERYTORYCZNY', 'ROLE_PRACOWNIK_PARP'];
     /**
      * Get id
      *
@@ -90,13 +96,11 @@ class Rola implements \Serializable
      */
     public function serialize()
     {
-        return serialize(
-            array(
+        return serialize([
             $this->id,
             $this->nazwa,
             $this->opis
-            )
-        );
+        ]);
     }
 
     /**
@@ -108,7 +112,7 @@ class Rola implements \Serializable
             $this->id,
             $this->nazwa,
             $this->opis
-            ) = unserialize($serialized);
+        ) = unserialize($serialized);
     }
 
     /**

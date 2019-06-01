@@ -19,28 +19,28 @@ class OkresyKonfiguracja
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="rok", type="string", length=4, unique=true)
      */
-    private $rok;
+    protected $rok;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="o1u", type="boolean", nullable=true)
      */
-    private $o1u;
+    protected $o1u;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="o2u", type="boolean", nullable=true)
      */
-    private $o2u;
+    protected $o2u;
 
     /**
      * Get id
@@ -55,7 +55,7 @@ class OkresyKonfiguracja
     /**
      * Set rok
      *
-     * @param  string $rok
+     * @param string $rok
      *
      * @return OkresyKonfiguracja
      */
@@ -79,7 +79,7 @@ class OkresyKonfiguracja
     /**
      * Set o1u
      *
-     * @param  boolean $o1u
+     * @param bool $o1u
      *
      * @return OkresyKonfiguracja
      */
@@ -103,7 +103,7 @@ class OkresyKonfiguracja
     /**
      * Set o2u
      *
-     * @param  boolean $o2u
+     * @param bool $o2u
      *
      * @return OkresyKonfiguracja
      */

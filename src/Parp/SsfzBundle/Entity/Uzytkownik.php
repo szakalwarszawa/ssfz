@@ -25,7 +25,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -35,7 +35,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
      * @Assert\Length(groups={"rejestracja"}, max=64)
      * @Assert\Regex(groups={"rejestracja"}, pattern="/[0-9a-zA-Z]{5,}/", message="Pole login musi zawierać co najmniej 5 znaków i nie więcej niż 255 znaków.")
      */
-    private $login;
+    protected $login;
 
     /**
      * @var string
@@ -52,7 +52,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
       2 cyfry,
       1 znak specjalny z zakresu: ~!@#$%^&*()_+=[];',.<>?/", groups={"rejestracja"})
      */
-    private $haslo;
+    protected $haslo;
 
     /**
      * @var string
@@ -61,77 +61,77 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
      * @Assert\NotBlank(groups={"rejestracja"})
      * @Assert\Email(groups={"rejestracja"}, message="Adres email nie zawiera poprawnej konstrukcji, sprawdź czy adres nie zawiera błedów.")
      */
-    private $email;
+    protected $email;
 
     /**
      * @var int
      *
      * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Rola")
      */
-    private $rola;
+    protected $rola;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="ban", type="boolean")
      */
-    private $ban;
+    protected $ban;
 
     /**
      * @var string
      *
      * @ORM\Column(name="kod_zapomniane_haslo", type="string", nullable=true)
      */
-    private $kodZapomnianeHaslo;
+    protected $kodZapomnianeHaslo;
 
     /**
      * @var Carbon\Carbon
      *
      * @ORM\Column(name="utworzony", type="datetime")
      */
-    private $utworzony;
+    protected $utworzony;
 
     /**
      * @var Carbon\Carbon
      *
      * @ORM\Column(name="zmodyfikowany", type="datetime", nullable = true)
      */
-    private $zmodyfikowany;
+    protected $zmodyfikowany;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="status", type="integer")
      */
-    private $status;
+    protected $status;
 
     /**
      * @ORM\ManyToOne(targetEntity="Beneficjent", inversedBy="uzytkownicy")
      * @ORM\JoinColumn(name="beneficjent_id", referencedColumnName="id", nullable=true)
      */
-    private $beneficjent;
+    protected $beneficjent;
 
     /**
      * @var string
      *
      * @ORM\Column(name="kod_aktywacja_konta", type="string", nullable=true)
      */
-    private $kodAktywacjaKonta;
+    protected $kodAktywacjaKonta;
 
     /**
      * @var string
      */
-    private $imie;
+    protected $imie;
 
     /**
      * @var string
      */
-    private $nazwisko;
+    protected $nazwisko;
 
     /**
      * Get id
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -171,7 +171,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     /**
      * Get rolaId
      *
-     * @return integet
+     * @return int
      */
     public function getRola()
     {
@@ -181,7 +181,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     /**
      * Get ban
      *
-     * @return boolean
+     * @return bool
      */
     public function getBan()
     {
@@ -221,7 +221,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     /**
      * Get status
      *
-     * @return integer
+     * @return int
      */
     public function getStatus()
     {
@@ -341,7 +341,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
      *
      * Tzn. czy ma jedną z ról zdefiniowaną w Rola::NAZWY_ROL_PARP
      *
-     * @return boolean
+     * @return bool
      */
     public function czyPracownikParp()
     {
@@ -452,21 +452,19 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
      */
     public function serialize()
     {
-        return serialize(
-            array(
-                $this->id,
-                $this->login,
-                $this->haslo,
-                $this->email,
-                $this->rola,
-                $this->ban,
-                $this->kodZapomnianeHaslo,
-                $this->utworzony,
-                $this->zmodyfikowany,
-                $this->status,
-                $this->kodAktywacjaKonta
-            )
-        );
+        return serialize([
+            $this->id,
+            $this->login,
+            $this->haslo,
+            $this->email,
+            $this->rola,
+            $this->ban,
+            $this->kodZapomnianeHaslo,
+            $this->utworzony,
+            $this->zmodyfikowany,
+            $this->status,
+            $this->kodAktywacjaKonta
+        ]);
     }
 
     /**
@@ -489,12 +487,12 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
             $this->zmodyfikowany,
             $this->status,
             $this->kodAktywacjaKonta
-            ) = unserialize($serialized);
+        ) = unserialize($serialized);
     }
 
     /**
      *
-     * @return boolean
+     * @return bool
      */
     public function isAccountNonExpired()
     {
@@ -503,7 +501,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
 
     /**
      *
-     * @return boolean
+     * @return bool
      */
     public function isAccountNonLocked()
     {
@@ -516,7 +514,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
 
     /**
      *
-     * @return boolean
+     * @return bool
      */
     public function isCredentialsNonExpired()
     {
@@ -525,7 +523,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
 
     /**
      *
-     * @return boolean
+     * @return bool
      */
     public function isEnabled()
     {
@@ -567,7 +565,7 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     /**
      * Zmiana hasła
      *
-     * @param type $newPassword
+     * @param string $newPassword
      */
     public function newPassword($newPassword)
     {

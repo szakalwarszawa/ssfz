@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace Parp\SsfzBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -28,157 +22,157 @@ class PrzeplywFinansowy
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var int
      *
      * @ORM\Column(name="creator_id", type="integer", nullable=false)
      */
-    private $creatorId;
+    protected $creatorId;
 
     /**
      * @var datetime
      *
      * @ORM\Column(name="data_rejestracji", type="datetime", nullable=false)
      */
-    private $dataRejestracji;
+    protected $dataRejestracji;
 
     /**
      * @var int
      *
      * @ORM\Column(name="sprawozdanie_id", type="integer", nullable=false)
      */
-    private $sprawozdanieId;
+    protected $sprawozdanieId;
 
     /**
      * @var string
      *
      * @ORM\Column(name="$saldo_poczatkowe", type="decimal",precision=15, scale=2,  nullable=false)
      */
-    private $saldoPoczatkowe;
+    protected $saldoPoczatkowe;
 
     /**
      * @var string
      *
      * @ORM\Column(name="wplywy", type="decimal",precision=15, scale=2,  nullable=false)
      */
-    private $wplywy;
+    protected $wplywy;
 
     /**
      * @var string
      *
      * @ORM\Column(name="wyjscia_z_inwestycji", type="decimal",precision=15, scale=2,  nullable=false)
      */
-    private $wyjsciaZInwestycji;
+    protected $wyjsciaZInwestycji;
 
     /**
      * @var string
      *
      * @ORM\Column(name="udzial_w_zyskach", type="decimal",precision=15, scale=2,  nullable=false)
      */
-    private $udzialWZyskach;
+    protected $udzialWZyskach;
 
     /**
      * @var string
      *
      * @ORM\Column(name="inne_wplywy", type="decimal",precision=15, scale=2,  nullable=false)
      */
-    private $inneWplywy;
+    protected $inneWplywy;
 
     /**
      * @var string
      *
      * @ORM\Column(name="wyplywy", type="decimal",precision=15, scale=2,  nullable=false)
      */
-    private $wyplywy;
+    protected $wyplywy;
 
     /**
      * @var string
      *
      * @ORM\Column(name="wejcia_kapitalowe", type="decimal",precision=15, scale=2,  nullable=false)
      */
-    private $wejsciaKapitalowe;
+    protected $wejsciaKapitalowe;
 
     /**
      * @var string
      *
      * @ORM\Column(name="preinkubacja_pomyslow", type="decimal",precision=15, scale=2,  nullable=false)
      */
-    private $preinkubacjaPomyslow;
+    protected $preinkubacjaPomyslow;
 
     /**
      * @var string
      *
      * @ORM\Column(name="wydatki_operacyjne", type="decimal",precision=15, scale=2,  nullable=false)
      */
-    private $wydatkiOperacyjne;
+    protected $wydatkiOperacyjne;
 
     /**
      * @var string
      *
      * @ORM\Column(name="podatki", type="decimal",precision=15, scale=2,  nullable=false)
      */
-    private $podatki;
+    protected $podatki;
 
     /**
      * @var string
      *
      * @ORM\Column(name="inne_wyplywy", type="decimal",precision=15, scale=2,  nullable=false)
      */
-    private $inneWyplywy;
+    protected $inneWyplywy;
 
     /**
      * @var string
      *
      * @ORM\Column(name="saldo_koncowe", type="decimal",precision=15, scale=2,  nullable=false)
      */
-    private $saldoKoncowe;
+    protected $saldoKoncowe;
 
     /**
      * @var int
      *
      * @ORM\Column(name="liczba_pomyslow_w_inkubatorze", type="integer", nullable=false)
      */
-    private $liczbaPomyslowWInkubatorze;
+    protected $liczbaPomyslowWInkubatorze;
 
     /**
      * @var int
      *
      * @ORM\Column(name="liczba_pomyslow_ocenionych", type="integer", nullable=false)
      */
-    private $liczbaPomyslowOcenionych;
+    protected $liczbaPomyslowOcenionych;
 
     /**
      * @var int
      *
      * @ORM\Column(name="liczba_pomyslow_ocenionych_pozytywnie", type="integer", nullable=false)
      */
-    private $liczbaPomyslowOcenionychPozytywnie;
+    protected $liczbaPomyslowOcenionychPozytywnie;
 
     /**
      * @var int
      *
      * @ORM\Column(name="liczba_pomyslow_ocenionych_negatywnie", type="integer", nullable=false)
      */
-    private $liczbaPomyslowOcenionychNegatywnie;
+    protected $liczbaPomyslowOcenionychNegatywnie;
 
     /**
      * @var int
      *
      * @ORM\Column(name="liczba_zakonczonych_preinkubacji", type="integer", nullable=false)
      */
-    private $liczbaZakonczonychPreinkubacji;
+    protected $liczbaZakonczonychPreinkubacji;
 
     /**
      * @var int
      *
      * @ORM\Column(name="liczba_dokonanych_inwestycji", type="integer", nullable=false)
      */
-    private $liczbaDokonanychInwestycji;
+    protected $liczbaDokonanychInwestycji;
 
     /**
-     * zwraca Id
+     * Zwraca Id
      *
      * @return int
      */
@@ -188,7 +182,7 @@ class PrzeplywFinansowy
     }
 
     /**
-     * zwraca creatorId
+     * Zwraca creatorId
      *
      * @return int
      */
@@ -198,7 +192,7 @@ class PrzeplywFinansowy
     }
 
     /**
-     * zwraca dataRejestracji
+     * Zwraca dataRejestracji
      *
      * @return DateTime
      */
@@ -208,7 +202,7 @@ class PrzeplywFinansowy
     }
 
     /**
-     * zwraca sprawozdanieID
+     * Zwraca sprawozdanieID
      *
      * @return int
      */
@@ -218,9 +212,9 @@ class PrzeplywFinansowy
     }
 
     /**
-     * zwraca saldoPoczatkowe
+     * Zwraca saldoPoczatkowe
      *
-     * @return decimal
+     * @return float
      */
     public function getSaldoPoczatkowe()
     {
@@ -228,9 +222,9 @@ class PrzeplywFinansowy
     }
 
     /**
-     * zwraca wplywy
+     * Zwraca wplywy
      *
-     * @return decimal
+     * @return float
      */
     public function getWplywy()
     {
@@ -238,9 +232,9 @@ class PrzeplywFinansowy
     }
 
     /**
-     * zwraca wyjsciaZInwestycji
+     * Zwraca wyjsciaZInwestycji
      *
-     * @return decimal
+     * @return float
      */
     public function getWyjsciaZInwestycji()
     {
@@ -248,9 +242,9 @@ class PrzeplywFinansowy
     }
 
     /**
-     * zwraca udzialWZyskach
+     * Zwraca udzialWZyskach
      *
-     * @return decimal
+     * @return float
      */
     public function getUdzialWZyskach()
     {
@@ -258,9 +252,9 @@ class PrzeplywFinansowy
     }
 
     /**
-     * zwraca inneWplywy
+     * Zwraca inneWplywy
      *
-     * @return decimal
+     * @return float
      */
     public function getInneWplywy()
     {
@@ -268,9 +262,9 @@ class PrzeplywFinansowy
     }
 
     /**
-     * zwraca wyplywy
+     * Zwraca wyplywy
      *
-     * @return decimal
+     * @return float
      */
     public function getWyplywy()
     {
@@ -278,9 +272,9 @@ class PrzeplywFinansowy
     }
 
     /**
-     * zwraca wejsciaKapitalowe
+     * Zwraca wejsciaKapitalowe
      *
-     * @return decimal
+     * @return float
      */
     public function getWejsciaKapitalowe()
     {
@@ -288,9 +282,9 @@ class PrzeplywFinansowy
     }
 
     /**
-     * zwraca preinkubacjaPomyslow
+     * Zwraca preinkubacjaPomyslow
      *
-     * @return decimal
+     * @return float
      */
     public function getPreinkubacjaPomyslow()
     {
@@ -298,9 +292,9 @@ class PrzeplywFinansowy
     }
 
     /**
-     * zwraca wydatkiOperacyjne
+     * Zwraca wydatkiOperacyjne
      *
-     * @return decimal
+     * @return float
      */
     public function getWydatkiOperacyjne()
     {
@@ -308,9 +302,9 @@ class PrzeplywFinansowy
     }
 
     /**
-     * zwraca podatki
+     * Zwraca podatki
      *
-     * @return decimal
+     * @return float
      */
     public function getPodatki()
     {
@@ -318,9 +312,9 @@ class PrzeplywFinansowy
     }
 
     /**
-     * zwraca inneWyplywy
+     * Zwraca inneWyplywy
      *
-     * @return decimal
+     * @return float
      */
     public function getInneWyplywy()
     {
@@ -328,9 +322,9 @@ class PrzeplywFinansowy
     }
 
     /**
-     * zwraca saldoKoncowe
+     * Zwraca saldoKoncowe
      *
-     * @return decimal
+     * @return float
      */
     public function getSaldoKoncowe()
     {
@@ -338,7 +332,7 @@ class PrzeplywFinansowy
     }
 
     /**
-     * zwraca liczbaPomyslowWInkubatorze
+     * Zwraca liczbaPomyslowWInkubatorze
      *
      * @return int
      */
@@ -348,7 +342,7 @@ class PrzeplywFinansowy
     }
 
     /**
-     * zwraca liczbaPomyslowOcenionych
+     * Zwraca liczbaPomyslowOcenionych
      *
      * @return int
      */
@@ -358,7 +352,7 @@ class PrzeplywFinansowy
     }
 
     /**
-     * zwraca liczbaPomyslowOcenionychPozytywnie
+     * Zwraca liczbaPomyslowOcenionychPozytywnie
      *
      * @return int
      */
@@ -368,7 +362,7 @@ class PrzeplywFinansowy
     }
 
     /**
-     * zwraca liczbaPomyslowOcenionychNegatywnie
+     * Zwraca liczbaPomyslowOcenionychNegatywnie
      *
      * @return int
      */
@@ -378,7 +372,7 @@ class PrzeplywFinansowy
     }
 
     /**
-     * zwraca liczbaZakonczonychPreinkubacji
+     * Zwraca liczbaZakonczonychPreinkubacji
      *
      * @return int
      */
@@ -388,7 +382,7 @@ class PrzeplywFinansowy
     }
 
     /**
-     * zwraca liczbaDokonanychInwestycji
+     * Zwraca liczbaDokonanychInwestycji
      *
      * @return int
      */
@@ -398,7 +392,7 @@ class PrzeplywFinansowy
     }
 
     /**
-     * ustawia $id
+     * Ustawia $id
      *
      * @param int $id
      */
@@ -408,7 +402,7 @@ class PrzeplywFinansowy
     }
 
     /**
-     * ustawia $creatorId
+     * Ustawia $creatorId
      *
      * @param int $creatorId
      */
@@ -418,7 +412,7 @@ class PrzeplywFinansowy
     }
 
     /**
-     * ustawia $dataRejestracji
+     * Ustawia $dataRejestracji
      *
      * @param DateTime $dataRejestracji
      */
@@ -428,7 +422,7 @@ class PrzeplywFinansowy
     }
 
     /**
-     * ustawia $sprawozdanieId
+     * Ustawia $sprawozdanieId
      *
      * @param int $sprawozdanieId
      */
@@ -438,9 +432,9 @@ class PrzeplywFinansowy
     }
 
     /**
-     * ustawia $saldoPoczatkowe
+     * Ustawia $saldoPoczatkowe
      *
-     * @param decimal $saldoPoczatkowe
+     * @param float $saldoPoczatkowe
      */
     public function setSaldoPoczatkowe($saldoPoczatkowe)
     {
@@ -448,9 +442,9 @@ class PrzeplywFinansowy
     }
 
     /**
-     * ustawia $wplywy
+     * Ustawia $wplywy
      *
-     * @param decimal $wplywy
+     * @param float $wplywy
      */
     public function setWplywy($wplywy)
     {
@@ -458,9 +452,9 @@ class PrzeplywFinansowy
     }
 
     /**
-     * ustawia $wyjsciaZInwestycji
+     * Ustawia $wyjsciaZInwestycji
      *
-     * @param decimal $wyjsciaZInwestycji
+     * @param float $wyjsciaZInwestycji
      */
     public function setWyjsciaZInwestycji($wyjsciaZInwestycji)
     {
@@ -468,9 +462,9 @@ class PrzeplywFinansowy
     }
 
     /**
-     * ustawia $udzialWZyskach
+     * Ustawia $udzialWZyskach
      *
-     * @param decimal $udzialWZyskach
+     * @param float $udzialWZyskach
      */
     public function setUdzialWZyskach($udzialWZyskach)
     {
@@ -478,9 +472,9 @@ class PrzeplywFinansowy
     }
 
     /**
-     * ustawia $inneWplywy
+     * Ustawia $inneWplywy
      *
-     * @param decimal $inneWplywy
+     * @param float $inneWplywy
      */
     public function setInneWplywy($inneWplywy)
     {
@@ -488,9 +482,9 @@ class PrzeplywFinansowy
     }
 
     /**
-     * ustawia $wyplywy
+     * Ustawia $wyplywy
      *
-     * @param decimal $wyplywy
+     * @param float $wyplywy
      */
     public function setWyplywy($wyplywy)
     {
@@ -498,9 +492,9 @@ class PrzeplywFinansowy
     }
 
     /**
-     * ustawia $wejsciaKapitalowe
+     * Ustawia $wejsciaKapitalowe
      *
-     * @param decimal $wejsciaKapitalowe
+     * @param float $wejsciaKapitalowe
      */
     public function setWejsciaKapitalowe($wejsciaKapitalowe)
     {
@@ -508,9 +502,9 @@ class PrzeplywFinansowy
     }
 
     /**
-     * ustawia $preinkubacjaPomyslow
+     * Ustawia $preinkubacjaPomyslow
      *
-     * @param decimal $preinkubacjaPomyslow
+     * @param float $preinkubacjaPomyslow
      */
     public function setPreinkubacjaPomyslow($preinkubacjaPomyslow)
     {
@@ -518,9 +512,9 @@ class PrzeplywFinansowy
     }
 
     /**
-     * ustawia $wydatkiOperacyjne
+     * Ustawia $wydatkiOperacyjne
      *
-     * @param decimal $wydatkiOperacyjne
+     * @param float $wydatkiOperacyjne
      */
     public function setWydatkiOperacyjne($wydatkiOperacyjne)
     {
@@ -528,9 +522,9 @@ class PrzeplywFinansowy
     }
 
     /**
-     * ustawia $podatki
+     * Ustawia $podatki
      *
-     * @param decimal $podatki
+     * @param float $podatki
      */
     public function setPodatki($podatki)
     {
@@ -538,9 +532,9 @@ class PrzeplywFinansowy
     }
 
     /**
-     * ustawia $inneWyplywy
+     * Ustawia $inneWyplywy
      *
-     * @param decimal $inneWyplywy
+     * @param float $inneWyplywy
      */
     public function setInneWyplywy($inneWyplywy)
     {
@@ -548,9 +542,9 @@ class PrzeplywFinansowy
     }
 
     /**
-     * ustawia $saldoKoncowe
+     * Ustawia $saldoKoncowe
      *
-     * @param decimal $saldoKoncowe
+     * @param float $saldoKoncowe
      */
     public function setSaldoKoncowe($saldoKoncowe)
     {
@@ -558,7 +552,7 @@ class PrzeplywFinansowy
     }
 
     /**
-     * ustawia $liczbaPomyslowWInkubatorze
+     * Ustawia $liczbaPomyslowWInkubatorze
      *
      * @param int $liczbaPomyslowWInkubatorze
      */
@@ -568,7 +562,7 @@ class PrzeplywFinansowy
     }
 
     /**
-     * ustawia $liczbaPomyslowOcenionych
+     * Ustawia $liczbaPomyslowOcenionych
      *
      * @param int $liczbaPomyslowOcenionych
      */
@@ -578,7 +572,7 @@ class PrzeplywFinansowy
     }
 
     /**
-     * ustawia $liczbaPomyslowOcenionychPozytywnie
+     * Ustawia $liczbaPomyslowOcenionychPozytywnie
      *
      * @param int $liczbaPomyslowOcenionychPozytywnie
      */
@@ -588,7 +582,7 @@ class PrzeplywFinansowy
     }
 
     /**
-     * ustawia $liczbaPomyslowOcenionychNegatywnie
+     * Ustawia $liczbaPomyslowOcenionychNegatywnie
      *
      * @param int $liczbaPomyslowOcenionychNegatywnie
      */
@@ -598,7 +592,7 @@ class PrzeplywFinansowy
     }
 
     /**
-     * ustawia $liczbaZakonczonychPreinkubacji
+     * Ustawia $liczbaZakonczonychPreinkubacji
      *
      * @param int $liczbaZakonczonychPreinkubacji
      */
@@ -608,7 +602,7 @@ class PrzeplywFinansowy
     }
 
     /**
-     * ustawia $liczbaDokonanychInwestycji
+     * Ustawia $liczbaDokonanychInwestycji
      *
      * @param int $liczbaDokonanychInwestycji
      */

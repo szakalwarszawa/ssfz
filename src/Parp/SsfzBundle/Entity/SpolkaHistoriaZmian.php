@@ -22,14 +22,14 @@ class SpolkaHistoriaZmian
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var int
      *
      * @ORM\Column(name="spolka_id", type="integer")
      */
-    private $spolkaId;
+    protected $spolkaId;
 
     /**
      *
@@ -37,35 +37,35 @@ class SpolkaHistoriaZmian
      *
      * @ORM\Column(name="nazwa", type="string", length=140, nullable=true)
      */
-    private $nazwa;
+    protected $nazwa;
 
     /**
      * @var string
      *
      * @ORM\Column(name="pole", type="string", nullable=true)
      */
-    private $pole;
+    protected $pole;
 
     /**
      * @var string
      *
      * @ORM\Column(name="stara_wartosc", type="string", nullable=true)
      */
-    private $staraWartosc;
+    protected $staraWartosc;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nowa_wartosc", type="string", nullable=true)
      */
-    private $nowaWartosc;
+    protected $nowaWartosc;
 
     /**
      * @var Carbon\Carbon
      *
      * @ORM\Column(name="data_modyfikacji", type="datetime", nullable=true)
      */
-    private $dataModyfikacji;
+    protected $dataModyfikacji;
 
     /**
      * @return int
@@ -124,7 +124,7 @@ class SpolkaHistoriaZmian
     }
 
     /**
-     * @param integer $id
+     * @param int $id
      */
     public function setId($id)
     {
@@ -132,7 +132,7 @@ class SpolkaHistoriaZmian
     }
 
     /**
-     * @param integer $spolkaId
+     * @param int $spolkaId
      */
     public function setSpolkaId($spolkaId)
     {

@@ -22,28 +22,28 @@ class SprawozdanieSpolki
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var int
      *
      * @ORM\Column(name="sprawozdanie_id", type="integer", nullable=false)
      */
-    private $sprawozdanieId;
+    protected $sprawozdanieId;
 
     /**
      * @var int
      *
      * @ORM\Column(name="lp", type="integer")
      */
-    private $liczbaPorzadkowa;
+    protected $liczbaPorzadkowa;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nazwa_spolki", type="string", length=140, nullable=false)
      */
-    private $nazwaSpolki;
+    protected $nazwaSpolki;
 
     /**
      * @var int
@@ -52,109 +52,110 @@ class SprawozdanieSpolki
      *
      * @ORM\Column(name="krs", type="string", length=15, nullable=true)
      */
-    private $krs;
+    protected $krs;
 
     /**
      * @var string
      *
      * @ORM\Column(name="uzyskane_przychody", type="decimal",precision=15,scale=2, nullable=false)
      */
-    private $uzyskanePrzychody;
+    protected $uzyskanePrzychody;
 
     /**
      * @var string
      *
      * @ORM\Column(name="planowane_przychody", type="decimal",precision=15, scale=2, nullable=false)
      */
-    private $planowanePrzychody;
+    protected $planowanePrzychody;
 
     /**
      * @var string
      *
      * @ORM\Column(name="ebitda", type="decimal",precision=15, scale=2, nullable=false)
      */
-    private $ebitda;
+    protected $ebitda;
 
     /**
      * @var string
      *
      * @ORM\Column(name="ncf", type="decimal",precision=15, scale=2,  nullable=false)
      */
-    private $ncf;
+    protected $ncf;
 
     /**
      * @var string
      *
      * @ORM\Column(name="suma_bilansowa", type="decimal",precision=15, scale=2,  nullable=false)
      */
-    private $sumaBilansowa;
+    protected $sumaBilansowa;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="zatrudnienie_etaty", type="integer", nullable=false)
      */
-    private $zatrudnienieEtaty;
+    protected $zatrudnienieEtaty;
 
     /**
      * @var int
      *
      * @ORM\Column(name="zatrudnione_kobiety", type="integer",  nullable=false)
      */
-    private $zatrudnioneKobiety;
+    protected $zatrudnioneKobiety;
 
     /**
      * @var int
      *
      * @ORM\Column(name="zatrudnieni_mezczyzni", type="integer", nullable=false)
      */
-    private $zatrudnieniMezczyzni;
+    protected $zatrudnieniMezczyzni;
 
     /**
      * @var int
      *
      * @ORM\Column(name="zatrudnienie_inne_formy", type="integer", nullable=false)
      */
-    private $zatrudnienieInneFormy;
+    protected $zatrudnienieInneFormy;
 
     /**
      * @var int
      *
      * @ORM\Column(name="zatrudnienie_inne_formy_kobiety", type="integer", nullable=false)
      */
-    private $zatrudnienieInneFormyKobiety;
+    protected $zatrudnienieInneFormyKobiety;
 
     /**
      * @var int
      *
      * @ORM\Column(name="zatrudnienie_inne_formy_mezczyzni", type="integer", nullable=false)
      */
-    private $zatrudnienieInneFormyMezczyzni;
+    protected $zatrudnienieInneFormyMezczyzni;
 
     /**
      * @var int
      *
      * @ORM\Column(name="zatrudnienie_w_stosunku_do_poprzedniego_roku", type="integer", nullable=false)
      */
-    private $zatrudnieniewStosunkuDoPoprzedniegoRoku;
+    protected $zatrudnieniewStosunkuDoPoprzedniegoRoku;
 
     /**
      * @var int
      *
      * @ORM\Column(name="zatrudnienie_w_stosunku_do_poprzedniego_okresu", type="integer", nullable=false)
      */
-    private $zatrudnieniewStosunkuDoPoprzedniegoOkresu;
+    protected $zatrudnieniewStosunkuDoPoprzedniegoOkresu;
 
     /**
      * @ORM\ManyToOne(targetEntity="Sprawozdanie", inversedBy="sprawozdaniaSpolek", cascade = {"persist"})
      * @ORM\JoinColumn(name="sprawozdanie_id", referencedColumnName="id")
      */
-    private $sprawozdanie;
+    protected $sprawozdanie;
 
     /**
      * Set sprawozdanie
      *
-     * @param  Sprawozdanie $sprawozdanie
+     * @param Sprawozdanie $sprawozdanie
+     *
      * @return SprawozdanieSpolki
      */
     public function setSprawozdanie($sprawozdanie)
@@ -175,7 +176,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * zwraca id
+     * Zwraca id
      *
      * @return int
      */
@@ -185,7 +186,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * zwraca sprawozdanieId
+     * Zwraca sprawozdanieId
      *
      * @return int
      */
@@ -195,7 +196,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * zwraca lp
+     * Zwraca lp
      *
      * @return int
      */
@@ -205,7 +206,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * zwraca nazwaSpolki
+     * Zwraca nazwaSpolki
      *
      * @return string
      */
@@ -215,7 +216,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * zwraca krs
+     * Zwraca krs
      *
      * @return string
      */
@@ -225,9 +226,9 @@ class SprawozdanieSpolki
     }
 
     /**
-     * zwraca uzyskanePrzychody
+     * Zwraca uzyskanePrzychody
      *
-     * @return decimal
+     * @return float
      */
     public function getUzyskanePrzychody()
     {
@@ -235,9 +236,9 @@ class SprawozdanieSpolki
     }
 
     /**
-     * zwraca planowanePrzychody
+     * Zwraca planowanePrzychody
      *
-     * @return decimal
+     * @return float
      */
     public function getPlanowanePrzychody()
     {
@@ -245,9 +246,9 @@ class SprawozdanieSpolki
     }
 
     /**
-     * zwraca ebitda
+     * Zwraca ebitda
      *
-     * @return decimal
+     * @return float
      */
     public function getEbitda()
     {
@@ -255,9 +256,9 @@ class SprawozdanieSpolki
     }
 
     /**
-     * zwraca ncf
+     * Zwraca ncf
      *
-     * @return decimal
+     * @return float
      */
     public function getNcf()
     {
@@ -265,9 +266,9 @@ class SprawozdanieSpolki
     }
 
     /**
-     * zwraca sumaBilansowa
+     * Zwraca sumaBilansowa
      *
-     * @return decimal
+     * @return float
      */
     public function getSumaBilansowa()
     {
@@ -275,7 +276,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * zwraca zatrudnienieEtaty
+     * Zwraca zatrudnienieEtaty
      *
      * @return int
      */
@@ -285,7 +286,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * zwraca zatrudnioneKobiety
+     * Zwraca zatrudnioneKobiety
      *
      * @return int
      */
@@ -295,7 +296,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * zwraca zatrudnieniMezczyzni
+     * Zwraca zatrudnieniMezczyzni
      *
      * @return int
      */
@@ -305,7 +306,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * zwraca zatrudnienieInneFormy
+     * Zwraca zatrudnienieInneFormy
      *
      * @return int
      */
@@ -315,7 +316,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * zwraca zatrudnienieInneFormyKobiety
+     * Zwraca zatrudnienieInneFormyKobiety
      *
      * @return int
      */
@@ -325,7 +326,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * zwraca zatrudnienieInneFormyMezczyzni
+     * Zwraca zatrudnienieInneFormyMezczyzni
      *
      * @return int
      */
@@ -335,7 +336,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * zwraca zatrudnieniewStosunkuDoPoprzedniegoRoku
+     * Zwraca zatrudnieniewStosunkuDoPoprzedniegoRoku
      *
      * @return int
      */
@@ -345,7 +346,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * zwraca zatrudnieniewStosunkuDoPoprzedniegoOkresu
+     * Zwraca zatrudnieniewStosunkuDoPoprzedniegoOkresu
      *
      * @return int
      */
@@ -355,7 +356,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * ustawia id
+     * Ustawia id
      *
      * @param int $id
      */
@@ -365,7 +366,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * ustawia $sprawozdanieId
+     * Ustawia $sprawozdanieId
      *
      * @param int $sprawozdanieId
      */
@@ -375,7 +376,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * ustawia $liczbaPorzadkowa
+     * Ustawia $liczbaPorzadkowa
      *
      * @param int $liczbaPorzadkowa
      */
@@ -385,7 +386,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * ustawia $nazwaSpolki
+     * Ustawia $nazwaSpolki
      *
      * @param string $nazwaSpolki
      */
@@ -395,7 +396,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * ustawia $krs
+     * Ustawia $krs
      *
      * @param string $krs
      */
@@ -405,9 +406,9 @@ class SprawozdanieSpolki
     }
 
     /**
-     * ustawia $uzyskanePrzychody
+     * Ustawia $uzyskanePrzychody
      *
-     * @param decimal $uzyskanePrzychody
+     * @param float $uzyskanePrzychody
      */
     public function setUzyskanePrzychody($uzyskanePrzychody)
     {
@@ -415,9 +416,9 @@ class SprawozdanieSpolki
     }
 
     /**
-     * ustawia $planowanePrzychody
+     * Ustawia $planowanePrzychody
      *
-     * @param decimal $planowanePrzychody
+     * @param float $planowanePrzychody
      */
     public function setPlanowanePrzychody($planowanePrzychody)
     {
@@ -425,9 +426,9 @@ class SprawozdanieSpolki
     }
 
     /**
-     * ustawia $ebitda
+     * Ustawia $ebitda
      *
-     * @param decimal $ebitda
+     * @param float $ebitda
      */
     public function setEbitda($ebitda)
     {
@@ -435,9 +436,9 @@ class SprawozdanieSpolki
     }
 
     /**
-     * ustawia $ncf
+     * Ustawia $ncf
      *
-     * @param decimal $ncf
+     * @param float $ncf
      */
     public function setNcf($ncf)
     {
@@ -445,9 +446,9 @@ class SprawozdanieSpolki
     }
 
     /**
-     * ustawia $sumaBilansowa
+     * Ustawia $sumaBilansowa
      *
-     * @param decimal $sumaBilansowa
+     * @param float $sumaBilansowa
      */
     public function setSumaBilansowa($sumaBilansowa)
     {
@@ -455,7 +456,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * ustawia $zatrudnienieEtaty
+     * Ustawia $zatrudnienieEtaty
      *
      * @param int $zatrudnienieEtaty
      */
@@ -465,7 +466,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * ustawia $zatrudnioneKobiety
+     * Ustawia $zatrudnioneKobiety
      *
      * @param int $zatrudnioneKobiety
      */
@@ -475,7 +476,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * ustawia $zatrudnieniMezczyzni
+     * Ustawia $zatrudnieniMezczyzni
      *
      * @param int $zatrudnieniMezczyzni
      */
@@ -485,7 +486,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * ustawia $zatrudnienieInneFormy
+     * Ustawia $zatrudnienieInneFormy
      *
      * @param int $zatrudnienieInneFormy
      */
@@ -495,7 +496,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * ustawia $zatrudnienieInneFormyKobiety
+     * Ustawia $zatrudnienieInneFormyKobiety
      *
      * @param int $zatrudnienieInneFormyKobiety
      */
@@ -505,7 +506,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * ustawia $zatrudnienieInneFormyMezczyzni
+     * Ustawia $zatrudnienieInneFormyMezczyzni
      *
      * @param int $zatrudnienieInneFormyMezczyzni
      */
@@ -515,7 +516,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * ustawia $zatrudnieniewStosunkuDoPoprzedniegoRoku
+     * Ustawia $zatrudnieniewStosunkuDoPoprzedniegoRoku
      *
      * @param int $zatrudnieniewStosunkuDoPoprzedniegoRoku
      */
@@ -525,7 +526,7 @@ class SprawozdanieSpolki
     }
 
     /**
-     * ustawia $zatrudnieniewStosunkuDoPoprzedniegoOkresu
+     * Ustawia $zatrudnieniewStosunkuDoPoprzedniegoOkresu
      *
      * @param int $zatrudnieniewStosunkuDoPoprzedniegoOkresu
      */
