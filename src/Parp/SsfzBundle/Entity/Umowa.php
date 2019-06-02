@@ -21,40 +21,40 @@ class Umowa
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var int
      *
      * @ORM\Column(name="beneficjent_id", type="integer")
      */
-    private $beneficjentId;
+    protected $beneficjentId;
 
     /**
      * @ORM\ManyToOne(targetEntity="Beneficjent", inversedBy="umowy")
      * @ORM\JoinColumn(name="beneficjent_id", referencedColumnName="id")
      */
-    private $beneficjent;
+    protected $beneficjent;
 
     /**
      * @var string
      * @ORM\Column(name="numer", type="string", length=26)
      */
-    private $numer;
+    protected $numer;
 
     /**
      * Encje Spolka powiazane z umową - spółki składające się na portfel
      *
      * @ORM\OneToMany(targetEntity="Spolka", mappedBy="umowa", cascade={"persist"})
      */
-    private $spolki;
+    protected $spolki;
 
     /**
      * Encje Spolka powiazane z umową - spółki składające się na portfel
      *
      * @ORM\OneToMany(targetEntity="Sprawozdanie", mappedBy="umowa", cascade={"persist"})
      */
-    private $sprawozdania;
+    protected $sprawozdania;
 
     /**
      * Publiczny konstruktor

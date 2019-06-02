@@ -22,9 +22,8 @@ class BeneficjentRepository extends EntityRepository
     public function addNewBeneficjent(Uzytkownik $uzytkownik)
     {
         $beneficjent = new Beneficjent();
-        $uzytkownik->setBeneficjent($beneficjent);
+        $beneficjent->setUzytkownik($uzytkownik);
         $this->_em->persist($beneficjent);
-        $this->_em->persist($uzytkownik);
         $this->_em->flush();
 
         return $beneficjent;

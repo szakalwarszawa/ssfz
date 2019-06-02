@@ -5,6 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Uzytkownik
@@ -105,10 +106,11 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     protected $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Beneficjent", inversedBy="uzytkownicy")
-     * @ORM\JoinColumn(name="beneficjent_id", referencedColumnName="id", nullable=true)
+     * Encje Beneficjent powiązane z użytkownikiem.
+     *
+     * @ORM\OneToMany(targetEntity="Beneficjent", mappedBy="uzytkownik")
      */
-    protected $beneficjent;
+    protected $beneficjenci;
 
     /**
      * @var string
@@ -135,6 +137,14 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
      * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Program")
      */
     protected $aktywnyProgram;
+
+    /**
+     * Publiczny konstruktor
+     */
+    public function __construct()
+    {
+        $this->beneficjenci = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -237,16 +247,6 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get beneficjent
-     *
-     * @return Beneficjent
-     */
-    public function getBeneficjent()
-    {
-        return $this->beneficjent;
-    }
-
-    /**
      * @return string
      */
     public function getKodAktywacjaKonta()
@@ -324,16 +324,6 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     public function setStatus($status)
     {
         $this->status = $status;
-    }
-
-    /**
-     * Set beneficjent
-     *
-     * @param Beneficjent $beneficjent
-     */
-    public function setBeneficjent($beneficjent)
-    {
-        $this->beneficjent = $beneficjent;
     }
 
     /**
@@ -606,5 +596,69 @@ class Uzytkownik implements AdvancedUserInterface, \Serializable
     public function getAktywnyProgram()
     {
         return $this->aktywnyProgram;
+    }
+
+    /**
+     * Get beneficjenci
+     *
+     * @return Collection
+     */
+    public function getBeneficjenci()
+    {
+        return $this->beneficjenci;
+    }
+
+    /**
+     * Add beneficjenci
+     *
+     * @param Beneficjent $beneficjenci
+     *
+     * @return Uzytkownik
+     */
+    public function addBeneficjenci(Beneficjent $beneficjenci)
+    {
+        $this->beneficjenci[] = $beneficjenci;
+
+        return $this;
+    }
+
+    /**
+     * Remove beneficjenci
+     *
+     * @param Beneficjent $beneficjenci
+     */
+    public function removeBeneficjenci(Beneficjent $beneficjenci)
+    {
+        $this->beneficjenci->removeElement($beneficjenci);
+    }
+    
+    /**
+     * Zwraca beneficjenta dla aktywnego programu.
+     *
+     * @return Beneficjent
+     */
+    public function getBeneficjent()
+    {
+        foreach ($this->beneficjenci as $beneficjent) {
+            if ((int) $beneficjent->getProgram()->getId() === (int) $this->aktywnyProgram->getId()) {
+                return $beneficjent;
+            }
+        }
+        
+        return null;
+    }
+    
+    /**
+     * Zostawione dla zgodności ze starym kodem.
+     *
+     * @param Beneficjent $beneficjent
+     *
+     * @return Uzytkownik
+     */
+    public function setBeneficjent(Beneficjent $beneficjent)
+    {
+        $beneficjent->setUzytkownik($this);
+        
+        return $this;
     }
 }

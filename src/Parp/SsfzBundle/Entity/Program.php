@@ -12,6 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Program implements Serializable
 {
+    const FUNDUSZ_ZALAZKOWY_POIG_31 = 31;
+    const FUNDUSZ_POZYCZKOWY_SPO_WKP_121 = 121;
+    const FUNDUSZ_PORECZENIOWY_SPO_WKP_122 = 122;
 
     /**
      * ID programu.
@@ -130,5 +133,15 @@ class Program implements Serializable
             $this->id,
             $this->nazwa
             ) = unserialize($serialized);
+    }
+    
+    /**
+     * Czy w umowach w danym programie jest portfel spółek.
+     *
+     * @return bool
+     */
+    public function czyJestPortfelSpolek()
+    {
+        return $this::FUNDUSZ_ZALAZKOWY_POIG_31 === (int) $this->id;
     }
 }

@@ -29,6 +29,24 @@ class Version20190531153340 extends AbstractMigration
         $this->addSql('ALTER TABLE sfz_uzytkownik ADD aktywny_program_id INT DEFAULT NULL');
         $this->addSql('ALTER TABLE sfz_uzytkownik ADD CONSTRAINT FK_B1E2DA8D26B4F225 FOREIGN KEY (aktywny_program_id) REFERENCES slownik_program (id)');
         $this->addSql('CREATE INDEX IDX_B1E2DA8D26B4F225 ON sfz_uzytkownik (aktywny_program_id)');
+
+        $this->addSql('ALTER TABLE sfz_beneficjent ADD program_id INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE sfz_beneficjent ADD CONSTRAINT FK_E6EB7B263EB8070A FOREIGN KEY (program_id) REFERENCES slownik_program (id)');
+        $this->addSql('CREATE INDEX IDX_E6EB7B263EB8070A ON sfz_beneficjent (program_id)');
+        $this->addSql('UPDATE sfz_beneficjent SET program_id = 31');
+
+        $this->addSql('ALTER TABLE sfz_beneficjent ADD uzytkownik_id INT NOT NULL');
+        
+        $this->addSql('UPDATE sfz_uzytkownik u, sfz_beneficjent b
+            SET b.uzytkownik_id = u.id
+            WHERE u.beneficjent_id = b.id'
+        );
+        $this->addSql('DELETE FROM sfz_beneficjent WHERE uzytkownik_id = 0 AND nazwa IS NULL AND adr_wojewodztwo IS NULL');
+        $this->addSql('ALTER TABLE sfz_beneficjent ADD CONSTRAINT FK_E6EB7B2631D6FDE9 FOREIGN KEY (uzytkownik_id) REFERENCES sfz_uzytkownik (id)');
+        $this->addSql('CREATE INDEX IDX_E6EB7B2631D6FDE9 ON sfz_beneficjent (uzytkownik_id)');
+        $this->addSql('ALTER TABLE sfz_uzytkownik DROP FOREIGN KEY FK_B1E2DA8D11C95575');
+        $this->addSql('DROP INDEX IDX_B1E2DA8D11C95575 ON sfz_uzytkownik');
+        $this->addSql('ALTER TABLE sfz_uzytkownik DROP beneficjent_id');
     }
 
     /**
@@ -37,6 +55,27 @@ class Version20190531153340 extends AbstractMigration
     public function down(Schema $schema)
     {
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        
+        $this->addSql('ALTER TABLE sfz_uzytkownik ADD beneficjent_id INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE sfz_uzytkownik ADD CONSTRAINT FK_B1E2DA8D11C95575 FOREIGN KEY (beneficjent_id) REFERENCES sfz_beneficjent (id)');
+        $this->addSql('CREATE INDEX IDX_B1E2DA8D11C95575 ON sfz_uzytkownik (beneficjent_id)');
+        
+        $this->addSql('DELETE FROM sfz_umowa WHERE beneficjent_id IN(SELECT id FROM sfz_beneficjent WHERE program_id <> 31)');
+        $this->addSql('DELETE FROM sfz_osoba_zatrudniona WHERE beneficjent_id IN(SELECT id FROM sfz_beneficjent WHERE program_id <> 31)');
+        $this->addSql('DELETE FROM sfz_beneficjent WHERE program_id <> 31');
+
+        $this->addSql('UPDATE sfz_uzytkownik u, sfz_beneficjent b
+            SET u.beneficjent_id = b.id
+            WHERE b.uzytkownik_id = u.id'
+        );
+
+        $this->addSql('ALTER TABLE sfz_beneficjent DROP FOREIGN KEY FK_E6EB7B2631D6FDE9');
+        $this->addSql('DROP INDEX IDX_E6EB7B2631D6FDE9 ON sfz_beneficjent');
+        $this->addSql('ALTER TABLE sfz_beneficjent DROP uzytkownik_id');
+
+        $this->addSql('ALTER TABLE sfz_beneficjent DROP FOREIGN KEY FK_E6EB7B263EB8070A');
+        $this->addSql('DROP INDEX IDX_E6EB7B263EB8070A ON sfz_beneficjent');
+        $this->addSql('ALTER TABLE sfz_beneficjent DROP program_id');
 
         $this->addSql('ALTER TABLE sfz_uzytkownik DROP FOREIGN KEY FK_B1E2DA8D26B4F225');
         $this->addSql('DROP INDEX IDX_B1E2DA8D26B4F225 ON sfz_uzytkownik');

@@ -2,6 +2,7 @@
 
 namespace Parp\SsfzBundle\Entity;
 
+use InvalidArgumentException;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -22,7 +23,7 @@ class Beneficjent
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * Nazwa beneficjenta
@@ -31,7 +32,7 @@ class Beneficjent
      *
      * @ORM\Column(name="nazwa", type="string", length=255, nullable=true)
      */
-    private $nazwa;
+    protected $nazwa;
 
     /**
      * Dane adresowe - województwo
@@ -40,7 +41,7 @@ class Beneficjent
      *
      * @ORM\Column(name="adr_wojewodztwo", type="string", length=100, nullable=true)
      */
-    private $adrWojewodztwo;
+    protected $adrWojewodztwo;
 
     /**
      * Dane adresowe - miejscowość
@@ -49,7 +50,7 @@ class Beneficjent
      *
      * @ORM\Column(name="adr_miejscowosc", type="string", length=100, nullable=true)
      */
-    private $adrMiejscowosc;
+    protected $adrMiejscowosc;
 
     /**
      * Dane adresowe - ulica
@@ -58,7 +59,7 @@ class Beneficjent
      *
      * @ORM\Column(name="adr_ulica", type="string", length=100, nullable=true)
      */
-    private $adrUlica;
+    protected $adrUlica;
 
     /**
      * Dane adresowe - nr budynku
@@ -67,7 +68,7 @@ class Beneficjent
      *
      * @ORM\Column(name="adr_budynek", type="string", length=10, nullable=true)
      */
-    private $adrBudynek;
+    protected $adrBudynek;
 
     /**
      * Dane adresowe - nr lokalu
@@ -76,7 +77,7 @@ class Beneficjent
      *
      * @ORM\Column(name="adr_lokal", type="string", length=10, nullable=true)
      */
-    private $adrLokal;
+    protected $adrLokal;
 
     /**
      * Dane adresowe - kod pocztowy
@@ -85,7 +86,7 @@ class Beneficjent
      *
      * @ORM\Column(name="adr_kod", type="string", length=6, nullable=true)
      */
-    private $adrKod;
+    protected $adrKod;
 
     /**
      * Dane adresowe - poczta
@@ -94,7 +95,7 @@ class Beneficjent
      *
      * @ORM\Column(name="adr_poczta", type="string", length=50, nullable=true)
      */
-    private $adrPoczta;
+    protected $adrPoczta;
 
     /**
      * Dane kobtakotowe - telefon stacjonarny
@@ -103,7 +104,7 @@ class Beneficjent
      *
      * @ORM\Column(name="tel_stacjonarny", type="string", length=15, nullable=true)
      */
-    private $telStacjonarny;
+    protected $telStacjonarny;
 
     /**
      * Dane kontaktowe - telefon komórkowy
@@ -112,7 +113,7 @@ class Beneficjent
      *
      * @ORM\Column(name="tel_komorkowy", type="string", length=15, nullable=true)
      */
-    private $telKomorkowy;
+    protected $telKomorkowy;
 
     /**
      * Dane kontaktowe - adres e-mail
@@ -121,7 +122,7 @@ class Beneficjent
      *
      * @ORM\Column(name="email", type="string", length=250, nullable=true)
      */
-    private $email;
+    protected $email;
 
     /**
      * Dane kontaktowe - fax
@@ -130,7 +131,7 @@ class Beneficjent
      *
      * @ORM\Column(name="fax", type="string", length=15, nullable=true)
      */
-    private $fax;
+    protected $fax;
 
     /**
      * Określa, czy profil jest kompletny (czy wszystkie wymagane pola są wypełnione)
@@ -139,28 +140,36 @@ class Beneficjent
      *
      * @ORM\Column(name="wypelniony", type="boolean", nullable=true)
      */
-    private $wypelniony;
+    protected $wypelniony;
 
     /**
      * Encje OsobaZatrudniona powiązane z beneficjentem - osoby zatrudnione
      *
      * @ORM\OneToMany(targetEntity="OsobaZatrudniona", mappedBy="beneficjent", cascade={"persist", "remove"})
      */
-    private $osobyZatrudnione;
+    protected $osobyZatrudnione;
 
     /**
      * Encje Umowa powiazane z beneficjentem - umowy
      *
      * @ORM\OneToMany(targetEntity="Umowa", mappedBy="beneficjent", cascade={"persist", "remove"})
      */
-    private $umowy;
-
+    protected $umowy;
+    
     /**
-     * Encje Uzytkownik powiązane z beneficjentem - użytkownicy powiązaniu z profilem beneficjenta
-     *
-     * @ORM\OneToMany(targetEntity="Uzytkownik", mappedBy="beneficjent")
+     * @ORM\ManyToOne(targetEntity="Uzytkownik", inversedBy="beneficjenci")
+     * @ORM\JoinColumn(name="uzytkownik_id", referencedColumnName="id", nullable=false)
      */
-    private $uzytkownicy;
+    protected $uzytkownik;
+    
+    /**
+     * Program, którego dotyczy profil beneficjenta.
+     *
+     * @var int
+     *
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Program")
+     */
+    protected $program;
 
     /**
      * Publiczny konstruktor
@@ -169,7 +178,6 @@ class Beneficjent
     {
         $this->osobyZatrudnione = new ArrayCollection();
         $this->umowy = new ArrayCollection();
-        $this->uzytkownicy = new ArrayCollection();
     }
 
     /**
@@ -537,13 +545,28 @@ class Beneficjent
     }
 
     /**
-     * Get uzytkownicy
+     * Get uzytkownik
      *
-     * @return Collection
+     * @return Uzytkownik
      */
-    public function getUzytkownicy()
+    public function getUzytkownik()
     {
-        return $this->uzytkownicy;
+        return $this->uzytkownik;
+    }
+
+    /**
+     * Set uzytkownik
+     *
+     * @param Uzytkownik $uzytkownik
+     */
+    public function setUzytkownik(Uzytkownik $uzytkownik)
+    {
+        $this->program = $uzytkownik->getAktywnyProgram();
+        if (null === $this->program) {
+            throw new InvalidArgumentException('Nie wybrano programu.');
+        }
+
+        $this->uzytkownik = $uzytkownik;
     }
 
     /**
@@ -576,5 +599,29 @@ class Beneficjent
     public function removeUmowa(Umowa $umowa)
     {
         $this->umowy->removeElement($umowa);
+    }
+
+    /**
+     * Set program
+     *
+     * @param Program $program
+     *
+     * @return Beneficjent
+     */
+    public function setProgram(Program $program = null)
+    {
+        $this->program = $program;
+
+        return $this;
+    }
+
+    /**
+     * Get program
+     *
+     * @return Program
+     */
+    public function getProgram()
+    {
+        return $this->program;
     }
 }

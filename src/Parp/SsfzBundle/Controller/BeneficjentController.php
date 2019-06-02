@@ -192,6 +192,7 @@ class BeneficjentController extends Controller
         $programy = $repoProgram->findBy([], ['kolejnosc' => 'ASC']);
         
         $uzytkownik = $this->getZalogowanyUzytkownik();
+        $uzytkownik->setAktywnyProgram(null);
 
         return $this->render(
             'SsfzBundle:Beneficjent:lista_programow.html.twig',
