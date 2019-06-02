@@ -71,7 +71,7 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
     protected $email;
 
     /**
-     * @var int
+     * @var Rola
      *
      * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Rola")
      */
@@ -176,9 +176,9 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
     }
 
     /**
-     * Get rolaId
+     * Get Rola
      *
-     * @return int
+     * @return Rola
      */
     public function getRola()
     {
@@ -278,7 +278,7 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
     }
 
     /**
-     * @param int $rola
+     * @param Rola $rola
      */
     public function setRola($rola)
     {
