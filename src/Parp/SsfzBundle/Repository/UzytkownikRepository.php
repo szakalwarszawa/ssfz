@@ -1,7 +1,9 @@
 <?php
+
 namespace Parp\SsfzBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
@@ -17,7 +19,8 @@ class UzytkownikRepository extends EntityRepository implements UserProviderInter
     /**
      * Dodanie nowego użytkownika do bazy danych
      *
-     * @param \Parp\SsfzBundle\Entity\Uzytkownik $user
+     * @param Uzytkownik $user
+     *
      * @return Uzytkownik
      */
     public function persist(Uzytkownik $user)
@@ -32,7 +35,7 @@ class UzytkownikRepository extends EntityRepository implements UserProviderInter
      * Dodaje nowego użytkownika
      *
      * @param Uzytkownik $user
-     * @param Rola       $role
+     * @param Rola $role
      */
     public function persistNewUser(Uzytkownik $user, Rola $role)
     {
@@ -66,7 +69,7 @@ class UzytkownikRepository extends EntityRepository implements UserProviderInter
      * Ustawia nowe hasło
      *
      * @param Uzytkownik $user
-     * @param string     $newPassword
+     * @param string $newPassword
      */
     public function newPassword(Uzytkownik $user, $newPassword)
     {
@@ -141,14 +144,14 @@ class UzytkownikRepository extends EntityRepository implements UserProviderInter
     }
 
     /**
-     * @param \Symfony\Component\Security\Core\User\UserInterface $user
+     * @param UserInterface $user
      *
      * @return User
      *
      * @throws UnsupportedUserException
      * @throws UsernameNotFoundException
      */
-    public function refreshUser(\Symfony\Component\Security\Core\User\UserInterface $user)
+    public function refreshUser(UserInterface $user)
     {
         $class = get_class($user);
         if (!$this->supportsClass($class)) {
@@ -163,7 +166,7 @@ class UzytkownikRepository extends EntityRepository implements UserProviderInter
     }
 
     /**
-     * @param Class $class
+     * @param string $class
      *
      * @return $class
      */
