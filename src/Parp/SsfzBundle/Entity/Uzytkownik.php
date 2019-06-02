@@ -208,7 +208,7 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
     /**
      * Get utworzony
      *
-     * @return Carbon\Carbon
+     * @return Carbon
      */
     public function getUtworzony()
     {
@@ -218,7 +218,7 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
     /**
      * Get zmodyfikowany
      *
-     * @return Carbon\Carbon
+     * @return Carbon
      */
     public function getZmodyfikowany()
     {
@@ -507,11 +507,7 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
      */
     public function isAccountNonLocked()
     {
-        if ($this->ban === true) {
-            return false;
-        }
-
-        return true;
+        return ($this->ban === true) ? false : true;
     }
 
     /**
@@ -529,11 +525,7 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
      */
     public function isEnabled()
     {
-        if (0 === $this->status) {
-            return false;
-        }
-
-        return true;
+        return (0 === $this->status) ? false : true;
     }
 
     /**

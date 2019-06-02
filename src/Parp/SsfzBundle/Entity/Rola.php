@@ -43,6 +43,24 @@ class Rola implements Serializable
     protected $opis;
 
     /**
+     * Konstruktor.
+     *
+     * @param string $nazwa
+     */
+    public function __construct($nazwa = '')
+    {
+        $this->nazwa = $nazwa;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->getNazwa();
+    }
+
+    /**
      * Get id
      *
      * @return int
@@ -114,13 +132,5 @@ class Rola implements Serializable
             $this->nazwa,
             $this->opis
         ) = unserialize($serialized);
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return (string) $this->getNazwa();
     }
 }
