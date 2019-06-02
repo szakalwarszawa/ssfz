@@ -40,7 +40,7 @@ class Program implements Serializable
      * Nazwa programu.
      *
      * @var string
-     * 
+     *
      * @ORM\Column(name="nazwa", type="string", length=64, unique=true)
      */
     protected $nazwa;
@@ -48,7 +48,7 @@ class Program implements Serializable
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -90,7 +90,7 @@ class Program implements Serializable
     /**
      * Get nazwa
      *
-     * @return string 
+     * @return string
      */
     public function getNazwa()
     {
@@ -99,7 +99,7 @@ class Program implements Serializable
 
     /**
      * Set nazwa
-     * 
+     *
      * @param string $nazwa
      *
      * @return Program

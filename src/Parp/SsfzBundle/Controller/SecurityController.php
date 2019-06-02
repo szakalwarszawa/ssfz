@@ -39,7 +39,7 @@ class SecurityController extends Controller
      *
      * @return RedirectResponse
      */
-    public function wylogujAction(Request $request)
+    public function wylogujAction()
     {
         $entityManager = $this->getDoctrine()->getManager();
 
