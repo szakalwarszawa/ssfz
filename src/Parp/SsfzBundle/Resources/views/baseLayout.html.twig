@@ -70,7 +70,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ path('default') }}">SSFZ</a>
+                    {% if is_granted('ROLE_BENEFICJENT') %}
+                        <a class="navbar-brand" href="{{ path('beneficjent_lista_programow') }}">SSFZ ></a>
+                        {% if app.user.aktywnyProgram %}
+                            <a class="navbar-brand" href="{{ path('beneficjent') }}">{{ app.user.aktywnyProgram.nazwa }}</a>
+                        {% endif %}
+                    {% else %}
+                        <a class="navbar-brand" href="{{ path('default') }}">SSFZ</a>
+                    {% endif %}
                 </div>
                 {% if app.user %}
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -82,7 +89,7 @@
                                     <li><a href="/haslo/zmiana">Zmiana hasła<span class="sr-only">(current)</span></a></li>
                                     <li class="divider"></li>
                                     {% endif %}
-                                    <li class="active"><a href="{{ path('logout') }}">Wyloguj<span class="sr-only">(current)</span></a></li>
+                                    <li class="active"><a href="{{ path('wyloguj') }}">Wyloguj<span class="sr-only">(current)</span></a></li>
                                 </ul>
                             </li>
                         </ul>
