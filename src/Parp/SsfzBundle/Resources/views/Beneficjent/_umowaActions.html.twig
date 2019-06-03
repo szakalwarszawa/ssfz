@@ -1,4 +1,6 @@
 <div class="row pull-right">
-    <a href="{{ path('portfel_dodanie', {'idUmowy': dt_obj.id}) }}" class="btn btn-sm btn-warning" role="button"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;Portfel spółek</a>
+    {% if dt_obj.beneficjent.program.czyJestPortfelSpolek %}
+        <a href="{{ path('portfel_dodanie', {'idUmowy': dt_obj.id}) }}" class="btn btn-sm btn-warning" role="button"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;Portfel spółek</a>
+    {% endif %}
     <a href="{{ path('sprawozdanie_rejestracja', {'umowaId': dt_obj.id}) }}" class="btn btn-sm btn-info" role="button"><span class="glyphicon glyphicon-usd"></span> Sprawozdania</a>
 </div>

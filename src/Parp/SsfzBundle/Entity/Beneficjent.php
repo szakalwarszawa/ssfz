@@ -2,6 +2,7 @@
 
 namespace Parp\SsfzBundle\Entity;
 
+use InvalidArgumentException;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -154,13 +155,21 @@ class Beneficjent
      * @ORM\OneToMany(targetEntity="Umowa", mappedBy="beneficjent", cascade={"persist", "remove"})
      */
     protected $umowy;
-
+    
     /**
-     * Encje Uzytkownik powiązane z beneficjentem - użytkownicy powiązaniu z profilem beneficjenta
-     *
-     * @ORM\OneToMany(targetEntity="Uzytkownik", mappedBy="beneficjent")
+     * @ORM\ManyToOne(targetEntity="Uzytkownik", inversedBy="beneficjenci")
+     * @ORM\JoinColumn(name="uzytkownik_id", referencedColumnName="id", nullable=false)
      */
-    protected $uzytkownicy;
+    protected $uzytkownik;
+    
+    /**
+     * Program, którego dotyczy profil beneficjenta.
+     *
+     * @var int
+     *
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Program")
+     */
+    protected $program;
 
     /**
      * Konstruktor
@@ -169,7 +178,6 @@ class Beneficjent
     {
         $this->osobyZatrudnione = new ArrayCollection();
         $this->umowy = new ArrayCollection();
-        $this->uzytkownicy = new ArrayCollection();
     }
 
     /**
@@ -537,13 +545,28 @@ class Beneficjent
     }
 
     /**
-     * Get uzytkownicy
+     * Get uzytkownik
      *
-     * @return Collection
+     * @return Uzytkownik
      */
-    public function getUzytkownicy()
+    public function getUzytkownik()
     {
-        return $this->uzytkownicy;
+        return $this->uzytkownik;
+    }
+
+    /**
+     * Set uzytkownik
+     *
+     * @param Uzytkownik $uzytkownik
+     */
+    public function setUzytkownik(Uzytkownik $uzytkownik)
+    {
+        $this->program = $uzytkownik->getAktywnyProgram();
+        if (null === $this->program) {
+            throw new InvalidArgumentException('Nie wybrano programu.');
+        }
+
+        $this->uzytkownik = $uzytkownik;
     }
 
     /**
@@ -576,5 +599,29 @@ class Beneficjent
     public function removeUmowa(Umowa $umowa)
     {
         $this->umowy->removeElement($umowa);
+    }
+
+    /**
+     * Set program
+     *
+     * @param Program $program
+     *
+     * @return Beneficjent
+     */
+    public function setProgram(Program $program = null)
+    {
+        $this->program = $program;
+
+        return $this;
+    }
+
+    /**
+     * Get program
+     *
+     * @return Program
+     */
+    public function getProgram()
+    {
+        return $this->program;
     }
 }

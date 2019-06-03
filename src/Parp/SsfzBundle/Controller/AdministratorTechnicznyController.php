@@ -45,12 +45,10 @@ class AdministratorTechnicznyController extends Controller
 
         $ldapDataService = $this->get('ssfz.service.ldap_data_service');
         $uzytkRepo = $this->getDoctrine()->getRepository(Uzytkownik::class);
-        $rolaRepo = $this->getDoctrine()->getRepository(Rola::class);
 
         $form = $this->createForm(PracownikParpRejestracjaType::class, [], [
             'ssfz.service.ldap_data_service' => $ldapDataService,
             'uzytk_repo'                     => $uzytkRepo,
-            'rola_repo'                      => $rolaRepo,
         ]);
 
         $form->handleRequest($request);

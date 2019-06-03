@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Parp\SsfzBundle\Entity\Uzytkownik;
+use Parp\SsfzBundle\Entity\Program;
 use Parp\SsfzBundle\Form\Type\BeneficjentType;
 
 /**
@@ -27,6 +28,11 @@ class BeneficjentController extends Controller
     public function indexAction()
     {
         $uzytkownik = $this->getZalogowanyUzytkownik();
+        
+        if (null === $uzytkownik->getAktywnyProgram()) {
+            return $this->redirectToRoute('beneficjent_lista_programow');
+        }
+        
         $beneficjent = $uzytkownik->getBeneficjent();
         if (!$beneficjent || !$beneficjent->getWypelniony()) {
             return $this->redirectToRoute('beneficjent_uzupelnij');
@@ -169,5 +175,50 @@ class BeneficjentController extends Controller
         }
 
         return $uzytkownik;
+    }
+
+    /**
+     * Po zalogowaniu do systemu, beneficjent wybiera z listy program do którego będzie tworzył sprawozdanie.
+     *
+     * @Route("/programy", name="beneficjent_lista_programow")
+     *
+     * @return    Response
+     */
+    public function listaProgramowAction()
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $repoProgram = $entityManager->getRepository(Program::class);
+        
+        $programy = $repoProgram->findBy([], ['id' => 'ASC']);
+        
+        $uzytkownik = $this->getZalogowanyUzytkownik();
+        $uzytkownik->setAktywnyProgram(null);
+
+        return $this->render(
+            'SsfzBundle:Beneficjent:lista_programow.html.twig',
+            array(
+                'programy' => $programy,
+            )
+        );
+    }
+
+    /**
+     * Zapis wybranego programu.
+     *
+     * @Route("/wybierz_program/{program}", name="beneficjent_wybierz_program")
+     *
+     * @param Program $program
+     *
+     * @return    Response
+     */
+    public function wybierzProgramAction(Program $program)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        
+        $uzytkownik = $this->getZalogowanyUzytkownik();
+        $uzytkownik->setAktywnyProgram($program);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('beneficjent');
     }
 }

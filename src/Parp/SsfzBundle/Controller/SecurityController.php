@@ -32,4 +32,23 @@ class SecurityController extends Controller
             'error'         => $error,
         ]);
     }
+    /**
+     * Operacje wykonywane przed wylogowaniem użytkownika.
+     *
+     * @Route("/wyloguj", name="wyloguj")
+     *
+     * @return RedirectResponse
+     */
+    public function wylogujAction()
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $this
+            ->getUser()
+            ->eraseCredentials()
+        ;
+        $entityManager->flush();
+
+        return $this->redirectToRoute('logout');
+    }
 }
