@@ -5,6 +5,7 @@ namespace Parp\SsfzBundle\Twig;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use HTMLPurifier;
+use HTMLPurifier_Config;
 
 /**
  * Dodaje specyficzne dla aplikacji rozszerzenia systemu szablonów Twig.
