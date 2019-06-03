@@ -1,20 +1,19 @@
 <?php
 namespace Parp\SsfzBundle\Entity;
 
-use Serializable;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Program
  *
- * @ORM\Table(name="slownik_program")
+ * @ORM\Table(name="slownik_programow")
  * @ORM\Entity
  */
-class Program implements Serializable
+class Program
 {
-    const FUNDUSZ_ZALAZKOWY_POIG_31 = 31;
-    const FUNDUSZ_POZYCZKOWY_SPO_WKP_121 = 121;
-    const FUNDUSZ_PORECZENIOWY_SPO_WKP_122 = 122;
+    const FUNDUSZ_ZALAZKOWY_POIG_31 = 1;
+    const FUNDUSZ_POZYCZKOWY_SPO_WKP_121 = 1;
+    const FUNDUSZ_PORECZENIOWY_SPO_WKP_122 = 1;
 
     /**
      * ID programu.
@@ -23,7 +22,7 @@ class Program implements Serializable
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
@@ -109,30 +108,6 @@ class Program implements Serializable
         $this->nazwa = $nazwa;
         
         return $this;
-    }
-
-    /**
-     * @return Object
-     */
-    public function serialize()
-    {
-        return serialize(
-            array(
-            $this->id,
-            $this->nazwa
-            )
-        );
-    }
-
-    /**
-     * @param Object $serialized
-     */
-    public function unserialize($serialized)
-    {
-        list (
-            $this->id,
-            $this->nazwa
-            ) = unserialize($serialized);
     }
     
     /**
