@@ -1,0 +1,14 @@
+{
+    "name": "parp-ssfz",
+    "description": "System Sprawozdawczości 2.0",
+    "license": "MIT",
+    "private": true,
+    "dependencies": {
+        "bootbox": "^4.4.0",
+        "bootstrap": "^3.3.7",
+        "bootstrap-datepicker": "^1.7.1",
+        "datatables.net-bs": "^1.10.16",
+        "datatables.net-buttons-bs": "^1.4.2",
+        "jquery": "^3.2.1"
+    }
+}

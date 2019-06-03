@@ -1,4 +1,3 @@
-# To get started with security, check out the documentation:
 # https://symfony.com/doc/current/security.html
 security:
 
@@ -12,11 +11,11 @@ security:
         Parp\SsfzBundle\Entity\Uzytkownik:
             algorithm: '%default_password_encoder%'
         Symfony\Component\Security\Core\User\User: bcrypt
-   
+
     providers:
         chain_provider:
             chain:
-                providers: [  mysql_provider, ldap_provider ]
+                providers: [ mysql_provider, ldap_provider ]
         mysql_provider:
             entity:
                 class: SsfzBundle:Uzytkownik
@@ -24,34 +23,32 @@ security:
          
         ldap_provider:
             id: ssfz.security.user.provider.custom_ldap_user_provider
-                
+
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-      
+
         main:
             anonymous: ~
             
-            form_login: 
+            form_login:
                 login_path: login
                 check_path: login
                 csrf_token_generator: security.csrf.token_manager
                 provider: mysql_provider
-                
+
             form_login_ldap:
                 service: ldap
                 dn_string: '%ldap_user_dn_string%'
                 check_path: login
-                login_path: login   
-            
+                login_path: login
+
             logout:
                 path: /logout
                 target: /login
-                
-        
-                
+
     access_control:
         - { path: ^/haslo/przypomnij, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
@@ -59,17 +56,17 @@ security:
         - { path: ^/haslo/zmiana, roles: ROLE_BENEFICJENT }
         - { path: ^/uzytkownik/rejestracja, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/uzytkownik/aktywacja, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/administrator/pracownik/utworz, roles: ROLE_KOORDYNATOR_TECHNICZNY } 
-        - { path: ^/administrator/pracownik/edytuj, roles: ROLE_KOORDYNATOR_TECHNICZNY } 
+        - { path: ^/administrator/pracownik/utworz, roles: ROLE_KOORDYNATOR_TECHNICZNY }
+        - { path: ^/administrator/pracownik/edytuj, roles: ROLE_KOORDYNATOR_TECHNICZNY }
         - { path: ^/beneficjent, roles: ROLE_BENEFICJENT }
         - { path: ^/beneficjent/profil, roles: ROLE_BENEFICJENT }
         - { path: ^/beneficjent/uzupelnij, roles: ROLE_BENEFICJENT }
         - { path: ^/beneficjent/gridOsoby, roles: ROLE_BENEFICJENT }
-        - { path: ^/beneficjent/gridUmowy, roles: ROLE_BENEFICJENT }     
-        - { path: ^/sprawozdanie, roles: ROLE_BENEFICJENT }  
-        - { path: ^/przeplyw, roles: ROLE_BENEFICJENT } 
-        - { path: ^/portfel, roles: ROLE_BENEFICJENT }  
-        - { path: ^/gridSpolki, roles: ROLE_BENEFICJENT }    
+        - { path: ^/beneficjent/gridUmowy, roles: ROLE_BENEFICJENT }
+        - { path: ^/sprawozdanie, roles: ROLE_BENEFICJENT }
+        - { path: ^/przeplyw, roles: ROLE_BENEFICJENT }
+        - { path: ^/portfel, roles: ROLE_BENEFICJENT }
+        - { path: ^/gridSpolki, roles: ROLE_BENEFICJENT }
         - { path: ^/parp, roles: [ROLE_PRACOWNIK_PARP, ROLE_KOORDYNATOR_MERYTORYCZNY] }
         - { path: ^/parp/ocen, roles: [ROLE_PRACOWNIK_PARP, ROLE_KOORDYNATOR_MERYTORYCZNY] }
         - { path: ^/parp/sprawozdanie, roles: [ROLE_PRACOWNIK_PARP, ROLE_KOORDYNATOR_MERYTORYCZNY] }
@@ -77,9 +74,8 @@ security:
         - { path: ^/parp/portfel, roles: [ROLE_PRACOWNIK_PARP, ROLE_KOORDYNATOR_MERYTORYCZNY] }
         - { path: ^/parp/gridSpolki, roles: [ROLE_PRACOWNIK_PARP, ROLE_KOORDYNATOR_MERYTORYCZNY] }
         - { path: ^/parp/gridOsoby, roles: [ROLE_PRACOWNIK_PARP, ROLE_KOORDYNATOR_MERYTORYCZNY] }
-        - { path: ^/parp/gridParp, roles: [ROLE_PRACOWNIK_PARP, ROLE_KOORDYNATOR_MERYTORYCZNY] }    
+        - { path: ^/parp/gridParp, roles: [ROLE_PRACOWNIK_PARP, ROLE_KOORDYNATOR_MERYTORYCZNY] }
         - { path: ^/parp/raporty, roles: [ROLE_PRACOWNIK_PARP, ROLE_KOORDYNATOR_MERYTORYCZNY] }
         - { path: ^/parp/raporty/pobierz, roles: [ROLE_PRACOWNIK_PARP, ROLE_KOORDYNATOR_MERYTORYCZNY] }
         - { path: ^/, roles: [ROLE_KOORDYNATOR_TECHNICZNY, ROLE_KOORDYNATOR_MERYTORYCZNY, ROLE_PRACOWNIK_PARP, ROLE_BENEFICJENT] }
         #- { path: ^/test, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-

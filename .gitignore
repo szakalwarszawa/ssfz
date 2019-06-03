@@ -8,10 +8,11 @@
 /app/phpunit.xml
 /build/
 /vendor/
+/node_modules/
 /bin/
-/composer.phar
 /nbproject/
 /web/js/*
 /web/css/*
+yarn-error.log
 /composer.phar
 /phpcpd.phar
