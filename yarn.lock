@@ -5,45 +5,53 @@
 bootbox@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/bootbox/-/bootbox-4.4.0.tgz#ff7f898fb87d4527e547feb64158f88450d1a0c9"
+  integrity sha1-/3+Jj7h9RSflR/62QVj4hFDRoMk=
 
 bootstrap-datepicker@^1.7.1:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/bootstrap-datepicker/-/bootstrap-datepicker-1.7.1.tgz#4ee7faf34888dbec7834fbf9dbe7c4277e01ddaf"
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/bootstrap-datepicker/-/bootstrap-datepicker-1.9.0.tgz#e4bfce3fcce1967876b21dc6833ec5994aaed090"
+  integrity sha512-9rYYbaVOheGYxjOr/+bJCmRPihfy+LkLSg4fIFMT9Od8WwWB/MB50w0JO1eBgKUMbb7PFHQD5uAfI3ArAxZRXA==
   dependencies:
     jquery ">=1.7.1 <4.0.0"
 
 bootstrap@^3.3.7:
-  version "3.3.7"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.3.7.tgz#5a389394549f23330875a3b150656574f8a9eb71"
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.4.1.tgz#c3a347d419e289ad11f4033e3c4132b87c081d72"
+  integrity sha512-yN5oZVmRCwe5aKwzRj6736nSmKDX7pLYwsXiCj/EYmo16hODaBiT4En5btW/jhBF/seV+XMx3aYwukYC3A49DA==
 
 datatables.net-bs@^1.10.15, datatables.net-bs@^1.10.16:
-  version "1.10.16"
-  resolved "https://registry.yarnpkg.com/datatables.net-bs/-/datatables.net-bs-1.10.16.tgz#b0854f5b374f713ae3db4156c7cea8a760c3de76"
+  version "1.10.19"
+  resolved "https://registry.yarnpkg.com/datatables.net-bs/-/datatables.net-bs-1.10.19.tgz#08763b4e4d0cef1a427d019dc15e717c7ed67a4d"
+  integrity sha512-5gxoI2n+duZP06+4xVC2TtH6zcY369/TRKTZ1DdSgDcDUl4OYQsrXCuaLJmbVzna/5Y5lrMmK7CxgvYgIynICA==
   dependencies:
-    datatables.net "1.10.16"
+    datatables.net "1.10.19"
     jquery ">=1.7"
 
 datatables.net-buttons-bs@^1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/datatables.net-buttons-bs/-/datatables.net-buttons-bs-1.4.2.tgz#87bc5d92770431565b208ab26dacea3a57a943c8"
+  version "1.5.6"
+  resolved "https://registry.yarnpkg.com/datatables.net-buttons-bs/-/datatables.net-buttons-bs-1.5.6.tgz#98e192ac2b75b09484fb5062ee3de32492abb5c0"
+  integrity sha512-yUqWHwMgyy0WHA1xovmofCuolbrjzqDfBdUfR7QCYvOU2JeJru5wfjkDXbIigNc9H7HhGurxcwv3EGcwnWmIkg==
   dependencies:
     datatables.net-bs "^1.10.15"
-    datatables.net-buttons "1.4.2"
+    datatables.net-buttons "1.5.6"
     jquery ">=1.7"
 
-datatables.net-buttons@1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/datatables.net-buttons/-/datatables.net-buttons-1.4.2.tgz#e391e1da4c20e381bc67bb1b8ce0ae36c9a3da49"
+datatables.net-buttons@1.5.6:
+  version "1.5.6"
+  resolved "https://registry.yarnpkg.com/datatables.net-buttons/-/datatables.net-buttons-1.5.6.tgz#30305a2ebc6c5e2ce5d32a8ef3649e0d5943d73a"
+  integrity sha512-FlJtjQ8dsr6xeHWETUCtUJEa7ZqKlphFb22+LXZs80LmJqpVbW84BkppwSoKK+F4k8eRr1tYr38dxcCvIIy0rw==
   dependencies:
     datatables.net "^1.10.15"
     jquery ">=1.7"
 
-datatables.net@1.10.16, datatables.net@^1.10.15:
-  version "1.10.16"
-  resolved "https://registry.yarnpkg.com/datatables.net/-/datatables.net-1.10.16.tgz#4b052d1082824261b68eed9d22741b711d3d2469"
+datatables.net@1.10.19, datatables.net@^1.10.15:
+  version "1.10.19"
+  resolved "https://registry.yarnpkg.com/datatables.net/-/datatables.net-1.10.19.tgz#97a1ed41c85e62d61040603481b59790a172dd1f"
+  integrity sha512-+ljXcI6Pj3PTGy5pesp3E5Dr3x3AV45EZe0o1r0gKENN2gafBKXodVnk2ypKwl2tTmivjxbkiqoWnipTefyBTA==
   dependencies:
     jquery ">=1.7"
 
 jquery@>=1.7, "jquery@>=1.7.1 <4.0.0", jquery@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
+  integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==

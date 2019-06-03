@@ -50,11 +50,12 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets"
         ],
         "post-install-cmd": [
-            "yarn --cwd ./src/Parp/SsfzBundle/Resources/public install",
+            "yarn install --frozen-lockfile --force --non-interactive",
             "@symfony-scripts"
         ],
         "post-update-cmd": [
-            "yarn --cwd ./src/Parp/SsfzBundle/Resources/public install",
+            "yarn install --force --non-interactive",
+            "yarn upgrade",
             "@symfony-scripts"
         ]
     },
