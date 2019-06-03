@@ -15,7 +15,7 @@
                 '%kernel.root_dir%/../vendor/assets/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css'
                 '%kernel.root_dir%/../vendor/assets/datatables.net-bs/css/dataTables.bootstrap.css'
                 '%kernel.root_dir%/../vendor/assets/datatables.net-buttons-bs/css/buttons.bootstrap.min.css'
-                '@SsfzBundle/Resources/public/css/app.css'
+                'bundles/ssfz/css/app.css'
                 filter='cssrewrite' %}
                 <link href="{{ asset_url }}" type="text/css" rel="stylesheet"/>
             {% endstylesheets %}
@@ -36,7 +36,7 @@
                 '%kernel.root_dir%/../vendor/assets/datatables.net-buttons-bs/js/buttons.bootstrap.min.js'
                 '%kernel.root_dir%/../vendor/assets/datatables.net-buttons/js/buttons.colVis.min.js'
                 '%kernel.root_dir%/../vendor/assets/datatables.net-buttons/js/buttons.print.min.js'
-                '@SsfzBundle/Resources/public/js/ssfz_common.js' %}
+                'bundles/ssfz/js/ssfz_common.js' %}
                 <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
         {% endblock %}
