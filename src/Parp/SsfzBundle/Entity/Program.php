@@ -27,15 +27,6 @@ class Program
     protected $id;
 
     /**
-     * Kolejność sortowania na listach.
-     *
-     * @var int
-     *
-     * @ORM\Column(name="kolejnosc", type="integer")
-     */
-    protected $kolejnosc;
-
-    /**
      * Nazwa programu.
      *
      * @var string
@@ -52,30 +43,6 @@ class Program
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set kolejnosc
-     *
-     * @param integer $kolejnosc
-     *
-     * @return Program
-     */
-    public function setKolejnosc($kolejnosc)
-    {
-        $this->kolejnosc = $kolejnosc;
-
-        return $this;
-    }
-
-    /**
-     * Get kolejnosc
-     *
-     * @return integer
-     */
-    public function getKolejnosc()
-    {
-        return $this->kolejnosc;
     }
 
     /**

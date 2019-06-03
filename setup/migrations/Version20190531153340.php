@@ -17,13 +17,13 @@ class Version20190531153340 extends AbstractMigration
     {
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE slownik_programow (id INT NOT NULL, kolejnosc INT NOT NULL, nazwa VARCHAR(64) NOT NULL, UNIQUE INDEX UNIQ_6D6A0E4B6017FD2E (nazwa), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE slownik_programow (id INT NOT NULL, nazwa VARCHAR(64) NOT NULL, UNIQUE INDEX UNIQ_6D6A0E4B6017FD2E (nazwa), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         
-        $this->addSql('INSERT INTO slownik_programow(id, kolejnosc, nazwa)
+        $this->addSql('INSERT INTO slownik_programow(id, nazwa)
             VALUES
-            (1, 1, \'Fundusz zalążkowy POIG 3.1\'),
-            (2, 2, \'Fundusz pożyczkowy SPO WKP 1.2.1\'),
-            (3, 3, \'Fundusz poręczeniowy SPO WKP 1.2.2\')
+            (1, \'Fundusz zalążkowy POIG 3.1\'),
+            (2, \'Fundusz pożyczkowy SPO WKP 1.2.1\'),
+            (3, \'Fundusz poręczeniowy SPO WKP 1.2.2\')
         ');
         
         $this->addSql('ALTER TABLE sfz_uzytkownik ADD aktywny_program_id INT DEFAULT NULL');

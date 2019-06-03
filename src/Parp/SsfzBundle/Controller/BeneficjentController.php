@@ -189,7 +189,7 @@ class BeneficjentController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $repoProgram = $entityManager->getRepository(Program::class);
         
-        $programy = $repoProgram->findBy([], ['kolejnosc' => 'ASC']);
+        $programy = $repoProgram->findBy([], ['id' => 'ASC']);
         
         $uzytkownik = $this->getZalogowanyUzytkownik();
         $uzytkownik->setAktywnyProgram(null);
