@@ -47,7 +47,7 @@ foreach ($ipDozwolone as $ip) {
 }
 if (true === $dostepZabroniony) {
     header('HTTP/1.0 403 Forbidden');
-    exit('Brak uprawnień do korzystania z zasobu.');
+    exit('Brak uprawnień do korzystania z zasobu dla adresu: '.(string) $remoteAddr);
 }
 // Koniec sprawdzania IP.
 
