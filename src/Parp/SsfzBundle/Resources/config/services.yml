@@ -2,8 +2,11 @@ services:
     app.twig_extension:
         class: Parp\SsfzBundle\Twig\AppExtension
         public: false
+        arguments: 
+            - '%kernel.root_dir%'
         tags:
             - { name: twig.extension }
+
     ssfz.repository.uzytkownik_repository:
         class: Parp\SsfzBundle\Repository\UzytkownikRepository
         factory: ['@doctrine', getRepository]
