@@ -1,24 +1,8 @@
-# Learn more about services, parameters and containers at
-# https://symfony.com/doc/current/service_container.html    
+# https://symfony.com/doc/current/service_container.html
 parameters:
-    #parameter_name: value
 
 services:
-    #service_name:
-    #    class: AppBundle\Directory\ClassName
-    #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
-    #app.ldap:
-    #    class: Symfony\Component\Ldap\LdapClient
-    #    arguments:
-    #        - 10.100.104.2   # host
-    #        - 389         # port
-    #        - 3           # version
-    #        - false       # SSL
-    #        - true        # TLS
-        
     ldap:
         class: Symfony\Component\Ldap\LdapClient
         arguments:
             ["@=container.getparameter('ldap')['host']", "@=container.getparameter('ldap')['port']", "%ldap_version%", "%ldap_ssl%", "%ldap_tls%"]
-            
-            
