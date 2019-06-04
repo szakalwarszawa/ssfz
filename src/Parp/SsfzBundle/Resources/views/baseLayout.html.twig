@@ -9,7 +9,8 @@
 
         <title>{% block title %}Sprawozdawczość{% endblock %}</title>
 
-        {% block stylesheets %}
+        {# Zasoby CSS wspólne -zawsze ładowane. #}
+        {% block base_stylesheets %}
             {% stylesheets
                 '%kernel.root_dir%/../vendor/assets/bootstrap/dist/css/bootstrap.min.css'
                 '%kernel.root_dir%/../vendor/assets/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css'
@@ -21,10 +22,14 @@
                 <link href="{{ asset_url }}" type="text/css" rel="stylesheet"/>
             {% endstylesheets %}
         {% endblock %}
+
+        {# Miejsce na zasoby CSS specyficzne dla poszczególnych szablonów. #}
+        {% block stylesheets %}{% endblock %}
     </head>
 
     <body>
-        {% block javascripts %}
+        {# Zasoby JS wspólne - zawsze ładowane. #}
+        {% block base_javascripts %}
             {% javascripts
                 '%kernel.root_dir%/../vendor/assets/jquery/dist/jquery.min.js'
                 '%kernel.root_dir%/../vendor/assets/bootstrap/dist/js/bootstrap.min.js'
@@ -38,10 +43,13 @@
                 '%kernel.root_dir%/../vendor/assets/datatables.net-buttons/js/buttons.colVis.min.js'
                 '%kernel.root_dir%/../vendor/assets/datatables.net-buttons/js/buttons.print.min.js'
                 '%kernel.root_dir%/../vendor/assets/@fortawesome/fontawesome-free/js/fontawesome.min.js'
-                'bundles/ssfz/js/ssfz_common.js' %}
+                '@SsfzBundle/Resources/public/js/ssfz_common.js' %}
                 <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
         {% endblock %}
+
+        {# Miejsce na zasoby JS specyficzne dla poszczególnych szablonów. #}
+        {% block javascripts %}{% endblock %}
 
         <nav class="navbar navbar-default">
             <div class="container-fluid">
