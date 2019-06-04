@@ -1,7 +1,7 @@
 var $umowyCollectionHolder;
 var $osobyZatrudnioneCollectionHolder ;
-var $addUmowaLink = $('<a href="#" class="btn btn-success" role="button"><span class="glyphicon glyphicon-plus"></span> Dodaj kolejną umowę</a>');
-var $addOsobaLink = $('<a href="#" class="btn btn-success" role="button"><span class="glyphicon glyphicon-plus"></span> Dodaj kolejną osobę</a>');
+var $addUmowaLink = $('<a href="#" class="btn btn-success" role="button"><span class="fas fa-plus"></span> Dodaj kolejną umowę</a>');
+var $addOsobaLink = $('<a href="#" class="btn btn-success" role="button"><span class="fas fa-plus"></span> Dodaj kolejną osobę</a>');
 var $newLinkUmowaDiv = $('<div></div>').append($addUmowaLink);
 var $newLinkOsobaDiv = $('<div></div>').append($addOsobaLink);
 
@@ -89,7 +89,7 @@ function addForm($collectionHolder, $newLinkDiv, $formType) {
 }
 
 function addFormDeleteLink($formDiv) {
-    var $removeFormA = $('<a class="btn btn-danger" href="#"><span class="glyphicon glyphicon-remove"></span> Usuń</a>');
+    var $removeFormA = $('<a class="btn btn-danger" href="#"><span class="fas fa-remove"></span> Usuń</a>');
     $formDiv.append($removeFormA);
     $removeFormA.on('click', function(e) {
         e.preventDefault();

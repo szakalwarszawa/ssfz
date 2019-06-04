@@ -62,7 +62,7 @@ function validateZatrudnieniSection(men_id,women_id,all_id,errorId)
             {
                 if(!$('#' + errorId).length)
                 {
-                    var error = '<span id="'+errorId+'" class="help-block"><span class="glyphicon glyphicon-exclamation-sign"></span> Suma zatrudnionych kobiet i mężczyzn powinna być równa liczbie osób zatrudnionych </span>';
+                    var error = '<span id="'+errorId+'" class="help-block"><span class="fas fa-exclamation-circle"></span> Suma zatrudnionych kobiet i mężczyzn powinna być równa liczbie osób zatrudnionych </span>';
                     $('#' + all_id).parent().append(error);
                 }
             }
@@ -284,7 +284,7 @@ jQuery(document).ready(function() {
             {
                 if(!$('#' + errorId).length)
                 {
-                    var error = '<span id="'+errorId+'" class="help-block"><span class="glyphicon glyphicon-exclamation-sign"></span> Suma zatrudnionych kobiet i mężczyzn powinna być równa liczbie osób zatrudnionych </span>';
+                    var error = '<span id="'+errorId+'" class="help-block"><span class="fas fa-exclamation-circle"></span> Suma zatrudnionych kobiet i mężczyzn powinna być równa liczbie osób zatrudnionych </span>';
                     $('#' + all_id).parent().append(error);
                 }
             }
@@ -320,7 +320,7 @@ jQuery(document).ready(function() {
             {
                 if(!$('#' + errorId).length)
                 {
-                    var error = '<span id="'+errorId+'" class="help-block"><span class="glyphicon glyphicon-exclamation-sign"></span> Suma zatrudnionych kobiet i mężczyzn powinna być równa liczbie osób zatrudnionych </span>';
+                    var error = '<span id="'+errorId+'" class="help-block"><span class="fas fa-exclamation-circle"></span> Suma zatrudnionych kobiet i mężczyzn powinna być równa liczbie osób zatrudnionych </span>';
                     $('#' + all_id).parent().append(error);
                 }
             }
@@ -372,7 +372,7 @@ jQuery(document).ready(function() {
             {
                 if(!$('#' + errorId).length)
                 {
-                    var error = '<span id="'+errorId+'" class="help-block"><span class="glyphicon glyphicon-exclamation-sign"></span> Suma zatrudnionych kobiet i mężczyzn powinna być równa liczbie osób zatrudnionych </span>';
+                    var error = '<span id="'+errorId+'" class="help-block"><span class="fas fa-exclamation-circle"></span> Suma zatrudnionych kobiet i mężczyzn powinna być równa liczbie osób zatrudnionych </span>';
                     $('#' + all_id).parent().append(error);
                 }
             }
@@ -409,7 +409,7 @@ jQuery(document).ready(function() {
             {
                 if(!$('#' + errorId).length)
                 {
-                    var error = '<span id="'+errorId+'" class="help-block"><span class="glyphicon glyphicon-exclamation-sign"></span> Suma zatrudnionych kobiet i mężczyzn powinna być równa liczbie osób zatrudnionych </span>';
+                    var error = '<span id="'+errorId+'" class="help-block"><span class="fas fa-exclamation-circle"></span> Suma zatrudnionych kobiet i mężczyzn powinna być równa liczbie osób zatrudnionych </span>';
                     $('#' + all_id).parent().append(error);
                 }
             }

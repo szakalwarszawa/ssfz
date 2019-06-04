@@ -5,7 +5,7 @@
     <div class="panel-heading"><h4>Sprawozdanie do umowy {{ sprawozdanie.numerUmowy }} za okres {{ sprawozdanie.okres }} {{ sprawozdanie.rok }}</h4></div>
     <div class="panel-body">
         {% include 'SsfzBundle:Parp:sprawozdanieForm.html.twig' with {'formS': formS, 'formP': formP } %}
-        <a href="{{ path('parp') }}" class="btn btn-danger pull-right" role="button"><span class="glyphicon glyphicon-chevron-left"></span> Powrót</a>
+        <a href="{{ path('parp') }}" class="btn btn-danger pull-right" role="button"><span class="fas fa-chevron-left"></span> Powrót</a>
     </div>
 </div>
 {% endblock %}
