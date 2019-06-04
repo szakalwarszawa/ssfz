@@ -9,7 +9,7 @@
             "Test\\": "tests/",
             "Application\\Migrations\\": "setup/migrations/"
         },
-        "classmap": ["app/AppKernel.php", "app/AppCache.php"]
+        "classmap": ["app/AppKernel.php", "app/AppCache.php", "app/AsseticScriptHandler.php"]
     },
     "autoload-dev": {
         "files": ["vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php"]
@@ -48,7 +48,8 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "AsseticScriptHandler::dumpAssets"
         ],
         "post-install-cmd": [
             "yarn install --frozen-lockfile --force --non-interactive",
