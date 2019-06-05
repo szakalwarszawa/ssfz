@@ -19,11 +19,17 @@ class AppExtension extends AbstractExtension
 
     /**
      * Konstruktor.
+     *
+     * @param string $kernelRootDir
      */
     public function __construct($kernelRootDir = '')
     {
         $config = HTMLPurifier_Config::createDefault();
-        $config->set('Cache.SerializerPath', $kernelRootDir.\DIRECTORY_SEPARATOR.'cache/htmlpurifier');
+        $cacheDir = $kernelRootDir.\DIRECTORY_SEPARATOR.'cache/htmlpurifier';
+        if (!file_exists($cacheDir)) {
+            mkdir($cacheDir, 0775, true);
+        }
+        $config->set('Cache.SerializerPath', $cacheDir);
         $this->htmlPurifier = new HTMLPurifier($config);
     }
 
