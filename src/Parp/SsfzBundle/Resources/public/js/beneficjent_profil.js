@@ -89,7 +89,7 @@ function addForm($collectionHolder, $newLinkDiv, $formType) {
 }
 
 function addFormDeleteLink($formDiv) {
-    var $removeFormA = $('<a class="btn btn-danger" href="#"><span class="fas fa-remove"></span> Usuń</a>');
+    var $removeFormA = $('<a class="btn btn-danger" href="#"><span class="fas fa-times"></span> Usuń</a>');
     $formDiv.append($removeFormA);
     $removeFormA.on('click', function(e) {
         e.preventDefault();
