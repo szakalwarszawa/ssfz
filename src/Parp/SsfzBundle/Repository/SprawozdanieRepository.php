@@ -24,4 +24,15 @@ class SprawozdanieRepository extends EntityRepository
 
         return $sprawozdanie;
     }
+    
+    public function czyTakieJuzIstnieje(Sprawozdanie $sprawozdanie)
+    {
+        $wynik = $this->findBy([
+            'umowa' => $sprawozdanie->getUmowa(),
+            'okresId' => $sprawozdanie->getOkresId(),
+            'rok' => $sprawozdanie->getRok(),
+        ]);
+        
+        return count($wynik) > 0;
+    }
 }

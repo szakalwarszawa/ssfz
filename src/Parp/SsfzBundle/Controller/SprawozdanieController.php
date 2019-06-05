@@ -13,6 +13,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use Parp\SsfzBundle\Entity\Report;
+use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Entity\Umowa;
+use Parp\SsfzBundle\Form\Type\SprawozdanieSpoDodajType;
 
 /**
  * Kontroler obsługujący funkcjonalności Sprawozdania
@@ -31,7 +34,10 @@ class SprawozdanieController extends Controller
      */
     public function indexAction(Request $request, $umowaId)
     {
-        $beneficjentId = $this->getBeneficjentId();
+        $entityManager = $this->getDoctrine()->getManager();
+        $umowa = $entityManager->getRepository(Umowa::class)->find($umowaId);
+        $beneficjent = $umowa->getBeneficjent();
+        $beneficjentId = $beneficjent->getId();
         $this->getSprawozdanieService()->datatableSprawozdanie($this, $beneficjentId, $umowaId);
         $report = new \Parp\SsfzBundle\Entity\Sprawozdanie();
         $report->setNumerUmowy($this->getNumerUmowy($umowaId, $beneficjentId));
@@ -40,7 +46,7 @@ class SprawozdanieController extends Controller
         $okresy = $this->getOkresySprawozdawcze();
 
         $form = $this->createForm(\Parp\SsfzBundle\Form\Type\SprawozdanieType::class, $report, array('okresy' => $okresy));
-        if (count($spolki) == 0) {
+        if (count($spolki) === 0 && true === $beneficjent->getProgram()->czyJestPortfelSpolek()) {
             $this->getKomunikatyService()->bladKomunikat('Aby dodać sprawozdanie należy wprowadzić dane spółek.', 'Uwaga!');
 
             return $this->pokarzFormularzRejestracji($form, 'not_allowed', $umowaId);
@@ -50,8 +56,6 @@ class SprawozdanieController extends Controller
             if (!$this->czySprawozdanieZaDobryOkres($report, $umowaId, $beneficjentId)) {
                 return $this->pokarzFormularzRejestracji($form, 'create', $umowaId);
             }
-            $entityManager = $this->getDoctrine()->getManager();
-            $umowa = $entityManager->getRepository(\Parp\SsfzBundle\Entity\Umowa::class)->find($umowaId);
             $report = $this->setDefaultValues($report, $umowa, $beneficjentId);
             $entityManager->persist($report);
             $entityManager->flush();
@@ -258,8 +262,12 @@ class SprawozdanieController extends Controller
      *
      * @return Sprawozdanie z ustawionymi parametrami domyślnymi
      */
-    public function setDefaultValues($report, $umowa, $beneficjentId)
+    public function setDefaultValues($report, $umowa, $beneficjentId = null)
     {
+        if (empty($beneficjentId)) {
+            $beneficjentId = $umowa->getBeneficjent()->getId();
+        }
+        
         $report->setCreatorId($beneficjentId);
         $report->setWersja(1);
         $report->setUmowa($umowa);
@@ -514,5 +522,118 @@ class SprawozdanieController extends Controller
         }
 
         return true;
+    }
+
+    /**
+     * Lista sprawozdań - dla funduszy SPO WKP.
+     *
+     * @param Request $request
+     * @param Umowa $umowa
+     *
+     * @Route("sprawozdania/spo_lista/{umowa}", name="lista_sprawozdan_spo")
+     *
+     * @return Response
+     */
+    public function listaSpoAction(Request $request, Umowa $umowa)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $sprawozdanie = new Sprawozdanie();
+        $sprawozdanie = $this->setDefaultValues($sprawozdanie, $umowa);
+        $sprawozdanie->setNumerUmowy($umowa->getNumer());
+        $okresy = $this->getOkresySprawozdawcze();
+        $form = $this->createForm(
+            SprawozdanieSpoDodajType::class,
+            $sprawozdanie,
+            array('okresy' => $okresy)
+        );
+        
+        $repoSprawozdanie = $entityManager->getRepository(Sprawozdanie::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            $czyTakieJuzIstnieje = $repoSprawozdanie->czyTakieJuzIstnieje($sprawozdanie);
+            if ($czyTakieJuzIstnieje) {
+                $this->getKomunikatyService()->bladKomunikat('Już istnieje sprawozdanie dla tego roku i okresu.');
+            } else {
+                $entityManager->persist($sprawozdanie);
+                $entityManager->flush();
+                $this->getKomunikatyService()->sukcesKomunikat('Dodano nowe sprawozdanie.');
+                return $this->redirectToRoute(
+                    'spo_edycja_sprawozdania_spo',
+                    array('umowa' => $umowa->getId())
+                );
+            }
+        }
+        
+        $listaSprawozdan = $repoSprawozdanie->findBy(
+            ['umowa' => $umowa],
+            ['rok' => 'ASC', 'okresId' => 'ASC', 'id' => 'ASC']
+        );
+
+        return $this->render(
+            'SsfzBundle:Sprawozdanie:listaSpo.html.twig',
+            array(
+                'umowa' => $umowa,
+                'listaSprawozdan' => $listaSprawozdan,
+                'form' => $form->createView(),
+            )
+        );
+    }
+
+    /**
+     * Lista sprawozdań - dla funduszy SPO WKP.
+     *
+     * @param Request $request
+     * @param Umowa $umowa
+     *
+     * @Route("sprawozdania/spo_edycja/{sprawozdanie}", name="spo_edycja_sprawozdania_spo")
+     *
+     * @return Response
+     */
+    public function edycjaSpoAction(Request $request, Umowa $umowa)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $sprawozdanie = new Sprawozdanie();
+        $sprawozdanie = $this->setDefaultValues($sprawozdanie, $umowa);
+        $sprawozdanie->setNumerUmowy($umowa->getNumer());
+        $okresy = $this->getOkresySprawozdawcze();
+        $form = $this->createForm(
+            SprawozdanieSpoDodajType::class,
+            $sprawozdanie,
+            array('okresy' => $okresy)
+        );
+        
+        $repoSprawozdanie = $entityManager->getRepository(Sprawozdanie::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            $czyTakieJuzIstnieje = $repoSprawozdanie->czyTakieJuzIstnieje($sprawozdanie);
+            if ($czyTakieJuzIstnieje) {
+                $this->getKomunikatyService()->bladKomunikat('Już istnieje sprawozdanie dla tego roku i okresu.');
+            } else {
+                $entityManager->persist($sprawozdanie);
+                $entityManager->flush();
+                $this->getKomunikatyService()->sukcesKomunikat('Dodano nowe sprawozdanie.');
+exit('REDIRECT_listaSpoAction');
+            }
+        }
+        
+        $listaSprawozdan = $repoSprawozdanie->findBy(
+            ['umowa' => $umowa],
+            ['rok' => 'ASC', 'okresId' => 'ASC', 'id' => 'ASC']
+        );
+
+        return $this->render(
+            'SsfzBundle:Sprawozdanie:listaSpo.html.twig',
+            array(
+                'umowa' => $umowa,
+                'listaSprawozdan' => $listaSprawozdan,
+                'form' => $form->createView(),
+            )
+        );
     }
 }

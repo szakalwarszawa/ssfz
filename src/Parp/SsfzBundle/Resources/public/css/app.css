@@ -30,8 +30,12 @@ a:hover {
   pointer-events: none;
 }
 
-.width-short {
+.width-xshort {
     width: 100px;
+}
+
+.width-short {
+    width: 150px;
 }
 
 .width-medium {
@@ -44,4 +48,12 @@ a:hover {
 
 .center {
     text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.btn-toolbar {
+    padding-right: 20px;
 }
