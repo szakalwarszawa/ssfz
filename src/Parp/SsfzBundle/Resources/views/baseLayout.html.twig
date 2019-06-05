@@ -13,10 +13,11 @@
         {% block base_stylesheets %}
             {% stylesheets
                 '%kernel.root_dir%/../vendor/assets/bootstrap/dist/css/bootstrap.min.css'
+                '%kernel.root_dir%/../vendor/assets/bootstrap/dist/css/bootstrap.min.css.map'
+                '%kernel.root_dir%/../vendor/assets/@fortawesome/fontawesome-free/css/fontawesome.min.css'
                 '%kernel.root_dir%/../vendor/assets/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css'
                 '%kernel.root_dir%/../vendor/assets/datatables.net-bs/css/dataTables.bootstrap.css'
                 '%kernel.root_dir%/../vendor/assets/datatables.net-buttons-bs/css/buttons.bootstrap.min.css'
-                '%kernel.root_dir%/../vendor/assets/@fortawesome/fontawesome-free/css/fontawesome.min.css'
                 'bundles/ssfz/css/app.css'
                 filter='cssrewrite' %}
                 <link href="{{ asset_url }}" type="text/css" rel="stylesheet"/>
