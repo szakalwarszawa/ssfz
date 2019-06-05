@@ -3,7 +3,7 @@
 namespace Parp\SsfzBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Entity\AbstractSprawozdanie;
 
 /**
  * Description of SprawozdanieRepository
@@ -13,11 +13,11 @@ class SprawozdanieRepository extends EntityRepository
     /**
      * Dodanie nowego sprawozdania do bazy danych
      *
-     * @param \Parp\SsfzBundle\Entity\Sprawozdanie $sprawozdanie
+     * @param AbstractSprawozdanie $sprawozdanie
      *
-     * @return Sprawozdanie
+     * @return AbstractSprawozdanie
      */
-    public function persist(\Parp\SsfzBundle\Entity\Sprawozdanie $sprawozdanie)
+    public function persist(AbstractSprawozdanie $sprawozdanie)
     {
         $this->_em->persist($sprawozdanie);
         $this->_em->flush();
@@ -25,7 +25,14 @@ class SprawozdanieRepository extends EntityRepository
         return $sprawozdanie;
     }
     
-    public function czyTakieJuzIstnieje(Sprawozdanie $sprawozdanie)
+    /**
+     * Sprawdzenie, czy już istnieje sprawozdanie o takich parametrach
+     *
+     * @param AbstractSprawozdanie $sprawozdanie
+     *
+     * @return bool
+     */
+    public function czyTakieJuzIstnieje(AbstractSprawozdanie $sprawozdanie)
     {
         $wynik = $this->findBy([
             'umowa' => $sprawozdanie->getUmowa(),

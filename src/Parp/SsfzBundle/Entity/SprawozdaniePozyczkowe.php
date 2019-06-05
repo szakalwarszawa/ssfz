@@ -7,13 +7,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Doctrine\Common\Collections\ArrayCollection;
-use Parp\SsfzBundle\Entity\Slowniki\FormaPrawna;
 
 /**
  * SprawozdaniePozyczkowe
  *
  * @ORM\Table(name="sfz_sprawozdanie_pozyczkowe")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Parp\SsfzBundle\Repository\SprawozdaniePozyczkoweRepository")
  */
 class SprawozdaniePozyczkowe extends AbstractSprawozdanieSpo
 {

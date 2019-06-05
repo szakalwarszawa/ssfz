@@ -12,8 +12,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use Parp\SsfzBundle\Entity\Program;
 use Parp\SsfzBundle\Entity\Report;
 use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
+use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
 use Parp\SsfzBundle\Entity\Umowa;
 use Parp\SsfzBundle\Form\Type\SprawozdanieSpoDodajType;
 
@@ -38,7 +41,7 @@ class SprawozdanieController extends Controller
         $umowa = $entityManager->getRepository(Umowa::class)->find($umowaId);
         $beneficjent = $umowa->getBeneficjent();
         $beneficjentId = $beneficjent->getId();
-        $this->getSprawozdanieService()->datatableSprawozdanie($this, $beneficjentId, $umowaId);
+        $this->getSprawozdanieService()->datatableSprawozdanie($this, $umowa);
         $report = new \Parp\SsfzBundle\Entity\Sprawozdanie();
         $report->setNumerUmowy($this->getNumerUmowy($umowaId, $beneficjentId));
         $spolki = $this->getSpolkiList($umowaId);
@@ -131,7 +134,7 @@ class SprawozdanieController extends Controller
             throw $this->createNotFoundException('Nie można edytować sprawozdania');
         }
         $umowaId = $report->getUmowaId();
-        $this->getSprawozdanieService()->datatableSprawozdanie($this, $beneficjentId, $umowaId);
+        $this->getSprawozdanieService()->datatableSprawozdanie($this, $report->getUmowa());
         $okresy = $this->getOkresySprawozdawcze();
 
         if ($request->query->get('odswiezSpolki') !== null) {
@@ -178,7 +181,7 @@ class SprawozdanieController extends Controller
         $report = $entityManager->getRepository(\Parp\SsfzBundle\Entity\Sprawozdanie::class)->find($reportId);
         $this->getSprawozdanieService()->checkSprawozdaniePermission($report, $beneficjentId);
         $umowaId = $report->getUmowaId();
-        $this->getSprawozdanieService()->datatableSprawozdanie($this, $beneficjentId, $umowaId);
+        $this->getSprawozdanieService()->datatableSprawozdanie($this, $report->getUmowa());
         if ($report->getStatus() != 4) {
             throw $this->createNotFoundException('Nie można poprawić sprawozdania');
         }
@@ -309,17 +312,19 @@ class SprawozdanieController extends Controller
     /**
      * Grid action
      *
-     * @Route("/gridSprawozdanie/{umowaId}", name="datatableSprawozdanie")
+     * @Route("/gridSprawozdanie/{umowa}", name="datatableSprawozdanie")
      *
-     * @param int $umowaId
+     * @param Umowa $umowa
      *
      * @return Response
      */
-    public function sprawozdanieGridAction($umowaId)
+    public function sprawozdanieGridAction(Umowa $umowa)
     {
-        $beneficjentId = $this->getBeneficjentId();
-
-        return $this->getSprawozdanieService()->datatableSprawozdanie($this, $beneficjentId, $umowaId)->execute();
+        return $this
+            ->getSprawozdanieService()
+            ->datatableSprawozdanie($this, $umowa)
+            ->execute()
+        ;
     }
 
     /**
@@ -537,8 +542,14 @@ class SprawozdanieController extends Controller
     public function listaSpoAction(Request $request, Umowa $umowa)
     {
         $entityManager = $this->getDoctrine()->getManager();
+        
+        $czyPozyczkowe = (Program::FUNDUSZ_POZYCZKOWY_SPO_WKP_121 === (int) $umowa->getBeneficjent()->getProgram()->getId());
 
-        $sprawozdanie = new Sprawozdanie();
+        $sprawozdanie =
+            $czyPozyczkowe
+            ? new SprawozdaniePozyczkowe()
+            : new SprawozdaniePoreczeniowe()
+        ;
         $sprawozdanie = $this->setDefaultValues($sprawozdanie, $umowa);
         $sprawozdanie->setNumerUmowy($umowa->getNumer());
         $okresy = $this->getOkresySprawozdawcze();
@@ -548,7 +559,13 @@ class SprawozdanieController extends Controller
             array('okresy' => $okresy)
         );
         
-        $repoSprawozdanie = $entityManager->getRepository(Sprawozdanie::class);
+        $program = $umowa->getBeneficjent()->getProgram();
+        
+        $repoSprawozdanie = $this
+            ->getSprawozdanieService()
+            ->wyznaczRepozytoriumDlaProgramu($program)
+            ->getSprawozdanieRepository()
+        ;
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -562,7 +579,7 @@ class SprawozdanieController extends Controller
                 $this->getKomunikatyService()->sukcesKomunikat('Dodano nowe sprawozdanie.');
                 return $this->redirectToRoute(
                     'spo_edycja_sprawozdania_spo',
-                    array('umowa' => $umowa->getId())
+                    array('sprawozdanie' => $sprawozdanie->getId())
                 );
             }
         }
@@ -585,14 +602,14 @@ class SprawozdanieController extends Controller
     /**
      * Lista sprawozdań - dla funduszy SPO WKP.
      *
-     * @param Request $request
-     * @param Umowa $umowa
-     *
      * @Route("sprawozdania/spo_edycja/{sprawozdanie}", name="spo_edycja_sprawozdania_spo")
+     *
+     * @param Request $request
+     * Sprawozdanie $sprawozdanie
      *
      * @return Response
      */
-    public function edycjaSpoAction(Request $request, Umowa $umowa)
+    public function edycjaSpoAction(Request $request, Sprawozdanie $sprawozdanie)
     {
         $entityManager = $this->getDoctrine()->getManager();
 

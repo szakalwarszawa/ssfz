@@ -15,7 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Entity\AbstractSprawozdanieSpo;
 
 /**
  * Typ formularza sprawozdania
@@ -69,7 +69,7 @@ class SprawozdanieSpoDodajType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => Sprawozdanie::class,
+            'data_class' => AbstractSprawozdanieSpo::class,
             'attr' => array('novalidate' => 'novalidate'),
             'showRemarks' => null,
             'okresy' => null,

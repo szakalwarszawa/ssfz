@@ -5,12 +5,13 @@ namespace Parp\SsfzBundle\Entity;
 use Date;
 use Doctrine\ORM\Mapping as ORM;
 use Parp\SsfzBundle\Entity\Slowniki\FormaPrawna;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * SprawozdaniePoreczeniowe
  *
  * @ORM\Table(name="sfz_sprawozdanie_poreczeniowe")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Parp\SsfzBundle\Repository\SprawozdaniePoreczenioweRepository")
  */
 class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
 {

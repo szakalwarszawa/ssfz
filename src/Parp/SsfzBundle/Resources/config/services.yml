@@ -88,7 +88,7 @@ services:
 
     ssfz.service.sprawozdanie_service:
         class: Parp\SsfzBundle\Service\SprawozdanieService
-        arguments: ['@ssfz.repository.sprawozdanie_repository']
+        arguments: ['@doctrine.orm.entity_manager']
 
     ssfz.service.komunikaty_service:
         class: Parp\SsfzBundle\Service\KomunikatyService
