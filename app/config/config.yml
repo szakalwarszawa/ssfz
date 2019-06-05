@@ -78,13 +78,54 @@ swiftmailer:
 assetic:
     debug:          '%kernel.debug%'
     use_controller: '%kernel.debug%'
+    assets:
+        fontawesome_eot:
+            inputs:
+                - '%kernel.root_dir%/../vendor/assets/@fortawesome/fontawesome-free/webfonts/fa-solid-900.eot'
+            output: 'webfonts/fa-solid-900.eot'
+        fontawesome_svg:
+            inputs:
+                - '%kernel.root_dir%/../vendor/assets/@fortawesome/fontawesome-free/webfonts/fa-solid-900.svg'
+            output: 'webfonts/fa-solid-900.svg'
+        fontawesome_ttf:
+            inputs:
+                - '%kernel.root_dir%/../vendor/assets/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf'
+            output: 'webfonts/fa-solid-900.ttf'
+        fontawesome_woff:
+            inputs:
+                - '%kernel.root_dir%/../vendor/assets/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff'
+            output: 'webfonts/fa-solid-900.woff'
+        fontawesome_woff2:
+            inputs:
+                - '%kernel.root_dir%/../vendor/assets/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2'
+            output: 'webfonts/fa-solid-900.woff2'
+        glyphicons_eot:
+            inputs:
+                - '%kernel.root_dir%/../vendor/assets/bootstrap/fonts/glyphicons-halflings-regular.eot'
+            output: 'fonts/glyphicons-halflings-regular.eot'
+        glyphicons_svg:
+            inputs:
+                - '%kernel.root_dir%/../vendor/assets/bootstrap/fonts/glyphicons-halflings-regular.svg'
+            output: 'fonts/glyphicons-halflings-regular.svg'
+        glyphicons_ttf:
+            inputs:
+                - '%kernel.root_dir%/../vendor/assets/bootstrap/fonts/glyphicons-halflings-regular.ttf'
+            output: 'fonts/glyphicons-halflings-regular.ttf'
+        glyphicons_woff:
+            inputs:
+                - '%kernel.root_dir%/../vendor/assets/bootstrap/fonts/glyphicons-halflings-regular.woff'
+            output: 'fonts/glyphicons-halflings-regular.woff'
+        glyphicons_woff2:
+            inputs:
+                - '%kernel.root_dir%/../vendor/assets/bootstrap/fonts/glyphicons-halflings-regular.woff2'
+            output: 'fonts/glyphicons-halflings-regular.woff2'
     filters:
         cssrewrite: ~
 
 waldo_datatable:
     all:    ~
     js:    
-        language : 
+        language :
             are_you_sure: Jesteś pewny ?
             you_need_to_select_at_least_one_element: Musisz wybrać co najmniej jeden element.
             #search: Szukaj
