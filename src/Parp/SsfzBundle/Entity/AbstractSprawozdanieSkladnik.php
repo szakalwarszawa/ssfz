@@ -18,13 +18,6 @@ class AbstractSprawozdanieSkladnik
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
-    /**
-     * Sprawozdanie.
-     *
-     * @var AbstractSprawozdanieSpo
-     */
-    protected $sprawozdanie;
     
     /**
      * Forma prawna.

@@ -2,6 +2,7 @@
 
 namespace Parp\SsfzBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -29,7 +30,7 @@ class AbstractSprawozdanie
     protected $creatorId;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      *
      * @ORM\Column(name="data_rejestracji", type="datetime", nullable=false)
      */

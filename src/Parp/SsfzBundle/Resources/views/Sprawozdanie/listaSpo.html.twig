@@ -35,7 +35,11 @@
                             <td>{{ sprawozdanie.rok }}</td>
                             <td>{{ sprawozdanie.okres }}</td>
                             <td>{{ sprawozdanie.status }}</td>
-                            <td></td>
+                            <td>
+                                <a href="{{ path('sprawozdania_pozyczkowe_edycja', {'sprawozdanie': sprawozdanie.id}) }}" class="btn btn-sm btn-primary" role="button">
+                                    <i class="fas fa-edit"></i> Edytuj
+                                </a>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>

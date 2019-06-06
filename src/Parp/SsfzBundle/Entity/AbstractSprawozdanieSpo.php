@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Parp\SsfzBundle\Entity\Slowniki\FormaPrawna;
+use Parp\SsfzBundle\Entity\Slowniki\TakNie;
 
 /**
  * AbstractSprawozdanieSpo
@@ -182,18 +183,20 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
     /**
      * Fundusz nie działa dla zysku.
      *
-     * @var bool
+     * @var TakNie
      *
-     * @ORM\Column(name="czy_nie_dziala_dla_zysku", type="boolean", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slowniki\TakNie")
+     * @ORM\JoinColumn(name="czy_nie_dziala_dla_zysku", referencedColumnName="id", nullable=true)
      */
     protected $czyNieDzialaDlaZysku;
 
     /**
      * Fundusz udziela pożyczek po analizie ryzyka niespłacenia i po ustanowieniu zabezpieczenia.
      *
-     * @var bool
+     * @var TakNie
      *
-     * @ORM\Column(name="czy_udziela_po_analizie_ryzyka", type="boolean", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slowniki\TakNie")
+     * @ORM\JoinColumn(name="czy_udziela_po_analizie_ryzyka", referencedColumnName="id", nullable=true)
      */
     protected $czyUdzielaPoAnalizieRyzyka;
 
@@ -209,27 +212,30 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
     /**
      * Pożyczki udzielane są przedsiębiorcom nie będącym w trudniej sytuacji.
      *
-     * @var bool
+     * @var TakNie
      *
-     * @ORM\Column(name="czy_nie_w_trudnej_sytuacji", type="boolean", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slowniki\TakNie")
+     * @ORM\JoinColumn(name="czy_nie_w_trudnej_sytuacji", referencedColumnName="id", nullable=true)
      */
     protected $czyNieWTrudnejSytuacji;
 
     /**
      * Fundusz posiada odpowiedni potencjał ekonomiczny.
      *
-     * @var bool
+     * @var TakNie
      *
-     * @ORM\Column(name="czy_odpowiedni_potencjal_ekonomiczny", type="boolean", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slowniki\TakNie")
+     * @ORM\JoinColumn(name="czy_odpowiedni_potencjal_ekonomiczny", referencedColumnName="id", nullable=true)
      */
     protected $czyOdpowiedniPotencjalEkonomiczny;
 
     /**
      * Fundusz zatrudnia pracowników posiadających odpowiednie kwalifikacje.
      *
-     * @var bool
+     * @var TakNie
      *
-     * @ORM\Column(name="czy_pracownicy_posiadaja_kwalifikacje", type="boolean", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slowniki\TakNie")
+     * @ORM\JoinColumn(name="czy_pracownicy_posiadaja_kwalifikacje", referencedColumnName="id", nullable=true)
      */
     protected $czyPracownicyPosiadajaKwalifikacje;
 
@@ -629,7 +635,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
     /**
      * Set powiadomienieWyslane
      *
-     * @param boolean $powiadomienieWyslane
+     * @param TakNie $powiadomienieWyslane
      *
      * @return AbstractSprawozdanieSpo
      */
@@ -691,11 +697,11 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
     /**
      * Set czyNieDzialaDlaZysku
      *
-     * @param boolean $czyNieDzialaDlaZysku
+     * @param TakNie $czyNieDzialaDlaZysku
      *
      * @return SprawozdaniePozyczkowe
      */
-    public function setCzyNieDzialaDlaZysku($czyNieDzialaDlaZysku)
+    public function setCzyNieDzialaDlaZysku(TakNie $czyNieDzialaDlaZysku)
     {
         $this->czyNieDzialaDlaZysku = $czyNieDzialaDlaZysku;
 
@@ -705,7 +711,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
     /**
      * Get czyNieDzialaDlaZysku
      *
-     * @return boolean
+     * @return TakNie
      */
     public function getCzyNieDzialaDlaZysku()
     {
@@ -715,11 +721,11 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
     /**
      * Set czyUdzielaPoAnalizieRyzyka
      *
-     * @param boolean $czyUdzielaPoAnalizieRyzyka
+     * @param TakNie $czyUdzielaPoAnalizieRyzyka
      *
      * @return SprawozdaniePozyczkowe
      */
-    public function setCzyUdzielaPoAnalizieRyzyka($czyUdzielaPoAnalizieRyzyka)
+    public function setCzyUdzielaPoAnalizieRyzyka(TakNie $czyUdzielaPoAnalizieRyzyka)
     {
         $this->czyUdzielaPoAnalizieRyzyka = $czyUdzielaPoAnalizieRyzyka;
 
@@ -729,7 +735,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
     /**
      * Get czyUdzielaPoAnalizieRyzyka
      *
-     * @return boolean
+     * @return TakNie
      */
     public function getCzyUdzielaPoAnalizieRyzyka()
     {
@@ -763,11 +769,11 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
     /**
      * Set czyNieWTrudnejSytuacji
      *
-     * @param boolean $czyNieWTrudnejSytuacji
+     * @param TakNie $czyNieWTrudnejSytuacji
      *
      * @return SprawozdaniePozyczkowe
      */
-    public function setCzyNieWTrudnejSytuacji($czyNieWTrudnejSytuacji)
+    public function setCzyNieWTrudnejSytuacji(TakNie $czyNieWTrudnejSytuacji)
     {
         $this->czyNieWTrudnejSytuacji = $czyNieWTrudnejSytuacji;
 
@@ -777,7 +783,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
     /**
      * Get czyNieWTrudnejSytuacji
      *
-     * @return boolean
+     * @return TakNie
      */
     public function getCzyNieWTrudnejSytuacji()
     {
@@ -787,11 +793,11 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
     /**
      * Set czyOdpowiedniPotencjalEkonomiczny
      *
-     * @param boolean $czyOdpowiedniPotencjalEkonomiczny
+     * @param TakNie $czyOdpowiedniPotencjalEkonomiczny
      *
      * @return SprawozdaniePozyczkowe
      */
-    public function setCzyOdpowiedniPotencjalEkonomiczny($czyOdpowiedniPotencjalEkonomiczny)
+    public function setCzyOdpowiedniPotencjalEkonomiczny(TakNie $czyOdpowiedniPotencjalEkonomiczny)
     {
         $this->czyOdpowiedniPotencjalEkonomiczny = $czyOdpowiedniPotencjalEkonomiczny;
 
@@ -801,7 +807,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
     /**
      * Get czyOdpowiedniPotencjalEkonomiczny
      *
-     * @return boolean
+     * @return TakNie
      */
     public function getCzyOdpowiedniPotencjalEkonomiczny()
     {
@@ -811,11 +817,11 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
     /**
      * Set czyPracownicyPosiadajaKwalifikacje
      *
-     * @param boolean $czyPracownicyPosiadajaKwalifikacje
+     * @param TakNie $czyPracownicyPosiadajaKwalifikacje
      *
      * @return SprawozdaniePozyczkowe
      */
-    public function setCzyPracownicyPosiadajaKwalifikacje($czyPracownicyPosiadajaKwalifikacje)
+    public function setCzyPracownicyPosiadajaKwalifikacje(TakNie $czyPracownicyPosiadajaKwalifikacje)
     {
         $this->czyPracownicyPosiadajaKwalifikacje = $czyPracownicyPosiadajaKwalifikacje;
 
@@ -825,7 +831,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
     /**
      * Get czyPracownicyPosiadajaKwalifikacje
      *
-     * @return boolean
+     * @return TakNie
      */
     public function getCzyPracownicyPosiadajaKwalifikacje()
     {

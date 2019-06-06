@@ -5,7 +5,6 @@ namespace Parp\SsfzBundle\Service;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Parp\SsfzBundle\Entity\Program;
 use Parp\SsfzBundle\Entity\Sprawozdanie;
 use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
@@ -24,11 +23,6 @@ class SprawozdanieService
      * @var EntityManager
      */
     protected $entityManager;
-
-    /**
-     * @var TokenStorage
-     */
-    protected $tokenStorage;
 
     /**
      * @var EntityRepository

@@ -71,7 +71,7 @@ services:
 
     ssfz.service.narzedzia_service:
         class: Parp\SsfzBundle\Service\NarzedziaService
-        arguments: ['@ssfz.repository.beneficjent_forma_prawna_repository', '@ssfz.repository.wojewodztwo_repository', '@ssfz.repository.gospodarka_dzial_repository']
+        arguments: ['@doctrine.orm.entity_manager', '@ssfz.repository.beneficjent_forma_prawna_repository', '@ssfz.repository.wojewodztwo_repository', '@ssfz.repository.gospodarka_dzial_repository']
 
     ssfz.service.datatable_parp_service:
         class: Parp\SsfzBundle\Service\DatatableParpService

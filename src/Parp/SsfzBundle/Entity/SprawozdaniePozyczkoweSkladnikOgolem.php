@@ -13,4 +13,37 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class SprawozdaniePozyczkoweSkladnikOgolem extends AbstractSprawozdanieSkladnik
 {
+    /**
+     * Sprawozdanie.
+     *
+     * @var SprawozdaniePozyczkowe
+     *
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe", inversedBy="skladnikiOgolem", cascade = {"persist"})
+     * @ORM\JoinColumn(name="sprawozdanie_pozyczkowe_id", referencedColumnName="id")
+     */
+    protected $sprawozdanie;
+
+    /**
+     * Set sprawozdanie
+     *
+     * @param SprawozdaniePozyczkowe $sprawozdanie
+     *
+     * @return SprawozdaniePozyczkoweSkladnikOgolem
+     */
+    public function setSprawozdanie(SprawozdaniePozyczkowe $sprawozdanie = null)
+    {
+        $this->sprawozdanie = $sprawozdanie;
+
+        return $this;
+    }
+
+    /**
+     * Get sprawozdanie
+     *
+     * @return SprawozdaniePozyczkowe
+     */
+    public function getSprawozdanie()
+    {
+        return $this->sprawozdanie;
+    }
 }

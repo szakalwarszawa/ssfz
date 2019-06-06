@@ -30,6 +30,10 @@ a:hover {
   pointer-events: none;
 }
 
+.width-date {
+    width: 100px;
+}
+
 .width-xshort {
     width: 100px;
 }
@@ -56,4 +60,10 @@ a:hover {
 
 .btn-toolbar {
     padding-right: 20px;
+}
+
+td.etykieta {
+    text-align: right;
+    font-weight: bold;
+    width: 200px;
 }

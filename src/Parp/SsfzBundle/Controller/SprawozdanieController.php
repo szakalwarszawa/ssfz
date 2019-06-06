@@ -18,6 +18,7 @@ use Parp\SsfzBundle\Entity\Sprawozdanie;
 use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
 use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
 use Parp\SsfzBundle\Entity\Umowa;
+use Parp\SsfzBundle\Form\Type\SprawozdaniePozyczkoweType;
 use Parp\SsfzBundle\Form\Type\SprawozdanieSpoDodajType;
 
 /**
@@ -114,7 +115,7 @@ class SprawozdanieController extends Controller
     }
 
     /**
-     * @Route("sprawozdanie/edycja/{umowaId}/{reportId}")
+     * @Route("sprawozdanie/edycja/{umowaId}/{reportId}", name="sprawozdanie_zalazkowe_edycja")
      *
      * @param Request $request
      * @param int     $umowaId
@@ -578,7 +579,7 @@ class SprawozdanieController extends Controller
                 $entityManager->flush();
                 $this->getKomunikatyService()->sukcesKomunikat('Dodano nowe sprawozdanie.');
                 return $this->redirectToRoute(
-                    'spo_edycja_sprawozdania_spo',
+                    $czyPozyczkowe ? 'sprawozdania_pozyczkowe_edycja' : 'sprawozdania_poreczeniowe_edycja',
                     array('sprawozdanie' => $sprawozdanie->getId())
                 );
             }
@@ -602,29 +603,25 @@ class SprawozdanieController extends Controller
     /**
      * Lista sprawozdań - dla funduszy SPO WKP.
      *
-     * @Route("sprawozdania/spo_edycja/{sprawozdanie}", name="spo_edycja_sprawozdania_spo")
+     * @Route("sprawozdania/pozyczkowe/edycja/{sprawozdanie}", name="sprawozdania_pozyczkowe_edycja")
      *
      * @param Request $request
-     * Sprawozdanie $sprawozdanie
+     * SprawozdaniePozyczkowe $sprawozdanie
      *
      * @return Response
      */
-    public function edycjaSpoAction(Request $request, Sprawozdanie $sprawozdanie)
+    public function edycjaSpoAction(Request $request, SprawozdaniePozyczkowe $sprawozdanie)
     {
         $entityManager = $this->getDoctrine()->getManager();
 
-        $sprawozdanie = new Sprawozdanie();
-        $sprawozdanie = $this->setDefaultValues($sprawozdanie, $umowa);
-        $sprawozdanie->setNumerUmowy($umowa->getNumer());
-        $okresy = $this->getOkresySprawozdawcze();
         $form = $this->createForm(
-            SprawozdanieSpoDodajType::class,
+            SprawozdaniePozyczkoweType::class,
             $sprawozdanie,
-            array('okresy' => $okresy)
+            array(
+                'narzedzia_svc' => $this->get('ssfz.service.narzedzia_service')
+            )
         );
         
-        $repoSprawozdanie = $entityManager->getRepository(Sprawozdanie::class);
-
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             
@@ -639,16 +636,10 @@ exit('REDIRECT_listaSpoAction');
             }
         }
         
-        $listaSprawozdan = $repoSprawozdanie->findBy(
-            ['umowa' => $umowa],
-            ['rok' => 'ASC', 'okresId' => 'ASC', 'id' => 'ASC']
-        );
-
         return $this->render(
-            'SsfzBundle:Sprawozdanie:listaSpo.html.twig',
+            'SsfzBundle:Sprawozdanie:pozyczkoweEdycja.html.twig',
             array(
-                'umowa' => $umowa,
-                'listaSprawozdan' => $listaSprawozdan,
+                'sprawozdanie' => $sprawozdanie,
                 'form' => $form->createView(),
             )
         );
