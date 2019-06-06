@@ -1,4 +1,5 @@
 {% extends "SsfzBundle::baseLayout.html.twig" %}
+
 {% block body %}
     <div class="panel panel-default">
         <div class="panel-heading">Przepływ finansowy</div>
@@ -50,6 +51,6 @@
 
 {% block javascripts %}
     {% javascripts '@SsfzBundle/Resources/public/js/sprawozdanie.js' %}
-    <script src="{{ asset_url }}"></script>
+        <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}
