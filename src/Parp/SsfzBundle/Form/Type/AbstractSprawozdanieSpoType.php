@@ -2,6 +2,7 @@
 
 namespace Parp\SsfzBundle\Form\Type;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -12,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Validator\Constraints;
 use Symfony\Component\Validator\Constraints\Count;
+use Symfony\Component\Validator\Constraints\TypeValidator;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\LessThan;
 use Symfony\Component\Validator\Constraints\Length;
@@ -23,13 +25,23 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Parp\SsfzBundle\Entity\AbstractSprawozdanieSpo;
+use Parp\SsfzBundle\Entity\Wojewodztwo;
+use Parp\SsfzBundle\Entity\Slowniki\FormaPrawna;
 use Parp\SsfzBundle\Entity\Slowniki\TakNie;
+use Parp\SsfzBundle\Constraints\Nip;
 
 /**
  * Typ formularza sprawozdania
  */
 class AbstractSprawozdanieSpoType extends AbstractType
 {
+    /**
+     * Informuje, czy dany formularz dotyczy pożyczek.
+     *
+     * @var boolean
+     */
+    protected $czyPozyczkowy = false;
+
     /**
      * Buduje formularz do wypełniania sprawozdania
      *
@@ -38,8 +50,6 @@ class AbstractSprawozdanieSpoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $narzedziaSvc = $options['narzedzia_svc'];
-
         $builder->add(
             'nazwaFunduszu',
             TextType::class,
@@ -69,16 +79,14 @@ class AbstractSprawozdanieSpoType extends AbstractType
                 'required' => false,
                 'attr' => array(
                     'placeholder' => 'NIP',
-                    'maxlength' => 11,
+                    'maxlength' => 10,
                     'class' => 'ssfz-digits',
                 ),
                 'constraints' => array(
                     new NotBlank(
                         array('message' => 'Należy wypełnić pole')
                     ),
-                    new Regex(
-                        array('message' => 'Niepoprawny format NIP', 'pattern' => '/^[0-9]{11}$/')
-                    )
+                    new Nip()
                 )
             )
         );
@@ -107,13 +115,20 @@ class AbstractSprawozdanieSpoType extends AbstractType
 
         $builder->add(
             'wojewodztwo',
-            ChoiceType::class,
+            EntityType::class,
             array(
-                'label' => 'Województwo',
-                'required' => false,
-                'placeholder' => '',
-                'choices' => $this->getWojewodztwoListaWartosci($narzedziaSvc),
-                'constraints' => array(
+                'label'         => 'Województwo',
+                'class'         => Wojewodztwo::class,
+                'choice_label'  => 'nazwa',
+                'required'      => false,
+                'placeholder'   => '',
+                'query_builder' => function (EntityRepository $repo) {
+                    return $repo
+                        ->createQueryBuilder('w')
+                        ->orderBy('w.id', 'ASC')
+                    ;
+                },
+                'constraints'   => array(
                     new NotBlank(
                         array('message' => 'Należy wypełnić pole')
                     )
@@ -206,6 +221,9 @@ class AbstractSprawozdanieSpoType extends AbstractType
                 'constraints' => array(
                     new NotBlank(
                         array('message' => 'Należy wypełnić pole')
+                    ),
+                    new Regex(
+                        array('message' => 'Niepoprawny format kodu pocztowego', 'pattern' => '/^[0-9]{2}\-[0-9]{3}$/')
                     )
                 )
             )
@@ -257,11 +275,6 @@ class AbstractSprawozdanieSpoType extends AbstractType
                     'placeholder' => 'nr tel.',
                     'maxlength' => 15,
                 ),
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    )
-                )
             )
         );
 
@@ -278,6 +291,9 @@ class AbstractSprawozdanieSpoType extends AbstractType
                 'constraints' => array(
                     new NotBlank(
                         array('message' => 'Należy wypełnić pole')
+                    ),
+                    new Email(
+                        array('message' => 'Nieprawidłowy format e-mail')
                     )
                 )
             )
@@ -321,12 +337,19 @@ class AbstractSprawozdanieSpoType extends AbstractType
 
         $builder->add(
             'formaPrawna',
-            ChoiceType::class,
+            EntityType::class,
             array(
-                'label' => 'Forma prawna',
-                'required' => false,
-                'placeholder' => '',
-                'choices' => $this->getFormaPrawnaListaWartosci($narzedziaSvc),
+                'label'         => 'Forma prawna',
+                'class'         => FormaPrawna::class,
+                'choice_label'  => 'nazwa',
+                'required'      => false,
+                'placeholder'   => '',
+                'query_builder' => function (EntityRepository $repo) {
+                    return $repo
+                        ->createQueryBuilder('f')
+                        ->orderBy('f.id', 'ASC')
+                    ;
+                },
                 'constraints' => array(
                     new NotBlank(
                         array('message' => 'Należy wypełnić pole')
@@ -335,23 +358,27 @@ class AbstractSprawozdanieSpoType extends AbstractType
             )
         );
 
+        $label = $this->czyPozyczkowy
+            ? 'Data zatwierdzenia zasad gospodarowania funduszem pożyczkowym przez PARP'
+            : 'Data zatwierdzenia zasad gospodarowania funduszem poręczeniowym przez PARP'
+        ;
         $builder->add(
             'dataZatwierdzeniaZasadGospodarowania',
             DateType::class,
             [
-                'label'      => 'Data zatwierdzenia zasad gospodarowania funduszem pożyczkowym przez PARP',
+                'label'      => $label,
                 'required' => false,
                 'html5'      => false,
                 'widget'     => 'single_text',
-                'format'     => 'yyyy-MM-dd HH:mm',
+                'format'     => 'yyyy-MM-dd',
+                    'mapped' => true,
                 'attr'       => [
-                    'data-toggle' => 'datetimepicker',
                     'class'       => 'width-date',
                 ],
                 'constraints' => array(
                     new NotBlank(
                         array('message' => 'Należy wypełnić pole')
-                    )
+                    ),
                 )
             ]
         );
@@ -373,11 +400,15 @@ class AbstractSprawozdanieSpoType extends AbstractType
             )
         );
 
+        $label = $this->czyPozyczkowy
+            ? 'Fundusz udziela pożyczek po analizie ryzyka niespłacenia i po ustanowieniu zabezpieczenia'
+            : 'Poręczenia są udzielane po przeprowadzeniu analizy ryzyka'
+        ;
         $builder->add(
             'czyUdzielaPoAnalizieRyzyka',
             EntityType::class,
             array(
-                'label'     => 'Fundusz udziela pożyczek po analizie ryzyka niespłacenia i po ustanowieniu zabezpieczenia',
+                'label'     => $label,
                 'class'     => TakNie::class,
                 'required'  => false,
                 'expanded' => true,
@@ -390,11 +421,15 @@ class AbstractSprawozdanieSpoType extends AbstractType
             )
         );
 
+        $label = $this->czyPozyczkowy
+            ? 'Pożyczki udzielane są przedsiębiorcom nie będącym w trudniej sytuacji'
+            : 'Poręczenia udzielane są przedsiębiorcom nie będącym w trudniej sytuacji'
+        ;
         $builder->add(
             'czyNieWTrudnejSytuacji',
             EntityType::class,
             array(
-                'label'     => 'Pożyczki udzielane są przedsiębiorcom nie będącym w trudniej sytuacji',
+                'label'     => $label,
                 'class'     => TakNie::class,
                 'required'  => false,
                 'expanded' => true,
@@ -461,40 +496,6 @@ class AbstractSprawozdanieSpoType extends AbstractType
     }
 
     /**
-     * Pobiera wartości do słownika województw
-     *
-     * @param  type $narzedziaSvc serwis NarzedziaService
-     *
-     * @return array
-     */
-    protected function getWojewodztwoListaWartosci($narzedziaSvc)
-    {
-        $entityList = $narzedziaSvc->getSlownikWojewodztwo();
-        foreach ($entityList as $value) {
-            $result[$value->getNazwa()]  = $value->getNazwa();
-        }
-
-        return $result;
-    }
-
-    /**
-     * Pobiera wartości do słownika form prawnych beneficjenta
-     *
-     * @param  type $narzedziaSvc serwis NarzedziaService
-     *
-     * @return array
-     */
-    protected function getFormaPrawnaListaWartosci($narzedziaSvc)
-    {
-        $entityList = $narzedziaSvc->getSlownikFormaPrawna();
-        foreach ($entityList as $value) {
-            $result[$value->getNazwa()]  = $value->getNazwa();
-        }
-
-        return $result;
-    }
-    
-    /**
      * Ustawia opcje konfiguracji
      *
      * @param OptionsResolver $resolver
@@ -504,7 +505,6 @@ class AbstractSprawozdanieSpoType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => AbstractSprawozdanieSpo::class,
             'allow_extra_fields' => true,
-            'narzedzia_svc' => null,
         ));
     }
 }

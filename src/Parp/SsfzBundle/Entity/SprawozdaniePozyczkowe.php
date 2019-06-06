@@ -19,14 +19,24 @@ class SprawozdaniePozyczkowe extends AbstractSprawozdanieSpo
     /**
      * Składniki ogółem.
      *
-     * @ORM\OneToMany(targetEntity="SprawozdaniePozyczkoweSkladnikOgolem", mappedBy="sprawozdanie", cascade={"persist", "remove"})
+     * @ORM\OneToMany(
+     *      targetEntity="SprawozdaniePozyczkoweSkladnikOgolem",
+     *      mappedBy="sprawozdanie",
+     *      orphanRemoval=true,
+     *      cascade={"persist", "remove"}
+     *  )
      */
     protected $skladnikiOgolem;
 
     /**
      * Składniki wydzielone.
      *
-     * @ORM\OneToMany(targetEntity="SprawozdaniePozyczkoweSkladnikWydzielony", mappedBy="sprawozdanie", cascade={"persist", "remove"})
+     * @ORM\OneToMany(
+     *      targetEntity="SprawozdaniePozyczkoweSkladnikWydzielony",
+     *      mappedBy="sprawozdanie",
+     *      orphanRemoval=true,
+     *      cascade={"persist", "remove"}
+     *  )
      */
     protected $skladnikiWydzielone;
 

@@ -30,7 +30,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
      *
      * @var string
      *
-     * @ORM\Column(name="nip", type="string", length=11, nullable=true)
+     * @ORM\Column(name="nip", type="string", length=10, nullable=true)
      */
     protected $nip;
 
@@ -744,12 +744,13 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
 
     /**
      * Set dataZatwierdzeniaZasadGospodarowania
+     * Powinno przyjmować Date, ale formularz się wysypywał przy zapisie.
      *
-     * @param DateTime $dataZatwierdzeniaZasadGospodarowania
+     * @param Date $dataZatwierdzeniaZasadGospodarowania
      *
      * @return SprawozdaniePozyczkowe
      */
-    public function setDataZatwierdzeniaZasadGospodarowania($dataZatwierdzeniaZasadGospodarowania)
+    public function setDataZatwierdzeniaZasadGospodarowania(DateTime $dataZatwierdzeniaZasadGospodarowania = null)
     {
         $this->dataZatwierdzeniaZasadGospodarowania = $dataZatwierdzeniaZasadGospodarowania;
 
@@ -759,7 +760,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
     /**
      * Get dataZatwierdzeniaZasadGospodarowania
      *
-     * @return DateTime
+     * @return Date
      */
     public function getDataZatwierdzeniaZasadGospodarowania()
     {
@@ -860,5 +861,53 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
     public function getInne()
     {
         return $this->inne;
+    }
+
+    /**
+     * Wiąże sprawozdanie z nowymi składnikami.
+     *
+     * @return AbstractSprawozdanieSpo
+     */
+    public function powiazSkladnikiZeSprawozdaniem()
+    {
+        foreach ($this->skladnikiOgolem as $skladnik) {
+            if (null === $skladnik->getSprawozdanie()) {
+                $skladnik->setSprawozdanie($this);
+            }
+        }
+
+        foreach ($this->skladnikiWydzielone as $skladnik) {
+            if (null === $skladnik->getSprawozdanie()) {
+                $skladnik->setSprawozdanie($this);
+            }
+        }
+        
+        return $this;
+    }
+
+    /**
+     * Oblicza sumę składników.
+     *
+     * @return AbstractSprawozdanieSpo
+     */
+    public function obliczKapital()
+    {
+        $this->kapitalOgolem = 0;
+        foreach ($this->skladnikiOgolem as $skladnik) {
+            $kwota = $skladnik->getWartosc();
+            if (!empty($kwota)) {
+                $this->kapitalOgolem = bcadd($this->kapitalOgolem, $kwota, 2);
+            }
+        }
+
+        $this->kapitalWydzielony = 0;
+        foreach ($this->skladnikiWydzielone as $skladnik) {
+            $kwota = $skladnik->getWartosc();
+            if (!empty($kwota)) {
+                $this->kapitalWydzielony = bcadd($this->kapitalWydzielony, $kwota, 2);
+            }
+        }
+        
+        return $this;
     }
 }

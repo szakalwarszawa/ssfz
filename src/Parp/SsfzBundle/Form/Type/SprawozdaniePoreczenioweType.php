@@ -12,12 +12,14 @@ use Symfony\Component\Validator\Constraints;
 use Symfony\Component\Validator\Constraints\Count;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\LessThan;
-use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
+use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
+use Parp\SsfzBundle\Entity\Slowniki\TakNie;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 /**
  * Typ formularza sprawozdania
  */
-class SprawozdaniePozyczkoweType extends AbstractSprawozdanieSpoType
+class SprawozdaniePoreczenioweType extends AbstractSprawozdanieSpoType
 {
     /**
      * Informuje, czy dany formularz dotyczy pożyczek.
@@ -35,66 +37,80 @@ class SprawozdaniePozyczkoweType extends AbstractSprawozdanieSpoType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
-
+    
         $builder->add(
-            'minimalneOprocentowanie',
-            NumberType::class,
-            [
-                'label'  => 'Minimalne oprocentowanie',
+            'czyPosiadaWydzielonyFundusz',
+            EntityType::class,
+            array(
+                'label'     => 'Posiada wydzielony księgowo fundusz',
+                'class'     => TakNie::class,
                 'required'  => false,
-                'scale'  => 2,
-                'mapped' => true,
-                'attr'   => [
-                    'placeholder' => '%',
-                    'class'       => 'width-date',
-                    'maxlength' => 6,
-                ],
+                'expanded' => true,
+                'placeholder' => false,
                 'constraints' => array(
                     new NotBlank(
                         array('message' => 'Należy wypełnić pole')
-                    ),
-                    new LessThan(
-                        array(
-                            'value' => '100',
-                            'message' => 'Wartośc w polu nie może przekroczyć 100%'
-                        )
                     )
                 )
-            ]
+            )
         );
 
         $builder->add(
-            'maksymalnaWielkoscPozyczki',
-            MoneyType::class,
-            [
-                'label'  => 'Maksymalna wielkość pożyczki (zł)',
+            'czyOprocentowanieNieNizszeOdStopy',
+            EntityType::class,
+            array(
+                'label'     => 'Fundusz udziela poręczeń kredytów i pożyczek nie niżej oprocentowanych niż stopa referencyjna',
+                'class'     => TakNie::class,
                 'required'  => false,
-                'currency'  => 'PLN',
-                'mapped' => true,
-                'attr'   => [
-                    'placeholder' => 'kwota w PLN',
-                    'class'       => 'width-short',
-                    'maxlength' => 12,
-                ],
+                'expanded' => true,
+                'placeholder' => false,
                 'constraints' => array(
                     new NotBlank(
                         array('message' => 'Należy wypełnić pole')
-                    ),
-                    new LessThan(
-                        array(
-                            'value' => '1000000000',
-                            'message' => 'Kwota nie może przekraczać 999 999 999,99'
-                        )
                     )
                 )
-            ]
+            )
+        );
+
+        $builder->add(
+            'czyZaWynagrodzeniem',
+            EntityType::class,
+            array(
+                'label'     => 'Poręczenia udzielane są za wynagrodzeniem',
+                'class'     => TakNie::class,
+                'required'  => false,
+                'expanded' => true,
+                'placeholder' => false,
+                'constraints' => array(
+                    new NotBlank(
+                        array('message' => 'Należy wypełnić pole')
+                    )
+                )
+            )
+        );
+
+        $builder->add(
+            'czyNiePrzekraczaja80',
+            EntityType::class,
+            array(
+                'label'     => 'Poręczenia są udzielane w wysokości nie przekraczającej 80% zobowiązania którego dotyczą',
+                'class'     => TakNie::class,
+                'required'  => false,
+                'expanded' => true,
+                'placeholder' => false,
+                'constraints' => array(
+                    new NotBlank(
+                        array('message' => 'Należy wypełnić pole')
+                    )
+                )
+            )
         );
 
         $builder->add(
             'kapitalOgolem',
             MoneyType::class,
             [
-                'label'  => 'Kapitał Pożyczkowy Funduszu Pożyczkowego',
+                'label'  => 'Kapitał Funduszu Poręczeniowego',
                 'disabled'  => true,
                 'required'  => false,
                 'currency'  => 'PLN',
@@ -109,8 +125,8 @@ class SprawozdaniePozyczkoweType extends AbstractSprawozdanieSpoType
             'skladnikiOgolem',
             CollectionType::class,
             array(
-                'label'        => 'Kapitał Pożyczkowy Funduszu Pożyczkowego',
-                'entry_type'   => SprawozdaniePozyczkoweSkladnikOgolemType::class,
+                'label'        => 'Kapitał Funduszu Poręczeniowego',
+                'entry_type'   => SprawozdaniePoreczenioweSkladnikOgolemType::class,
                 'allow_add'    => true,
                 'by_reference' => false,
                 'allow_delete' => true,
@@ -130,7 +146,7 @@ class SprawozdaniePozyczkoweType extends AbstractSprawozdanieSpoType
             'kapitalWydzielony',
             MoneyType::class,
             [
-                'label'  => 'w tym kapitał wydzielonego Funduszu Pożyczkowego prowadzonego zgodnie z zasadami gospodarowania monitorowanymi przez PARP',
+                'label'  => 'w tym kapitał wydzielonego Funduszu Poręczeniowego prowadzonego zgodnie z zasadami gospodarowania monitorowanymi przez PARP',
                 'disabled'  => true,
                 'required'  => false,
                 'currency'  => 'PLN',
@@ -145,8 +161,8 @@ class SprawozdaniePozyczkoweType extends AbstractSprawozdanieSpoType
             'skladnikiWydzielone',
             CollectionType::class,
             array(
-                'label'  => 'Kapitał wydzielonego Funduszu Pożyczkowego',
-                'entry_type' => SprawozdaniePozyczkoweSkladnikWydzielonyType::class,
+                'label'  => 'w tym kapitał wydzielonego Funduszu Poręczeniowego prowadzonego zgodnie z zasadami gospodarowania monitorowanymi przez PARP',
+                'entry_type' => SprawozdaniePoreczenioweSkladnikWydzielonyType::class,
                 'allow_add' => true,
                 'by_reference' => false,
                 'allow_delete' => true,
@@ -172,7 +188,7 @@ class SprawozdaniePozyczkoweType extends AbstractSprawozdanieSpoType
         parent::configureOptions($resolver);
 
         $resolver->setDefaults(array(
-            'data_class' => SprawozdaniePozyczkowe::class,
+            'data_class' => SprawozdaniePoreczeniowe::class,
         ));
     }
 }
