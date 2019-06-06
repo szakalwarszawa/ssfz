@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Parp\SsfzBundle\Entity\DanePozyczki;
+use Parp\SsfzBundle\Form\Type\DanePozyczkiType;
 
 /**
  * Punkt wejściowy do obsługi danych o pożyczkach dla SPO WKP 1.2.1.
@@ -21,7 +22,7 @@ class PozyczkiController extends Controller
      * od reszty aplikacji. Docelowo prawdopodobnie zostanie bardziej zintegrowane z resztą
      * funkcjonalności.
      *
-     * @Route("/formularz", name="pozyczki/formularz/dane_pozyczki/{id}")
+     * @Route("formularz/dane_pozyczki/{id}", name="formularz_danych_pozyczki")
      *
      * @param Request $request
      *
@@ -31,13 +32,11 @@ class PozyczkiController extends Controller
     {
         //$entityManager = $this->getDoctrine()->getManager();
 
-        $danePozyczki = new DanePozyczki(1);
+        $danePozyczki = new DanePozyczki();
         $formularz = $this->createForm(DanePozyczkiType::class, $danePozyczki, []);
 
-        return $this->render('SsfzBundle:Report:rejestruj.html.twig', [
-            'form'      => $form->createView(),
-            'form_mode' => $mode,
-            'umowaId'   => $umowaId,
+        return $this->render('SsfzBundle:Report:dane_pozyczki.html.twig', [
+            'form' => $formularz->createView(),
         ]);
     }
 }
