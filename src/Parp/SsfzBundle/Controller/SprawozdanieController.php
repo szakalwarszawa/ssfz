@@ -1,9 +1,4 @@
 <?php
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 namespace Parp\SsfzBundle\Controller;
 
@@ -13,6 +8,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use Parp\SsfzBundle\Entity\Report;
+use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Entity\SprawozdanieSpolki;
+use Parp\SsfzBundle\Entity\Spolka;
+use Parp\SsfzBundle\Entity\PrzeplywFinansowy;
+use Parp\SsfzBundle\Entity\Umowa;
+use Parp\SsfzBundle\Form\Type\SprawozdanieType;
+use Parp\SsfzBundle\Entity\OkresyKonfiguracja;
 
 /**
  * Kontroler obsługujący funkcjonalności Sprawozdania
@@ -33,13 +35,13 @@ class SprawozdanieController extends Controller
     {
         $beneficjentId = $this->getBeneficjentId();
         $this->getSprawozdanieService()->datatableSprawozdanie($this, $beneficjentId, $umowaId);
-        $report = new \Parp\SsfzBundle\Entity\Sprawozdanie();
+        $report = new Sprawozdanie();
         $report->setNumerUmowy($this->getNumerUmowy($umowaId, $beneficjentId));
         $spolki = $this->getSpolkiList($umowaId);
         $report = $this->setSpolki($spolki, $report);
         $okresy = $this->getOkresySprawozdawcze();
 
-        $form = $this->createForm(\Parp\SsfzBundle\Form\Type\SprawozdanieType::class, $report, array('okresy' => $okresy));
+        $form = $this->createForm(SprawozdanieType::class, $report, ['okresy' => $okresy]);
         if (count($spolki) == 0) {
             $this->getKomunikatyService()->bladKomunikat('Aby dodać sprawozdanie należy wprowadzić dane spółek.', 'Uwaga!');
 
@@ -51,7 +53,7 @@ class SprawozdanieController extends Controller
                 return $this->pokarzFormularzRejestracji($form, 'create', $umowaId);
             }
             $entityManager = $this->getDoctrine()->getManager();
-            $umowa = $entityManager->getRepository(\Parp\SsfzBundle\Entity\Umowa::class)->find($umowaId);
+            $umowa = $entityManager->getRepository(Umowa::class)->find($umowaId);
             $report = $this->setDefaultValues($report, $umowa, $beneficjentId);
             $entityManager->persist($report);
             $entityManager->flush();
@@ -59,7 +61,7 @@ class SprawozdanieController extends Controller
                 return $this->redirectToRoute('beneficjent');
             }
 
-            return $this->redirectToRoute('sprawozdanie_rejestracja', array('umowaId' => (string) $umowaId));
+            return $this->redirectToRoute('sprawozdanie_rejestracja', ['umowaId' => (string) $umowaId]);
         }
         if ($form->isSubmitted() && !$form->isValid()) {
             $this->getKomunikatyService()->bladKomunikat('Formularz nie został poprawnie wypełniony.');
@@ -75,9 +77,12 @@ class SprawozdanieController extends Controller
      */
     private function getOkresySprawozdawcze()
     {
-        $array = array();
+        $array = [];
         $entityManager = $this->getDoctrine()->getManager();
-        $okresySprawozdawcze = $entityManager->getRepository(\Parp\SsfzBundle\Entity\OkresyKonfiguracja::class)->findBy(array(), array('rok' => 'ASC'));
+        $okresySprawozdawcze = $entityManager
+            ->getRepository(OkresyKonfiguracja::class)
+            ->findBy([], ['rok' => 'ASC'])
+        ;
         foreach ($okresySprawozdawcze as $okres) {
             $array[$okres->getRok()]  = $okres->getRok();
         }
@@ -98,10 +103,13 @@ class SprawozdanieController extends Controller
     {
         $beneficjentId = $this->getBeneficjentId();
         $entityManager = $this->getDoctrine()->getManager();
-        $report = $entityManager->getRepository(\Parp\SsfzBundle\Entity\Sprawozdanie::class)->find($reportId);
+        $report = $entityManager->getRepository(Sprawozdanie::class)->find($reportId);
         $this->getSprawozdanieService()->checkSprawozdaniePermission($report, $beneficjentId);
         $okresy = $this->getOkresySprawozdawcze();
-        $form = $this->createForm(\Parp\SsfzBundle\Form\Type\SprawozdanieType::class, $report, array('read_only' => true, 'okresy' => $okresy));
+        $form = $this->createForm(SprawozdanieType::class, $report, [
+            'read_only' => true,
+            'okresy'    => $okresy,
+        ]);
 
         return $this->pokarzFormularzRejestracji($form, 'read', $report->getUmowaId());
     }
@@ -121,7 +129,7 @@ class SprawozdanieController extends Controller
     {
         $beneficjentId = $this->getBeneficjentId();
         $entityManager = $this->getDoctrine()->getManager();
-        $report = $entityManager->getRepository(\Parp\SsfzBundle\Entity\Sprawozdanie::class)->find($reportId);
+        $report = $entityManager->getRepository(Sprawozdanie::class)->find($reportId);
         $this->getSprawozdanieService()->checkSprawozdaniePermission($report, $beneficjentId);
         if ($report->getStatus() != 1) {
             throw $this->createNotFoundException('Nie można edytować sprawozdania');
@@ -135,7 +143,7 @@ class SprawozdanieController extends Controller
             $report = $this->setSpolki($spolki, $report);
         }
 
-        $form = $this->createForm(\Parp\SsfzBundle\Form\Type\SprawozdanieType::class, $report, array('okresy' => $okresy));
+        $form = $this->createForm(SprawozdanieType::class, $report, ['okresy' => $okresy]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             if (!$this->czySprawozdanieZaDobryOkres($report, $umowaId, $beneficjentId)) {
@@ -147,7 +155,7 @@ class SprawozdanieController extends Controller
                 return $this->redirectToRoute('beneficjent');
             }
 
-            return $this->redirectToRoute('sprawozdanie_rejestracja', array('umowaId' => (string) $umowaId));
+            return $this->redirectToRoute('sprawozdanie_rejestracja', ['umowaId' => (string) $umowaId]);
         }
         if ($form->isSubmitted() && !$form->isValid()) {
             $this->getKomunikatyService()->bladKomunikat('Formularz nie został poprawnie wypełniony.');
@@ -171,7 +179,7 @@ class SprawozdanieController extends Controller
     {
         $beneficjentId = $this->getBeneficjentId();
         $entityManager = $this->getDoctrine()->getManager();
-        $report = $entityManager->getRepository(\Parp\SsfzBundle\Entity\Sprawozdanie::class)->find($reportId);
+        $report = $entityManager->getRepository(Sprawozdanie::class)->find($reportId);
         $this->getSprawozdanieService()->checkSprawozdaniePermission($report, $beneficjentId);
         $umowaId = $report->getUmowaId();
         $this->getSprawozdanieService()->datatableSprawozdanie($this, $beneficjentId, $umowaId);
@@ -184,16 +192,22 @@ class SprawozdanieController extends Controller
             $spolki = $this->getSpolkiList($umowaId);
             $report = $this->setSpolki($spolki, $report);
         }
-        $form = $this->createForm(\Parp\SsfzBundle\Form\Type\SprawozdanieType::class, clone $report, array('showRemarks' => true, 'okresy' => $okresy));
+        $form = $this->createForm(SprawozdanieType::class, clone $report, [
+            'showRemarks' => true,
+            'okresy'     => $okresy,
+        ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $newReport = new \Parp\SsfzBundle\Entity\Sprawozdanie();
+            $newReport = new Sprawozdanie();
             $raportFromForm = $form->getData();
             $newReport = clone $raportFromForm;
             foreach ($raportFromForm->getSprawozdaniaSpolek() as $spolka) {
                 $newReport->addSprawozdaniaSpolek(clone $spolka);
             }
-            $przeplyw = $entityManager->getRepository(\Parp\SsfzBundle\Entity\PrzeplywFinansowy::class)->findBy(array('sprawozdanieId' => $reportId));
+            $przeplyw = $entityManager
+                ->getRepository(PrzeplywFinansowy::class)
+                ->findBy(['sprawozdanieId' => $reportId])
+            ;
 
             if (!$this->czySprawozdanieZaDobryOkres($newReport, $umowaId, $beneficjentId)) {
                 return $this->pokarzFormularzRejestracji($form, 'edit', $umowaId);
@@ -210,7 +224,7 @@ class SprawozdanieController extends Controller
             $entityManager->flush();
             $this->getKomunikatyService()->sukcesKomunikat('Poprawa sprawozdania zakończyła się powodzeniem', 'Poprawa sprawozdania');
 
-            return $this->redirectToRoute('sprawozdanie_rejestracja', array('umowaId' => (string) $umowaId));
+            return $this->redirectToRoute('sprawozdanie_rejestracja', ['umowaId' => (string) $umowaId]);
         }
 
         return $this->pokarzFormularzRejestracji($form, 'edit', $umowaId);
@@ -228,15 +242,18 @@ class SprawozdanieController extends Controller
         $sprawozdanieId = $this->get('request')->request->get('sprawozdanieId');
         $beneficjentId = $this->getBeneficjentId();
         $entityManager = $this->getDoctrine()->getManager();
-        $sprawozdanie = $entityManager->getRepository(\Parp\SsfzBundle\Entity\Sprawozdanie::class)->find($sprawozdanieId);
+        $sprawozdanie = $entityManager->getRepository(Sprawozdanie::class)->find($sprawozdanieId);
         $this->getSprawozdanieService()->checkSprawozdaniePermission($sprawozdanie, $beneficjentId);
 
-        $przeplyw = $entityManager->getRepository(\Parp\SsfzBundle\Entity\PrzeplywFinansowy::class)->findBy(array('sprawozdanieId' => $sprawozdanieId));
+        $przeplyw = $entityManager
+            ->getRepository(PrzeplywFinansowy::class)
+            ->findBy(['sprawozdanieId' => $sprawozdanieId])
+        ;
         $umowaId = $sprawozdanie->getUmowaId();
         if (count($przeplyw) != 1) {
             $this->getKomunikatyService()->bladKomunikat('Nie zdefiniowano przepływu finansowego', 'Wysyłka sprawozdania');
 
-            return $this->redirectToRoute('sprawozdanie_rejestracja', array('umowaId' => (string) $umowaId));
+            return $this->redirectToRoute('sprawozdanie_rejestracja', ['umowaId' => (string) $umowaId]);
         }
         if ($this->getRequest()->isMethod('POST') && $sprawozdanie->getStatus() == 1 && $sprawozdanie->getCreatorId() == $beneficjentId) {
             $dateNow = new \DateTime('now');
@@ -246,7 +263,7 @@ class SprawozdanieController extends Controller
         }
         $entityManager->flush();
 
-        return $this->redirectToRoute('sprawozdanie_rejestracja', array('umowaId' => (string) $umowaId));
+        return $this->redirectToRoute('sprawozdanie_rejestracja', ['umowaId' => (string) $umowaId]);
     }
 
     /**
@@ -286,7 +303,7 @@ class SprawozdanieController extends Controller
         foreach ($spolki as $spolka) {
             //Dodaj tylko te dla których już nie ma sprawozdań
             if ($report->findSprawozdanieSpolkiByNazwaSpolki($spolka->getNazwa()) === null) {
-                $sprawozdanieSpolki = new \Parp\SsfzBundle\Entity\SprawozdanieSpolki();
+                $sprawozdanieSpolki = new SprawozdanieSpolki();
                 $sprawozdanieSpolki->setNazwaSpolki($spolka->getNazwa());
                 $sprawozdanieSpolki->setKrs($spolka->getKrs());
                 $sprawozdanieSpolki->setLiczbaPorzadkowa($counter);
@@ -368,9 +385,9 @@ class SprawozdanieController extends Controller
      */
     public function getNumerUmowy($umowaId, $beneficjentId)
     {
-        $umowa = new \Parp\SsfzBundle\Entity\Umowa();
+        $umowa = new Umowa();
         $entityManager = $this->getDoctrine()->getManager();
-        $umowa = $entityManager->getRepository(\Parp\SsfzBundle\Entity\Umowa::class)->find($umowaId);
+        $umowa = $entityManager->getRepository(Umowa::class)->find($umowaId);
         $entityManager->flush();
         if ($umowa == null || $umowa->getBeneficjentId() != $beneficjentId) {
             throw $this->createNotFoundException('Nie odnaleziono umowy');
@@ -389,8 +406,8 @@ class SprawozdanieController extends Controller
     public function getSpolkiList($umowaId)
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $spolki = $entityManager->getRepository(\Parp\SsfzBundle\Entity\Spolka::class)->findBy(
-            array('umowaId' => $umowaId, 'zakonczona' => 0)
+        $spolki = $entityManager->getRepository(Spolka::class)->findBy(
+            ['umowaId' => $umowaId, 'zakonczona' => 0]
         );
         $entityManager->flush();
 
@@ -411,8 +428,8 @@ class SprawozdanieController extends Controller
     public function chekSprawozdanieExist($okres, $rok, $editedReportId, $umowaId, $beneficjentId)
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $report = $entityManager->getRepository(\Parp\SsfzBundle\Entity\Sprawozdanie::class)->findBy(
-            array('creatorId' => $beneficjentId, 'okres' => $okres, 'czyNajnowsza' => true,  'rok' => $rok, 'umowaId' => $umowaId)
+        $report = $entityManager->getRepository(Sprawozdanie::class)->findBy(
+            ['creatorId' => $beneficjentId, 'okres' => $okres, 'czyNajnowsza' => true,  'rok' => $rok, 'umowaId' => $umowaId]
         );
         $entityManager->flush();
         if ($report && $report[0]->getId() != $editedReportId) {
@@ -474,11 +491,11 @@ class SprawozdanieController extends Controller
      */
     public function pokarzFormularzRejestracji($form, $mode, $umowaId)
     {
-        return $this->render('SsfzBundle:Report:rejestruj.html.twig', array(
-            'form' => $form->createView(),
+        return $this->render('SsfzBundle:Report:rejestruj.html.twig', [
+            'form'      => $form->createView(),
             'form_mode' => $mode,
-            'umowaId' => $umowaId,
-        ));
+            'umowaId'   => $umowaId,
+        ]);
     }
 
     /**
