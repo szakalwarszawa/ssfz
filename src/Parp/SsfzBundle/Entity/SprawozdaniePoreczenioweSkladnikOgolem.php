@@ -30,7 +30,7 @@ class SprawozdaniePoreczenioweSkladnikOgolem extends AbstractSprawozdanieSkladni
      *
      * @return SprawozdaniePoreczenioweSkladnikOgolem
      */
-    public function setSprawozdanie(SprawozdaniePoreczeniowe $sprawozdanie = null)
+    public function setSprawozdanie(SprawozdaniePoreczeniowe $sprawozdanie)
     {
         $this->sprawozdanie = $sprawozdanie;
 

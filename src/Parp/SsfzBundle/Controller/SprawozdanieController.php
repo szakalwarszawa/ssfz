@@ -575,7 +575,6 @@ class SprawozdanieController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            
             $czyTakieJuzIstnieje = $repoSprawozdanie->czyTakieJuzIstnieje($sprawozdanie);
             if ($czyTakieJuzIstnieje) {
                 $this->getKomunikatyService()->bladKomunikat('Już istnieje sprawozdanie dla tego roku i okresu.');
