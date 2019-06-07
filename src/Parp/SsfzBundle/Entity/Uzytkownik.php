@@ -569,7 +569,7 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
     /**
      * Set aktywnyProgram
      *
-     * @param Program $aktywnyProgram
+     * @param Program|null $aktywnyProgram
      *
      * @return Uzytkownik
      */

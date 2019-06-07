@@ -12,8 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Program
 {
     const FUNDUSZ_ZALAZKOWY_POIG_31 = 1;
-    const FUNDUSZ_POZYCZKOWY_SPO_WKP_121 = 1;
-    const FUNDUSZ_PORECZENIOWY_SPO_WKP_122 = 1;
+    const FUNDUSZ_POZYCZKOWY_SPO_WKP_121 = 2;
+    const FUNDUSZ_PORECZENIOWY_SPO_WKP_122 = 3;
 
     /**
      * ID programu.

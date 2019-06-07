@@ -1,69 +1,70 @@
-        <div>
-            {{ form_start(formS) }}
+<div>
+    {{ form_start(formS) }}
+    <div>
+        {{ form_row(formS.numerUmowy) }}
+        {{ form_row(formS.okres) }}
+        {{ form_row(formS.rok) }}
+        <div class="sprawozdaniaSpolek panel-body" data-prototype="{{ form_widget(formS.sprawozdaniaSpolek.vars.prototype)|e('html_attr') }}">
+            {% for sprawozdanie in formS.sprawozdaniaSpolek %}
+                <div class="row sprawozdanie-row">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {{ form_row(sprawozdanie.liczbaPorzadkowa) }}
+                            {{ form_row(sprawozdanie.nazwaSpolki) }}
+                            {{ form_row(sprawozdanie.krs) }}
+                            {{ form_row(sprawozdanie.uzyskanePrzychody) }}
+                            {{ form_row(sprawozdanie.planowanePrzychody) }}
+                            {{ form_row(sprawozdanie.ebitda) }}
+                            {{ form_row(sprawozdanie.ncf) }}
+                            {{ form_row(sprawozdanie.sumaBilansowa) }}
+                            {{ form_row(sprawozdanie.zatrudnienieEtaty) }}
+                            {{ form_row(sprawozdanie.zatrudnienieEtaty) }}
+                            {{ form_row(sprawozdanie.zatrudnioneKobiety) }}
+                            {{ form_row(sprawozdanie.zatrudnieniMezczyzni) }}
+                            {{ form_row(sprawozdanie.zatrudnienieInneFormy) }}
+                            {{ form_row(sprawozdanie.zatrudnienieInneFormyKobiety) }}
+                            {{ form_row(sprawozdanie.zatrudnienieInneFormyMezczyzni) }}
+                            {{ form_row(sprawozdanie.zatrudnieniewStosunkuDoPoprzedniegoRoku) }}
+                            {{ form_row(sprawozdanie.zatrudnieniewStosunkuDoPoprzedniegoOkresu) }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {{ form_end(formS) }}
+    </div>
+</div>
+
+{% if formP != null %}
+    <div class="panel panel-default">
+        <div class="panel-heading">Przepływ finansowy</div>
+        <div class="panel-body">
             <div>
-                {{ form_row(formS.numerUmowy) }}
-                {{ form_row(formS.okres) }}
-                {{ form_row(formS.rok) }}
-                <div class="sprawozdaniaSpolek panel-body" data-prototype="{{ form_widget(formS.sprawozdaniaSpolek.vars.prototype)|e('html_attr') }}">
-                    {% for sprawozdanie in formS.sprawozdaniaSpolek %}
-                        <div class="row sprawozdanie-row">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    {{ form_row(sprawozdanie.liczbaPorzadkowa) }}
-                                    {{ form_row(sprawozdanie.nazwaSpolki) }}
-                                    {{ form_row(sprawozdanie.krs) }}
-                                    {{ form_row(sprawozdanie.uzyskanePrzychody) }}
-                                    {{ form_row(sprawozdanie.planowanePrzychody) }}
-                                    {{ form_row(sprawozdanie.ebitda) }}
-                                    {{ form_row(sprawozdanie.ncf) }}
-                                    {{ form_row(sprawozdanie.sumaBilansowa) }}
-                                    {{ form_row(sprawozdanie.zatrudnienieEtaty) }}
-                                    {{ form_row(sprawozdanie.zatrudnienieEtaty) }}
-                                    {{ form_row(sprawozdanie.zatrudnioneKobiety) }}
-                                    {{ form_row(sprawozdanie.zatrudnieniMezczyzni) }}
-                                    {{ form_row(sprawozdanie.zatrudnienieInneFormy) }}
-                                    {{ form_row(sprawozdanie.zatrudnienieInneFormyKobiety) }}
-                                    {{ form_row(sprawozdanie.zatrudnienieInneFormyMezczyzni) }}
-                                    {{ form_row(sprawozdanie.zatrudnieniewStosunkuDoPoprzedniegoRoku) }}
-                                    {{ form_row(sprawozdanie.zatrudnieniewStosunkuDoPoprzedniegoOkresu) }}
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            {{ form_end(formS) }}
-        </div>
-        </div>
-    {% if formP != null %}
-        <div class="panel panel-default">
-            <div class="panel-heading">Przepływ finansowy</div>
-            <div class="panel-body">
-                <div>
-                    {{ form_start(formP) }}
-                        <div>
-                            {{ form_row(formP.saldoPoczatkowe) }}
-                            {{ form_row(formP.wplywy) }}
-                            {{ form_row(formP.wyjsciaZInwestycji) }}
-                            {{ form_row(formP.udzialWZyskach) }}
-                            {{ form_row(formP.inneWplywy) }}
-                            {{ form_row(formP.wyplywy) }}
-                            {{ form_row(formP.wejsciaKapitalowe) }}
-                            {{ form_row(formP.preinkubacjaPomyslow) }}
-                            {{ form_row(formP.wydatkiOperacyjne) }}
-                            {{ form_row(formP.podatki) }}
-                            {{ form_row(formP.inneWyplywy) }}
-                            {{ form_row(formP.saldoKoncowe) }}
-                            </br>
-                            </br>
-                            {{ form_row(formP.liczbaPomyslowWInkubatorze) }}
-                            {{ form_row(formP.liczbaPomyslowOcenionych) }}
-                            {{ form_row(formP.liczbaPomyslowOcenionychPozytywnie) }}
-                            {{ form_row(formP.liczbaPomyslowOcenionychNegatywnie) }}
-                            {{ form_row(formP.liczbaZakonczonychPreinkubacji) }}
-                            {{ form_row(formP.liczbaDokonanychInwestycji) }}
-                        </div>
-                    {{ form_end(formP) }}
-                </div>
+                {{ form_start(formP) }}
+                    <div>
+                        {{ form_row(formP.saldoPoczatkowe) }}
+                        {{ form_row(formP.wplywy) }}
+                        {{ form_row(formP.wyjsciaZInwestycji) }}
+                        {{ form_row(formP.udzialWZyskach) }}
+                        {{ form_row(formP.inneWplywy) }}
+                        {{ form_row(formP.wyplywy) }}
+                        {{ form_row(formP.wejsciaKapitalowe) }}
+                        {{ form_row(formP.preinkubacjaPomyslow) }}
+                        {{ form_row(formP.wydatkiOperacyjne) }}
+                        {{ form_row(formP.podatki) }}
+                        {{ form_row(formP.inneWyplywy) }}
+                        {{ form_row(formP.saldoKoncowe) }}
+                        </br>
+                        </br>
+                        {{ form_row(formP.liczbaPomyslowWInkubatorze) }}
+                        {{ form_row(formP.liczbaPomyslowOcenionych) }}
+                        {{ form_row(formP.liczbaPomyslowOcenionychPozytywnie) }}
+                        {{ form_row(formP.liczbaPomyslowOcenionychNegatywnie) }}
+                        {{ form_row(formP.liczbaZakonczonychPreinkubacji) }}
+                        {{ form_row(formP.liczbaDokonanychInwestycji) }}
+                    </div>
+                {{ form_end(formP) }}
             </div>
         </div>
-    {% endif %}
+    </div>
+{% endif %}
