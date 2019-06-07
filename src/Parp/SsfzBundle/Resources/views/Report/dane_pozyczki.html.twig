@@ -5,8 +5,7 @@
         <div class="panel-heading">Dane pożyczki</div>
             {{ form_start(form) }}
             <div class="panel-body">
-                {#
-                <div>
+                {# <div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label required">Numer umowy</label>
                         <div class="col-sm-10"><label class="control-label required">{{ sprawozdanie.numerUmowy }}</label></div>
@@ -15,8 +14,7 @@
                         <label class="col-sm-2 control-label required">Okres sprawozdawczy</label>
                         <div class="col-sm-10"><label class="control-label required">{{ sprawozdanie.okres }} {{ sprawozdanie.rok }}</label></div>
                     </div>
-                </div>
-                #}
+                </div> #}
 
                 <table class="table table-bordered table-condensed">
                     <tr>
@@ -57,8 +55,8 @@
                         <td class="text-center">{{ form_row(form.liczbaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1'}}) }}</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2'}}) }}</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3'}}) }}</td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
+                        <td class="text-center">{{ form_row(form.liczbaPozyczekDo10000PlnDlaInnychPrzedsiebiorstw, {'attr': {'data-vertical-group': '4'}}) }}</td>
+                        <td class="text-center">{{ form_row(form.liczbaPozyczekDo10000PlnDlaInstytucjiEkonomiiSpolecznej, {'attr': {'data-vertical-group': '5'}}) }}</td>
                         <td class="text-center"></td>
                         <td class="text-center"></td>
                         <td class="text-center"></td>
@@ -75,8 +73,8 @@
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1'}}) }}</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2'}}) }}</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3'}}) }}</td>
-                        <td class="text-center">0</td>
-                        <td class="text-center">0</td>
+                        <td class="text-center">{{ form_row(form.liczbaPozyczekOd10001Do30000PlnDlaInnychPrzedsiebiorstw, {'attr': {'data-vertical-group': '4'}}) }}</td>
+                        <td class="text-center">{{ form_row(form.liczbaPozyczekOd10001Do30000PlnDlaInstytucjiEkonomiiSpolecznej, {'attr': {'data-vertical-group': '5'}}) }}</td>
                         <td class="text-center">0</td>
                         <td class="text-center">0</td>
                         <td class="text-center">0</td>
@@ -93,8 +91,8 @@
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1'}}) }}</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2'}}) }}</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3'}}) }}</td>
-                        <td class="text-center">0</td>
-                        <td class="text-center">0</td>
+                        <td class="text-center">{{ form_row(form.liczbaPozyczekOd30001Do50000PlnDlaInnychPrzedsiebiorstw, {'attr': {'data-vertical-group': '4'}}) }}</td>
+                        <td class="text-center">{{ form_row(form.liczbaPozyczekOd30001Do50000PlnDlaInstytucjiEkonomiiSpolecznej, {'attr': {'data-vertical-group': '5'}}) }}</td>
                         <td class="text-center">0</td>
                         <td class="text-center">0</td>
                         <td class="text-center">0</td>
@@ -111,8 +109,8 @@
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1'}}) }}</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2'}}) }}</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3'}}) }}</td>
-                        <td class="text-center">0</td>
-                        <td class="text-center">0</td>
+                        <td class="text-center">{{ form_row(form.liczbaPozyczekOd50001Do120000PlnDlaInnychPrzedsiebiorstw, {'attr': {'data-vertical-group': '4'}}) }}</td>
+                        <td class="text-center">{{ form_row(form.liczbaPozyczekOd50001Do120000PlnDlaInstytucjiEkonomiiSpolecznej, {'attr': {'data-vertical-group': '5'}}) }}</td>
                         <td class="text-center">0</td>
                         <td class="text-center">0</td>
                         <td class="text-center">0</td>
@@ -129,8 +127,8 @@
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1'}}) }}</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2'}}) }}</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3'}}) }}</td>
-                        <td class="text-center">0</td>
-                        <td class="text-center">0</td>
+                        <td class="text-center">{{ form_row(form.liczbaPozyczekOd120001Do300000PlnDlaInnychPrzedsiebiorstw, {'attr': {'data-vertical-group': '4'}}) }}</td>
+                        <td class="text-center">{{ form_row(form.liczbaPozyczekOd120001Do300000PlnDlaInstytucjiEkonomiiSpolecznej, {'attr': {'data-vertical-group': '5'}}) }}</td>
                         <td class="text-center">0</td>
                         <td class="text-center">0</td>
                         <td class="text-center">0</td>
@@ -141,14 +139,14 @@
                         <td class="text-center">0</td>
                         <td class="text-center">0</td>
                     </tr>
-                    
+
                     <tr>
                         <td class="text-center">od 300 0001zł</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1'}}) }}</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2'}}) }}</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3'}}) }}</td>
-                        <td class="text-center">0</td>
-                        <td class="text-center">0</td>
+                        <td class="text-center">{{ form_row(form.liczbaPozyczekOd300001PlnDlaInnychPrzedsiebiorstw, {'attr': {'data-vertical-group': '4'}}) }}</td>
+                        <td class="text-center">{{ form_row(form.liczbaPozyczekOd300001PlnDlaInstytucjiEkonomiiSpolecznej, {'attr': {'data-vertical-group': '5'}}) }}</td>
                         <td class="text-center">0</td>
                         <td class="text-center">0</td>
                         <td class="text-center">0</td>
@@ -309,8 +307,7 @@
                     </tr>
                 </table>
 
-
-            {# {{ form_row(form.id) }} #}
+                {# {{ form_row(form.id) }} #}
                 {{ form_end(form, {'render_rest': false}) }}
             </div>
         </div>
@@ -319,8 +316,8 @@
     <script>
         $(document).ready(function () {
             function sumByGroup() {
-                var sum = 0,
-                    groups = ["1", "2", "3"]
+                var groups = ["1", "2", "3", "4", "5"],
+                    sum = 0
                 ;
 
                 $.each(groups, function (index, value) {
@@ -331,7 +328,7 @@
                     sum = 0;
                 });
             }
-            
+
             sumByGroup();
 
             $('[data-vertical-group]').change(function () {

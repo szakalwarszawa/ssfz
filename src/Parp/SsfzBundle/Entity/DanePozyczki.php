@@ -240,36 +240,6 @@ class DanePozyczki
      */
     protected $liczbaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw = 0;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Liczba pożyczek do 10.000zł dla średnich przedsiębiorstw.
      *
@@ -303,7 +273,6 @@ class DanePozyczki
     * )
     */
     protected $liczbaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw = 0;
-
 
     /**
     * Liczba pożyczek od 30.001zł do 50.000zł dla średnich przedsiębiorstw.
@@ -373,49 +342,246 @@ class DanePozyczki
      */
     protected $liczbaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw = 0;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /**
+     * Liczba pożyczek do 10.000zł dla innych przedsiębiorstw.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_do_10000_pln_inne_przedsiebiorstwa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek do 10.000zł dla innych przedsiębiorstw.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekDo10000PlnDlaInnychPrzedsiebiorstw = 0;
+
+    /**
+    * Liczba pożyczek od 10.001zł do 30.000zł dla innych przedsiębiorstw.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_10001_do_30000_pln_inne_przedsiebiorstwa",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek od 10.001zł do 30.000zł dla innych przedsiębiorstw.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd10001Do30000PlnDlaInnychPrzedsiebiorstw = 0;
+
+    /**
+    * Liczba pożyczek od 30.001zł do 50.000zł dla innych przedsiębiorstw.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_30001_do_50000_pln_inne_przedsiebiorstwa",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek od 30.001zł do 50.000zł dla innych_przedsiębiorstw.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd30001Do50000PlnDlaInnychPrzedsiebiorstw = 0;
+
+    /**
+    * Liczba pożyczek od 50.001zł do 120.000zł dla innych przedsiębiorstw.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_50001_do_120000_pln_inne_przedsiebiorstwa",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek od 50.001zł do 120.000zł dla innych przedsiębiorstw.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd50001Do120000PlnDlaInnychPrzedsiebiorstw = 0;
+
+    /**
+    * Liczba pożyczek od 120.001zł do 300.000zł dla innych przedsiębiorstw.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_120001_do_300000_pln_inne_przedsiebiorstwa",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek od 120.001zł do 300.000zł dla inne przedsiębiorstw.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd120001Do300000PlnDlaInnychPrzedsiebiorstw = 0;
+
+    /**
+     * Liczba pożyczek od 301.000zł dla innych przedsiębiorstw.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_300001_pln_inne_przedsiebiorstwa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek od 301.000zł dla innych przedsiębiorstw.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd300001PlnDlaInnychPrzedsiebiorstw = 0;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Liczba pożyczek do 10.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_do_10000_pln_inst_ekonomii_spol",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek do 10.000zł dla instytucji ekonomii spolecznej.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekDo10000PlnDlaInstytucjiEkonomiiSpolecznej = 0;
+
+    /**
+     * Liczba pożyczek od 10.001zł do 30.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_10001_do_30000_pln_inst_ekonomii_spol",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek od 10.001zł do 30.000zł dla instytucji ekonomii spolecznej.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd10001Do30000PlnDlaInstytucjiEkonomiiSpolecznej = 0;
+
+    /**
+     * Liczba pożyczek od 30.001zł do 50.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_30001_do_50000_pln_inst_ekonomii_spol",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek od 30.001zł do 50.000zł dla instytucji ekonomii spolecznej.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd30001Do50000PlnDlaInstytucjiEkonomiiSpolecznej = 0;
+
+    /**
+     * Liczba pożyczek od 50.001zł do 120.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_50001_do_120000_pln_inst_ekonomii_spol",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek od 50.001zł do 120.000zł dla instytucji ekonomii spolecznej.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd50001Do120000PlnDlaInstytucjiEkonomiiSpolecznej = 0;
+
+   /**
+    * Liczba pożyczek od 120.001zł do 300.000zł dla instytucji ekonomii spolecznej.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_120001_do_300000_pln_inst_ekonomii_spol",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek od 120.001zł do 300.000zł dla instytucji ekonomii spolecznej.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd120001Do300000PlnDlaInstytucjiEkonomiiSpolecznej = 0;
+
+    /**
+     * Liczba pożyczek od 301.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_300001_pln_inst_ekonomii_spol",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek od 301.000zł dla instytucji ekonomii spolecznej.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd300001PlnDlaInstytucjiEkonomiiSpolecznej = 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     protected $liczbaPozyczekObrotowwychDo10000Pln = 0;
     protected $liczbaPozyczekObrotowwychOd10001Do30000Pln = 0;
@@ -424,12 +590,36 @@ class DanePozyczki
     protected $liczbaPozyczekObrotowwychOd120001Do300000Pln = 0;
     protected $liczbaPozyczekObrotowwychOd300001Pln = 0;
 
+
+
+
+
+
+
+
+
+
+
+
+
     protected $liczbaPozyczekInwestycyjnychDo10000Pln = 0;
     protected $liczbaPozyczekInwestycyjnychOd10001Do30000Pln = 0;
     protected $liczbaPozyczekInwestycyjnychOd30001Do50000Pln = 0;
     protected $liczbaPozyczekInwestycyjnychOd50001Do120000Pln = 0;
     protected $liczbaPozyczekInwestycyjnychOd120001Do300000Pln = 0;
     protected $liczbaPozyczekInwestycyjnychOd300001Pln = 0;
+
+
+
+
+
+
+
+
+
+
+
+
 
     protected $liczbaPozyczekInwestycyjnoObrotowychDo10000Pln = 0;
     protected $liczbaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln = 0;
@@ -438,12 +628,53 @@ class DanePozyczki
     protected $liczbaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln = 0;
     protected $liczbaPozyczekInwestycyjnoObrotowychOd300001Pln = 0;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     protected $liczbaPozyczekDo10000PlnNaDzialaniaHandlowe = 0;
     protected $liczbaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe = 0;
     protected $liczbaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe = 0;
     protected $liczbaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe = 0;
     protected $liczbaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe = 0;
     protected $liczbaPozyczekOd300001PlnNaDzialaniaHandlowe = 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     protected $liczbaPozyczekDo10000PlnNaDzialaniaUslugowe = 0;
     protected $liczbaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe = 0;
@@ -452,12 +683,52 @@ class DanePozyczki
     protected $liczbaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe = 0;
     protected $liczbaPozyczekOd300001PlnNaDzialaniaUslugowe = 0;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     protected $liczbaPozyczekDo10000PlnNaDzialaniaBudownicze = 0;
     protected $liczbaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze = 0;
     protected $liczbaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze = 0;
     protected $liczbaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze = 0;
     protected $liczbaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze = 0;
     protected $liczbaPozyczekOd300001PlnNaDzialaniaBudownicze = 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     protected $liczbaPozyczekDo10000PlnNaDzialaniaRolnicze = 0;
     protected $liczbaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze = 0;
@@ -466,12 +737,60 @@ class DanePozyczki
     protected $liczbaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze = 0;
     protected $liczbaPozyczekOd300001PlnNaDzialaniaRolnicze = 0;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     protected $liczbaPozyczekDo10000PlnNaDzialaniaInne = 0;
     protected $liczbaPozyczekOd10001Do30000PlnNaDzialaniaInne = 0;
     protected $liczbaPozyczekOd30001Do50000PlnNaDzialaniaInne = 0;
     protected $liczbaPozyczekOd50001Do120000PlnNaDzialaniaInne = 0;
     protected $liczbaPozyczekOd120001Do300000PlnNaDzialaniaInne = 0;
     protected $liczbaPozyczekOd300001PlnNaDzialaniaInne = 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Konstruktor.
@@ -963,7 +1282,7 @@ class DanePozyczki
     }
 
     /**
-     * Ustala wartość liczby pożyczekod 301.000zł dla średnich przedsiębiorstw.
+     * Ustala wartość liczby pożyczek od 301.000zł dla średnich przedsiębiorstw.
      *
      * @param int $liczbaPozyczek
      *
@@ -972,6 +1291,294 @@ class DanePozyczki
     public function setLiczbaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
         $this->liczbaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek do 10.000zł dla innych przedsiębiorstw.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekDo10000PlnDlaInnychPrzedsiebiorstw()
+    {
+        return $this->liczbaPozyczekDo10000PlnDlaInnychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek do 10.000zł dla innych przedsiębiorstw.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return self
+     */
+    public function setLiczbaPozyczekDo10000PlnDlaInnychPrzedsiebiorstw(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekDo10000PlnDlaInnychPrzedsiebiorstw = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 10.001zł do 30.000zł dla innych przedsiębiorstw.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd10001Do30000PlnDlaInnychPrzedsiebiorstw()
+    {
+        return $this->liczbaPozyczekOd10001Do30000PlnDlaInnychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek od 10.001zł do 30.000zł dla innych przedsiębiorstw.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return self
+     */
+    public function setLiczbaPozyczekOd10001Do30000PlnDlaInnychPrzedsiebiorstw(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd10001Do30000PlnDlaInnychPrzedsiebiorstw = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 30.001zł do 50.000zł dla innych przedsiębiorstw.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd30001Do50000PlnDlaInnychPrzedsiebiorstw()
+    {
+        return $this->liczbaPozyczekOd30001Do50000PlnDlaInnychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek od 30.001zł do 50.000zł dla innych przedsiębiorstw.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return self
+     */
+    public function setLiczbaPozyczekOd30001Do50000PlnDlaInnychPrzedsiebiorstw(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd30001Do50000PlnDlaInnychPrzedsiebiorstw = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 50.001zł do 120.000zł dla innych przedsiębiorstw.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd50001Do120000PlnDlaInnychPrzedsiebiorstw()
+    {
+        return $this->liczbaPozyczekOd50001Do120000PlnDlaInnychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek od 50.001zł do 120.000zł dla innych przedsiębiorstw.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return self
+     */
+    public function setLiczbaPozyczekOd50001Do120000PlnDlaInnychPrzedsiebiorstw(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd50001Do120000PlnDlaInnychPrzedsiebiorstw = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 120.001zł do 300.000zł dla innych przedsiębiorstw.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd120001Do300000PlnDlaInnychPrzedsiebiorstw()
+    {
+        return $this->liczbaPozyczekOd120001Do300000PlnDlaInnychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek od 120.001zł do 300.000zł dla innych przedsiębiorstw.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return self
+     */
+    public function setLiczbaPozyczekOd120001Do300000PlnDlaInnychPrzedsiebiorstw(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd120001Do300000PlnDlaInnychPrzedsiebiorstw = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 301.000zł dla innych przedsiębiorstw.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd300001PlnDlaInnychPrzedsiebiorstw()
+    {
+        return $this->liczbaPozyczekOd300001PlnDlaInnychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek od 301.000zł dla innych przedsiębiorstw.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return self
+     */
+    public function setLiczbaPozyczekOd300001PlnDlaInnychPrzedsiebiorstw(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd300001PlnDlaInnychPrzedsiebiorstw = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek do 10.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekDo10000PlnDlaInstytucjiEkonomiiSpolecznej()
+    {
+        return $this->liczbaPozyczekDo10000PlnDlaInstytucjiEkonomiiSpolecznej;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek do 10.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return self
+     */
+    public function setLiczbaPozyczekDo10000PlnDlaInstytucjiEkonomiiSpolecznej(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekDo10000PlnDlaInstytucjiEkonomiiSpolecznej = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 10.001zł do 30.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd10001Do30000PlnDlaInstytucjiEkonomiiSpolecznej()
+    {
+        return $this->liczbaPozyczekOd10001Do30000PlnDlaInstytucjiEkonomiiSpolecznej;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek od 10.001zł do 30.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return self
+     */
+    public function setLiczbaPozyczekOd10001Do30000PlnDlaInstytucjiEkonomiiSpolecznej(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd10001Do30000PlnDlaInstytucjiEkonomiiSpolecznej = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 30.001zł do 50.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd30001Do50000PlnDlaInstytucjiEkonomiiSpolecznej()
+    {
+        return $this->liczbaPozyczekOd30001Do50000PlnDlaInstytucjiEkonomiiSpolecznej;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek od 30.001zł do 50.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return self
+     */
+    public function setLiczbaPozyczekOd30001Do50000PlnDlaInstytucjiEkonomiiSpolecznej(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd30001Do50000PlnDlaInstytucjiEkonomiiSpolecznej = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 50.001zł do 120.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd50001Do120000PlnDlaInstytucjiEkonomiiSpolecznej()
+    {
+        return $this->liczbaPozyczekOd50001Do120000PlnDlaInstytucjiEkonomiiSpolecznej;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek od 50.001zł do 120.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return self
+     */
+    public function setLiczbaPozyczekOd50001Do120000PlnDlaInstytucjiEkonomiiSpolecznej(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd50001Do120000PlnDlaInstytucjiEkonomiiSpolecznej = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 120.001zł do 300.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd120001Do300000PlnDlaInstytucjiEkonomiiSpolecznej()
+    {
+        return $this->liczbaPozyczekOd120001Do300000PlnDlaInstytucjiEkonomiiSpolecznej;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek od 120.001zł do 300.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return self
+     */
+    public function setLiczbaPozyczekOd120001Do300000PlnDlaInstytucjiEkonomiiSpolecznej(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd120001Do300000PlnDlaInstytucjiEkonomiiSpolecznej = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 301.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd300001PlnDlaInstytucjiEkonomiiSpolecznej()
+    {
+        return $this->liczbaPozyczekOd300001PlnDlaInstytucjiEkonomiiSpolecznej;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek od 301.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return self
+     */
+    public function setLiczbaPozyczekOd300001PlnDlaInstytucjiEkonomiiSpolecznej(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd300001PlnDlaInstytucjiEkonomiiSpolecznej = $liczbaPozyczek;
 
         return $this;
     }
