@@ -757,12 +757,11 @@ class SprawozdanieController extends Controller
      *
      * @Route("sprawozdania/pozyczkowe/podglad/{sprawozdanie}", name="sprawozdania_pozyczkowe_podglad")
      *
-     * @param Request $request
      * SprawozdaniePozyczkowe $sprawozdanie
      *
      * @return Response
      */
-    public function podgladPozyczkoweAction(Request $request, SprawozdaniePozyczkowe $sprawozdanie)
+    public function podgladPozyczkoweAction(SprawozdaniePozyczkowe $sprawozdanie)
     {
         $program = $sprawozdanie->getUmowa()->getBeneficjent()->getProgram();
         $this->getUser()->setAktywnyProgram($program);
@@ -790,12 +789,11 @@ class SprawozdanieController extends Controller
      *
      * @Route("sprawozdania/poreczeniowe/podglad/{sprawozdanie}", name="sprawozdania_poreczeniowe_podglad")
      *
-     * @param Request $request
      * SprawozdaniePoreczeniowe $sprawozdanie
      *
      * @return Response
      */
-    public function podgladPoreczenioweAction(Request $request, SprawozdaniePoreczeniowe $sprawozdanie)
+    public function podgladPoreczenioweAction(SprawozdaniePoreczeniowe $sprawozdanie)
     {
         $program = $sprawozdanie->getUmowa()->getBeneficjent()->getProgram();
         $this->getUser()->setAktywnyProgram($program);

@@ -11,8 +11,19 @@ namespace Parp\SsfzBundle\Constraints;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
+/**
+ * Klasa NipValidator
+ */
 class NipValidator extends ConstraintValidator
 {
+    /**
+     * Walidacja NIP.
+     *
+     * @param string $value
+     * @param Constraint $constraint
+     *
+     * @return bool
+     */
     public function validate($value, Constraint $constraint)
     {
         $wynik = $this->czyNip($value);
@@ -23,6 +34,13 @@ class NipValidator extends ConstraintValidator
         return $wynik;
     }
 
+    /**
+     * Informuje, czy podany ciąg znaków jest prawidłowym NIP.
+     *
+     * @param string $str
+     *
+     * @return bool
+     */
     public function czyNip($str)
     {
         $str = preg_replace('/[^0-9]+/', '', $str);

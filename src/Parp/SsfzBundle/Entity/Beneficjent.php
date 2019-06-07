@@ -572,7 +572,7 @@ class Beneficjent
     /**
      * Funkcja dodająca umowę do porfilu beneficjenta
      *
-     * @param \Parp\SsfzBundle\Entity\Umowa $umowa
+     * @param Umowa $umowa
      */
     public function addUmowa(Umowa $umowa)
     {
@@ -594,7 +594,7 @@ class Beneficjent
     /**
      * Funkcja usuwająca umowę z profilu beneficjenta
      *
-     * @param \Parp\SsfzBundle\Entity\Umowa $umowa
+     * @param Umowa $umowa
      */
     public function removeUmowa(Umowa $umowa)
     {
@@ -604,7 +604,7 @@ class Beneficjent
     /**
      * Set program
      *
-     * @param Program $program
+     * @param Program|null $program
      *
      * @return Beneficjent
      */

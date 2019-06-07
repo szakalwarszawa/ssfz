@@ -94,7 +94,7 @@ class Sprawozdanie extends AbstractSprawozdanie
     /**
      * Funkcja dodająca sprawozdanie spolki do sprawozdania
      *
-     * @param \Parp\SsfzBundle\Entity\SprawozdanieSpolki $sprSpolki
+     * @param SprawozdanieSpolki $sprSpolki
      */
     public function addSprawozdaniaSpolek(SprawozdanieSpolki $sprSpolki)
     {
@@ -105,7 +105,7 @@ class Sprawozdanie extends AbstractSprawozdanie
     /**
      * Funkcja usuwająca sprawozdanie spolki ze sprawozdania
      *
-     * @param \Parp\SsfzBundle\Entity\SprawozdanieSpolki $sprSpolki
+     * @param SprawozdanieSpolki $sprSpolki
      */
     public function removeSprawozdaniaSpolek(SprawozdanieSpolki $sprSpolki)
     {

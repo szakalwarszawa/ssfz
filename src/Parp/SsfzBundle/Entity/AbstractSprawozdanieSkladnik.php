@@ -75,7 +75,7 @@ class AbstractSprawozdanieSkladnik
     /**
      * Set skladnik
      *
-     * @param Skladnik $skladnik
+     * @param Skladnik|null $skladnik
      *
      * @return AbstractSprawozdanieSkladnik
      */

@@ -172,7 +172,7 @@ class SprawozdanieService
      * Wypisuje komunikat błędu
      *
      * @param type $message
-     * @param \Exception $previous
+     * @param \Exception|null $previous
      *
      * @return NotFoundHttpException
      */
@@ -184,7 +184,7 @@ class SprawozdanieService
     /**
      * Znajduje odpowiednią encję Sprawozdanie... dla programu.
      *
-     * @param Program $program
+     * @param Program|null $program
      *
      * @return string
      */
@@ -212,7 +212,7 @@ class SprawozdanieService
     /**
      * Ustawia repozytorium odpowiednio dla programu.
      *
-     * @param Program $program
+     * @param Program|null $program
      *
      * @return SprawozdanieService
      */

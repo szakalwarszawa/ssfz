@@ -649,7 +649,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
     /**
      * Set wojewodztwo
      *
-     * @param Wojewodztwo $wojewodztwo
+     * @param Wojewodztwo|null $wojewodztwo
      *
      * @return AbstractSprawozdanieSpo
      */
@@ -673,7 +673,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
     /**
      * Set formaPrawna
      *
-     * @param FormaPrawna $formaPrawna
+     * @param FormaPrawna|null $formaPrawna
      *
      * @return AbstractSprawozdanieSpo
      */
@@ -746,7 +746,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
      * Set dataZatwierdzeniaZasadGospodarowania
      * Powinno przyjmować Date, ale formularz się wysypywał przy zapisie.
      *
-     * @param Date $dataZatwierdzeniaZasadGospodarowania
+     * @param DateTime|null $dataZatwierdzeniaZasadGospodarowania
      *
      * @return SprawozdaniePozyczkowe
      */

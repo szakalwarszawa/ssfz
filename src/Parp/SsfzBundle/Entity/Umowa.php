@@ -165,7 +165,7 @@ class Umowa
     /**
      * Set spolki
      *
-     * @param Collection Spolka $spolki
+     * @param Collection $spolki
      *
      * @return Umowa
      */
