@@ -3,6 +3,7 @@
 namespace Parp\SsfzBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Carbon\Carbon;
 
 /**
  * SpolkaHistoriaZmian
@@ -116,7 +117,7 @@ class SpolkaHistoriaZmian
     }
 
     /**
-     * @return \Parp\SsfzBundle\Entity\Carbon\Carbon
+     * @return Carbon
      */
     public function getDataModyfikacji()
     {
@@ -172,9 +173,9 @@ class SpolkaHistoriaZmian
     }
 
     /**
-     * @param \Parp\SsfzBundle\Entity\Carbon\Carbon $dataModyfikacji
+     * @param Carbon $dataModyfikacji
      */
-    public function setDataModyfikacji(\Carbon\Carbon $dataModyfikacji)
+    public function setDataModyfikacji(Carbon $dataModyfikacji)
     {
         $this->dataModyfikacji = $dataModyfikacji;
     }
