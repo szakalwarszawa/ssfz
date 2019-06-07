@@ -1,0 +1,67 @@
+{% extends "SsfzBundle::baseLayout.html.twig" %}
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-heading">Dodaj nowe sprawozdanie</div>
+            {{ form_start(form) }}
+            <div class="panel-body">
+                {{ form_row(form.numerUmowy) }}
+                {{ form_row(form.okres) }}
+                {{ form_row(form.rok) }}
+                <div id="form-submit-div" class="row btn-toolbar">
+                    <a class="btn btn-danger pull-right width-short" href="{{ path('beneficjent') }}"><span class="glyphicon glyphicon-chevron-left"></span> Powrót</a>
+                    <button type="submit" class="btn btnRegister btn-primary pull-right width-short"><span class="glyphicon glyphicon-ok"></span> Dodaj nowe</button>
+                </div>
+            </div>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Lista sprawozdań</div>
+        <div class="panel-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Rok</th>
+                        <th>Okres</th>
+                        <th>Nazwa funduszu</th>
+                        <th>Status</th>
+                        <th>Akcje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sprawozdanie in listaSprawozdan %}
+                        <tr>
+                            <td>{{ sprawozdanie.rok }}</td>
+                            <td>{{ sprawozdanie.okres }}</td>
+                            <td>{{ sprawozdanie.nazwaFunduszu }}</td>
+                            <td>{{ sprawozdanie.status }}</td>
+                            <td>
+                                {% if czyPozyczkowe %}
+                                    <a href="{{ path('sprawozdania_pozyczkowe_podglad', {'sprawozdanie': sprawozdanie.id}) }}" class="btn btn-sm btn-info" role="button">
+                                        <span class="fas fa-eye-open"></span> Podgląd
+                                    </a>
+                                    <a href="{{ path('sprawozdania_pozyczkowe_edycja', {'sprawozdanie': sprawozdanie.id}) }}" class="btn btn-sm btn-primary" role="button">
+                                        <i class="fas fa-edit"></i> Edytuj
+                                    </a>
+                                {% else %}
+                                    <a href="{{ path('sprawozdania_poreczeniowe_podglad', {'sprawozdanie': sprawozdanie.id}) }}" class="btn btn-sm btn-info" role="button">
+                                        <span class="fas fa-eye-open"></span> Podgląd
+                                    </a>
+                                    <a href="{{ path('sprawozdania_poreczeniowe_edycja', {'sprawozdanie': sprawozdanie.id}) }}" class="btn btn-sm btn-primary" role="button">
+                                        <i class="fas fa-edit"></i> Edytuj
+                                    </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{#
+{% block javascripts %}
+{% endblock %}
+#}

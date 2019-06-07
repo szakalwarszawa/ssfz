@@ -12,7 +12,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use Parp\SsfzBundle\Entity\Program;
 use Parp\SsfzBundle\Entity\Report;
+use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
+use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
+use Parp\SsfzBundle\Entity\Umowa;
+use Parp\SsfzBundle\Form\Type\SprawozdaniePozyczkoweType;
+use Parp\SsfzBundle\Form\Type\SprawozdaniePoreczenioweType;
+use Parp\SsfzBundle\Form\Type\SprawozdanieSpoDodajType;
 
 /**
  * Kontroler obsługujący funkcjonalności Sprawozdania
@@ -31,8 +39,13 @@ class SprawozdanieController extends Controller
      */
     public function indexAction(Request $request, $umowaId)
     {
-        $beneficjentId = $this->getBeneficjentId();
-        $this->getSprawozdanieService()->datatableSprawozdanie($this, $beneficjentId, $umowaId);
+        $entityManager = $this->getDoctrine()->getManager();
+        $umowa = $entityManager->getRepository(Umowa::class)->find($umowaId);
+        $program = $umowa->getBeneficjent()->getProgram();
+        $this->getUser()->setAktywnyProgram($program);
+        $beneficjent = $umowa->getBeneficjent();
+        $beneficjentId = $beneficjent->getId();
+        $this->getSprawozdanieService()->datatableSprawozdanie($this, $umowa);
         $report = new \Parp\SsfzBundle\Entity\Sprawozdanie();
         $report->setNumerUmowy($this->getNumerUmowy($umowaId, $beneficjentId));
         $spolki = $this->getSpolkiList($umowaId);
@@ -40,7 +53,7 @@ class SprawozdanieController extends Controller
         $okresy = $this->getOkresySprawozdawcze();
 
         $form = $this->createForm(\Parp\SsfzBundle\Form\Type\SprawozdanieType::class, $report, array('okresy' => $okresy));
-        if (count($spolki) == 0) {
+        if (count($spolki) === 0 && true === $beneficjent->getProgram()->czyJestPortfelSpolek()) {
             $this->getKomunikatyService()->bladKomunikat('Aby dodać sprawozdanie należy wprowadzić dane spółek.', 'Uwaga!');
 
             return $this->pokarzFormularzRejestracji($form, 'not_allowed', $umowaId);
@@ -50,8 +63,6 @@ class SprawozdanieController extends Controller
             if (!$this->czySprawozdanieZaDobryOkres($report, $umowaId, $beneficjentId)) {
                 return $this->pokarzFormularzRejestracji($form, 'create', $umowaId);
             }
-            $entityManager = $this->getDoctrine()->getManager();
-            $umowa = $entityManager->getRepository(\Parp\SsfzBundle\Entity\Umowa::class)->find($umowaId);
             $report = $this->setDefaultValues($report, $umowa, $beneficjentId);
             $entityManager->persist($report);
             $entityManager->flush();
@@ -107,7 +118,7 @@ class SprawozdanieController extends Controller
     }
 
     /**
-     * @Route("sprawozdanie/edycja/{umowaId}/{reportId}")
+     * @Route("sprawozdanie/edycja/{umowaId}/{reportId}", name="sprawozdanie_zalazkowe_edycja")
      *
      * @param Request $request
      * @param int     $umowaId
@@ -127,7 +138,7 @@ class SprawozdanieController extends Controller
             throw $this->createNotFoundException('Nie można edytować sprawozdania');
         }
         $umowaId = $report->getUmowaId();
-        $this->getSprawozdanieService()->datatableSprawozdanie($this, $beneficjentId, $umowaId);
+        $this->getSprawozdanieService()->datatableSprawozdanie($this, $report->getUmowa());
         $okresy = $this->getOkresySprawozdawcze();
 
         if ($request->query->get('odswiezSpolki') !== null) {
@@ -174,7 +185,7 @@ class SprawozdanieController extends Controller
         $report = $entityManager->getRepository(\Parp\SsfzBundle\Entity\Sprawozdanie::class)->find($reportId);
         $this->getSprawozdanieService()->checkSprawozdaniePermission($report, $beneficjentId);
         $umowaId = $report->getUmowaId();
-        $this->getSprawozdanieService()->datatableSprawozdanie($this, $beneficjentId, $umowaId);
+        $this->getSprawozdanieService()->datatableSprawozdanie($this, $report->getUmowa());
         if ($report->getStatus() != 4) {
             throw $this->createNotFoundException('Nie można poprawić sprawozdania');
         }
@@ -258,8 +269,12 @@ class SprawozdanieController extends Controller
      *
      * @return Sprawozdanie z ustawionymi parametrami domyślnymi
      */
-    public function setDefaultValues($report, $umowa, $beneficjentId)
+    public function setDefaultValues($report, $umowa, $beneficjentId = null)
     {
+        if (empty($beneficjentId)) {
+            $beneficjentId = $umowa->getBeneficjent()->getId();
+        }
+        
         $report->setCreatorId($beneficjentId);
         $report->setWersja(1);
         $report->setUmowa($umowa);
@@ -301,17 +316,19 @@ class SprawozdanieController extends Controller
     /**
      * Grid action
      *
-     * @Route("/gridSprawozdanie/{umowaId}", name="datatableSprawozdanie")
+     * @Route("/gridSprawozdanie/{umowa}", name="datatableSprawozdanie")
      *
-     * @param int $umowaId
+     * @param Umowa $umowa
      *
      * @return Response
      */
-    public function sprawozdanieGridAction($umowaId)
+    public function sprawozdanieGridAction(Umowa $umowa)
     {
-        $beneficjentId = $this->getBeneficjentId();
-
-        return $this->getSprawozdanieService()->datatableSprawozdanie($this, $beneficjentId, $umowaId)->execute();
+        return $this
+            ->getSprawozdanieService()
+            ->datatableSprawozdanie($this, $umowa)
+            ->execute()
+        ;
     }
 
     /**
@@ -514,5 +531,290 @@ class SprawozdanieController extends Controller
         }
 
         return true;
+    }
+
+    /**
+     * Lista sprawozdań - dla funduszy SPO WKP.
+     *
+     * @param Request $request
+     * @param Umowa $umowa
+     *
+     * @Route("sprawozdania/spo_lista/{umowa}", name="lista_sprawozdan_spo")
+     *
+     * @return Response
+     */
+    public function listaSpoAction(Request $request, Umowa $umowa)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $program = $umowa->getBeneficjent()->getProgram();
+        $this->getUser()->setAktywnyProgram($program);
+
+        $czyPozyczkowe = (Program::FUNDUSZ_POZYCZKOWY_SPO_WKP_121 === (int) $program->getId());
+
+        $sprawozdanie =
+            $czyPozyczkowe
+            ? new SprawozdaniePozyczkowe()
+            : new SprawozdaniePoreczeniowe()
+        ;
+        $sprawozdanie = $this->setDefaultValues($sprawozdanie, $umowa);
+        $sprawozdanie->setNumerUmowy($umowa->getNumer());
+        $okresy = $this->getOkresySprawozdawcze();
+        $form = $this->createForm(
+            SprawozdanieSpoDodajType::class,
+            $sprawozdanie,
+            array('okresy' => $okresy)
+        );
+        
+        $program = $umowa->getBeneficjent()->getProgram();
+        
+        $repoSprawozdanie = $this
+            ->getSprawozdanieService()
+            ->wyznaczRepozytoriumDlaProgramu($program)
+            ->getSprawozdanieRepository()
+        ;
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $czyTakieJuzIstnieje = $repoSprawozdanie->czyTakieJuzIstnieje($sprawozdanie);
+            if ($czyTakieJuzIstnieje) {
+                $this->getKomunikatyService()->bladKomunikat('Już istnieje sprawozdanie dla tego roku i okresu.');
+            } else {
+                $entityManager->persist($sprawozdanie);
+                $entityManager->flush();
+                $this->getKomunikatyService()->sukcesKomunikat('Dodano nowe sprawozdanie.');
+                return $this->redirectToRoute(
+                    $czyPozyczkowe ? 'sprawozdania_pozyczkowe_edycja' : 'sprawozdania_poreczeniowe_edycja',
+                    array('sprawozdanie' => $sprawozdanie->getId())
+                );
+            }
+        }
+        
+        $listaSprawozdan = $repoSprawozdanie->findBy(
+            ['umowa' => $umowa],
+            ['rok' => 'ASC', 'okresId' => 'ASC', 'id' => 'ASC']
+        );
+
+        return $this->render(
+            'SsfzBundle:Sprawozdanie:listaSpo.html.twig',
+            array(
+                'umowa' => $umowa,
+                'czyPozyczkowe' => $czyPozyczkowe,
+                'listaSprawozdan' => $listaSprawozdan,
+                'form' => $form->createView(),
+            )
+        );
+    }
+
+    /**
+     * Edycja sprawozdań pożyczkowych.
+     *
+     * @Route(
+     *      "sprawozdania/pozyczkowe/edycja/{sprawozdanie}",
+     *      name="sprawozdania_pozyczkowe_edycja"
+     *  )
+     *
+     * @param Request $request
+     * @param SprawozdaniePozyczkowe $sprawozdanie
+     *
+     * @return Response
+     */
+    public function edycjaPozyczkoweAction(Request $request, SprawozdaniePozyczkowe $sprawozdanie)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $program = $sprawozdanie->getUmowa()->getBeneficjent()->getProgram();
+        $this->getUser()->setAktywnyProgram($program);
+
+        $form = $this->createForm(
+            SprawozdaniePozyczkoweType::class,
+            $sprawozdanie
+        );
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $sprawozdanie
+                    ->powiazSkladnikiZeSprawozdaniem()
+                    ->obliczKapital()
+                ;
+
+                $entityManager->flush();
+                $komunikat = 'Zapisano zmiany.';
+                $this->getKomunikatyService()->sukcesKomunikat($komunikat);
+                
+                $czyPowrot = empty($request->get('zapisz'));
+                if ($czyPowrot) {
+                    return $this->redirectToRoute(
+                        'lista_sprawozdan_spo',
+                        array('umowa' => $sprawozdanie->getUmowa()->getId())
+                    );
+                } else {
+                    return $this->redirectToRoute(
+                        'sprawozdania_pozyczkowe_edycja',
+                        array('sprawozdanie' => $sprawozdanie->getId())
+                    );
+                }
+            } else {
+                $bledy = [];
+                foreach ($form->all() as $field) {
+                    if ($field->getErrors()->count() > 0) {
+                        $fieldName = $field->getName();
+                        foreach ($field->getErrors() as $error) {
+                            $bledy[] = '[' . $fieldName . ']: ' . $error->getMessage();
+                        }
+                    }
+                }
+
+                $komunikat = implode("; \r\n", $bledy);
+                $this->getKomunikatyService()->bladKomunikat($komunikat);
+            }
+        }
+        
+        return $this->render(
+            'SsfzBundle:Sprawozdanie:pozyczkoweEdycja.html.twig',
+            array(
+                'sprawozdanie' => $sprawozdanie,
+                'tylkoDoOdczytu' => false,
+                'form' => $form->createView(),
+            )
+        );
+    }
+
+    /**
+     * Edycja sprawozdań poręczeniowych.
+     *
+     * @Route(
+     *      "sprawozdania/poreczeniowe/edycja/{sprawozdanie}",
+     *      name="sprawozdania_poreczeniowe_edycja"
+     *  )
+     *
+     * @param Request $request
+     * SprawozdaniePoreczeniowe $sprawozdanie
+     *
+     * @return Response
+     */
+    public function edycjaPoreczenioweAction(Request $request, SprawozdaniePoreczeniowe $sprawozdanie)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $program = $sprawozdanie->getUmowa()->getBeneficjent()->getProgram();
+        $this->getUser()->setAktywnyProgram($program);
+
+        $form = $this->createForm(
+            SprawozdaniePoreczenioweType::class,
+            $sprawozdanie
+        );
+        
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $sprawozdanie
+                    ->powiazSkladnikiZeSprawozdaniem()
+                    ->obliczKapital()
+                ;
+
+                $entityManager->flush();
+                $komunikat = 'Zapisano zmiany.';
+                $this->getKomunikatyService()->sukcesKomunikat($komunikat);
+
+                $czyPowrot = empty($request->get('zapisz'));
+                if ($czyPowrot) {
+                    return $this->redirectToRoute(
+                        'lista_sprawozdan_spo',
+                        array('umowa' => $sprawozdanie->getUmowa()->getId())
+                    );
+                } else {
+                    return $this->redirectToRoute(
+                        'sprawozdania_poreczeniowe_edycja',
+                        array('sprawozdanie' => $sprawozdanie->getId())
+                    );
+                }
+            } else {
+                $bledy = [];
+                foreach ($form->all() as $field) {
+                    if ($field->getErrors()->count() > 0) {
+                        $fieldName = $field->getName();
+                        foreach ($field->getErrors() as $error) {
+                            $bledy[] = '[' . $fieldName . ']: ' . $error->getMessage();
+                        }
+                    }
+                }
+
+                $komunikat = implode("; \r\n", $bledy);
+                $this->getKomunikatyService()->bladKomunikat($komunikat);
+            }
+        }
+        
+        return $this->render(
+            'SsfzBundle:Sprawozdanie:poreczenioweEdycja.html.twig',
+            array(
+                'sprawozdanie' => $sprawozdanie,
+                'tylkoDoOdczytu' => false,
+                'form' => $form->createView(),
+            )
+        );
+    }
+
+    /**
+     * Podgląd sprawozdań pożyczkowych.
+     *
+     * @Route("sprawozdania/pozyczkowe/podglad/{sprawozdanie}", name="sprawozdania_pozyczkowe_podglad")
+     *
+     * @param Request $request
+     * SprawozdaniePozyczkowe $sprawozdanie
+     *
+     * @return Response
+     */
+    public function podgladPozyczkoweAction(Request $request, SprawozdaniePozyczkowe $sprawozdanie)
+    {
+        $program = $sprawozdanie->getUmowa()->getBeneficjent()->getProgram();
+        $this->getUser()->setAktywnyProgram($program);
+
+        $form = $this->createForm(
+            SprawozdaniePozyczkoweType::class,
+            $sprawozdanie,
+            [
+                'read_only' => true,
+            ]
+        );
+        
+        return $this->render(
+            'SsfzBundle:Sprawozdanie:pozyczkoweEdycja.html.twig',
+            array(
+                'sprawozdanie' => $sprawozdanie,
+                'tylkoDoOdczytu' => true,
+                'form' => $form->createView(),
+            )
+        );
+    }
+
+    /**
+     * Podgląd sprawozdań poręczeniowych.
+     *
+     * @Route("sprawozdania/poreczeniowe/podglad/{sprawozdanie}", name="sprawozdania_poreczeniowe_podglad")
+     *
+     * @param Request $request
+     * SprawozdaniePoreczeniowe $sprawozdanie
+     *
+     * @return Response
+     */
+    public function podgladPoreczenioweAction(Request $request, SprawozdaniePoreczeniowe $sprawozdanie)
+    {
+        $program = $sprawozdanie->getUmowa()->getBeneficjent()->getProgram();
+        $this->getUser()->setAktywnyProgram($program);
+
+        $form = $this->createForm(
+            SprawozdaniePoreczenioweType::class,
+            $sprawozdanie,
+            [
+                'read_only' => true,
+            ]
+        );
+        
+        return $this->render(
+            'SsfzBundle:Sprawozdanie:poreczenioweEdycja.html.twig',
+            array(
+                'sprawozdanie' => $sprawozdanie,
+                'tylkoDoOdczytu' => true,
+                'form' => $form->createView(),
+            )
+        );
     }
 }

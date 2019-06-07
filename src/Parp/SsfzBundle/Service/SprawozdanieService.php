@@ -2,8 +2,17 @@
 
 namespace Parp\SsfzBundle\Service;
 
-use Parp\SsfzBundle\Repository\SprawozdanieRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Parp\SsfzBundle\Entity\Program;
+use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
+use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
+use Parp\SsfzBundle\Entity\Umowa;
+use Parp\SsfzBundle\Repository\SprawozdanieRepository;
+use Parp\SsfzBundle\Repository\SprawozdaniePoreczenioweRepository;
+use Parp\SsfzBundle\Repository\SprawozdaniePozyczkoweRepository;
 
 /**
  * Dostęp do repozytorium sprawozdań
@@ -11,13 +20,24 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class SprawozdanieService
 {
     /**
+     * @var EntityManager
+     */
+    protected $entityManager;
+
+    /**
+     * @var EntityRepository
+     */
+    protected $sprawozdanieRepository;
+    
+    /**
      * Konstruktor
      *
-     * @param SprawozdanieRepository $sprawozdanieRepository
+     * @param EntityManager $entityManager
      */
-    public function __construct($sprawozdanieRepository)
+    public function __construct(EntityManager $entityManager)
     {
-        $this->sprawozdanieRepository = $sprawozdanieRepository;
+        $this->entityManager = $entityManager;
+        $this->wyznaczRepozytoriumDlaProgramu(null);
     }
 
     /**
@@ -34,16 +54,35 @@ class SprawozdanieService
      * Metoda pobiera sprawozdania
      *
      * @param Sprawozdanie $parentObject
-     * @param int          $beneficjentId
-     * @param int          $umowaId
+     * @param Umowa        $umowa
      *
      * @return Listę sprawozdań
      */
-    public function datatableSprawozdanie($parentObject, $beneficjentId, $umowaId)
+    public function datatableSprawozdanie($parentObject, Umowa $umowa)
     {
+        $beneficjent = $umowa->getBeneficjent();
+        $program = $beneficjent->getProgram();
+        $klasaEncji = $this->jakaEncjaDlaProgramu($program);
+        
+        $tabRenderers = array(
+                0 => array(
+                    'view' => 'SsfzBundle:Report:sprawozdanieStatus.html.twig',
+                ),
+                4 => array(
+                    'view' => 'SsfzBundle:Report:sprawozdanieActions.html.twig',
+                )
+            )
+        ;
+        
+        if (Program::FUNDUSZ_ZALAZKOWY_POIG_31 === (int) $program->getId()) {
+            $tabRenderers[3] = array(
+                'view' => 'SsfzBundle:Report:sprawozdanieSpolki.html.twig',
+            );
+        }
+        
         return $parentObject->get('datatable')
                 ->setDatatableId('dta-sprawozdanie')
-                ->setEntity('SsfzBundle:Sprawozdanie', 'r')
+                ->setEntity($klasaEncji, 'r')
                 ->setFields(
                     array(
                         'Status' => 'r.status',
@@ -54,25 +93,13 @@ class SprawozdanieService
                         '_identifier_' => 'r.id',
                     )
                 )
-                ->setRenderers(
-                    array(
-                        0 => array(
-                            'view' => 'SsfzBundle:Report:sprawozdanieStatus.html.twig',
-                        ),
-                        3 => array(
-                            'view' => 'SsfzBundle:Report:sprawozdanieSpolki.html.twig',
-                        ),
-                        4 => array(
-                            'view' => 'SsfzBundle:Report:sprawozdanieActions.html.twig',
-                        )
-                    )
-                )
+                ->setRenderers($tabRenderers)
                 ->setWhere(
                     'r.creatorId = :creatorId and r.umowaId = :umowaId and r.czyNajnowsza = :czyNajnowsza',
                     array(
-                        'creatorId' => (string) $beneficjentId,
+                        'creatorId' => (string) $beneficjent->getId(),
                         'czyNajnowsza' => (string) true,
-                        'umowaId' => (string) $umowaId,
+                        'umowaId' => (string) $umowa->getId(),
                     )
                 )
                 ->setOrder('r.dataRejestracji', 'desc');
@@ -152,5 +179,52 @@ class SprawozdanieService
     public function createNotFoundException($message = 'Not Found', \Exception $previous = null)
     {
         return new NotFoundHttpException($message, $previous);
+    }
+    
+    /**
+     * Znajduje odpowiednią encję Sprawozdanie... dla programu.
+     *
+     * @param Program $program
+     *
+     * @return string
+     */
+    public function jakaEncjaDlaProgramu(Program $program = null)
+    {
+        $programId =
+            null === $program
+            ? 0
+            : (int) $program->getId()
+        ;
+        
+        switch ($programId) {
+            case Program::FUNDUSZ_POZYCZKOWY_SPO_WKP_121:
+                return SprawozdaniePozyczkowe::class;
+
+            case Program::FUNDUSZ_PORECZENIOWY_SPO_WKP_122:
+                return SprawozdaniePoreczeniowe::class;
+
+            case Program::FUNDUSZ_ZALAZKOWY_POIG_31:
+            default:
+                return Sprawozdanie::class;
+        }
+    }
+    
+    /**
+     * Ustawia repozytorium odpowiednio dla programu.
+     *
+     * @param Program $program
+     *
+     * @return SprawozdanieService
+     */
+    public function wyznaczRepozytoriumDlaProgramu(Program $program = null)
+    {
+        $klasaEncji = $this->jakaEncjaDlaProgramu($program);
+
+        $this->sprawozdanieRepository = $this
+            ->entityManager
+            ->getRepository($klasaEncji)
+        ;
+        
+        return $this;
     }
 }

@@ -2,11 +2,19 @@
 
 namespace Parp\SsfzBundle\Service;
 
+use Doctrine\ORM\EntityManager;
+use Parp\SsfzBundle\Entity\Slowniki\FormaPrawna;
+
 /**
  * Serwis obsługujący operacje pomocnicze
  */
 class NarzedziaService
 {
+    /**
+     * @var EntityManager
+     */
+    protected $entityManager;
+
     /**
      * Repozytorium encji BeneficjentFormaPrawna
      *
@@ -31,12 +39,14 @@ class NarzedziaService
     /**
      * Konstruktor parametryczny
      *
+     * @param EntityManager $entityManager
      * @param BeneficjentFormaPrawnaRepository $dictFormaRepo repozytorium BeneficjentFormaPrawnaRepository
      * @param WojewodztwoRepository            $dictWojRepo   repozytorium WojewodztwoRepository
      * @param GospodarkaDzialRepository        $dictDzialRepo repozytorium GospodarkaDzialRepository
      */
-    public function __construct($dictFormaRepo, $dictWojRepo, $dictDzialRepo)
+    public function __construct(EntityManager $entityManager, $dictFormaRepo, $dictWojRepo, $dictDzialRepo)
     {
+        $this->entityManager = $entityManager;
         $this->dictFormaRepo = $dictFormaRepo;
         $this->dictWojRepo = $dictWojRepo;
         $this->dictDzialRepo = $dictDzialRepo;
@@ -55,6 +65,24 @@ class NarzedziaService
         }
 
         return $this->dictFormaRepo->findBy(array(), array('nazwa' => $sort));
+    }
+
+    /**
+     * Zwraca słownik form prawnych beneficjenta
+     *
+     * @param  string $sort
+     *
+     * @return array
+     */
+    public function getSlownikFormaPrawna($sort = null)
+    {
+        $repoFormaPrawna = $this->entityManager->getRepository(FormaPrawna::class);
+        
+        if (!$sort) {
+            return $repoFormaPrawna->findBy(array(), array('id' => 'ASC'));
+        }
+
+        return $repoFormaPrawna->findBy(array(), array('nazwa' => $sort));
     }
 
     /**
