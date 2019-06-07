@@ -25,6 +25,7 @@
                     <tr>
                         <th>Rok</th>
                         <th>Okres</th>
+                        <th>Nazwa funduszu</th>
                         <th>Status</th>
                         <th>Akcje</th>
                     </tr>
@@ -34,13 +35,20 @@
                         <tr>
                             <td>{{ sprawozdanie.rok }}</td>
                             <td>{{ sprawozdanie.okres }}</td>
+                            <td>{{ sprawozdanie.nazwaFunduszu }}</td>
                             <td>{{ sprawozdanie.status }}</td>
                             <td>
                                 {% if czyPozyczkowe %}
+                                    <a href="{{ path('sprawozdania_pozyczkowe_podglad', {'sprawozdanie': sprawozdanie.id}) }}" class="btn btn-sm btn-info" role="button">
+                                        <span class="fas fa-eye-open"></span> Podgląd
+                                    </a>
                                     <a href="{{ path('sprawozdania_pozyczkowe_edycja', {'sprawozdanie': sprawozdanie.id}) }}" class="btn btn-sm btn-primary" role="button">
                                         <i class="fas fa-edit"></i> Edytuj
                                     </a>
                                 {% else %}
+                                    <a href="{{ path('sprawozdania_poreczeniowe_podglad', {'sprawozdanie': sprawozdanie.id}) }}" class="btn btn-sm btn-info" role="button">
+                                        <span class="fas fa-eye-open"></span> Podgląd
+                                    </a>
                                     <a href="{{ path('sprawozdania_poreczeniowe_edycja', {'sprawozdanie': sprawozdanie.id}) }}" class="btn btn-sm btn-primary" role="button">
                                         <i class="fas fa-edit"></i> Edytuj
                                     </a>

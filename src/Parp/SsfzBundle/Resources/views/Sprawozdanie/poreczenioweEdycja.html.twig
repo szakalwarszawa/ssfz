@@ -2,7 +2,7 @@
 {% block body %}
     <div class="panel panel-default">
         <div class="panel-heading">Edycja sprawozdania</div>
-            {{ form_start(form) }}
+            {{ form_start(form, {'attr': {'id': 'form_sprawozdanie'}}) }}
             <div class="panel-body">
                 <table class="table">
                     <tr>
@@ -92,12 +92,21 @@
                 {{ form_row(form.inne) }}
 
                 <div id="form-submit-div" class="row btn-toolbar">
-                    <a class="btn btn-danger pull-right width-short" href="{{ path('lista_sprawozdan_spo', {'umowa': sprawozdanie.umowa.id}) }}">
-                        <span class="glyphicon glyphicon-chevron-left"></span> Powrót
-                    </a>
-                    <button type="submit" class="btn btnRegister btn-primary pull-right width-short">
-                        <span class="glyphicon glyphicon-ok"></span> Zapisz
-                    </button>
+                    {% if tylkoDoOdczytu %}
+                        <a class="btn btn-danger pull-right width-short" href="{{ path('lista_sprawozdan_spo', {'umowa': sprawozdanie.umowa.id}) }}">
+                            <span class="glyphicon glyphicon-chevron-left"></span> Powrót
+                        </a>
+                    {% else %}
+                        <button
+                            id="btn_powrot"
+                            type="button"
+                            class="btn btn-danger pull-right width-short"
+                            data-href-powrot="{{ path('lista_sprawozdan_spo', {'umowa': sprawozdanie.umowa.id}) }}"
+                        >
+                            <span class="glyphicon glyphicon-chevron-left"></span> Powrót
+                        </button>
+                        <input name="zapisz" value="Zapisz" type="submit" class="btn btn-primary pull-right width-short" />
+                    {% endif %}
                 </div>
             </div>
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
@@ -107,7 +116,13 @@
 {% endblock %}
 
 {% block javascripts %}
-    {% javascripts '@SsfzBundle/Resources/public/js/sprawozdanie_spo_edycja.js' %}
-        <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+    {% if tylkoDoOdczytu %}
+        {% javascripts '@SsfzBundle/Resources/public/js/sprawozdanie_spo_podglad.js' %}
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% else %}
+        {% javascripts '@SsfzBundle/Resources/public/js/sprawozdanie_spo_edycja.js' %}
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endif %}
 {% endblock %}

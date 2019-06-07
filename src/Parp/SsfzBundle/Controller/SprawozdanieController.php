@@ -41,6 +41,8 @@ class SprawozdanieController extends Controller
     {
         $entityManager = $this->getDoctrine()->getManager();
         $umowa = $entityManager->getRepository(Umowa::class)->find($umowaId);
+        $program = $umowa->getBeneficjent()->getProgram();
+        $this->getUser()->setAktywnyProgram($program);
         $beneficjent = $umowa->getBeneficjent();
         $beneficjentId = $beneficjent->getId();
         $this->getSprawozdanieService()->datatableSprawozdanie($this, $umowa);
@@ -544,8 +546,10 @@ class SprawozdanieController extends Controller
     public function listaSpoAction(Request $request, Umowa $umowa)
     {
         $entityManager = $this->getDoctrine()->getManager();
-        
-        $czyPozyczkowe = (Program::FUNDUSZ_POZYCZKOWY_SPO_WKP_121 === (int) $umowa->getBeneficjent()->getProgram()->getId());
+        $program = $umowa->getBeneficjent()->getProgram();
+        $this->getUser()->setAktywnyProgram($program);
+
+        $czyPozyczkowe = (Program::FUNDUSZ_POZYCZKOWY_SPO_WKP_121 === (int) $program->getId());
 
         $sprawozdanie =
             $czyPozyczkowe
@@ -603,24 +607,28 @@ class SprawozdanieController extends Controller
     }
 
     /**
-     * Lista sprawozdań pożyczkowych.
+     * Edycja sprawozdań pożyczkowych.
      *
-     * @Route("sprawozdania/pozyczkowe/edycja/{sprawozdanie}", name="sprawozdania_pozyczkowe_edycja")
+     * @Route(
+     *      "sprawozdania/pozyczkowe/edycja/{sprawozdanie}",
+     *      name="sprawozdania_pozyczkowe_edycja"
+     *  )
      *
      * @param Request $request
-     * SprawozdaniePozyczkowe $sprawozdanie
+     * @param SprawozdaniePozyczkowe $sprawozdanie
      *
      * @return Response
      */
     public function edycjaPozyczkoweAction(Request $request, SprawozdaniePozyczkowe $sprawozdanie)
     {
         $entityManager = $this->getDoctrine()->getManager();
+        $program = $sprawozdanie->getUmowa()->getBeneficjent()->getProgram();
+        $this->getUser()->setAktywnyProgram($program);
 
         $form = $this->createForm(
             SprawozdaniePozyczkoweType::class,
             $sprawozdanie
         );
-        
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
@@ -632,11 +640,19 @@ class SprawozdanieController extends Controller
                 $entityManager->flush();
                 $komunikat = 'Zapisano zmiany.';
                 $this->getKomunikatyService()->sukcesKomunikat($komunikat);
-
-                return $this->redirectToRoute(
-                    'sprawozdania_pozyczkowe_edycja',
-                    array('sprawozdanie' => $sprawozdanie->getId())
-                );
+                
+                $czyPowrot = empty($request->get('zapisz'));
+                if ($czyPowrot) {
+                    return $this->redirectToRoute(
+                        'lista_sprawozdan_spo',
+                        array('umowa' => $sprawozdanie->getUmowa()->getId())
+                    );
+                } else {
+                    return $this->redirectToRoute(
+                        'sprawozdania_pozyczkowe_edycja',
+                        array('sprawozdanie' => $sprawozdanie->getId())
+                    );
+                }
             } else {
                 $bledy = [];
                 foreach ($form->all() as $field) {
@@ -657,15 +673,19 @@ class SprawozdanieController extends Controller
             'SsfzBundle:Sprawozdanie:pozyczkoweEdycja.html.twig',
             array(
                 'sprawozdanie' => $sprawozdanie,
+                'tylkoDoOdczytu' => false,
                 'form' => $form->createView(),
             )
         );
     }
 
     /**
-     * Lista sprawozdań poręczeniowych.
+     * Edycja sprawozdań poręczeniowych.
      *
-     * @Route("sprawozdania/poreczeniowe/edycja/{sprawozdanie}", name="sprawozdania_poreczeniowe_edycja")
+     * @Route(
+     *      "sprawozdania/poreczeniowe/edycja/{sprawozdanie}",
+     *      name="sprawozdania_poreczeniowe_edycja"
+     *  )
      *
      * @param Request $request
      * SprawozdaniePoreczeniowe $sprawozdanie
@@ -675,6 +695,8 @@ class SprawozdanieController extends Controller
     public function edycjaPoreczenioweAction(Request $request, SprawozdaniePoreczeniowe $sprawozdanie)
     {
         $entityManager = $this->getDoctrine()->getManager();
+        $program = $sprawozdanie->getUmowa()->getBeneficjent()->getProgram();
+        $this->getUser()->setAktywnyProgram($program);
 
         $form = $this->createForm(
             SprawozdaniePoreczenioweType::class,
@@ -693,10 +715,18 @@ class SprawozdanieController extends Controller
                 $komunikat = 'Zapisano zmiany.';
                 $this->getKomunikatyService()->sukcesKomunikat($komunikat);
 
-                return $this->redirectToRoute(
-                    'sprawozdania_poreczeniowe_edycja',
-                    array('sprawozdanie' => $sprawozdanie->getId())
-                );
+                $czyPowrot = empty($request->get('zapisz'));
+                if ($czyPowrot) {
+                    return $this->redirectToRoute(
+                        'lista_sprawozdan_spo',
+                        array('umowa' => $sprawozdanie->getUmowa()->getId())
+                    );
+                } else {
+                    return $this->redirectToRoute(
+                        'sprawozdania_poreczeniowe_edycja',
+                        array('sprawozdanie' => $sprawozdanie->getId())
+                    );
+                }
             } else {
                 $bledy = [];
                 foreach ($form->all() as $field) {
@@ -717,6 +747,73 @@ class SprawozdanieController extends Controller
             'SsfzBundle:Sprawozdanie:poreczenioweEdycja.html.twig',
             array(
                 'sprawozdanie' => $sprawozdanie,
+                'tylkoDoOdczytu' => false,
+                'form' => $form->createView(),
+            )
+        );
+    }
+
+    /**
+     * Podgląd sprawozdań pożyczkowych.
+     *
+     * @Route("sprawozdania/pozyczkowe/podglad/{sprawozdanie}", name="sprawozdania_pozyczkowe_podglad")
+     *
+     * @param Request $request
+     * SprawozdaniePozyczkowe $sprawozdanie
+     *
+     * @return Response
+     */
+    public function podgladPozyczkoweAction(Request $request, SprawozdaniePozyczkowe $sprawozdanie)
+    {
+        $program = $sprawozdanie->getUmowa()->getBeneficjent()->getProgram();
+        $this->getUser()->setAktywnyProgram($program);
+
+        $form = $this->createForm(
+            SprawozdaniePozyczkoweType::class,
+            $sprawozdanie,
+            [
+                'read_only' => true,
+            ]
+        );
+        
+        return $this->render(
+            'SsfzBundle:Sprawozdanie:pozyczkoweEdycja.html.twig',
+            array(
+                'sprawozdanie' => $sprawozdanie,
+                'tylkoDoOdczytu' => true,
+                'form' => $form->createView(),
+            )
+        );
+    }
+
+    /**
+     * Podgląd sprawozdań poręczeniowych.
+     *
+     * @Route("sprawozdania/poreczeniowe/podglad/{sprawozdanie}", name="sprawozdania_poreczeniowe_podglad")
+     *
+     * @param Request $request
+     * SprawozdaniePoreczeniowe $sprawozdanie
+     *
+     * @return Response
+     */
+    public function podgladPoreczenioweAction(Request $request, SprawozdaniePoreczeniowe $sprawozdanie)
+    {
+        $program = $sprawozdanie->getUmowa()->getBeneficjent()->getProgram();
+        $this->getUser()->setAktywnyProgram($program);
+
+        $form = $this->createForm(
+            SprawozdaniePoreczenioweType::class,
+            $sprawozdanie,
+            [
+                'read_only' => true,
+            ]
+        );
+        
+        return $this->render(
+            'SsfzBundle:Sprawozdanie:poreczenioweEdycja.html.twig',
+            array(
+                'sprawozdanie' => $sprawozdanie,
+                'tylkoDoOdczytu' => true,
                 'form' => $form->createView(),
             )
         );

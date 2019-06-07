@@ -45,7 +45,35 @@ jQuery(document).ready(function() {
             autoclose: true
         });
     });
-});   
+
+
+
+
+    $('#btn_powrot').on('click', function(e) {
+//        e.preventDefault();
+        var dialog = bootbox.dialog({
+            message: "Czy zapisać dane?",
+            buttons: {
+                cancel: {
+                    label: "Tak",
+                    className: 'btn-info width-xshort',
+                    callback: function(){   
+                        $('#form_sprawozdanie').submit();
+                    }
+                },
+                ok: {
+                    label: "Nie",
+                    className: 'btn-danger width-xshort',
+                    callback: function(){
+                        location.href = e.target.getAttribute('data-href-powrot');
+                    }
+                }
+            }
+        }); 
+    }); 
+
+
+});
 
 function addForm($collectionHolder, $newLinkDiv, $formType) {
     var prototype = $collectionHolder.data('prototype');

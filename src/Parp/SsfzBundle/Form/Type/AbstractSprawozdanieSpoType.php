@@ -493,6 +493,17 @@ class AbstractSprawozdanieSpoType extends AbstractType
                 )
             )
         );
+
+//        $builder->add(
+//            'zapisz',
+//            SubmitType::class,
+//                array(
+//                    'label' => 'Zapisz',
+//                    'attr' => array(
+//                        'class' => 'btn btn-primary pull-right width-short',
+//                    ),
+//            )
+//        );
     }
 
     /**
