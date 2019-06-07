@@ -27,6 +27,8 @@ class PozyczkiController extends Controller
      * @param Request $request
      *
      * @return Response
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function wyswietlFormularzDanychPozyczkiAction(Request $request, int $id)
     {

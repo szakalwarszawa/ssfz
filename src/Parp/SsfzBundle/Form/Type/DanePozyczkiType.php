@@ -10,8 +10,17 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Parp\SsfzBundle\Entity\DanePozyczki;
 
+/**
+ * Formularz do wprowadzania danych o pożyczce.
+ */
 class DanePozyczkiType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $integerFieldConstraints = [
@@ -42,7 +51,7 @@ class DanePozyczkiType extends AbstractType
         ]);
 
         // protected $sprawozdanie;
-                    
+
         $integerFields = [
             'liczbaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw',
             'liczbaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw',
@@ -75,12 +84,12 @@ class DanePozyczkiType extends AbstractType
             'liczbaPozyczekOd120001Do300000PlnDlaInstytucjiEkonomiiSpolecznej',
             'liczbaPozyczekOd300001PlnDlaInstytucjiEkonomiiSpolecznej',
             /*
-            'liczbaPozyczekObrotowwychDo10000Pln',
-            'liczbaPozyczekObrotowwychOd10001Do30000Pln',
-            'liczbaPozyczekObrotowwychOd30001Do50000Pln',
-            'liczbaPozyczekObrotowwychOd50001Do120000Pln',
-            'liczbaPozyczekObrotowwychOd120001Do300000Pln',
-            'liczbaPozyczekObrotowwychOd300001Pln',
+            'liczbaPozyczekObrotowychDo10000Pln',
+            'liczbaPozyczekObrotowychOd10001Do30000Pln',
+            'liczbaPozyczekObrotowychOd30001Do50000Pln',
+            'liczbaPozyczekObrotowychOd50001Do120000Pln',
+            'liczbaPozyczekObrotowychOd120001Do300000Pln',
+            'liczbaPozyczekObrotowychOd300001Pln',
             'liczbaPozyczekInwestycyjnychDo10000Pln',
             'liczbaPozyczekInwestycyjnychOd10001Do30000Pln',
             'liczbaPozyczekInwestycyjnychOd30001Do50000Pln',

@@ -30,7 +30,7 @@ class DanePozyczki
      * Sprawozdanie, do którego przypisano dane pożyczki.
      *
      * @var Sprawozdanie
-     * 
+     *
      * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Sprawozdanie")
      * @ORM\JoinColumn(name="sprawozdanie_id", referencedColumnName="id", nullable=false)
      */
@@ -583,12 +583,12 @@ class DanePozyczki
 
 
 
-    protected $liczbaPozyczekObrotowwychDo10000Pln = 0;
-    protected $liczbaPozyczekObrotowwychOd10001Do30000Pln = 0;
-    protected $liczbaPozyczekObrotowwychOd30001Do50000Pln = 0;
-    protected $liczbaPozyczekObrotowwychOd50001Do120000Pln = 0;
-    protected $liczbaPozyczekObrotowwychOd120001Do300000Pln = 0;
-    protected $liczbaPozyczekObrotowwychOd300001Pln = 0;
+    protected $liczbaPozyczekObrotowychDo10000Pln = 0;
+    protected $liczbaPozyczekObrotowychOd10001Do30000Pln = 0;
+    protected $liczbaPozyczekObrotowychOd30001Do50000Pln = 0;
+    protected $liczbaPozyczekObrotowychOd50001Do120000Pln = 0;
+    protected $liczbaPozyczekObrotowychOd120001Do300000Pln = 0;
+    protected $liczbaPozyczekObrotowychOd300001Pln = 0;
 
 
 
