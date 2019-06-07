@@ -116,11 +116,7 @@
 {% endblock %}
 
 {% block javascripts %}
-    {% if tylkoDoOdczytu %}
-        {% javascripts '@SsfzBundle/Resources/public/js/sprawozdanie_spo_podglad.js' %}
-            <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-    {% else %}
+    {% if not tylkoDoOdczytu %}
         {% javascripts '@SsfzBundle/Resources/public/js/sprawozdanie_spo_edycja.js' %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}

@@ -276,17 +276,6 @@ class Umowa
         $this->spolki->removeElement($spolki);
     }
 
-//    /**
-//     * Dodaje sprawozdanie do wykazu sprawozdań.
-//     *
-//     * @param AbstractSprawozdanie $sprawozdanie
-//     */
-//    public function addSprawozdanie(AbstractSprawozdanie $sprawozdanie)
-//    {
-//        $sprawozdanie->setUmowa($this);
-//        $this->sprawozdania->add($sprawozdanie);
-//    }
-
     /**
      * Add sprawozdaniaZalazkowe
      *

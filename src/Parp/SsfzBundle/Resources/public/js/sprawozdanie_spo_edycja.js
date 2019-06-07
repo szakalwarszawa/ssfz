@@ -46,12 +46,8 @@ jQuery(document).ready(function() {
         });
     });
 
-
-
-
     $('#btn_powrot').on('click', function(e) {
-//        e.preventDefault();
-        var dialog = bootbox.dialog({
+        bootbox.dialog({
             message: "Czy zapisać dane?",
             buttons: {
                 cancel: {
@@ -71,8 +67,6 @@ jQuery(document).ready(function() {
             }
         }); 
     }); 
-
-
 });
 
 function addForm($collectionHolder, $newLinkDiv, $formType) {
