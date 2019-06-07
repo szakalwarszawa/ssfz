@@ -1,8 +1,10 @@
 <div class="row pull-right">
     <a href="{{ path('sprawozdanie_podglad', {'reportId': dt_obj.id}) }}" target="_blank" class="btn btn-sm btn-info" role="button"><span class="fas fa-eye-open"></span> Podgląd</a>
     {% if dt_obj.status == 1 %}
-        <a href="{{ path('sprawozdanie_zalazkowe_edycja', {'umowaId': dt_obj.umowaId, 'reportId': dt_obj.id}) }}" class="btn btn-sm btn-primary" role="button"><span class="fas fa-edit"></span> Edytuj</a>
+        <a href="/sprawozdanie/edycja/{{ dt_obj.umowaId }}/{{ dt_obj.id }}" class="btn btn-sm btn-primary" role="button"><span class="fas fa-edit"></span> Edytuj</a>
         <a href="/przeplyw/rejestracja/{{ dt_obj.id }}" class="btn btn-sm btn-success" role="button"><span class="fas fa-plus"></span> Dodaj przepływy finansowe</a>
+        <a href="{{ path('sprawozdanie_zalazkowe_edycja', {'umowaId': dt_obj.umowaId, 'reportId': dt_obj.id}) }}" class="btn btn-sm btn-primary" role="button"><span class="fas fa-edit"></span> Edytuj</a>
+        <a href="{{ url('formularz_danych_pozyczki', {id: dt_obj.id}) }}" class="btn btn-sm btn-success" role="button"><span class="fas fa-plus"></span> Dodaj dane o pożyczkach</a>
         <span class="btn btn-sm btn-warning btn-send-to-parp" row-id="{{ dt_obj.id }}" onclick="send({{ dt_obj.id }})" role="button"><span class="fas fa-share-alt"></span> Prześlij do PARP</span>
     {% else %}
          {% if dt_obj.status == 4 %}

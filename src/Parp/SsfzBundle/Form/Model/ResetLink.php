@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Form\Model;
 
 use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;

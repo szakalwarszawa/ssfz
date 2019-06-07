@@ -23,7 +23,7 @@ class BeneficjentController extends Controller
      *
      * @Route("", name="beneficjent")
      *
-     * @return    Response
+     * @return Response
      */
     public function indexAction()
     {
