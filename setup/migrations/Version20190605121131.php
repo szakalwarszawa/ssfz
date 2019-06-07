@@ -89,24 +89,24 @@ class Version20190605121131 extends AbstractMigration
      */
     public function down(Schema $schema)
     {
-//        $this->abortIf(true, 'Not supported.');
+        $this->abortIf(true, 'Not supported.');
         
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE sfz_sprawozdanie_poreczeniowe DROP FOREIGN KEY FK_22FEB1EBC1E6F345');
-        $this->addSql('ALTER TABLE sfz_sprawozdanie_pozyczkowe DROP FOREIGN KEY FK_DD2BEB89C1E6F345');
-        $this->addSql('ALTER TABLE sfz_sprawozdanie_poreczeniowe_skladnik_ogolem DROP FOREIGN KEY FK_702517FC8D7A2E99');
-        $this->addSql('ALTER TABLE sfz_sprawozdanie_poreczeniowe_skladnik_wydzielony DROP FOREIGN KEY FK_E21A4FDD8D7A2E99');
-        $this->addSql('ALTER TABLE sfz_sprawozdanie_pozyczkowe_skladnik_ogolem DROP FOREIGN KEY FK_3A67E0888D7A2E99');
-        $this->addSql('ALTER TABLE sfz_sprawozdanie_pozyczkowe_skladnik_wydzielony DROP FOREIGN KEY FK_E28A984A8D7A2E99');
-        $this->addSql('DROP TABLE slownik_form_prawnych');
-        $this->addSql('DROP TABLE slownik_skladnikow');
-        $this->addSql('DROP TABLE sfz_sprawozdanie_poreczeniowe_skladnik_ogolem');
-        $this->addSql('DROP TABLE sfz_sprawozdanie_poreczeniowe_skladnik_wydzielony');
-        $this->addSql('DROP TABLE sfz_sprawozdanie_poreczeniowe');
-        $this->addSql('DROP TABLE sfz_sprawozdanie_pozyczkowe_skladnik_ogolem');
-        $this->addSql('DROP TABLE sfz_sprawozdanie_pozyczkowe_skladnik_wydzielony');
-        $this->addSql('DROP TABLE sfz_sprawozdanie_pozyczkowe');
-        $this->addSql('DROP TABLE slownik_tak_nie');
+//        $this->addSql('ALTER TABLE sfz_sprawozdanie_poreczeniowe DROP FOREIGN KEY FK_22FEB1EBC1E6F345');
+//        $this->addSql('ALTER TABLE sfz_sprawozdanie_pozyczkowe DROP FOREIGN KEY FK_DD2BEB89C1E6F345');
+//        $this->addSql('ALTER TABLE sfz_sprawozdanie_poreczeniowe_skladnik_ogolem DROP FOREIGN KEY FK_702517FC8D7A2E99');
+//        $this->addSql('ALTER TABLE sfz_sprawozdanie_poreczeniowe_skladnik_wydzielony DROP FOREIGN KEY FK_E21A4FDD8D7A2E99');
+//        $this->addSql('ALTER TABLE sfz_sprawozdanie_pozyczkowe_skladnik_ogolem DROP FOREIGN KEY FK_3A67E0888D7A2E99');
+//        $this->addSql('ALTER TABLE sfz_sprawozdanie_pozyczkowe_skladnik_wydzielony DROP FOREIGN KEY FK_E28A984A8D7A2E99');
+//        $this->addSql('DROP TABLE slownik_form_prawnych');
+//        $this->addSql('DROP TABLE slownik_skladnikow');
+//        $this->addSql('DROP TABLE sfz_sprawozdanie_poreczeniowe_skladnik_ogolem');
+//        $this->addSql('DROP TABLE sfz_sprawozdanie_poreczeniowe_skladnik_wydzielony');
+//        $this->addSql('DROP TABLE sfz_sprawozdanie_poreczeniowe');
+//        $this->addSql('DROP TABLE sfz_sprawozdanie_pozyczkowe_skladnik_ogolem');
+//        $this->addSql('DROP TABLE sfz_sprawozdanie_pozyczkowe_skladnik_wydzielony');
+//        $this->addSql('DROP TABLE sfz_sprawozdanie_pozyczkowe');
+//        $this->addSql('DROP TABLE slownik_tak_nie');
     }
 }
