@@ -14,6 +14,11 @@ use Parp\SsfzBundle\Entity\DanePozyczki;
  * jest chroniona, ustawiana mutatorem i odczytywana akcesorem - bez żadnych modyfikacji.
  * Celem otestowania jest eliminacja potencjalnych literówek w dużej ilości kodu.
  * Brak logiki do testowania.
+ * 
+ * Uwaga!
+ * Dane w formacie decimal (po stronie bazy danych) są przez Doctrine mapowane na typ PHP "string",
+ * a nie na "float". Unika się w ten sposób utraty precyzji.
+ * @see https://www.doctrine-project.org/projects/doctrine-dbal/en/2.9/reference/types.html#decimal
  *
  * @todo Być może należy test uprścić jeszcze bardziej i dynamicznie (refleksją) odczytywać
  * dostępne metody (getX i setX). Nie będzie konieczna katualizacja wykazu pól po każdej
@@ -111,6 +116,93 @@ class DanePozyczkiTest extends TestCase
         'liczbaPozyczekOd300001PlnNaDzialaniaInne',
     ];
 
+    const DECIMAL_FIELDS = [
+        'kwotaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw',
+        'kwotaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw',
+        'kwotaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw',
+        'kwotaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw',
+        'kwotaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw',
+        'kwotaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw',
+        'kwotaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw',
+        'kwotaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw',
+        'kwotaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw',
+        'kwotaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw',
+        'kwotaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw',
+        'kwotaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw',
+        'kwotaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw',
+        'kwotaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw',
+        'kwotaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw',
+        'kwotaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw',
+        'kwotaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw',
+        'kwotaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw',
+        'kwotaPozyczekDo10000PlnDlaInnychPrzedsiebiorstw',
+        'kwotaPozyczekOd10001Do30000PlnDlaInnychPrzedsiebiorstw',
+        'kwotaPozyczekOd30001Do50000PlnDlaInnychPrzedsiebiorstw',
+        'kwotaPozyczekOd50001Do120000PlnDlaInnychPrzedsiebiorstw',
+        'kwotaPozyczekOd120001Do300000PlnDlaInnychPrzedsiebiorstw',
+        'kwotaPozyczekOd300001PlnDlaInnychPrzedsiebiorstw',
+        'kwotaPozyczekDo10000PlnDlaInstytucjiEkonomiiSpolecznej',
+        'kwotaPozyczekOd10001Do30000PlnDlaInstytucjiEkonomiiSpolecznej',
+        'kwotaPozyczekOd30001Do50000PlnDlaInstytucjiEkonomiiSpolecznej',
+        'kwotaPozyczekOd50001Do120000PlnDlaInstytucjiEkonomiiSpolecznej',
+        'kwotaPozyczekOd120001Do300000PlnDlaInstytucjiEkonomiiSpolecznej',
+        'kwotaPozyczekOd300001PlnDlaInstytucjiEkonomiiSpolecznej',
+        'kwotaPozyczekObrotowychDo10000Pln',
+        'kwotaPozyczekObrotowychOd10001Do30000Pln',
+        'kwotaPozyczekObrotowychOd30001Do50000Pln',
+        'kwotaPozyczekObrotowychOd50001Do120000Pln',
+        'kwotaPozyczekObrotowychOd120001Do300000Pln',
+        'kwotaPozyczekObrotowychOd300001Pln',
+        'kwotaPozyczekInwestycyjnychDo10000Pln',
+        'kwotaPozyczekInwestycyjnychOd10001Do30000Pln',
+        'kwotaPozyczekInwestycyjnychOd30001Do50000Pln',
+        'kwotaPozyczekInwestycyjnychOd50001Do120000Pln',
+        'kwotaPozyczekInwestycyjnychOd120001Do300000Pln',
+        'kwotaPozyczekInwestycyjnychOd300001Pln',
+        'kwotaPozyczekInwestycyjnoObrotowychDo10000Pln',
+        'kwotaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln',
+        'kwotaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln',
+        'kwotaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln',
+        'kwotaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln',
+        'kwotaPozyczekInwestycyjnoObrotowychOd300001Pln',
+        'kwotaPozyczekDo10000PlnNaDzialaniaProdukcyjne',
+        'kwotaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne',
+        'kwotaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne',
+        'kwotaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne',
+        'kwotaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne',
+        'kwotaPozyczekOd300001PlnNaDzialaniaProdukcyjne',
+        'kwotaPozyczekDo10000PlnNaDzialaniaHandlowe',
+        'kwotaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe',
+        'kwotaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe',
+        'kwotaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe',
+        'kwotaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe',
+        'kwotaPozyczekOd300001PlnNaDzialaniaHandlowe',
+        'kwotaPozyczekDo10000PlnNaDzialaniaUslugowe',
+        'kwotaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe',
+        'kwotaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe',
+        'kwotaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe',
+        'kwotaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe',
+        'kwotaPozyczekOd300001PlnNaDzialaniaUslugowe',
+        'kwotaPozyczekDo10000PlnNaDzialaniaBudownicze',
+        'kwotaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze',
+        'kwotaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze',
+        'kwotaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze',
+        'kwotaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze',
+        'kwotaPozyczekOd300001PlnNaDzialaniaBudownicze',
+        'kwotaPozyczekDo10000PlnNaDzialaniaRolnicze',
+        'kwotaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze',
+        'kwotaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze',
+        'kwotaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze',
+        'kwotaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze',
+        'kwotaPozyczekOd300001PlnNaDzialaniaRolnicze',
+        'kwotaPozyczekDo10000PlnNaDzialaniaInne',
+        'kwotaPozyczekOd10001Do30000PlnNaDzialaniaInne',
+        'kwotaPozyczekOd30001Do50000PlnNaDzialaniaInne',
+        'kwotaPozyczekOd50001Do120000PlnNaDzialaniaInne',
+        'kwotaPozyczekOd120001Do300000PlnNaDzialaniaInne',
+        'kwotaPozyczekOd300001PlnNaDzialaniaInne',
+    ];
+
     /**
      * @var DanePozyczki
      */
@@ -129,7 +221,7 @@ class DanePozyczkiTest extends TestCase
         $this->assertInstanceOf(DanePozyczki::class, $this->danePozyczki);
     }
 
-    public function testContainsValidInitialValues()
+    public function testContainsValidInitialIntegers()
     {
         foreach (self::INTEGER_FIELDS as $field) {
             $getter = 'get'.ucfirst($field);
@@ -139,11 +231,35 @@ class DanePozyczkiTest extends TestCase
         }
     }
 
-    public function testCanSetAndGet()
+    public function testContainsValidInitialDecimals()
+    {
+        foreach (self::DECIMAL_FIELDS as $field) {
+            $getter = 'get'.ucfirst($field);
+            $value = $this->danePozyczki->$getter();
+
+            $this->assertSame('0.00', $value);
+        }
+    }
+
+    public function testCanSetAndGetIntegers()
     {
         $i = 0;
         foreach (self::INTEGER_FIELDS as $field) {
             $i++;
+            $setter = 'set'.ucfirst($field);
+            $getter = 'get'.ucfirst($field);
+            $this->danePozyczki->$setter($i);
+            $value = $this->danePozyczki->$getter();
+
+            $this->assertSame($i , $value);
+        }
+    }
+
+    public function testCanSetAndGetDecimals()
+    {
+        $i = '0.00';
+        foreach (self::DECIMAL_FIELDS as $field) {
+            $i = (string)((float) $i + 0.01);
             $setter = 'set'.ucfirst($field);
             $getter = 'get'.ucfirst($field);
             $this->danePozyczki->$setter($i);
