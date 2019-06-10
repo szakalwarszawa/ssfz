@@ -249,6 +249,20 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
     protected $inne;
 
     /**
+     * Czy dane są prawidłowe i wypełniono wszystkie wymagane pola.
+     *
+     * @var bool
+     *
+     * @ORM\Column(
+     *      name="czy_dane_sa_prawidlowe",
+     *      type="boolean",
+     *      nullable=false,
+     *      options={"default": false}
+     * )
+     */
+    protected $czyDaneSaPrawidlowe = false;
+
+    /**
      * Set nazwaFunduszu
      *
      * @param string $nazwaFunduszu
@@ -909,5 +923,29 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
         }
         
         return $this;
+    }
+
+    /**
+     * Set czyDaneSaPrawidlowe
+     *
+     * @param bool $czyDaneSaPrawidlowe
+     *
+     * @return AbstractSprawozdanieSpo
+     */
+    public function setCzyDaneSaPrawidlowe($czyDaneSaPrawidlowe)
+    {
+        $this->czyDaneSaPrawidlowe = $czyDaneSaPrawidlowe;
+
+        return $this;
+    }
+
+    /**
+     * Get czyDaneSaPrawidlowe
+     *
+     * @return bool
+     */
+    public function getCzyDaneSaPrawidlowe()
+    {
+        return $this->czyDaneSaPrawidlowe;
     }
 }

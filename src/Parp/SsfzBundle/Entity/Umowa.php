@@ -5,6 +5,7 @@ namespace Parp\SsfzBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
+use Parp\SsfzBundle\Exception\KomunikatDlaBeneficjentaException;
 
 /**
  * Umowa
@@ -376,5 +377,21 @@ class Umowa
     public function getSprawozdaniaPoreczeniowe()
     {
         return $this->sprawozdaniaPoreczeniowe;
+    }
+    
+    /**
+     * Wyrzuca wyjątek, jeśli użytkownik nie ma uprawnień do edycji.
+     *
+     * @param Uzytkownik $uzytkownik
+     *
+     * @throws KomunikatDlaBeneficjentaException
+     */
+    public function sprawdzCzyUzytkownikMozeWyswietlac(Uzytkownik $uzytkownik)
+    {
+        $idWlasciciela = (int) $this->beneficjent->getUzytkownik()->getId();
+
+        if ((int) $uzytkownik->getId() !== $idWlasciciela) {
+            throw new KomunikatDlaBeneficjentaException('Umowa należy do innego użytkownika.');
+        }
     }
 }
