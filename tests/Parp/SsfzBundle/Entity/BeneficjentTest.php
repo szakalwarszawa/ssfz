@@ -1,6 +1,6 @@
 <?php
 
-namespace Test\Parp\SsfzBundle\Entity;;
+namespace Test\Parp\SsfzBundle\Entity;
 
 use PHPUnit\Framework\TestCase;
 use Parp\SsfzBundle\Entity\Beneficjent;
@@ -15,7 +15,11 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class BeneficjentTest extends TestCase
 {
+    /**
+     * @var Beneficjent
+     */
     private $beneficjent;
+
     /**
      * Ustawienie środowiska testowego
      */
