@@ -2,6 +2,9 @@
 
 namespace Parp\SsfzBundle\Service;
 
+use Swift_Mailer;
+use Swift_Message;
+use Symfony\Bundle\TwigBundle\TwigEngine;
 use Parp\SsfzBundle\Entity\Uzytkownik;
 
 /**
@@ -25,11 +28,11 @@ class MailerService
     private $templating;
 
     /**
-     * @param string       $sender
+     * @param string $sender
      * @param Swift_Mailer $mailer
-     * @param TwigEngine   $templating
+     * @param TwigEngine $templating
      */
-    public function __construct($sender, $mailer, $templating)
+    public function __construct($sender, Swift_Mailer $mailer, TwigEngine $templating)
     {
         $this->sender = $sender;
         $this->mailer = $mailer;
@@ -40,13 +43,13 @@ class MailerService
      * Metoda wysyłająca wiadomość email do pojedynczego użytkownika
      *
      * @param Uzytkownik $receiver
-     * @param string     $topic
-     * @param string     $templateName
-     * @param array      $templateParams
+     * @param string $topic
+     * @param string $templateName
+     * @param array $templateParams
      */
     public function sendMail($receiver, $topic, $templateName, array $templateParams = [])
     {
-        $message = (new \Swift_Message($topic))
+        $message = (new Swift_Message($topic))
             ->setFrom($this->sender)
             ->setTo($receiver->getEmail())
             ->setBody($this->templating->render($templateName, $templateParams), 'text/html');
@@ -63,7 +66,7 @@ class MailerService
      */
     public function sendMailToGroup(array $receivers, $topic, $templateName, array $templateParams = [])
     {
-        $message = (new \Swift_Message($topic))
+        $message = (new Swift_Message($topic))
             ->setFrom($this->sender)
             ->setTo($receivers)
             ->setBody($this->templating->render($templateName, $templateParams), 'text/html')

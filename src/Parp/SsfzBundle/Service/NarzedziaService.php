@@ -41,8 +41,10 @@ class NarzedziaService
      *
      * @param EntityManager $entityManager
      * @param BeneficjentFormaPrawnaRepository $dictFormaRepo repozytorium BeneficjentFormaPrawnaRepository
-     * @param WojewodztwoRepository            $dictWojRepo   repozytorium WojewodztwoRepository
-     * @param GospodarkaDzialRepository        $dictDzialRepo repozytorium GospodarkaDzialRepository
+     * @param WojewodztwoRepository $dictWojRepo repozytorium WojewodztwoRepository
+     * @param GospodarkaDzialRepository $dictDzialRepo repozytorium GospodarkaDzialRepository
+     *
+     * @todo A gdzię są typehinty?!
      */
     public function __construct(EntityManager $entityManager, $dictFormaRepo, $dictWojRepo, $dictDzialRepo)
     {

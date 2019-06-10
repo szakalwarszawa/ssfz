@@ -44,8 +44,7 @@ class JasperReportsService
     }
 
     /**
-     * Zwraca listę dostępnych raportów,
-     * znajdujących się pod ścieżką, zdefiniowaną
+     * Zwraca listę dostępnych raportów, znajdujących się pod ścieżką, zdefiniowaną
      * w pliku parameters.yml
      *
      * @return array
@@ -59,10 +58,10 @@ class JasperReportsService
     }
 
     /**
-     * Metoda umożliwiająca pobranie pliku
-     * raportu w formacie xls
+     * Metoda umożliwiająca pobranie pliku raportu w formacie xls
      *
-     * @param  string $filePath
+     * @param string $filePath
+     *
      * @return Response
      */
     public function getReport($filePath)

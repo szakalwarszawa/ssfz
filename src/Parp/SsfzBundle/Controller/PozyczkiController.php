@@ -32,7 +32,7 @@ class PozyczkiController extends Controller
      */
     public function wyswietlFormularzDanychPozyczkiAction(Request $request, int $id)
     {
-        //$entityManager = $this->getDoctrine()->getManager();
+        $entityManager = $this->getDoctrine()->getManager();
 
         $danePozyczki = new DanePozyczki();
         $formularz = $this->createForm(DanePozyczkiType::class, $danePozyczki, [

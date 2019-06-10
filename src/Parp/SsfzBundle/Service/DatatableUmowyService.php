@@ -14,10 +14,11 @@ class DatatableUmowyService
      */
     public function getDatatableUmowyFields()
     {
-        return array(
-            'Numer umowy' => 'u.numer',
-            '' => 'u.id',
-            '_identifier_' => 'u.id');
+        return [
+            'Numer umowy'  => 'u.numer',
+            ''             => 'u.id',
+            '_identifier_' => 'u.id',
+        ];
     }
 
     /**
@@ -27,14 +28,14 @@ class DatatableUmowyService
      */
     public function getDatatableUmowyRenderers()
     {
-        return array(
-            0 => array(
+        return [
+            0 => [
                 'view' => 'SsfzBundle:Datatable:_escapeJs.html.twig',
-            ),
-            1 => array(
+            ],
+            1 => [
                 'view' => 'SsfzBundle:Beneficjent:_umowaActions.html.twig',
-            )
-        );
+            ],
+        ];
     }
 
     /**
@@ -54,7 +55,9 @@ class DatatableUmowyService
             ->setFields($this->getDatatableUmowyFields())
             ->setSearch(true)
             ->setRenderers($this->getDatatableUmowyRenderers())
-            ->setWhere('u.beneficjentId = :beneficjentId', array('beneficjentId' => (string) $beneficjentId))
-        ;
+            ->setWhere('u.beneficjentId = :beneficjentId', [
+                'beneficjentId' => (string) $beneficjentId,
+            ]
+        );
     }
 }
