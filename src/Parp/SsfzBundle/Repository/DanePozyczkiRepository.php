@@ -17,18 +17,38 @@ class DanePozyczkiRepository extends EntityRepository
      * Tworzy nowe dane pożyczki przypisane do sprawozdania.
      *
      * @param Sprawozdanie $sprawozdanie
-     * @param boolean $flush
+     * @param bool $persist
      *
      * @return DanePozyczki
      */
-    public function create(Sprawozdanie $sprawozdanie, $flush = false): DanePozyczki
+    public function create(Sprawozdanie $sprawozdanie, $persist = false): DanePozyczki
     {
         $danePozyczki = new DanePozyczki();
         $danePozyczki->setSprawozdanie($sprawozdanie);
-        $this->_em->persist($danePozyczki);
-        if ($flush) {
-            $this->_em->flush($danePozyczki);
+        if ($persist) {
+            $this->persist($danePozyczki);
         }
+
+        return $danePozyczki;
+    }
+
+    public function delete(DanePozyczki $danepozyczki)
+    {
+        $this->_em->remove($danePozyczki);
+        $this->_em->flush($danePozyczki);
+    }
+
+    /**
+     * Utrwala dane pożyczki.
+     *
+     * @param DanePozyczki $danePozyczki
+     *
+     * @return DanePozyczki
+     */
+    public function persist(DanePozyczki $danePozyczki)
+    {
+        $this->_em->persist($danePozyczki);
+        $this->_em->flush($danePozyczki);
 
         return $danePozyczki;
     }
