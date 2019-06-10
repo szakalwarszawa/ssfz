@@ -12,6 +12,8 @@ use Parp\SsfzBundle\Entity\Sprawozdanie;
  *
  * @ORM\Table(name="sfz_dane_pozyczek")
  * @ORM\Entity(repositoryClass="Parp\SsfzBundle\Repository\DanePozyczkiRepository")
+ *
+ * @see bin/phpunit --configuration ./tests/phpunit.xml --no-coverage --bootstrap ./vendor/autoload.php tests/Parp/SsfzBundle/Entity/DanePozyczkiTest
  */
 class DanePozyczki
 {
@@ -852,169 +854,617 @@ class DanePozyczki
      */
     protected $liczbaPozyczekInwestycyjnoObrotowychOd300001Pln = 0;
 
+   /**
+    * Liczba pożyczek na działania produkcyjne do 10.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_do_10000_pln_dzial_produkcyjne",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania produkcyjne do 10.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
+    protected $liczbaPozyczekDo10000PlnNaDzialaniaProdukcyjne = 0;
 
+   /**
+    * Liczba pożyczek na działania produkcyjne od 10.001zł do 30.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_10001_do_30000_pln_dzial_produkcyjne",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania produkcyjne od 10.001zł do 30.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
+    protected $liczbaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne = 0;
 
+   /**
+    * Liczba pożyczek na działania produkcyjne od 30.001zł do 50.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_30001_do_50000_pln_dzial_produkcyjne",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania produkcyjne od 30.001zł do 50.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
+    protected $liczbaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne = 0;
+   
+   /**
+    * Liczba pożyczek na działania produkcyjne od 50.001zł do 120.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_50001_do_120000_pln_dzial_produkcyjne",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania produkcyjne od 50.001zł do 120.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
+    protected $liczbaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne = 0;
 
+   /**
+    * Liczba pożyczek na działania produkcyjne od 120.001zł do 300.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_120001_do_300000_pln_dzial_produkcyjne",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania produkcyjne od 120.001zł do 300.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
+    protected $liczbaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne = 0;
 
+    /**
+     * Liczba pożyczek na działania produkcyjne od 301.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_300001_pln_dzial_produkcyjne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania produkcyjne od 301.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPozyczekOd300001PlnNaDzialaniaProdukcyjne = 0;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+   /**
+    * Liczba pożyczek na działania handlowe do 10.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_do_10000_pln_dzial_handlowe",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania handlowe do 10.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekDo10000PlnNaDzialaniaHandlowe = 0;
+
+   /**
+    * Liczba pożyczek na działania handlowe od 10.001zł do 30.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_10001_do_30000_pln_dzial_handlowe",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania handlowe od 10.001zł do 30.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe = 0;
+
+   /**
+    * Liczba pożyczek na działania handlowe od 30.001zł do 50.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_30001_do_50000_pln_dzial_handlowe",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania handlowe od 30.001zł do 50.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe = 0;
+
+   /**
+    * Liczba pożyczek na działania handlowe od 50.001zł do 120.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_50001_do_120000_pln_dzial_handlowe",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania handlowe od 50.001zł do 120.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe = 0;
+
+   /**
+    * Liczba pożyczek na działania handlowe od 120.001zł do 300.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_120001_do_300000_pln_dzial_handlowe",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania handlowe od 120.001zł do 300.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe = 0;
+
+    /**
+     * Liczba pożyczek na działania handlowe od 301.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_300001_pln_dzial_handlowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania handlowe od 301.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd300001PlnNaDzialaniaHandlowe = 0;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   /**
+    * Liczba pożyczek na działania usługowe do 10.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_do_10000_pln_dzial_uslugowe",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania usługowe do 10.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekDo10000PlnNaDzialaniaUslugowe = 0;
+
+   /**
+    * Liczba pożyczek na działania usługowe od 10.001zł do 30.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_10001_do_30000_pln_dzial_uslugowe",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania usługowe od 10.001zł do 30.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe = 0;
+
+   /**
+    * Liczba pożyczek na działania usługowe od 30.001zł do 50.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_30001_do_50000_pln_dzial_uslugowe",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania usługowe od 30.001zł do 50.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe = 0;
+
+   /**
+    * Liczba pożyczek na działania usługowe od 50.001zł do 120.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_50001_do_120000_pln_dzial_uslugowe",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania usługowe od 50.001zł do 120.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe = 0;
+
+   /**
+    * Liczba pożyczek na działania usługowe od 120.001zł do 300.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_120001_do_300000_pln_dzial_uslugowe",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania usługowe od 120.001zł do 300.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe = 0;
+
+    /**
+     * Liczba pożyczek na działania usługowe od 301.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_300001_pln_dzial_uslugowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania usługowe od 301.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd300001PlnNaDzialaniaUslugowe = 0;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   /**
+    * Liczba pożyczek na działania budownicze do 10.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_do_10000_pln_dzial_budownicze",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania budownicze do 10.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekDo10000PlnNaDzialaniaBudownicze = 0;
+
+   /**
+    * Liczba pożyczek na działania budownicze od 10.001zł do 30.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_10001_do_30000_pln_dzial_budownicze",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania budownicze od 10.001zł do 30.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze = 0;
+
+   /**
+    * Liczba pożyczek na działania budownicze od 30.001zł do 50.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_30001_do_50000_pln_dzial_budownicze",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania budownicze od 30.001zł do 50.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze = 0;
+
+   /**
+    * Liczba pożyczek na działania budownicze od 50.001zł do 120.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_50001_do_120000_pln_dzial_budownicze",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania budownicze od 50.001zł do 120.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze = 0;
+
+   /**
+    * Liczba pożyczek na działania budownicze od 120.001zł do 300.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_120001_do_300000_pln_dzial_budownicze",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania budownicze od 120.001zł do 300.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze = 0;
+
+    /**
+     * Liczba pożyczek na działania budownicze od 301.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_300001_pln_dzial_budownicze",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania budownicze od 301.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd300001PlnNaDzialaniaBudownicze = 0;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   /**
+    * Liczba pożyczek na działania rolnicze do 10.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_do_10000_pln_dzial_rolnicze",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania rolnicze do 10.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekDo10000PlnNaDzialaniaRolnicze = 0;
+
+   /**
+    * Liczba pożyczek na działania rolnicze od 10.001zł do 30.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_10001_do_30000_pln_dzial_rolnicze",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania rolnicze od 10.001zł do 30.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze = 0;
+
+   /**
+    * Liczba pożyczek na działania rolnicze od 30.001zł do 50.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_30001_do_50000_pln_dzial_rolnicze",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania rolnicze od 30.001zł do 50.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze = 0;
+
+   /**
+    * Liczba pożyczek na działania rolnicze od 50.001zł do 120.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_50001_do_120000_pln_dzial_rolnicze",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania rolnicze od 50.001zł do 120.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze = 0;
+
+   /**
+    * Liczba pożyczek na działania rolnicze od 120.001zł do 300.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_120001_do_300000_pln_dzial_rolnicze",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania rolnicze od 120.001zł do 300.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze = 0;
+
+    /**
+     * Liczba pożyczek na działania rolnicze od 301.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_300001_pln_dzial_rolnicze",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania rolnicze od 301.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd300001PlnNaDzialaniaRolnicze = 0;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   /**
+    * Liczba pożyczek na działania inne do 10.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_do_10000_pln_dzial_inne",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania inne do 10.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekDo10000PlnNaDzialaniaInne = 0;
+
+   /**
+    * Liczba pożyczek na działania inne od 10.001zł do 30.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_10001_do_30000_pln_dzial_inne",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania inne od 10.001zł do 30.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd10001Do30000PlnNaDzialaniaInne = 0;
+
+   /**
+    * Liczba pożyczek na działania inne od 30.001zł do 50.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_30001_do_50000_pln_dzial_inne",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania inne od 30.001zł do 50.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd30001Do50000PlnNaDzialaniaInne = 0;
+
+   /**
+    * Liczba pożyczek na działania inne od 50.001zł do 120.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_50001_do_120000_pln_dzial_inne",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania inne od 50.001zł do 120.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd50001Do120000PlnNaDzialaniaInne = 0;
+
+   /**
+    * Liczba pożyczek na działania inne od 120.001zł do 300.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_od_120001_do_300000_pln_dzial_inne",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek na działania inne od 120.001zł do 300.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekOd120001Do300000PlnNaDzialaniaInne = 0;
+
+    /**
+     * Liczba pożyczek na działania inne od 301.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_300001_pln_dzial_rinne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania inne od 301.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd300001PlnNaDzialaniaInne = 0;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     /**
      * Konstruktor.
@@ -1970,7 +2420,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekInwestycyjnychDo10000Pln(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekInwestycyjnychDo10000Pln = $liczbaPozyczekInwestycyjnychDo10000Pln;
+        $this->liczbaPozyczekInwestycyjnychDo10000Pln = $liczbaPozyczek;
 
         return $this;
     }
@@ -2235,6 +2685,876 @@ class DanePozyczki
     public function setLiczbaPozyczekInwestycyjnoObrotowychOd300001Pln(int $liczbaPozyczek = 0)
     {
         $this->liczbaPozyczekInwestycyjnoObrotowychOd300001Pln = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania produkcyjne do 10.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekDo10000PlnNaDzialaniaProdukcyjne()
+    {
+        return $this->liczbaPozyczekDo10000PlnNaDzialaniaProdukcyjne;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania produkcyjne do 10.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekDo10000PlnNaDzialaniaProdukcyjne(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekDo10000PlnNaDzialaniaProdukcyjne = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania produkcyjne od 30.001zł do 50.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne()
+    {
+        return $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania produkcyjne od 30.001zł do 50.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania produkcyjne od 30.001zł do 50.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne()
+    {
+        return $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania produkcyjne od 30.001zł do 50.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania produkcyjne od 50.001zł do 120.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne()
+    {
+        return $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania produkcyjne od 50.001zł do 120.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania produkcyjne od 120.001zł do 300.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne()
+    {
+        return $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania produkcyjne od 120.001zł do 300.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania produkcyjne od 301.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd300001PlnNaDzialaniaProdukcyjne()
+    {
+        return $this->liczbaPozyczekOd300001PlnNaDzialaniaProdukcyjne;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania produkcyjne od 301.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd300001PlnNaDzialaniaProdukcyjne(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd300001PlnNaDzialaniaProdukcyjne = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania handlowe do 10.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekDo10000PlnNaDzialaniaHandlowe()
+    {
+        return $this->liczbaPozyczekDo10000PlnNaDzialaniaHandlowe;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania handlowe do 10.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekDo10000PlnNaDzialaniaHandlowe(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekDo10000PlnNaDzialaniaHandlowe = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania handlowe od 10.001zł do 30.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe()
+    {
+        return $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania handlowe od 10.001zł do 30.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania handlowe od 30.001zł do 50.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe()
+    {
+        return $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania handlowe od 30.001zł do 50.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania handlowe od 50.001zł do 120.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe()
+    {
+        return $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania handlowe od 50.001zł do 120.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania handlowe od 120.001zł do 300.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe()
+    {
+        return $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania handlowe od 120.001zł do 300.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania handlowe od 301.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd300001PlnNaDzialaniaHandlowe()
+    {
+        return $this->liczbaPozyczekOd300001PlnNaDzialaniaHandlowe;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania handlowe od 301.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd300001PlnNaDzialaniaHandlowe(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd300001PlnNaDzialaniaHandlowe = $liczbaPozyczek;
+
+        return $this;
+    }
+
+
+
+
+
+
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania usługowe do 10.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekDo10000PlnNaDzialaniaUslugowe()
+    {
+        return $this->liczbaPozyczekDo10000PlnNaDzialaniaUslugowe;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania usługowe do 10.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekDo10000PlnNaDzialaniaUslugowe(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekDo10000PlnNaDzialaniaUslugowe = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania usługowe od 10.001zł do 30.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe()
+    {
+        return $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania usługowe od 10.001zł do 30.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania usługowe od 30.001zł do 50.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe()
+    {
+        return $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania usługowe od 30.001zł do 50.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania usługowe od 50.001zł do 120.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe()
+    {
+        return $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania usługowe od 50.001zł do 120.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania usługowe od 120.001zł do 300.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe()
+    {
+        return $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania usługowe od 120.001zł do 300.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania usługowe od 301.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd300001PlnNaDzialaniaUslugowe()
+    {
+        return $this->liczbaPozyczekOd300001PlnNaDzialaniaUslugowe;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania usługowe od 301.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd300001PlnNaDzialaniaUslugowe(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd300001PlnNaDzialaniaUslugowe = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania budownicze do 10.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekDo10000PlnNaDzialaniaBudownicze()
+    {
+        return $this->liczbaPozyczekDo10000PlnNaDzialaniaBudownicze;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania budownicze do 10.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekDo10000PlnNaDzialaniaBudownicze(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekDo10000PlnNaDzialaniaBudownicze = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania budownicze od 10.001zł do 30.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze()
+    {
+        return $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania budownicze od 10.001zł do 30.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania budownicze od 30.001zł do 50.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze()
+    {
+        return $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania budownicze od 30.001zł do 50.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania budownicze od 50.001zł do 120.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze()
+    {
+        return $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania budownicze od 50.001zł do 120.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania budownicze od 120.001zł do 300.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze()
+    {
+        return $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania budownicze od 120.001zł do 300.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania budownicze od 301.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd300001PlnNaDzialaniaBudownicze()
+    {
+        return $this->liczbaPozyczekOd300001PlnNaDzialaniaBudownicze;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania budownicze od 301.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd300001PlnNaDzialaniaBudownicze(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd300001PlnNaDzialaniaBudownicze = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania rolnicze do 10.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekDo10000PlnNaDzialaniaRolnicze()
+    {
+        return $this->liczbaPozyczekDo10000PlnNaDzialaniaRolnicze;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania rolnicze do 10.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekDo10000PlnNaDzialaniaRolnicze(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekDo10000PlnNaDzialaniaRolnicze = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania rolnicze od 10.001zł do 30.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze()
+    {
+        return $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania rolnicze od 10.001zł do 30.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania rolnicze od 30.001zł do 50.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze()
+    {
+        return $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania rolnicze od 30.001zł do 50.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania rolnicze od 50.001zł do 120.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze()
+    {
+        return $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania rolnicze od 50.001zł do 120.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania rolnicze od 120.001zł do 300.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze()
+    {
+        return $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania rolnicze od 120.001zł do 300.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania rolnicze od 301.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd300001PlnNaDzialaniaRolnicze()
+    {
+        return $this->liczbaPozyczekOd300001PlnNaDzialaniaRolnicze;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania rolnicze od 301.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd300001PlnNaDzialaniaRolnicze(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd300001PlnNaDzialaniaRolnicze = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania inne do 10.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekDo10000PlnNaDzialaniaInne()
+    {
+        return $this->liczbaPozyczekDo10000PlnNaDzialaniaInne;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania inne do 10.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekDo10000PlnNaDzialaniaInne(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekDo10000PlnNaDzialaniaInne = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania inne od 10.001zł do 30.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd10001Do30000PlnNaDzialaniaInne()
+    {
+        return $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaInne;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania inne od 10.001zł do 30.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd10001Do30000PlnNaDzialaniaInne(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaInne = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania inne od 30.001zł do 50.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd30001Do50000PlnNaDzialaniaInne()
+    {
+        return $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaInne;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania inne od 30.001zł do 50.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd30001Do50000PlnNaDzialaniaInne(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaInne = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania inne od 50.001zł do 120.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd50001Do120000PlnNaDzialaniaInne()
+    {
+        return $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaInne;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania inne od 50.001zł do 120.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd50001Do120000PlnNaDzialaniaInne(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaInne = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania inne od 120.001zł do 300.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd120001Do300000PlnNaDzialaniaInne()
+    {
+        return $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaInne;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania inne od 120.001zł do 300.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd120001Do300000PlnNaDzialaniaInne(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaInne = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania inne od 301.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOd300001PlnNaDzialaniaInne()
+    {
+        return $this->liczbaPozyczekOd300001PlnNaDzialaniaInne;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek na działania inne od 301.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekOd300001PlnNaDzialaniaInne(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekOd300001PlnNaDzialaniaInne = $liczbaPozyczek;
 
         return $this;
     }

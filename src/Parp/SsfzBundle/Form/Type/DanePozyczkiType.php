@@ -101,7 +101,12 @@ class DanePozyczkiType extends AbstractType
             'liczbaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln',
             'liczbaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln',
             'liczbaPozyczekInwestycyjnoObrotowychOd300001Pln',
-            /*
+            'liczbaPozyczekDo10000PlnNaDzialaniaProdukcyjne',
+            'liczbaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne',
+            'liczbaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne',
+            'liczbaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne',
+            'liczbaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne',
+            'liczbaPozyczekOd300001PlnNaDzialaniaProdukcyjne',
             'liczbaPozyczekDo10000PlnNaDzialaniaHandlowe',
             'liczbaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe',
             'liczbaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe',
@@ -131,7 +136,7 @@ class DanePozyczkiType extends AbstractType
             'liczbaPozyczekOd30001Do50000PlnNaDzialaniaInne',
             'liczbaPozyczekOd50001Do120000PlnNaDzialaniaInne',
             'liczbaPozyczekOd120001Do300000PlnNaDzialaniaInne',
-            'liczbaPozyczekOd300001PlnNaDzialaniaInne', */
+            'liczbaPozyczekOd300001PlnNaDzialaniaInne',
         ];
 
         foreach ($integerFields as $field) {
@@ -144,9 +149,6 @@ class DanePozyczkiType extends AbstractType
             ]);
         }
     }
-
-
-
 
     /**
      * Ustawia opcje przekazana do formularza.
