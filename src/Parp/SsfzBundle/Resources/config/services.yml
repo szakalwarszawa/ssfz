@@ -129,3 +129,13 @@ services:
     ssfz.service.rola_service:
         class: Parp\SsfzBundle\Service\RolaService
         arguments: ['@ssfz.repository.rola_repository']
+
+    ssfz.event_listener.exception_listener:
+            class: 'Parp\SsfzBundle\EventListener\ExceptionListener'
+            arguments:
+                - '@kernel'
+                - '@request_stack'
+                - '@router'
+                - '@ssfz.service.komunikaty_service'
+            tags:
+                - { name: kernel.event_subscriber }

@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Parp\SsfzBundle\Exception\KomunikatDlaBeneficjentaException;
 
 /**
  * AbstractSprawozdanie
@@ -501,5 +502,37 @@ class AbstractSprawozdanie
     public function setDataZatwierdzenia($dataZatwierdzenia)
     {
         $this->dataZatwierdzenia = $dataZatwierdzenia;
+    }
+    
+    /**
+     * Wyrzuca wyjątek, jeśli użytkownik nie ma uprawnień do podglądu.
+     *
+     * @param Uzytkownik $uzytkownik
+     *
+     * @throws KomunikatDlaBeneficjentaException
+     */
+    public function sprawdzCzyUzytkownikMozeWyswietlac(Uzytkownik $uzytkownik)
+    {
+        $idWlasciciela = (int) $this->umowa->getBeneficjent()->getUzytkownik()->getId();
+
+        if ((int) $uzytkownik->getId() !== $idWlasciciela) {
+            throw new KomunikatDlaBeneficjentaException('Sprawozdanie należy do innego użytkownika.');
+        }
+    }
+    
+    /**
+     * Wyrzuca wyjątek, jeśli użytkownik nie ma uprawnień do edycji.
+     *
+     * @param Uzytkownik $uzytkownik
+     *
+     * @throws KomunikatDlaBeneficjentaException
+     */
+    public function sprawdzCzyUzytkownikMozeEdytowac(Uzytkownik $uzytkownik)
+    {
+        $this->sprawdzCzyUzytkownikMozeWyswietlac($uzytkownik);
+        
+        if (null !== $this->dataPrzeslaniaDoParp) {
+            throw new KomunikatDlaBeneficjentaException('Sprawozdanie już przesłano do PARP.');
+        }
     }
 }

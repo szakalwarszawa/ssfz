@@ -38,20 +38,16 @@
                             <td>{{ sprawozdanie.nazwaFunduszu }}</td>
                             <td>{{ sprawozdanie.status }}</td>
                             <td>
-                                {% if czyPozyczkowe %}
-                                    <a href="{{ path('sprawozdania_pozyczkowe_podglad', {'sprawozdanie': sprawozdanie.id}) }}" class="btn btn-sm btn-info" role="button">
-                                        <span class="fas fa-eye-open"></span> Podgląd
-                                    </a>
-                                    <a href="{{ path('sprawozdania_pozyczkowe_edycja', {'sprawozdanie': sprawozdanie.id}) }}" class="btn btn-sm btn-primary" role="button">
+                                <a href="{{ path('sprawozdania_spo_podglad', {'czyPozyczkowe': czyPozyczkowe, 'sprawozdanieId': sprawozdanie.id}) }}" class="btn btn-sm btn-info" role="button">
+                                    <span class="fas fa-eye-open"></span> Podgląd
+                                </a>
+                                {% if not sprawozdanie.dataPrzeslaniaDoParp %}
+                                    <a href="{{ path('sprawozdania_spo_edycja', {'czyPozyczkowe': czyPozyczkowe, 'sprawozdanieId': sprawozdanie.id}) }}" class="btn btn-sm btn-primary" role="button">
                                         <i class="fas fa-edit"></i> Edytuj
                                     </a>
-                                {% else %}
-                                    <a href="{{ path('sprawozdania_poreczeniowe_podglad', {'sprawozdanie': sprawozdanie.id}) }}" class="btn btn-sm btn-info" role="button">
-                                        <span class="fas fa-eye-open"></span> Podgląd
-                                    </a>
-                                    <a href="{{ path('sprawozdania_poreczeniowe_edycja', {'sprawozdanie': sprawozdanie.id}) }}" class="btn btn-sm btn-primary" role="button">
-                                        <i class="fas fa-edit"></i> Edytuj
-                                    </a>
+                                    <span class="btn btn-sm btn-warning btn-send-to-parp" data-href="{{ path('sprawozdania_spo_przeslij', {'czyPozyczkowe': czyPozyczkowe, 'sprawozdanieId': sprawozdanie.id}) }}" role="button">
+                                        <span class="fas fa-share-alt"></span> Prześlij do PARP
+                                    </span>
                                 {% endif %}
                             </td>
                         </tr>
@@ -61,7 +57,9 @@
         </div>
     </div>
 {% endblock %}
-{#
+
 {% block javascripts %}
+    {% javascripts '@SsfzBundle/Resources/public/js/sprawozdania_spo_lista.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}
-#}
