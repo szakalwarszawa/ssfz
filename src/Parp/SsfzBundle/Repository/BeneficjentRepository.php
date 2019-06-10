@@ -16,8 +16,9 @@ class BeneficjentRepository extends EntityRepository
      * Tworzy nowy profil beneficjenta i wiąże go z podaną w parametrze
      * encją Uzytkownik
      *
-     * @param  \Parp\SsfzBundle\Entity\Uzytkownik $uzytkownik
-     * @return \Parp\SsfzBundle\Entity\Beneficjent
+     * @param Uzytkownik $uzytkownik
+     *
+     * @return Beneficjent
      */
     public function addNewBeneficjent(Uzytkownik $uzytkownik)
     {
@@ -32,12 +33,15 @@ class BeneficjentRepository extends EntityRepository
     /**
      * Aktualizuje encję Beneficjent
      *
-     * @param Beneficjent     $beneficjent
+     * @param Beneficjent $beneficjent
      * @param ArrayCollection $originalUmowy
      * @param ArrayCollection $originalOsoby
      */
-    public function updateBeneficjent(Beneficjent &$beneficjent, ArrayCollection $originalUmowy, ArrayCollection $originalOsoby)
-    {
+    public function updateBeneficjent(
+        Beneficjent &$beneficjent,
+        ArrayCollection $originalUmowy,
+        ArrayCollection $originalOsoby
+    ) {
         $this->updateBeneficjentUmowy($beneficjent, $originalUmowy);
         $this->updateBeneficjentOsoby($beneficjent, $originalOsoby);
         $this->updateBeneficjentWypelniony($beneficjent);
@@ -48,8 +52,8 @@ class BeneficjentRepository extends EntityRepository
     /**
      * Aktualizuje powiązane z beneficjentem umowy
      *
-     * @param type                                        $beneficjent
-     * @param \Parp\SsfzBundle\Repository\ArrayCollection $originalUmowy
+     * @param Beneficjent $beneficjent
+     * @param ArrayCollection $originalUmowy
      */
     private function updateBeneficjentUmowy(&$beneficjent, ArrayCollection $originalUmowy)
     {
@@ -66,8 +70,8 @@ class BeneficjentRepository extends EntityRepository
     /**
      * Aktualizuje powiązane z beneficjentem osoby zatrudnione
      *
-     * @param type                                        $beneficjent
-     * @param \Parp\SsfzBundle\Repository\ArrayCollection $originalOsoby
+     * @param Beneficjent $beneficjent
+     * @param  ArrayCollection $originalOsoby
      */
     private function updateBeneficjentOsoby(&$beneficjent, ArrayCollection $originalOsoby)
     {

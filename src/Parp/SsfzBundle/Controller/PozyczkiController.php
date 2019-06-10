@@ -5,6 +5,7 @@ namespace Parp\SsfzBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Doctrine\ORM\EntityNotFoundException;
 use Parp\SsfzBundle\Entity\DanePozyczki;
 use Parp\SsfzBundle\Form\Type\DanePozyczkiType;
 
@@ -25,6 +26,7 @@ class PozyczkiController extends Controller
      * @Route("formularz/dane_pozyczki/{id}", name="formularz_danych_pozyczki")
      *
      * @param Request $request
+     * @param int $id Identyfikator danych pożyczki
      *
      * @return Response
      *
@@ -34,13 +36,21 @@ class PozyczkiController extends Controller
     {
         $entityManager = $this->getDoctrine()->getManager();
 
-        $danePozyczki = new DanePozyczki();
+        $danePozyczki = $entityManager->getRepository(DanePozyczki::class)->find($id);
+        if (!$danePozyczki) {
+            throw new EntityNotFoundException('Nie znaleziono danych pożyczki o ID: '.(string) $id);
+        }
+
+        $actionUrl = $this->generateUrl('formularz_danych_pozyczki', [
+            'id' => $id,
+        ]);
         $formularz = $this->createForm(DanePozyczkiType::class, $danePozyczki, [
-            'action_url' => $this->generateUrl('formularz_danych_pozyczki', ['id' => 4])
+            'action_url' => $actionUrl,
         ]);
 
         return $this->render('SsfzBundle:Report:dane_pozyczki.html.twig', [
-            'form' => $formularz->createView(),
+            'form'            => $formularz->createView(),
+            'dane_pozyczki'   => $danePozyczki,
             'fluid_container' => true,
         ]);
     }
