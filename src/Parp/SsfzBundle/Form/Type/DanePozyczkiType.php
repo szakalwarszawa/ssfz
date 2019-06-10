@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Parp\SsfzBundle\Entity\DanePozyczki;
 
 /**
@@ -23,20 +24,7 @@ class DanePozyczkiType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $integerFieldConstraints = [
-            new Assert\NotBlank([
-                'message' => 'Należy wypełnić pole',
-            ]),
-            new Assert\Type([
-                'type'    => 'integer',
-                'message' => 'Pole może zawierać tylko liczby całkowite',
-            ]),
-            new Assert\Range([
-                'min'            => 0,
-                'max'            => 99999,
-                'invalidMessage' => 'Pole może zawierać wartości od 0 do 99999',
-            ]),
-        ];
+        $builder->setAction($options['action_url']);
     
         $builder->add('id', HiddenType::class, [
             'label'       => 'ID',
@@ -52,7 +40,36 @@ class DanePozyczkiType extends AbstractType
 
         // protected $sprawozdanie;
 
-        $integerFields = [
+        $this->addIntegerFields($builder, $options);
+        $this->addDecimalFields($builder, $options);
+    }
+
+    /**
+     * Dodaje zestaw pól na wartości liczbowe całkowite dodatni z zakresu 0-99999.
+     *
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    private function addIntegerFields(FormBuilderInterface $builder, array $options)
+    {
+        $constraints = [
+            new Assert\NotBlank([
+                'message' => 'Należy wypełnić pole',
+            ]),
+            new Assert\Type([
+                'type'    => 'integer',
+                'message' => 'Pole może zawierać tylko liczby całkowite',
+            ]),
+            new Assert\Range([
+                'min'            => 0,
+                'max'            => 99999,
+                'invalidMessage' => 'Pole może zawierać wartości od 0 do 99999',
+            ]),
+        ];
+
+        $fields = [
             'liczbaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw',
             'liczbaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw',
             'liczbaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw',
@@ -139,26 +156,161 @@ class DanePozyczkiType extends AbstractType
             'liczbaPozyczekOd300001PlnNaDzialaniaInne',
         ];
 
-        foreach ($integerFields as $field) {
+        foreach ($fields as $field) {
             $builder->add($field, IntegerType::class, [
                 'label'       => false,
                 'attr'        => [
-                    'class' => 'integer',
+                    'class' => 'uint-5',
                 ],
-                'constraints' => $integerFieldConstraints,
+                'constraints' => $constraints,
             ]);
         }
     }
 
     /**
-     * Ustawia opcje przekazana do formularza.
+     * Dodaje zestaw pól na wartości liczbowe dziesiętne dodatnie z zakresu 0-999999999.99.
      *
+     * @param FormBuilderInterface $builder
+     * @param array $options
+      *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    private function addDecimalFields(FormBuilderInterface $builder, array $options)
+    {
+        $constraints = [
+            new Assert\NotBlank([
+                'message' => 'Należy wypełnić pole',
+            ]),
+            new Assert\Type([
+                'type'    => 'float',
+                'message' => 'Pole może zawierać tylko liczby dziesiętne',
+            ]),
+            new Assert\Range([
+                'min'            => 0,
+                'max'            => 999999999.99,
+                'invalidMessage' => 'Pole może zawierać wartości od 0.00 do 999999999.99',
+            ]),
+        ];
+
+        $fields = [
+            'kwotaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw',
+            'kwotaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw',
+            'kwotaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw',
+            'kwotaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw',
+            'kwotaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw',
+            'kwotaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw',
+            'kwotaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw',
+            'kwotaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw',
+            'kwotaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw',
+            'kwotaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw',
+            'kwotaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw',
+            'kwotaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw',
+            'kwotaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw',
+            'kwotaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw',
+            'kwotaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw',
+            'kwotaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw',
+            'kwotaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw',
+            'kwotaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw',
+            'kwotaPozyczekDo10000PlnDlaInnychPrzedsiebiorstw',
+            'kwotaPozyczekOd10001Do30000PlnDlaInnychPrzedsiebiorstw',
+            'kwotaPozyczekOd30001Do50000PlnDlaInnychPrzedsiebiorstw',
+            'kwotaPozyczekOd50001Do120000PlnDlaInnychPrzedsiebiorstw',
+            'kwotaPozyczekOd120001Do300000PlnDlaInnychPrzedsiebiorstw',
+            'kwotaPozyczekOd300001PlnDlaInnychPrzedsiebiorstw',
+            'kwotaPozyczekDo10000PlnDlaInstytucjiEkonomiiSpolecznej',
+            'kwotaPozyczekOd10001Do30000PlnDlaInstytucjiEkonomiiSpolecznej',
+            'kwotaPozyczekOd30001Do50000PlnDlaInstytucjiEkonomiiSpolecznej',
+            'kwotaPozyczekOd50001Do120000PlnDlaInstytucjiEkonomiiSpolecznej',
+            'kwotaPozyczekOd120001Do300000PlnDlaInstytucjiEkonomiiSpolecznej',
+            'kwotaPozyczekOd300001PlnDlaInstytucjiEkonomiiSpolecznej',
+            'kwotaPozyczekObrotowychDo10000Pln',
+            'kwotaPozyczekObrotowychOd10001Do30000Pln',
+            'kwotaPozyczekObrotowychOd30001Do50000Pln',
+            'kwotaPozyczekObrotowychOd50001Do120000Pln',
+            'kwotaPozyczekObrotowychOd120001Do300000Pln',
+            'kwotaPozyczekObrotowychOd300001Pln',
+            'kwotaPozyczekInwestycyjnychDo10000Pln',
+            'kwotaPozyczekInwestycyjnychOd10001Do30000Pln',
+            'kwotaPozyczekInwestycyjnychOd30001Do50000Pln',
+            'kwotaPozyczekInwestycyjnychOd50001Do120000Pln',
+            'kwotaPozyczekInwestycyjnychOd120001Do300000Pln',
+            'kwotaPozyczekInwestycyjnychOd300001Pln',
+            'kwotaPozyczekInwestycyjnoObrotowychDo10000Pln',
+            'kwotaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln',
+            'kwotaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln',
+            'kwotaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln',
+            'kwotaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln',
+            'kwotaPozyczekInwestycyjnoObrotowychOd300001Pln',
+            'kwotaPozyczekDo10000PlnNaDzialaniaProdukcyjne',
+            'kwotaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne',
+            'kwotaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne',
+            'kwotaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne',
+            'kwotaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne',
+            'kwotaPozyczekOd300001PlnNaDzialaniaProdukcyjne',
+            'kwotaPozyczekDo10000PlnNaDzialaniaHandlowe',
+            'kwotaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe',
+            'kwotaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe',
+            'kwotaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe',
+            'kwotaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe',
+            'kwotaPozyczekOd300001PlnNaDzialaniaHandlowe',
+            'kwotaPozyczekDo10000PlnNaDzialaniaUslugowe',
+            'kwotaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe',
+            'kwotaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe',
+            'kwotaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe',
+            'kwotaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe',
+            'kwotaPozyczekOd300001PlnNaDzialaniaUslugowe',
+            'kwotaPozyczekDo10000PlnNaDzialaniaBudownicze',
+            'kwotaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze',
+            'kwotaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze',
+            'kwotaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze',
+            'kwotaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze',
+            'kwotaPozyczekOd300001PlnNaDzialaniaBudownicze',
+            'kwotaPozyczekDo10000PlnNaDzialaniaRolnicze',
+            'kwotaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze',
+            'kwotaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze',
+            'kwotaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze',
+            'kwotaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze',
+            'kwotaPozyczekOd300001PlnNaDzialaniaRolnicze',
+            'kwotaPozyczekDo10000PlnNaDzialaniaInne',
+            'kwotaPozyczekOd10001Do30000PlnNaDzialaniaInne',
+            'kwotaPozyczekOd30001Do50000PlnNaDzialaniaInne',
+            'kwotaPozyczekOd50001Do120000PlnNaDzialaniaInne',
+            'kwotaPozyczekOd120001Do300000PlnNaDzialaniaInne',
+            'kwotaPozyczekOd300001PlnNaDzialaniaInne',
+        ];
+
+        foreach ($fields as $field) {
+            $builder->add($field, TextType::class, [
+                'label'       => false,
+                'attr'        => [
+                    'class' => 'decimal-11-2',
+                ],
+                'constraints' => $constraints,
+            ]);
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function getBlockPrefix()
+    {
+        return 'form_dane_pozyczki';
+    }
+
+    /**
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => DanePozyczki::class,
-        ));
+        ]);
+
+        $resolver->setRequired([
+            'action_url',
+        ]);
+
+        $resolver->setAllowedTypes('action_url', 'string');
     }
 }

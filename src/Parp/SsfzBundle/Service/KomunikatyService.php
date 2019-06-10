@@ -10,13 +10,13 @@ use Symfony\Component\HttpFoundation\Session\Session;
 class KomunikatyService
 {
     /**
-     *
      * @var Session
      */
     protected $session;
 
     /**
-     * Konstruktor
+     * Konstruktor.
+     *
      * @param Session $session
      */
     public function __construct(Session $session)
@@ -28,7 +28,7 @@ class KomunikatyService
      * Dodaje do sesji (FlashBag) komunikat o operacji zakończonej sukcesem
      *
      * @param string $komunikat komunikat do wyświetlenia
-     * @param string $tytul     tytuł komunikatu
+     * @param string $tytul tytuł komunikatu
      */
     public function sukcesKomunikat($komunikat, $tytul = 'Sukces')
     {
@@ -39,7 +39,7 @@ class KomunikatyService
      * Dodaje do sesji (FlashBag) komunikat o operacji zakończonej błędem
      *
      * @param string $komunikat komunikat do wyświetlenia
-     * @param string $tytul     tytuł komunikatu
+     * @param string $tytul tytuł komunikatu
      */
     public function bladKomunikat($komunikat, $tytul = 'Błąd')
     {
@@ -48,8 +48,8 @@ class KomunikatyService
     /**
      * Dodaje do sesji (FlashBag) komunkat o operacji zakończonej ostrzeżeniem
      *
-     * @param type   $komunikat komunikat do wyświetlenia
-     * @param string $tytul     tytuł komunikatu
+     * @param string $komunikat komunikat do wyświetlenia
+     * @param string $tytul tytuł komunikatu
      */
     public function ostrzezenieKomunikat($komunikat, $tytul = 'Uwaga')
     {
@@ -67,10 +67,10 @@ class KomunikatyService
      */
     public function wyswietlKomunikat($komunikat, $typ, $tytul)
     {
-        $komInfo = array(
+        $komInfo = [
             'message' => $komunikat,
-            'title' => $tytul
-        );
+            'title'   => $tytul
+        ];
 
         switch ($typ) {
             case 'blad':

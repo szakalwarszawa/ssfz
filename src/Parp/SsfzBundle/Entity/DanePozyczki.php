@@ -10,6 +10,11 @@ use Parp\SsfzBundle\Entity\Sprawozdanie;
 /**
  * Pożyczkach dla SPO WKP 1.2.1.
  *
+ * Uwaga!
+ * Dane w formacie decimal (po stronie bazy danych) są przez Doctrine mapowane na typ PHP "string",
+ * a nie na "float". Unika się w ten sposób utraty precyzji.
+ * @see https://www.doctrine-project.org/projects/doctrine-dbal/en/2.9/reference/types.html#decimal
+ *
  * @ORM\Table(name="sfz_dane_pozyczek")
  * @ORM\Entity(repositoryClass="Parp\SsfzBundle\Repository\DanePozyczkiRepository")
  *
@@ -209,20 +214,20 @@ class DanePozyczki
     protected $liczbaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw = 0;
 
     /**
-    * Liczba pożyczek od 120.001zł do 300.000zł dla małych przedsiębiorstw.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_120001_do_300000_pln_male_przedsiebiorstwa",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek od 120.001zł do 300.000zł dla małych przedsiębiorstw.",
-    *         "default":0
-    *     }
-    * )
-    */
+     * Liczba pożyczek od 120.001zł do 300.000zł dla małych przedsiębiorstw.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_120001_do_300000_pln_male_przedsiebiorstwa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek od 120.001zł do 300.000zł dla małych przedsiębiorstw.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw = 0;
     
     /**
@@ -260,71 +265,71 @@ class DanePozyczki
     protected $liczbaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw = 0;
 
     /**
-    * Liczba pożyczek od 10.001zł do 30.000zł dla średnich przedsiębiorstw.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_10001_do_30000_pln_srednie_przedsiebiorstwa",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek od 10.001zł do 30.000zł dla średnich przedsiębiorstw.",
-    *         "default":0
-    *     }
-    * )
-    */
+     * Liczba pożyczek od 10.001zł do 30.000zł dla średnich przedsiębiorstw.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_10001_do_30000_pln_srednie_przedsiebiorstwa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek od 10.001zł do 30.000zł dla średnich przedsiębiorstw.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw = 0;
 
     /**
-    * Liczba pożyczek od 30.001zł do 50.000zł dla średnich przedsiębiorstw.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_30001_do_50000_pln_srednie_przedsiebiorstwa",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek od 30.001zł do 50.000zł dla średnich przedsiębiorstw.",
-    *         "default":0
-    *     }
-    * )
-    */
+     * Liczba pożyczek od 30.001zł do 50.000zł dla średnich przedsiębiorstw.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_30001_do_50000_pln_srednie_przedsiebiorstwa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek od 30.001zł do 50.000zł dla średnich przedsiębiorstw.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw = 0;
 
     /**
-    * Liczba pożyczek od 50.001zł do 120.000zł dla średnich przedsiębiorstw.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_50001_do_120000_pln_srednie_przedsiebiorstwa",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek od 50.001zł do 120.000zł dla średnich przedsiębiorstw.",
-    *         "default":0
-    *     }
-    * )
-    */
+     * Liczba pożyczek od 50.001zł do 120.000zł dla średnich przedsiębiorstw.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_50001_do_120000_pln_srednie_przedsiebiorstwa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek od 50.001zł do 120.000zł dla średnich przedsiębiorstw.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw = 0;
 
     /**
-    * Liczba pożyczek od 120.001zł do 300.000zł dla średnich przedsiębiorstw.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_120001_do_300000_pln_srednie_przedsiebiorstwa",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek od 120.001zł do 300.000zł dla średnich przedsiębiorstw.",
-    *         "default":0
-    *     }
-    * )
-    */
+     * Liczba pożyczek od 120.001zł do 300.000zł dla średnich przedsiębiorstw.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_120001_do_300000_pln_srednie_przedsiebiorstwa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek od 120.001zł do 300.000zł dla średnich przedsiębiorstw.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw = 0;
 
     /**
@@ -362,71 +367,71 @@ class DanePozyczki
     protected $liczbaPozyczekDo10000PlnDlaInnychPrzedsiebiorstw = 0;
 
     /**
-    * Liczba pożyczek od 10.001zł do 30.000zł dla innych przedsiębiorstw.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_10001_do_30000_pln_inne_przedsiebiorstwa",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek od 10.001zł do 30.000zł dla innych przedsiębiorstw.",
-    *         "default":0
-    *     }
-    * )
-    */
+     * Liczba pożyczek od 10.001zł do 30.000zł dla innych przedsiębiorstw.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_10001_do_30000_pln_inne_przedsiebiorstwa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek od 10.001zł do 30.000zł dla innych przedsiębiorstw.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd10001Do30000PlnDlaInnychPrzedsiebiorstw = 0;
 
     /**
-    * Liczba pożyczek od 30.001zł do 50.000zł dla innych przedsiębiorstw.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_30001_do_50000_pln_inne_przedsiebiorstwa",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek od 30.001zł do 50.000zł dla innych_przedsiębiorstw.",
-    *         "default":0
-    *     }
-    * )
-    */
+     * Liczba pożyczek od 30.001zł do 50.000zł dla innych przedsiębiorstw.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_30001_do_50000_pln_inne_przedsiebiorstwa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek od 30.001zł do 50.000zł dla innych_przedsiębiorstw.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd30001Do50000PlnDlaInnychPrzedsiebiorstw = 0;
 
     /**
-    * Liczba pożyczek od 50.001zł do 120.000zł dla innych przedsiębiorstw.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_50001_do_120000_pln_inne_przedsiebiorstwa",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek od 50.001zł do 120.000zł dla innych przedsiębiorstw.",
-    *         "default":0
-    *     }
-    * )
-    */
+     * Liczba pożyczek od 50.001zł do 120.000zł dla innych przedsiębiorstw.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_50001_do_120000_pln_inne_przedsiebiorstwa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek od 50.001zł do 120.000zł dla innych przedsiębiorstw.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd50001Do120000PlnDlaInnychPrzedsiebiorstw = 0;
 
     /**
-    * Liczba pożyczek od 120.001zł do 300.000zł dla innych przedsiębiorstw.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_120001_do_300000_pln_inne_przedsiebiorstwa",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek od 120.001zł do 300.000zł dla inne przedsiębiorstw.",
-    *         "default":0
-    *     }
-    * )
-    */
+     * Liczba pożyczek od 120.001zł do 300.000zł dla innych przedsiębiorstw.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_120001_do_300000_pln_inne_przedsiebiorstwa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek od 120.001zł do 300.000zł dla inne przedsiębiorstw.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd120001Do300000PlnDlaInnychPrzedsiebiorstw = 0;
 
     /**
@@ -514,21 +519,21 @@ class DanePozyczki
      */
     protected $liczbaPozyczekOd50001Do120000PlnDlaInstytucjiEkonomiiSpolecznej = 0;
 
-   /**
-    * Liczba pożyczek od 120.001zł do 300.000zł dla instytucji ekonomii spolecznej.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_120001_do_300000_pln_inst_ekonomii_spol",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek od 120.001zł do 300.000zł dla instytucji ekonomii spolecznej.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek od 120.001zł do 300.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_120001_do_300000_pln_inst_ekonomii_spol",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek od 120.001zł do 300.000zł dla instytucji ekonomii spolecznej.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd120001Do300000PlnDlaInstytucjiEkonomiiSpolecznej = 0;
 
     /**
@@ -548,89 +553,89 @@ class DanePozyczki
      */
     protected $liczbaPozyczekOd300001PlnDlaInstytucjiEkonomiiSpolecznej = 0;
 
-   /**
-    * Liczba pożyczek obrotowych do 10.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_obrotowych_do_10000_pln",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek obrotowych do 10.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek obrotowych do 10.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_obrotowych_do_10000_pln",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek obrotowych do 10.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekObrotowychDo10000Pln = 0;
 
-   /**
-    * Liczba pożyczek obrotowych od 10.001zł do30.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_obrotowych_od_10001_do_30000_pln",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek obrotowych od 10.001zł do 30.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek obrotowych od 10.001zł do30.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_obrotowych_od_10001_do_30000_pln",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek obrotowych od 10.001zł do 30.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekObrotowychOd10001Do30000Pln = 0;
 
-   /**
-    * Liczba pożyczek obrotowych od 30.001zł do 50.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_obrotowych_od_30001_do_50000_pln",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek obrotowych od 30.001zł do 50.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek obrotowych od 30.001zł do 50.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_obrotowych_od_30001_do_50000_pln",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek obrotowych od 30.001zł do 50.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekObrotowychOd30001Do50000Pln = 0;
 
-   /**
-    * Liczba pożyczek obrotowych od 50.001zł do 120.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_obrotowych_od_50001_do_120000_pln",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek obrotowych od 50.001zł do 120.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek obrotowych od 50.001zł do 120.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_obrotowych_od_50001_do_120000_pln",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek obrotowych od 50.001zł do 120.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekObrotowychOd50001Do120000Pln = 0;
 
-   /**
-    * Liczba pożyczek obrotowych od 120.001zł do 300.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_obrotowych_od_120001_do_300000_pln",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek obrotowych od 120.001zł do 300.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek obrotowych od 120.001zł do 300.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_obrotowych_od_120001_do_300000_pln",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek obrotowych od 120.001zł do 300.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekObrotowychOd120001Do300000Pln = 0;
 
     /**
@@ -650,89 +655,89 @@ class DanePozyczki
      */
     protected $liczbaPozyczekObrotowychOd300001Pln = 0;
 
-   /**
-    * Liczba pożyczek obrotowych do 10.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_obrotowych_do_10000_pln",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek obrotowych do 10.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek obrotowych do 10.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_obrotowych_do_10000_pln",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek obrotowych do 10.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekInwestycyjnychDo10000Pln = 0;
 
-   /**
-    * Liczba pożyczek inwestycyjnych od 30.001zł do 50.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_inwestycyjnych_od_30001_do_50000_pln",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek inwestycyjnych od 30.001zł do 50.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek inwestycyjnych od 30.001zł do 50.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_inwestycyjnych_od_30001_do_50000_pln",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek inwestycyjnych od 30.001zł do 50.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekInwestycyjnychOd10001Do30000Pln = 0;
 
-   /**
-    * Liczba pożyczek inwestycyjnych od 30.001zł do 50.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_inwestycyjnych_od_30001_do_50000_pln",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek inwestycyjnych od 30.001zł do 50.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek inwestycyjnych od 30.001zł do 50.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_inwestycyjnych_od_30001_do_50000_pln",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek inwestycyjnych od 30.001zł do 50.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekInwestycyjnychOd30001Do50000Pln = 0;
 
-   /**
-    * Liczba pożyczek inwestycyjnych od 50.001zł do 120.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_inwestycyjnych_od_50001_do_120000_pln",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek inwestycyjnych od 50.001zł do 120.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek inwestycyjnych od 50.001zł do 120.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_inwestycyjnych_od_50001_do_120000_pln",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek inwestycyjnych od 50.001zł do 120.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekInwestycyjnychOd50001Do120000Pln = 0;
 
-   /**
-    * Liczba pożyczek inwestycyjnych od 120.001zł do 300.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_inwestycyjnych_od_120001_do_300000_pln",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek inwestycyjnych od 120.001zł do 300.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek inwestycyjnych od 120.001zł do 300.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_inwestycyjnych_od_120001_do_300000_pln",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek inwestycyjnych od 120.001zł do 300.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekInwestycyjnychOd120001Do300000Pln = 0;
     
     /**
@@ -752,89 +757,89 @@ class DanePozyczki
      */
     protected $liczbaPozyczekInwestycyjnychOd300001Pln = 0;
 
-   /**
-    * Liczba pożyczek inwestycyjno-obrotowych do 10.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_inwestycyjno_obrotowych_do_10000_pln",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek inwestycyjno-obrotowych do 10.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek inwestycyjno-obrotowych do 10.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_inwestycyjno_obrotowych_do_10000_pln",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek inwestycyjno-obrotowych do 10.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekInwestycyjnoObrotowychDo10000Pln = 0;
 
-   /**
-    * Liczba pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_inwestycyjno_obrotowych_od_30001_do_50000_pln",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_inwestycyjno_obrotowych_od_30001_do_50000_pln",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln = 0;
 
-   /**
-    * Liczba pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_inwestycyjno_obrotowych_od_30001_do_50000_pln",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_inwestycyjno_obrotowych_od_30001_do_50000_pln",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln = 0;
 
-   /**
-    * Liczba pożyczek inwestycyjno-obrotowych od 50.001zł do 120.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_inwestycyjno_obrotowych_od_50001_do_120000_pln",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek inwestycyjno-obrotowych od 50.001zł do 120.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek inwestycyjno-obrotowych od 50.001zł do 120.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_inwestycyjno_obrotowych_od_50001_do_120000_pln",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek inwestycyjno-obrotowych od 50.001zł do 120.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln = 0;
 
-   /**
-    * Liczba pożyczek inwestycyjno-obrotowych od 120.001zł do 300.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_inwestycyjno_obrotowych_od_120001_do_300000_pln",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek inwestycyjno-obrotowych od 120.001zł do 300.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek inwestycyjno-obrotowych od 120.001zł do 300.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_inwestycyjno_obrotowych_od_120001_do_300000_pln",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek inwestycyjno-obrotowych od 120.001zł do 300.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln = 0;
 
     /**
@@ -854,89 +859,89 @@ class DanePozyczki
      */
     protected $liczbaPozyczekInwestycyjnoObrotowychOd300001Pln = 0;
 
-   /**
-    * Liczba pożyczek na działania produkcyjne do 10.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_do_10000_pln_dzial_produkcyjne",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania produkcyjne do 10.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania produkcyjne do 10.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_do_10000_pln_dzial_produkcyjne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania produkcyjne do 10.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekDo10000PlnNaDzialaniaProdukcyjne = 0;
 
-   /**
-    * Liczba pożyczek na działania produkcyjne od 10.001zł do 30.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_10001_do_30000_pln_dzial_produkcyjne",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania produkcyjne od 10.001zł do 30.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania produkcyjne od 10.001zł do 30.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_10001_do_30000_pln_dzial_produkcyjne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania produkcyjne od 10.001zł do 30.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne = 0;
 
-   /**
-    * Liczba pożyczek na działania produkcyjne od 30.001zł do 50.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_30001_do_50000_pln_dzial_produkcyjne",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania produkcyjne od 30.001zł do 50.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania produkcyjne od 30.001zł do 50.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_30001_do_50000_pln_dzial_produkcyjne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania produkcyjne od 30.001zł do 50.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne = 0;
    
-   /**
-    * Liczba pożyczek na działania produkcyjne od 50.001zł do 120.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_50001_do_120000_pln_dzial_produkcyjne",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania produkcyjne od 50.001zł do 120.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania produkcyjne od 50.001zł do 120.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_50001_do_120000_pln_dzial_produkcyjne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania produkcyjne od 50.001zł do 120.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne = 0;
 
-   /**
-    * Liczba pożyczek na działania produkcyjne od 120.001zł do 300.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_120001_do_300000_pln_dzial_produkcyjne",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania produkcyjne od 120.001zł do 300.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania produkcyjne od 120.001zł do 300.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_120001_do_300000_pln_dzial_produkcyjne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania produkcyjne od 120.001zł do 300.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne = 0;
 
     /**
@@ -956,89 +961,89 @@ class DanePozyczki
      */
     protected $liczbaPozyczekOd300001PlnNaDzialaniaProdukcyjne = 0;
 
-   /**
-    * Liczba pożyczek na działania handlowe do 10.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_do_10000_pln_dzial_handlowe",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania handlowe do 10.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania handlowe do 10.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_do_10000_pln_dzial_handlowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania handlowe do 10.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekDo10000PlnNaDzialaniaHandlowe = 0;
 
-   /**
-    * Liczba pożyczek na działania handlowe od 10.001zł do 30.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_10001_do_30000_pln_dzial_handlowe",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania handlowe od 10.001zł do 30.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania handlowe od 10.001zł do 30.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_10001_do_30000_pln_dzial_handlowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania handlowe od 10.001zł do 30.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe = 0;
 
-   /**
-    * Liczba pożyczek na działania handlowe od 30.001zł do 50.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_30001_do_50000_pln_dzial_handlowe",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania handlowe od 30.001zł do 50.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania handlowe od 30.001zł do 50.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_30001_do_50000_pln_dzial_handlowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania handlowe od 30.001zł do 50.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe = 0;
 
-   /**
-    * Liczba pożyczek na działania handlowe od 50.001zł do 120.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_50001_do_120000_pln_dzial_handlowe",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania handlowe od 50.001zł do 120.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania handlowe od 50.001zł do 120.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_50001_do_120000_pln_dzial_handlowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania handlowe od 50.001zł do 120.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe = 0;
 
-   /**
-    * Liczba pożyczek na działania handlowe od 120.001zł do 300.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_120001_do_300000_pln_dzial_handlowe",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania handlowe od 120.001zł do 300.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania handlowe od 120.001zł do 300.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_120001_do_300000_pln_dzial_handlowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania handlowe od 120.001zł do 300.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe = 0;
 
     /**
@@ -1058,89 +1063,89 @@ class DanePozyczki
      */
     protected $liczbaPozyczekOd300001PlnNaDzialaniaHandlowe = 0;
 
-   /**
-    * Liczba pożyczek na działania usługowe do 10.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_do_10000_pln_dzial_uslugowe",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania usługowe do 10.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania usługowe do 10.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_do_10000_pln_dzial_uslugowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania usługowe do 10.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekDo10000PlnNaDzialaniaUslugowe = 0;
 
-   /**
-    * Liczba pożyczek na działania usługowe od 10.001zł do 30.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_10001_do_30000_pln_dzial_uslugowe",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania usługowe od 10.001zł do 30.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania usługowe od 10.001zł do 30.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_10001_do_30000_pln_dzial_uslugowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania usługowe od 10.001zł do 30.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe = 0;
 
-   /**
-    * Liczba pożyczek na działania usługowe od 30.001zł do 50.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_30001_do_50000_pln_dzial_uslugowe",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania usługowe od 30.001zł do 50.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania usługowe od 30.001zł do 50.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_30001_do_50000_pln_dzial_uslugowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania usługowe od 30.001zł do 50.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe = 0;
 
-   /**
-    * Liczba pożyczek na działania usługowe od 50.001zł do 120.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_50001_do_120000_pln_dzial_uslugowe",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania usługowe od 50.001zł do 120.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania usługowe od 50.001zł do 120.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_50001_do_120000_pln_dzial_uslugowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania usługowe od 50.001zł do 120.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe = 0;
 
-   /**
-    * Liczba pożyczek na działania usługowe od 120.001zł do 300.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_120001_do_300000_pln_dzial_uslugowe",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania usługowe od 120.001zł do 300.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania usługowe od 120.001zł do 300.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_120001_do_300000_pln_dzial_uslugowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania usługowe od 120.001zł do 300.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe = 0;
 
     /**
@@ -1160,89 +1165,89 @@ class DanePozyczki
      */
     protected $liczbaPozyczekOd300001PlnNaDzialaniaUslugowe = 0;
 
-   /**
-    * Liczba pożyczek na działania budownicze do 10.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_do_10000_pln_dzial_budownicze",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania budownicze do 10.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania budownicze do 10.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_do_10000_pln_dzial_budownicze",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania budownicze do 10.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekDo10000PlnNaDzialaniaBudownicze = 0;
 
-   /**
-    * Liczba pożyczek na działania budownicze od 10.001zł do 30.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_10001_do_30000_pln_dzial_budownicze",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania budownicze od 10.001zł do 30.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania budownicze od 10.001zł do 30.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_10001_do_30000_pln_dzial_budownicze",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania budownicze od 10.001zł do 30.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze = 0;
 
-   /**
-    * Liczba pożyczek na działania budownicze od 30.001zł do 50.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_30001_do_50000_pln_dzial_budownicze",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania budownicze od 30.001zł do 50.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania budownicze od 30.001zł do 50.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_30001_do_50000_pln_dzial_budownicze",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania budownicze od 30.001zł do 50.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze = 0;
 
-   /**
-    * Liczba pożyczek na działania budownicze od 50.001zł do 120.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_50001_do_120000_pln_dzial_budownicze",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania budownicze od 50.001zł do 120.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania budownicze od 50.001zł do 120.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_50001_do_120000_pln_dzial_budownicze",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania budownicze od 50.001zł do 120.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze = 0;
 
-   /**
-    * Liczba pożyczek na działania budownicze od 120.001zł do 300.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_120001_do_300000_pln_dzial_budownicze",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania budownicze od 120.001zł do 300.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania budownicze od 120.001zł do 300.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_120001_do_300000_pln_dzial_budownicze",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania budownicze od 120.001zł do 300.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze = 0;
 
     /**
@@ -1262,89 +1267,89 @@ class DanePozyczki
      */
     protected $liczbaPozyczekOd300001PlnNaDzialaniaBudownicze = 0;
 
-   /**
-    * Liczba pożyczek na działania rolnicze do 10.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_do_10000_pln_dzial_rolnicze",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania rolnicze do 10.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania rolnicze do 10.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_do_10000_pln_dzial_rolnicze",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania rolnicze do 10.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekDo10000PlnNaDzialaniaRolnicze = 0;
 
-   /**
-    * Liczba pożyczek na działania rolnicze od 10.001zł do 30.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_10001_do_30000_pln_dzial_rolnicze",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania rolnicze od 10.001zł do 30.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania rolnicze od 10.001zł do 30.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_10001_do_30000_pln_dzial_rolnicze",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania rolnicze od 10.001zł do 30.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze = 0;
 
-   /**
-    * Liczba pożyczek na działania rolnicze od 30.001zł do 50.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_30001_do_50000_pln_dzial_rolnicze",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania rolnicze od 30.001zł do 50.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania rolnicze od 30.001zł do 50.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_30001_do_50000_pln_dzial_rolnicze",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania rolnicze od 30.001zł do 50.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze = 0;
 
-   /**
-    * Liczba pożyczek na działania rolnicze od 50.001zł do 120.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_50001_do_120000_pln_dzial_rolnicze",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania rolnicze od 50.001zł do 120.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania rolnicze od 50.001zł do 120.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_50001_do_120000_pln_dzial_rolnicze",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania rolnicze od 50.001zł do 120.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze = 0;
 
-   /**
-    * Liczba pożyczek na działania rolnicze od 120.001zł do 300.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_120001_do_300000_pln_dzial_rolnicze",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania rolnicze od 120.001zł do 300.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania rolnicze od 120.001zł do 300.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_120001_do_300000_pln_dzial_rolnicze",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania rolnicze od 120.001zł do 300.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze = 0;
 
     /**
@@ -1364,89 +1369,89 @@ class DanePozyczki
      */
     protected $liczbaPozyczekOd300001PlnNaDzialaniaRolnicze = 0;
 
-   /**
-    * Liczba pożyczek na działania inne do 10.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_do_10000_pln_dzial_inne",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania inne do 10.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania inne do 10.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_do_10000_pln_dzial_inne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania inne do 10.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekDo10000PlnNaDzialaniaInne = 0;
 
-   /**
-    * Liczba pożyczek na działania inne od 10.001zł do 30.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_10001_do_30000_pln_dzial_inne",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania inne od 10.001zł do 30.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania inne od 10.001zł do 30.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_10001_do_30000_pln_dzial_inne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania inne od 10.001zł do 30.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd10001Do30000PlnNaDzialaniaInne = 0;
 
-   /**
-    * Liczba pożyczek na działania inne od 30.001zł do 50.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_30001_do_50000_pln_dzial_inne",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania inne od 30.001zł do 50.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania inne od 30.001zł do 50.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_30001_do_50000_pln_dzial_inne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania inne od 30.001zł do 50.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd30001Do50000PlnNaDzialaniaInne = 0;
 
-   /**
-    * Liczba pożyczek na działania inne od 50.001zł do 120.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_50001_do_120000_pln_dzial_inne",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania inne od 50.001zł do 120.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania inne od 50.001zł do 120.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_50001_do_120000_pln_dzial_inne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania inne od 50.001zł do 120.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd50001Do120000PlnNaDzialaniaInne = 0;
 
-   /**
-    * Liczba pożyczek na działania inne od 120.001zł do 300.000zł.
-    *
-    * @var int
-    *
-    * @ORM\Column(
-    *     name="liczba_poz_od_120001_do_300000_pln_dzial_inne",
-    *     type="integer",
-    *     nullable=false,
-    *     options={
-    *         "comment":"Liczba pożyczek na działania inne od 120.001zł do 300.000zł.",
-    *         "default":0
-    *     }
-    * )
-    */
+    /**
+     * Liczba pożyczek na działania inne od 120.001zł do 300.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_od_120001_do_300000_pln_dzial_inne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek na działania inne od 120.001zł do 300.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekOd120001Do300000PlnNaDzialaniaInne = 0;
 
     /**
@@ -1465,6 +1470,1602 @@ class DanePozyczki
      * )
      */
     protected $liczbaPozyczekOd300001PlnNaDzialaniaInne = 0;
+
+    /**
+     * Kwota pożyczek do 10.000zł dla mikro przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_do_10000_pln_mikro_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek do 10.000zł dla mikro przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota pożyczek od 10.001zł do 30.000zł dla mikro przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_10001_do_30000_pln_mikro_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 10.001zł do 30.000zł dla mikro przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )ewewe
+     */
+    protected $kwotaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota pożyczek od 30.001zł do 50.000zł dla mikro przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_30001_do_50000_pln_mikro_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 30.001zł do 50.000zł dla mikro przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota pożyczek od 50.001zł do 120.000zł dla mikro przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_50001_do_120000_pln_mikro_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 50.001zł do 120.000zł dla mikro przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota pożyczek od 120.001zł do 300.000zł dla mikro przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_120001_do_300000_pln_mikro_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 120.001zł do 300.000zł dla mikro przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota pożyczek od 301.000zł dla mikro przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_300001_pln_mikro_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 301.000zł dla mikro przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota pożyczek do 10.000zł dla małych przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_do_10000_pln_male_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek do 10.000zł dla małych przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota pożyczek od 10.001zł do 30.000zł dla małych przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_10001_do_30000_pln_male_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 10.001zł do 30.000zł dla małych przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota pożyczek od 30.001zł do 50.000zł dla małych przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_30001_do_50000_pln_male_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 30.001zł do 50.000zł dla małych przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota pożyczek od 50.001zł do 120.000zł dla małych przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_50001_do_120000_pln_male_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 50.001zł do 120.000zł dla małych przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota pożyczek od 120.001zł do 300.000zł dla małych przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_120001_do_300000_pln_male_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 120.001zł do 300.000zł dla małych przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw = '0.00';
+    
+    /**
+     * Kwota pożyczek od 301.000zł dla małych przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_300001_pln_male_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 301.000zł dla małych przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota pożyczek do 10.000zł dla średnich przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_do_10000_pln_srednie_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek do 10.000zł dla średnich przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota pożyczek od 10.001zł do 30.000zł dla średnich przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_10001_do_30000_pln_srednie_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 10.001zł do 30.000zł dla średnich przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota pożyczek od 30.001zł do 50.000zł dla średnich przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_30001_do_50000_pln_srednie_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 30.001zł do 50.000zł dla średnich przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota pożyczek od 50.001zł do 120.000zł dla średnich przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_50001_do_120000_pln_srednie_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 50.001zł do 120.000zł dla średnich przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota pożyczek od 120.001zł do 300.000zł dla średnich przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_120001_do_300000_pln_srednie_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 120.001zł do 300.000zł dla średnich przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota pożyczek od 301.000zł dla średnich przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_300001_pln_srednie_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 301.000zł dla średnich przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota pożyczek do 10.000zł dla innych przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_do_10000_pln_inne_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek do 10.000zł dla innych przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekDo10000PlnDlaInnychPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota pożyczek od 10.001zł do 30.000zł dla innych przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_10001_do_30000_pln_inne_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 10.001zł do 30.000zł dla innych przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd10001Do30000PlnDlaInnychPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota pożyczek od 30.001zł do 50.000zł dla innych przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_30001_do_50000_pln_inne_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 30.001zł do 50.000zł dla innych_przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd30001Do50000PlnDlaInnychPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota pożyczek od 50.001zł do 120.000zł dla innych przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_50001_do_120000_pln_inne_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 50.001zł do 120.000zł dla innych przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd50001Do120000PlnDlaInnychPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota pożyczek od 120.001zł do 300.000zł dla innych przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_120001_do_300000_pln_inne_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 120.001zł do 300.000zł dla inne przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd120001Do300000PlnDlaInnychPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota pożyczek od 301.000zł dla innych przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_300001_pln_inne_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 301.000zł dla innych przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd300001PlnDlaInnychPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota pożyczek do 10.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_do_10000_pln_inst_ekonomii_spol",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek do 10.000zł dla instytucji ekonomii spolecznej.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekDo10000PlnDlaInstytucjiEkonomiiSpolecznej = '0.00';
+
+    /**
+     * Kwota pożyczek od 10.001zł do 30.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_10001_do_30000_pln_inst_ekonomii_spol",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 10.001zł do 30.000zł dla instytucji ekonomii spolecznej.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd10001Do30000PlnDlaInstytucjiEkonomiiSpolecznej = '0.00';
+
+    /**
+     * Kwota pożyczek od 30.001zł do 50.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_30001_do_50000_pln_inst_ekonomii_spol",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 30.001zł do 50.000zł dla instytucji ekonomii spolecznej.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd30001Do50000PlnDlaInstytucjiEkonomiiSpolecznej = '0.00';
+
+    /**
+     * Kwota pożyczek od 50.001zł do 120.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_50001_do_120000_pln_inst_ekonomii_spol",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 50.001zł do 120.000zł dla instytucji ekonomii spolecznej.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd50001Do120000PlnDlaInstytucjiEkonomiiSpolecznej = '0.00';
+
+    /**
+     * Kwota pożyczek od 120.001zł do 300.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_120001_do_300000_pln_inst_ekonomii_spol",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 120.001zł do 300.000zł dla instytucji ekonomii spolecznej.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd120001Do300000PlnDlaInstytucjiEkonomiiSpolecznej = '0.00';
+
+    /**
+     * Kwota pożyczek od 301.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_300001_pln_inst_ekonomii_spol",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek od 301.000zł dla instytucji ekonomii spolecznej.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd300001PlnDlaInstytucjiEkonomiiSpolecznej = '0.00';
+
+    /**
+     * Kwota pożyczek obrotowych do 10.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_obrotowych_do_10000_pln",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek obrotowych do 10.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekObrotowychDo10000Pln = '0.00';
+
+    /**
+     * Kwota pożyczek obrotowych od 10.001zł do30.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_obrotowych_od_10001_do_30000_pln",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek obrotowych od 10.001zł do 30.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekObrotowychOd10001Do30000Pln = '0.00';
+
+   /**
+     * Kwota pożyczek obrotowych od 30.001zł do 50.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_obrotowych_od_30001_do_50000_pln",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek obrotowych od 30.001zł do 50.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekObrotowychOd30001Do50000Pln = '0.00';
+
+   /**
+     * Kwota pożyczek obrotowych od 50.001zł do 120.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_obrotowych_od_50001_do_120000_pln",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek obrotowych od 50.001zł do 120.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekObrotowychOd50001Do120000Pln = '0.00';
+
+    /**
+     * Kwota pożyczek obrotowych od 120.001zł do 300.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_obrotowych_od_120001_do_300000_pln",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek obrotowych od 120.001zł do 300.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekObrotowychOd120001Do300000Pln = '0.00';
+
+    /**
+     * Kwota pożyczek obrotowych od 301.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_obrotowych_od_300001_pln",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek obrotowych od 301.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekObrotowychOd300001Pln = '0.00';
+
+    /**
+     * Kwota pożyczek obrotowych do 10.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_obrotowych_do_10000_pln",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek obrotowych do 10.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekInwestycyjnychDo10000Pln = '0.00';
+
+    /**
+     * Kwota pożyczek inwestycyjnych od 30.001zł do 50.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_inwestycyjnych_od_30001_do_50000_pln",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek inwestycyjnych od 30.001zł do 50.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekInwestycyjnychOd10001Do30000Pln = '0.00';
+
+    /**
+     * Kwota pożyczek inwestycyjnych od 30.001zł do 50.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_inwestycyjnych_od_30001_do_50000_pln",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek inwestycyjnych od 30.001zł do 50.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekInwestycyjnychOd30001Do50000Pln = '0.00';
+
+    /**
+     * Kwota pożyczek inwestycyjnych od 50.001zł do 120.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_inwestycyjnych_od_50001_do_120000_pln",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek inwestycyjnych od 50.001zł do 120.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekInwestycyjnychOd50001Do120000Pln = '0.00';
+
+    /**
+     * Kwota pożyczek inwestycyjnych od 120.001zł do 300.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_inwestycyjnych_od_120001_do_300000_pln",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek inwestycyjnych od 120.001zł do 300.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekInwestycyjnychOd120001Do300000Pln = '0.00';
+    
+    /**
+     * Kwota pożyczek inwestycyjnych od 301.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_inwestycyjnych_od_300001_pln",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek inwestycyjnych od 301.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekInwestycyjnychOd300001Pln = '0.00';
+
+    /**
+     * Kwota pożyczek inwestycyjno-obrotowych do 10.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_inwestycyjno_obrotowych_do_10000_pln",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek inwestycyjno-obrotowych do 10.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekInwestycyjnoObrotowychDo10000Pln = '0.00';
+
+    /**
+     * Kwota pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_inwestycyjno_obrotowych_od_30001_do_50000_pln",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln = '0.00';
+
+    /**
+     * Kwota pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_inwestycyjno_obrotowych_od_30001_do_50000_pln",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln = '0.00';
+
+    /**
+     * Kwota pożyczek inwestycyjno-obrotowych od 50.001zł do 120.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_inwestycyjno_obrotowych_od_50001_do_120000_pln",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek inwestycyjno-obrotowych od 50.001zł do 120.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln = '0.00';
+
+    /**
+     * Kwota pożyczek inwestycyjno-obrotowych od 120.001zł do 300.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_inwestycyjno_obrotowych_od_120001_do_300000_pln",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek inwestycyjno-obrotowych od 120.001zł do 300.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln = '0.00';
+
+    /**
+     * Kwota pożyczek inwestycyjno-obrotowych od 301.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_inwestycyjno_obrotowych_od_300001_pln",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek inwestycyjno-obrotowych od 301.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekInwestycyjnoObrotowychOd300001Pln = '0.00';
+
+    /**
+     * Kwota pożyczek na działania produkcyjne do 10.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_do_10000_pln_dzial_produkcyjne",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania produkcyjne do 10.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekDo10000PlnNaDzialaniaProdukcyjne = '0.00';
+
+    /**
+     * Kwota pożyczek na działania produkcyjne od 10.001zł do 30.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_10001_do_30000_pln_dzial_produkcyjne",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania produkcyjne od 10.001zł do 30.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne = '0.00';
+
+    /**
+     * Kwota pożyczek na działania produkcyjne od 30.001zł do 50.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_30001_do_50000_pln_dzial_produkcyjne",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania produkcyjne od 30.001zł do 50.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne = '0.00';
+   
+    /**
+     * Kwota pożyczek na działania produkcyjne od 50.001zł do 120.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_50001_do_120000_pln_dzial_produkcyjne",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania produkcyjne od 50.001zł do 120.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne = '0.00';
+
+    /**
+     * Kwota pożyczek na działania produkcyjne od 120.001zł do 300.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_120001_do_300000_pln_dzial_produkcyjne",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania produkcyjne od 120.001zł do 300.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne = '0.00';
+
+    /**
+     * Kwota pożyczek na działania produkcyjne od 301.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_300001_pln_dzial_produkcyjne",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania produkcyjne od 301.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd300001PlnNaDzialaniaProdukcyjne = '0.00';
+
+    /**
+     * Kwota pożyczek na działania handlowe do 10.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_do_10000_pln_dzial_handlowe",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania handlowe do 10.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekDo10000PlnNaDzialaniaHandlowe = '0.00';
+
+    /**
+     * Kwota pożyczek na działania handlowe od 10.001zł do 30.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_10001_do_30000_pln_dzial_handlowe",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania handlowe od 10.001zł do 30.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe = '0.00';
+
+    /**
+     * Kwota pożyczek na działania handlowe od 30.001zł do 50.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_30001_do_50000_pln_dzial_handlowe",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania handlowe od 30.001zł do 50.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe = '0.00';
+
+    /**
+     * Kwota pożyczek na działania handlowe od 50.001zł do 120.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_50001_do_120000_pln_dzial_handlowe",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania handlowe od 50.001zł do 120.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe = '0.00';
+
+    /**
+     * Kwota pożyczek na działania handlowe od 120.001zł do 300.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_120001_do_300000_pln_dzial_handlowe",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania handlowe od 120.001zł do 300.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe = '0.00';
+
+    /**
+     * Kwota pożyczek na działania handlowe od 301.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_300001_pln_dzial_handlowe",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania handlowe od 301.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd300001PlnNaDzialaniaHandlowe = '0.00';
+
+    /**
+     * Kwota pożyczek na działania usługowe do 10.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_do_10000_pln_dzial_uslugowe",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania usługowe do 10.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekDo10000PlnNaDzialaniaUslugowe = '0.00';
+
+    /**
+     * Kwota pożyczek na działania usługowe od 10.001zł do 30.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_10001_do_30000_pln_dzial_uslugowe",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania usługowe od 10.001zł do 30.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe = '0.00';
+
+    /**
+     * Kwota pożyczek na działania usługowe od 30.001zł do 50.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_30001_do_50000_pln_dzial_uslugowe",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania usługowe od 30.001zł do 50.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe = '0.00';
+
+    /**
+     * Kwota pożyczek na działania usługowe od 50.001zł do 120.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_50001_do_120000_pln_dzial_uslugowe",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania usługowe od 50.001zł do 120.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe = '0.00';
+
+    /**
+     * Kwota pożyczek na działania usługowe od 120.001zł do 300.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_120001_do_300000_pln_dzial_uslugowe",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania usługowe od 120.001zł do 300.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe = '0.00';
+
+    /**
+     * Kwota pożyczek na działania usługowe od 301.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_300001_pln_dzial_uslugowe",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania usługowe od 301.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd300001PlnNaDzialaniaUslugowe = '0.00';
+
+    /**
+     * Kwota pożyczek na działania budownicze do 10.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_do_10000_pln_dzial_budownicze",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania budownicze do 10.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekDo10000PlnNaDzialaniaBudownicze = '0.00';
+
+    /**
+     * Kwota pożyczek na działania budownicze od 10.001zł do 30.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_10001_do_30000_pln_dzial_budownicze",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania budownicze od 10.001zł do 30.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze = '0.00';
+
+    /**
+     * Kwota pożyczek na działania budownicze od 30.001zł do 50.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_30001_do_50000_pln_dzial_budownicze",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania budownicze od 30.001zł do 50.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze = '0.00';
+
+    /**
+     * Kwota pożyczek na działania budownicze od 50.001zł do 120.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_50001_do_120000_pln_dzial_budownicze",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania budownicze od 50.001zł do 120.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze = '0.00';
+
+    /**
+     * Kwota pożyczek na działania budownicze od 120.001zł do 300.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_120001_do_300000_pln_dzial_budownicze",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania budownicze od 120.001zł do 300.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze = '0.00';
+
+    /**
+     * Kwota pożyczek na działania budownicze od 301.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_300001_pln_dzial_budownicze",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania budownicze od 301.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd300001PlnNaDzialaniaBudownicze = '0.00';
+
+    /**
+     * Kwota pożyczek na działania rolnicze do 10.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_do_10000_pln_dzial_rolnicze",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania rolnicze do 10.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekDo10000PlnNaDzialaniaRolnicze = '0.00';
+
+    /**
+     * Kwota pożyczek na działania rolnicze od 10.001zł do 30.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_10001_do_30000_pln_dzial_rolnicze",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania rolnicze od 10.001zł do 30.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze = '0.00';
+
+    /**
+     * Kwota pożyczek na działania rolnicze od 30.001zł do 50.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_30001_do_50000_pln_dzial_rolnicze",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania rolnicze od 30.001zł do 50.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze = '0.00';
+
+    /**
+     * Kwota pożyczek na działania rolnicze od 50.001zł do 120.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_50001_do_120000_pln_dzial_rolnicze",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania rolnicze od 50.001zł do 120.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze = '0.00';
+
+    /**
+     * Kwota pożyczek na działania rolnicze od 120.001zł do 300.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_120001_do_300000_pln_dzial_rolnicze",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania rolnicze od 120.001zł do 300.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze = '0.00';
+
+    /**
+     * Kwota pożyczek na działania rolnicze od 301.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_300001_pln_dzial_rolnicze",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania rolnicze od 301.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd300001PlnNaDzialaniaRolnicze = '0.00';
+
+    /**
+     * Kwota pożyczek na działania inne do 10.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_do_10000_pln_dzial_inne",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania inne do 10.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekDo10000PlnNaDzialaniaInne = '0.00';
+
+    /**
+     * Kwota pożyczek na działania inne od 10.001zł do 30.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_10001_do_30000_pln_dzial_inne",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania inne od 10.001zł do 30.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd10001Do30000PlnNaDzialaniaInne = '0.00';
+
+    /**
+     * Kwota pożyczek na działania inne od 30.001zł do 50.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_30001_do_50000_pln_dzial_inne",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania inne od 30.001zł do 50.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd30001Do50000PlnNaDzialaniaInne = '0.00';
+
+    /**
+     * Kwota pożyczek na działania inne od 50.001zł do 120.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_50001_do_120000_pln_dzial_inne",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania inne od 50.001zł do 120.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd50001Do120000PlnNaDzialaniaInne = '0.00';
+
+    /**
+     * Kwota pożyczek na działania inne od 120.001zł do 300.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_120001_do_300000_pln_dzial_inne",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania inne od 120.001zł do 300.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd120001Do300000PlnNaDzialaniaInne = '0.00';
+
+    /**
+     * Kwota pożyczek na działania inne od 301.000zł.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_od_300001_pln_dzial_rinne",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek na działania inne od 301.000zł.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPozyczekOd300001PlnNaDzialaniaInne = '0.00';
 
     /**
      * Konstruktor.
@@ -3555,6 +5156,2028 @@ class DanePozyczki
     public function setLiczbaPozyczekOd300001PlnNaDzialaniaInne(int $liczbaPozyczek = 0)
     {
         $this->liczbaPozyczekOd300001PlnNaDzialaniaInne = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek do 10.000zł dla mikro przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw()
+    {
+        return $this->kwotaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek do 10.000zł dla mikro przedsiębiorstw.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 10.001zł do 30.000zł dla mikro przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw()
+    {
+        return $this->kwotaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 10.001zł do 30.000zł dla mikro przedsiębiorstw.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 30.001zł do 50.000zł dla mikro przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw()
+    {
+        return $this->kwotaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 30.001zł do 50.000zł dla mikro przedsiębiorstw.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 50.001zł do 120.000zł dla mikro przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw()
+    {
+        return $this->kwotaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 50.001zł do 120.000zł dla mikro przedsiębiorstw.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 120.001zł do 300.000zł dla mikro przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw()
+    {
+        return $this->kwotaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 120.001zł do 300.000zł dla mikro przedsiębiorstw.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 301.000zł dla mikro przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw()
+    {
+        return $this->kwotaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 301.000zł dla mikro przedsiębiorstw.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek do 10.000zł dla małych przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw()
+    {
+        return $this->kwotaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek do 10.000zł dla małych przedsiębiorstw.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 10.001zł do 30.000zł dla małych przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw()
+    {
+        return $this->kwotaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 10.001zł do 30.000zł dla małych przedsiębiorstw.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 30.001zł do 50.000zł dla małych przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw()
+    {
+        return $this->kwotaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 30.001zł do 50.000zł dla małych przedsiębiorstw.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 50.001zł do 120.000zł dla małych przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw()
+    {
+        return $this->kwotaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 50.001zł do 120.000zł dla małych przedsiębiorstw.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 120.001zł do 300.000zł dla małych przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw()
+    {
+        return $this->kwotaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 120.001zł do 300.000zł dla małych przedsiębiorstw.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 301.000zł dla małych przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw()
+    {
+        return $this->kwotaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 301.000zł dla małych przedsiębiorstw.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek do 10.000zł dla średnich przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw()
+    {
+        return $this->kwotaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek do 10.000zł dla średnich przedsiębiorstw.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 10.001zł do 30.000zł dla średnich przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw()
+    {
+        return $this->kwotaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 10.001zł do 30.000zł dla średnich przedsiębiorstw.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 30.001zł do 50.000zł dla średnich przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw()
+    {
+        return $this->kwotaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 30.001zł do 50.000zł dla średnich przedsiębiorstw.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 50.001zł do 120.000zł dla średnich przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw()
+    {
+        return $this->kwotaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 50.001zł do 120.000zł dla średnich przedsiębiorstw.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 120.001zł do 300.000zł dla średnich przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw()
+    {
+        return $this->kwotaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 120.001zł do 300.000zł dla średnich przedsiębiorstw.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 301.000zł dla średnich przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw()
+    {
+        return $this->kwotaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 301.000zł dla średnich przedsiębiorstw.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek do 10.000zł dla innych przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekDo10000PlnDlaInnychPrzedsiebiorstw()
+    {
+        return $this->kwotaPozyczekDo10000PlnDlaInnychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek do 10.000zł dla innych przedsiębiorstw.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekDo10000PlnDlaInnychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekDo10000PlnDlaInnychPrzedsiebiorstw = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 10.001zł do 30.000zł dla innych przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd10001Do30000PlnDlaInnychPrzedsiebiorstw()
+    {
+        return $this->kwotaPozyczekOd10001Do30000PlnDlaInnychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 10.001zł do 30.000zł dla innych przedsiębiorstw.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd10001Do30000PlnDlaInnychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd10001Do30000PlnDlaInnychPrzedsiebiorstw = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 30.001zł do 50.000zł dla innych przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd30001Do50000PlnDlaInnychPrzedsiebiorstw()
+    {
+        return $this->kwotaPozyczekOd30001Do50000PlnDlaInnychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 30.001zł do 50.000zł dla innych przedsiębiorstw.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd30001Do50000PlnDlaInnychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd30001Do50000PlnDlaInnychPrzedsiebiorstw = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 50.001zł do 120.000zł dla innych przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd50001Do120000PlnDlaInnychPrzedsiebiorstw()
+    {
+        return $this->kwotaPozyczekOd50001Do120000PlnDlaInnychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 50.001zł do 120.000zł dla innych przedsiębiorstw.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd50001Do120000PlnDlaInnychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd50001Do120000PlnDlaInnychPrzedsiebiorstw = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 120.001zł do 300.000zł dla innych przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd120001Do300000PlnDlaInnychPrzedsiebiorstw()
+    {
+        return $this->kwotaPozyczekOd120001Do300000PlnDlaInnychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 120.001zł do 300.000zł dla innych przedsiębiorstw.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd120001Do300000PlnDlaInnychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd120001Do300000PlnDlaInnychPrzedsiebiorstw = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 301.000zł dla innych przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd300001PlnDlaInnychPrzedsiebiorstw()
+    {
+        return $this->kwotaPozyczekOd300001PlnDlaInnychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 301.000zł dla innych przedsiębiorstw.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd300001PlnDlaInnychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd300001PlnDlaInnychPrzedsiebiorstw = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek do 10.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekDo10000PlnDlaInstytucjiEkonomiiSpolecznej()
+    {
+        return $this->kwotaPozyczekDo10000PlnDlaInstytucjiEkonomiiSpolecznej;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek do 10.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekDo10000PlnDlaInstytucjiEkonomiiSpolecznej(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekDo10000PlnDlaInstytucjiEkonomiiSpolecznej = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 10.001zł do 30.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd10001Do30000PlnDlaInstytucjiEkonomiiSpolecznej()
+    {
+        return $this->kwotaPozyczekOd10001Do30000PlnDlaInstytucjiEkonomiiSpolecznej;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 10.001zł do 30.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd10001Do30000PlnDlaInstytucjiEkonomiiSpolecznej(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd10001Do30000PlnDlaInstytucjiEkonomiiSpolecznej = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 30.001zł do 50.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd30001Do50000PlnDlaInstytucjiEkonomiiSpolecznej()
+    {
+        return $this->kwotaPozyczekOd30001Do50000PlnDlaInstytucjiEkonomiiSpolecznej;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 30.001zł do 50.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd30001Do50000PlnDlaInstytucjiEkonomiiSpolecznej(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd30001Do50000PlnDlaInstytucjiEkonomiiSpolecznej = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 50.001zł do 120.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd50001Do120000PlnDlaInstytucjiEkonomiiSpolecznej()
+    {
+        return $this->kwotaPozyczekOd50001Do120000PlnDlaInstytucjiEkonomiiSpolecznej;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 50.001zł do 120.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd50001Do120000PlnDlaInstytucjiEkonomiiSpolecznej(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd50001Do120000PlnDlaInstytucjiEkonomiiSpolecznej = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 120.001zł do 300.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd120001Do300000PlnDlaInstytucjiEkonomiiSpolecznej()
+    {
+        return $this->kwotaPozyczekOd120001Do300000PlnDlaInstytucjiEkonomiiSpolecznej;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 120.001zł do 300.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd120001Do300000PlnDlaInstytucjiEkonomiiSpolecznej(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd120001Do300000PlnDlaInstytucjiEkonomiiSpolecznej = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek od 301.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd300001PlnDlaInstytucjiEkonomiiSpolecznej()
+    {
+        return $this->kwotaPozyczekOd300001PlnDlaInstytucjiEkonomiiSpolecznej;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek od 301.000zł dla instytucji ekonomii spolecznej.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd300001PlnDlaInstytucjiEkonomiiSpolecznej(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd300001PlnDlaInstytucjiEkonomiiSpolecznej = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek obrotowych do 10.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekObrotowychDo10000Pln()
+    {
+        return $this->kwotaPozyczekObrotowychDo10000Pln;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek obrotowych do 10.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekObrotowychDo10000Pln(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekObrotowychDo10000Pln = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek obrotowych od 10.001zł do30.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekObrotowychOd10001Do30000Pln()
+    {
+        return $this->kwotaPozyczekObrotowychOd10001Do30000Pln;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek obrotowych od 10.001zł do30.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekObrotowychOd10001Do30000Pln(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekObrotowychOd10001Do30000Pln = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek obrotowych od 30.001zł do 50.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekObrotowychOd30001Do50000Pln()
+    {
+        return $this->kwotaPozyczekObrotowychOd30001Do50000Pln;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek obrotowych od 30.001zł do 50.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekObrotowychOd30001Do50000Pln(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekObrotowychOd30001Do50000Pln = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek obrotowych od 50.001zł do 120.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekObrotowychOd50001Do120000Pln()
+    {
+        return $this->kwotaPozyczekObrotowychOd50001Do120000Pln;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek obrotowych od 50.001zł do 120.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekObrotowychOd50001Do120000Pln(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekObrotowychOd50001Do120000Pln = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek obrotowych od 120.001zł do 300.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekObrotowychOd120001Do300000Pln()
+    {
+        return $this->kwotaPozyczekObrotowychOd120001Do300000Pln;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek obrotowych od 120.001zł do 300.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekObrotowychOd120001Do300000Pln(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekObrotowychOd120001Do300000Pln = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek obrotowych od 301.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekObrotowychOd300001Pln()
+    {
+        return $this->kwotaPozyczekObrotowychOd300001Pln;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek obrotowych od 301.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekObrotowychOd300001Pln(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekObrotowychOd300001Pln = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek obrotowych do 10.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekInwestycyjnychDo10000Pln()
+    {
+        return $this->kwotaPozyczekInwestycyjnychDo10000Pln;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek obrotowych do 10.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekInwestycyjnychDo10000Pln(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekInwestycyjnychDo10000Pln = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek inwestycyjnych od 30.001zł do 50.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekInwestycyjnychOd10001Do30000Pln()
+    {
+        return $this->kwotaPozyczekInwestycyjnychOd10001Do30000Pln;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek inwestycyjnych od 30.001zł do 50.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekInwestycyjnychOd10001Do30000Pln(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekInwestycyjnychOd10001Do30000Pln = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek inwestycyjnych od 30.001zł do 50.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekInwestycyjnychOd30001Do50000Pln()
+    {
+        return $this->kwotaPozyczekInwestycyjnychOd30001Do50000Pln;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek inwestycyjnych od 30.001zł do 50.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekInwestycyjnychOd30001Do50000Pln(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekInwestycyjnychOd30001Do50000Pln = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek inwestycyjnych od 50.001zł do 120.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekInwestycyjnychOd50001Do120000Pln()
+    {
+        return $this->kwotaPozyczekInwestycyjnychOd50001Do120000Pln;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek inwestycyjnych od 50.001zł do 120.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekInwestycyjnychOd50001Do120000Pln(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekInwestycyjnychOd50001Do120000Pln = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek inwestycyjnych od 120.001zł do 300.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekInwestycyjnychOd120001Do300000Pln()
+    {
+        return $this->kwotaPozyczekInwestycyjnychOd120001Do300000Pln;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek inwestycyjnych od 120.001zł do 300.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekInwestycyjnychOd120001Do300000Pln(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekInwestycyjnychOd120001Do300000Pln = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek inwestycyjnych od 301.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekInwestycyjnychOd300001Pln()
+    {
+        return $this->kwotaPozyczekInwestycyjnychOd300001Pln;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek inwestycyjnych od 301.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekInwestycyjnychOd300001Pln(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekInwestycyjnychOd300001Pln = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek inwestycyjno-obrotowych do 10.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekInwestycyjnoObrotowychDo10000Pln()
+    {
+        return $this->kwotaPozyczekInwestycyjnoObrotowychDo10000Pln;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek inwestycyjno-obrotowych do 10.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekInwestycyjnoObrotowychDo10000Pln(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekInwestycyjnoObrotowychDo10000Pln = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln()
+    {
+        return $this->kwotaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln()
+    {
+        return $this->kwotaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek inwestycyjno-obrotowych od 50.001zł do 120.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln()
+    {
+        return $this->kwotaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek inwestycyjno-obrotowych od 50.001zł do 120.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek inwestycyjno-obrotowych od 120.001zł do 300.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln()
+    {
+        return $this->kwotaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek inwestycyjno-obrotowych od 120.001zł do 300.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek inwestycyjno-obrotowych od 301.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekInwestycyjnoObrotowychOd300001Pln()
+    {
+        return $this->kwotaPozyczekInwestycyjnoObrotowychOd300001Pln;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek inwestycyjno-obrotowych od 301.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekInwestycyjnoObrotowychOd300001Pln(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekInwestycyjnoObrotowychOd300001Pln = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania produkcyjne do 10.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekDo10000PlnNaDzialaniaProdukcyjne()
+    {
+        return $this->kwotaPozyczekDo10000PlnNaDzialaniaProdukcyjne;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania produkcyjne do 10.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekDo10000PlnNaDzialaniaProdukcyjne(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekDo10000PlnNaDzialaniaProdukcyjne = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania produkcyjne od 30.001zł do 50.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne()
+    {
+        return $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania produkcyjne od 30.001zł do 50.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania produkcyjne od 30.001zł do 50.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne()
+    {
+        return $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania produkcyjne od 30.001zł do 50.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania produkcyjne od 50.001zł do 120.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne()
+    {
+        return $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania produkcyjne od 50.001zł do 120.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania produkcyjne od 120.001zł do 300.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne()
+    {
+        return $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania produkcyjne od 120.001zł do 300.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania produkcyjne od 301.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd300001PlnNaDzialaniaProdukcyjne()
+    {
+        return $this->kwotaPozyczekOd300001PlnNaDzialaniaProdukcyjne;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania produkcyjne od 301.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd300001PlnNaDzialaniaProdukcyjne(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd300001PlnNaDzialaniaProdukcyjne = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania handlowe do 10.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekDo10000PlnNaDzialaniaHandlowe()
+    {
+        return $this->kwotaPozyczekDo10000PlnNaDzialaniaHandlowe;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania handlowe do 10.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekDo10000PlnNaDzialaniaHandlowe(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekDo10000PlnNaDzialaniaHandlowe = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania handlowe od 10.001zł do 30.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe()
+    {
+        return $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania handlowe od 10.001zł do 30.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania handlowe od 30.001zł do 50.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe()
+    {
+        return $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania handlowe od 30.001zł do 50.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania handlowe od 50.001zł do 120.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe()
+    {
+        return $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania handlowe od 50.001zł do 120.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania handlowe od 120.001zł do 300.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe()
+    {
+        return $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania handlowe od 120.001zł do 300.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania handlowe od 301.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd300001PlnNaDzialaniaHandlowe()
+    {
+        return $this->kwotaPozyczekOd300001PlnNaDzialaniaHandlowe;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania handlowe od 301.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd300001PlnNaDzialaniaHandlowe(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd300001PlnNaDzialaniaHandlowe = $kwotaPozyczek;
+
+        return $this;
+    }
+
+
+
+
+
+
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania usługowe do 10.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekDo10000PlnNaDzialaniaUslugowe()
+    {
+        return $this->kwotaPozyczekDo10000PlnNaDzialaniaUslugowe;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania usługowe do 10.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekDo10000PlnNaDzialaniaUslugowe(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekDo10000PlnNaDzialaniaUslugowe = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania usługowe od 10.001zł do 30.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe()
+    {
+        return $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania usługowe od 10.001zł do 30.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania usługowe od 30.001zł do 50.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe()
+    {
+        return $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania usługowe od 30.001zł do 50.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania usługowe od 50.001zł do 120.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe()
+    {
+        return $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania usługowe od 50.001zł do 120.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania usługowe od 120.001zł do 300.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe()
+    {
+        return $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania usługowe od 120.001zł do 300.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania usługowe od 301.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd300001PlnNaDzialaniaUslugowe()
+    {
+        return $this->kwotaPozyczekOd300001PlnNaDzialaniaUslugowe;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania usługowe od 301.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd300001PlnNaDzialaniaUslugowe(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd300001PlnNaDzialaniaUslugowe = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania budownicze do 10.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekDo10000PlnNaDzialaniaBudownicze()
+    {
+        return $this->kwotaPozyczekDo10000PlnNaDzialaniaBudownicze;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania budownicze do 10.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekDo10000PlnNaDzialaniaBudownicze(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekDo10000PlnNaDzialaniaBudownicze = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania budownicze od 10.001zł do 30.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze()
+    {
+        return $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania budownicze od 10.001zł do 30.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania budownicze od 30.001zł do 50.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze()
+    {
+        return $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania budownicze od 30.001zł do 50.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania budownicze od 50.001zł do 120.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze()
+    {
+        return $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania budownicze od 50.001zł do 120.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania budownicze od 120.001zł do 300.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze()
+    {
+        return $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania budownicze od 120.001zł do 300.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania budownicze od 301.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd300001PlnNaDzialaniaBudownicze()
+    {
+        return $this->kwotaPozyczekOd300001PlnNaDzialaniaBudownicze;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania budownicze od 301.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd300001PlnNaDzialaniaBudownicze(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd300001PlnNaDzialaniaBudownicze = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania rolnicze do 10.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekDo10000PlnNaDzialaniaRolnicze()
+    {
+        return $this->kwotaPozyczekDo10000PlnNaDzialaniaRolnicze;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania rolnicze do 10.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekDo10000PlnNaDzialaniaRolnicze(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekDo10000PlnNaDzialaniaRolnicze = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania rolnicze od 10.001zł do 30.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze()
+    {
+        return $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania rolnicze od 10.001zł do 30.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania rolnicze od 30.001zł do 50.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze()
+    {
+        return $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania rolnicze od 30.001zł do 50.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania rolnicze od 50.001zł do 120.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze()
+    {
+        return $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania rolnicze od 50.001zł do 120.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania rolnicze od 120.001zł do 300.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze()
+    {
+        return $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania rolnicze od 120.001zł do 300.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania rolnicze od 301.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd300001PlnNaDzialaniaRolnicze()
+    {
+        return $this->kwotaPozyczekOd300001PlnNaDzialaniaRolnicze;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania rolnicze od 301.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd300001PlnNaDzialaniaRolnicze(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd300001PlnNaDzialaniaRolnicze = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania inne do 10.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekDo10000PlnNaDzialaniaInne()
+    {
+        return $this->kwotaPozyczekDo10000PlnNaDzialaniaInne;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania inne do 10.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekDo10000PlnNaDzialaniaInne(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekDo10000PlnNaDzialaniaInne = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania inne od 10.001zł do 30.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd10001Do30000PlnNaDzialaniaInne()
+    {
+        return $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaInne;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania inne od 10.001zł do 30.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd10001Do30000PlnNaDzialaniaInne(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaInne = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania inne od 30.001zł do 50.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd30001Do50000PlnNaDzialaniaInne()
+    {
+        return $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaInne;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania inne od 30.001zł do 50.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd30001Do50000PlnNaDzialaniaInne(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaInne = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania inne od 50.001zł do 120.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd50001Do120000PlnNaDzialaniaInne()
+    {
+        return $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaInne;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania inne od 50.001zł do 120.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd50001Do120000PlnNaDzialaniaInne(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaInne = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania inne od 120.001zł do 300.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd120001Do300000PlnNaDzialaniaInne()
+    {
+        return $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaInne;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania inne od 120.001zł do 300.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd120001Do300000PlnNaDzialaniaInne(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaInne = $kwotaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek na działania inne od 301.000zł.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOd300001PlnNaDzialaniaInne()
+    {
+        return $this->kwotaPozyczekOd300001PlnNaDzialaniaInne;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek na działania inne od 301.000zł.
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekOd300001PlnNaDzialaniaInne(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekOd300001PlnNaDzialaniaInne = $kwotaPozyczek;
 
         return $this;
     }

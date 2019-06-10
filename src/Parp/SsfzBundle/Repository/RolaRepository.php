@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
@@ -10,6 +11,7 @@ class RolaRepository extends EntityRepository
 {
     /**
      * @param string $nazwy
+     *
      * @return array
      */
     public function znajdzPoNazwach($nazwy)

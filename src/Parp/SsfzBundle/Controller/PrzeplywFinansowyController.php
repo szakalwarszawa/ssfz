@@ -1,17 +1,17 @@
 <?php
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 namespace Parp\SsfzBundle\Controller;
 
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use Parp\SsfzBundle\Entity\Report;
+use Parp\SsfzBundle\Entity\PrzeplywFinansowy;
+use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Form\Type\PrzeplywFinansowyType;
 
 /**
  * Description of PrzeplywFinansowyController
@@ -22,7 +22,7 @@ class PrzeplywFinansowyController extends Controller
      * Akcja zapisu przeplywu finansowego
      *
      * @param Request $request
-     * @param integer $sprawozdanieId
+     * @param int $sprawozdanieId
      *
      * @Route("przeplyw/rejestracja/{sprawozdanieId}", name="przeplyw_rejestracja")
      *
@@ -33,15 +33,21 @@ class PrzeplywFinansowyController extends Controller
     public function createPrzeplyw(Request $request, $sprawozdanieId)
     {
         $beneficjentId = $this->getBeneficjentId();
-        $przeplyw = new \Parp\SsfzBundle\Entity\PrzeplywFinansowy();
+        $przeplyw = new PrzeplywFinansowy();
         $entityManager = $this->getDoctrine()->getManager();
-        $report = $entityManager->getRepository(\Parp\SsfzBundle\Entity\Sprawozdanie::class)->find($sprawozdanieId);
+        $report = $entityManager
+            ->getRepository(Sprawozdanie::class)
+            ->find($sprawozdanieId)
+        ;
         if ($report->getCreatorId() != $beneficjentId || ($report->getStatus() != 1 && $report->getStatus() != 4)) {
             throw $this->createNotFoundException(
                 'Nie znaleziono sprawozdania!'
             );
         }
-        $przeplywZBazy = $entityManager->getRepository(\Parp\SsfzBundle\Entity\PrzeplywFinansowy::class)->findBy(array('sprawozdanieId' => $sprawozdanieId));
+        $przeplywZBazy = $entityManager
+            ->getRepository(PrzeplywFinansowy::class)
+            ->findBy(['sprawozdanieId' => $sprawozdanieId])
+        ;
         if ($przeplywZBazy) {
             $przeplyw = $przeplywZBazy[0];
         }
@@ -50,7 +56,7 @@ class PrzeplywFinansowyController extends Controller
         }
         $entityManager->flush();
 
-        $form = $this->createForm(\Parp\SsfzBundle\Form\Type\PrzeplywFinansowyType::class, $przeplyw);
+        $form = $this->createForm(PrzeplywFinansowyType::class, $przeplyw);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $creating = $przeplyw->getId() == null;
@@ -58,11 +64,14 @@ class PrzeplywFinansowyController extends Controller
                 $entityManager = $this->getDoctrine()->getManager();
                 $przeplyw->setSprawozdanieId($sprawozdanieId);
                 $przeplyw->setCreatorId($beneficjentId);
-                $creationDate = new \DateTime('now');
+                $creationDate = new DateTime('now');
                 $przeplyw->setDataRejestracji($creationDate);
                 $entityManager->persist($przeplyw);
                 $entityManager->flush();
-                $this->getKomunikatyService()->sukcesKomunikat('Rejestracja przepływu finansowego zakończyła się powodzeniem', 'Rejestracja przepływu finansowego');
+                $this
+                    ->getKomunikatyService()
+                    ->sukcesKomunikat('Rejestracja przepływu finansowego zakończyła się powodzeniem', 'Rejestracja przepływu finansowego')
+                ;
             }
             if (!$creating) {
                 $entityManager = $this->getDoctrine()->getManager();
@@ -70,37 +79,39 @@ class PrzeplywFinansowyController extends Controller
                 $this->getKomunikatyService()->sukcesKomunikat('Zapis przepływu finansowego zakończył się powodzeniem', 'Zapis przepływu finansowego');
             }
 
-            return $this->redirectToRoute('sprawozdanie_rejestracja', array('umowaId' => (string) $report->getUmowaId()));
+            return $this->redirectToRoute('sprawozdanie_rejestracja', [
+                'umowaId' => (string) $report->getUmowaId(),
+            ]);
         }
         if ($form->isSubmitted() && !$form->isValid()) {
             $this->getKomunikatyService()->bladKomunikat('Formularz nie został poprawnie wypełniony.');
         }
 
-        return $this->render('SsfzBundle:Report:przeplywRejestruj.html.twig', array(
-            'form' => $form->createView(),
-            'form_mode' => 'create',
+        return $this->render('SsfzBundle:Report:przeplywRejestruj.html.twig', [
+            'form'           => $form->createView(),
+            'form_mode'      => 'create',
             'sprawozdanieId' => $sprawozdanieId,
-            'sprawozdanie' => $report,
-        ));
+            'sprawozdanie'   => $report,
+        ]);
     }
 
     /**
      * Pobiera saldo koncowe za poprzedni okres
      *
      * @param Sprawozdanie $report
-     * @param integer      $beneficjentId
-     * @param Manager      $entityManager
+     * @param int $beneficjentId
+     * @param Manager $entityManager
      *
      * @return saldo koncowe
      */
     private function getSaldoPoczatkowe($report, $beneficjentId, $entityManager)
     {
-        $previousReport = $entityManager->getRepository(\Parp\SsfzBundle\Entity\Sprawozdanie::class)->findBy(array('creatorId' => $beneficjentId, 'umowaId' => $report->getUmowaId(), 'okresId' => 1, 'rok' => ($report->getRok() - 1)));
+        $previousReport = $entityManager->getRepository(Sprawozdanie::class)->findBy(array('creatorId' => $beneficjentId, 'umowaId' => $report->getUmowaId(), 'okresId' => 1, 'rok' => ($report->getRok() - 1)));
         if ($report->getOkresId() == 1) {
-            $previousReport = $entityManager->getRepository(\Parp\SsfzBundle\Entity\Sprawozdanie::class)->findBy(array('creatorId' => $beneficjentId, 'umowaId' => $report->getUmowaId(), 'okresId' => 0, 'rok' => $report->getRok()));
+            $previousReport = $entityManager->getRepository(Sprawozdanie::class)->findBy(array('creatorId' => $beneficjentId, 'umowaId' => $report->getUmowaId(), 'okresId' => 0, 'rok' => $report->getRok()));
         }
         if ($previousReport) {
-            $przeplyw = $entityManager->getRepository(\Parp\SsfzBundle\Entity\PrzeplywFinansowy::class)->findBy(array('sprawozdanieId' => $previousReport[0]->getId()));
+            $przeplyw = $entityManager->getRepository(PrzeplywFinansowy::class)->findBy(array('sprawozdanieId' => $previousReport[0]->getId()));
             if ($przeplyw) {
                 return $przeplyw[0]->getSaldoKoncowe();
             }
@@ -118,7 +129,11 @@ class PrzeplywFinansowyController extends Controller
      */
     public function getZalogowanyUzytkownik()
     {
-        $uzytkownik = $this->get('security.token_storage')->getToken()->getUser();
+        $uzytkownik = $this
+            ->get('security.token_storage')
+            ->getToken()
+            ->getUser()
+        ;
         if (!$uzytkownik) {
             throw $this->createAccessDeniedException();
         }

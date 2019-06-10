@@ -14,16 +14,16 @@ class DatatableOsobyService
      */
     public function getDatatableOsobyFields()
     {
-        return array(
-            'Imię' => 'o.imie',
-            'Imię i nazwisko' => 'o.nazwisko',
-            'Rodzaj umowy' => 'o.umowaRodzaj',
-            'Data zawarcia umowy' => 'o.umowaData',
+        return [
+            'Imię'                   => 'o.imie',
+            'Imię i nazwisko'        => 'o.nazwisko',
+            'Rodzaj umowy'           => 'o.umowaRodzaj',
+            'Data zawarcia umowy'    => 'o.umowaData',
             'Data rozpoczęcia pracy' => 'o.rozpoczecieData',
-            'Stanowisko' => 'o.stanowisko',
-            'Wymiar etatu' => 'o.wymiar',
-            '_identifier_' => 'o.id'
-        );
+            'Stanowisko'             => 'o.stanowisko',
+            'Wymiar etatu'           => 'o.wymiar',
+            '_identifier_'           => 'o.id'
+        ];
     }
 
     /**
@@ -33,40 +33,38 @@ class DatatableOsobyService
      */
     public function getDatatableOsobyRenderers()
     {
-        return array(
-            0 => array(
+        return [
+            0 => [
                 'view' => 'SsfzBundle:Datatable:_escapeJs.html.twig',
-            ),
-            1 => array(
+            ],
+            1 => [
                 'view' => 'SsfzBundle:Beneficjent:_osobaZatrudnionaFullName.html.twig',
-            ),
-            2 => array(
+            ],
+            2 => [
                 'view' => 'SsfzBundle:Datatable:_escapeJs.html.twig',
-            ),
-            3 => array(
+            ],
+            3 => [
                 'view' => 'SsfzBundle:Beneficjent:_date.html.twig',
-            ),
-            4 => array(
+            ],
+            4 => [
                 'view' => 'SsfzBundle:Beneficjent:_date.html.twig',
-            ),
-            5 => array(
+            ],
+            5 => [
                 'view' => 'SsfzBundle:Datatable:_escapeJs.html.twig',
-            ),
-            6 => array(
+            ],
+            6 => [
                 'view' => 'SsfzBundle:Datatable:_escapeJs.html.twig',
-            )
-
-
-        );
+            ],
+        ];
     }
 
     /**
      * Zwraca datatable z osobami zatrudnionymi beneficjenta
      *
      * @param Controller $parentObj
-     * @param int        $beneficjentId
+     * @param int $beneficjentId
      *
-     * @return datatable
+     * @return object
      */
     public function datatableOsoby($parentObj, $beneficjentId)
     {
@@ -77,7 +75,8 @@ class DatatableOsobyService
             ->setFields($this->getDatatableOsobyFields())
             ->setSearch(true)
             ->setRenderers($this->getDatatableOsobyRenderers())
-            ->setWhere('o.beneficjentId = :beneficjentId', array('beneficjentId' => (string) $beneficjentId))
-        ;
+            ->setWhere('o.beneficjentId = :beneficjentId', [
+                'beneficjentId' => (string) $beneficjentId,
+            ]);
     }
 }

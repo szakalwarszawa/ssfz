@@ -2,6 +2,8 @@
 
 namespace Parp\SsfzBundle\Service;
 
+use Doctrine\ORM\Query\Expr\Join;
+
 /**
  * Serwis obsługujący operacje pomocnicze
  */
@@ -31,7 +33,7 @@ class DatatableParpService
      */
     public function getParpKonfiguracja()
     {
-        return $this->okresyKonfiguracjaRepo->findBy(array(), array('rok' => 'ASC'));
+        return $this->okresyKonfiguracjaRepo->findBy([], ['rok' => 'ASC']);
     }
 
     /**
@@ -83,19 +85,19 @@ class DatatableParpService
     /**
      * Ustawia joiny w podanej w parametrze datatable
      *
-     * @param type  $datatable
+     * @param object $datatable
      * @param array $config
      *
      * @return datatable
      */
     public function datatableParpAddJoins($datatable, $config)
     {
-        $datatable->addJoin('u.beneficjent', 'b', \Doctrine\ORM\Query\Expr\Join::INNER_JOIN); //, \Doctrine\ORM\Query\Expr\Join::WITH, 'b.id = u.beneficjentId');
+        $datatable->addJoin('u.beneficjent', 'b', Join::INNER_JOIN);
         $idx = 1;
         foreach ($config as $cfg) {
-            $datatable->addJoin('u.sprawozdania', 's' . $idx, \Doctrine\ORM\Query\Expr\Join::LEFT_JOIN, \Doctrine\ORM\Query\Expr\Join::WITH, 'u.id = s' . $idx . '.umowaId and s' . $idx . '.rok = ' . $cfg->getRok() . ' and s' . $idx . '.okresId = 0 and s' . $idx . '.czyNajnowsza = 1');
+            $datatable->addJoin('u.sprawozdania', 's' . $idx, Join::LEFT_JOIN, Join::WITH, 'u.id = s' . $idx . '.umowaId and s' . $idx . '.rok = ' . $cfg->getRok() . ' and s' . $idx . '.okresId = 0 and s' . $idx . '.czyNajnowsza = 1');
             $idx++;
-            $datatable->addJoin('u.sprawozdania', 's' . $idx, \Doctrine\ORM\Query\Expr\Join::LEFT_JOIN, \Doctrine\ORM\Query\Expr\Join::WITH, 'u.id = s' . $idx . '.umowaId and s' . $idx . '.rok = ' . $cfg->getRok() . ' and s' . $idx . '.okresId = 1 and s' . $idx . '.czyNajnowsza = 1');
+            $datatable->addJoin('u.sprawozdania', 's' . $idx, Join::LEFT_JOIN, Join::WITH, 'u.id = s' . $idx . '.umowaId and s' . $idx . '.rok = ' . $cfg->getRok() . ' and s' . $idx . '.okresId = 1 and s' . $idx . '.czyNajnowsza = 1');
             $idx++;
         }
 
@@ -107,15 +109,17 @@ class DatatableParpService
      *
      * @param Controller $parentObj
      *
-     * @return datatable
+     * @return object
      */
     public function datatableParp($parentObj)
     {
         $config = $this->getParpKonfiguracja();
-        $datatable = $parentObj->get('datatable')
+        $datatable = $parentObj
+            ->get('datatable')
             ->setDatatableId('dta-umowy')
             ->setEntity('SsfzBundle:Umowa', 'u')
-            ->setFields($this->getDatatableParpFields($config));
+            ->setFields($this->getDatatableParpFields($config))
+        ;
 
         $datatable = $this->datatableParpAddJoins($datatable, $config);
         $datatable

@@ -37,15 +37,18 @@ class BeneficjentController extends Controller
         if (!$beneficjent || !$beneficjent->getWypelniony()) {
             return $this->redirectToRoute('beneficjent_uzupelnij');
         }
-        $this->get('ssfz.service.datatable_osoby_service')->datatableOsoby($this, $beneficjent->getId());
-        $this->get('ssfz.service.datatable_umowy_service')->datatableUmowy($this, $beneficjent->getId());
+        $this
+            ->get('ssfz.service.datatable_osoby_service')
+            ->datatableOsoby($this, $beneficjent->getId())
+        ;
+        $this
+            ->get('ssfz.service.datatable_umowy_service')
+            ->datatableUmowy($this, $beneficjent->getId())
+        ;
 
-        return $this->render(
-            'SsfzBundle:Beneficjent:index.html.twig',
-            array(
-                'beneficjent' => $beneficjent,
-            )
-        );
+        return $this->render('SsfzBundle:Beneficjent:index.html.twig', [
+            'beneficjent' => $beneficjent,
+        ]);
     }
 
     /**
@@ -95,21 +98,26 @@ class BeneficjentController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form->isValid()) {
-                $this->getBeneficjentService()
-                    ->updateBeneficjent($beneficjent, $originalUmowy, $originalOsoby);
-                $this->get('ssfz.service.komunikaty_service')->sukcesKomunikat('Dane zostały zapisane.');
+                $this
+                    ->getBeneficjentService()
+                    ->updateBeneficjent($beneficjent, $originalUmowy, $originalOsoby)
+                ;
+                $this
+                    ->get('ssfz.service.komunikaty_service')
+                    ->sukcesKomunikat('Dane zostały zapisane.')
+                ;
                 return $this->redirectToRoute('beneficjent');
             } else {
-                $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Formularz nie został poprawnie wypełniony.');
+                $this
+                    ->get('ssfz.service.komunikaty_service')
+                    ->bladKomunikat('Formularz nie został poprawnie wypełniony.')
+                ;
             }
         }
 
-        return $this->render(
-            'SsfzBundle:Beneficjent:profil.html.twig',
-            array(
-                'form' => $form->createView(),
-            )
-        );
+        return $this->render('SsfzBundle:Beneficjent:profil.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
@@ -169,7 +177,11 @@ class BeneficjentController extends Controller
      */
     protected function getZalogowanyUzytkownik()
     {
-        $uzytkownik = $this->get('security.token_storage')->getToken()->getUser();
+        $uzytkownik = $this
+            ->get('security.token_storage')
+            ->getToken()
+            ->getUser()
+        ;
         if (null == $uzytkownik) {
             throw $this->createAccessDeniedException();
         }
@@ -194,12 +206,9 @@ class BeneficjentController extends Controller
         $uzytkownik = $this->getZalogowanyUzytkownik();
         $uzytkownik->setAktywnyProgram(null);
 
-        return $this->render(
-            'SsfzBundle:Beneficjent:lista_programow.html.twig',
-            array(
-                'programy' => $programy,
-            )
-        );
+        return $this->render('SsfzBundle:Beneficjent:lista_programow.html.twig', [
+            'programy' => $programy,
+        ]);
     }
 
     /**
