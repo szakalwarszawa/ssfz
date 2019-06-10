@@ -77,7 +77,6 @@ class DatatableOsobyService
             ->setRenderers($this->getDatatableOsobyRenderers())
             ->setWhere('o.beneficjentId = :beneficjentId', [
                 'beneficjentId' => (string) $beneficjentId,
-            ]
-        );
+            ]);
     }
 }

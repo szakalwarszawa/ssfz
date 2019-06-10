@@ -32,10 +32,19 @@ class DanePozyczkiRepository extends EntityRepository
         return $danePozyczki;
     }
 
-    public function delete(DanePozyczki $danepozyczki)
+    /**
+     * Usuwa dane pożyczki.
+     *
+     * @param DanePozyczki $danepozyczki
+     *
+     * @return bool
+     */
+    public function delete(DanePozyczki $danePozyczki)
     {
         $this->_em->remove($danePozyczki);
         $this->_em->flush($danePozyczki);
+
+        return true;
     }
 
     /**

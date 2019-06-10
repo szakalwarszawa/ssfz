@@ -57,7 +57,6 @@ class DatatableUmowyService
             ->setRenderers($this->getDatatableUmowyRenderers())
             ->setWhere('u.beneficjentId = :beneficjentId', [
                 'beneficjentId' => (string) $beneficjentId,
-            ]
-        );
+            ]);
     }
 }
