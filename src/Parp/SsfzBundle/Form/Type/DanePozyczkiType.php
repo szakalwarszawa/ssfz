@@ -83,7 +83,6 @@ class DanePozyczkiType extends AbstractType
             'liczbaPozyczekOd50001Do120000PlnDlaInstytucjiEkonomiiSpolecznej',
             'liczbaPozyczekOd120001Do300000PlnDlaInstytucjiEkonomiiSpolecznej',
             'liczbaPozyczekOd300001PlnDlaInstytucjiEkonomiiSpolecznej',
-            /*
             'liczbaPozyczekObrotowychDo10000Pln',
             'liczbaPozyczekObrotowychOd10001Do30000Pln',
             'liczbaPozyczekObrotowychOd30001Do50000Pln',
@@ -102,6 +101,7 @@ class DanePozyczkiType extends AbstractType
             'liczbaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln',
             'liczbaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln',
             'liczbaPozyczekInwestycyjnoObrotowychOd300001Pln',
+            /*
             'liczbaPozyczekDo10000PlnNaDzialaniaHandlowe',
             'liczbaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe',
             'liczbaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe',

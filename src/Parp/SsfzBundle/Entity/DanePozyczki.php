@@ -444,24 +444,6 @@ class DanePozyczki
      */
     protected $liczbaPozyczekOd300001PlnDlaInnychPrzedsiebiorstw = 0;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Liczba pożyczek do 10.000zł dla instytucji ekonomii spolecznej.
      *
@@ -564,68 +546,310 @@ class DanePozyczki
      */
     protected $liczbaPozyczekOd300001PlnDlaInstytucjiEkonomiiSpolecznej = 0;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   /**
+    * Liczba pożyczek obrotowych do 10.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_obrotowych_do_10000_pln",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek obrotowych do 10.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekObrotowychDo10000Pln = 0;
+
+   /**
+    * Liczba pożyczek obrotowych od 10.001zł do30.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_obrotowych_od_10001_do_30000_pln",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek obrotowych od 10.001zł do 30.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekObrotowychOd10001Do30000Pln = 0;
+
+   /**
+    * Liczba pożyczek obrotowych od 30.001zł do 50.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_obrotowych_od_30001_do_50000_pln",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek obrotowych od 30.001zł do 50.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekObrotowychOd30001Do50000Pln = 0;
+
+   /**
+    * Liczba pożyczek obrotowych od 50.001zł do 120.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_obrotowych_od_50001_do_120000_pln",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek obrotowych od 50.001zł do 120.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekObrotowychOd50001Do120000Pln = 0;
+
+   /**
+    * Liczba pożyczek obrotowych od 120.001zł do 300.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_obrotowych_od_120001_do_300000_pln",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek obrotowych od 120.001zł do 300.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekObrotowychOd120001Do300000Pln = 0;
+
+    /**
+     * Liczba pożyczek obrotowych od 301.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_obrotowych_od_300001_pln",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek obrotowych od 301.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekObrotowychOd300001Pln = 0;
 
-
-
-
-
-
-
-
-
-
-
-
-
+   /**
+    * Liczba pożyczek obrotowych do 10.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_obrotowych_do_10000_pln",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek obrotowych do 10.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekInwestycyjnychDo10000Pln = 0;
+
+   /**
+    * Liczba pożyczek inwestycyjnych od 30.001zł do 50.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_inwestycyjnych_od_30001_do_50000_pln",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek inwestycyjnych od 30.001zł do 50.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekInwestycyjnychOd10001Do30000Pln = 0;
+
+   /**
+    * Liczba pożyczek inwestycyjnych od 30.001zł do 50.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_inwestycyjnych_od_30001_do_50000_pln",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek inwestycyjnych od 30.001zł do 50.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekInwestycyjnychOd30001Do50000Pln = 0;
+
+   /**
+    * Liczba pożyczek inwestycyjnych od 50.001zł do 120.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_inwestycyjnych_od_50001_do_120000_pln",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek inwestycyjnych od 50.001zł do 120.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekInwestycyjnychOd50001Do120000Pln = 0;
+
+   /**
+    * Liczba pożyczek inwestycyjnych od 120.001zł do 300.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_inwestycyjnych_od_120001_do_300000_pln",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek inwestycyjnych od 120.001zł do 300.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekInwestycyjnychOd120001Do300000Pln = 0;
+    
+    /**
+     * Liczba pożyczek inwestycyjnych od 301.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_inwestycyjnych_od_300001_pln",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek inwestycyjnych od 301.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekInwestycyjnychOd300001Pln = 0;
 
-
-
-
-
-
-
-
-
-
-
-
-
+   /**
+    * Liczba pożyczek inwestycyjno-obrotowych do 10.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_inwestycyjno_obrotowych_do_10000_pln",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek inwestycyjno-obrotowych do 10.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekInwestycyjnoObrotowychDo10000Pln = 0;
+
+   /**
+    * Liczba pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_inwestycyjno_obrotowych_od_30001_do_50000_pln",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln = 0;
+
+   /**
+    * Liczba pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_inwestycyjno_obrotowych_od_30001_do_50000_pln",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln = 0;
+
+   /**
+    * Liczba pożyczek inwestycyjno-obrotowych od 50.001zł do 120.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_inwestycyjno_obrotowych_od_50001_do_120000_pln",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek inwestycyjno-obrotowych od 50.001zł do 120.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln = 0;
+
+   /**
+    * Liczba pożyczek inwestycyjno-obrotowych od 120.001zł do 300.000zł.
+    *
+    * @var int
+    *
+    * @ORM\Column(
+    *     name="liczba_poz_inwestycyjno_obrotowych_od_120001_do_300000_pln",
+    *     type="integer",
+    *     nullable=false,
+    *     options={
+    *         "comment":"Liczba pożyczek inwestycyjno-obrotowych od 120.001zł do 300.000zł.",
+    *         "default":0
+    *     }
+    * )
+    */
     protected $liczbaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln = 0;
+
+    /**
+     * Liczba pożyczek inwestycyjno-obrotowych od 301.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_inwestycyjno_obrotowych_od_300001_pln",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek inwestycyjno-obrotowych od 301.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
     protected $liczbaPozyczekInwestycyjnoObrotowychOd300001Pln = 0;
 
 
@@ -830,7 +1054,7 @@ class DanePozyczki
      *
      * @param int  $id
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setId(int $id)
     {
@@ -854,7 +1078,7 @@ class DanePozyczki
      *
      * @param Sprawozdanie  $sprawozdanie
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setSprawozdanie(Sprawozdanie $sprawozdanie)
     {
@@ -878,7 +1102,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -902,7 +1126,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -926,7 +1150,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -950,7 +1174,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -974,7 +1198,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -998,7 +1222,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -1022,7 +1246,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -1046,7 +1270,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -1070,7 +1294,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -1094,7 +1318,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -1118,7 +1342,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -1142,7 +1366,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -1166,7 +1390,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -1190,7 +1414,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -1214,7 +1438,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -1238,7 +1462,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -1262,7 +1486,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -1286,7 +1510,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -1310,7 +1534,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekDo10000PlnDlaInnychPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -1334,7 +1558,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd10001Do30000PlnDlaInnychPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -1358,7 +1582,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd30001Do50000PlnDlaInnychPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -1382,7 +1606,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd50001Do120000PlnDlaInnychPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -1406,7 +1630,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd120001Do300000PlnDlaInnychPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -1430,7 +1654,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd300001PlnDlaInnychPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -1454,7 +1678,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekDo10000PlnDlaInstytucjiEkonomiiSpolecznej(int $liczbaPozyczek = 0)
     {
@@ -1478,7 +1702,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd10001Do30000PlnDlaInstytucjiEkonomiiSpolecznej(int $liczbaPozyczek = 0)
     {
@@ -1502,7 +1726,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd30001Do50000PlnDlaInstytucjiEkonomiiSpolecznej(int $liczbaPozyczek = 0)
     {
@@ -1526,7 +1750,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd50001Do120000PlnDlaInstytucjiEkonomiiSpolecznej(int $liczbaPozyczek = 0)
     {
@@ -1550,7 +1774,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd120001Do300000PlnDlaInstytucjiEkonomiiSpolecznej(int $liczbaPozyczek = 0)
     {
@@ -1574,11 +1798,443 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return self
+     * @return DanePozyczki
      */
     public function setLiczbaPozyczekOd300001PlnDlaInstytucjiEkonomiiSpolecznej(int $liczbaPozyczek = 0)
     {
         $this->liczbaPozyczekOd300001PlnDlaInstytucjiEkonomiiSpolecznej = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek obrotowych do 10.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekObrotowychDo10000Pln()
+    {
+        return $this->liczbaPozyczekObrotowychDo10000Pln;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek obrotowych do 10.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekObrotowychDo10000Pln(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekObrotowychDo10000Pln = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek obrotowych od 10.001zł do30.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekObrotowychOd10001Do30000Pln()
+    {
+        return $this->liczbaPozyczekObrotowychOd10001Do30000Pln;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek obrotowych od 10.001zł do30.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekObrotowychOd10001Do30000Pln(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekObrotowychOd10001Do30000Pln = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek obrotowych od 30.001zł do 50.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekObrotowychOd30001Do50000Pln()
+    {
+        return $this->liczbaPozyczekObrotowychOd30001Do50000Pln;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek obrotowych od 30.001zł do 50.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekObrotowychOd30001Do50000Pln(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekObrotowychOd30001Do50000Pln = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek obrotowych od 50.001zł do 120.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekObrotowychOd50001Do120000Pln()
+    {
+        return $this->liczbaPozyczekObrotowychOd50001Do120000Pln;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek obrotowych od 50.001zł do 120.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekObrotowychOd50001Do120000Pln(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekObrotowychOd50001Do120000Pln = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek obrotowych od 120.001zł do 300.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekObrotowychOd120001Do300000Pln()
+    {
+        return $this->liczbaPozyczekObrotowychOd120001Do300000Pln;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek obrotowych od 120.001zł do 300.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekObrotowychOd120001Do300000Pln(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekObrotowychOd120001Do300000Pln = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek obrotowych od 301.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekObrotowychOd300001Pln()
+    {
+        return $this->liczbaPozyczekObrotowychOd300001Pln;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek obrotowych od 301.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekObrotowychOd300001Pln(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekObrotowychOd300001Pln = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek obrotowych do 10.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekInwestycyjnychDo10000Pln()
+    {
+        return $this->liczbaPozyczekInwestycyjnychDo10000Pln;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek obrotowych do 10.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekInwestycyjnychDo10000Pln(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekInwestycyjnychDo10000Pln = $liczbaPozyczekInwestycyjnychDo10000Pln;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek inwestycyjnych od 30.001zł do 50.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekInwestycyjnychOd10001Do30000Pln()
+    {
+        return $this->liczbaPozyczekInwestycyjnychOd10001Do30000Pln;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek inwestycyjnych od 30.001zł do 50.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekInwestycyjnychOd10001Do30000Pln(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekInwestycyjnychOd10001Do30000Pln = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek inwestycyjnych od 30.001zł do 50.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekInwestycyjnychOd30001Do50000Pln()
+    {
+        return $this->liczbaPozyczekInwestycyjnychOd30001Do50000Pln;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek inwestycyjnych od 30.001zł do 50.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekInwestycyjnychOd30001Do50000Pln(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekInwestycyjnychOd30001Do50000Pln = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek inwestycyjnych od 50.001zł do 120.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekInwestycyjnychOd50001Do120000Pln()
+    {
+        return $this->liczbaPozyczekInwestycyjnychOd50001Do120000Pln;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek inwestycyjnych od 50.001zł do 120.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekInwestycyjnychOd50001Do120000Pln(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekInwestycyjnychOd50001Do120000Pln = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek inwestycyjnych od 120.001zł do 300.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekInwestycyjnychOd120001Do300000Pln()
+    {
+        return $this->liczbaPozyczekInwestycyjnychOd120001Do300000Pln;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek inwestycyjnych od 120.001zł do 300.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekInwestycyjnychOd120001Do300000Pln(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekInwestycyjnychOd120001Do300000Pln = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek inwestycyjnych od 301.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekInwestycyjnychOd300001Pln()
+    {
+        return $this->liczbaPozyczekInwestycyjnychOd300001Pln;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek inwestycyjnych od 301.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekInwestycyjnychOd300001Pln(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekInwestycyjnychOd300001Pln = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek inwestycyjno-obrotowych do 10.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekInwestycyjnoObrotowychDo10000Pln()
+    {
+        return $this->liczbaPozyczekInwestycyjnoObrotowychDo10000Pln;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek inwestycyjno-obrotowych do 10.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekInwestycyjnoObrotowychDo10000Pln(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekInwestycyjnoObrotowychDo10000Pln = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln()
+    {
+        return $this->liczbaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln()
+    {
+        return $this->liczbaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek inwestycyjno-obrotowych od 50.001zł do 120.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln()
+    {
+        return $this->liczbaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek inwestycyjno-obrotowych od 50.001zł do 120.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek inwestycyjno-obrotowych od 120.001zł do 300.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln()
+    {
+        return $this->liczbaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek inwestycyjno-obrotowych od 120.001zł do 300.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln = $liczbaPozyczek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek inwestycyjno-obrotowych od 301.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekInwestycyjnoObrotowychOd300001Pln()
+    {
+        return $this->liczbaPozyczekInwestycyjnoObrotowychOd300001Pln;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek inwestycyjno-obrotowych od 301.000zł.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekInwestycyjnoObrotowychOd300001Pln(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekInwestycyjnoObrotowychOd300001Pln = $liczbaPozyczek;
 
         return $this;
     }
