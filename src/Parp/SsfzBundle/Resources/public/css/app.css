@@ -30,8 +30,16 @@ a:hover {
   pointer-events: none;
 }
 
-.width-short {
+.width-date {
     width: 100px;
+}
+
+.width-xshort {
+    width: 100px;
+}
+
+.width-short {
+    width: 150px;
 }
 
 .width-medium {
@@ -44,4 +52,18 @@ a:hover {
 
 .center {
     text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.btn-toolbar {
+    padding-right: 20px;
+}
+
+td.etykieta {
+    text-align: right;
+    font-weight: bold;
+    width: 200px;
 }

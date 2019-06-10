@@ -5,6 +5,7 @@ namespace Parp\SsfzBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
+use Parp\SsfzBundle\Exception\KomunikatDlaBeneficjentaException;
 
 /**
  * Umowa
@@ -51,11 +52,25 @@ class Umowa
     protected $spolki;
 
     /**
-     * Encje Spolka powiazane z umową - spółki składające się na portfel
+     * Sprawozdania zalążkowe.
      *
      * @ORM\OneToMany(targetEntity="Sprawozdanie", mappedBy="umowa", cascade={"persist"})
      */
-    protected $sprawozdania;
+    protected $sprawozdaniaZalazkowe;
+
+    /**
+     * Sprawozdania pożyczkowe.
+     *
+     * @ORM\OneToMany(targetEntity="SprawozdaniePozyczkowe", mappedBy="umowa", cascade={"persist"})
+     */
+    protected $sprawozdaniaPozyczkowe;
+
+    /**
+     * Sprawozdania poręczeniowe.
+     *
+     * @ORM\OneToMany(targetEntity="SprawozdaniePoreczeniowe", mappedBy="umowa", cascade={"persist"})
+     */
+    protected $sprawozdaniaPoreczeniowe;
 
     /**
      * Konstruktor.
@@ -151,7 +166,7 @@ class Umowa
     /**
      * Set spolki
      *
-     * @param Collection Spolka $spolki
+     * @param Collection $spolki
      *
      * @return Umowa
      */
@@ -173,7 +188,18 @@ class Umowa
     }
 
     /**
-     * Set spolki
+     * Dodaje spółkę do portfela spółek umowy
+     *
+     * @param Spolka $spolka
+     */
+    public function addSpolka(Spolka $spolka)
+    {
+        $spolka->setUmowa($this);
+        $this->spolki->add($spolka);
+    }
+
+    /**
+     * Set sprawozdania
      *
      * @param Collection $sprawozdania
      *
@@ -181,7 +207,23 @@ class Umowa
      */
     public function setSprawozdania($sprawozdania)
     {
-        $this->sprawozdania = $sprawozdania;
+        $programId = (int) $this->beneficjent->getProgram()->getId();
+        
+        switch ($programId) {
+            case Program::FUNDUSZ_POZYCZKOWY_SPO_WKP_121:
+                $this->sprawozdaniaPozyczkowe = $sprawozdania;
+                break;
+
+            case Program::FUNDUSZ_PORECZENIOWY_SPO_WKP_122:
+                $this->sprawozdaniaPoreczeniowe = $sprawozdania;
+                break;
+
+            case Program::FUNDUSZ_ZALAZKOWY_POIG_31:
+            default:
+                $this->sprawozdaniaZalazkowe = $sprawozdania;
+                break;
+        }
+        
 
         return $this;
     }
@@ -193,28 +235,163 @@ class Umowa
      */
     public function getSprawozdania()
     {
-        return $this->sprawozdania;
+        $programId = (int) $this->beneficjent->getProgram()->getId();
+        
+        switch ($programId) {
+            case Program::FUNDUSZ_POZYCZKOWY_SPO_WKP_121:
+                return $this->sprawozdaniaPozyczkowe;
+                break;
+
+            case Program::FUNDUSZ_PORECZENIOWY_SPO_WKP_122:
+                return $this->sprawozdaniaPoreczeniowe;
+                break;
+
+            case Program::FUNDUSZ_ZALAZKOWY_POIG_31:
+            default:
+                return $this->sprawozdaniaZalazkowe;
+                break;
+        }
     }
 
     /**
-     * Dodaje spółkę do portfela spółek umowy
+     * Add spolki
      *
-     * @param \Parp\SsfzBundle\Entity\Spolka $spolka
+     * @param Spolka $spolki
+     *
+     * @return Umowa
      */
-    public function addSpolka(Spolka $spolka)
+    public function addSpolki(Spolka $spolki)
     {
-        $spolka->setUmowa($this);
-        $this->spolki->add($spolka);
+        $this->spolki[] = $spolki;
+
+        return $this;
     }
 
     /**
-     * Dodaje sprawozdanie do wykazu sprawozdań.
+     * Remove spolki
      *
-     * @param \Parp\SsfzBundle\Entity\Sprawozdanie $sprawozdanie
+     * @param Spolka $spolki
      */
-    public function addSprawozdanie(Sprawozdanie $sprawozdanie)
+    public function removeSpolki(Spolka $spolki)
     {
-        $sprawozdanie->setUmowa($this);
-        $this->sprawozdania->add($sprawozdanie);
+        $this->spolki->removeElement($spolki);
+    }
+
+    /**
+     * Add sprawozdaniaZalazkowe
+     *
+     * @param Sprawozdanie $sprawozdaniaZalazkowe
+     *
+     * @return Umowa
+     */
+    public function addSprawozdaniaZalazkowe(Sprawozdanie $sprawozdaniaZalazkowe)
+    {
+        $this->sprawozdaniaZalazkowe[] = $sprawozdaniaZalazkowe;
+
+        return $this;
+    }
+
+    /**
+     * Remove sprawozdaniaZalazkowe
+     *
+     * @param Sprawozdanie $sprawozdaniaZalazkowe
+     */
+    public function removeSprawozdaniaZalazkowe(Sprawozdanie $sprawozdaniaZalazkowe)
+    {
+        $this->sprawozdaniaZalazkowe->removeElement($sprawozdaniaZalazkowe);
+    }
+
+    /**
+     * Get sprawozdaniaZalazkowe
+     *
+     * @return Collection
+     */
+    public function getSprawozdaniaZalazkowe()
+    {
+        return $this->sprawozdaniaZalazkowe;
+    }
+
+    /**
+     * Add sprawozdaniaPozyczkowe
+     *
+     * @param SprawozdaniePozyczkowe $sprawozdaniaPozyczkowe
+     *
+     * @return Umowa
+     */
+    public function addSprawozdaniaPozyczkowe(SprawozdaniePozyczkowe $sprawozdaniaPozyczkowe)
+    {
+        $this->sprawozdaniaPozyczkowe[] = $sprawozdaniaPozyczkowe;
+
+        return $this;
+    }
+
+    /**
+     * Remove sprawozdaniaPozyczkowe
+     *
+     * @param SprawozdaniePozyczkowe $sprawozdaniaPozyczkowe
+     */
+    public function removeSprawozdaniaPozyczkowe(SprawozdaniePozyczkowe $sprawozdaniaPozyczkowe)
+    {
+        $this->sprawozdaniaPozyczkowe->removeElement($sprawozdaniaPozyczkowe);
+    }
+
+    /**
+     * Get sprawozdaniaPozyczkowe
+     *
+     * @return Collection
+     */
+    public function getSprawozdaniaPozyczkowe()
+    {
+        return $this->sprawozdaniaPozyczkowe;
+    }
+
+    /**
+     * Add sprawozdaniaPoreczeniowe
+     *
+     * @param SprawozdaniePoreczeniowe $sprawozdaniaPoreczeniowe
+     *
+     * @return Umowa
+     */
+    public function addSprawozdaniaPoreczeniowe(SprawozdaniePoreczeniowe $sprawozdaniaPoreczeniowe)
+    {
+        $this->sprawozdaniaPoreczeniowe[] = $sprawozdaniaPoreczeniowe;
+
+        return $this;
+    }
+
+    /**
+     * Remove sprawozdaniaPoreczeniowe
+     *
+     * @param SprawozdaniePoreczeniowe $sprawozdaniaPoreczeniowe
+     */
+    public function removeSprawozdaniaPoreczeniowe(SprawozdaniePoreczeniowe $sprawozdaniaPoreczeniowe)
+    {
+        $this->sprawozdaniaPoreczeniowe->removeElement($sprawozdaniaPoreczeniowe);
+    }
+
+    /**
+     * Get sprawozdaniaPoreczeniowe
+     *
+     * @return Collection
+     */
+    public function getSprawozdaniaPoreczeniowe()
+    {
+        return $this->sprawozdaniaPoreczeniowe;
+    }
+    
+    /**
+     * Wyrzuca wyjątek, jeśli użytkownik nie ma uprawnień do edycji.
+     *
+     * @param Uzytkownik $uzytkownik
+     *
+     * @throws KomunikatDlaBeneficjentaException
+     */
+    public function sprawdzCzyUzytkownikMozeWyswietlac(Uzytkownik $uzytkownik)
+    {
+        $idWlasciciela = (int) $this->beneficjent->getUzytkownik()->getId();
+
+        if ((int) $uzytkownik->getId() !== $idWlasciciela) {
+            throw new KomunikatDlaBeneficjentaException('Umowa należy do innego użytkownika.');
+        }
     }
 }

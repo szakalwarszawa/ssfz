@@ -61,7 +61,7 @@ class LdapDataService
      *
      * @see http://framework.zend.com/manual/current/en/modules/zend.ldap.introduction.html#automatic-username-canonicalization-when-binding
      *
-     * @param array
+     * @param array $parameters
      *
      * @return array
      */
