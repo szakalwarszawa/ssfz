@@ -266,7 +266,7 @@ class SprawozdanieController extends Controller
             return $this->redirectToRoute('sprawozdanie_rejestracja', ['umowaId' => (string) $umowaId]);
         }
         if ($this->getRequest()->isMethod('POST') && $sprawozdanie->getStatus() == 1 && $sprawozdanie->getCreatorId() == $beneficjentId) {
-            $dateNow = new \DateTime('now');
+            $dateNow = new DateTime('now');
             $sprawozdanie->setStatus(2);
             $sprawozdanie->setDataPrzeslaniaDoParp($dateNow);
             $this->getKomunikatyService()->sukcesKomunikat('Sprawozdanie wysłano do PARP', 'Wysyłka sprawozdania');
@@ -296,7 +296,7 @@ class SprawozdanieController extends Controller
         $report->setUmowa($umowa);
         $report->setCzyNajnowsza(true);
         $report->setStatus(1);
-        $creationDate = new \DateTime('now');
+        $creationDate = new DateTime('now');
         $report->setDataRejestracji($creationDate);
 
         return $report;

@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,6 +18,7 @@ use Parp\SsfzBundle\Form\Type\PrzeplywFinansowyType;
 use Parp\SsfzBundle\Entity\Beneficjent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Parp\SsfzBundle\Entity\Spolka;
+use Parp\SsfzBundle\Entity\OkresyKonfiguracja;
 
 /**
  * @Route("/parp", name="parp")
@@ -40,8 +42,8 @@ class ParpController extends Controller
     /**
      * Akcja oceń sprawozdanie
      *
-     * @param Request $request        request
-     * @param int     $idSprawozdania identyfikator sprawozdania
+     * @param Request $request request
+     * @param int $idSprawozdania identyfikator sprawozdania
      *
      * @Route("/ocen/{idSprawozdania}", name="ocen")
      *
@@ -57,24 +59,27 @@ class ParpController extends Controller
             return $this->redirectToRoute('parp');
         }
         if (2 !== $sprawozdanie->getStatus()) {
-            $this->addFlash('notice', array(
-                'alert' => 'warning',
-                'title' => '',
+            $this->addFlash('notice', [
+                'alert'   => 'warning',
+                'title'   => '',
                 'message' => 'Sprawozdanie nie ma statusu "przesłane". Ocena sprawozdania z innym statusem jest niemożliwa.'
-            ));
+            ]);
             return $this->redirectToRoute('parp_sprawozdanie', array('idSprawozdania' => $idSprawozdania));
         }
         if (2 === $sprawozdanie->getStatus() && null !== $sprawozdanie->getOceniajacyId() && $uzytkownik->getId() !== $sprawozdanie->getOceniajacyId()) {
-            $this->addFlash('notice', array(
-                'alert' => 'warning',
-                'title' => '',
+            $this->addFlash('notice', [
+                'alert'   => 'warning',
+                'title'   => '',
                 'message' => 'Sprawozdanie jest zajęte do oceny przez innego użytkownika.'
-            ));
+            ]);
             return $this->redirectToRoute('parp_sprawozdanie', array('idSprawozdania' => $idSprawozdania));
         }
         $okresy = $this->getOkresySprawozdawcze();
         $formS = $this->createForm(SprawozdanieType::class, $sprawozdanie, array('disabled' => true, 'okresy' => $okresy));
-        $przeplyw = $entityManager->getRepository(PrzeplywFinansowy::class)->findBy(array('sprawozdanieId' => $sprawozdanie->getId()));
+        $przeplyw = $entityManager
+            ->getRepository(PrzeplywFinansowy::class)
+            ->findBy(['sprawozdanieId' => $sprawozdanie->getId()])
+        ;
         $formP = null;
         if ($przeplyw != null) {
             $formP = $this->createForm(PrzeplywFinansowyType::class, $przeplyw[0], array('disabled' => true))->createView();
@@ -98,12 +103,12 @@ class ParpController extends Controller
             }
         }
 
-        return $this->render('SsfzBundle:Parp:ocen.html.twig', array(
-            'form' => $form->createView(),
+        return $this->render('SsfzBundle:Parp:ocen.html.twig', [
+            'form'         => $form->createView(),
             'sprawozdanie' => $sprawozdanie,
-            'formS' => $formS->createView(),
-            'formP' => $formP,
-        ));
+            'formS'        => $formS->createView(),
+            'formP'        => $formP,
+        ]);
     }
 
     /**
@@ -133,11 +138,11 @@ class ParpController extends Controller
             $formP = $this->createForm(PrzeplywFinansowyType::class, $przeplyw[0], array('disabled' => true))->createView();
         }
 
-        return $this->render('SsfzBundle:Parp:sprawozdanie.html.twig', array(
+        return $this->render('SsfzBundle:Parp:sprawozdanie.html.twig', [
             'sprawozdanie' => $sprawozdanie,
-            'formS' => $formS->createView(),
-            'formP' => $formP
-        ));
+            'formS'        => $formS->createView(),
+            'formP'        => $formP
+        ]);
     }
 
     /**
@@ -159,9 +164,9 @@ class ParpController extends Controller
         }
         $this->get('ssfz.service.datatable_osoby_service')->datatableOsoby($this, $beneficjent->getId())->execute();
 
-        return $this->render('SsfzBundle:Parp:beneficjent.html.twig', array(
+        return $this->render('SsfzBundle:Parp:beneficjent.html.twig', [
             'beneficjent' => $beneficjent,
-        ));
+        ]);
     }
 
     /**
@@ -183,7 +188,11 @@ class ParpController extends Controller
         }
         $umowaId = $umowa->getId();
 
-        return $this->get('ssfz.service.datatable_spolki_service')->datatableSpolki($this, $umowaId)->execute();
+        return $this
+            ->get('ssfz.service.datatable_spolki_service')
+            ->datatableSpolki($this, $umowaId)
+            ->execute()
+        ;
     }
 
     /**
@@ -207,11 +216,11 @@ class ParpController extends Controller
         $spolka = new Spolka();
         $form = $this->createForm(SpolkaType::class, $spolka, array('disabled' => true, 'narzedzia_svc' => $this->get('ssfz.service.narzedzia_service')));
 
-        return $this->render('SsfzBundle:Parp:portfel.html.twig', array(
-            'umowa' => $umowa,
+        return $this->render('SsfzBundle:Parp:portfel.html.twig', [
+            'umowa'             => $umowa,
             'beneficjent_nazwa' => $umowa->getBeneficjent()->getNazwa(),
-            'form' => $form->createView(),
-        ));
+            'form'              => $form->createView(),
+        ]);
     }
 
     /**
@@ -225,7 +234,11 @@ class ParpController extends Controller
      */
     public function osobyGridAction($idBeneficjenta)
     {
-        return $this->get('ssfz.service.datatable_osoby_service')->datatableOsoby($this, $idBeneficjenta)->execute();
+        return $this
+            ->get('ssfz.service.datatable_osoby_service')
+            ->datatableOsoby($this, $idBeneficjenta)
+            ->execute()
+        ;
     }
 
     /**
@@ -236,7 +249,11 @@ class ParpController extends Controller
      */
     public function parpGridAction()
     {
-        return $this->get('ssfz.service.datatable_parp_service')->datatableParp($this)->execute();
+        return $this
+            ->get('ssfz.service.datatable_parp_service')
+            ->datatableParp($this)
+            ->execute()
+        ;
     }
 
     /**
@@ -266,7 +283,7 @@ class ParpController extends Controller
         $array = array();
         $entityManager = $this->getDoctrine()->getManager();
         $okresySprawozdawcze = $entityManager
-            ->getRepository(\Parp\SsfzBundle\Entity\OkresyKonfiguracja::class)
+            ->getRepository(OkresyKonfiguracja::class)
             ->findBy(array(), array('rok' => 'ASC'))
         ;
         foreach ($okresySprawozdawcze as $okres) {
