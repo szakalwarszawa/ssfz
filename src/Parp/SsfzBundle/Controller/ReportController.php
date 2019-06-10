@@ -23,9 +23,14 @@ class ReportController extends Controller
      */
     public function index()
     {
-        return $this->render('SsfzBundle:Report:indexJasper.html.twig', array(
-            'reports' => $this->get('ssfz.service.jasperreports_service')->listAllReports()
-        ));
+        $reports = $this
+            ->get('ssfz.service.jasperreports_service')
+            ->listAllReports()
+        ;
+
+        return $this->render('SsfzBundle:Report:indexJasper.html.twig', [
+            'reports' => $reports,
+        ]);
     }
 
     /**
@@ -40,6 +45,9 @@ class ReportController extends Controller
      */
     public function reportAction(Request $request)
     {
-        return $this->get('ssfz.service.jasperreports_service')->getReport($request->get('uri'));
+        return $this
+            ->get('ssfz.service.jasperreports_service')
+            ->getReport($request->get('uri'))
+        ;
     }
 }

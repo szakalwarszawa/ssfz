@@ -190,9 +190,10 @@ class AdministratorTechnicznyController extends Controller
     {
         $topic = 'Utworzono konto';
         $template = '@SsfzBundle/Resources/views/Email/registrationPracownikParp.html.twig';
-        $templateParams = array(
-            'code' => $pracownik->getKodAktywacjaKonta(),
-            'login' => $pracownik->getLogin());
+        $templateParams = [
+            'code'  => $pracownik->getKodAktywacjaKonta(),
+            'login' => $pracownik->getLogin()
+        ];
         $this->getMailerService()->sendMail($pracownik, $topic, $template, $templateParams);
     }
 

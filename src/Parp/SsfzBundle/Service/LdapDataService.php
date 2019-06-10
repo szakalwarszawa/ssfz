@@ -7,6 +7,7 @@ use Parp\SsfzBundle\Entity\UzytkownikLdap;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Zend\Ldap\Ldap;
 use Parp\SsfzBundle\Exception\LdapDataServiceException;
+use Parp\SsfzBundle\Repository\UzytkownikRepository;
 
 /**
  * Klasa zapewniająca dostęp do danych zgromadzonych w bazie LDAP
@@ -67,17 +68,17 @@ class LdapDataService
      */
     private function configureOptions($parameters)
     {
-        $defaults = array(
-            'host' => '',
-            'port' => 389,
-            'networkTimeout' => 10,
+        $defaults = [
+            'host'               => '',
+            'port'               => 389,
+            'networkTimeout'     => 10,
             'allowEmptyPassword' => false,
-            'username' => '',
-            'password' => '',
-            'bindRequiresDn' => false,
-            'accountDomainName' => '',
-            'baseDn' => '',
-        );
+            'username'           => '',
+            'password'           => '',
+            'bindRequiresDn'     => false,
+            'accountDomainName'  => '',
+            'baseDn'             => '',
+        ];
         $resolver = new OptionsResolver();
         $resolver->setDefaults($defaults);
         $parameters = $resolver->resolve($parameters);
@@ -162,7 +163,7 @@ class LdapDataService
      * Zwraca obiekt UzytkownikLdap dla podanego loginu. W przypdku gdy login jest niejednoznaczny
      * tzn. więcej niż jeden rekord z LDAP pasuje do podanego loginu wyrzuca LdapDataServiceexception
      *
-     * @param  string $login
+     * @param string $login
      *
      * @return UzytkownikLdap
      *
@@ -180,17 +181,19 @@ class LdapDataService
 
         return $this->convertLdapDataToUzytkownikLdap($employee[0]);
     }
+
     /**
      * Zwraca tylko dostępnych użytkowników z LDAP
      *
      * Tzn. tylko tych który nie zostali już dodani do aplikacji
      *
-     * @param \Parp\SsfzBundle\Repository\UzytkownikRepository $uzytkRepo
-     * @return type
+     * @param UzytkownikRepository $uzytkRepo
+     *
+     * @return array
      */
-    public function getDostepnychUzytkownikowLdap(\Parp\SsfzBundle\Repository\UzytkownikRepository $uzytkRepo)
+    public function getDostepnychUzytkownikowLdap(UzytkownikRepository $uzytkRepo)
     {
-        $wynik = array();
+        $wynik = [];
         $pracownicyLdap = $this->getUzytkownikLdapListaZEmail();
         $loginy = $this->pobierzLoginy($uzytkRepo);
         foreach ($pracownicyLdap as $pracownik) {
@@ -227,7 +230,8 @@ class LdapDataService
      * Tablica konwertowana powinna mieć strukturę taką jaka pojawia sie na
      * wyjściu \Zend\Ldap\Ldap::searchEntries()
      *
-     * @param  type $data
+     * @param array $data
+     *
      * @return UzytkownikLdap
      */
     private function convertLdapDataToUzytkownikLdap($data)

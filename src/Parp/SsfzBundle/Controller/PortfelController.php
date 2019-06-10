@@ -22,10 +22,10 @@ class PortfelController extends Controller
      * Akcja główna - wyświetla formularz dodania/edycji spółki, oraz listę spółek
      *
      * @param Request $request
-     * @param int     $idUmowy
-     * @param int     $idSpolki
+     * @param int $idUmowy
+     * @param int $idSpolki
      *
-     * @Route("/portfel/{idUmowy}",            name="portfel_dodanie")
+     * @Route("/portfel/{idUmowy}", name="portfel_dodanie")
      * @Route("/portfel/{idUmowy}/{idSpolki}", name="portfel_edycja")
      *
      * @throws NotFoundHttpException
@@ -77,12 +77,9 @@ class PortfelController extends Controller
         }
         $this->get('ssfz.service.datatable_spolki_service')->datatableSpolki($this, $umowa->getId());
 
-        return $this->render(
-            'SsfzBundle:Portfel:index.html.twig',
-            array(
-                'form' => $form->createView(),
-            )
-        );
+        return $this->render('SsfzBundle:Portfel:index.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
@@ -111,7 +108,11 @@ class PortfelController extends Controller
         }
         $umowaId = $umowa->getId();
 
-        return $this->get('ssfz.service.datatable_spolki_service')->datatableSpolki($this, $umowaId)->execute();
+        return $this
+            ->get('ssfz.service.datatable_spolki_service')
+            ->datatableSpolki($this, $umowaId)
+            ->execute()
+        ;
     }
 
     /**
@@ -123,7 +124,11 @@ class PortfelController extends Controller
      */
     protected function getZalogowanyUzytkownik()
     {
-        $uzytkownik = $this->get('security.token_storage')->getToken()->getUser();
+        $uzytkownik = $this
+            ->get('security.token_storage')
+            ->getToken()
+            ->getUser()
+        ;
         if (!$uzytkownik) {
             throw $this->createAccessDeniedException();
         }

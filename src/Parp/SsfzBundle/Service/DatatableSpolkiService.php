@@ -14,32 +14,33 @@ class DatatableSpolkiService
      */
     public function getDatatableSpolkiFields()
     {
-        return array(
-            'Lp.' => 's.liczbaPorzadkowa',
-            'Nazwa spółki' => 's.nazwa',
-            'Forma prawna' => 's.forma',
-            'Siedziba (Miasto)' => 's.siedzibaMiasto',
-            'Siedziba (Województwo)' => 's.siedzibaWojewodztwo',
-            'Branża' => 's.branza',
+        return [
+            'Lp.'                                 => 's.liczbaPorzadkowa',
+            'Nazwa spółki'                        => 's.nazwa',
+            'Forma prawna'                        => 's.forma',
+            'Siedziba (Miasto)'                   => 's.siedzibaMiasto',
+            'Siedziba (Województwo)'              => 's.siedzibaWojewodztwo',
+            'Branża'                              => 's.branza',
             'Krótki opis przedmiotu działalności' => 's.opis',
-            'Data powołanis spółki' => 's.dataPowolania',
-            'Nr KRS' => 's.krs',
-            'NIP' => 's.nip',
-            'Kwota inwestycji beneficjenta' => 's.kwInwestycji',
-            'W tym ze środków wsparcia' => 's.kwWsparcia',
-            'W tym ze środków prywatnych' => 's.kwPryw',
-            'Czy inwestycja zakończona' => 's.zakonczona',
-            'Data wyjścia z inwestycji' => 's.dataWyjscia',
-            'Kwota uzyskana z dezinwestycji' => 's.kwDezinwestycji',
-            'Zwrot inwestycji' => 's.zwrotInwestycji',
-            'NPV' => 's.npv',
-            'Udziałowcy' => 's.udzialowcy',
-            'Prezes Zarządu' => 's.prezes',
-            'Pozostali Członkowie Zarządu' => 's.zarzadPozostali',
-            'ZakonczonaRaw' => 's.zakonczona',
-            ' ' => 's.id',
-            '  ' => 's.id',
-            '_identifier_' => 's.id');
+            'Data powołanis spółki'               => 's.dataPowolania',
+            'Nr KRS'                              => 's.krs',
+            'NIP'                                 => 's.nip',
+            'Kwota inwestycji beneficjenta'       => 's.kwInwestycji',
+            'W tym ze środków wsparcia'           => 's.kwWsparcia',
+            'W tym ze środków prywatnych'         => 's.kwPryw',
+            'Czy inwestycja zakończona'           => 's.zakonczona',
+            'Data wyjścia z inwestycji'           => 's.dataWyjscia',
+            'Kwota uzyskana z dezinwestycji'      => 's.kwDezinwestycji',
+            'Zwrot inwestycji'                    => 's.zwrotInwestycji',
+            'NPV'                                 => 's.npv',
+            'Udziałowcy'                          => 's.udzialowcy',
+            'Prezes Zarządu'                      => 's.prezes',
+            'Pozostali Członkowie Zarządu'        => 's.zarzadPozostali',
+            'ZakonczonaRaw'                       => 's.zakonczona',
+            ' '                                   => 's.id',
+            '  '                                  => 's.id',
+            '_identifier_'                        => 's.id',
+        ];
     }
 
     /**
@@ -80,9 +81,9 @@ class DatatableSpolkiService
      * Zwraca datatable spółek
      *
      * @param Controller $parentObj
-     * @param int        $umowaId
+     * @param int $umowaId
      *
-     * @return datatable
+     * @return object
      */
     public function datatableSpolki($parentObj, $umowaId)
     {
@@ -93,7 +94,7 @@ class DatatableSpolkiService
             ->setFields($this->getDatatableSpolkiFields())
             ->setSearch(true)
             ->setRenderers($this->getDatatableSpolkiRenderers())
-            ->setWhere('s.umowaId = :umowaId', array('umowaId' => (string) $umowaId))
+            ->setWhere('s.umowaId = :umowaId', ['umowaId' => (string) $umowaId])
         ;
     }
 }

@@ -41,13 +41,15 @@ class SecurityController extends Controller
      */
     public function wylogujAction()
     {
-        $entityManager = $this->getDoctrine()->getManager();
-
         $this
             ->getUser()
             ->eraseCredentials()
         ;
-        $entityManager->flush();
+        $this
+            ->getDoctrine()
+            ->getManager()
+            ->flush()
+        ;
 
         return $this->redirectToRoute('logout');
     }
