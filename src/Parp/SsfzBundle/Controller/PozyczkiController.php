@@ -35,7 +35,9 @@ class PozyczkiController extends Controller
         //$entityManager = $this->getDoctrine()->getManager();
 
         $danePozyczki = new DanePozyczki();
-        $formularz = $this->createForm(DanePozyczkiType::class, $danePozyczki, []);
+        $formularz = $this->createForm(DanePozyczkiType::class, $danePozyczki, [
+            'action_url' => $this->generateUrl('formularz_danych_pozyczki', ['id' => 4])
+        ]);
 
         return $this->render('SsfzBundle:Report:dane_pozyczki.html.twig', [
             'form' => $formularz->createView(),

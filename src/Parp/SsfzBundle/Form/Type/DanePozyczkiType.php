@@ -24,6 +24,8 @@ class DanePozyczkiType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $builder->setAction($options['action_url']);
+    
         $builder->add('id', HiddenType::class, [
             'label'       => 'ID',
             'attr'        => [
@@ -289,8 +291,14 @@ class DanePozyczkiType extends AbstractType
     }
 
     /**
-     * Ustawia opcje przekazana do formularza.
-     *
+     * @return string
+     */
+    public function getBlockPrefix()
+    {
+        return 'form_dane_pozyczki';
+    }
+
+    /**
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
@@ -298,5 +306,11 @@ class DanePozyczkiType extends AbstractType
         $resolver->setDefaults([
             'data_class' => DanePozyczki::class,
         ]);
+
+        $resolver->setRequired([
+            'action_url',
+        ]);
+
+        $resolver->setAllowedTypes('action_url', 'string');
     }
 }
