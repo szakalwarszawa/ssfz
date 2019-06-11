@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Parp\SsfzBundle\Controller;
 
-use Symfony\Component\HttpFoundation\{Request, Response};
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\{Route, Method};
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Doctrine\ORM\EntityNotFoundException;
 use Parp\SsfzBundle\Entity\{DanePozyczki, Sprawozdanie};
 use Parp\SsfzBundle\Form\Type\DanePozyczkiType;
