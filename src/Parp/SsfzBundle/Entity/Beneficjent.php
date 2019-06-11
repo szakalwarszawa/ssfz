@@ -5,6 +5,7 @@ namespace Parp\SsfzBundle\Entity;
 use InvalidArgumentException;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Parp\SsfzBundle\Entity\Slownik\Program;
 
 /**
  * Dane profilu beneficjenta
