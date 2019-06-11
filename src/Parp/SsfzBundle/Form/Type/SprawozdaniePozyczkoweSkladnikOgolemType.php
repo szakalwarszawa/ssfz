@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints;
 use Symfony\Component\Validator\Constraints\Count;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Parp\SsfzBundle\Entity\SprawozdaniePozyczkoweSkladnikOgolem;
-use Parp\SsfzBundle\Entity\Slowniki\Skladnik;
+use Parp\SsfzBundle\Entity\Slownik\Skladnik;
 
 /**
  * Typ formularza sprawozdania

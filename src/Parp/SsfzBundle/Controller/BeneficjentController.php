@@ -7,7 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Parp\SsfzBundle\Entity\Uzytkownik;
-use Parp\SsfzBundle\Entity\Program;
+use Parp\SsfzBundle\Entity\Slownik\Program;
 use Parp\SsfzBundle\Form\Type\BeneficjentType;
 
 /**

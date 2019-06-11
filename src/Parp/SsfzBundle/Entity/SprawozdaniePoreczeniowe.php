@@ -4,9 +4,9 @@ namespace Parp\SsfzBundle\Entity;
 
 use Date;
 use Doctrine\ORM\Mapping as ORM;
-use Parp\SsfzBundle\Entity\Slowniki\FormaPrawna;
+use Parp\SsfzBundle\Entity\Slownik\FormaPrawna;
 use Doctrine\Common\Collections\ArrayCollection;
-use Parp\SsfzBundle\Entity\Slowniki\TakNie;
+use Parp\SsfzBundle\Entity\Slownik\TakNie;
 
 /**
  * SprawozdaniePoreczeniowe
@@ -35,7 +35,7 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
      *
      * @var TakNie
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slowniki\TakNie")
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie")
      * @ORM\JoinColumn(name="czy_posiada_wydzielony_fundusz", referencedColumnName="id", nullable=true)
      */
     protected $czyPosiadaWydzielonyFundusz;
@@ -45,7 +45,7 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
      *
      * @var bool
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slowniki\TakNie")
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie")
      * @ORM\JoinColumn(name="czy_procent_nie_nizszy_od_stopy", referencedColumnName="id", nullable=true)
      */
     protected $czyOprocentowanieNieNizszeOdStopy;
@@ -55,7 +55,7 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
      *
      * @var bool
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slowniki\TakNie")
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie")
      * @ORM\JoinColumn(name="czy_za_wynagrodzeniem", referencedColumnName="id", nullable=true)
      */
     protected $czyZaWynagrodzeniem;
@@ -65,7 +65,7 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
      *
      * @var bool
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slowniki\TakNie")
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie")
      * @ORM\JoinColumn(name="czy_nie_przekraczaja_80_procent", referencedColumnName="id", nullable=true)
      */
     protected $czyNiePrzekraczaja80;

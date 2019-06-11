@@ -26,8 +26,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Parp\SsfzBundle\Entity\AbstractSprawozdanieSpo;
 use Parp\SsfzBundle\Entity\Wojewodztwo;
-use Parp\SsfzBundle\Entity\Slowniki\FormaPrawna;
-use Parp\SsfzBundle\Entity\Slowniki\TakNie;
+use Parp\SsfzBundle\Entity\Slownik\FormaPrawna;
+use Parp\SsfzBundle\Entity\Slownik\TakNie;
 use Parp\SsfzBundle\Constraints\Nip;
 
 /**
