@@ -3,7 +3,7 @@
 namespace Parp\SsfzBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Parp\SsfzBundle\Entity\Slowniki\Skladnik;
+use Parp\SsfzBundle\Entity\Slownik\Skladnik;
 
 /**
  * AbstractSprawozdanieSkladnik
@@ -24,7 +24,7 @@ class AbstractSprawozdanieSkladnik
      *
      * @var FormaPrawna
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slowniki\Skladnik")
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\Skladnik")
      * @ORM\JoinColumn(name="skladnik", referencedColumnName="id", nullable=true)
      */
     protected $skladnik;
