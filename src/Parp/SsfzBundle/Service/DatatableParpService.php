@@ -30,40 +30,6 @@ class DatatableParpService
     }
 
     /**
-     * Zwraca aktualnego użytkownika aplikacji.
-     *
-     * @return Uzytkownik|null
-     */
-    public function getUser()
-    {
-        $user = null;
-        $storage = $this->tokenStorage;
-        if (null !== $storage) {
-            $token = $storage->getToken();
-            if (null !== $token) {
-                $user = $token->getUser();
-            }
-        }
-
-        return $user;
-    }
-
-    /**
-     * Zwraca ID aktualnie przeglądanego programu.
-     *
-     * @return int
-     */
-    public function getAktywnyProgramId()
-    {
-        $program = $this->getUser()->getAktywnyProgram();
-        
-        return (null !== $program)
-            ? (int) $program->getId()
-            : Program::FUNDUSZ_ZALAZKOWY_POIG_31
-        ;
-    }
-
-    /**
      * Zwraca konfigurację tabeli Parp
      *
      * @return array
