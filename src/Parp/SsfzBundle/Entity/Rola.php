@@ -13,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Rola implements Serializable
 {
+    const ROLE_KOORDYNATOR_TECHNICZNY = 1;
+    const ROLE_KOORDYNATOR_MERYTORYCZNY = 2;
+    const ROLE_PRACOWNIK_PARP = 3;
+    const ROLE_BENEFICJENT = 4;
+    
     const NAZWY_ROL_PARP = [
         'ROLE_KOORDYNATOR_TECHNICZNY',
         'ROLE_KOORDYNATOR_MERYTORYCZNY',

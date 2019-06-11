@@ -7,7 +7,7 @@
         <button class="btn btn-xs btn-danger btn-block btn-static">Nieprzesłane</button>
     {% endif %}
     {% if (status_id and status_id[0] and status_id[0] == 2 and status_id[1]) %}
-        <a href="{{ path('ocen', {'idSprawozdania': status_id[1]}) }}"
+        <a href="{{ path('ocen', {'umowa': dt_id, 'idSprawozdania': status_id[1]}) }}"
            class="btn btn-xs btn-info btn-block"
            role="button">Przesłane</a>
     {% endif %}

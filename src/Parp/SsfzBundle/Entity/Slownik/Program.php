@@ -3,6 +3,9 @@
 namespace Parp\SsfzBundle\Entity\Slownik;
 
 use Doctrine\ORM\Mapping as ORM;
+use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
+use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
 
 /**
  * Program
@@ -85,6 +88,64 @@ class Program
      */
     public function czyJestPortfelSpolek()
     {
-        return $this::FUNDUSZ_ZALAZKOWY_POIG_31 === (int) $this->id;
+        return Program::FUNDUSZ_ZALAZKOWY_POIG_31 === (int) $this->id;
+    }
+    
+    /**
+     * Czy dany program to fundusz zalążkowy.
+     *
+     * @return bool
+     */
+    public function czyFunduszZalazkowy()
+    {
+        return Program::FUNDUSZ_ZALAZKOWY_POIG_31 === (int) $this->id;
+    }
+    
+    /**
+     * Czy dany program to fundusz pożyczkowy.
+     *
+     * @return bool
+     */
+    public function czyFunduszPozyczkowy()
+    {
+        return Program::FUNDUSZ_POZYCZKOWY_SPO_WKP_121 === (int) $this->id;
+    }
+    
+    /**
+     * Czy dany program to fundusz poręczeniowy.
+     *
+     * @return bool
+     */
+    public function czyFunduszPoreczeniowy()
+    {
+        return Program::FUNDUSZ_PORECZENIOWY_SPO_WKP_122 === (int) $this->id;
+    }
+    
+    /**
+     * Zwraca nazwę encji ze sprawozdaniami używaną w programie.
+     *
+     * @param Program|null $program
+     *
+     * @return string
+     */
+    public static function jakaEncjaDlaProgramu(Program $program = null)
+    {
+        $programId =
+            null === $program
+            ? 0
+            : (int) $program->getId()
+        ;
+        
+        switch ($programId) {
+            case Program::FUNDUSZ_POZYCZKOWY_SPO_WKP_121:
+                return SprawozdaniePozyczkowe::class;
+
+            case Program::FUNDUSZ_PORECZENIOWY_SPO_WKP_122:
+                return SprawozdaniePoreczeniowe::class;
+
+            case Program::FUNDUSZ_ZALAZKOWY_POIG_31:
+            default:
+                return Sprawozdanie::class;
+        }
     }
 }

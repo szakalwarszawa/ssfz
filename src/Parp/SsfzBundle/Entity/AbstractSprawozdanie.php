@@ -142,6 +142,13 @@ class AbstractSprawozdanie
     protected $powiadomienieWyslane = false;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="uwagi", type="string", nullable=true)
+     */
+    protected $uwagi;
+
+    /**
      * zwraca ID statusu
      *
      * @return idStatus
@@ -534,5 +541,25 @@ class AbstractSprawozdanie
         if (null !== $this->dataPrzeslaniaDoParp) {
             throw new KomunikatDlaBeneficjentaException('Sprawozdanie już przesłano do PARP.');
         }
+    }
+
+    /**
+     * zwraca uwagi
+     *
+     * @return string
+     */
+    public function getUwagi()
+    {
+        return $this->uwagi;
+    }
+
+    /**
+     * Ustawia uwagi
+     *
+     * @param string $uwagi
+     */
+    public function setUwagi($uwagi)
+    {
+        $this->uwagi = $uwagi;
     }
 }

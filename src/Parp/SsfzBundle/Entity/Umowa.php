@@ -79,6 +79,9 @@ class Umowa
     {
         $this->spolki = new ArrayCollection();
         $this->sprawozdania = new ArrayCollection();
+        $this->sprawozdaniaZalazkowe = new ArrayCollection();
+        $this->sprawozdaniaPozyczkowe = new ArrayCollection();
+        $this->sprawozdaniaPoreczeniowe = new ArrayCollection();
     }
 
     /**

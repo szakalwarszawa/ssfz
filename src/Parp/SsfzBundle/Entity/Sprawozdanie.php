@@ -16,13 +16,6 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 class Sprawozdanie extends AbstractSprawozdanie
 {
     /**
-     * @var string
-     *
-     * @ORM\Column(name="uwagi", type="string", nullable=true)
-     */
-    protected $uwagi;
-
-    /**
      * Encje SprawozdanieSpolki powiazane ze sprawozdaniem - sprawozdania spolek
      *
      * @ORM\OneToMany(targetEntity="SprawozdanieSpolki", mappedBy="sprawozdanie", cascade={"persist", "remove"})
@@ -35,26 +28,6 @@ class Sprawozdanie extends AbstractSprawozdanie
     public function __construct()
     {
         $this->sprawozdaniaSpolek = new ArrayCollection();
-    }
-
-    /**
-     * zwraca uwagi
-     *
-     * @return string
-     */
-    public function getUwagi()
-    {
-        return $this->uwagi;
-    }
-
-    /**
-     * Ustawia uwagi
-     *
-     * @param string $uwagi
-     */
-    public function setUwagi($uwagi)
-    {
-        $this->uwagi = $uwagi;
     }
 
     /**
