@@ -6,7 +6,7 @@
         <div class="panel-heading center"><h4>Wybierz program w ramach którego będzie tworzone sprawozdanie</h4></div>
         <div class="panel-body center">
             {% for program in programy %}
-                <a href="{{ path('beneficjent_wybierz_program', {'program': program.id}) }}"
+                <a href="{{ path('uzytkownik_wybierz_program', {'program': program.id}) }}"
                    class="form-control orange-button btn width-long"
                    >{{ program.nazwa }} </a>
                 <br><br>

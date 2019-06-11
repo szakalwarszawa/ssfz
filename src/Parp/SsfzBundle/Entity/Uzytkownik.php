@@ -592,6 +592,19 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
     }
 
     /**
+     * Get aktywnyProgram
+     *
+     * @return Program
+     */
+    public function getAktywnyProgramId()
+    {
+        return (null !== $this->aktywnyProgram)
+            ? (int) $this->aktywnyProgram->getId()
+            : 0
+        ;
+    }
+
+    /**
      * Get beneficjenci
      *
      * @return Collection
