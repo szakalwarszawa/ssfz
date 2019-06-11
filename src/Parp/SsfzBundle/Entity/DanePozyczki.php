@@ -656,16 +656,16 @@ class DanePozyczki
     protected $liczbaPozyczekObrotowychOd300001Pln = 0;
 
     /**
-     * Liczba pożyczek obrotowych do 10.000zł.
+     * Liczba pożyczek inwestycyjnych do 10.000zł.
      *
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_poz_obrotowych_do_10000_pln",
+     *     name="liczba_poz_inwestycyjnych_do_10000_pln",
      *     type="integer",
      *     nullable=false,
      *     options={
-     *         "comment":"Liczba pożyczek obrotowych do 10.000zł.",
+     *         "comment":"Liczba pożyczek inwestycyjnych do 10.000zł.",
      *         "default":0
      *     }
      * )
@@ -673,16 +673,16 @@ class DanePozyczki
     protected $liczbaPozyczekInwestycyjnychDo10000Pln = 0;
 
     /**
-     * Liczba pożyczek inwestycyjnych od 30.001zł do 50.000zł.
+     * Liczba pożyczek inwestycyjnych od 10.001zł do 30.000zł.
      *
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_poz_inwestycyjnych_od_30001_do_50000_pln",
+     *     name="liczba_poz_inwestycyjnych_od_10001_do_30000_pln",
      *     type="integer",
      *     nullable=false,
      *     options={
-     *         "comment":"Liczba pożyczek inwestycyjnych od 30.001zł do 50.000zł.",
+     *         "comment":"Liczba pożyczek inwestycyjnych od 10.001zł do 30.000zł.",
      *         "default":0
      *     }
      * )
@@ -775,16 +775,16 @@ class DanePozyczki
     protected $liczbaPozyczekInwestycyjnoObrotowychDo10000Pln = 0;
 
     /**
-     * Liczba pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.
+     * Liczba pożyczek inwestycyjno-obrotowych od 10.001zł do 30.000zł.
      *
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_poz_inwestycyjno_obrotowych_od_30001_do_50000_pln",
+     *     name="liczba_poz_inwestycyjno_obrotowych_od_10001_do_30000_pln",
      *     type="integer",
      *     nullable=false,
      *     options={
-     *         "comment":"Liczba pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.",
+     *         "comment":"Liczba pożyczek inwestycyjno-obrotowych od 10.001zł do 30.000zł.",
      *         "default":0
      *     }
      * )
@@ -2156,18 +2156,18 @@ class DanePozyczki
     protected $kwotaPozyczekObrotowychOd300001Pln = '0.00';
 
     /**
-     * Kwota pożyczek obrotowych do 10.000zł.
+     * Kwota pożyczek inwestycyjnych do 10.000zł.
      *
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_poz_obrotowych_do_10000_pln",
+     *     name="kwota_poz_inwestycyjnych_do_10000_pln",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
      *     nullable=false,
      *     options={
-     *         "comment":"Kwota pożyczek obrotowych do 10.000zł.",
+     *         "comment":"Kwota pożyczek inwestycyjnych do 10.000zł.",
      *         "default":0.00
      *     }
      * )
@@ -2175,18 +2175,18 @@ class DanePozyczki
     protected $kwotaPozyczekInwestycyjnychDo10000Pln = '0.00';
 
     /**
-     * Kwota pożyczek inwestycyjnych od 30.001zł do 50.000zł.
+     * Kwota pożyczek inwestycyjnych od 10.001zł do 30.000zł.
      *
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_poz_inwestycyjnych_od_30001_do_50000_pln",
+     *     name="kwota_poz_inwestycyjnych_od_10001_do_30000_pln",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
      *     nullable=false,
      *     options={
-     *         "comment":"Kwota pożyczek inwestycyjnych od 30.001zł do 50.000zł.",
+     *         "comment":"Kwota pożyczek inwestycyjnych od 10.001zł do 30.000zł.",
      *         "default":0.00
      *     }
      * )
@@ -2289,18 +2289,18 @@ class DanePozyczki
     protected $kwotaPozyczekInwestycyjnoObrotowychDo10000Pln = '0.00';
 
     /**
-     * Kwota pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.
+     * Kwota pożyczek inwestycyjno-obrotowych od 10.001zł do 30.000zł.
      *
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_poz_inwestycyjno_obrotowych_od_30001_do_50000_pln",
+     *     name="kwota_poz_inwestycyjno_obrotowych_od_10001_do_30000_pln",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
      *     nullable=false,
      *     options={
-     *         "comment":"Kwota pożyczek inwestycyjno-obrotowych od 30.001zł do 50.000zł.",
+     *         "comment":"Kwota pożyczek inwestycyjno-obrotowych od 10.001zł do 30.000zł.",
      *         "default":0.00
      *     }
      * )

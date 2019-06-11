@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Parp\SsfzBundle\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Doctrine\ORM\EntityNotFoundException;
 use Parp\SsfzBundle\Entity\DanePozyczki;
 use Parp\SsfzBundle\Entity\Sprawozdanie;
@@ -31,7 +34,7 @@ class PozyczkiController extends Controller
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function edytujDanePozyczkiAction(Request $request, int $id)
+    public function edytujDanePozyczkiAction(Request $request, int $id): Response
     {
         $entityManager = $this
             ->getDoctrine()
