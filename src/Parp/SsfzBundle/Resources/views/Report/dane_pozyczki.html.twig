@@ -16,9 +16,13 @@
                     </div>
                 </div> #}
 
-                <table class="table table-bordered table-condensed">
+                <style>
+                    input.decimal-11-2 {width: 100%; margin: 0; padding: 2px;font-size: 12px; text-align: right;}
+                </style>
+
+                <table class="table table-bordered table-condensed table-striped">
                     <tr>
-                        <td rowspan="3" class="info col-sm-2"></td>
+                        <td rowspan="3" class="info col-sm-1 credit-range"></td>
                         <td colspan="5" class="text-center"><strong>Według typu przedsiębiorstwa</strong></td>
                         <td colspan="3" class="text-center"><strong>Według przeznaczenia</strong></td>
                         <td colspan="6" class="text-center"><strong>Według działania pożyczkobiorcy</strong></td>
@@ -51,7 +55,7 @@
                     </tr>
 
                     <tr>
-                        <td class="text-center">do 10 000zł</td>
+                        <td class="text-center credit-range">do 10 000zł</td>
                         <td class="text-center">
                             {{ form_row(form.liczbaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1'}}) }}
                             {{ form_errors(form.liczbaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw) }}
@@ -72,7 +76,7 @@
                     </tr>
 
                     <tr>
-                        <td class="text-center">od 10 0001zł do 30 000zł</td>
+                        <td class="text-center credit-range">od 10 0001zł do 30 000zł</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1'}}) }}</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2'}}) }}</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3'}}) }}</td>
@@ -90,7 +94,7 @@
                     </tr>
 
                     <tr>
-                        <td class="text-center">od 30 0001zł do 50 000zł</td>
+                        <td class="text-center credit-range">od 30 0001zł do 50 000zł</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1'}}) }}</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2'}}) }}</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3'}}) }}</td>
@@ -108,7 +112,7 @@
                     </tr>
 
                     <tr>
-                        <td class="text-center">od 50 0001zł do 120 000zł</td>
+                        <td class="text-center credit-range">od 50 0001zł do 120 000zł</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1'}}) }}</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2'}}) }}</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3'}}) }}</td>
@@ -126,7 +130,7 @@
                     </tr>
 
                     <tr>
-                        <td class="text-center">od 120 0001zł do 300 000zł</td>
+                        <td class="text-center credit-range">od 120 0001zł do 300 000zł</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1'}}) }}</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2'}}) }}</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3'}}) }}</td>
@@ -144,7 +148,7 @@
                     </tr>
 
                     <tr>
-                        <td class="text-center">od 300 0001zł</td>
+                        <td class="text-center credit-range">od 300 0001zł</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1'}}) }}</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2'}}) }}</td>
                         <td class="text-center">{{ form_row(form.liczbaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3'}}) }}</td>
@@ -162,7 +166,7 @@
                     </tr>
 
                     <tr>
-                        <td class="text-center"><strong>Suma:</strong></td>
+                        <td class="text-center credit-range"><strong>Suma:</strong></td>
                         <td class="text-center"><strong data-vertical-group-sum="1">0</strong></td>
                         <td class="text-center"><strong data-vertical-group-sum="2">0</strong></td>
                         <td class="text-center"><strong data-vertical-group-sum="3">0</strong></td>
@@ -184,8 +188,8 @@
                     </tr>
 
                     <tr>
-                        <td class="text-center">do 10 000zł</td>
-                        <td class="text-center">{{ form_row(form.kwotaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '15'}}) }}</td>
+                        <td class="text-center credit-range">do 10 000zł</td>
+                        <td class="text-center filled">{{ form_row(form.kwotaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '15'}}) }}</td>
                         <td class="text-center">{{ form_row(form.kwotaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '16'}}) }}</td>
                         <td class="text-center">{{ form_row(form.kwotaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '17'}}) }}</td>
                         <td class="text-center">{{ form_row(form.kwotaPozyczekDo10000PlnDlaInnychPrzedsiebiorstw, {'attr': {'data-vertical-group': '18'}}) }}</td>
@@ -202,7 +206,7 @@
                     </tr>
 
                     <tr>
-                        <td class="text-center">od 10 0001zł do 30 000zł</td>
+                        <td class="text-center credit-range">od 10 001zł do 30 000zł</td>
                         <td class="text-center">{{ form_row(form.kwotaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '15'}}) }}</td>
                         <td class="text-center">{{ form_row(form.kwotaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '16'}}) }}</td>
                         <td class="text-center">{{ form_row(form.kwotaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '17'}}) }}</td>
@@ -220,7 +224,7 @@
                     </tr>
 
                     <tr>
-                        <td class="text-center">od 30 0001zł do 50 000zł</td>
+                        <td class="text-center credit-range">od 30 001zł do 50 000zł</td>
                         <td class="text-center">{{ form_row(form.kwotaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '15'}}) }}</td>
                         <td class="text-center">{{ form_row(form.kwotaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '16'}}) }}</td>
                         <td class="text-center">{{ form_row(form.kwotaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '17'}}) }}</td>
@@ -238,7 +242,7 @@
                     </tr>
 
                     <tr>
-                        <td class="text-center">od 50 0001zł do 120 000zł</td>
+                        <td class="text-center credit-range">od 50 001zł do 120 000zł</td>
                         <td class="text-center">{{ form_row(form.kwotaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '15'}}) }}</td>
                         <td class="text-center">{{ form_row(form.kwotaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '16'}}) }}</td>
                         <td class="text-center">{{ form_row(form.kwotaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '17'}}) }}</td>
@@ -256,7 +260,7 @@
                     </tr>
 
                     <tr>
-                        <td class="text-center">od 120 0001zł do 300 000zł</td>
+                        <td class="text-center credit-range">od 120 001zł do 300 000zł</td>
                         <td class="text-center">{{ form_row(form.kwotaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '15'}}) }}</td>
                         <td class="text-center">{{ form_row(form.kwotaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '16'}}) }}</td>
                         <td class="text-center">{{ form_row(form.kwotaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '17'}}) }}</td>
@@ -274,7 +278,7 @@
                     </tr>
 
                     <tr>
-                        <td class="text-center">od 300 0001zł</td>
+                        <td class="text-center credit-range">od 300 001zł</td>
                         <td class="text-center">{{ form_row(form.kwotaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '15'}}) }}</td>
                         <td class="text-center">{{ form_row(form.kwotaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '16'}}) }}</td>
                         <td class="text-center">{{ form_row(form.kwotaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '17'}}) }}</td>
@@ -292,7 +296,7 @@
                     </tr>
 
                     <tr>
-                        <td class="text-center"><strong>Suma:</strong></td>
+                        <td class="text-center credit-range"><strong>Suma:</strong></td>
                         <td class="text-center"><strong data-vertical-group-sum="15">0.00</strong></td>
                         <td class="text-center"><strong data-vertical-group-sum="16">0.00</strong></td>
                         <td class="text-center"><strong data-vertical-group-sum="17">0.00</strong></td>
@@ -353,18 +357,17 @@
                 sumByGroup();
             });
 
-            $('.decimal-11-2').mask('BBB BBB BBA.AA', {
-                translation: {
-                    A: {
-                        pattern: /[0-9]/,
-                        optional: false
-                    },
-                    B: {
-                        pattern: /[1-9]/,
-                        optional: true
-                    }
-                },
-                reverse: true,
+            $('.decimal-11-2').maskMoney({
+                prefix: '',
+                suffix: ' zł',
+                affixesStay: false,
+                thousands: ' ',
+                decimal: '.',
+                precision: 2,
+                allowZero: true,
+                allowNegative: false,
+                allowEmpty: false,
+                reverse: false
             });
         });
     </script>
