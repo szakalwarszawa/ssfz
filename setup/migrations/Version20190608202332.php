@@ -28,9 +28,11 @@ class Version20190608202332 extends AbstractMigration
     {
         $this->abortIf(true, 'Not supported.');
         
+        /*
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-//        $this->addSql('ALTER TABLE sfz_sprawozdanie_poreczeniowe DROP czy_dane_sa_prawidlowe');
-//        $this->addSql('ALTER TABLE sfz_sprawozdanie_pozyczkowe DROP czy_dane_sa_prawidlowe');
+        $this->addSql('ALTER TABLE sfz_sprawozdanie_poreczeniowe DROP czy_dane_sa_prawidlowe');
+        $this->addSql('ALTER TABLE sfz_sprawozdanie_pozyczkowe DROP czy_dane_sa_prawidlowe');
+        */
     }
 }

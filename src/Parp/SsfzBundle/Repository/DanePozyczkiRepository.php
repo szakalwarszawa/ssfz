@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace Parp\SsfzBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Parp\Ssfz\Entity\DanePozyczki;
-use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Entity\{DanePozyczki, Sprawozdanie};
 
 /**
  * Repozytorium DanePozyczkiRepository.
