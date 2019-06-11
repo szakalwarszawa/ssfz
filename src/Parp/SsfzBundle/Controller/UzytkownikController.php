@@ -122,10 +122,10 @@ class UzytkownikController extends Controller
 
         $rolaId = (int) $uzytkownik->getRola()->getId();
         switch ($rolaId) {
-            case 3:
+            case Rola::ROLE_PRACOWNIK_PARP:
                 return $this->redirectToRoute('parp');
 
-            case 4:
+            case Rola::ROLE_BENEFICJENT:
             default:
                 return $this->redirectToRoute('beneficjent');
         }

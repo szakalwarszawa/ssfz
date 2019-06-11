@@ -88,7 +88,7 @@ class Program
      */
     public function czyJestPortfelSpolek()
     {
-        return $this::FUNDUSZ_ZALAZKOWY_POIG_31 === (int) $this->id;
+        return Program::FUNDUSZ_ZALAZKOWY_POIG_31 === (int) $this->id;
     }
     
     /**
@@ -98,7 +98,7 @@ class Program
      */
     public function czyFunduszZalazkowy()
     {
-        return $this::FUNDUSZ_ZALAZKOWY_POIG_31 === (int) $this->id;
+        return Program::FUNDUSZ_ZALAZKOWY_POIG_31 === (int) $this->id;
     }
     
     /**
@@ -108,7 +108,7 @@ class Program
      */
     public function czyFunduszPozyczkowy()
     {
-        return $this::FUNDUSZ_POZYCZKOWY_SPO_WKP_121 === (int) $this->id;
+        return Program::FUNDUSZ_POZYCZKOWY_SPO_WKP_121 === (int) $this->id;
     }
     
     /**
@@ -118,7 +118,7 @@ class Program
      */
     public function czyFunduszPoreczeniowy()
     {
-        return $this::FUNDUSZ_PORECZENIOWY_SPO_WKP_122 === (int) $this->id;
+        return Program::FUNDUSZ_PORECZENIOWY_SPO_WKP_122 === (int) $this->id;
     }
     
     /**
