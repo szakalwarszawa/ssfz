@@ -8,8 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
-use Parp\SsfzBundle\Entity\Slowniki\FormaPrawna;
-use Parp\SsfzBundle\Entity\Slowniki\TakNie;
+use Parp\SsfzBundle\Entity\Slownik\FormaPrawna;
+use Parp\SsfzBundle\Entity\Slownik\TakNie;
 
 /**
  * AbstractSprawozdanieSpo
@@ -157,7 +157,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
      *
      * @var FormaPrawna
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slowniki\FormaPrawna")
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\FormaPrawna")
      * @ORM\JoinColumn(name="forma_prawna_id", referencedColumnName="id", nullable=true)
      */
     protected $formaPrawna;
@@ -185,7 +185,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
      *
      * @var TakNie
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slowniki\TakNie")
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie")
      * @ORM\JoinColumn(name="czy_nie_dziala_dla_zysku", referencedColumnName="id", nullable=true)
      */
     protected $czyNieDzialaDlaZysku;
@@ -195,7 +195,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
      *
      * @var TakNie
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slowniki\TakNie")
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie")
      * @ORM\JoinColumn(name="czy_udziela_po_analizie_ryzyka", referencedColumnName="id", nullable=true)
      */
     protected $czyUdzielaPoAnalizieRyzyka;
@@ -214,7 +214,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
      *
      * @var TakNie
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slowniki\TakNie")
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie")
      * @ORM\JoinColumn(name="czy_nie_w_trudnej_sytuacji", referencedColumnName="id", nullable=true)
      */
     protected $czyNieWTrudnejSytuacji;
@@ -224,7 +224,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
      *
      * @var TakNie
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slowniki\TakNie")
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie")
      * @ORM\JoinColumn(name="czy_odpowiedni_potencjal_ekonomiczny", referencedColumnName="id", nullable=true)
      */
     protected $czyOdpowiedniPotencjalEkonomiczny;
@@ -234,7 +234,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
      *
      * @var TakNie
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slowniki\TakNie")
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie")
      * @ORM\JoinColumn(name="czy_pracownicy_posiadaja_kwalifikacje", referencedColumnName="id", nullable=true)
      */
     protected $czyPracownicyPosiadajaKwalifikacje;

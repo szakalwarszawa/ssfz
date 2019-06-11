@@ -167,7 +167,7 @@ class Beneficjent
      *
      * @var int
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Program")
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\Program")
      */
     protected $program;
 

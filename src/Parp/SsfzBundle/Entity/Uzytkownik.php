@@ -141,7 +141,7 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
      *
      * @var int
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Program")
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\Program")
      */
     protected $aktywnyProgram;
 

@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints\Count;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\LessThan;
 use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
-use Parp\SsfzBundle\Entity\Slowniki\TakNie;
+use Parp\SsfzBundle\Entity\Slownik\TakNie;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 /**

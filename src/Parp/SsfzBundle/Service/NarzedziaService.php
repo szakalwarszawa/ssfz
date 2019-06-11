@@ -3,7 +3,7 @@
 namespace Parp\SsfzBundle\Service;
 
 use Doctrine\ORM\EntityManager;
-use Parp\SsfzBundle\Entity\Slowniki\FormaPrawna;
+use Parp\SsfzBundle\Entity\Slownik\FormaPrawna;
 
 /**
  * Serwis obsługujący operacje pomocnicze
