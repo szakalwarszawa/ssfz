@@ -10,7 +10,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Doctrine\ORM\EntityNotFoundException;
-use Parp\SsfzBundle\Entity\{DanePozyczki, Sprawozdanie};
+use Parp\SsfzBundle\Entity\DanePozyczki;
+use Parp\SsfzBundle\Entity\Sprawozdanie;
 use Parp\SsfzBundle\Form\Type\DanePozyczkiType;
 
 /**
