@@ -11,6 +11,6 @@
         "datatables.net-bs": "^1.10.16",
         "datatables.net-buttons-bs": "^1.4.2",
         "jquery": "^3.2.1",
-        "jquery-mask-plugin": "^1.14.0"
+        "jquery-maskmoney": "^3.0.2"
     }
 }

@@ -352,6 +352,20 @@
             $('[data-vertical-group]').change(function () {
                 sumByGroup();
             });
+
+            $('.decimal-11-2').mask('BBB BBB BBA.AA', {
+                translation: {
+                    A: {
+                        pattern: /[0-9]/,
+                        optional: false
+                    },
+                    B: {
+                        pattern: /[1-9]/,
+                        optional: true
+                    }
+                },
+                reverse: true,
+            });
         });
     </script>
 {% endblock %}
