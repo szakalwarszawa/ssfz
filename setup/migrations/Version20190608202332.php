@@ -6,6 +6,7 @@ use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 
 /**
+ * Migracja 20190608202332
  * Zgłoszenie https://redmine.parp.gov.pl/issues/68591
  */
 class Version20190608202332 extends AbstractMigration
