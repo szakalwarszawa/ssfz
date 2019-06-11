@@ -4,33 +4,35 @@
         {{ form_row(formS.numerUmowy) }}
         {{ form_row(formS.okres) }}
         {{ form_row(formS.rok) }}
-        <div class="sprawozdaniaSpolek panel-body" data-prototype="{{ form_widget(formS.sprawozdaniaSpolek.vars.prototype)|e('html_attr') }}">
-            {% for sprawozdanie in formS.sprawozdaniaSpolek %}
-                <div class="row sprawozdanie-row">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            {{ form_row(sprawozdanie.liczbaPorzadkowa) }}
-                            {{ form_row(sprawozdanie.nazwaSpolki) }}
-                            {{ form_row(sprawozdanie.krs) }}
-                            {{ form_row(sprawozdanie.uzyskanePrzychody) }}
-                            {{ form_row(sprawozdanie.planowanePrzychody) }}
-                            {{ form_row(sprawozdanie.ebitda) }}
-                            {{ form_row(sprawozdanie.ncf) }}
-                            {{ form_row(sprawozdanie.sumaBilansowa) }}
-                            {{ form_row(sprawozdanie.zatrudnienieEtaty) }}
-                            {{ form_row(sprawozdanie.zatrudnienieEtaty) }}
-                            {{ form_row(sprawozdanie.zatrudnioneKobiety) }}
-                            {{ form_row(sprawozdanie.zatrudnieniMezczyzni) }}
-                            {{ form_row(sprawozdanie.zatrudnienieInneFormy) }}
-                            {{ form_row(sprawozdanie.zatrudnienieInneFormyKobiety) }}
-                            {{ form_row(sprawozdanie.zatrudnienieInneFormyMezczyzni) }}
-                            {{ form_row(sprawozdanie.zatrudnieniewStosunkuDoPoprzedniegoRoku) }}
-                            {{ form_row(sprawozdanie.zatrudnieniewStosunkuDoPoprzedniegoOkresu) }}
+        {% if formS.sprawozdaniaSpolek is defined %}
+            <div class="sprawozdaniaSpolek panel-body" data-prototype="{{ form_widget(formS.sprawozdaniaSpolek.vars.prototype)|e('html_attr') }}">
+                {% for sprawozdanie in formS.sprawozdaniaSpolek %}
+                    <div class="row sprawozdanie-row">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                {{ form_row(sprawozdanie.liczbaPorzadkowa) }}
+                                {{ form_row(sprawozdanie.nazwaSpolki) }}
+                                {{ form_row(sprawozdanie.krs) }}
+                                {{ form_row(sprawozdanie.uzyskanePrzychody) }}
+                                {{ form_row(sprawozdanie.planowanePrzychody) }}
+                                {{ form_row(sprawozdanie.ebitda) }}
+                                {{ form_row(sprawozdanie.ncf) }}
+                                {{ form_row(sprawozdanie.sumaBilansowa) }}
+                                {{ form_row(sprawozdanie.zatrudnienieEtaty) }}
+                                {{ form_row(sprawozdanie.zatrudnienieEtaty) }}
+                                {{ form_row(sprawozdanie.zatrudnioneKobiety) }}
+                                {{ form_row(sprawozdanie.zatrudnieniMezczyzni) }}
+                                {{ form_row(sprawozdanie.zatrudnienieInneFormy) }}
+                                {{ form_row(sprawozdanie.zatrudnienieInneFormyKobiety) }}
+                                {{ form_row(sprawozdanie.zatrudnienieInneFormyMezczyzni) }}
+                                {{ form_row(sprawozdanie.zatrudnieniewStosunkuDoPoprzedniegoRoku) }}
+                                {{ form_row(sprawozdanie.zatrudnieniewStosunkuDoPoprzedniegoOkresu) }}
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
-        </div>
+                {% endfor %}
+            </div>
+        {% endif %}
         {{ form_end(formS) }}
     </div>
 </div>

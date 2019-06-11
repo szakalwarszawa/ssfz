@@ -2,7 +2,6 @@
 
 namespace Parp\SsfzBundle\Form\Type;
 
-use Parp\SsfzBundle\Entity\Beneficjent;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,6 +14,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Parp\SsfzBundle\Entity\AbstractSprawozdanie;
+use Parp\SsfzBundle\Entity\Beneficjent;
 
 /**
  * Typ formularza sprawozdania
@@ -29,6 +30,14 @@ class SprawozdanieType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $czyJestPortfelSpolek = $builder
+            ->getData()
+            ->getUmowa()
+            ->getBeneficjent()
+            ->getProgram()
+            ->czyJestPortfelSpolek()
+        ;
+
         $this->showRemarks = $options['showRemarks'];
         if ($this->showRemarks === true) {
             $builder->add('uwagi', TextareaType::class, array(
@@ -49,13 +58,15 @@ class SprawozdanieType extends AbstractType
             'constraints' => array()
         ));
 
-        $builder->add('sprawozdaniaSpolek', CollectionType::class, array(
-            'entry_type' => SprawozdanieSpolkiType::class,
-            'entry_options' => array('label' => false),
-            'allow_add' => true,
-            'by_reference' => false,
-            'allow_delete' => true,
-        ));
+        if ($czyJestPortfelSpolek) {
+            $builder->add('sprawozdaniaSpolek', CollectionType::class, array(
+                'entry_type' => SprawozdanieSpolkiType::class,
+                'entry_options' => array('label' => false),
+                'allow_add' => true,
+                'by_reference' => false,
+                'allow_delete' => true,
+            ));
+        }
 
         $builder->add('okres', ChoiceType::class, array(
             'label' => 'Sprawozdanie za okres',
@@ -94,7 +105,7 @@ class SprawozdanieType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => \Parp\SsfzBundle\Entity\Sprawozdanie::class,
+            'data_class' => AbstractSprawozdanie::class,
             'attr' => array('novalidate' => 'novalidate'),
             'showRemarks' => null,
             'okresy' => null,

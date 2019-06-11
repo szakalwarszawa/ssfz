@@ -7,12 +7,8 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Parp\SsfzBundle\Entity\Program;
 use Parp\SsfzBundle\Entity\Sprawozdanie;
-use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
-use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
 use Parp\SsfzBundle\Entity\Umowa;
 use Parp\SsfzBundle\Repository\SprawozdanieRepository;
-use Parp\SsfzBundle\Repository\SprawozdaniePoreczenioweRepository;
-use Parp\SsfzBundle\Repository\SprawozdaniePozyczkoweRepository;
 
 /**
  * Dostęp do repozytorium sprawozdań
@@ -182,34 +178,6 @@ class SprawozdanieService
     }
     
     /**
-     * Znajduje odpowiednią encję Sprawozdanie... dla programu.
-     *
-     * @param Program|null $program
-     *
-     * @return string
-     */
-    public function jakaEncjaDlaProgramu(Program $program = null)
-    {
-        $programId =
-            null === $program
-            ? 0
-            : (int) $program->getId()
-        ;
-        
-        switch ($programId) {
-            case Program::FUNDUSZ_POZYCZKOWY_SPO_WKP_121:
-                return SprawozdaniePozyczkowe::class;
-
-            case Program::FUNDUSZ_PORECZENIOWY_SPO_WKP_122:
-                return SprawozdaniePoreczeniowe::class;
-
-            case Program::FUNDUSZ_ZALAZKOWY_POIG_31:
-            default:
-                return Sprawozdanie::class;
-        }
-    }
-    
-    /**
      * Ustawia repozytorium odpowiednio dla programu.
      *
      * @param Program|null $program
@@ -218,7 +186,7 @@ class SprawozdanieService
      */
     public function wyznaczRepozytoriumDlaProgramu(Program $program = null)
     {
-        $klasaEncji = $this->jakaEncjaDlaProgramu($program);
+        $klasaEncji = Program::jakaEncjaDlaProgramu($program);
 
         $this->sprawozdanieRepository = $this
             ->entityManager

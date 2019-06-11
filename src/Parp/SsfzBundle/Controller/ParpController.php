@@ -19,6 +19,7 @@ use Parp\SsfzBundle\Entity\Beneficjent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Parp\SsfzBundle\Entity\Spolka;
 use Parp\SsfzBundle\Entity\OkresyKonfiguracja;
+use Parp\SsfzBundle\Entity\Program;
 
 /**
  * @Route("/parp", name="parp")
@@ -34,7 +35,16 @@ class ParpController extends Controller
      */
     public function indexAction()
     {
-        $this->get('ssfz.service.datatable_parp_service')->datatableParp($this);
+        if (null === $this->getUser()->getAktywnyProgram()) {
+            return $this->redirectToRoute('uzytkownik_lista_programow');
+        }
+        
+        $programId = $this->getUser()->getAktywnyProgramId();
+
+        $this
+            ->get('ssfz.service.datatable_parp_service')
+            ->datatableParp($this, $programId)
+        ;
 
         return $this->render('SsfzBundle:Parp:index.html.twig');
     }
@@ -43,17 +53,22 @@ class ParpController extends Controller
      * Akcja oceń sprawozdanie
      *
      * @param Request $request request
+     * @param Umowa $umowa
      * @param int $idSprawozdania identyfikator sprawozdania
      *
-     * @Route("/ocen/{idSprawozdania}", name="ocen")
+     * @Route("/ocen/{umowa}/{idSprawozdania}", name="ocen")
      *
      * @return Response
      */
-    public function ocenAction(Request $request, $idSprawozdania)
+    public function ocenAction(Request $request, Umowa $umowa, $idSprawozdania)
     {
-        $uzytkownik = $this->get('security.token_storage')->getToken()->getUser();
+        $uzytkownik = $this->getUser();
         $entityManager = $this->getDoctrine()->getManager();
-        $sprawozdanie = $entityManager->getRepository(Sprawozdanie::class)->find($idSprawozdania);
+        $program = $umowa->getBeneficjent()->getProgram();
+        $klasaEncji = Program::jakaEncjaDlaProgramu($program);
+        $repoSprawozdanie = $entityManager->getRepository($klasaEncji);
+        
+        $sprawozdanie = $repoSprawozdanie->find($idSprawozdania);
         if (null == $sprawozdanie) {
             $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Nie znaleziono sprawozdania o podanym identyfikatorze.');
             return $this->redirectToRoute('parp');
@@ -87,7 +102,7 @@ class ParpController extends Controller
 
         $sprawozdanie->setOceniajacyId($uzytkownik->getId());
         $form = $this->createForm(SprawozdanieOcenType::class, $sprawozdanie);
-        $entityManager->getRepository(Sprawozdanie::class)->persist($sprawozdanie);
+        $repoSprawozdanie->persist($sprawozdanie);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
@@ -97,7 +112,7 @@ class ParpController extends Controller
                 if (2 !== $sprawozdanie->getStatus()) {
                     $sprawozdanie->setDataZatwierdzenia(new Carbon('Europe/Warsaw'));
                 }
-                $entityManager->getRepository(Sprawozdanie::class)->persist($sprawozdanie);
+                $repoSprawozdanie->persist($sprawozdanie);
 
                 return $this->redirectToRoute('parp');
             }
@@ -249,9 +264,11 @@ class ParpController extends Controller
      */
     public function parpGridAction()
     {
+        $programId = $this->getUser()->getAktywnyProgramId();
+
         return $this
             ->get('ssfz.service.datatable_parp_service')
-            ->datatableParp($this)
+            ->datatableParp($this, $programId)
             ->execute()
         ;
     }

@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Parp\SsfzBundle\Entity\AbstractSprawozdanie;
 
 /**
  * Typ formularza oceny sprawozdania
@@ -34,7 +35,7 @@ class SprawozdanieOcenType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => \Parp\SsfzBundle\Entity\Sprawozdanie::class,
+            'data_class' => AbstractSprawozdanie::class,
             'attr' => array('novalidate' => 'novalidate'),
         ));
     }

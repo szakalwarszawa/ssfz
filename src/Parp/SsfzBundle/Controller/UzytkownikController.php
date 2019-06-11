@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Parp\SsfzBundle\Entity\Uzytkownik;
 use Parp\SsfzBundle\Form\Type\UzytkownikType;
 use Parp\SsfzBundle\Entity\Rola;
+use Parp\SsfzBundle\Entity\Program;
 
 /**
  * Kontroler obsługujący funkcjonalności po stronie Użytkownika
@@ -78,5 +79,55 @@ class UzytkownikController extends Controller
         $komunikatyService->sukcesKomunikat('Konto zostało aktywowane. Proszę zalogować się.');
 
         return $this->redirectToRoute('login');
+    }
+
+    /**
+     * Po zalogowaniu do systemu, beneficjent wybiera z listy program do którego będzie tworzył sprawozdanie.
+     *
+     * @Route("/programy", name="uzytkownik_lista_programow")
+     *
+     * @return    Response
+     */
+    public function listaProgramowAction()
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $repoProgram = $entityManager->getRepository(Program::class);
+        
+        $programy = $repoProgram->findBy([], ['id' => 'ASC']);
+        
+        $uzytkownik = $this->getUser();
+        $uzytkownik->setAktywnyProgram(null);
+
+        return $this->render('SsfzBundle:Uzytkownik:lista_programow.html.twig', [
+            'programy' => $programy,
+        ]);
+    }
+
+    /**
+     * Zapis wybranego programu.
+     *
+     * @Route("/wybierz_program/{program}", name="uzytkownik_wybierz_program")
+     *
+     * @param Program $program
+     *
+     * @return    Response
+     */
+    public function wybierzProgramAction(Program $program)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        
+        $uzytkownik = $this->getUser();
+        $uzytkownik->setAktywnyProgram($program);
+        $entityManager->flush();
+
+        $rolaId = (int) $uzytkownik->getRola()->getId();
+        switch ($rolaId) {
+            case 3:
+                return $this->redirectToRoute('parp');
+
+            case 4:
+            default:
+                return $this->redirectToRoute('beneficjent');
+        }
     }
 }
