@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -38,7 +39,7 @@ class Program
     /**
      * Get id
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
