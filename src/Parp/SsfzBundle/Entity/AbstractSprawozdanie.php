@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Parp\SsfzBundle\Entity\Slownik\StatusSprawozdania;
 use Parp\SsfzBundle\Exception\KomunikatDlaBeneficjentaException;
 
 /**
@@ -86,11 +87,10 @@ class AbstractSprawozdanie
     protected $rok;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="status", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\StatusSprawozdania")
+     * @ORM\JoinColumn(name="status", referencedColumnName="id")
      */
-    protected $status;
+    protected $statusSprawozdania;
 
     /**
      * @var int
@@ -279,13 +279,23 @@ class AbstractSprawozdanie
     }
 
     /**
-     * zwraca status
+     * zwraca status - dla zgodności ze starym kodem
      *
      * @return int
      */
     public function getStatus()
     {
-        return $this->status;
+        return (int) $this->statusSprawozdania->getId();
+    }
+
+    /**
+     * zwraca status
+     *
+     * @return StatusSprawozdania
+     */
+    public function getStatusSprawozdania()
+    {
+        return $this->statusSprawozdania;
     }
 
     /**
@@ -461,13 +471,13 @@ class AbstractSprawozdanie
     /**
      * Ustawia status
      *
-     * @param int $status
+     * @param StatusSprawozdania $status
      */
-    public function setStatus($status)
+    public function setStatusSprawozdania(StatusSprawozdania $status)
     {
-        $this->status = $status;
-        if ($this->status && $this->id) {
-            $this->idStatus = $this->status . ',' . $this->id;
+        $this->statusSprawozdania = $status;
+        if (null !== $this->statusSprawozdania && $this->id) {
+            $this->idStatus = $this->statusSprawozdania->getId() . ',' . $this->id;
         }
     }
 
@@ -523,7 +533,7 @@ class AbstractSprawozdanie
         $idWlasciciela = (int) $this->umowa->getBeneficjent()->getUzytkownik()->getId();
 
         if ((int) $uzytkownik->getId() !== $idWlasciciela) {
-            throw new KomunikatDlaBeneficjentaException('Sprawozdanie należy do innego użytkownika.');
+            throw new KomunikatDlaBeneficjentaException('Nie można wyświetlić - sprawozdanie należy do innego użytkownika.');
         }
     }
     
@@ -539,7 +549,23 @@ class AbstractSprawozdanie
         $this->sprawdzCzyUzytkownikMozeWyswietlac($uzytkownik);
         
         if (null !== $this->dataPrzeslaniaDoParp) {
-            throw new KomunikatDlaBeneficjentaException('Sprawozdanie już przesłano do PARP.');
+            throw new KomunikatDlaBeneficjentaException('Nie można edytować - sprawozdanie już przesłano do PARP.');
+        }
+    }
+    
+    /**
+     * Wyrzuca wyjątek, jeśli użytkownik nie ma uprawnień do poprawy.
+     *
+     * @param Uzytkownik $uzytkownik
+     *
+     * @throws KomunikatDlaBeneficjentaException
+     */
+    public function sprawdzCzyUzytkownikMozePoprawiac(Uzytkownik $uzytkownik)
+    {
+        $this->sprawdzCzyUzytkownikMozeWyswietlac($uzytkownik);
+        
+        if (true !== $this->statusSprawozdania->czyPoprawa()) {
+            throw new KomunikatDlaBeneficjentaException('Nie można poprawiać - sprawozdanie już przesłano do PARP.');
         }
     }
 

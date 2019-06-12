@@ -73,7 +73,8 @@ class ParpController extends Controller
             $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Nie znaleziono sprawozdania o podanym identyfikatorze.');
             return $this->redirectToRoute('parp');
         }
-        if (2 !== $sprawozdanie->getStatus()) {
+        
+        if (true !== $sprawozdanie->getStatusSprawozdania()->czyPrzeslanoDoParp()) {
             $this->addFlash('notice', [
                 'alert'   => 'warning',
                 'title'   => '',
@@ -81,7 +82,7 @@ class ParpController extends Controller
             ]);
             return $this->redirectToRoute('parp_sprawozdanie', array('idSprawozdania' => $idSprawozdania));
         }
-        if (2 === $sprawozdanie->getStatus() && null !== $sprawozdanie->getOceniajacyId() && $uzytkownik->getId() !== $sprawozdanie->getOceniajacyId()) {
+        if ($sprawozdanie->getStatusSprawozdania()->czyPrzeslanoDoParp() && null !== $sprawozdanie->getOceniajacyId() && $uzytkownik->getId() !== $sprawozdanie->getOceniajacyId()) {
             $this->addFlash('notice', [
                 'alert'   => 'warning',
                 'title'   => '',
@@ -106,10 +107,9 @@ class ParpController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
-                if (2 === $sprawozdanie->getStatus()) {
+                if ($sprawozdanie->getStatusSprawozdania()->czyPrzeslanoDoParp()) {
                     $sprawozdanie->setOceniajacyId(null);
-                }
-                if (2 !== $sprawozdanie->getStatus()) {
+                } else {
                     $sprawozdanie->setDataZatwierdzenia(new Carbon('Europe/Warsaw'));
                 }
                 $repoSprawozdanie->persist($sprawozdanie);

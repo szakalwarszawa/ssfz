@@ -13,6 +13,7 @@ use Parp\SsfzBundle\Entity\Umowa;
 use Parp\SsfzBundle\Entity\Spolka;
 use Parp\SsfzBundle\Entity\Sprawozdanie;
 use Parp\SsfzBundle\Entity\OkresyKonfiguracja;
+use Parp\SsfzBundle\Entity\Slownik\StatusSprawozdania;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -159,7 +160,8 @@ class Fixtures implements FixtureInterface
         $sprawozdanie->setOkres('styczeń - czwerwiec');
         $sprawozdanie->setOkresId(0);
         $sprawozdanie->setRok(2016);
-        $sprawozdanie->setStatus(2);
+        $status = $manager->getRepository(StatusSprawozdania::class)->find(StatusSprawozdania::PRZESLANO_DO_PARP);
+        $sprawozdanie->setStatusSprawozdania($status);
         $sprawozdanie->setWersja(1);
         $sprawozdanie->setCzyNajnowsza(1);
         $manager->persist($sprawozdanie);
@@ -175,7 +177,8 @@ class Fixtures implements FixtureInterface
         $sprawozdanie2->setOkres('styczeń - czwerwiec');
         $sprawozdanie2->setOkresId(0);
         $sprawozdanie2->setRok(2017);
-        $sprawozdanie2->setStatus(1);
+        $status = $manager->getRepository(StatusSprawozdania::class)->find(StatusSprawozdania::EDYCJA);
+        $sprawozdanie2->setStatusSprawozdania($status);
         $sprawozdanie2->setWersja(1);
         $sprawozdanie2->setCzyNajnowsza(1);
         $manager->persist($sprawozdanie2);
@@ -191,7 +194,8 @@ class Fixtures implements FixtureInterface
         $sprawozdanie3->setOkres('styczeń - czwerwiec');
         $sprawozdanie3->setOkresId(0);
         $sprawozdanie3->setRok(2018);
-        $sprawozdanie3->setStatus(1);
+        $status = $manager->getRepository(StatusSprawozdania::class)->find(StatusSprawozdania::EDYCJA);
+        $sprawozdanie3->setStatusSprawozdania($status);
         $sprawozdanie3->setWersja(1);
         $sprawozdanie3->setCzyNajnowsza(1);
         $manager->persist($sprawozdanie3);
@@ -207,7 +211,8 @@ class Fixtures implements FixtureInterface
         $sprawozdanie4->setOkres('styczeń - czwerwiec');
         $sprawozdanie4->setOkresId(0);
         $sprawozdanie4->setRok(2019);
-        $sprawozdanie4->setStatus(4);
+        $status = $manager->getRepository(StatusSprawozdania::class)->find(StatusSprawozdania::POPRAWA);
+        $sprawozdanie4->setStatusSprawozdania($status);
         $sprawozdanie4->setWersja(1);
         $sprawozdanie4->setCzyNajnowsza(1);
         $manager->persist($sprawozdanie4);

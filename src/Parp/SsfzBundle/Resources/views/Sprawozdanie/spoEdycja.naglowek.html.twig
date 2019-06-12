@@ -1,0 +1,29 @@
+{% set sprawozdanie = form.vars.value %}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        {% if sprawozdanie.statusSprawozdania.czyPoprawa %}Poprawa{% else %}Edycja{% endif %} sprawozdania
+    </div>
+        {{ form_start(form, {'attr': {'id': 'form_sprawozdanie'}}) }}
+        <div class="panel-body">
+            <table class="table">
+                <tr>
+                    <td class="etykieta">Numer umowy</td>
+                    <td>{{ sprawozdanie.numerUmowy }}</td>
+                </tr>
+                <tr>
+                    <td class="etykieta">Sprawozdanie za okres</td>
+                    <td>{{ sprawozdanie.okres }}</td>
+                </tr>
+                <tr>
+                    <td class="etykieta">Rok</td>
+                    <td>{{ sprawozdanie.rok }}</td>
+                </tr>
+                {% if sprawozdanie.statusSprawozdania.czyPoprawa %}
+                    <tr>
+                        <td class="etykieta">Komentarz PARP</td>
+                        <td>{{ sprawozdanie.uwagi|nl2br }}</td>
+                    </tr>
+                {% endif %}
+            </table>
+            <hr>

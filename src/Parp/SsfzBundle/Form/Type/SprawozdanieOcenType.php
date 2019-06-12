@@ -25,7 +25,6 @@ class SprawozdanieOcenType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('uwagi', HiddenType::class, array());
-        $builder->add('status', HiddenType::class, array());
     }
     /**
      * Ustawia opcje konfiguracji
