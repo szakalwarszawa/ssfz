@@ -269,8 +269,7 @@ class SprawozdanieController extends Controller
         }
         if ($this->getRequest()->isMethod('POST') && $sprawozdanie->getStatus() == 1 && $sprawozdanie->getCreatorId() == $beneficjentId) {
             $dateNow = new DateTime('now');
-            $status = $entityManager->getRepository(StatusSprawozdania::class)->find(StatusSprawozdania::PRZESLANO_DO_PARP);
-            $sprawozdanie->setStatusSprawozdania($status);
+            $sprawozdanie->setStatus(StatusSprawozdania::PRZESLANO_DO_PARP);
             $sprawozdanie->setDataPrzeslaniaDoParp($dateNow);
             $this->getKomunikatyService()->sukcesKomunikat('Sprawozdanie wysłano do PARP', 'Wysyłka sprawozdania');
         }
@@ -290,7 +289,6 @@ class SprawozdanieController extends Controller
      */
     public function setDefaultValues($report, $umowa, $beneficjentId = null)
     {
-        $entityManager = $this->getDoctrine()->getManager();
         if (empty($beneficjentId)) {
             $beneficjentId = $umowa->getBeneficjent()->getId();
         }
@@ -299,8 +297,7 @@ class SprawozdanieController extends Controller
         $report->setWersja(1);
         $report->setUmowa($umowa);
         $report->setCzyNajnowsza(true);
-        $status = $entityManager->getRepository(StatusSprawozdania::class)->find(StatusSprawozdania::EDYCJA);
-        $report->setStatusSprawozdania($status);
+        $report->setStatus(StatusSprawozdania::EDYCJA);
         $creationDate = new DateTime('now');
         $report->setDataRejestracji($creationDate);
 
@@ -382,9 +379,7 @@ class SprawozdanieController extends Controller
      */
     public function setDefaultValuesAfterRepait($newReport, $report)
     {
-        $entityManager = $this->getDoctrine()->getManager();
-        $status = $entityManager->getRepository(StatusSprawozdania::class)->find(StatusSprawozdania::EDYCJA);
-        $newReport->setStatusSprawozdania($status);
+        $newReport->setStatusSprawozdania(StatusSprawozdania::EDYCJA);
         $newReport->setUwagi('');
         $newReport->setOceniajacyId(null);
         $newReport->setDataPrzeslaniaDoParp(null);
@@ -782,8 +777,7 @@ class SprawozdanieController extends Controller
         if ($sprawozdanie->getCzyDaneSaPrawidlowe()) {
             $entityManager = $this->getDoctrine()->getManager();
             
-            $status = $entityManager->getRepository(StatusSprawozdania::class)->find(StatusSprawozdania::PRZESLANO_DO_PARP);
-            $sprawozdanie->setStatusSprawozdania($status);
+            $sprawozdanie->setStatus(StatusSprawozdania::EDYCJA);
             $sprawozdanie->setDataPrzeslaniaDoParp(new DateTime());
             
             $entityManager->flush();
