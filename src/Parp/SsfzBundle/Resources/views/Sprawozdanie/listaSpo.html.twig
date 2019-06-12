@@ -36,7 +36,9 @@
                             <td>{{ sprawozdanie.rok }}</td>
                             <td>{{ sprawozdanie.okres }}</td>
                             <td>{{ sprawozdanie.nazwaFunduszu }}</td>
-                            <td>{{ sprawozdanie.status }}</td>
+                            <td>
+                                {% include 'SsfzBundle:Report:sprawozdanieStatus.html.twig' with {'dt_obj': sprawozdanie} %}
+                            </td>
                             <td>
                                 <a href="{{ path('sprawozdania_spo_podglad', {'czyPozyczkowe': czyPozyczkowe, 'sprawozdanieId': sprawozdanie.id}) }}" class="btn btn-sm btn-info" role="button">
                                     <span class="fas fa-eye-open"></span> Podgląd
@@ -48,6 +50,11 @@
                                     <span class="btn btn-sm btn-warning btn-send-to-parp" data-href="{{ path('sprawozdania_spo_przeslij', {'czyPozyczkowe': czyPozyczkowe, 'sprawozdanieId': sprawozdanie.id}) }}" role="button">
                                         <span class="fas fa-share-alt"></span> Prześlij do PARP
                                     </span>
+                                {% endif %}
+                                {% if 4 == sprawozdanie.status %}
+                                    <a href="{{ path('sprawozdania_spo_poprawa', {'czyPozyczkowe': czyPozyczkowe, 'sprawozdanieId': sprawozdanie.id}) }}" class="btn btn-sm btn-primary" role="button"><span class="fas fa-edit"></span> Popraw</a>
+                                {% else %}
+                                    <span class="btn btn-sm btn-danger" ><span class="fas fa-upload"></span>&nbsp Przesłany &nbsp</span>
                                 {% endif %}
                             </td>
                         </tr>

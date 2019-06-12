@@ -1,0 +1,22 @@
+                <div id="form-submit-div" class="row btn-toolbar">
+                    {% if tylkoDoOdczytu %}
+                        <a class="btn btn-danger pull-right width-short" href="{{ path('lista_sprawozdan_spo', {'umowa': sprawozdanie.umowa.id}) }}">
+                            <span class="glyphicon glyphicon-chevron-left"></span> Powrót
+                        </a>
+                    {% else %}
+                        <button
+                            id="btn_powrot"
+                            type="button"
+                            class="btn btn-danger pull-right width-short"
+                            data-href-powrot="{{ path('lista_sprawozdan_spo', {'umowa': sprawozdanie.umowa.id}) }}"
+                        >
+                            <span class="glyphicon glyphicon-chevron-left"></span> Powrót
+                        </button>
+                        <input name="zapisz" value="Zapisz" type="submit" class="btn btn-primary pull-right width-short" />
+                    {% endif %}
+                </div>
+            </div>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+            {{ form_end(form) }}
+        </div>
+    </div>

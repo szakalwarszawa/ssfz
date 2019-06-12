@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Parp\SsfzBundle\Exception\KomunikatDlaBeneficjentaException;
+use Parp\SsfzBundle\Entity\Slownik\StatusSprawozdania;
 
 /**
  * AbstractSprawozdanie
@@ -523,7 +524,7 @@ class AbstractSprawozdanie
         $idWlasciciela = (int) $this->umowa->getBeneficjent()->getUzytkownik()->getId();
 
         if ((int) $uzytkownik->getId() !== $idWlasciciela) {
-            throw new KomunikatDlaBeneficjentaException('Sprawozdanie należy do innego użytkownika.');
+            throw new KomunikatDlaBeneficjentaException('Nie można wyświetlić - sprawozdanie należy do innego użytkownika.');
         }
     }
     
@@ -539,7 +540,23 @@ class AbstractSprawozdanie
         $this->sprawdzCzyUzytkownikMozeWyswietlac($uzytkownik);
         
         if (null !== $this->dataPrzeslaniaDoParp) {
-            throw new KomunikatDlaBeneficjentaException('Sprawozdanie już przesłano do PARP.');
+            throw new KomunikatDlaBeneficjentaException('Nie można edytować - sprawozdanie już przesłano do PARP.');
+        }
+    }
+    
+    /**
+     * Wyrzuca wyjątek, jeśli użytkownik nie ma uprawnień do poprawy.
+     *
+     * @param Uzytkownik $uzytkownik
+     *
+     * @throws KomunikatDlaBeneficjentaException
+     */
+    public function sprawdzCzyUzytkownikMozePoprawiac(Uzytkownik $uzytkownik)
+    {
+        $this->sprawdzCzyUzytkownikMozeWyswietlac($uzytkownik);
+        
+        if (StatusSprawozdania::POPRAWA !== $this->status) {
+            throw new KomunikatDlaBeneficjentaException('Nie można poprawiać - sprawozdanie już przesłano do PARP.');
         }
     }
 

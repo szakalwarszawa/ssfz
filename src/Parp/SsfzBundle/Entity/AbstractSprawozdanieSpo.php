@@ -948,4 +948,22 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
     {
         return $this->czyDaneSaPrawidlowe;
     }
+
+    /**
+     * Magic method
+     */
+    public function __clone()
+    {
+        foreach ($this->skladnikiOgolem as $klucz => $skladnik) {
+            $klon = clone $skladnik;
+            $klon->setSprawozdanie($this);
+            $this->skladnikiOgolem[$klucz] = $klon;
+        }
+
+        foreach ($this->skladnikiWydzielone as $klucz => $skladnik) {
+            $klon = clone $skladnik;
+            $klon->setSprawozdanie($this);
+            $this->skladnikiWydzielone[$klucz] = $klon;
+        }
+    }
 }
