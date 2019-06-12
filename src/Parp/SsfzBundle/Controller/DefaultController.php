@@ -11,8 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class DefaultController extends Controller
 {
     /**
-     * Metoda kierująca użytkowników na odpowiednią część systemu,
-     * zgodnie z rolą uwierzytelnionego użytkownika
+     * Przekierowuje użytkownika do właściwej dla jego roli część aplikacji.
      *
      * @Route(path = "/", name="default")
      *
@@ -20,12 +19,17 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $rola = $this->get('security.authorization_checker');
-        if ($rola->isGranted('ROLE_BENEFICJENT')) {
+        $role = $this->get('security.authorization_checker');
+
+        if ($role->isGranted('ROLE_BENEFICJENT')) {
             return $this->redirectToRoute('beneficjent');
-        } else if ($rola->isGranted('ROLE_ADMINISTRATOR_TECHNICZNY')) {
+        }
+
+        if ($role->isGranted('ROLE_ADMINISTRATOR_TECHNICZNY')) {
             return $this->redirectToRoute('administrator');
-        } else if ($rola->isGranted('ROLE_PRACOWNIK_PARP') || $rola->isGranted('ROLE_KOORDYNATOR_MERYTORYCZNY')) {
+        }
+
+        if ($role->isGranted('ROLE_PRACOWNIK_PARP') || $role->isGranted('ROLE_KOORDYNATOR_MERYTORYCZNY')) {
             return $this->redirectToRoute('parp');
         }
 
