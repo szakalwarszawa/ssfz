@@ -6,6 +6,7 @@ use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 
 /**
+ * Migracja 20190611114424.
  * Zgloszenie https://redmine.parp.gov.pl/issues/68597
  */
 class Version20190611114424 extends AbstractMigration
@@ -28,9 +29,11 @@ class Version20190611114424 extends AbstractMigration
     {
         $this->abortIf(true, 'Not supported.');
         
+        /*
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-//        $this->addSql('ALTER TABLE sfz_sprawozdanie_poreczeniowe DROP uwagi');
-//        $this->addSql('ALTER TABLE sfz_sprawozdanie_pozyczkowe DROP uwagi');
+        $this->addSql('ALTER TABLE sfz_sprawozdanie_poreczeniowe DROP uwagi');
+        $this->addSql('ALTER TABLE sfz_sprawozdanie_pozyczkowe DROP uwagi');
+        */
     }
 }
