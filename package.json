@@ -5,6 +5,7 @@
     "private": true,
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.8.2",
+        "accounting": "^0.4.1",
         "bootbox": "^4.4.0",
         "bootstrap": "^3.3.7",
         "bootstrap-datepicker": "^1.7.1",
