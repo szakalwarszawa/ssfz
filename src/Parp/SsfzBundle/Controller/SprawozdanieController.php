@@ -18,6 +18,7 @@ use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
 use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
 use Parp\SsfzBundle\Entity\PrzeplywFinansowy;
 use Parp\SsfzBundle\Entity\OkresyKonfiguracja;
+use Parp\SsfzBundle\Entity\Status2;
 use Parp\SsfzBundle\Exception\KomunikatDlaBeneficjentaException;
 use Parp\SsfzBundle\Form\Type\SprawozdanieType;
 use Parp\SsfzBundle\Form\Type\SprawozdaniePozyczkoweType;
