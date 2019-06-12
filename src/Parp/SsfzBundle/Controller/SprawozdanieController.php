@@ -50,6 +50,7 @@ class SprawozdanieController extends Controller
         $this->getSprawozdanieService()->datatableSprawozdanie($this, $umowa);
         $report = new Sprawozdanie();
         $report->setNumerUmowy($this->getNumerUmowy($umowaId, $beneficjentId));
+        $report->setUmowa($umowa);
         $spolki = $this->getSpolkiList($umowaId);
         $report = $this->setSpolki($spolki, $report);
         $okresy = $this->getOkresySprawozdawcze();
@@ -175,7 +176,7 @@ class SprawozdanieController extends Controller
     }
 
     /**
-     * @Route("sprawozdanie/poprawa/{umowaId}/{reportId}")
+     * @Route("sprawozdanie/poprawa/{umowaId}/{reportId}", name="sprawozdanie_poprawa")
      *
      * @param Request $request
      * @param int     $umowaId
