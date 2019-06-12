@@ -51,7 +51,7 @@
                                         <span class="fas fa-share-alt"></span> Prześlij do PARP
                                     </span>
                                 {% endif %}
-                                {% if 4 == sprawozdanie.status %}
+                                {% if sprawozdanie.czyStatusWTrakciePoprawy and sprawozdanie.czyNajnowsza %}
                                     <a href="{{ path('sprawozdania_spo_poprawa', {'czyPozyczkowe': czyPozyczkowe, 'sprawozdanieId': sprawozdanie.id}) }}" class="btn btn-sm btn-primary" role="button"><span class="fas fa-edit"></span> Popraw</a>
                                 {% else %}
                                     <span class="btn btn-sm btn-danger" ><span class="fas fa-upload"></span>&nbsp Przesłany &nbsp</span>

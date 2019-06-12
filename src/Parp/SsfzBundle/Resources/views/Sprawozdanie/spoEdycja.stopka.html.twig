@@ -1,18 +1,20 @@
                 <div id="form-submit-div" class="row btn-toolbar">
-                    {% if tylkoDoOdczytu %}
-                        <a class="btn btn-danger pull-right width-short" href="{{ path('lista_sprawozdan_spo', {'umowa': sprawozdanie.umowa.id}) }}">
-                            <span class="glyphicon glyphicon-chevron-left"></span> Powrót
-                        </a>
-                    {% else %}
-                        <button
-                            id="btn_powrot"
-                            type="button"
-                            class="btn btn-danger pull-right width-short"
-                            data-href-powrot="{{ path('lista_sprawozdan_spo', {'umowa': sprawozdanie.umowa.id}) }}"
-                        >
-                            <span class="glyphicon glyphicon-chevron-left"></span> Powrót
-                        </button>
-                        <input name="zapisz" value="Zapisz" type="submit" class="btn btn-primary pull-right width-short" />
+                    {% if app.user.rola =='ROLE_BENEFICJENT' %}
+                        {% if tylkoDoOdczytu %}
+                            <a class="btn btn-danger pull-right width-short" href="{{ path('lista_sprawozdan_spo', {'umowa': sprawozdanie.umowa.id}) }}">
+                                <span class="glyphicon glyphicon-chevron-left"></span> Powrót
+                            </a>
+                        {% else %}
+                            <button
+                                id="btn_powrot"
+                                type="button"
+                                class="btn btn-danger pull-right width-short"
+                                data-href-powrot="{{ path('lista_sprawozdan_spo', {'umowa': sprawozdanie.umowa.id}) }}"
+                            >
+                                <span class="glyphicon glyphicon-chevron-left"></span> Powrót
+                            </button>
+                            <input name="zapisz" value="Zapisz" type="submit" class="btn btn-primary pull-right width-short" />
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>

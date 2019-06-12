@@ -379,7 +379,7 @@ class SprawozdanieController extends Controller
      */
     public function setDefaultValuesAfterRepait($newReport, $report)
     {
-        $newReport->setStatusSprawozdania(StatusSprawozdania::EDYCJA);
+        $newReport->setStatus(StatusSprawozdania::EDYCJA);
         $newReport->setUwagi('');
         $newReport->setOceniajacyId(null);
         $newReport->setDataPrzeslaniaDoParp(null);
@@ -606,7 +606,7 @@ class SprawozdanieController extends Controller
                     'sprawozdania_spo_edycja',
                     array(
                         'czyPozyczkowe' => $czyPozyczkowe,
-                        'sprawozdanie' => $sprawozdanie->getId()
+                        'sprawozdanieId' => $sprawozdanie->getId()
                     )
                 );
             }
@@ -615,7 +615,6 @@ class SprawozdanieController extends Controller
         $listaSprawozdan = $repoSprawozdanie->findBy(
             [
                 'creatorId' => (int) $umowa->getBeneficjent()->getId(),
-                'czyNajnowsza' => (string) true,
                 'umowa' => $umowa
             ],
             ['rok' => 'ASC', 'okresId' => 'ASC', 'id' => 'ASC']
@@ -777,7 +776,7 @@ class SprawozdanieController extends Controller
         if ($sprawozdanie->getCzyDaneSaPrawidlowe()) {
             $entityManager = $this->getDoctrine()->getManager();
             
-            $sprawozdanie->setStatus(StatusSprawozdania::EDYCJA);
+            $sprawozdanie->setStatus(StatusSprawozdania::PRZESLANO_DO_PARP);
             $sprawozdanie->setDataPrzeslaniaDoParp(new DateTime());
             
             $entityManager->flush();

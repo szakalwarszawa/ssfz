@@ -539,6 +539,10 @@ class AbstractSprawozdanie
     {
         $this->sprawdzCzyUzytkownikMozeWyswietlac($uzytkownik);
         
+        if (!$this->czyNajnowsza) {
+            throw new KomunikatDlaBeneficjentaException('Nie można edytować starych kopii sprawozdań.');
+        }
+        
         if (null !== $this->dataPrzeslaniaDoParp) {
             throw new KomunikatDlaBeneficjentaException('Nie można edytować - sprawozdanie już przesłano do PARP.');
         }
@@ -555,9 +559,23 @@ class AbstractSprawozdanie
     {
         $this->sprawdzCzyUzytkownikMozeWyswietlac($uzytkownik);
         
+        if (!$this->czyNajnowsza) {
+            throw new KomunikatDlaBeneficjentaException('Nie można poprawiać starych kopii sprawozdań.');
+        }
+        
         if (StatusSprawozdania::POPRAWA !== $this->status) {
             throw new KomunikatDlaBeneficjentaException('Nie można poprawiać - sprawozdanie już przesłano do PARP.');
         }
+    }
+    
+    /**
+     * Informuje, czy status sprawozdania to w trakcie poprawy.
+     *
+     * @return bool
+     */
+    public function czyStatusWTrakciePoprawy()
+    {
+        return (StatusSprawozdania::POPRAWA === $this->status);
     }
 
     /**

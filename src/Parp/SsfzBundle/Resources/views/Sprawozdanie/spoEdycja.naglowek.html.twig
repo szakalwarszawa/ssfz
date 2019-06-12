@@ -2,7 +2,14 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        {% if 4 == sprawozdanie.status %}Poprawa{% else %}Edycja{% endif %} sprawozdania
+    {% if tylkoDoOdczytu %}
+            Podgląd
+    {% elseif sprawozdanie.czyStatusWTrakciePoprawy %}
+            Poprawa
+    {% else %}
+        Edycja
+    {% endif %}
+    sprawozdania
     </div>
         {{ form_start(form, {'attr': {'id': 'form_sprawozdanie'}}) }}
         <div class="panel-body">
@@ -19,7 +26,7 @@
                     <td class="etykieta">Rok</td>
                     <td>{{ sprawozdanie.rok }}</td>
                 </tr>
-                {% if 4 == sprawozdanie.status %}
+                {% if sprawozdanie.czyStatusWTrakciePoprawy %}
                     <tr>
                         <td class="etykieta">Komentarz PARP</td>
                         <td>{{ sprawozdanie.uwagi|nl2br }}</td>

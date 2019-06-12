@@ -66,6 +66,7 @@ class ParpController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $program = $umowa->getBeneficjent()->getProgram();
         $klasaEncji = Program::jakaEncjaDlaProgramu($program);
+        $klasaFormularza = Program::jakiFormularzDlaProgramu($program);
         $repoSprawozdanie = $entityManager->getRepository($klasaEncji);
         
         $sprawozdanie = $repoSprawozdanie->find($idSprawozdania);
@@ -90,7 +91,7 @@ class ParpController extends Controller
             return $this->redirectToRoute('parp_sprawozdanie', array('idSprawozdania' => $idSprawozdania));
         }
         $okresy = $this->getOkresySprawozdawcze();
-        $formS = $this->createForm(SprawozdanieType::class, $sprawozdanie, array('disabled' => true, 'okresy' => $okresy));
+        $formS = $this->createForm($klasaFormularza, $sprawozdanie, array('disabled' => true, 'okresy' => $okresy));
         $przeplyw = $entityManager
             ->getRepository(PrzeplywFinansowy::class)
             ->findBy(['sprawozdanieId' => $sprawozdanie->getId()])
@@ -123,6 +124,7 @@ class ParpController extends Controller
             'sprawozdanie' => $sprawozdanie,
             'formS'        => $formS->createView(),
             'formP'        => $formP,
+            'program'      => $program,
         ]);
     }
 

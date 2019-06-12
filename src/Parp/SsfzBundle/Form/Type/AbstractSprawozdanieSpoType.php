@@ -518,6 +518,7 @@ class AbstractSprawozdanieSpoType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => AbstractSprawozdanieSpo::class,
             'allow_extra_fields' => true,
+            'okresy' => null, // nieużywane, tylko dla zgodności ze starym kodem
         ));
     }
 }
