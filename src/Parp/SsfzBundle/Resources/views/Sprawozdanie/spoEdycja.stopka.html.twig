@@ -1,5 +1,5 @@
                 <div id="form-submit-div" class="row btn-toolbar">
-                    {% if app.user.rola =='ROLE_BENEFICJENT' %}
+                    {% if app.user.rola == 'ROLE_BENEFICJENT' %}
                         {% if tylkoDoOdczytu %}
                             <a class="btn btn-danger pull-right width-short" href="{{ path('lista_sprawozdan_spo', {'umowa': sprawozdanie.umowa.id}) }}">
                                 <span class="glyphicon glyphicon-chevron-left"></span> Powrót
