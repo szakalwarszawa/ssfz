@@ -58,7 +58,7 @@ class SprawozdanieService
     {
         $beneficjent = $umowa->getBeneficjent();
         $program = $beneficjent->getProgram();
-        $klasaEncji = $this->jakaEncjaDlaProgramu($program);
+        $klasaEncji = Program::jakaEncjaDlaProgramu($program);
         
         $tabRenderers = array(
                 0 => array(
