@@ -308,8 +308,8 @@
     <script>
         $(document).ready(function () {
             function sumByGroup() {
-                var groupsInteger = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
-                    groupsDecimal = ["13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"],
+                var groupsInteger = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+                    groupsDecimal = ['13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'],
                     sum = 0
                 ;
 
@@ -325,17 +325,20 @@
                     $('[data-vertical-group='+value+']').each(function () {
                         sum = sum + parseFloat($(this).maskMoney('unmasked')[0]);
                     });
-                    sum = round(sum, 2);
+
+                    sum = accounting.toFixed(sum, 2);
+                    sum = accounting.formatMoney(sum, {
+                        symbol: ' zł',
+                        precision: 2,
+                        decinal: '.',
+                        thousand: ' ',
+                        format: "%v%s"
+                    });
+
                     $('[data-vertical-group-sum='+value+']').text(sum);
                     sum = 0;
                 });
             }
-
-            function round(value, decimals) {
-                return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
-            }
-
-            sumByGroup();
 
             $('[data-vertical-group]').change(function () {
                 sumByGroup();
@@ -353,6 +356,8 @@
                 allowEmpty: false,
                 reverse: false
             });
+
+            sumByGroup();
         });
     </script>
 {% endblock %}
