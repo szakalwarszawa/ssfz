@@ -22,7 +22,39 @@ use Parp\SsfzBundle\Form\Type\DanePozyczkiType;
 class PozyczkiController extends Controller
 {
     /**
-     * Wyświetla formularz danych pożyczki.
+     * Wyświetla formularz danych pożyczki na podstawie ID sprawozdania, do którego należy.
+     *
+     * @Method({"GET"})
+     * @Route("dane_pozyczki/sprawozdanie/{id}", name="edycja_danych_pozyczki_dla_sprawozdania")
+     *
+     * @param Request $request
+     * @param int $id Identyfikator sprawozdania
+     *
+     * @return Response
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function edytujDanePozyczkiDlaSprawozdaniaAction(Request $request, int $id): Response
+    {
+        $entityManager = $this
+            ->getDoctrine()
+            ->getManager()
+        ;
+
+        $danePozyczki = $entityManager
+            ->getRepository(DanePozyczki::class)
+            ->findOneByIdSprawozdania($id)
+        ;
+        if (!$danePozyczki) {
+            return $this->utworzDanePozyczkiAction($request, $id);
+        }
+
+        return $this->edytujDanePozyczkiAction($request, $danePozyczki->getId());
+    }
+
+
+    /**
+     * Wyświetla formularz danych pożyczki na podstawie jej ID.
      *
      * @Method({"GET", "POST"})
      * @Route("dane_pozyczki/{id}", name="edycja_danych_pozyczki")
@@ -49,7 +81,7 @@ class PozyczkiController extends Controller
             throw new EntityNotFoundException('Nie znaleziono danych pożyczki o ID: '.(string) $id);
         }
 
-        $actionUrl = $this->generateUrl('formularz_danych_pozyczki', [
+        $actionUrl = $this->generateUrl('edycja_danych_pozyczki', [
             'id' => $id,
         ]);
         $formularz = $this->createForm(DanePozyczkiType::class, $danePozyczki, [

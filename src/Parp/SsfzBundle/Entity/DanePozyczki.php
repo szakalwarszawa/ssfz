@@ -2885,6 +2885,62 @@ class DanePozyczki
         return (string) $this->id;
     }
 
+    /**
+     * Konwertuje dowolną wartość na ciąg tekstowy reprezentujący liczbę z określną dokładnością.
+     *
+     * Wartości, które nie mogą zostać sensowanie przekonwertowane są zamieniane na wartość zerową
+     * z zadaną liczbą miejsc po przecinku.
+     *
+     * @param mixed $input Wartość do konwersji.
+     * @param int|null $scale Liczba miejsc po przecinku (null zachowuje stan wejściowy).
+     * @param bool $unsigned Czy konwertować do liczby dodatniej?
+     * @param string $decimalSeparator Separator części dziesiętnej.
+     *
+     * @return string
+     */
+    public function anyToDecimalString(
+        string $input,
+        ?int $scale = 2,
+        bool $unsigned = false,
+        string $decimalSeparator = '.'
+    ) {
+        $input = trim((string) $input);
+
+        $scale = ($scale !== null) ? abs($scale) : null;
+        
+        $isNegative = ('-' === substr($input, 0, 1));
+        $input = preg_replace('#[^0-9'.$decimalSeparator.'\.]#', '', $input);
+        $hasFraction = is_integer(strpos($input, '.'));
+
+        $defaultFraction = '0';
+        if (!$hasFraction) {
+            $defaultFraction = (int) $scale > 0 ? str_pad('', (int) $scale, '0') : $defaultFraction;
+            $input .= '.'.$defaultFraction;
+        }
+        $inputArr = explode('.', $input);
+
+        $integer = isset($inputArr[0]) ? $inputArr[0] : '0';
+
+        $fraction = '';
+        if (isset($inputArr[1])) {
+            if ((int) $scale > 0) {
+                $fraction = str_pad($inputArr[1], (int) $scale, '0');
+                $fraction = substr($fraction, 0, $scale);
+            }
+
+            if ($scale === null) {
+                $fraction = $inputArr[1];
+            }
+        }
+        $fraction = (string) $fraction !== '' ? '.'.$fraction : '';
+      
+        $decimalString = $integer.$fraction;
+        if (((float) $decimalString > 0) && $isNegative && !$unsigned) {
+            $decimalString = '-' . $decimalString;
+        }
+        
+        return $decimalString;
+    }
 
     /**
      * Zwraca iwartość dentyfikatora.
@@ -2894,20 +2950,6 @@ class DanePozyczki
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Ustala wartość identyfikatora.
-     *
-     * @param int  $id
-     *
-     * @return DanePozyczki
-     */
-    public function setId(int $id)
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     /**

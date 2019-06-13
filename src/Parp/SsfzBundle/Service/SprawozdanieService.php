@@ -60,45 +60,44 @@ class SprawozdanieService
         $program = $beneficjent->getProgram();
         $klasaEncji = Program::jakaEncjaDlaProgramu($program);
         
-        $tabRenderers = array(
-                0 => array(
-                    'view' => 'SsfzBundle:Report:sprawozdanieStatus.html.twig',
-                ),
-                4 => array(
-                    'view' => 'SsfzBundle:Report:sprawozdanieActions.html.twig',
-                )
-            )
-        ;
+        $tabRenderers = [
+            0 => [
+                'view' => 'SsfzBundle:Report:sprawozdanieStatus.html.twig',
+            ],
+            4 => [
+                'view' => 'SsfzBundle:Report:sprawozdanieActions.html.twig',
+            ]
+        ];
         
         if (Program::FUNDUSZ_ZALAZKOWY_POIG_31 === (int) $program->getId()) {
-            $tabRenderers[3] = array(
+            $tabRenderers[3] = [
                 'view' => 'SsfzBundle:Report:sprawozdanieSpolki.html.twig',
-            );
+            ];
         }
         
-        return $parentObject->get('datatable')
-                ->setDatatableId('dta-sprawozdanie')
-                ->setEntity($klasaEncji, 'r')
-                ->setFields(
-                    array(
-                        'Status' => 'r.status',
-                        'Rok' => 'r.rok',
-                        'Okres' => 'r.okres',
-                        'Nazwa spółki' => 'r.id',
-                        ' ' => 'r.id',
-                        '_identifier_' => 'r.id',
-                    )
-                )
-                ->setRenderers($tabRenderers)
-                ->setWhere(
-                    'r.creatorId = :creatorId and r.umowaId = :umowaId and r.czyNajnowsza = :czyNajnowsza',
-                    array(
-                        'creatorId' => (string) $beneficjent->getId(),
-                        'czyNajnowsza' => (string) true,
-                        'umowaId' => (string) $umowa->getId(),
-                    )
-                )
-                ->setOrder('r.dataRejestracji', 'desc');
+        return $parentObject
+            ->get('datatable')
+            ->setDatatableId('dta-sprawozdanie')
+            ->setEntity($klasaEncji, 'r')
+            ->setFields([
+                'Status'       => 'r.status',
+                'Rok'          => 'r.rok',
+                'Okres'        => 'r.okres',
+                'Nazwa spółki' => 'r.id',
+                ' '            => 'r.id',
+                '_identifier_' => 'r.id',
+            ])
+            ->setRenderers($tabRenderers)
+            ->setWhere(
+                'r.creatorId = :creatorId and r.umowaId = :umowaId and r.czyNajnowsza = :czyNajnowsza',
+                [
+                    'creatorId' => (string) $beneficjent->getId(),
+                    'czyNajnowsza' => (string) true,
+                    'umowaId' => (string) $umowa->getId(),
+                ]
+            )
+            ->setOrder('r.dataRejestracji', 'desc')
+        ;
     }
 
     /**
@@ -115,11 +114,11 @@ class SprawozdanieService
         $parentObject
             ->get('session')
             ->getFlashBag()
-            ->add('notice', array(
-                'alert' => 'success',
-                'title' => $title,
+            ->add('notice', [
+                'alert'   => 'success',
+                'title'   => $title,
                 'message' => $message
-            ));
+            ]);
     }
 
     /**
@@ -136,15 +135,17 @@ class SprawozdanieService
         $parentObject
             ->get('session')
             ->getFlashBag()
-            ->add('notice', array(
-                'alert' => 'danger',
-                'title' => $title,
+            ->add('notice', [
+                'alert'   => 'danger',
+                'title'   => $title,
                 'message' => $message
-            ));
+            ]);
     }
 
     /**
      * Sprawdza uprawnienia do sprawozdania
+     *
+     * @todo Serio HTTP Not Found 404 jeśli brak uprawnień?
      *
      * @param Sprawozdanie $report
      * @param int          $beneficjentId

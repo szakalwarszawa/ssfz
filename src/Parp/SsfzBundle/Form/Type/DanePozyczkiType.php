@@ -25,21 +25,6 @@ class DanePozyczkiType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->setAction($options['action_url']);
-    
-        $builder->add('id', HiddenType::class, [
-            'label'       => 'ID',
-            'attr'        => [
-                'class' => 'decimal',
-            ],
-            'constraints' => [
-                new Assert\NotBlank([
-                    'message' => 'Należy wypełnić pole',
-                ]),
-            ]
-        ]);
-
-        // protected $sprawozdanie;
-
         $this->addIntegerFields($builder, $options);
         $this->addDecimalFields($builder, $options);
     }

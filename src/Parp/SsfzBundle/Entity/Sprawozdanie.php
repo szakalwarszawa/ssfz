@@ -33,7 +33,7 @@ class Sprawozdanie extends AbstractSprawozdanie
     /**
      * Ustawia status powiadomienia
      *
-     * @param type $powiadomienieWyslane
+     * @param int $powiadomienieWyslane
      */
     public function setPowiadomienieWyslane($powiadomienieWyslane)
     {
@@ -43,7 +43,7 @@ class Sprawozdanie extends AbstractSprawozdanie
     /**
      * Set sprawozdaniaSpolek
      *
-     * @param  SprawozdanieSpolki $spr
+     * @param SprawozdanieSpolki $spr
      *
      * @return Sprawozdanie
      */

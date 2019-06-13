@@ -81,11 +81,11 @@ class DanePozyczkiRepository extends EntityRepository
      *
      * @param int $idSprawozdania
      *
-     * @return array|DanePozyczki[]
+     * @return null|DanePozyczki
      */
-    public function findByIdSprawozdania(int $idSprawozdania): array
+    public function findOneByIdSprawozdania(int $idSprawozdania): ?DanePozyczki
     {
-        return $this
+        $result = $this
             ->createQueryBuilder('dp')
             ->leftJoin('dp.sprawozdanie', 's')
             ->where('s.id = :idSprawozdania')
@@ -93,5 +93,7 @@ class DanePozyczkiRepository extends EntityRepository
             ->getQuery()
             ->getResult()
         ;
+
+        return (count($result) > 0) ? $result[0] : null;
     }
 }

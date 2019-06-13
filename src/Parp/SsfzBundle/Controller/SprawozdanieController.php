@@ -601,13 +601,10 @@ class SprawozdanieController extends Controller
                 $entityManager->persist($sprawozdanie);
                 $entityManager->flush();
                 $this->getKomunikatyService()->sukcesKomunikat('Dodano nowe sprawozdanie.');
-                return $this->redirectToRoute(
-                    'sprawozdania_spo_edycja',
-                    array(
-                        'czyPozyczkowe' => $czyPozyczkowe,
-                        'sprawozdanie' => $sprawozdanie->getId()
-                    )
-                );
+                return $this->redirectToRoute('sprawozdania_spo_edycja', [
+                    'czyPozyczkowe'  => $czyPozyczkowe,
+                    'sprawozdanieId' => $sprawozdanie->getId()
+                ]);
             }
         }
         
@@ -616,15 +613,12 @@ class SprawozdanieController extends Controller
             ['rok' => 'ASC', 'okresId' => 'ASC', 'id' => 'ASC']
         );
 
-        return $this->render(
-            'SsfzBundle:Sprawozdanie:listaSpo.html.twig',
-            array(
-                'umowa' => $umowa,
-                'czyPozyczkowe' => (int) $czyPozyczkowe,
-                'listaSprawozdan' => $listaSprawozdan,
-                'form' => $form->createView(),
-            )
-        );
+        return $this->render('SsfzBundle:Sprawozdanie:listaSpo.html.twig', [
+            'umowa'           => $umowa,
+            'czyPozyczkowe'   => (int) $czyPozyczkowe,
+            'listaSprawozdan' => $listaSprawozdan,
+            'form'            => $form->createView(),
+        ]);
     }
 
     /**
@@ -674,18 +668,14 @@ class SprawozdanieController extends Controller
                 
                 $czyPowrot = empty($request->get('zapisz'));
                 if ($czyPowrot) {
-                    return $this->redirectToRoute(
-                        'lista_sprawozdan_spo',
-                        array('umowa' => $sprawozdanie->getUmowa()->getId())
-                    );
+                    return $this->redirectToRoute('lista_sprawozdan_spo', [
+                        'umowa' => $sprawozdanie->getUmowa()->getId(),
+                    ]);
                 } else {
-                    return $this->redirectToRoute(
-                        'sprawozdania_spo_edycja',
-                        array(
-                            'czyPozyczkowe' => $czyPozyczkowe,
-                            'sprawozdanie' => $sprawozdanie->getId()
-                        )
-                    );
+                    return $this->redirectToRoute('sprawozdania_spo_edycja', [
+                        'czyPozyczkowe'  => $czyPozyczkowe,
+                        'sprawozdanieId' => $sprawozdanie->getId()
+                    ]);
                 }
             } else {
                 $bledy = [];
