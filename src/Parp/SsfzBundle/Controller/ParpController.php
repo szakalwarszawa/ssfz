@@ -39,11 +39,11 @@ class ParpController extends Controller
             return $this->redirectToRoute('uzytkownik_lista_programow');
         }
         
-        $programId = $this->getUser()->getAktywnyProgramId();
+        $program = $this->getUser()->getAktywnyProgram();
 
         $this
             ->get('ssfz.service.datatable_parp_service')
-            ->datatableParp($this, $programId)
+            ->datatableParp($this, $program)
         ;
 
         return $this->render('SsfzBundle:Parp:index.html.twig');
@@ -266,11 +266,11 @@ class ParpController extends Controller
      */
     public function parpGridAction()
     {
-        $programId = $this->getUser()->getAktywnyProgramId();
+        $program = $this->getUser()->getAktywnyProgram();
 
         return $this
             ->get('ssfz.service.datatable_parp_service')
-            ->datatableParp($this, $programId)
+            ->datatableParp($this, $program)
             ->execute()
         ;
     }
