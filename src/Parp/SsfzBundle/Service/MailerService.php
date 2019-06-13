@@ -81,7 +81,6 @@ class MailerService
             ->addPart($body['body_html'], 'text/html')
         ;
         $this->mailer->send($message);
-        exit;
     }
 
     /**

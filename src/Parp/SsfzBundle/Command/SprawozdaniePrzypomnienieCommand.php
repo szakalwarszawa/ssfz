@@ -109,7 +109,7 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand
                                             'nrUmowy' => $nrUmowy,
                                             'dzien' => $this->dzisiejszaData->format('Y-m-d')
                                         );
-                                        $this->getMailerService()->sendMailTopicInTemplate($beneficjentKonto, $topic, $template, $templateParams);
+                                        $this->getMailerService()->sendMailTopicInTemplate($beneficjentKonto, $template, $templateParams);
                                         $sprawozdanie->setPowiadomienieWyslane(true);
                                         $this->getSprawozdanieRepository()->persist($sprawozdanie);
                                         if (!isset($this->beneficjenciZalegajacy[$sufixPliku])) {
@@ -137,10 +137,13 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand
                         'okres' => $okres,
                         'beneficjenciZalegajacy' => $beneficjenciZalegajacy
                     );
-                    $this->getMailerService()->sendMailToGroupTopicInTemplate(
-                        $this->getUzytkownikRepository()->getPracownicyAdresyEmailArray(),
-                        $template,
-                        $templateParams)
+                    $this
+                        ->getMailerService()
+                        ->sendMailToGroupTopicInTemplate(
+                            $this->getUzytkownikRepository()->getPracownicyAdresyEmailArray(),
+                            $template,
+                            $templateParams
+                        )
                     ;
                 }
             }
