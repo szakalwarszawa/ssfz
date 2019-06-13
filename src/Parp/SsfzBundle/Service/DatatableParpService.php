@@ -43,13 +43,18 @@ class DatatableParpService
      * Zwraca tablicę rendererów tabeli parp
      *
      * @param array $config
+     * @param Program $program
      *
      * @return array
      */
-    public function getDatatableParpRenderers($config)
+    public function getDatatableParpRenderers($config, Program $program)
     {
         $renderers[1]['view'] = 'SsfzBundle:Parp:_beneficjentNazwa.html.twig';
-        $renderers[2]['view'] = 'SsfzBundle:Parp:_umowaNumer.html.twig';
+        $renderers[2]['view'] = $program->czyJestPortfelSpolek()
+            ? 'SsfzBundle:Parp:_umowaNumer.html.twig'
+            : 'SsfzBundle:Parp:_umowaNumer.spo.html.twig'
+        ;
+
         $idx = 3;
         foreach ($config as $cfg) {
             $renderers[$idx]['view'] = 'SsfzBundle:Parp:_okresStatus.html.twig';
@@ -132,11 +137,11 @@ class DatatableParpService
      * Zwraca datatable parp
      *
      * @param Controller $parentObj
-     * @param int $programId
+     * @param Program $program
      *
      * @return object
      */
-    public function datatableParp($parentObj, $programId)
+    public function datatableParp($parentObj, Program $program)
     {
         $config = $this->getParpKonfiguracja();
         $datatable = $parentObj
@@ -146,9 +151,9 @@ class DatatableParpService
             ->setFields($this->getDatatableParpFields($config))
         ;
         
-        $datatable = $this->datatableParpAddJoins($datatable, $config, $programId);
+        $datatable = $this->datatableParpAddJoins($datatable, $config, $program->getId());
         $datatable
-            ->setRenderers($this->getDatatableParpRenderers($config))
+            ->setRenderers($this->getDatatableParpRenderers($config, $program))
             ->setSearch(true)
             ->setOrder('b.nazwa', 'asc')
             ->setOrder('u.numer', 'asc')

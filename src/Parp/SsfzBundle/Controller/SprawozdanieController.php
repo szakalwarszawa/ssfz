@@ -18,6 +18,7 @@ use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
 use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
 use Parp\SsfzBundle\Entity\PrzeplywFinansowy;
 use Parp\SsfzBundle\Entity\OkresyKonfiguracja;
+use Parp\SsfzBundle\Entity\Slownik\StatusSprawozdania;
 use Parp\SsfzBundle\Exception\KomunikatDlaBeneficjentaException;
 use Parp\SsfzBundle\Form\Type\SprawozdanieType;
 use Parp\SsfzBundle\Form\Type\SprawozdaniePozyczkoweType;
@@ -268,7 +269,7 @@ class SprawozdanieController extends Controller
         }
         if ($this->getRequest()->isMethod('POST') && $sprawozdanie->getStatus() == 1 && $sprawozdanie->getCreatorId() == $beneficjentId) {
             $dateNow = new DateTime('now');
-            $sprawozdanie->setStatus(2);
+            $sprawozdanie->setStatus(StatusSprawozdania::PRZESLANO_DO_PARP);
             $sprawozdanie->setDataPrzeslaniaDoParp($dateNow);
             $this->getKomunikatyService()->sukcesKomunikat('Sprawozdanie wysłano do PARP', 'Wysyłka sprawozdania');
         }
@@ -296,7 +297,7 @@ class SprawozdanieController extends Controller
         $report->setWersja(1);
         $report->setUmowa($umowa);
         $report->setCzyNajnowsza(true);
-        $report->setStatus(1);
+        $report->setStatus(StatusSprawozdania::EDYCJA);
         $creationDate = new DateTime('now');
         $report->setDataRejestracji($creationDate);
 
@@ -378,7 +379,7 @@ class SprawozdanieController extends Controller
      */
     public function setDefaultValuesAfterRepait($newReport, $report)
     {
-        $newReport->setStatus(1);
+        $newReport->setStatus(StatusSprawozdania::EDYCJA);
         $newReport->setUwagi('');
         $newReport->setOceniajacyId(null);
         $newReport->setDataPrzeslaniaDoParp(null);
@@ -601,15 +602,21 @@ class SprawozdanieController extends Controller
                 $entityManager->persist($sprawozdanie);
                 $entityManager->flush();
                 $this->getKomunikatyService()->sukcesKomunikat('Dodano nowe sprawozdanie.');
-                return $this->redirectToRoute('sprawozdania_spo_edycja', [
-                    'czyPozyczkowe'  => $czyPozyczkowe,
-                    'sprawozdanieId' => $sprawozdanie->getId()
-                ]);
+                return $this->redirectToRoute(
+                    'sprawozdania_spo_edycja',
+                    array(
+                        'czyPozyczkowe' => $czyPozyczkowe,
+                        'sprawozdanieId' => $sprawozdanie->getId()
+                    )
+                );
             }
         }
         
         $listaSprawozdan = $repoSprawozdanie->findBy(
-            ['umowa' => $umowa],
+            [
+                'creatorId' => (int) $umowa->getBeneficjent()->getId(),
+                'umowa' => $umowa
+            ],
             ['rok' => 'ASC', 'okresId' => 'ASC', 'id' => 'ASC']
         );
 
@@ -635,10 +642,10 @@ class SprawozdanieController extends Controller
      *
      * @return Response
      */
-    public function edycjaPozyczkoweAction(Request $request, $czyPozyczkowe, $sprawozdanieId)
+    public function edycjaSpoAction(Request $request, $czyPozyczkowe, $sprawozdanieId)
     {
         $sprawozdanie = $this->znajdzSprawozdanie($czyPozyczkowe, $sprawozdanieId);
-        $sprawozdanie->sprawdzCzyUzytkownikMozeWyswietlac($this->getUser());
+        $sprawozdanie->sprawdzCzyUzytkownikMozeEdytowac($this->getUser());
         
         $entityManager = $this->getDoctrine()->getManager();
         $program = $sprawozdanie->getUmowa()->getBeneficjent()->getProgram();
@@ -672,10 +679,13 @@ class SprawozdanieController extends Controller
                         'umowa' => $sprawozdanie->getUmowa()->getId(),
                     ]);
                 } else {
-                    return $this->redirectToRoute('sprawozdania_spo_edycja', [
-                        'czyPozyczkowe'  => $czyPozyczkowe,
-                        'sprawozdanieId' => $sprawozdanie->getId()
-                    ]);
+                    return $this->redirectToRoute(
+                        'sprawozdania_spo_edycja',
+                        array(
+                            'czyPozyczkowe' => $czyPozyczkowe,
+                            'sprawozdanieId' => $sprawozdanie->getId()
+                        )
+                    );
                 }
             } else {
                 $bledy = [];
@@ -762,7 +772,7 @@ class SprawozdanieController extends Controller
         if ($sprawozdanie->getCzyDaneSaPrawidlowe()) {
             $entityManager = $this->getDoctrine()->getManager();
             
-            $sprawozdanie->setStatus(2);
+            $sprawozdanie->setStatus(StatusSprawozdania::PRZESLANO_DO_PARP);
             $sprawozdanie->setDataPrzeslaniaDoParp(new DateTime());
             
             $entityManager->flush();
@@ -786,6 +796,94 @@ class SprawozdanieController extends Controller
         );
     }
     
+
+    /**
+     * Edycja sprawozdań pożyczkowych.
+     *
+     * @Route(
+     *      "sprawozdania/spo/poprawa/{czyPozyczkowe}/{sprawozdanieId}",
+     *      name="sprawozdania_spo_poprawa"
+     *  )
+     *
+     * @param Request $request
+     * bool $czyPozyczkowe
+     * int $sprawozdanieId
+     *
+     * @return Response|RedirectResponse
+     */
+    public function poprawaSpoAction(Request $request, $czyPozyczkowe, $sprawozdanieId)
+    {
+        $sprawozdanie = $this->znajdzSprawozdanie($czyPozyczkowe, $sprawozdanieId);
+        $sprawozdanie->sprawdzCzyUzytkownikMozePoprawiac($this->getUser());
+        
+        $entityManager = $this->getDoctrine()->getManager();
+        $program = $sprawozdanie->getUmowa()->getBeneficjent()->getProgram();
+        $this->getUser()->setAktywnyProgram($program);
+
+        $klasaFormularza = $czyPozyczkowe
+            ? SprawozdaniePozyczkoweType::class
+            : SprawozdaniePoreczenioweType::class
+        ;
+        
+        $klonSprawozdania = clone $sprawozdanie;
+
+        $form = $this->createForm(
+            $klasaFormularza,
+            $klonSprawozdania
+        );
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $klonSprawozdania
+                    ->powiazSkladnikiZeSprawozdaniem()
+                    ->obliczKapital()
+                    ->setCzyDaneSaPrawidlowe(true)
+                ;
+
+                $klonSprawozdania = $this->setDefaultValuesAfterRepait($klonSprawozdania, $sprawozdanie);
+                $sprawozdanie->setCzyNajnowsza(false);
+
+                $entityManager->persist($klonSprawozdania);
+                $entityManager->flush();
+                $komunikat = 'Zapisano zmiany.';
+                $this
+                    ->getKomunikatyService()
+                    ->sukcesKomunikat(
+                        'Poprawa sprawozdania zakończyła się powodzeniem',
+                        'Poprawa sprawozdania'
+                    )
+                ;
+                
+                return $this->redirectToRoute(
+                    'lista_sprawozdan_spo',
+                    array('umowa' => $sprawozdanie->getUmowa()->getId())
+                );
+            } else {
+                $bledy = [];
+                foreach ($form->all() as $field) {
+                    if ($field->getErrors()->count() > 0) {
+                        $fieldName = $field->getName();
+                        foreach ($field->getErrors() as $error) {
+                            $bledy[] = '[' . $fieldName . ']: ' . $error->getMessage();
+                        }
+                    }
+                }
+
+                $komunikat = implode("; \r\n", $bledy);
+                $this->getKomunikatyService()->bladKomunikat($komunikat);
+            }
+        }
+        
+        return $this->render(
+            'SsfzBundle:Sprawozdanie:' . ($czyPozyczkowe ? 'pozyczkowe' : 'poreczeniowe') . 'Edycja.html.twig',
+            array(
+                'sprawozdanie' => $sprawozdanie,
+                'tylkoDoOdczytu' => false,
+                'form' => $form->createView(),
+            )
+        );
+    }
+
     /**
      * Zwraca sprawozdanie o podanym ID.
      *
