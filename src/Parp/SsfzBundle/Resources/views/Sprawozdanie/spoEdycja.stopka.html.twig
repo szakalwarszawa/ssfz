@@ -2,7 +2,7 @@
                     {% if app.user.rola == 'ROLE_BENEFICJENT' %}
                         {% if tylkoDoOdczytu %}
                             <a class="btn btn-danger pull-right width-short" href="{{ path('lista_sprawozdan_spo', {'umowa': sprawozdanie.umowa.id}) }}">
-                                <span class="glyphicon glyphicon-chevron-left"></span> Powrót
+                                <i class="fas fa-arrow-left"></i> Powrót
                             </a>
                         {% else %}
                             <button
@@ -11,7 +11,7 @@
                                 class="btn btn-danger pull-right width-short"
                                 data-href-powrot="{{ path('lista_sprawozdan_spo', {'umowa': sprawozdanie.umowa.id}) }}"
                             >
-                                <span class="glyphicon glyphicon-chevron-left"></span> Powrót
+                                <i class="fas fa-arrow-left"></i> Powrót
                             </button>
                             <input name="zapisz" value="Zapisz" type="submit" class="btn btn-primary pull-right width-short" />
                         {% endif %}
