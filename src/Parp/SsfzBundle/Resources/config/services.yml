@@ -116,6 +116,7 @@ services:
             - '%powiadomienie_nadawca%'
             - '@mailer'
             - '@templating'
+            - '@twig'
             
     ssfz.service.jasperreports_service:
         class: Parp\SsfzBundle\Service\JasperReportsService

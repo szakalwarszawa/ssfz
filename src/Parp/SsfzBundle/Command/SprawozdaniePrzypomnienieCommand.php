@@ -78,42 +78,71 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand
         $okres = $this->getOkresRozliczenia();
         $rolaBeneficjent = $this->getContainer()->get('ssfz.service.rola_service')->findOneByCriteria(['nazwa' => 'ROLE_BENEFICJENT']);
         $beneficjenciKonta = $this->getContainer()->get('ssfz.service.uzytkownik_service')->findByCriteria(['rola' => $rolaBeneficjent->getId()]);
-        $topic = 'Nie odnotowano złożenia sprawozdania z realizowanego projektu w ramach Działania 3.1 PO IG';
         if (0 == $this->dzisiejszaData->diffInDays($this->pierwszyTermin, false) || 0 == $this->dzisiejszaData->diffInDays($this->drugiTermin, false)) {
             foreach ($beneficjenciKonta as $beneficjentKonto) {
-                $beneficjent = $beneficjentKonto->getBeneficjent();
-                if (!is_null($beneficjent)) {
-                    $umowy = $beneficjent->getUmowy();
-                    if (!is_null($umowy)) {
-                        foreach ($umowy as $umowa) {
-                            $sprawozdania = $umowa->getSprawozdania();
-                            foreach ($sprawozdania as $sprawozdanie) {
-                                if (is_null($sprawozdanie->getDataPrzeslaniaDoParp()) && !$sprawozdanie->getPowiadomienieWyslane() && $sprawozdanie->getRok() != $this->dzisiejszaData->year + 1) {
-                                    $nrUmowy = $umowa->getNumer();
-                                    $template = '@SsfzBundle/Resources/views/Email/remindUnsubmittedReport.html.twig';
-                                    $templateParams = array(
-                                        'nrUmowy' => $nrUmowy,
-                                        'dzien' => $this->dzisiejszaData
-                                    );
-                                    $this->getMailerService()->sendMail($beneficjentKonto, $topic, $template, $templateParams);
-                                    $sprawozdanie->setPowiadomienieWyslane(true);
-                                    $this->getSprawozdanieRepository()->persist($sprawozdanie);
-                                    array_push($this->beneficjenciZalegajacy, array($umowa->getNumer(), $beneficjent));
+                foreach ($beneficjentKonto->getBeneficjenci() as $beneficjent) {
+                    if (!is_null($beneficjent)) {
+                        $umowy = $beneficjent->getUmowy();
+                        if (!is_null($umowy)) {
+                            foreach ($umowy as $umowa) {
+                                $sprawozdania = $umowa->getSprawozdania();
+                                foreach ($sprawozdania as $sprawozdanie) {
+                                    if (is_null($sprawozdanie->getDataPrzeslaniaDoParp())
+                                        && !$sprawozdanie->getPowiadomienieWyslane()
+                                        && $sprawozdanie->getRok() != $this->dzisiejszaData->year + 1
+                                    ) {
+                                        $program = $beneficjent->getProgram();
+                                        if ($program->czyFunduszPozyczkowy()) {
+                                            $sufixPliku = 'pozyczkowy';
+                                        } elseif ($program->czyFunduszPoreczeniowy()) {
+                                            $sufixPliku = 'poreczeniowy';
+                                        } else {
+                                            $sufixPliku = 'zalazkowy';
+                                        }
+
+                                        $nrUmowy = $umowa->getNumer();
+                                        $template = 'SsfzBundle:Email:remindUnsubmittedReport.'
+                                            . $sufixPliku
+                                            . '.html.twig'
+                                        ;
+                                        $templateParams = array(
+                                            'nrUmowy' => $nrUmowy,
+                                            'dzien' => $this->dzisiejszaData->format('Y-m-d')
+                                        );
+                                        $this->getMailerService()->sendMailTopicInTemplate($beneficjentKonto, $topic, $template, $templateParams);
+                                        $sprawozdanie->setPowiadomienieWyslane(true);
+                                        $this->getSprawozdanieRepository()->persist($sprawozdanie);
+                                        if (!isset($this->beneficjenciZalegajacy[$sufixPliku])) {
+                                            $this->beneficjenciZalegajacy[$sufixPliku] = [];
+                                        }
+                                        array_push(
+                                            $this->beneficjenciZalegajacy[$sufixPliku],
+                                            array($umowa->getNumer(), $beneficjent)
+                                        );
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
-            if (!empty($this->beneficjenciZalegajacy)) {
-                $topic = 'Lista Beneficjentów Działania 3.1 zalegających ze złożeniem sprawozdania za okres ' . $okres;
-                $template = '@SsfzBundle/Resources/views/Email/unsubmittedReport.html.twig';
-                $templateParams = array(
-                    'dzien' => $this->dzisiejszaData,
-                    'okres' => $okres,
-                    'beneficjenciZalegajacy' => $this->beneficjenciZalegajacy
-                );
-                $this->getMailerService()->sendMailToGroup($this->getUzytkownikRepository()->getPracownicyAdresyEmailArray(), $topic, $template, $templateParams);
+            foreach ($this->beneficjenciZalegajacy as $sufixPliku => $beneficjenciZalegajacy) {
+                if (!empty($beneficjenciZalegajacy)) {
+                    $template = '@SsfzBundle/Resources/views/Email/unsubmittedReport.'
+                        . $sufixPliku
+                        . '.html.twig'
+                    ;
+                    $templateParams = array(
+                        'dzien' => $this->dzisiejszaData,
+                        'okres' => $okres,
+                        'beneficjenciZalegajacy' => $beneficjenciZalegajacy
+                    );
+                    $this->getMailerService()->sendMailToGroupTopicInTemplate(
+                        $this->getUzytkownikRepository()->getPracownicyAdresyEmailArray(),
+                        $template,
+                        $templateParams)
+                    ;
+                }
             }
         }
     }

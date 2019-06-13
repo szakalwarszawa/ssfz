@@ -1,0 +1,31 @@
+{# Temat wiadomości #}
+{% block subject %}Nie odnotowano złożenia sprawozdania ze zrealizowanego projektu w ramach Poddziałania 1.2.1 SPO WKP{% endblock subject %}
+
+{# Wiadomość w formacie HTML #}
+{% block body_html %}
+    <html>
+    <head></head>
+    <body>
+        <p>W dniu <strong>{{ dzien }}</strong> upłynął w Poddziałaniu 1.2.1 SPO WKP termin składania sprawozdań za okres <strong>{{ okres }}</strong>. Nie odnotowano złożenia sprawozdań od następujących Beneficjentów:</p>
+        <table>
+            {% for beneficjentZalegajacy in beneficjenciZalegajacy %}
+                <tr>
+                    <td>{{ beneficjentZalegajacy[1].nazwa }}</td>
+                    <td>{{ beneficjentZalegajacy[1].email }}</td>
+                    <td>Nr umowy: {{ beneficjentZalegajacy|first }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </body>
+    </html>
+{% endblock body_html %}
+
+{# Wiadomość w formie czystego tekstu - dla starszych programów pocztowych #}
+{% block body_txt %}
+W dniu {{ dzien }} upłynął w Poddziałaniu 1.2.1 SPO WKP termin składania sprawozdań za okres {{ okres }}. Nie odnotowano złożenia sprawozdań od następujących Beneficjentów:
+
+{% for beneficjentZalegajacy in beneficjenciZalegajacy %}
+    {{ beneficjentZalegajacy[1].nazwa }} {{ beneficjentZalegajacy[1].email }} Nr umowy: {{ beneficjentZalegajacy|first }}
+{% endfor %}
+
+{% endblock body_txt %}
