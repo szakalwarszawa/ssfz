@@ -2939,7 +2939,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw = $liczbaPozyczek;
+        $this->liczbaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -2963,7 +2963,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw = $liczbaPozyczek;
+        $this->liczbaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -2987,7 +2987,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw = $liczbaPozyczek;
+        $this->liczbaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3011,7 +3011,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw = $liczbaPozyczek;
+        $this->liczbaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3035,7 +3035,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw = $liczbaPozyczek;
+        $this->liczbaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3059,7 +3059,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw = $liczbaPozyczek;
+        $this->liczbaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3083,7 +3083,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw = $liczbaPozyczek;
+        $this->liczbaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3107,7 +3107,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw = $liczbaPozyczek;
+        $this->liczbaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3131,7 +3131,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw = $liczbaPozyczek;
+        $this->liczbaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3155,7 +3155,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw = $liczbaPozyczek;
+        $this->liczbaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3179,7 +3179,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw = $liczbaPozyczek;
+        $this->liczbaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3203,7 +3203,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw = $liczbaPozyczek;
+        $this->liczbaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3227,7 +3227,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw = $liczbaPozyczek;
+        $this->liczbaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3251,7 +3251,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw = $liczbaPozyczek;
+        $this->liczbaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3275,7 +3275,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw = $liczbaPozyczek;
+        $this->liczbaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3299,7 +3299,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw = $liczbaPozyczek;
+        $this->liczbaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3323,7 +3323,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw = $liczbaPozyczek;
+        $this->liczbaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3347,7 +3347,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw = $liczbaPozyczek;
+        $this->liczbaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3371,7 +3371,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekObrotowychDo10000Pln(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekObrotowychDo10000Pln = $liczbaPozyczek;
+        $this->liczbaPozyczekObrotowychDo10000Pln = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3395,7 +3395,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekObrotowychOd10001Do30000Pln(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekObrotowychOd10001Do30000Pln = $liczbaPozyczek;
+        $this->liczbaPozyczekObrotowychOd10001Do30000Pln = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3419,7 +3419,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekObrotowychOd30001Do50000Pln(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekObrotowychOd30001Do50000Pln = $liczbaPozyczek;
+        $this->liczbaPozyczekObrotowychOd30001Do50000Pln = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3443,7 +3443,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekObrotowychOd50001Do120000Pln(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekObrotowychOd50001Do120000Pln = $liczbaPozyczek;
+        $this->liczbaPozyczekObrotowychOd50001Do120000Pln = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3467,7 +3467,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekObrotowychOd120001Do300000Pln(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekObrotowychOd120001Do300000Pln = $liczbaPozyczek;
+        $this->liczbaPozyczekObrotowychOd120001Do300000Pln = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3491,7 +3491,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekObrotowychOd300001Pln(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekObrotowychOd300001Pln = $liczbaPozyczek;
+        $this->liczbaPozyczekObrotowychOd300001Pln = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3515,7 +3515,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekInwestycyjnychDo10000Pln(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekInwestycyjnychDo10000Pln = $liczbaPozyczek;
+        $this->liczbaPozyczekInwestycyjnychDo10000Pln = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3539,7 +3539,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekInwestycyjnychOd10001Do30000Pln(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekInwestycyjnychOd10001Do30000Pln = $liczbaPozyczek;
+        $this->liczbaPozyczekInwestycyjnychOd10001Do30000Pln = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3563,7 +3563,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekInwestycyjnychOd30001Do50000Pln(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekInwestycyjnychOd30001Do50000Pln = $liczbaPozyczek;
+        $this->liczbaPozyczekInwestycyjnychOd30001Do50000Pln = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3587,7 +3587,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekInwestycyjnychOd50001Do120000Pln(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekInwestycyjnychOd50001Do120000Pln = $liczbaPozyczek;
+        $this->liczbaPozyczekInwestycyjnychOd50001Do120000Pln = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3611,7 +3611,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekInwestycyjnychOd120001Do300000Pln(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekInwestycyjnychOd120001Do300000Pln = $liczbaPozyczek;
+        $this->liczbaPozyczekInwestycyjnychOd120001Do300000Pln = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3635,7 +3635,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekInwestycyjnychOd300001Pln(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekInwestycyjnychOd300001Pln = $liczbaPozyczek;
+        $this->liczbaPozyczekInwestycyjnychOd300001Pln = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3659,7 +3659,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekInwestycyjnoObrotowychDo10000Pln(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekInwestycyjnoObrotowychDo10000Pln = $liczbaPozyczek;
+        $this->liczbaPozyczekInwestycyjnoObrotowychDo10000Pln = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3683,7 +3683,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln = $liczbaPozyczek;
+        $this->liczbaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3707,7 +3707,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln = $liczbaPozyczek;
+        $this->liczbaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3731,7 +3731,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln = $liczbaPozyczek;
+        $this->liczbaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3755,7 +3755,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln = $liczbaPozyczek;
+        $this->liczbaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3779,7 +3779,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekInwestycyjnoObrotowychOd300001Pln(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekInwestycyjnoObrotowychOd300001Pln = $liczbaPozyczek;
+        $this->liczbaPozyczekInwestycyjnoObrotowychOd300001Pln = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3803,7 +3803,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekDo10000PlnNaDzialaniaProdukcyjne(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekDo10000PlnNaDzialaniaProdukcyjne = $liczbaPozyczek;
+        $this->liczbaPozyczekDo10000PlnNaDzialaniaProdukcyjne = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3827,7 +3827,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne = $liczbaPozyczek;
+        $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3851,7 +3851,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne = $liczbaPozyczek;
+        $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3875,7 +3875,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne = $liczbaPozyczek;
+        $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3899,7 +3899,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne = $liczbaPozyczek;
+        $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3923,7 +3923,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd300001PlnNaDzialaniaProdukcyjne(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd300001PlnNaDzialaniaProdukcyjne = $liczbaPozyczek;
+        $this->liczbaPozyczekOd300001PlnNaDzialaniaProdukcyjne = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3947,7 +3947,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekDo10000PlnNaDzialaniaHandlowe(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekDo10000PlnNaDzialaniaHandlowe = $liczbaPozyczek;
+        $this->liczbaPozyczekDo10000PlnNaDzialaniaHandlowe = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3971,7 +3971,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe = $liczbaPozyczek;
+        $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -3995,7 +3995,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe = $liczbaPozyczek;
+        $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4019,7 +4019,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe = $liczbaPozyczek;
+        $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4043,7 +4043,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe = $liczbaPozyczek;
+        $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4067,7 +4067,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd300001PlnNaDzialaniaHandlowe(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd300001PlnNaDzialaniaHandlowe = $liczbaPozyczek;
+        $this->liczbaPozyczekOd300001PlnNaDzialaniaHandlowe = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4097,7 +4097,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekDo10000PlnNaDzialaniaUslugowe(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekDo10000PlnNaDzialaniaUslugowe = $liczbaPozyczek;
+        $this->liczbaPozyczekDo10000PlnNaDzialaniaUslugowe = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4121,7 +4121,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe = $liczbaPozyczek;
+        $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4145,7 +4145,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe = $liczbaPozyczek;
+        $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4169,7 +4169,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe = $liczbaPozyczek;
+        $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4193,7 +4193,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe = $liczbaPozyczek;
+        $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4217,7 +4217,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd300001PlnNaDzialaniaUslugowe(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd300001PlnNaDzialaniaUslugowe = $liczbaPozyczek;
+        $this->liczbaPozyczekOd300001PlnNaDzialaniaUslugowe = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4241,7 +4241,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekDo10000PlnNaDzialaniaBudownicze(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekDo10000PlnNaDzialaniaBudownicze = $liczbaPozyczek;
+        $this->liczbaPozyczekDo10000PlnNaDzialaniaBudownicze = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4265,7 +4265,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze = $liczbaPozyczek;
+        $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4289,7 +4289,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze = $liczbaPozyczek;
+        $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4313,7 +4313,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze = $liczbaPozyczek;
+        $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4337,7 +4337,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze = $liczbaPozyczek;
+        $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4361,7 +4361,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd300001PlnNaDzialaniaBudownicze(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd300001PlnNaDzialaniaBudownicze = $liczbaPozyczek;
+        $this->liczbaPozyczekOd300001PlnNaDzialaniaBudownicze = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4385,7 +4385,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekDo10000PlnNaDzialaniaRolnicze(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekDo10000PlnNaDzialaniaRolnicze = $liczbaPozyczek;
+        $this->liczbaPozyczekDo10000PlnNaDzialaniaRolnicze = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4409,7 +4409,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze = $liczbaPozyczek;
+        $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4433,7 +4433,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze = $liczbaPozyczek;
+        $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4457,7 +4457,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze = $liczbaPozyczek;
+        $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4481,7 +4481,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze = $liczbaPozyczek;
+        $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4505,7 +4505,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd300001PlnNaDzialaniaRolnicze(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd300001PlnNaDzialaniaRolnicze = $liczbaPozyczek;
+        $this->liczbaPozyczekOd300001PlnNaDzialaniaRolnicze = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4529,7 +4529,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekDo10000PlnNaDzialaniaInne(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekDo10000PlnNaDzialaniaInne = $liczbaPozyczek;
+        $this->liczbaPozyczekDo10000PlnNaDzialaniaInne = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4553,7 +4553,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd10001Do30000PlnNaDzialaniaInne(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaInne = $liczbaPozyczek;
+        $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaInne = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4577,7 +4577,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd30001Do50000PlnNaDzialaniaInne(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaInne = $liczbaPozyczek;
+        $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaInne = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4601,7 +4601,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd50001Do120000PlnNaDzialaniaInne(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaInne = $liczbaPozyczek;
+        $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaInne = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4625,7 +4625,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd120001Do300000PlnNaDzialaniaInne(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaInne = $liczbaPozyczek;
+        $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaInne = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -4649,7 +4649,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekOd300001PlnNaDzialaniaInne(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekOd300001PlnNaDzialaniaInne = $liczbaPozyczek;
+        $this->liczbaPozyczekOd300001PlnNaDzialaniaInne = abs($liczbaPozyczek);
 
         return $this;
     }
