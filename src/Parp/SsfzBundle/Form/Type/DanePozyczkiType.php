@@ -103,13 +103,11 @@ class DanePozyczkiType extends AbstractType
         $this->addIntegerFields($builder, $options);
         $this->addDecimalFields($builder, $options);
 
-    /*    $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
-            $danePozyczki = $event->getData();
-            foreach (self::DECIMAL_FIELDS) {
-                
-            }
-*/
-     //   });
+        // $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+        // $danePozyczki = $event->getData();
+        // foreach (self::DECIMAL_FIELDS) {
+        // }
+        // });
     }
 
     /**
