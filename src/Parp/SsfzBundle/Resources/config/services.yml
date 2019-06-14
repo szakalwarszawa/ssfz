@@ -115,7 +115,6 @@ services:
         arguments: 
             - '%powiadomienie_nadawca%'
             - '@mailer'
-            - '@templating'
             - '@twig'
             
     ssfz.service.jasperreports_service:
