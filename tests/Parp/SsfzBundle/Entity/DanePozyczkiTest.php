@@ -244,44 +244,4 @@ class DanePozyczkiTest extends TestCase
             $this->assertSame($i , $value);
         }
     }
-
-    public function testCanConvertAnyValuetoDecimalString()
-    {
-        $input = -100.123;
-
-        // No changes.
-        // -100.123 to -100.123 
-        $decimalString = $this->danePozyczki->anyToDecimalString($input, 3);
-        $this->assertSame('-100.123', $decimalString);
-
-        // Trim decimal part.
-        // -100.123 to -100.12
-        $decimalString = $this->danePozyczki->anyToDecimalString($input, 2);
-        $this->assertSame('-100.12', $decimalString);
-
-        // Trim decimal part and make unsigned.
-        // -100.123 to 100.12
-        $decimalString = $this->danePozyczki->anyToDecimalString($input, 2, true);
-        $this->assertSame('100.12', $decimalString);
-
-        // Convert to integer.
-        // -100.123 to -100
-        $decimalString = $this->danePozyczki->anyToDecimalString($input, 0);
-        $this->assertSame('-100', $decimalString);
-
-        // Convert to unsigned integer.
-        // -100.123 to 100
-        $decimalString = $this->danePozyczki->anyToDecimalString($input, 0, true);
-        $this->assertSame('100', $decimalString);
-
-        // Convert unknown to decimal zero (0.00).
-        // xxx to 100
-        $decimalString = $this->danePozyczki->anyToDecimalString('xxx', 2, true);
-        $this->assertSame('0.00', $decimalString);
-    }
-
-
-
-
-
 }

@@ -16,6 +16,81 @@ use Parp\SsfzBundle\Entity\DanePozyczki;
  */
 class DanePozyczkiType extends AbstractType
 {
+    const DECIMAL_FIELDS = [
+        'kwotaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw',
+        'kwotaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw',
+        'kwotaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw',
+        'kwotaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw',
+        'kwotaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw',
+        'kwotaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw',
+        'kwotaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw',
+        'kwotaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw',
+        'kwotaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw',
+        'kwotaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw',
+        'kwotaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw',
+        'kwotaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw',
+        'kwotaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw',
+        'kwotaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw',
+        'kwotaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw',
+        'kwotaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw',
+        'kwotaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw',
+        'kwotaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw',
+        'kwotaPozyczekObrotowychDo10000Pln',
+        'kwotaPozyczekObrotowychOd10001Do30000Pln',
+        'kwotaPozyczekObrotowychOd30001Do50000Pln',
+        'kwotaPozyczekObrotowychOd50001Do120000Pln',
+        'kwotaPozyczekObrotowychOd120001Do300000Pln',
+        'kwotaPozyczekObrotowychOd300001Pln',
+        'kwotaPozyczekInwestycyjnychDo10000Pln',
+        'kwotaPozyczekInwestycyjnychOd10001Do30000Pln',
+        'kwotaPozyczekInwestycyjnychOd30001Do50000Pln',
+        'kwotaPozyczekInwestycyjnychOd50001Do120000Pln',
+        'kwotaPozyczekInwestycyjnychOd120001Do300000Pln',
+        'kwotaPozyczekInwestycyjnychOd300001Pln',
+        'kwotaPozyczekInwestycyjnoObrotowychDo10000Pln',
+        'kwotaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln',
+        'kwotaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln',
+        'kwotaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln',
+        'kwotaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln',
+        'kwotaPozyczekInwestycyjnoObrotowychOd300001Pln',
+        'kwotaPozyczekDo10000PlnNaDzialaniaProdukcyjne',
+        'kwotaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne',
+        'kwotaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne',
+        'kwotaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne',
+        'kwotaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne',
+        'kwotaPozyczekOd300001PlnNaDzialaniaProdukcyjne',
+        'kwotaPozyczekDo10000PlnNaDzialaniaHandlowe',
+        'kwotaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe',
+        'kwotaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe',
+        'kwotaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe',
+        'kwotaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe',
+        'kwotaPozyczekOd300001PlnNaDzialaniaHandlowe',
+        'kwotaPozyczekDo10000PlnNaDzialaniaUslugowe',
+        'kwotaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe',
+        'kwotaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe',
+        'kwotaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe',
+        'kwotaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe',
+        'kwotaPozyczekOd300001PlnNaDzialaniaUslugowe',
+        'kwotaPozyczekDo10000PlnNaDzialaniaBudownicze',
+        'kwotaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze',
+        'kwotaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze',
+        'kwotaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze',
+        'kwotaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze',
+        'kwotaPozyczekOd300001PlnNaDzialaniaBudownicze',
+        'kwotaPozyczekDo10000PlnNaDzialaniaRolnicze',
+        'kwotaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze',
+        'kwotaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze',
+        'kwotaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze',
+        'kwotaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze',
+        'kwotaPozyczekOd300001PlnNaDzialaniaRolnicze',
+        'kwotaPozyczekDo10000PlnNaDzialaniaInne',
+        'kwotaPozyczekOd10001Do30000PlnNaDzialaniaInne',
+        'kwotaPozyczekOd30001Do50000PlnNaDzialaniaInne',
+        'kwotaPozyczekOd50001Do120000PlnNaDzialaniaInne',
+        'kwotaPozyczekOd120001Do300000PlnNaDzialaniaInne',
+        'kwotaPozyczekOd300001PlnNaDzialaniaInne',
+    ];
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -27,6 +102,14 @@ class DanePozyczkiType extends AbstractType
         $builder->setAction($options['action_url']);
         $this->addIntegerFields($builder, $options);
         $this->addDecimalFields($builder, $options);
+
+    /*    $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+            $danePozyczki = $event->getData();
+            foreach (self::DECIMAL_FIELDS) {
+                
+            }
+*/
+     //   });
     }
 
     /**
@@ -154,99 +237,28 @@ class DanePozyczkiType extends AbstractType
             new Assert\NotBlank([
                 'message' => 'Należy wypełnić pole',
             ]),
-            new Assert\Type([
-                'type'    => 'float',
-                'message' => 'Pole może zawierać tylko liczby dziesiętne',
-            ]),
-            new Assert\Range([
-                'min'            => 0,
-                'max'            => 999999999.99,
-                'invalidMessage' => 'Pole może zawierać wartości od 0.00 do 999999999.99',
-            ]),
+            // To nie działa właściwie, bo kwoty są formatowanymi stringami.
+            // Są konwertowane na decimale w encji, ale walidacja formularza jest wcześniej
+            // i sypie błędami.
+            //new Assert\Type([
+            //    'type'    => 'float',
+            //    'message' => 'Pole może zawierać tylko liczby dziesiętne',
+            //]),
+            //new Assert\Range([
+            //    'min'            => 0,
+            //    'max'            => 999999999.99,
+            //    'invalidMessage' => 'Pole może zawierać wartości od 0.00 do 999999999.99',
+            //]),
         ];
 
-        $fields = [
-            'kwotaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw',
-            'kwotaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw',
-            'kwotaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw',
-            'kwotaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw',
-            'kwotaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw',
-            'kwotaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw',
-            'kwotaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw',
-            'kwotaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw',
-            'kwotaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw',
-            'kwotaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw',
-            'kwotaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw',
-            'kwotaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw',
-            'kwotaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw',
-            'kwotaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw',
-            'kwotaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw',
-            'kwotaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw',
-            'kwotaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw',
-            'kwotaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw',
-            'kwotaPozyczekObrotowychDo10000Pln',
-            'kwotaPozyczekObrotowychOd10001Do30000Pln',
-            'kwotaPozyczekObrotowychOd30001Do50000Pln',
-            'kwotaPozyczekObrotowychOd50001Do120000Pln',
-            'kwotaPozyczekObrotowychOd120001Do300000Pln',
-            'kwotaPozyczekObrotowychOd300001Pln',
-            'kwotaPozyczekInwestycyjnychDo10000Pln',
-            'kwotaPozyczekInwestycyjnychOd10001Do30000Pln',
-            'kwotaPozyczekInwestycyjnychOd30001Do50000Pln',
-            'kwotaPozyczekInwestycyjnychOd50001Do120000Pln',
-            'kwotaPozyczekInwestycyjnychOd120001Do300000Pln',
-            'kwotaPozyczekInwestycyjnychOd300001Pln',
-            'kwotaPozyczekInwestycyjnoObrotowychDo10000Pln',
-            'kwotaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln',
-            'kwotaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln',
-            'kwotaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln',
-            'kwotaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln',
-            'kwotaPozyczekInwestycyjnoObrotowychOd300001Pln',
-            'kwotaPozyczekDo10000PlnNaDzialaniaProdukcyjne',
-            'kwotaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne',
-            'kwotaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne',
-            'kwotaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne',
-            'kwotaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne',
-            'kwotaPozyczekOd300001PlnNaDzialaniaProdukcyjne',
-            'kwotaPozyczekDo10000PlnNaDzialaniaHandlowe',
-            'kwotaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe',
-            'kwotaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe',
-            'kwotaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe',
-            'kwotaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe',
-            'kwotaPozyczekOd300001PlnNaDzialaniaHandlowe',
-            'kwotaPozyczekDo10000PlnNaDzialaniaUslugowe',
-            'kwotaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe',
-            'kwotaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe',
-            'kwotaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe',
-            'kwotaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe',
-            'kwotaPozyczekOd300001PlnNaDzialaniaUslugowe',
-            'kwotaPozyczekDo10000PlnNaDzialaniaBudownicze',
-            'kwotaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze',
-            'kwotaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze',
-            'kwotaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze',
-            'kwotaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze',
-            'kwotaPozyczekOd300001PlnNaDzialaniaBudownicze',
-            'kwotaPozyczekDo10000PlnNaDzialaniaRolnicze',
-            'kwotaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze',
-            'kwotaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze',
-            'kwotaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze',
-            'kwotaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze',
-            'kwotaPozyczekOd300001PlnNaDzialaniaRolnicze',
-            'kwotaPozyczekDo10000PlnNaDzialaniaInne',
-            'kwotaPozyczekOd10001Do30000PlnNaDzialaniaInne',
-            'kwotaPozyczekOd30001Do50000PlnNaDzialaniaInne',
-            'kwotaPozyczekOd50001Do120000PlnNaDzialaniaInne',
-            'kwotaPozyczekOd120001Do300000PlnNaDzialaniaInne',
-            'kwotaPozyczekOd300001PlnNaDzialaniaInne',
-        ];
-
-        foreach ($fields as $field) {
+        foreach (self::DECIMAL_FIELDS as $field) {
             $builder->add($field, TextType::class, [
                 'label'       => false,
                 'attr'        => [
                     'class' => 'decimal-11-2',
                 ],
                 'constraints' => $constraints,
+                'by_reference' => false,
             ]);
         }
     }

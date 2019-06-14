@@ -6,6 +6,7 @@ namespace Parp\SsfzBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Helper\MoneyHelper;
 
 /**
  * Pożyczkach dla SPO WKP 1.2.1.
@@ -2886,63 +2887,6 @@ class DanePozyczki
     }
 
     /**
-     * Konwertuje dowolną wartość na ciąg tekstowy reprezentujący liczbę z określną dokładnością.
-     *
-     * Wartości, które nie mogą zostać sensowanie przekonwertowane są zamieniane na wartość zerową
-     * z zadaną liczbą miejsc po przecinku.
-     *
-     * @param mixed $input Wartość do konwersji.
-     * @param int|null $scale Liczba miejsc po przecinku (null zachowuje stan wejściowy).
-     * @param bool $unsigned Czy konwertować do liczby dodatniej?
-     * @param string $decimalSeparator Separator części dziesiętnej.
-     *
-     * @return string
-     */
-    public function anyToDecimalString(
-        string $input,
-        ?int $scale = 2,
-        bool $unsigned = false,
-        string $decimalSeparator = '.'
-    ) {
-        $input = trim((string) $input);
-
-        $scale = ($scale !== null) ? abs($scale) : null;
-        
-        $isNegative = ('-' === substr($input, 0, 1));
-        $input = preg_replace('#[^0-9'.$decimalSeparator.'\.]#', '', $input);
-        $hasFraction = is_integer(strpos($input, '.'));
-
-        $defaultFraction = '0';
-        if (!$hasFraction) {
-            $defaultFraction = (int) $scale > 0 ? str_pad('', (int) $scale, '0') : $defaultFraction;
-            $input .= '.'.$defaultFraction;
-        }
-        $inputArr = explode('.', $input);
-
-        $integer = isset($inputArr[0]) ? $inputArr[0] : '0';
-
-        $fraction = '';
-        if (isset($inputArr[1])) {
-            if ((int) $scale > 0) {
-                $fraction = str_pad($inputArr[1], (int) $scale, '0');
-                $fraction = substr($fraction, 0, $scale);
-            }
-
-            if ($scale === null) {
-                $fraction = $inputArr[1];
-            }
-        }
-        $fraction = (string) $fraction !== '' ? '.'.$fraction : '';
-      
-        $decimalString = $integer.$fraction;
-        if (((float) $decimalString > 0) && $isNegative && !$unsigned) {
-            $decimalString = '-' . $decimalString;
-        }
-        
-        return $decimalString;
-    }
-
-    /**
      * Zwraca iwartość dentyfikatora.
      *
      * @return int
@@ -4729,7 +4673,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw = $kwotaPozyczek;
+        $this->kwotaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -4753,7 +4697,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw = $kwotaPozyczek;
+        $this->kwotaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -4777,7 +4721,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw = $kwotaPozyczek;
+        $this->kwotaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -4801,7 +4745,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw = $kwotaPozyczek;
+        $this->kwotaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -4825,7 +4769,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw = $kwotaPozyczek;
+        $this->kwotaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -4849,7 +4793,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw = $kwotaPozyczek;
+        $this->kwotaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -4873,7 +4817,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw = $kwotaPozyczek;
+        $this->kwotaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -4897,7 +4841,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw = $kwotaPozyczek;
+        $this->kwotaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -4921,7 +4865,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw = $kwotaPozyczek;
+        $this->kwotaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -4945,7 +4889,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw = $kwotaPozyczek;
+        $this->kwotaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -4969,7 +4913,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw = $kwotaPozyczek;
+        $this->kwotaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -4993,7 +4937,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw = $kwotaPozyczek;
+        $this->kwotaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5017,7 +4961,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw = $kwotaPozyczek;
+        $this->kwotaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5041,7 +4985,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw = $kwotaPozyczek;
+        $this->kwotaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5065,7 +5009,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw = $kwotaPozyczek;
+        $this->kwotaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5089,7 +5033,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw = $kwotaPozyczek;
+        $this->kwotaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5113,7 +5057,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw = $kwotaPozyczek;
+        $this->kwotaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5137,7 +5081,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw = $kwotaPozyczek;
+        $this->kwotaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5161,7 +5105,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekDo10000PlnDlaInnychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekDo10000PlnDlaInnychPrzedsiebiorstw = $kwotaPozyczek;
+        $this->kwotaPozyczekDo10000PlnDlaInnychPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5185,7 +5129,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd10001Do30000PlnDlaInnychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd10001Do30000PlnDlaInnychPrzedsiebiorstw = $kwotaPozyczek;
+        $this->kwotaPozyczekOd10001Do30000PlnDlaInnychPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5209,7 +5153,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd30001Do50000PlnDlaInnychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd30001Do50000PlnDlaInnychPrzedsiebiorstw = $kwotaPozyczek;
+        $this->kwotaPozyczekOd30001Do50000PlnDlaInnychPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5233,7 +5177,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd50001Do120000PlnDlaInnychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd50001Do120000PlnDlaInnychPrzedsiebiorstw = $kwotaPozyczek;
+        $this->kwotaPozyczekOd50001Do120000PlnDlaInnychPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5257,7 +5201,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd120001Do300000PlnDlaInnychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd120001Do300000PlnDlaInnychPrzedsiebiorstw = $kwotaPozyczek;
+        $this->kwotaPozyczekOd120001Do300000PlnDlaInnychPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5281,7 +5225,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd300001PlnDlaInnychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd300001PlnDlaInnychPrzedsiebiorstw = $kwotaPozyczek;
+        $this->kwotaPozyczekOd300001PlnDlaInnychPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5305,7 +5249,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekDo10000PlnDlaInstytucjiEkonomiiSpolecznej(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekDo10000PlnDlaInstytucjiEkonomiiSpolecznej = $kwotaPozyczek;
+        $this->kwotaPozyczekDo10000PlnDlaInstytucjiEkonomiiSpolecznej = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5329,7 +5273,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd10001Do30000PlnDlaInstytucjiEkonomiiSpolecznej(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd10001Do30000PlnDlaInstytucjiEkonomiiSpolecznej = $kwotaPozyczek;
+        $this->kwotaPozyczekOd10001Do30000PlnDlaInstytucjiEkonomiiSpolecznej = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5353,7 +5297,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd30001Do50000PlnDlaInstytucjiEkonomiiSpolecznej(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd30001Do50000PlnDlaInstytucjiEkonomiiSpolecznej = $kwotaPozyczek;
+        $this->kwotaPozyczekOd30001Do50000PlnDlaInstytucjiEkonomiiSpolecznej = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5377,7 +5321,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd50001Do120000PlnDlaInstytucjiEkonomiiSpolecznej(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd50001Do120000PlnDlaInstytucjiEkonomiiSpolecznej = $kwotaPozyczek;
+        $this->kwotaPozyczekOd50001Do120000PlnDlaInstytucjiEkonomiiSpolecznej = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5401,7 +5345,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd120001Do300000PlnDlaInstytucjiEkonomiiSpolecznej(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd120001Do300000PlnDlaInstytucjiEkonomiiSpolecznej = $kwotaPozyczek;
+        $this->kwotaPozyczekOd120001Do300000PlnDlaInstytucjiEkonomiiSpolecznej = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5425,7 +5369,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd300001PlnDlaInstytucjiEkonomiiSpolecznej(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd300001PlnDlaInstytucjiEkonomiiSpolecznej = $kwotaPozyczek;
+        $this->kwotaPozyczekOd300001PlnDlaInstytucjiEkonomiiSpolecznej = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5449,7 +5393,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekObrotowychDo10000Pln(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekObrotowychDo10000Pln = $kwotaPozyczek;
+        $this->kwotaPozyczekObrotowychDo10000Pln = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5473,7 +5417,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekObrotowychOd10001Do30000Pln(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekObrotowychOd10001Do30000Pln = $kwotaPozyczek;
+        $this->kwotaPozyczekObrotowychOd10001Do30000Pln = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5497,7 +5441,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekObrotowychOd30001Do50000Pln(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekObrotowychOd30001Do50000Pln = $kwotaPozyczek;
+        $this->kwotaPozyczekObrotowychOd30001Do50000Pln = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5521,7 +5465,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekObrotowychOd50001Do120000Pln(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekObrotowychOd50001Do120000Pln = $kwotaPozyczek;
+        $this->kwotaPozyczekObrotowychOd50001Do120000Pln = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5545,7 +5489,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekObrotowychOd120001Do300000Pln(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekObrotowychOd120001Do300000Pln = $kwotaPozyczek;
+        $this->kwotaPozyczekObrotowychOd120001Do300000Pln = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5569,7 +5513,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekObrotowychOd300001Pln(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekObrotowychOd300001Pln = $kwotaPozyczek;
+        $this->kwotaPozyczekObrotowychOd300001Pln = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5593,7 +5537,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekInwestycyjnychDo10000Pln(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekInwestycyjnychDo10000Pln = $kwotaPozyczek;
+        $this->kwotaPozyczekInwestycyjnychDo10000Pln = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5617,7 +5561,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekInwestycyjnychOd10001Do30000Pln(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekInwestycyjnychOd10001Do30000Pln = $kwotaPozyczek;
+        $this->kwotaPozyczekInwestycyjnychOd10001Do30000Pln = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5641,7 +5585,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekInwestycyjnychOd30001Do50000Pln(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekInwestycyjnychOd30001Do50000Pln = $kwotaPozyczek;
+        $this->kwotaPozyczekInwestycyjnychOd30001Do50000Pln = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5665,7 +5609,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekInwestycyjnychOd50001Do120000Pln(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekInwestycyjnychOd50001Do120000Pln = $kwotaPozyczek;
+        $this->kwotaPozyczekInwestycyjnychOd50001Do120000Pln = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5689,7 +5633,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekInwestycyjnychOd120001Do300000Pln(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekInwestycyjnychOd120001Do300000Pln = $kwotaPozyczek;
+        $this->kwotaPozyczekInwestycyjnychOd120001Do300000Pln = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5713,7 +5657,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekInwestycyjnychOd300001Pln(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekInwestycyjnychOd300001Pln = $kwotaPozyczek;
+        $this->kwotaPozyczekInwestycyjnychOd300001Pln = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5737,7 +5681,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekInwestycyjnoObrotowychDo10000Pln(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekInwestycyjnoObrotowychDo10000Pln = $kwotaPozyczek;
+        $this->kwotaPozyczekInwestycyjnoObrotowychDo10000Pln = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5761,7 +5705,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln = $kwotaPozyczek;
+        $this->kwotaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5785,7 +5729,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln = $kwotaPozyczek;
+        $this->kwotaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5809,7 +5753,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln = $kwotaPozyczek;
+        $this->kwotaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5833,7 +5777,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln = $kwotaPozyczek;
+        $this->kwotaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5857,7 +5801,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekInwestycyjnoObrotowychOd300001Pln(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekInwestycyjnoObrotowychOd300001Pln = $kwotaPozyczek;
+        $this->kwotaPozyczekInwestycyjnoObrotowychOd300001Pln = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5881,7 +5825,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekDo10000PlnNaDzialaniaProdukcyjne(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekDo10000PlnNaDzialaniaProdukcyjne = $kwotaPozyczek;
+        $this->kwotaPozyczekDo10000PlnNaDzialaniaProdukcyjne = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5905,7 +5849,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne = $kwotaPozyczek;
+        $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5929,7 +5873,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne = $kwotaPozyczek;
+        $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5953,7 +5897,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne = $kwotaPozyczek;
+        $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -5977,7 +5921,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne = $kwotaPozyczek;
+        $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6001,7 +5945,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd300001PlnNaDzialaniaProdukcyjne(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd300001PlnNaDzialaniaProdukcyjne = $kwotaPozyczek;
+        $this->kwotaPozyczekOd300001PlnNaDzialaniaProdukcyjne = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6025,7 +5969,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekDo10000PlnNaDzialaniaHandlowe(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekDo10000PlnNaDzialaniaHandlowe = $kwotaPozyczek;
+        $this->kwotaPozyczekDo10000PlnNaDzialaniaHandlowe = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6049,7 +5993,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe = $kwotaPozyczek;
+        $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6073,7 +6017,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe = $kwotaPozyczek;
+        $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6097,7 +6041,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe = $kwotaPozyczek;
+        $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6121,7 +6065,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe = $kwotaPozyczek;
+        $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6145,7 +6089,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd300001PlnNaDzialaniaHandlowe(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd300001PlnNaDzialaniaHandlowe = $kwotaPozyczek;
+        $this->kwotaPozyczekOd300001PlnNaDzialaniaHandlowe = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6175,7 +6119,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekDo10000PlnNaDzialaniaUslugowe(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekDo10000PlnNaDzialaniaUslugowe = $kwotaPozyczek;
+        $this->kwotaPozyczekDo10000PlnNaDzialaniaUslugowe = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6199,7 +6143,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe = $kwotaPozyczek;
+        $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6223,7 +6167,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe = $kwotaPozyczek;
+        $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6247,7 +6191,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe = $kwotaPozyczek;
+        $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6271,7 +6215,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe = $kwotaPozyczek;
+        $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6295,7 +6239,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd300001PlnNaDzialaniaUslugowe(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd300001PlnNaDzialaniaUslugowe = $kwotaPozyczek;
+        $this->kwotaPozyczekOd300001PlnNaDzialaniaUslugowe = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6319,7 +6263,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekDo10000PlnNaDzialaniaBudownicze(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekDo10000PlnNaDzialaniaBudownicze = $kwotaPozyczek;
+        $this->kwotaPozyczekDo10000PlnNaDzialaniaBudownicze = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6343,7 +6287,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze = $kwotaPozyczek;
+        $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6367,7 +6311,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze = $kwotaPozyczek;
+        $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6391,7 +6335,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze = $kwotaPozyczek;
+        $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6415,7 +6359,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze = $kwotaPozyczek;
+        $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6439,7 +6383,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd300001PlnNaDzialaniaBudownicze(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd300001PlnNaDzialaniaBudownicze = $kwotaPozyczek;
+        $this->kwotaPozyczekOd300001PlnNaDzialaniaBudownicze = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6463,7 +6407,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekDo10000PlnNaDzialaniaRolnicze(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekDo10000PlnNaDzialaniaRolnicze = $kwotaPozyczek;
+        $this->kwotaPozyczekDo10000PlnNaDzialaniaRolnicze = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6487,7 +6431,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze = $kwotaPozyczek;
+        $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6511,7 +6455,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze = $kwotaPozyczek;
+        $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6535,7 +6479,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze = $kwotaPozyczek;
+        $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6559,7 +6503,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze = $kwotaPozyczek;
+        $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6583,7 +6527,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd300001PlnNaDzialaniaRolnicze(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd300001PlnNaDzialaniaRolnicze = $kwotaPozyczek;
+        $this->kwotaPozyczekOd300001PlnNaDzialaniaRolnicze = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6607,7 +6551,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekDo10000PlnNaDzialaniaInne(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekDo10000PlnNaDzialaniaInne = $kwotaPozyczek;
+        $this->kwotaPozyczekDo10000PlnNaDzialaniaInne = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6631,7 +6575,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd10001Do30000PlnNaDzialaniaInne(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaInne = $kwotaPozyczek;
+        $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaInne = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6655,7 +6599,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd30001Do50000PlnNaDzialaniaInne(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaInne = $kwotaPozyczek;
+        $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaInne = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6679,7 +6623,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd50001Do120000PlnNaDzialaniaInne(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaInne = $kwotaPozyczek;
+        $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaInne = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6703,7 +6647,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd120001Do300000PlnNaDzialaniaInne(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaInne = $kwotaPozyczek;
+        $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaInne = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -6727,7 +6671,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekOd300001PlnNaDzialaniaInne(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd300001PlnNaDzialaniaInne = $kwotaPozyczek;
+        $this->kwotaPozyczekOd300001PlnNaDzialaniaInne = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
