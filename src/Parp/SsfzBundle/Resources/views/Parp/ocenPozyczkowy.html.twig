@@ -1,18 +1,26 @@
-{% extends 'SsfzBundle:Sprawozdanie:pozyczkoweEdycja.html.twig' %}
+{% extends 'SsfzBundle::baseLayout.html.twig' %}
 
-{% block bodyEdit %}
-    {% form_theme formOcena 'bootstrap_3_layout.html.twig' %}
-    {{ form_start(formOcena) }}
-    {{ form_row(formOcena._token) }}
-    {{ form_end(formOcena) }}
+{% block body %}
+    {% form_theme form 'bootstrap_3_layout.html.twig' %}
+    {{ form_start(form) }}
+    {{ form_row(form._token) }}
+    {{ form_end(form) }}
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4>Sprawozdanie do umowy {{ sprawozdanie.numerUmowy }} za okres {{ sprawozdanie.okres }} {{ sprawozdanie.rok }}</h4>
         </div>
         <div class="panel-body">
-
-            {{ parent() }}
-
+            {% if program.czyFunduszPozyczkowy %}
+                {% include 'SsfzBundle:Sprawozdanie:spoEdycja.naglowek.html.twig' with {'form': formS, 'tylkoDoOdczytu': true} %}
+                {% include 'SsfzBundle:Sprawozdanie:pozyczkoweEdycja.body.html.twig' with {'form': formS, 'tylkoDoOdczytu': true} %}
+                {% include 'SsfzBundle:Sprawozdanie:spoEdycja.stopka.html.twig' with {'form': formS, 'tylkoDoOdczytu': true} %}
+            {% elseif program.czyFunduszPoreczeniowy %}
+                {% include 'SsfzBundle:Sprawozdanie:spoEdycja.naglowek.html.twig' with {'form': formS, 'tylkoDoOdczytu': true} %}
+                {% include 'SsfzBundle:Sprawozdanie:poreczenioweEdycja.body.html.twig' with {'form': formS, 'tylkoDoOdczytu': true} %}
+                {% include 'SsfzBundle:Sprawozdanie:spoEdycja.stopka.html.twig' with {'form': formS, 'tylkoDoOdczytu': true} %}
+            {% else %}
+                {% include 'SsfzBundle:Parp:sprawozdanieForm.html.twig' with {'formS': formS, 'formP': formP } %}
+            {% endif %}
             <div class="pull-right">
                 <button id="ocena-zatwierdz"
                         name="ocena-zatwierdz"

@@ -118,57 +118,14 @@ class ParpController extends Controller
                 return $this->redirectToRoute('parp');
             }
         }
-        
-        switch ($program->getId()) {
-            case Program::FUNDUSZ_POZYCZKOWY_SPO_WKP_121:
-                $szablon = 'ocenPozyczkowy';
-                break;
 
-            case Program::FUNDUSZ_PORECZENIOWY_SPO_WKP_122:
-                $szablon = 'ocenPoreczeniowy';
-                break;
-
-            default:
-                $szablon = 'ocenZalazkowy';
-                break;
-        }
-        
-        $templateContent = $this
-            ->get('twig')
-            ->loadTemplate('SsfzBundle:Sprawozdanie:pozyczkoweEdycja.html.twig')
-        ;
-
-        $body = $templateContent->renderBlock(
-            'body',
-            [
-                'formOcena'    => $form->createView(),
-                'sprawozdanie' => $sprawozdanie,
-                'form'         => $formS->createView(),
-                'formS'        => $formS->createView(),
-                'formP'        => $formP,
-                'program'      => $program,
-                'tylkoDoOdczytu' => true,
-            ]
-        );
-        exit('stpo');
-        $subject = ($templateContent->hasBlock("subject")
-            ? $templateContent->renderBlock("subject", array('batchSize' => $batch->getSize(), 'batch' => $batch))
-            : "Auction House Notifications");
-        exit($body);
-//        exit($szablon);
-
-        return $this->render(
-            'SsfzBundle:Parp:' . $szablon . '.html.twig',
-            [
-                'formOcena'    => $form->createView(),
-                'sprawozdanie' => $sprawozdanie,
-                'form'         => $formS->createView(),
-                'formS'        => $formS->createView(),
-                'formP'        => $formP,
-                'program'      => $program,
-                'tylkoDoOdczytu' => true,
-            ]
-        );
+        return $this->render('SsfzBundle:Parp:ocen.html.twig', [
+            'form'         => $form->createView(),
+            'sprawozdanie' => $sprawozdanie,
+            'formS'        => $formS->createView(),
+            'formP'        => $formP,
+            'program'      => $program,
+        ]);
     }
 
     /**
