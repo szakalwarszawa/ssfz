@@ -1,0 +1,21 @@
+{# Temat wiadomości #}
+{% block subject %}Nie odnotowano złożenia sprawozdania ze zrealizowanego projektu w ramach Poddziałania 1.2.2 SPO WKP{% endblock subject %}
+
+{# Wiadomość w formacie HTML #}
+{% block body_html %}
+    <html>
+    <head></head>
+    <body>
+        <p>Nie odnotowano złożenia sprawozdania za zrealizowane w ramach Poddziałania 1.2.2 SPO WKP nr <strong>{{ nrUmowy }}</strong>, na którego złożenie termin upłynął w dniu <strong>{{ dzien }}</strong>.</p>
+        <p>Beneficjenci Poddziałania 1.2.2 SPO WKP zobowiązani są do cyklicznej sprawozdawczości z prowadzonej działalności poręczeniowej. W razie niemożności przesłania sprawozdania proszę o kontakt z pracownikiem PARP.</p>
+    </body>
+    </html>
+{% endblock body_html %}
+
+{# Wiadomość w formie czystego tekstu - dla starszych programów pocztowych #}
+{% block body_txt %}
+Nie odnotowano złożenia sprawozdania za zrealizowane w ramach Poddziałania 1.2.2 SPO WKP nr {{ nrUmowy }}, na którego złożenie termin upłynął w dniu {{ dzien }}.
+
+Beneficjenci Poddziałania 1.2.2 SPO WKP zobowiązani są do cyklicznej sprawozdawczości z prowadzonej działalności poręczeniowej. W razie niemożności przesłania sprawozdania proszę o kontakt z pracownikiem PARP.
+
+{% endblock body_txt %}
