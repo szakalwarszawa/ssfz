@@ -118,6 +118,43 @@ class ParpController extends Controller
                 return $this->redirectToRoute('parp');
             }
         }
+        
+        switch ($program->getId()) {
+            case Program::FUNDUSZ_POZYCZKOWY_SPO_WKP_121:
+                $szablon = 'SsfzBundle:Sprawozdanie:pozyczkoweEdycja.html.twig';
+                $blockParams = [
+                    'form'         => $formS->createView(),
+                    'tylkoDoOdczytu' => true,
+                    'app'          => $this,
+                ];
+                break;
+
+            case Program::FUNDUSZ_PORECZENIOWY_SPO_WKP_122:
+                $szablon = 'SsfzBundle:Sprawozdanie:poreczenioweEdycja.html.twig';
+                $blockParams = [
+                    'form'         => $formS->createView(),
+                    'tylkoDoOdczytu' => true,
+                    'app'          => $this,
+                ];
+                break;
+
+            default:
+                $szablon = 'SsfzBundle:Parp:sprawozdanieForm.html.twig';
+                $blockParams = [
+                    'formS'        => $formS->createView(),
+                    'formP'        => $formP,
+                ];
+                break;
+        }
+
+        $templateContent = $this
+            ->get('twig')
+            ->loadTemplate($szablon)
+        ;
+
+        // jeśli wyświetla pustą stronę bez żadnej informacji:
+        // podmienić renderBlock na displayBlock, będzie widać treść błędów
+        $bodySprawozdanie = $templateContent->renderBlock('body', $blockParams);
 
         return $this->render('SsfzBundle:Parp:ocen.html.twig', [
             'form'         => $form->createView(),
@@ -125,6 +162,7 @@ class ParpController extends Controller
             'formS'        => $formS->createView(),
             'formP'        => $formP,
             'program'      => $program,
+            'bodySprawozdanie' => $bodySprawozdanie,
         ]);
     }
 

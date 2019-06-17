@@ -10,17 +10,7 @@
             <h4>Sprawozdanie do umowy {{ sprawozdanie.numerUmowy }} za okres {{ sprawozdanie.okres }} {{ sprawozdanie.rok }}</h4>
         </div>
         <div class="panel-body">
-            {% if program.czyFunduszPozyczkowy %}
-                {% include 'SsfzBundle:Sprawozdanie:spoEdycja.naglowek.html.twig' with {'form': formS, 'tylkoDoOdczytu': true} %}
-                {% include 'SsfzBundle:Sprawozdanie:pozyczkoweEdycja.body.html.twig' with {'form': formS, 'tylkoDoOdczytu': true} %}
-                {% include 'SsfzBundle:Sprawozdanie:spoEdycja.stopka.html.twig' with {'form': formS, 'tylkoDoOdczytu': true} %}
-            {% elseif program.czyFunduszPoreczeniowy %}
-                {% include 'SsfzBundle:Sprawozdanie:spoEdycja.naglowek.html.twig' with {'form': formS, 'tylkoDoOdczytu': true} %}
-                {% include 'SsfzBundle:Sprawozdanie:poreczenioweEdycja.body.html.twig' with {'form': formS, 'tylkoDoOdczytu': true} %}
-                {% include 'SsfzBundle:Sprawozdanie:spoEdycja.stopka.html.twig' with {'form': formS, 'tylkoDoOdczytu': true} %}
-            {% else %}
-                {% include 'SsfzBundle:Parp:sprawozdanieForm.html.twig' with {'formS': formS, 'formP': formP } %}
-            {% endif %}
+            {{ bodySprawozdanie|raw }}
             <div class="pull-right">
                 <button id="ocena-zatwierdz"
                         name="ocena-zatwierdz"
