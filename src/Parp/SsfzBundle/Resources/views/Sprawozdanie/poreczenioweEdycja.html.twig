@@ -1,14 +1,74 @@
-{% extends "SsfzBundle::baseLayout.html.twig" %}
-{% block body %}
-    {% include 'SsfzBundle:Sprawozdanie:spoEdycja.naglowek.html.twig' %}
-    {% include 'SsfzBundle:Sprawozdanie:poreczenioweEdycja.body.html.twig' %}
-    {% include 'SsfzBundle:Sprawozdanie:spoEdycja.stopka.html.twig' %}
-{% endblock %}
+{% extends "SsfzBundle:Sprawozdanie:spoEdycja.html.twig" %}
 
-{% block javascripts %}
-    {% if not tylkoDoOdczytu %}
-        {% javascripts '@SsfzBundle/Resources/public/js/sprawozdanie_spo_edycja.js' %}
-            <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-    {% endif %}
+{% block bodyEdit %}
+{{ form_row(form.nazwaFunduszu) }}
+    {{ form_row(form.nip) }}
+    {{ form_row(form.krs) }}
+    {{ form_row(form.wojewodztwo) }}
+    {{ form_row(form.miejscowosc) }}
+    {{ form_row(form.ulica) }}
+    {{ form_row(form.budynek) }}
+    {{ form_row(form.lokal) }}
+    {{ form_row(form.kodPocztowy) }}
+    {{ form_row(form.poczta) }}
+    {{ form_row(form.telStacjonarny) }}
+    {{ form_row(form.telKomorkowy) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.fax) }}
+    {{ form_row(form.rokZalozenia) }}
+    {{ form_row(form.formaPrawna) }}
+
+    <hr>
+
+    {{ form_errors(form) }}
+    {{ form_row(form.kapitalOgolem) }}
+    <div id="skladniki-ogolem" class="skladniki-ogolem panel-body" data-prototype="{{ form_widget(form.skladnikiOgolem.vars.prototype)|e('html_attr') }}">
+        {% for skladnik in form.skladnikiOgolem %}
+            <div class="row skladnik-ogolem-row">
+                <div class="skladnik-ogolem-col col-sm-11">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {{ form_row(skladnik.skladnik) }}
+                            {{ form_row(skladnik.wartosc) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="hidden">{{ form_row(form.skladnikiOgolem) }}</div>
+
+    <hr>
+
+    {{ form_row(form.kapitalWydzielony) }}
+    <div id="skladniki-wydzielone" class="skladniki-wydzielone panel-body" data-prototype="{{ form_widget(form.skladnikiWydzielone.vars.prototype)|e('html_attr') }}">
+        {% for skladnik in form.skladnikiWydzielone %}
+            <div class="row skladnik-wydzielony-row">
+                <div class="skladnik-wydzielony-col col-sm-11">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {{ form_row(skladnik.skladnik) }}
+                            {{ form_row(skladnik.wartosc) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="hidden">{{ form_row(form.skladnikiWydzielone) }}</div>
+
+    <hr>
+
+    {{ form_row(form.dataZatwierdzeniaZasadGospodarowania) }}
+    {{ form_row(form.czyNieDzialaDlaZysku) }}
+    {{ form_row(form.czyPosiadaWydzielonyFundusz) }}
+    {{ form_row(form.czyOprocentowanieNieNizszeOdStopy) }}
+    {{ form_row(form.czyUdzielaPoAnalizieRyzyka) }}
+    {{ form_row(form.czyNieWTrudnejSytuacji) }}
+    {{ form_row(form.czyNiePrzekraczaja80) }}
+    {{ form_row(form.czyZaWynagrodzeniem) }}
+    {{ form_row(form.czyOdpowiedniPotencjalEkonomiczny) }}
+    {{ form_row(form.czyPracownicyPosiadajaKwalifikacje) }}
+    {{ form_row(form.inne) }}
 {% endblock %}

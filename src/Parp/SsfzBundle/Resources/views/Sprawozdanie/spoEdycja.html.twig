@@ -1,0 +1,75 @@
+{% extends "SsfzBundle::baseLayout.html.twig" %}
+{% block body %}
+    {% set sprawozdanie = form.vars.value %}
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+        {% if tylkoDoOdczytu %}
+                Podgląd
+        {% elseif sprawozdanie.czyStatusWTrakciePoprawy %}
+                Poprawa
+        {% else %}
+            Edycja
+        {% endif %}
+        sprawozdania
+        </div>
+            {{ form_start(form, {'attr': {'id': 'form_sprawozdanie'}}) }}
+            <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <td class="etykieta">Numer umowy</td>
+                        <td>{{ sprawozdanie.numerUmowy }}</td>
+                    </tr>
+                    <tr>
+                        <td class="etykieta">Sprawozdanie za okres</td>
+                        <td>{{ sprawozdanie.okres }}</td>
+                    </tr>
+                    <tr>
+                        <td class="etykieta">Rok</td>
+                        <td>{{ sprawozdanie.rok }}</td>
+                    </tr>
+                    {% if sprawozdanie.czyStatusWTrakciePoprawy %}
+                        <tr>
+                            <td class="etykieta">Komentarz PARP</td>
+                            <td>{{ sprawozdanie.uwagi|nl2br }}</td>
+                        </tr>
+                    {% endif %}
+                </table>
+                <hr>
+
+                {% block bodyEdit %}
+                {% endblock %}
+
+                <div id="form-submit-div" class="row btn-toolbar">
+                    {% if app.user.rola == 'ROLE_BENEFICJENT' %}
+                        {% if tylkoDoOdczytu %}
+                            <a class="btn btn-danger pull-right width-short" href="{{ path('lista_sprawozdan_spo', {'umowa': sprawozdanie.umowa.id}) }}">
+                                <i class="fas fa-arrow-left"></i> Powrót
+                            </a>
+                        {% else %}
+                            <button
+                                id="btn_powrot"
+                                type="button"
+                                class="btn btn-danger pull-right width-short"
+                                data-href-powrot="{{ path('lista_sprawozdan_spo', {'umowa': sprawozdanie.umowa.id}) }}"
+                            >
+                                <i class="fas fa-arrow-left"></i> Powrót
+                            </button>
+                            <input name="zapisz" value="Zapisz" type="submit" class="btn btn-primary pull-right width-short" />
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {% if not tylkoDoOdczytu %}
+        {% javascripts '@SsfzBundle/Resources/public/js/sprawozdanie_spo_edycja.js' %}
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endif %}
+{% endblock %}
