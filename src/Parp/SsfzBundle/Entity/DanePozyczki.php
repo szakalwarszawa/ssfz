@@ -39,7 +39,7 @@ class DanePozyczki
      *
      * @var Sprawozdanie
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Sprawozdanie")
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe")
      * @ORM\JoinColumn(name="sprawozdanie_id", referencedColumnName="id", nullable=false)
      */
     protected $sprawozdanie;
@@ -2863,6 +2863,21 @@ class DanePozyczki
      * )
      */
     protected $kwotaPozyczekOd300001PlnNaDzialaniaInne = '0.00';
+
+    public $liczbaPozyczekAktywnychOgolem = '0';
+    public $liczbaPozyczekAktywnychSpalcanychTerminowo = '0';
+    public $liczbaPozyczekAktywnychWymagajacychMonitorowania = '0';
+    public $liczbaPozyczekStraconych = '0';
+    public $liczbaWspolczynnikaStratWDanymOkresie = '0';
+    public $liczbaWspolczynnikaStratWCalymOkresie = '0';
+
+
+    public $kwotaPozyczekAktywnychOgolem = '0.00';
+    public $kwotaPozyczekAktywnychSpalcanychTerminowo = '0.00';
+    public $kwotaPozyczekAktywnychWymagajacychMonitorowania = '0.00';
+    public $kwotaPozyczekStraconych = '0.00';
+    public $kwotaWspolczynnikaStratWDanymOkresie = '0.00';
+    public $kwotaWspolczynnikaStratWCalymOkresie = '0.00';
 
     /**
      * Konstruktor.
@@ -6674,5 +6689,297 @@ class DanePozyczki
         $this->kwotaPozyczekOd300001PlnNaDzialaniaInne = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
+    }
+
+    /**
+     * Zwraca liczbę pożyczek ogółem dla mikro przedsiębiorstw.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOgolemDlaMikroPrzedsiebiorstw(): int
+    {
+        $sum =
+            $this->liczbaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw +
+            $this->liczbaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw +
+            $this->liczbaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw +
+            $this->liczbaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw +
+            $this->liczbaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw +
+            $this->liczbaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw
+        ;
+
+        return $sum;
+    }
+
+    /**
+     * Zwraca liczbę pożyczek ogółem dla małych przedsiębiorstw.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOgolemDlaMalychPrzedsiebiorstw(): int
+    {
+        $sum =
+            $this->liczbaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw +
+            $this->liczbaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw +
+            $this->liczbaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw +
+            $this->liczbaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw +
+            $this->liczbaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw +
+            $this->liczbaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw
+        ;
+
+        return $sum;
+    }
+
+    /**
+     * Zwraca liczbę pożyczek ogółem dla średnich przedsiębiorstw.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOgolemDlaSrednichPrzedsiebiorstw(): int
+    {
+        $sum =
+            $this->liczbaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw +
+            $this->liczbaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw +
+            $this->liczbaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw +
+            $this->liczbaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw +
+            $this->liczbaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw +
+            $this->liczbaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw
+        ;
+
+        return $sum;
+    }
+
+    /**
+     * Zwraca liczbę pożyczek ogółem dla wszystkich przedsiębiorstw.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOgolemDlaPrzedsiebiorstw(): int
+    {
+        $sum =
+            $this->getLiczbaPozyczekOgolemDlaMikroPrzedsiebiorstw() +
+            $this->getLiczbaPozyczekOgolemDlaMalychPrzedsiebiorstw() +
+            $this->getLiczbaPozyczekOgolemDlaSrednichPrzedsiebiorstw()
+        ;
+
+        return $sum;
+    }
+
+    /**
+     * Zwraca kwotę pożyczek ogółem dla mikro przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOgolemDlaMikroPrzedsiebiorstw(): string
+    {
+        $sum =
+            $this->kwotaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw +
+            $this->kwotaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw +
+            $this->kwotaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw +
+            $this->kwotaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw +
+            $this->kwotaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw +
+            $this->kwotaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw
+        ;
+
+        return MoneyHelper::anyToDecimalString($sum, 2, true);
+    }
+
+    /**
+     * Zwraca kwotę pożyczek ogółem dla małych przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOgolemDlaMalychPrzedsiebiorstw(): string
+    {
+        $sum =
+            $this->kwotaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw +
+            $this->kwotaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw +
+            $this->kwotaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw +
+            $this->kwotaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw +
+            $this->kwotaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw +
+            $this->kwotaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw
+        ;
+
+        return MoneyHelper::anyToDecimalString($sum, 2, true);
+    }
+
+    /**
+     * Zwraca kwotę pożyczek ogółem dla średnich przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOgolemDlaSrednichPrzedsiebiorstw(): string
+    {
+        $sum =
+            $this->kwotaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw +
+            $this->kwotaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw +
+            $this->kwotaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw +
+            $this->kwotaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw +
+            $this->kwotaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw +
+            $this->kwotaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw
+        ;
+
+        return MoneyHelper::anyToDecimalString($sum, 2, true);
+    }
+
+    /**
+     * Zwraca kwotę pożyczek ogółem dla wszystkich przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOgolemDlaPrzedsiebiorstw(): string
+    {
+        $sum =
+            $this->getKwotaPozyczekOgolemDlaMikroPrzedsiebiorstw() +
+            $this->getKwotaPozyczekOgolemDlaMalychPrzedsiebiorstw() +
+            $this->getKwotaPozyczekOgolemDlaSrednichPrzedsiebiorstw()
+        ;
+
+        return MoneyHelper::anyToDecimalString($sum, 2, true);
+    }
+
+    /**
+     * Zwraca liczbę pożyczek obrotowych ogółem.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekObrotowychOgolem(): int
+    {
+        $sum =
+            $this->liczbaPozyczekObrotowychDo10000Pln +
+            $this->liczbaPozyczekObrotowychOd10001Do30000Pln +
+            $this->liczbaPozyczekObrotowychOd30001Do50000Pln +
+            $this->liczbaPozyczekObrotowychOd50001Do120000Pln +
+            $this->liczbaPozyczekObrotowychOd120001Do300000Pln +
+            $this->liczbaPozyczekObrotowychOd300001Pln
+        ;
+
+        return $sum;
+    }
+
+    /**
+     * Zwraca liczbę pożyczek inwestycyjnych ogółem.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekInwestycyjnychOgolem(): int
+    {
+        $sum =
+            $this->liczbaPozyczekInwestycyjnychDo10000Pln +
+            $this->liczbaPozyczekInwestycyjnychOd10001Do30000Pln +
+            $this->liczbaPozyczekInwestycyjnychOd30001Do50000Pln +
+            $this->liczbaPozyczekInwestycyjnychOd50001Do120000Pln +
+            $this->liczbaPozyczekInwestycyjnychOd120001Do300000Pln +
+            $this->liczbaPozyczekInwestycyjnychOd300001Pln
+        ;
+
+        return $sum;
+    }
+
+    /**
+     * Zwraca liczbę pożyczek inwestycyjno-obrotowych ogółem.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekInwestycyjnoObrotowychOgolem(): int
+    {
+        $sum =
+            $this->liczbaPozyczekInwestycyjnoObrotowychDo10000Pln +
+            $this->liczbaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln +
+            $this->liczbaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln +
+            $this->liczbaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln +
+            $this->liczbaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln +
+            $this->liczbaPozyczekInwestycyjnoObrotowychOd300001Pln
+        ;
+
+        return $sum;
+    }
+
+    /**
+     * Zwraca liczbę pożyczek ogółem dla wszystkich sektorów działań pożyczkobiorców.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOgolemDlaWszystkichSektorowDzialan(): int
+    {
+        $sum =
+            $this->getLiczbaPozyczekObrotowychOgolem() +
+            $this->getLiczbaPozyczekInwestycyjnychOgolem() +
+            $this->getLiczbaPozyczekInwestycyjnoObrotowychOgolem()
+        ;
+
+        return $sum;
+    }
+
+    /**
+     * Zwraca kwotę pożyczek obrotowych ogółem.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekObrotowychOgolem(): string
+    {
+        $sum =
+            $this->kwotaPozyczekObrotowychDo10000Pln +
+            $this->kwotaPozyczekObrotowychOd10001Do30000Pln +
+            $this->kwotaPozyczekObrotowychOd30001Do50000Pln +
+            $this->kwotaPozyczekObrotowychOd50001Do120000Pln +
+            $this->kwotaPozyczekObrotowychOd120001Do300000Pln +
+            $this->kwotaPozyczekObrotowychOd300001Pln
+        ;
+
+        return MoneyHelper::anyToDecimalString($sum, 2, true);
+    }
+
+    /**
+     * Zwraca kwotę pożyczek inwestycyjnych ogółem.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekInwestycyjnychOgolem(): string
+    {
+        $sum =
+            $this->kwotaPozyczekInwestycyjnychDo10000Pln +
+            $this->kwotaPozyczekInwestycyjnychOd10001Do30000Pln +
+            $this->kwotaPozyczekInwestycyjnychOd30001Do50000Pln +
+            $this->kwotaPozyczekInwestycyjnychOd50001Do120000Pln +
+            $this->kwotaPozyczekInwestycyjnychOd120001Do300000Pln +
+            $this->kwotaPozyczekInwestycyjnychOd300001Pln
+        ;
+
+        return MoneyHelper::anyToDecimalString($sum, 2, true);
+    }
+
+    /**
+     * Zwraca kwotę pożyczek inwestycyjno-obrotowych ogółem.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekInwestycyjnoObrotowychOgolem(): string
+    {
+        $sum =
+            $this->kwotaPozyczekInwestycyjnoObrotowychDo10000Pln +
+            $this->kwotaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln +
+            $this->kwotaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln +
+            $this->kwotaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln +
+            $this->kwotaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln +
+            $this->kwotaPozyczekInwestycyjnoObrotowychOd300001Pln
+        ;
+
+        return MoneyHelper::anyToDecimalString($sum, 2, true);
+    }
+
+    /**
+     * Zwraca kwotę pożyczek ogółem dla wszystkich sektorów działań pożyczkobiorców.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOgolemDlaWszystkichSektorowDzialan(): string
+    {
+        $sum =
+            $this->getKwotaPozyczekObrotowychOgolem() +
+            $this->getKwotaPozyczekInwestycyjnychOgolem() +
+            $this->getKwotaPozyczekInwestycyjnoObrotowychOgolem()
+        ;
+
+        return MoneyHelper::anyToDecimalString($sum, 2, true);
     }
 }

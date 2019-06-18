@@ -17,6 +17,7 @@ use Parp\SsfzBundle\Entity\DanePozyczki;
 class DanePozyczkiType extends AbstractType
 {
     const DECIMAL_FIELDS = [
+        // Kwoty pożyczek udzielonych w danym okresie sprawozdawczym.
         'kwotaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw',
         'kwotaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw',
         'kwotaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw',
@@ -89,6 +90,13 @@ class DanePozyczkiType extends AbstractType
         'kwotaPozyczekOd50001Do120000PlnNaDzialaniaInne',
         'kwotaPozyczekOd120001Do300000PlnNaDzialaniaInne',
         'kwotaPozyczekOd300001PlnNaDzialaniaInne',
+        // Kwoty pożyczek aktywnych i straconych w danym okresie sprawozdawczym.
+        'kwotaPozyczekAktywnychOgolem',
+        'kwotaPozyczekAktywnychSpalcanychTerminowo',
+        'kwotaPozyczekAktywnychWymagajacychMonitorowania',
+        'kwotaPozyczekStraconych',
+        'kwotaWspolczynnikaStratWDanymOkresie',
+        'kwotaWspolczynnikaStratWCalymOkresie'
     ];
 
     /**
@@ -102,12 +110,6 @@ class DanePozyczkiType extends AbstractType
         $builder->setAction($options['action_url']);
         $this->addIntegerFields($builder, $options);
         $this->addDecimalFields($builder, $options);
-
-        // $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
-        // $danePozyczki = $event->getData();
-        // foreach (self::DECIMAL_FIELDS) {
-        // }
-        // });
     }
 
     /**
@@ -136,6 +138,7 @@ class DanePozyczkiType extends AbstractType
         ];
 
         $fields = [
+            // Liczba pożyczek udzielonych w danym okresie sprawozdawczym.
             'liczbaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw',
             'liczbaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw',
             'liczbaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw',
@@ -208,6 +211,13 @@ class DanePozyczkiType extends AbstractType
             'liczbaPozyczekOd50001Do120000PlnNaDzialaniaInne',
             'liczbaPozyczekOd120001Do300000PlnNaDzialaniaInne',
             'liczbaPozyczekOd300001PlnNaDzialaniaInne',
+            // Liczba pożyczek aktywnych i straconych w danym okresie sprawozdawczym.
+            'liczbaPozyczekAktywnychOgolem',
+            'liczbaPozyczekAktywnychSpalcanychTerminowo',
+            'liczbaPozyczekAktywnychWymagajacychMonitorowania',
+            'liczbaPozyczekStraconych',
+            'liczbaWspolczynnikaStratWDanymOkresie',
+            'liczbaWspolczynnikaStratWCalymOkresie'
         ];
 
         foreach ($fields as $field) {
@@ -235,18 +245,17 @@ class DanePozyczkiType extends AbstractType
             new Assert\NotBlank([
                 'message' => 'Należy wypełnić pole',
             ]),
-            // To nie działa właściwie, bo kwoty są formatowanymi stringami.
-            // Są konwertowane na decimale w encji, ale walidacja formularza jest wcześniej
-            // i sypie błędami.
-            //new Assert\Type([
-            //    'type'    => 'float',
-            //    'message' => 'Pole może zawierać tylko liczby dziesiętne',
-            //]),
-            //new Assert\Range([
-            //    'min'            => 0,
-            //    'max'            => 999999999.99,
-            //    'invalidMessage' => 'Pole może zawierać wartości od 0.00 do 999999999.99',
-            //]),
+            new Assert\Regex([
+                'pattern' => '/^((([1-9])([\d\ ])*)|0)\.([\d]){2,2}$/',
+                'message' => 'Pole może zawierać tylko liczby dziesiętne z zakresu 0.00 - 999 999 999.99',
+            ]),
+            // Ta walidacja nie zadziała jeśli kwoty są sformatowane np. 100 200 300.01.
+            // Jej rolę przejąło sprawadzenie zgodności z wyrażeniem regularnym.
+            // new Assert\Range([
+            //     'min'            => 0,
+            //     'max'            => 999999999.99,
+            //     'invalidMessage' => 'Pole może zawierać wartości od 0.00 do 999999999.99',
+            // ]),
         ];
 
         foreach (self::DECIMAL_FIELDS as $field) {

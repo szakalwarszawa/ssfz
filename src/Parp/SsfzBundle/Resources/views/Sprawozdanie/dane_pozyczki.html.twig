@@ -1,0 +1,415 @@
+{% extends "SsfzBundle::baseLayout.html.twig" %}
+
+{% form_theme form _self %}
+
+{%- block form_widget_simple -%}
+    {%- set type = type|default('text') -%}
+    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-control text-right')|trim}) -%}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+{%- endblock form_widget_simple -%}
+
+{%- block integer_widget -%}
+    {%- set type = type|default('number') -%}
+    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-control text-center')|trim}) -%}
+    {{ block('form_widget_simple') }}
+{%- endblock integer_widget -%}
+
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-heading">Dane pożyczki</div>
+            <div class="panel-body">
+                <div>
+                    <span><strong>Numer umowy: </strong>{{ dane_pozyczki.sprawozdanie.numerUmowy }}</span>
+                    <br />
+                    <span><strong>Okres sprawozdawczy: </strong>{{ dane_pozyczki.sprawozdanie.okres }} {{ dane_pozyczki.sprawozdanie.rok }}</span>
+                </div>
+
+                <div class="col-md-12">
+                    <hr />
+                    {{ form_start(form) }}
+                        <h4>Dane dotyczące udzielonych pożyczek w sprawozdawanym okresie</h4>
+                        <table class="table table-bordered table-condensed table-striped">
+                            <tr>
+                                <td rowspan="2" class="info credit-range col-md-1"></td>
+                                <td colspan="3" class="text-center col-md-3"><strong>Według typu przedsiębiorstwa</strong></td>
+                                <td colspan="3" class="text-center col-md-3"><strong>Według przeznaczenia</strong></td>
+                                <td colspan="6" class="text-center col-md-5"><strong>Według działania pożyczkobiorcy</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center">Mikro</td>
+                                <td class="text-center">Małe</td>
+                                <td class="text-center">Śrdnie</td>
+                                <td class="text-center">obrotowe</td>
+                                <td class="text-center">inwestycyjne</td>
+                                <td class="text-center">inwestycyjno-obrotowe</td>
+                                <td class="text-center">produkcja</td>
+                                <td class="text-center">handel</td>
+                                <td class="text-center">usługi</td>
+                                <td class="text-center">budownictwo</td>
+                                <td class="text-center">rolnictwo</td>
+                                <td class="text-center">inne</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="13" class="info text-center"><strong>Liczba pożyczek (szt.)</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center credit-range">do 10 000 zł</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekObrotowychDo10000Pln, {'attr': {'data-vertical-group': '4', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekInwestycyjnychDo10000Pln, {'attr': {'data-vertical-group': '5', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekInwestycyjnoObrotowychDo10000Pln, {'attr': {'data-vertical-group': '6', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekDo10000PlnNaDzialaniaProdukcyjne, {'attr': {'data-vertical-group': '7', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekDo10000PlnNaDzialaniaHandlowe, {'attr': {'data-vertical-group': '8', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekDo10000PlnNaDzialaniaUslugowe, {'attr': {'data-vertical-group': '9', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekDo10000PlnNaDzialaniaBudownicze, {'attr': {'data-vertical-group': '10', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekDo10000PlnNaDzialaniaRolnicze, {'attr': {'data-vertical-group': '11', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekDo10000PlnNaDzialaniaInne, {'attr': {'data-vertical-group': '12', 'data-horizontal-group': '3'}}) }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center credit-range">od 10 001 zł<br />do 30 000 zł</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekObrotowychOd10001Do30000Pln, {'attr': {'data-vertical-group': '4', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekInwestycyjnychOd10001Do30000Pln, {'attr': {'data-vertical-group': '5', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln, {'attr': {'data-vertical-group': '6', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne, {'attr': {'data-vertical-group': '7', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe, {'attr': {'data-vertical-group': '8', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe, {'attr': {'data-vertical-group': '9', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze, {'attr': {'data-vertical-group': '10', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze, {'attr': {'data-vertical-group': '11', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd10001Do30000PlnNaDzialaniaInne, {'attr': {'data-vertical-group': '12', 'data-horizontal-group': '3'}}) }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center credit-range">od 30 001zł<br />do 50 000 zł</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekObrotowychOd30001Do50000Pln, {'attr': {'data-vertical-group': '4', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekInwestycyjnychOd30001Do50000Pln, {'attr': {'data-vertical-group': '5', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln, {'attr': {'data-vertical-group': '6', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne, {'attr': {'data-vertical-group': '7', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe, {'attr': {'data-vertical-group': '8', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe, {'attr': {'data-vertical-group': '9', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze, {'attr': {'data-vertical-group': '10', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze, {'attr': {'data-vertical-group': '11', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd30001Do50000PlnNaDzialaniaInne, {'attr': {'data-vertical-group': '12', 'data-horizontal-group': '3'}}) }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center credit-range">od 50 001 zł<br />do 120 000 zł</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekObrotowychOd50001Do120000Pln, {'attr': {'data-vertical-group': '4', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekInwestycyjnychOd50001Do120000Pln, {'attr': {'data-vertical-group': '5', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln, {'attr': {'data-vertical-group': '6', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne, {'attr': {'data-vertical-group': '7', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe, {'attr': {'data-vertical-group': '8', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe, {'attr': {'data-vertical-group': '9', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze, {'attr': {'data-vertical-group': '10', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze, {'attr': {'data-vertical-group': '11', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd50001Do120000PlnNaDzialaniaInne, {'attr': {'data-vertical-group': '12', 'data-horizontal-group': '3'}}) }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center credit-range">od 120 001 zł<br />do 300 000 zł</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekObrotowychOd120001Do300000Pln, {'attr': {'data-vertical-group': '4', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekInwestycyjnychOd120001Do300000Pln, {'attr': {'data-vertical-group': '5', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln, {'attr': {'data-vertical-group': '6', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne, {'attr': {'data-vertical-group': '7', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe, {'attr': {'data-vertical-group': '8', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe, {'attr': {'data-vertical-group': '9', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze, {'attr': {'data-vertical-group': '10', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze, {'attr': {'data-vertical-group': '11', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd120001Do300000PlnNaDzialaniaInne, {'attr': {'data-vertical-group': '12', 'data-horizontal-group': '3'}}) }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center credit-range">od 300 001 zł</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekObrotowychOd300001Pln, {'attr': {'data-vertical-group': '4', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekInwestycyjnychOd300001Pln, {'attr': {'data-vertical-group': '5', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekInwestycyjnoObrotowychOd300001Pln, {'attr': {'data-vertical-group': '6', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd300001PlnNaDzialaniaProdukcyjne, {'attr': {'data-vertical-group': '7', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd300001PlnNaDzialaniaHandlowe, {'attr': {'data-vertical-group': '8', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd300001PlnNaDzialaniaUslugowe, {'attr': {'data-vertical-group': '9', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd300001PlnNaDzialaniaBudownicze, {'attr': {'data-vertical-group': '10', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd300001PlnNaDzialaniaRolnicze, {'attr': {'data-vertical-group': '11', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekOd300001PlnNaDzialaniaInne, {'attr': {'data-vertical-group': '12', 'data-horizontal-group': '3'}}) }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center credit-range"><strong>Suma:</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="1">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="2">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="3">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="4">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="5">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="6">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="7">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="8">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="9">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="10">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="11">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="12">0</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="13" class="info text-center"><strong>Wartość pożyczek (zł)</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center credit-range">do 10 000 zł</td>
+                                <td class="text-center filled">{{ form_widget(form.kwotaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '13', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '14', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '15', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekObrotowychDo10000Pln, {'attr': {'data-vertical-group': '16', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekInwestycyjnychDo10000Pln, {'attr': {'data-vertical-group': '17', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekInwestycyjnoObrotowychDo10000Pln, {'attr': {'data-vertical-group': '18', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekDo10000PlnNaDzialaniaProdukcyjne, {'attr': {'data-vertical-group': '19', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekDo10000PlnNaDzialaniaHandlowe, {'attr': {'data-vertical-group': '20', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekDo10000PlnNaDzialaniaUslugowe, {'attr': {'data-vertical-group': '21', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekDo10000PlnNaDzialaniaBudownicze, {'attr': {'data-vertical-group': '22', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekDo10000PlnNaDzialaniaRolnicze, {'attr': {'data-vertical-group': '23', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekDo10000PlnNaDzialaniaInne, {'attr': {'data-vertical-group': '24', 'data-horizontal-group': '6'}}) }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center credit-range">od 10 001 zł<br />do 30 000 zł</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '13', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '14', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '15', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekObrotowychOd10001Do30000Pln, {'attr': {'data-vertical-group': '16', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekInwestycyjnychOd10001Do30000Pln, {'attr': {'data-vertical-group': '17', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln, {'attr': {'data-vertical-group': '18', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne, {'attr': {'data-vertical-group': '19', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe, {'attr': {'data-vertical-group': '20', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe, {'attr': {'data-vertical-group': '21', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze, {'attr': {'data-vertical-group': '22', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze, {'attr': {'data-vertical-group': '23', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd10001Do30000PlnNaDzialaniaInne, {'attr': {'data-vertical-group': '24', 'data-horizontal-group': '6'}}) }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center credit-range">od 30 001 zł<br />do 50 000 zł</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '13', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '14', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '15', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekObrotowychOd30001Do50000Pln, {'attr': {'data-vertical-group': '16', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekInwestycyjnychOd30001Do50000Pln, {'attr': {'data-vertical-group': '17', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln, {'attr': {'data-vertical-group': '18', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne, {'attr': {'data-vertical-group': '19', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe, {'attr': {'data-vertical-group': '20', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe, {'attr': {'data-vertical-group': '21', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze, {'attr': {'data-vertical-group': '22', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze, {'attr': {'data-vertical-group': '23', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd30001Do50000PlnNaDzialaniaInne, {'attr': {'data-vertical-group': '24', 'data-horizontal-group': '6'}}) }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center credit-range">od 50 001 zł<br />do 120 000 zł</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '13', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '14', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '15', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekObrotowychOd50001Do120000Pln, {'attr': {'data-vertical-group': '16', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekInwestycyjnychOd50001Do120000Pln, {'attr': {'data-vertical-group': '17', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln, {'attr': {'data-vertical-group': '18', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne, {'attr': {'data-vertical-group': '19', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe, {'attr': {'data-vertical-group': '21', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe, {'attr': {'data-vertical-group': '22', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze, {'attr': {'data-vertical-group': '23', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze, {'attr': {'data-vertical-group': '24', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd50001Do120000PlnNaDzialaniaInne, {'attr': {'data-vertical-group': '25', 'data-horizontal-group': '6'}}) }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center credit-range">od 120 001 zł<br />do 300 000 zł</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '13', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '14', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '15', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekObrotowychOd120001Do300000Pln, {'attr': {'data-vertical-group': '16', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekInwestycyjnychOd120001Do300000Pln, {'attr': {'data-vertical-group': '17', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln, {'attr': {'data-vertical-group': '18', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne, {'attr': {'data-vertical-group': '19', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe, {'attr': {'data-vertical-group': '20', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe, {'attr': {'data-vertical-group': '21', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze, {'attr': {'data-vertical-group': '22', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze, {'attr': {'data-vertical-group': '23', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd120001Do300000PlnNaDzialaniaInne, {'attr': {'data-vertical-group': '24', 'data-horizontal-group': '6'}}) }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center credit-range">od 300 001 zł</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '13', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '14', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '15', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekObrotowychOd300001Pln, {'attr': {'data-vertical-group': '16', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekInwestycyjnychOd300001Pln, {'attr': {'data-vertical-group': '17', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekInwestycyjnoObrotowychOd300001Pln, {'attr': {'data-vertical-group': '18', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd300001PlnNaDzialaniaProdukcyjne, {'attr': {'data-vertical-group': '19', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd300001PlnNaDzialaniaHandlowe, {'attr': {'data-vertical-group': '20', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd300001PlnNaDzialaniaUslugowe, {'attr': {'data-vertical-group': '21', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd300001PlnNaDzialaniaBudownicze, {'attr': {'data-vertical-group': '22', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd300001PlnNaDzialaniaRolnicze, {'attr': {'data-vertical-group': '23', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPozyczekOd300001PlnNaDzialaniaInne, {'attr': {'data-vertical-group': '24', 'data-horizontal-group': '6'}}) }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center credit-range"><strong>Suma:</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="13">0.00</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="14">0.00</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="15">0.00</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="16">0.00</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="17">0.00</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="18">0.00</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="19">0.00</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="20">0.00</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="21">0.00</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="22">0.00</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="23">0.00</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="24">0.00</strong></td>
+                            </tr>
+                        </table>
+
+                        <hr />
+
+                        <h4> Dane dotyczące aktywnych i straconych pożyczek w sprawozdawanym okresie</h4>
+                        <div class="col-md-7">
+                            <table class="table table-bordered table-condensed table-striped">
+                                <tr>
+                                    <td class="col-md-3"></td>
+                                    <td class="text-center col-md-2">Liczba pożyczek (szt.)</td>
+                                    <td class="text-center col-md-2">Wartość pożyczek (zł)</td>
+                                </tr>
+                                <tr>
+                                    <td>Pożyczki aktywne</td>
+                                    <td class="text-center">{{ form_widget(form.liczbaPozyczekAktywnychOgolem) }}</td>
+                                    <td class="text-center">{{ form_widget(form.kwotaPozyczekAktywnychOgolem) }}</td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Spłacane terminowo</td>
+                                    <td class="text-center">{{ form_widget(form.liczbaPozyczekAktywnychSpalcanychTerminowo) }}</td>
+                                    <td class="text-center">{{ form_widget(form.kwotaPozyczekAktywnychSpalcanychTerminowo) }}</td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Wymagające szczególnego monitorowania</td>
+                                    <td class="text-center">{{ form_widget(form.liczbaPozyczekAktywnychWymagajacychMonitorowania) }}</td>
+                                    <td class="text-center">{{ form_widget(form.kwotaPozyczekAktywnychWymagajacychMonitorowania) }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Pożyczki stracone</td>
+                                    <td class="text-center">{{ form_widget(form.liczbaPozyczekStraconych) }}</td>
+                                    <td class="text-center">{{ form_widget(form.kwotaPozyczekStraconych) }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Współczynnik strat w danym okresie</td>
+                                    <td class="text-center">{{ form_widget(form.liczbaWspolczynnikaStratWDanymOkresie) }}</td>
+                                    <td class="text-center">{{ form_widget(form.kwotaWspolczynnikaStratWDanymOkresie) }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Współczynnik strat w całym okresie</td>
+                                    <td class="text-center">{{ form_widget(form.liczbaWspolczynnikaStratWCalymOkresie) }}</td>
+                                    <td class="text-center">{{ form_widget(form.kwotaWspolczynnikaStratWCalymOkresie) }}</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col-md-12">
+                            <p>
+                                <strong>Objaśnienia:</strong><br />
+                                <strong>Pożyczki aktywne</strong> – pożyczki, pozostałe do spłaty przez przedsiębiorców wg stanu na ostatni dzień okresu sprawozdawczego, z których kapitał pożyczkowy po spłacie przeznaczony będzie ponownie na wypłatę kolejnych pożyczek.<br />
+                                <strong>Pożyczki spłacane terminowo</strong> – kapitał pożyczkowy spłacany jest zgodnie z harmonogramem spłat stanowiącym załącznik do umowy pożyczki.<br />
+                                <strong>Pożyczki wymagające szczególnego monitorowania</strong> – pożyczki/ kapitał pożyczkowy, które zgodnie z przyjętą w funduszu procedurą wymagają szczególnego nadzoru i/ lub podjęcia kroków zmierzających do odzyskania kapitału pożyczkowego.<br />
+                                <strong>Pożyczki stracone</strong> – pożyczki /kapitał pożyczkowy zaksięgowany w straty.<br />
+                                <strong>Współczynnik strat w danym okresie</strong> - łączna wartość kapitału pożyczek straconych w danym okresie sprawozdawczym w odniesieniu do łącznej wartości kapitału pożyczkowego.<br />
+                                <strong>Współczynnik strat w całym okresie</strong> - łączna wartość kapitału pożyczek straconych od początku działalności funduszu w odniesieniu do łącznej wartości kapitału pożyczkowego funduszy.
+                            </p>
+                        </div>
+
+                        <div class="col-md-12">
+                            <hr />
+                            <br />
+                            <a id="button_return"
+                               class="btn btn-default"
+                               href="{{ url('lista_sprawozdan_spo', {'umowa': dane_pozyczki.sprawozdanie.umowaId}) }}"><i class="fas fa-chevron-left"></i> Powrót</a>
+                            <button id="button_submit" type="submit" class="btn btn-success"><i class="fas fa-save"></i> Zapisz</button>
+                        </div>
+
+                    {{ form_widget(form._token) }}
+                    {{ form_end(form, {'render_rest': false}) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            function sumByGroup() {
+                var verticalGroupsInteger = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+                    verticalGroupsDecimal = ['13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'],
+                    horizontalGroupsInteger = ['1', '2', '3'],
+                    horizontalGroupsDecimal = ['4', '5', '6'],
+                    sum = 0
+                ;
+
+                $.each(verticalGroupsInteger, function (index, value) {
+                    $('[data-vertical-group='+value+']').each(function () {
+                        sum = sum + parseInt($(this).val());
+                    });
+                    $('[data-vertical-group-sum='+value+']').text(sum);
+                    sum = 0;
+                });
+
+                $.each(verticalGroupsDecimal, function (index, value) {
+                    $('[data-vertical-group='+value+']').each(function () {
+                        sum = sum + parseFloat($(this).maskMoney('unmasked')[0]);
+                    });
+
+                    sum = accounting.toFixed(sum, 2);
+                    sum = accounting.formatMoney(sum, {
+                        symbol: ' zł',
+                        precision: 2,
+                        decinal: '.',
+                        thousand: ' ',
+                        format: "%v%s"
+                    });
+
+                    $('[data-vertical-group-sum='+value+']').text(sum);
+                    sum = 0;
+                });
+            }
+
+            $('[data-vertical-group]').change(function () {
+                sumByGroup();
+            });
+
+            $('.decimal-11-2').maskMoney({
+                prefix: '',
+                suffix: ' zł',
+                affixesStay: false,
+                thousands: ' ',
+                decimal: '.',
+                precision: 2,
+                allowZero: true,
+                allowNegative: false,
+                allowEmpty: false,
+                reverse: false
+            });
+
+            sumByGroup();
+        });
+    </script>
+{% endblock %}

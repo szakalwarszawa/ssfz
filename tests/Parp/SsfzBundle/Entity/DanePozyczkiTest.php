@@ -23,6 +23,8 @@ use Parp\SsfzBundle\Entity\DanePozyczki;
  * @todo Być może należy test uprścić jeszcze bardziej i dynamicznie (refleksją) odczytywać
  * dostępne metody (getX i setX). Nie będzie konieczna katualizacja wykazu pól po każdej
  * modyfikacji encji.
+ *
+ * php7.2 ./bin/phpunit --bootstrap ./vendor/autoload.php --config ./tests/phpunit.xml ./tests/Parp/SsfzBundle/Entity/DanePozyczkiTest.php 
  */
 class DanePozyczkiTest extends TestCase
 {
@@ -227,7 +229,7 @@ class DanePozyczkiTest extends TestCase
             $this->danePozyczki->$setter($i);
             $value = $this->danePozyczki->$getter();
 
-            $this->assertSame($i , $value);
+            $this->assertSame($i, $value);
         }
     }
 
@@ -241,7 +243,127 @@ class DanePozyczkiTest extends TestCase
             $this->danePozyczki->$setter($i);
             $value = $this->danePozyczki->$getter();
 
-            $this->assertSame($i , $value);
+            $this->assertSame($i, $value);
         }
+    }
+
+
+    public function testCanSumByWielkoscPrzedsiebiorstwa()
+    {
+        $this
+            ->danePozyczki
+            ->setLiczbaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw(1)
+            ->setLiczbaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw(1)
+            ->setLiczbaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw(1)
+            ->setLiczbaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw(1)
+            ->setLiczbaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw(1)
+            ->setLiczbaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw(1)
+            ->setLiczbaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw(2)
+            ->setLiczbaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw(2)
+            ->setLiczbaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw(2)
+            ->setLiczbaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw(2)
+            ->setLiczbaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw(2)
+            ->setLiczbaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw(2)
+            ->setLiczbaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw(3)
+            ->setLiczbaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw(3)
+            ->setLiczbaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw(3)
+            ->setLiczbaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw(3)
+            ->setLiczbaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw(3)
+            ->setLiczbaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw(3)
+        ;
+
+        $this
+            ->danePozyczki
+            ->setKwotaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw('1.01')
+            ->setKwotaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw('1.01')
+            ->setKwotaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw('1.01')
+            ->setKwotaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw('1.01')
+            ->setKwotaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw('1.01')
+            ->setKwotaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw('1.01')
+            ->setKwotaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw('2.02')
+            ->setKwotaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw('2.02')
+            ->setKwotaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw('2.02')
+            ->setKwotaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw('2.02')
+            ->setKwotaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw('2.02')
+            ->setKwotaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw('2.02')
+            ->setKwotaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw('3.03')
+            ->setKwotaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw('3.03')
+            ->setKwotaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw('3.03')
+            ->setKwotaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw('3.03')
+            ->setKwotaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw('3.03')
+            ->setKwotaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw('3.03')
+        ;
+        
+        $this->assertSame(6, $this->danePozyczki->getLiczbaPozyczekOgolemDlaMikroPrzedsiebiorstw());
+        $this->assertSame(12, $this->danePozyczki->getLiczbaPozyczekOgolemDlaMalychPrzedsiebiorstw());
+        $this->assertSame(18, $this->danePozyczki->getLiczbaPozyczekOgolemDlaSrednichPrzedsiebiorstw());
+        $this->assertSame(36, $this->danePozyczki->getLiczbaPozyczekOgolemDlaPrzedsiebiorstw());
+
+        $this->assertSame('6.06', $this->danePozyczki->getKwotaPozyczekOgolemDlaMikroPrzedsiebiorstw());
+        $this->assertSame('12.12', $this->danePozyczki->getKwotaPozyczekOgolemDlaMalychPrzedsiebiorstw());
+        $this->assertSame('18.18', $this->danePozyczki->getKwotaPozyczekOgolemDlaSrednichPrzedsiebiorstw());
+        $this->assertSame('36.36', $this->danePozyczki->getKwotaPozyczekOgolemDlaPrzedsiebiorstw());
+    }
+
+
+
+
+
+
+    public function testCanSumBySektorDzialalnosci()
+    {
+        $this
+            ->danePozyczki
+            ->setLiczbaPozyczekObrotowychDo10000Pln(1)
+            ->setLiczbaPozyczekObrotowychOd10001Do30000Pln(1)
+            ->setLiczbaPozyczekObrotowychOd30001Do50000Pln(1)
+            ->setLiczbaPozyczekObrotowychOd50001Do120000Pln(1)
+            ->setLiczbaPozyczekObrotowychOd120001Do300000Pln(1)
+            ->setLiczbaPozyczekObrotowychOd300001Pln(1)
+            ->setLiczbaPozyczekInwestycyjnychDo10000Pln(2)
+            ->setLiczbaPozyczekInwestycyjnychOd10001Do30000Pln(2)
+            ->setLiczbaPozyczekInwestycyjnychOd30001Do50000Pln(2)
+            ->setLiczbaPozyczekInwestycyjnychOd50001Do120000Pln(2)
+            ->setLiczbaPozyczekInwestycyjnychOd120001Do300000Pln(2)
+            ->setLiczbaPozyczekInwestycyjnychOd300001Pln(2)
+            ->setLiczbaPozyczekInwestycyjnoObrotowychDo10000Pln(3)
+            ->setLiczbaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln(3)
+            ->setLiczbaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln(3)
+            ->setLiczbaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln(3)
+            ->setLiczbaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln(3)
+            ->setLiczbaPozyczekInwestycyjnoObrotowychOd300001Pln(3)
+        ;
+
+        $this
+            ->danePozyczki
+            ->setKwotaPozyczekObrotowychDo10000Pln('1.01')
+            ->setKwotaPozyczekObrotowychOd10001Do30000Pln('1.01')
+            ->setKwotaPozyczekObrotowychOd30001Do50000Pln('1.01')
+            ->setKwotaPozyczekObrotowychOd50001Do120000Pln('1.01')
+            ->setKwotaPozyczekObrotowychOd120001Do300000Pln('1.01')
+            ->setKwotaPozyczekObrotowychOd300001Pln('1.01')
+            ->setKwotaPozyczekInwestycyjnychDo10000Pln('2.02')
+            ->setKwotaPozyczekInwestycyjnychOd10001Do30000Pln('2.02')
+            ->setKwotaPozyczekInwestycyjnychOd30001Do50000Pln('2.02')
+            ->setKwotaPozyczekInwestycyjnychOd50001Do120000Pln('2.02')
+            ->setKwotaPozyczekInwestycyjnychOd120001Do300000Pln('2.02')
+            ->setKwotaPozyczekInwestycyjnychOd300001Pln('2.02')
+            ->setKwotaPozyczekInwestycyjnoObrotowychDo10000Pln(3)
+            ->setKwotaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln('3.03')
+            ->setKwotaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln('3.03')
+            ->setKwotaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln('3.03')
+            ->setKwotaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln('3.03')
+            ->setKwotaPozyczekInwestycyjnoObrotowychOd300001Pln('3.03')
+        ;
+        
+        $this->assertSame(6, $this->danePozyczki->getLiczbaPozyczekObrotowychOgolem);
+        $this->assertSame(12, $this->danePozyczki->getLiczbaPozyczekInwestycyjnychOgolem());
+        $this->assertSame(18, $this->danePozyczki->getLiczbaPozyczekInwestycyjnoObrotowychOgolem());
+        $this->assertSame(36, $this->danePozyczki->getLiczbaPozyczekOgolemDlaWszystkichSektorowDzialan());
+
+        $this->assertSame('6.06', $this->danePozyczki->getKwotaPozyczekObrotowychOgolem());
+        $this->assertSame('12.12', $this->danePozyczki->getKwotaPozyczekInwestycyjnychOgolem());
+        $this->assertSame('18.18', $this->danePozyczki->getKwotaPozyczekInwestycyjnoObrotowychOgolem());
+        $this->assertSame('36.36', $this->danePozyczki->getKwotaPozyczekOgolemDlaWszystkichSektorowDzialan());
     }
 }

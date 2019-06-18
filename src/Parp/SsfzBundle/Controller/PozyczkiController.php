@@ -17,7 +17,7 @@ use Parp\SsfzBundle\Form\Type\DanePozyczkiType;
 /**
  * Punkt wejściowy do obsługi danych o pożyczkach dla SPO WKP 1.2.1.
  *
- * @Route("/pozyczki")
+ * @Route("/dane_pozyczki")
  */
 class PozyczkiController extends Controller
 {
@@ -25,7 +25,7 @@ class PozyczkiController extends Controller
      * Wyświetla formularz danych pożyczki na podstawie ID sprawozdania, do którego należy.
      *
      * @Method({"GET"})
-     * @Route("dane_pozyczki/sprawozdanie/{id}", name="edycja_danych_pozyczki_dla_sprawozdania")
+     * @Route("/sprawozdanie/edycja/dane_pozyczki/{id}", name="edycja_danych_pozyczki_dla_sprawozdania")
      *
      * @param Request $request
      * @param int $id Identyfikator sprawozdania
@@ -46,7 +46,19 @@ class PozyczkiController extends Controller
             ->findOneByIdSprawozdania($id)
         ;
         if (!$danePozyczki) {
-            return $this->utworzDanePozyczkiAction($request, $id);
+            $sprawozdanie = $entityManager
+                ->getRepository(Sprawozdanie::class)
+                ->find($id)
+            ;
+            if (!$sprawozdanie) {
+                throw new EntityNotFoundException('Nie znaleziono sprawozdania o ID: '.(string) $id);
+            }
+
+            $danePozyczki = $entityManager
+                ->getRepository(DanePozyczki::class)
+                ->create($sprawozdanie, true)
+            ;
+            return $this->edytujDanePozyczkiAction($request, $danePozyczki->getId());
         }
 
         return $this->edytujDanePozyczkiAction($request, $danePozyczki->getId());
@@ -57,7 +69,7 @@ class PozyczkiController extends Controller
      * Wyświetla formularz danych pożyczki na podstawie jej ID.
      *
      * @Method({"GET", "POST"})
-     * @Route("dane_pozyczki/{id}", name="edycja_danych_pozyczki")
+     * @Route("/dane_pozyczki/{id}", name="edycja_danych_pozyczki")
      *
      * @param Request $request
      * @param int $id Identyfikator danych pożyczki
@@ -106,20 +118,20 @@ class PozyczkiController extends Controller
             }
         }
 
-        return $this->render('SsfzBundle:Report:dane_pozyczki.html.twig', [
+        return $this->render('SsfzBundle:Sprawozdanie:dane_pozyczki.html.twig', [
             'form'            => $formularz->createView(),
             'dane_pozyczki'   => $danePozyczki,
             'fluid_container' => true,
         ]);
     }
 
+
+
     /**
-     * Tworzy nowe dane pożyczki do sprawozdania i udostępnia je do edycji.
-     *
-     * @todo Dodać sprawdzanie uprawnień do dodawanych danych w ramach sprawozdania.
+     * Wyświetla raport z podsumowaniem danych pożyczki dla sprawozdania o zadanym ID.
      *
      * @Method({"GET"})
-     * @Route("formularz/dane_pozyczki/{id}", name="formularz_danych_pozyczki")
+     * @Route("/sprawozdanie/podglad/dane_pozyczki/{id}", name="podglad_danych_pozyczki_dla_sprawozdania")
      *
      * @param Request $request
      * @param int $id Identyfikator sprawozdania
@@ -128,27 +140,27 @@ class PozyczkiController extends Controller
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function utworzDanePozyczkiAction(Request $request, int $id)
+    public function pokazDanePozyczkiDlaSprawozdaniaAction(Request $request, int $id): Response
     {
         $entityManager = $this
             ->getDoctrine()
             ->getManager()
         ;
-        $sprawozdanie = $entityManager
-            ->getRepository(Sprawozdanie::class)
-            ->find($id)
+
+        $daneZagregowane = $entityManager
+            ->getRepository(DanePozyczki::class)
+            ->findDaneZagregowaneByIdSprawozdania($id)
         ;
-        if (!$sprawozdanie) {
-            throw new EntityNotFoundException('Nie znaleziono sprawozdania o ID: '.(string) $id);
+        if (!$daneZagregowane) {
+            throw new EntityNotFoundException('Nie znaleziono danych pożyczek dla sprawozdania o ID: '.(string) $id);
         }
 
-        $danePozyczki = $entityManager
-            ->getRepository(DanePozyczki::class)
-            ->create($sprawozdanie, true)
-        ;
-
-        return $this->edytujDanePozyczkiAction($request, $danePozyczki->getId());
+        return $this->render('SsfzBundle:Report:dane_pozyczki.html.twig', [
+            'dane_zagregowane' => $daneZagregowane,
+            'fluid_container' => false,
+        ]);
     }
+
 
     /**
      * Usuwa dane pożyczki o zadanym ID.

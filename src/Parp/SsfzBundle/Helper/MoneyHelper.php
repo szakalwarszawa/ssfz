@@ -23,7 +23,7 @@ class MoneyHelper
      * @return string
      */
     public static function anyToDecimalString(
-        string $input,
+        $input,
         ?int $scale = 2,
         bool $unsigned = false,
         string $decimalSeparator = '.'
