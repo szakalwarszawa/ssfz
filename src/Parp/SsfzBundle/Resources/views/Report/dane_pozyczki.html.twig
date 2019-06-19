@@ -125,8 +125,8 @@
 
                     <div class="col-md-12">
                         <a id="button_return"
-                            class="btn btn-default"
-                            href="{{ url('lista_sprawozdan_spo', {'umowa': sprawozdanie.id_umowy}) }}"><i class="fas fa-chevron-left"></i> Powrót</a>
+                        class="btn btn-default"
+                        href="{{ url('lista_sprawozdan_spo',{'umowa': sprawozdanie.id_umowy}) }}"><i class="fas fa-chevron-left"></i> Powrót</a>
                     </div>
                 </div>
             </div>
@@ -137,7 +137,7 @@
         $(document).ready(function () {
             $('.decimal-11-2').each(function () {
                 var pretty;
-                
+
                 pretty = accounting.toFixed($(this).text(), 2);
                 pretty = accounting.formatMoney(pretty, {
                     symbol: ' zł',
