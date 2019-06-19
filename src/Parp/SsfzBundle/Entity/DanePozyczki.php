@@ -7248,5 +7248,4 @@ class DanePozyczki
 
         return MoneyHelper::anyToDecimalString($sum, 2, true);
     }
-
 }
