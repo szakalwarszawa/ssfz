@@ -5,7 +5,7 @@ namespace Parp\SsfzBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * Description of SprawozdaniePozyczkoweRepository
+ * Repozytorium SprawozdaniePozyczkoweRepository.
  */
 class SprawozdaniePozyczkoweRepository extends SprawozdanieRepository
 {

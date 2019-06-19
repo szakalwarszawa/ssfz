@@ -96,10 +96,10 @@ class DanePozyczkiType extends AbstractType
         'kwotaPozyczekAktywnychWymagajacychMonitorowania',
         'kwotaPozyczekStraconych',
         // Współczynniki.
-        'wspolczynnikaStratWDanymOkresieWgLiczbyPozyczek',
-        'wspolczynnikaStratWCalymOkresieWgLiczbyPozyczek',
-        'wspolczynnikaStratWDanymOkresieWgKwotyPozyczek',
-        'wspolczynnikaStratWCalymOkresieWgKwotyPozyczek',
+        'wspolczynnikStratWDanymOkresieWgLiczbyPozyczek',
+        'wspolczynnikStratWCalymOkresieWgLiczbyPozyczek',
+        'wspolczynnikStratWDanymOkresieWgKwotyPozyczek',
+        'wspolczynnikStratWCalymOkresieWgKwotyPozyczek',
     ];
 
     /**

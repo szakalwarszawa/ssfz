@@ -187,10 +187,10 @@ class DanePozyczkiTest extends TestCase
         'kwotaPozyczekAktywnychSplacanychTerminowo',
         'kwotaPozyczekAktywnychWymagajacychMonitorowania',
         'kwotaPozyczekStraconych',
-        'wspolczynnikaStratWDanymOkresieWgLiczbyPozyczek',
-        'wspolczynnikaStratWCalymOkresieWgLiczbyPozyczek',
-        'wspolczynnikaStratWDanymOkresieWgKwotyPozyczek',
-        'wspolczynnikaStratWCalymOkresieWgKwotyPozyczek',
+        'wspolczynnikStratWDanymOkresieWgLiczbyPozyczek',
+        'wspolczynnikStratWCalymOkresieWgLiczbyPozyczek',
+        'wspolczynnikStratWDanymOkresieWgKwotyPozyczek',
+        'wspolczynnikStratWCalymOkresieWgKwotyPozyczek',
     ];
 
     /**

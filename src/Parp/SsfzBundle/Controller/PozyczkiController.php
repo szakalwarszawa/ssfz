@@ -11,7 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Doctrine\ORM\EntityNotFoundException;
 use Parp\SsfzBundle\Entity\DanePozyczki;
-use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
 use Parp\SsfzBundle\Form\Type\DanePozyczkiType;
 
 /**
@@ -28,7 +28,7 @@ class PozyczkiController extends Controller
      * @Route("/sprawozdanie/edycja/dane_pozyczki/{id}", name="edycja_danych_pozyczki_dla_sprawozdania")
      *
      * @param Request $request
-     * @param int $id Identyfikator sprawozdania
+     * @param int $id Identyfikator sprawozdania pożyczkowego
      *
      * @return Response
      *
@@ -47,11 +47,11 @@ class PozyczkiController extends Controller
         ;
         if (!$danePozyczki) {
             $sprawozdanie = $entityManager
-                ->getRepository(Sprawozdanie::class)
+                ->getRepository(SprawozdaniePozyczkowe::class)
                 ->find($id)
             ;
             if (!$sprawozdanie) {
-                throw new EntityNotFoundException('Nie znaleziono sprawozdania o ID: '.(string) $id);
+                throw new EntityNotFoundException('Nie znaleziono sprawozdania pożyczkowego o ID: '.(string) $id);
             }
 
             $danePozyczki = $entityManager
@@ -134,7 +134,7 @@ class PozyczkiController extends Controller
      * @Route("/sprawozdanie/podglad/dane_pozyczki/{id}", name="podglad_danych_pozyczki_dla_sprawozdania")
      *
      * @param Request $request
-     * @param int $id Identyfikator sprawozdania
+     * @param int $id Identyfikator sprawozdania pożyczkowego
      *
      * @return Response
      *

@@ -3116,37 +3116,6 @@ class DanePozyczki
      */
     public $wspolczynnikStratWCalymOkresieWgKwotyPozyczek = '0.00';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Konstruktor.
      *

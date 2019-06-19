@@ -6,7 +6,7 @@ namespace Parp\SsfzBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Parp\SsfzBundle\Entity\DanePozyczki;
-use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
 
 /**
  * Repozytorium DanePozyczkiRepository.
@@ -16,12 +16,12 @@ class DanePozyczkiRepository extends EntityRepository
     /**
      * Tworzy nowe dane pożyczki przypisane do sprawozdania.
      *
-     * @param Sprawozdanie $sprawozdanie
+     * @param SprawozdaniePozyczkowe $sprawozdanie
      * @param bool $persist
      *
      * @return DanePozyczki
      */
-    public function create(Sprawozdanie $sprawozdanie, $persist = false): DanePozyczki
+    public function create(SprawozdaniePozyczkowe $sprawozdanie, $persist = false): DanePozyczki
     {
         $danePozyczki = new DanePozyczki();
         $danePozyczki->setSprawozdanie($sprawozdanie);
@@ -65,11 +65,11 @@ class DanePozyczkiRepository extends EntityRepository
     /**
      * Znajduje dane pożyczek przypisane do zadanego sprawozdania.
      *
-     * @param Sprawozdanie $sprawozdanie
+     * @param SprawozdaniePozyczkowe $sprawozdanie
      *
      * @return array|DanePozyczki[]
      */
-    public function findBySprawozdanie(Sprawozdanie $sprawozdanie): array
+    public function findBySprawozdanie(SprawozdaniePozyczkowe $sprawozdanie): array
     {
         $idSprawozdania = $sprawozdanie->getId();
 
