@@ -35,8 +35,10 @@ class Version20190612115411 extends AbstractMigration
     {
         $this->abortIf(true, 'Not supported.');
         
+        /*
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-//        $this->addSql('DROP TABLE slownik_statusow_sprawozdan');
+        $this->addSql('DROP TABLE slownik_statusow_sprawozdan');
+        */
     }
 }
