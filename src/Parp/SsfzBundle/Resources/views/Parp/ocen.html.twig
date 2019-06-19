@@ -10,7 +10,7 @@
             <h4>Sprawozdanie do umowy {{ sprawozdanie.numerUmowy }} za okres {{ sprawozdanie.okres }} {{ sprawozdanie.rok }}</h4>
         </div>
         <div class="panel-body">
-            {% include 'SsfzBundle:Parp:sprawozdanieForm.html.twig' with {'formS': formS, 'formP': formP } %}
+            {{ bodySprawozdanie|raw }}
             <div class="pull-right">
                 <button id="ocena-zatwierdz"
                         name="ocena-zatwierdz"

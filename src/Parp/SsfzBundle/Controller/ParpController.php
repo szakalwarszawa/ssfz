@@ -39,11 +39,11 @@ class ParpController extends Controller
             return $this->redirectToRoute('uzytkownik_lista_programow');
         }
         
-        $programId = $this->getUser()->getAktywnyProgramId();
+        $program = $this->getUser()->getAktywnyProgram();
 
         $this
             ->get('ssfz.service.datatable_parp_service')
-            ->datatableParp($this, $programId)
+            ->datatableParp($this, $program)
         ;
 
         return $this->render('SsfzBundle:Parp:index.html.twig');
@@ -66,6 +66,7 @@ class ParpController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $program = $umowa->getBeneficjent()->getProgram();
         $klasaEncji = Program::jakaEncjaDlaProgramu($program);
+        $klasaFormularza = Program::jakiFormularzDlaProgramu($program);
         $repoSprawozdanie = $entityManager->getRepository($klasaEncji);
         
         $sprawozdanie = $repoSprawozdanie->find($idSprawozdania);
@@ -90,7 +91,7 @@ class ParpController extends Controller
             return $this->redirectToRoute('parp_sprawozdanie', array('idSprawozdania' => $idSprawozdania));
         }
         $okresy = $this->getOkresySprawozdawcze();
-        $formS = $this->createForm(SprawozdanieType::class, $sprawozdanie, array('disabled' => true, 'okresy' => $okresy));
+        $formS = $this->createForm($klasaFormularza, $sprawozdanie, array('disabled' => true, 'okresy' => $okresy));
         $przeplyw = $entityManager
             ->getRepository(PrzeplywFinansowy::class)
             ->findBy(['sprawozdanieId' => $sprawozdanie->getId()])
@@ -117,12 +118,51 @@ class ParpController extends Controller
                 return $this->redirectToRoute('parp');
             }
         }
+        
+        switch ($program->getId()) {
+            case Program::FUNDUSZ_POZYCZKOWY_SPO_WKP_121:
+                $szablon = 'SsfzBundle:Sprawozdanie:pozyczkoweEdycja.html.twig';
+                $blockParams = [
+                    'form'         => $formS->createView(),
+                    'tylkoDoOdczytu' => true,
+                    'app'          => $this,
+                ];
+                break;
+
+            case Program::FUNDUSZ_PORECZENIOWY_SPO_WKP_122:
+                $szablon = 'SsfzBundle:Sprawozdanie:poreczenioweEdycja.html.twig';
+                $blockParams = [
+                    'form'         => $formS->createView(),
+                    'tylkoDoOdczytu' => true,
+                    'app'          => $this,
+                ];
+                break;
+
+            default:
+                $szablon = 'SsfzBundle:Parp:sprawozdanieForm.html.twig';
+                $blockParams = [
+                    'formS'        => $formS->createView(),
+                    'formP'        => $formP,
+                ];
+                break;
+        }
+
+        $templateContent = $this
+            ->get('twig')
+            ->loadTemplate($szablon)
+        ;
+
+        // jeśli wyświetla pustą stronę bez żadnej informacji:
+        // podmienić renderBlock na displayBlock, będzie widać treść błędów
+        $bodySprawozdanie = $templateContent->renderBlock('body', $blockParams);
 
         return $this->render('SsfzBundle:Parp:ocen.html.twig', [
             'form'         => $form->createView(),
             'sprawozdanie' => $sprawozdanie,
             'formS'        => $formS->createView(),
             'formP'        => $formP,
+            'program'      => $program,
+            'bodySprawozdanie' => $bodySprawozdanie,
         ]);
     }
 
@@ -264,11 +304,11 @@ class ParpController extends Controller
      */
     public function parpGridAction()
     {
-        $programId = $this->getUser()->getAktywnyProgramId();
+        $program = $this->getUser()->getAktywnyProgram();
 
         return $this
             ->get('ssfz.service.datatable_parp_service')
-            ->datatableParp($this, $programId)
+            ->datatableParp($this, $program)
             ->execute()
         ;
     }

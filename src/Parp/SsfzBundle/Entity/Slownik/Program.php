@@ -6,6 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Parp\SsfzBundle\Entity\Sprawozdanie;
 use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
 use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
+use Parp\SsfzBundle\Form\Type\SprawozdanieType;
+use Parp\SsfzBundle\Form\Type\SprawozdaniePozyczkoweType;
+use Parp\SsfzBundle\Form\Type\SprawozdaniePoreczenioweType;
 
 /**
  * Program
@@ -146,6 +149,34 @@ class Program
             case Program::FUNDUSZ_ZALAZKOWY_POIG_31:
             default:
                 return Sprawozdanie::class;
+        }
+    }
+    
+    /**
+     * Zwraca nazwę FormType dla sprawozdań używaną w programie.
+     *
+     * @param Program|null $program
+     *
+     * @return string
+     */
+    public static function jakiFormularzDlaProgramu(Program $program = null)
+    {
+        $programId =
+            null === $program
+            ? 0
+            : (int) $program->getId()
+        ;
+        
+        switch ($programId) {
+            case Program::FUNDUSZ_POZYCZKOWY_SPO_WKP_121:
+                return SprawozdaniePozyczkoweType::class;
+
+            case Program::FUNDUSZ_PORECZENIOWY_SPO_WKP_122:
+                return SprawozdaniePoreczenioweType::class;
+
+            case Program::FUNDUSZ_ZALAZKOWY_POIG_31:
+            default:
+                return SprawozdanieType::class;
         }
     }
 }
