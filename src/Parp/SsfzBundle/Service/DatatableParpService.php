@@ -5,6 +5,7 @@ namespace Parp\SsfzBundle\Service;
 use Doctrine\ORM\Query\Expr\Join;
 use Parp\SsfzBundle\Repository\OkresyKonfiguracjaRepository;
 use Parp\SsfzBundle\Entity\Slownik\Program;
+use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
 
 /**
  * Serwis obsługujący operacje pomocnicze
@@ -119,9 +120,13 @@ class DatatableParpService
 
         $idx = 1;
         foreach ($config as $cfg) {
-            $datatable->addJoin('u.' . $nazwaParametru, 's' . $idx, Join::LEFT_JOIN, Join::WITH, 'u.id = s' . $idx . '.umowaId and s' . $idx . '.rok = ' . $cfg->getRok() . ' and s' . $idx . '.okresId = 0 and s' . $idx . '.czyNajnowsza = 1');
+            $datatable->addJoin('u.' . $nazwaParametru, 's' . $idx, Join::LEFT_JOIN, Join::WITH, 'u.id = s' . $idx . '.umowaId and s' . $idx . '.rok = ' . $cfg->getRok() . ' and s' . $idx . '.czyNajnowsza = 1');
+            $datatable->addJoin('s' . $idx . '.okres', 'o' . $idx, Join::INNER_JOIN);
+            $datatable->setWhere('o' . $idx . '.id = ' . OkresSprawozdawczy::STYCZEN_CZERWIEC);
             $idx++;
-            $datatable->addJoin('u.' . $nazwaParametru, 's' . $idx, Join::LEFT_JOIN, Join::WITH, 'u.id = s' . $idx . '.umowaId and s' . $idx . '.rok = ' . $cfg->getRok() . ' and s' . $idx . '.okresId = 1 and s' . $idx . '.czyNajnowsza = 1');
+            $datatable->addJoin('u.' . $nazwaParametru, 's' . $idx, Join::LEFT_JOIN, Join::WITH, 'u.id = s' . $idx . '.umowaId and s' . $idx . '.rok = ' . $cfg->getRok() . ' and s' . $idx . '.czyNajnowsza = 1');
+            $datatable->addJoin('s' . $idx . '.okres', 'o' . $idx, Join::INNER_JOIN);
+            $datatable->setWhere('o' . $idx . '.id = ' . OkresSprawozdawczy::LIPIEC_GRUDZIEN);
             $idx++;
         }
 

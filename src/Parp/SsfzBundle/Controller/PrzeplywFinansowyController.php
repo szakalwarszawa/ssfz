@@ -12,6 +12,7 @@ use Parp\SsfzBundle\Entity\Report;
 use Parp\SsfzBundle\Entity\PrzeplywFinansowy;
 use Parp\SsfzBundle\Entity\Sprawozdanie;
 use Parp\SsfzBundle\Form\Type\PrzeplywFinansowyType;
+use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
 
 /**
  * Description of PrzeplywFinansowyController
@@ -106,10 +107,22 @@ class PrzeplywFinansowyController extends Controller
      */
     private function getSaldoPoczatkowe($report, $beneficjentId, $entityManager)
     {
-        $previousReport = $entityManager->getRepository(Sprawozdanie::class)->findBy(array('creatorId' => $beneficjentId, 'umowaId' => $report->getUmowaId(), 'okresId' => 1, 'rok' => ($report->getRok() - 1)));
-        if ($report->getOkresId() == 1) {
-            $previousReport = $entityManager->getRepository(Sprawozdanie::class)->findBy(array('creatorId' => $beneficjentId, 'umowaId' => $report->getUmowaId(), 'okresId' => 0, 'rok' => $report->getRok()));
+        if ($report->getOkres()->getId() == OkresSprawozdawczy::LIPIEC_GRUDZIEN) {
+            $okresStyczenCzerwiec = $manager
+                ->getRepository(OkresSprawozdawczy::class)
+                ->find(OkresSprawozdawczy::STYCZEN_CZERWIEC)
+            ;
+
+            $previousReport = $entityManager->getRepository(Sprawozdanie::class)->findBy(array('creatorId' => $beneficjentId, 'umowaId' => $report->getUmowaId(), 'okres' => $okresStyczenCzerwiec, 'rok' => $report->getRok()));
+        } else {
+            $okresLipiecGrudzien = $manager
+                ->getRepository(OkresSprawozdawczy::class)
+                ->find(OkresSprawozdawczy::LIPIEC_GRUDZIEN)
+            ;
+
+            $previousReport = $entityManager->getRepository(Sprawozdanie::class)->findBy(array('creatorId' => $beneficjentId, 'umowaId' => $report->getUmowaId(), 'okres' => $okresLipiecGrudzien, 'rok' => ($report->getRok() - 1)));
         }
+
         if ($previousReport) {
             $przeplyw = $entityManager->getRepository(PrzeplywFinansowy::class)->findBy(array('sprawozdanieId' => $previousReport[0]->getId()));
             if ($przeplyw) {
