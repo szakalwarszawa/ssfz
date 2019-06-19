@@ -10,7 +10,7 @@ stages:
   
 build:
     stage: build
-    allow_failure: false
+    allow_failure: true
     script:
         - php -d memory_limit=2G /usr/bin/composer.phar require roave/security-advisories:dev-master
         - /usr/bin/composer.phar global show -i > .gitlab-ci/composer.dump
