@@ -6696,7 +6696,7 @@ class DanePozyczki
      *
      * @return int
      */
-    public function getLiczbaPozyczekOgolemDlaMikroPrzedsiebiorstw(): int
+    public function getLiczbaPozyczekDlaMikroPrzedsiebiorstwOgolem(): int
     {
         $sum =
             $this->liczbaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw +
@@ -6715,7 +6715,7 @@ class DanePozyczki
      *
      * @return int
      */
-    public function getLiczbaPozyczekOgolemDlaMalychPrzedsiebiorstw(): int
+    public function getLiczbaPozyczekDlaMalychPrzedsiebiorstwOgolem(): int
     {
         $sum =
             $this->liczbaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw +
@@ -6734,7 +6734,7 @@ class DanePozyczki
      *
      * @return int
      */
-    public function getLiczbaPozyczekOgolemDlaSrednichPrzedsiebiorstw(): int
+    public function getLiczbaPozyczekDlaSrednichPrzedsiebiorstwOgolem(): int
     {
         $sum =
             $this->liczbaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw +
@@ -6753,12 +6753,12 @@ class DanePozyczki
      *
      * @return int
      */
-    public function getLiczbaPozyczekOgolemDlaPrzedsiebiorstw(): int
+    public function getLiczbaPozyczekDlaPrzedsiebiorstwOgolem(): int
     {
         $sum =
-            $this->getLiczbaPozyczekOgolemDlaMikroPrzedsiebiorstw() +
-            $this->getLiczbaPozyczekOgolemDlaMalychPrzedsiebiorstw() +
-            $this->getLiczbaPozyczekOgolemDlaSrednichPrzedsiebiorstw()
+            $this->getLiczbaPozyczekDlaMikroPrzedsiebiorstwOgolem() +
+            $this->getLiczbaPozyczekDlaMalychPrzedsiebiorstwOgolem() +
+            $this->getLiczbaPozyczekDlaSrednichPrzedsiebiorstwOgolem()
         ;
 
         return $sum;
@@ -6769,7 +6769,7 @@ class DanePozyczki
      *
      * @return string
      */
-    public function getKwotaPozyczekOgolemDlaMikroPrzedsiebiorstw(): string
+    public function getKwotaPozyczekDlaMikroPrzedsiebiorstwOgolem(): string
     {
         $sum =
             $this->kwotaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw +
@@ -6788,7 +6788,7 @@ class DanePozyczki
      *
      * @return string
      */
-    public function getKwotaPozyczekOgolemDlaMalychPrzedsiebiorstw(): string
+    public function getKwotaPozyczekDlaMalychPrzedsiebiorstwOgolem(): string
     {
         $sum =
             $this->kwotaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw +
@@ -6807,7 +6807,7 @@ class DanePozyczki
      *
      * @return string
      */
-    public function getKwotaPozyczekOgolemDlaSrednichPrzedsiebiorstw(): string
+    public function getKwotaPozyczekDlaSrednichPrzedsiebiorstwOgolem(): string
     {
         $sum =
             $this->kwotaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw +
@@ -6826,12 +6826,12 @@ class DanePozyczki
      *
      * @return string
      */
-    public function getKwotaPozyczekOgolemDlaPrzedsiebiorstw(): string
+    public function getKwotaPozyczekDlaPrzedsiebiorstwOgolem(): string
     {
         $sum =
-            $this->getKwotaPozyczekOgolemDlaMikroPrzedsiebiorstw() +
-            $this->getKwotaPozyczekOgolemDlaMalychPrzedsiebiorstw() +
-            $this->getKwotaPozyczekOgolemDlaSrednichPrzedsiebiorstw()
+            $this->getKwotaPozyczekDlaMikroPrzedsiebiorstwOgolem() +
+            $this->getKwotaPozyczekDlaMalychPrzedsiebiorstwOgolem() +
+            $this->getKwotaPozyczekDlaSrednichPrzedsiebiorstwOgolem()
         ;
 
         return MoneyHelper::anyToDecimalString($sum, 2, true);
@@ -6895,11 +6895,11 @@ class DanePozyczki
     }
 
     /**
-     * Zwraca liczbę pożyczek ogółem dla wszystkich sektorów działań pożyczkobiorców.
+     * Zwraca liczbę pożyczek ogółem dla wszystkich przeznaczeń.
      *
      * @return int
      */
-    public function getLiczbaPozyczekOgolemDlaWszystkichSektorowDzialan(): int
+    public function getLiczbaPozyczekDlaWszystkichPrzeznaczenOgolem(): int
     {
         $sum =
             $this->getLiczbaPozyczekObrotowychOgolem() +
@@ -6968,11 +6968,11 @@ class DanePozyczki
     }
 
     /**
-     * Zwraca kwotę pożyczek ogółem dla wszystkich sektorów działań pożyczkobiorców.
+     * Zwraca kwotę pożyczek ogółem dla wszystkich przeznaczeń.
      *
      * @return string
      */
-    public function getKwotaPozyczekOgolemDlaWszystkichSektorowDzialan(): string
+    public function getKwotaPozyczekDlaWszystkichPrzeznaczenOgolem(): string
     {
         $sum =
             $this->getKwotaPozyczekObrotowychOgolem() +
@@ -6983,42 +6983,270 @@ class DanePozyczki
         return MoneyHelper::anyToDecimalString($sum, 2, true);
     }
 
-    /*
-        'liczbaPozyczekDo10000PlnNaDzialaniaProdukcyjne',
-        'liczbaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne',
-        'liczbaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne',
-        'liczbaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne',
-        'liczbaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne',
-        'liczbaPozyczekOd300001PlnNaDzialaniaProdukcyjne',
-        'liczbaPozyczekDo10000PlnNaDzialaniaHandlowe',
-        'liczbaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe',
-        'liczbaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe',
-        'liczbaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe',
-        'liczbaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe',
-        'liczbaPozyczekOd300001PlnNaDzialaniaHandlowe',
-        'liczbaPozyczekDo10000PlnNaDzialaniaUslugowe',
-        'liczbaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe',
-        'liczbaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe',
-        'liczbaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe',
-        'liczbaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe',
-        'liczbaPozyczekOd300001PlnNaDzialaniaUslugowe',
-        'liczbaPozyczekDo10000PlnNaDzialaniaBudownicze',
-        'liczbaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze',
-        'liczbaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze',
-        'liczbaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze',
-        'liczbaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze',
-        'liczbaPozyczekOd300001PlnNaDzialaniaBudownicze',
-        'liczbaPozyczekDo10000PlnNaDzialaniaRolnicze',
-        'liczbaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze',
-        'liczbaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze',
-        'liczbaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze',
-        'liczbaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze',
-        'liczbaPozyczekOd300001PlnNaDzialaniaRolnicze',
-        'liczbaPozyczekDo10000PlnNaDzialaniaInne',
-        'liczbaPozyczekOd10001Do30000PlnNaDzialaniaInne',
-        'liczbaPozyczekOd30001Do50000PlnNaDzialaniaInne',
-        'liczbaPozyczekOd50001Do120000PlnNaDzialaniaInne',
-        'liczbaPozyczekOd120001Do300000PlnNaDzialaniaInne',
-        'liczbaPozyczekOd300001PlnNaDzialaniaInne',
-    */
+    /**
+     * Zwraca liczbę pożyczek na działania pożyczkobiorcy w sektorze produkcyjnym.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekNaDzialaniaProdykcyjneOgolem(): int
+    {
+        $sum =
+            $this->liczbaPozyczekDo10000PlnNaDzialaniaProdukcyjne +
+            $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne +
+            $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne +
+            $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne +
+            $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne +
+            $this->liczbaPozyczekOd300001PlnNaDzialaniaProdukcyjne
+        ;
+
+        return $sum;
+    }
+
+    /**
+     * Zwraca liczbę pożyczek na działania pożyczkobiorcy w sektorze handlowym.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekNaDzialaniaHandloweOgolem(): int
+    {
+        $sum =
+            $this->liczbaPozyczekDo10000PlnNaDzialaniaHandlowe +
+            $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe +
+            $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe +
+            $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe +
+            $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe +
+            $this->liczbaPozyczekOd300001PlnNaDzialaniaHandlowe
+        ;
+
+        return $sum;
+    }
+
+    /**
+     * Zwraca liczbę pożyczek na działania pożyczkobiorcy w sektorze usługowy.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekNaDzialaniaUslugoweOgolem(): int
+    {
+        $sum =
+            $this->liczbaPozyczekDo10000PlnNaDzialaniaUslugowe +
+            $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe +
+            $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe +
+            $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe +
+            $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe +
+            $this->liczbaPozyczekOd300001PlnNaDzialaniaUslugowe
+        ;
+
+        return $sum;
+    }
+
+    /**
+     * Zwraca liczbę pożyczek na działania pożyczkobiorcy w sektorze budowniczym.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekNaDzialaniaBudowniczeOgolem(): int
+    {
+        $sum =
+            $this->liczbaPozyczekDo10000PlnNaDzialaniaBudownicze +
+            $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze +
+            $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze +
+            $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze +
+            $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze +
+            $this->liczbaPozyczekOd300001PlnNaDzialaniaBudownicze
+        ;
+
+        return $sum;
+    }
+
+    /**
+     * Zwraca liczbę pożyczek na działania pożyczkobiorcy w sektorze rolniczym.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekNaDzialaniaRolniczeOgolem(): int
+    {
+        $sum =
+            $this->liczbaPozyczekDo10000PlnNaDzialaniaRolnicze +
+            $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze +
+            $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze +
+            $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze +
+            $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze +
+            $this->liczbaPozyczekOd300001PlnNaDzialaniaRolnicze
+        ;
+
+        return $sum;
+    }
+
+    /**
+     * Zwraca liczbę pożyczek na działania pożyczkobiorcy w innych sektorach.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekNaDzialaniaInneOgolem(): int
+    {
+        $sum =
+            $this->liczbaPozyczekDo10000PlnNaDzialaniaInne +
+            $this->liczbaPozyczekOd10001Do30000PlnNaDzialaniaInne +
+            $this->liczbaPozyczekOd30001Do50000PlnNaDzialaniaInne +
+            $this->liczbaPozyczekOd50001Do120000PlnNaDzialaniaInne +
+            $this->liczbaPozyczekOd120001Do300000PlnNaDzialaniaInne +
+            $this->liczbaPozyczekOd300001PlnNaDzialaniaInne
+        ;
+
+        return $sum;
+    }
+
+    /**
+     * Zwraca liczbę pożyczek ogółem dla wszystkich sektorów działań pożyczkobiorcy.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekOgolemDlaWszystkichSektorowDzialan(): int
+    {
+        $sum =
+            $this->getLiczbaPozyczekNaDzialaniaProdykcyjneOgolem() +
+            $this->getLiczbaPozyczekNaDzialaniaHandloweOgolem() +
+            $this->getLiczbaPozyczekNaDzialaniaUslugoweOgolem() +
+            $this->getLiczbaPozyczekNaDzialaniaBudowniczeOgolem() +
+            $this->getLiczbaPozyczekNaDzialaniaRolniczeOgolem() +
+            $this->getLiczbaPozyczekNaDzialaniaInneOgolem()
+        ;
+
+        return $sum;
+    }
+
+    /**
+     * Zwraca kwotę pożyczek na działania pożyczkobiorcy w sektorze produkcyjnym.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekNaDzialaniaProdykcyjneOgolem(): string
+    {
+        $sum =
+            $this->kwotaPozyczekDo10000PlnNaDzialaniaProdukcyjne +
+            $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne +
+            $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne +
+            $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne +
+            $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne +
+            $this->kwotaPozyczekOd300001PlnNaDzialaniaProdukcyjne
+        ;
+
+        return MoneyHelper::anyToDecimalString($sum, 2, true);
+    }
+
+    /**
+     * Zwraca kwotę pożyczek na działania pożyczkobiorcy w sektorze handlowym.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekNaDzialaniaHandloweOgolem(): string
+    {
+        $sum =
+            $this->kwotaPozyczekDo10000PlnNaDzialaniaHandlowe +
+            $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe +
+            $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe +
+            $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe +
+            $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe +
+            $this->kwotaPozyczekOd300001PlnNaDzialaniaHandlowe
+        ;
+
+        return MoneyHelper::anyToDecimalString($sum, 2, true);
+    }
+
+    /**
+     * Zwraca kwotę pożyczek na działania pożyczkobiorcy w sektorze usługowy.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekNaDzialaniaUslugoweOgolem(): string
+    {
+        $sum =
+            $this->kwotaPozyczekDo10000PlnNaDzialaniaUslugowe +
+            $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe +
+            $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe +
+            $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe +
+            $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe +
+            $this->kwotaPozyczekOd300001PlnNaDzialaniaUslugowe
+        ;
+
+        return MoneyHelper::anyToDecimalString($sum, 2, true);
+    }
+
+    /**
+     * Zwraca kwotę pożyczek na działania pożyczkobiorcy w sektorze budowniczym.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekNaDzialaniaBudowniczeOgolem(): string
+    {
+        $sum =
+            $this->kwotaPozyczekDo10000PlnNaDzialaniaBudownicze +
+            $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze +
+            $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze +
+            $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze +
+            $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze +
+            $this->kwotaPozyczekOd300001PlnNaDzialaniaBudownicze
+        ;
+
+        return MoneyHelper::anyToDecimalString($sum, 2, true);
+    }
+
+    /**
+     * Zwraca kwotę pożyczek na działania pożyczkobiorcy w sektorze rolniczym.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekNaDzialaniaRolniczeOgolem(): string
+    {
+        $sum =
+            $this->kwotaPozyczekDo10000PlnNaDzialaniaRolnicze +
+            $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze +
+            $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze +
+            $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze +
+            $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze +
+            $this->kwotaPozyczekOd300001PlnNaDzialaniaRolnicze
+        ;
+
+        return MoneyHelper::anyToDecimalString($sum, 2, true);
+    }
+
+    /**
+     * Zwraca kwotę pożyczek na działania pożyczkobiorcy w innych sektorach.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekNaDzialaniaInneOgolem(): string
+    {
+        $sum =
+            $this->kwotaPozyczekDo10000PlnNaDzialaniaInne +
+            $this->kwotaPozyczekOd10001Do30000PlnNaDzialaniaInne +
+            $this->kwotaPozyczekOd30001Do50000PlnNaDzialaniaInne +
+            $this->kwotaPozyczekOd50001Do120000PlnNaDzialaniaInne +
+            $this->kwotaPozyczekOd120001Do300000PlnNaDzialaniaInne +
+            $this->kwotaPozyczekOd300001PlnNaDzialaniaInne
+        ;
+
+        return MoneyHelper::anyToDecimalString($sum, 2, true);
+    }
+
+    /**
+     * Zwraca kwotę pożyczek ogółem dla wszystkich sektorów działań pożyczkobiorcy.
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekOgolemDlaWszystkichSektorowDzialan(): string
+    {
+        $sum =
+            $this->getKwotaPozyczekNaDzialaniaProdykcyjneOgolem() +
+            $this->getKwotaPozyczekNaDzialaniaHandloweOgolem() +
+            $this->getKwotaPozyczekNaDzialaniaUslugoweOgolem() +
+            $this->getKwotaPozyczekNaDzialaniaBudowniczeOgolem() +
+            $this->getKwotaPozyczekNaDzialaniaRolniczeOgolem() +
+            $this->getKwotaPozyczekNaDzialaniaInneOgolem()
+        ;
+
+        return MoneyHelper::anyToDecimalString($sum, 2, true);
+    }
+
 }
