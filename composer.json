@@ -56,7 +56,7 @@
             "@symfony-scripts"
         ],
         "post-update-cmd": [
-            "yarn install --force --non-interactive",
+            "yarn install --force",
             "yarn upgrade",
             "@symfony-scripts"
         ]
