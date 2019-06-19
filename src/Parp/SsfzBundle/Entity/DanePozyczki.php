@@ -2851,7 +2851,7 @@ class DanePozyczki
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_poz_od_300001_pln_dzial_rinne",
+     *     name="kwota_poz_od_300001_pln_dzial_inne",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -2864,20 +2864,288 @@ class DanePozyczki
      */
     protected $kwotaPozyczekOd300001PlnNaDzialaniaInne = '0.00';
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Liczba pożyczek aktywnych ogółem.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_aktywnych_ogolem",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek aktywnych ogółem.",
+     *         "default":0
+     *     }
+     * )
+     */
     public $liczbaPozyczekAktywnychOgolem = '0';
-    public $liczbaPozyczekAktywnychSpalcanychTerminowo = '0';
+
+    /**
+     * Liczba pożyczek aktywnych spłacanych terminowo.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_aktywnych_splacanych_terminowo",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek aktywnych spłacanych terminowo.",
+     *         "default":0
+     *     }
+     * )
+     */
+    public $liczbaPozyczekAktywnychSplacanychTerminowo = '0';
+
+    /**
+     * Liczba pożyczek aktywnych wymagających monitorowania.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_aktywnych_wymagajacych_monitorowania",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek aktywnych wymagających monitorowania.",
+     *         "default":0
+     *     }
+     * )
+     */
     public $liczbaPozyczekAktywnychWymagajacychMonitorowania = '0';
+
+    /**
+     * Liczba pożyczek straconych.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_poz_straconych",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pożyczek straconych.",
+     *         "default":0
+     *     }
+     * )
+     */
     public $liczbaPozyczekStraconych = '0';
-    public $liczbaWspolczynnikaStratWDanymOkresie = '0';
-    public $liczbaWspolczynnikaStratWCalymOkresie = '0';
 
-
+    /**
+     * Kwota pożyczek aktywnych ogółem (PLN).
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_aktywnych_ogolem",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek aktywnych ogółem (PLN).",
+     *         "default":0.00
+     *     }
+     * )
+     */
     public $kwotaPozyczekAktywnychOgolem = '0.00';
-    public $kwotaPozyczekAktywnychSpalcanychTerminowo = '0.00';
+
+    /**
+     * Kwota pożyczek aktywnych spłacanych terminowo (PLN).
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_aktywnych_splacanych_terminowo",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek aktywnych spłacanych terminowo (PLN).",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    public $kwotaPozyczekAktywnychSplacanychTerminowo = '0.00';
+
+    /**
+     * Kwota pożyczek aktywnych wymagających szczególnego monitorowania (PLN).
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_aktywnych_wymagajacych_monitorowania",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek aktywnych wymagających szczególnego monitorowania (PLN).",
+     *         "default":0.00
+     *     }
+     * )
+     */
     public $kwotaPozyczekAktywnychWymagajacychMonitorowania = '0.00';
+
+    /**
+     * Kwota pożyczek straconych (PLN).
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_poz_straconych",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota pożyczek straconych (PLN).",
+     *         "default":0.00
+     *     }
+     * )
+     */
     public $kwotaPozyczekStraconych = '0.00';
-    public $kwotaWspolczynnikaStratWDanymOkresie = '0.00';
-    public $kwotaWspolczynnikaStratWCalymOkresie = '0.00';
+
+    /**
+     * Współczynnik strat w danym okresie wg liczby pożyczek.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="wspolczynnik_strat_w_danym_okresie_wg_liczby_poz",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Współczynnik strat w danym okresie wg liczby pożyczek.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    public $wspolczynnikStratWDanymOkresieWgLiczbyPozyczek = '0.00';
+
+    /**
+     * Współczynnik strat w całym okresie wg liczby pożyczek.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="wspolczynnik_strat_w_calym_okresie_wg_liczby_poz",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Współczynnik strat w całym okresie wg liczby pożyczek.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    public $wspolczynnikStratWCalymOkresieWgLiczbyPozyczek = '0.00';
+
+    /**
+     * Współczynnik strat w danym okresie wg kwoty pożyczek.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="wspolczynnik_strat_w_danym_okresie_wg_kwoty_poz",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Współczynnik strat w danym okresie wg kwoty pożyczek.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    public $wspolczynnikStratWDanymOkresieWgKwotyPozyczek = '0.00';
+
+    /**
+     * Współczynnik strat w całym okresie wg kwoty pożyczek.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="wspolczynnik_strat_w_calym_okresie_wg_kwoty_poz",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Współczynnik strat w całym okresie wg kwoty pożyczek.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    public $wspolczynnikStratWCalymOkresieWgKwotyPozyczek = '0.00';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Konstruktor.
@@ -6691,6 +6959,58 @@ class DanePozyczki
         return $this;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Zwraca liczbę pożyczek ogółem dla mikro przedsiębiorstw.
      *
@@ -7247,5 +7567,293 @@ class DanePozyczki
         ;
 
         return MoneyHelper::anyToDecimalString($sum, 2, true);
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek aktywnych ogółem.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekAktywnychOgolem()
+    {
+        return $this->liczbaPozyczekAktywnychOgolem;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek aktywnych ogółem.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekAktywnychOgolem(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekAktywnychOgolem = abs($liczbaPozyczekAktywnychOgolem);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek aktywnych spłacanych terminowo.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekAktywnychSplacanychTerminowo()
+    {
+        return $this->liczbaPozyczekAktywnychSplacanychTerminowo;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek aktywnych spłacanych terminowo.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekAktywnychSplacanychTerminowo(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekAktywnychSplacanychTerminowo = abs($liczbaPozyczekAktywnychSplacanychTerminowo);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek aktywnych wymagających monitorowania.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekAktywnychWymagajacychMonitorowania()
+    {
+        return $this->liczbaPozyczekAktywnychWymagajacychMonitorowania;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek aktywnych wymagających monitorowania.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekAktywnychWymagajacychMonitorowania(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekAktywnychWymagajacychMonitorowania = abs($liczbaPozyczekAktywnychWymagajacychMonitorowania);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pożyczek straconych.
+     *
+     * @return int
+     */
+    public function getLiczbaPozyczekStraconych()
+    {
+        return $this->liczbaPozyczekStraconych;
+    }
+
+    /**
+     * Ustala wartość liczby pożyczek straconych.
+     *
+     * @param int $liczbaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setLiczbaPozyczekStraconych(int $liczbaPozyczek = 0)
+    {
+        $this->liczbaPozyczekStraconych = abs($liczbaPozyczekStraconych);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty pożyczek aktywnych ogółem (PLN).
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekAktywnychOgolem()
+    {
+        return $this->kwotaPozyczekAktywnychOgolem;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek aktywnych ogółem (PLN).
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekAktywnychOgolem(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekAktywnychOgolem = MoneyHelper::anyToDecimalString($kwotaPozyczekAktywnychOgolem, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty pożyczek aktywnych spłacanych terminowo (PLN).
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekAktywnychSplacanychTerminowo()
+    {
+        return $this->kwotaPozyczekAktywnychSplacanychTerminowo;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek aktywnych spłacanych terminowo (PLN).
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekAktywnychSplacanychTerminowo(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekAktywnychSplacanychTerminowo = MoneyHelper::anyToDecimalString($kwotaPozyczekAktywnychSplacanychTerminowo, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty pożyczek aktywnych wymagających szczególnego monitorowania (PLN).
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekAktywnychWymagajacychMonitorowania()
+    {
+        return $this->kwotaPozyczekAktywnychWymagajacychMonitorowania;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek aktywnych wymagających szczególnego monitorowania (PLN).
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekAktywnychWymagajacychMonitorowania(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekAktywnychWymagajacychMonitorowania = MoneyHelper::anyToDecimalString($kwotaPozyczekAktywnychWymagajacychMonitorowania, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty pożyczek straconych (PLN).
+     *
+     * @return string
+     */
+    public function getKwotaPozyczekStraconych()
+    {
+        return $this->kwotaPozyczekStraconych;
+    }
+
+    /**
+     * Ustala wartość kwoty pożyczek straconych (PLN).
+     *
+     * @param string $kwotaPozyczek
+     *
+     * @return DanePozyczki
+     */
+    public function setKwotaPozyczekStraconych(string $kwotaPozyczek = '0.00')
+    {
+        $this->kwotaPozyczekStraconych = MoneyHelper::anyToDecimalString($kwotaPozyczekStraconych, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość współczynnika strat w danym okresie wg liczby pożyczek.
+     *
+     * @return string
+     */
+    public function getWspolczynnikStratWDanymOkresieWgLiczbyPozyczek()
+    {
+        return $this->wspolczynnikStratWDanymOkresieWgLiczbyPozyczek;
+    }
+
+    /**
+     * Ustala wartość współczynnika strat w danym okresie wg liczby pożyczek.
+     *
+     * @param string $wspolczynnik
+     *
+     * @return DanePozyczki
+     */
+    public function setWspolczynnikStratWDanymOkresieWgLiczbyPozyczek(string $wspolczynnik = '0.00')
+    {
+        $this->wspolczynnikStratWDanymOkresieWgLiczbyPozyczek = MoneyHelper::anyToDecimalString($wspolczynnikStratWDanymOkresieWgLiczbyPozyczek, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość współczynnika strat w całym okresie wg liczby pożyczek.
+     *
+     * @return string
+     */
+    public function getWspolczynnikStratWCalymOkresieWgLiczbyPozyczek()
+    {
+        return $this->wspolczynnikStratWCalymOkresieWgLiczbyPozyczek;
+    }
+
+    /**
+     * Ustala wartość współczynnika strat w całym okresie wg liczby pożyczek.
+     *
+     * @param string $wspolczynnik
+     *
+     * @return DanePozyczki
+     */
+    public function setWspolczynnikStratWCalymOkresieWgLiczbyPozyczek(string $wspolczynnik = '0.00')
+    {
+        $this->wspolczynnikStratWCalymOkresieWgLiczbyPozyczek = MoneyHelper::anyToDecimalString($wspolczynnikStratWCalymOkresieWgLiczbyPozyczek, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość współczynnika strat w danym okresie wg kwoty pożyczek.
+     *
+     * @return string
+     */
+    public function getWspolczynnikStratWDanymOkresieWgKwotyPozyczek()
+    {
+        return $this->wspolczynnikStratWDanymOkresieWgKwotyPozyczek;
+    }
+
+    /**
+     * Ustala wartość współczynnika strat w danym okresie wg kwoty pożyczek.
+     *
+     * @param string $wspolczynnik
+     *
+     * @return DanePozyczki
+     */
+    public function setWspolczynnikStratWDanymOkresieWgKwotyPozyczek(string $wspolczynnik = '0.00')
+    {
+        $this->wspolczynnikStratWDanymOkresieWgKwotyPozyczek = MoneyHelper::anyToDecimalString($wspolczynnikStratWDanymOkresieWgKwotyPozyczek, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość współczynnika strat w całym okresie wg kwoty pożyczek.
+     *
+     * @return string
+     */
+    public function getWspolczynnikStratWCalymOkresieWgKwotyPozyczek()
+    {
+        return $this->wspolczynnikStratWCalymOkresieWgKwotyPozyczek;
+    }
+
+    /**
+     * Ustala wartość współczynnika strat w całym okresie wg kwoty pożyczek.
+     *
+     * @param string $wspolczynnik
+     *
+     * @return DanePozyczki
+     */
+    public function setWspolczynnikStratWCalymOkresieWgKwotyPozyczek(string $wspolczynnik = '0.00')
+    {
+        $this->wspolczynnikStratWCalymOkresieWgKwotyPozyczek = MoneyHelper::anyToDecimalString($wspolczynnikStratWCalymOkresieWgKwotyPozyczek, 2, true);
+
+        return $this;
     }
 }

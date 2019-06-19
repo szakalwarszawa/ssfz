@@ -95,8 +95,11 @@ class DanePozyczkiType extends AbstractType
         'kwotaPozyczekAktywnychSpalcanychTerminowo',
         'kwotaPozyczekAktywnychWymagajacychMonitorowania',
         'kwotaPozyczekStraconych',
-        'kwotaWspolczynnikaStratWDanymOkresie',
-        'kwotaWspolczynnikaStratWCalymOkresie'
+        // Współczynniki.
+        'wspolczynnikaStratWDanymOkresieWgLiczbyPozyczek',
+        'wspolczynnikaStratWCalymOkresieWgLiczbyPozyczek',
+        'wspolczynnikaStratWDanymOkresieWgKwotyPozyczek',
+        'wspolczynnikaStratWCalymOkresieWgKwotyPozyczek',
     ];
 
     /**
@@ -216,8 +219,6 @@ class DanePozyczkiType extends AbstractType
             'liczbaPozyczekAktywnychSpalcanychTerminowo',
             'liczbaPozyczekAktywnychWymagajacychMonitorowania',
             'liczbaPozyczekStraconych',
-            'liczbaWspolczynnikaStratWDanymOkresie',
-            'liczbaWspolczynnikaStratWCalymOkresie'
         ];
 
         foreach ($fields as $field) {
