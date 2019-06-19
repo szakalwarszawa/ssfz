@@ -41,6 +41,16 @@ class Program
      * @ORM\Column(name="nazwa", type="string", length=64, unique=true)
      */
     protected $nazwa;
+    
+    /**
+     * Częstotliwość sprawozdań w programie.
+     *
+     * @var CzestotliwoscSprawozdan
+     *
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\CzestotliwoscSprawozdan")
+     * @ORM\JoinColumn(name="czestotliwosc_sprawozdan_id", referencedColumnName="id", nullable=false)
+     */
+    protected $czestotliwoscSprawozdan;
 
     /**
      * Get id
@@ -178,5 +188,29 @@ class Program
             default:
                 return SprawozdanieType::class;
         }
+    }
+
+    /**
+     * Set czestotliwoscSprawozdan
+     *
+     * @param CzestotliwoscSprawozdan $czestotliwoscSprawozdan
+     *
+     * @return Program
+     */
+    public function setCzestotliwoscSprawozdan(CzestotliwoscSprawozdan $czestotliwoscSprawozdan = null)
+    {
+        $this->czestotliwoscSprawozdan = $czestotliwoscSprawozdan;
+
+        return $this;
+    }
+
+    /**
+     * Get czestotliwoscSprawozdan
+     *
+     * @return CzestotliwoscSprawozdan
+     */
+    public function getCzestotliwoscSprawozdan()
+    {
+        return $this->czestotliwoscSprawozdan;
     }
 }

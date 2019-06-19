@@ -36,7 +36,7 @@ class SprawozdanieRepository extends EntityRepository
     {
         $wynik = $this->findBy([
             'umowa' => $sprawozdanie->getUmowa(),
-            'okresId' => $sprawozdanie->getOkresId(),
+            'okres' => $sprawozdanie->getOkres(),
             'rok' => $sprawozdanie->getRok(),
         ]);
         
