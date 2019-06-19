@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Parp\SsfzBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
 use Parp\SsfzBundle\Helper\MoneyHelper;
 
 /**
@@ -37,7 +37,7 @@ class DanePozyczki
     /**
      * Sprawozdanie, do którego przypisano dane pożyczki.
      *
-     * @var Sprawozdanie
+     * @var SprawozdaniePozyczkowe
      *
      * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe")
      * @ORM\JoinColumn(name="sprawozdanie_id", referencedColumnName="id", nullable=false)
@@ -3150,9 +3150,9 @@ class DanePozyczki
     /**
      * Konstruktor.
      *
-     * @param Sprawozdanie|null $sprawozdanie
+     * @param SprawozdaniePozyczkowe|null $sprawozdanie
      */
-    public function __construct(?Sprawozdanie $sprawozdanie = null)
+    public function __construct(?SprawozdaniePozyczkowe $sprawozdanie = null)
     {
         if (null !== $sprawozdanie) {
             $this->sprawozdanie = $sprawozdanie;
@@ -3182,7 +3182,7 @@ class DanePozyczki
     /**
      * Zwraca wartość sprawozdania, do którego przypisano dane pożyczki.
      *
-     * @return Sprawozdanie
+     * @return SprawozdaniePozyczkowe
      */
     public function getSprawozdanie()
     {
@@ -3192,11 +3192,11 @@ class DanePozyczki
     /**
      * Ustala wartość sprawozdania, do którego przypisano dane pożyczki.
      *
-     * @param Sprawozdanie  $sprawozdanie
+     * @param SprawozdaniePozyczkowe $sprawozdanie
      *
      * @return DanePozyczki
      */
-    public function setSprawozdanie(Sprawozdanie $sprawozdanie)
+    public function setSprawozdanie(SprawozdaniePozyczkowe $sprawozdanie)
     {
         $this->sprawozdanie = $sprawozdanie;
 
