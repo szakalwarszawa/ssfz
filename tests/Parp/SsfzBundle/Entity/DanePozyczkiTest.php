@@ -104,6 +104,10 @@ class DanePozyczkiTest extends TestCase
         'liczbaPozyczekOd50001Do120000PlnNaDzialaniaInne',
         'liczbaPozyczekOd120001Do300000PlnNaDzialaniaInne',
         'liczbaPozyczekOd300001PlnNaDzialaniaInne',
+        'liczbaPozyczekAktywnychOgolem',
+        'liczbaPozyczekAktywnychSplacanychTerminowo',
+        'liczbaPozyczekAktywnychWymagajacychMonitorowania',
+        'liczbaPozyczekStraconych',
     ];
 
     const DECIMAL_FIELDS = [
@@ -179,6 +183,14 @@ class DanePozyczkiTest extends TestCase
         'kwotaPozyczekOd50001Do120000PlnNaDzialaniaInne',
         'kwotaPozyczekOd120001Do300000PlnNaDzialaniaInne',
         'kwotaPozyczekOd300001PlnNaDzialaniaInne',
+        'kwotaPozyczekAktywnychOgolem',
+        'kwotaPozyczekAktywnychSplacanychTerminowo',
+        'kwotaPozyczekAktywnychWymagajacychMonitorowania',
+        'kwotaPozyczekStraconych',
+        'wspolczynnikaStratWDanymOkresieWgLiczbyPozyczek',
+        'wspolczynnikaStratWCalymOkresieWgLiczbyPozyczek',
+        'wspolczynnikaStratWDanymOkresieWgKwotyPozyczek',
+        'wspolczynnikaStratWCalymOkresieWgKwotyPozyczek',
     ];
 
     /**

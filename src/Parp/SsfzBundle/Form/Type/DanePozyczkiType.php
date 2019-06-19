@@ -92,7 +92,7 @@ class DanePozyczkiType extends AbstractType
         'kwotaPozyczekOd300001PlnNaDzialaniaInne',
         // Kwoty pożyczek aktywnych i straconych w danym okresie sprawozdawczym.
         'kwotaPozyczekAktywnychOgolem',
-        'kwotaPozyczekAktywnychSpalcanychTerminowo',
+        'kwotaPozyczekAktywnychSplacanychTerminowo',
         'kwotaPozyczekAktywnychWymagajacychMonitorowania',
         'kwotaPozyczekStraconych',
         // Współczynniki.
@@ -216,7 +216,7 @@ class DanePozyczkiType extends AbstractType
             'liczbaPozyczekOd300001PlnNaDzialaniaInne',
             // Liczba pożyczek aktywnych i straconych w danym okresie sprawozdawczym.
             'liczbaPozyczekAktywnychOgolem',
-            'liczbaPozyczekAktywnychSpalcanychTerminowo',
+            'liczbaPozyczekAktywnychSplacanychTerminowo',
             'liczbaPozyczekAktywnychWymagajacychMonitorowania',
             'liczbaPozyczekStraconych',
         ];

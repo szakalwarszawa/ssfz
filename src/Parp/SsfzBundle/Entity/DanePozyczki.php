@@ -2911,7 +2911,7 @@ class DanePozyczki
      *     }
      * )
      */
-    public $liczbaPozyczekAktywnychOgolem = '0';
+    public $liczbaPozyczekAktywnychOgolem = 0;
 
     /**
      * Liczba pożyczek aktywnych spłacanych terminowo.
@@ -2928,7 +2928,7 @@ class DanePozyczki
      *     }
      * )
      */
-    public $liczbaPozyczekAktywnychSplacanychTerminowo = '0';
+    public $liczbaPozyczekAktywnychSplacanychTerminowo = 0;
 
     /**
      * Liczba pożyczek aktywnych wymagających monitorowania.
@@ -2945,7 +2945,7 @@ class DanePozyczki
      *     }
      * )
      */
-    public $liczbaPozyczekAktywnychWymagajacychMonitorowania = '0';
+    public $liczbaPozyczekAktywnychWymagajacychMonitorowania = 0;
 
     /**
      * Liczba pożyczek straconych.
@@ -2962,7 +2962,7 @@ class DanePozyczki
      *     }
      * )
      */
-    public $liczbaPozyczekStraconych = '0';
+    public $liczbaPozyczekStraconych = 0;
 
     /**
      * Kwota pożyczek aktywnych ogółem (PLN).
@@ -7588,7 +7588,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekAktywnychOgolem(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekAktywnychOgolem = abs($liczbaPozyczekAktywnychOgolem);
+        $this->liczbaPozyczekAktywnychOgolem = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -7612,7 +7612,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekAktywnychSplacanychTerminowo(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekAktywnychSplacanychTerminowo = abs($liczbaPozyczekAktywnychSplacanychTerminowo);
+        $this->liczbaPozyczekAktywnychSplacanychTerminowo = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -7636,7 +7636,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekAktywnychWymagajacychMonitorowania(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekAktywnychWymagajacychMonitorowania = abs($liczbaPozyczekAktywnychWymagajacychMonitorowania);
+        $this->liczbaPozyczekAktywnychWymagajacychMonitorowania = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -7660,7 +7660,7 @@ class DanePozyczki
      */
     public function setLiczbaPozyczekStraconych(int $liczbaPozyczek = 0)
     {
-        $this->liczbaPozyczekStraconych = abs($liczbaPozyczekStraconych);
+        $this->liczbaPozyczekStraconych = abs($liczbaPozyczek);
 
         return $this;
     }
@@ -7684,7 +7684,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekAktywnychOgolem(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekAktywnychOgolem = MoneyHelper::anyToDecimalString($kwotaPozyczekAktywnychOgolem, 2, true);
+        $this->kwotaPozyczekAktywnychOgolem = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -7708,7 +7708,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekAktywnychSplacanychTerminowo(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekAktywnychSplacanychTerminowo = MoneyHelper::anyToDecimalString($kwotaPozyczekAktywnychSplacanychTerminowo, 2, true);
+        $this->kwotaPozyczekAktywnychSplacanychTerminowo = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -7732,7 +7732,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekAktywnychWymagajacychMonitorowania(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekAktywnychWymagajacychMonitorowania = MoneyHelper::anyToDecimalString($kwotaPozyczekAktywnychWymagajacychMonitorowania, 2, true);
+        $this->kwotaPozyczekAktywnychWymagajacychMonitorowania = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -7756,7 +7756,7 @@ class DanePozyczki
      */
     public function setKwotaPozyczekStraconych(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekStraconych = MoneyHelper::anyToDecimalString($kwotaPozyczekStraconych, 2, true);
+        $this->kwotaPozyczekStraconych = MoneyHelper::anyToDecimalString($kwotaPozyczek, 2, true);
 
         return $this;
     }
@@ -7780,7 +7780,7 @@ class DanePozyczki
      */
     public function setWspolczynnikStratWDanymOkresieWgLiczbyPozyczek(string $wspolczynnik = '0.00')
     {
-        $this->wspolczynnikStratWDanymOkresieWgLiczbyPozyczek = MoneyHelper::anyToDecimalString($wspolczynnikStratWDanymOkresieWgLiczbyPozyczek, 2, true);
+        $this->wspolczynnikStratWDanymOkresieWgLiczbyPozyczek = MoneyHelper::anyToDecimalString($wspolczynnik, 2, true);
 
         return $this;
     }
@@ -7804,7 +7804,7 @@ class DanePozyczki
      */
     public function setWspolczynnikStratWCalymOkresieWgLiczbyPozyczek(string $wspolczynnik = '0.00')
     {
-        $this->wspolczynnikStratWCalymOkresieWgLiczbyPozyczek = MoneyHelper::anyToDecimalString($wspolczynnikStratWCalymOkresieWgLiczbyPozyczek, 2, true);
+        $this->wspolczynnikStratWCalymOkresieWgLiczbyPozyczek = MoneyHelper::anyToDecimalString($wspolczynnik, 2, true);
 
         return $this;
     }
@@ -7828,7 +7828,7 @@ class DanePozyczki
      */
     public function setWspolczynnikStratWDanymOkresieWgKwotyPozyczek(string $wspolczynnik = '0.00')
     {
-        $this->wspolczynnikStratWDanymOkresieWgKwotyPozyczek = MoneyHelper::anyToDecimalString($wspolczynnikStratWDanymOkresieWgKwotyPozyczek, 2, true);
+        $this->wspolczynnikStratWDanymOkresieWgKwotyPozyczek = MoneyHelper::anyToDecimalString($wspolczynnik, 2, true);
 
         return $this;
     }
@@ -7852,7 +7852,7 @@ class DanePozyczki
      */
     public function setWspolczynnikStratWCalymOkresieWgKwotyPozyczek(string $wspolczynnik = '0.00')
     {
-        $this->wspolczynnikStratWCalymOkresieWgKwotyPozyczek = MoneyHelper::anyToDecimalString($wspolczynnikStratWCalymOkresieWgKwotyPozyczek, 2, true);
+        $this->wspolczynnikStratWCalymOkresieWgKwotyPozyczek = MoneyHelper::anyToDecimalString($wspolczynnik, 2, true);
 
         return $this;
     }
