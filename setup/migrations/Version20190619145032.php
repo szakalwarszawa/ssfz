@@ -33,6 +33,9 @@ class Version20190619145032 extends AbstractMigration
             ADD wspolczynnik_strat_w_danym_okresie_wg_kwoty_poz NUMERIC(11, 2) DEFAULT \'0\' NOT NULL COMMENT \'Współczynnik strat w danym okresie wg kwoty pożyczek.\',
             ADD wspolczynnik_strat_w_calym_okresie_wg_kwoty_poz NUMERIC(11, 2) DEFAULT \'0\' NOT NULL COMMENT \'Współczynnik strat w całym okresie wg kwoty pożyczek.\',
             CHANGE kwota_poz_od_300001_pln_dzial_rinne kwota_poz_od_300001_pln_dzial_inne NUMERIC(11, 2) DEFAULT \'0\' NOT NULL COMMENT \'Kwota pożyczek na działania inne od 301.000zł.\'');
+        
+        // Jeśli istnieją testowe dane w tabeli sfz_dane_pozyczek to może być konieczne wyczyszczenie zawartości przez utworzenie klucza obcego:
+        // TRUNCATE `sprawozdawczosc`.`sfz_dane_pozyczek`
         $this->addSql('ALTER TABLE sfz_dane_pozyczek ADD CONSTRAINT FK_5C2DA7269BFE310C FOREIGN KEY (sprawozdanie_id) REFERENCES sfz_sprawozdanie_pozyczkowe (id)');
     }
 
