@@ -23,8 +23,8 @@ class Version20190619134845 extends AbstractMigration
             (2, \'Co pół roku\')'
         );
         $this->addSql('ALTER TABLE slownik_programow ADD czestotliwosc_sprawozdan_id INT DEFAULT NULL');
-        $this->addSql('UPDATE slownik_programow SET czestotliwosc_sprawozdan_id = 1 WHERE id = 1');
-        $this->addSql('UPDATE slownik_programow SET czestotliwosc_sprawozdan_id = 2 WHERE id > 1');
+        $this->addSql('UPDATE slownik_programow SET czestotliwosc_sprawozdan_id = 2 WHERE id = 1');
+        $this->addSql('UPDATE slownik_programow SET czestotliwosc_sprawozdan_id = 1 WHERE id > 1');
         $this->addSql('ALTER TABLE slownik_programow ADD CONSTRAINT FK_99E857AB5C03E44 FOREIGN KEY (czestotliwosc_sprawozdan_id) REFERENCES slownik_czestotliwosc_sprawozdan (id)');
         $this->addSql('CREATE INDEX IDX_99E857AB5C03E44 ON slownik_programow (czestotliwosc_sprawozdan_id)');
         $this->addSql('CREATE TABLE slownik_okresow_sprawozdawczych (id INT AUTO_INCREMENT NOT NULL, czestotliwosc_sprawozdan_id INT NOT NULL, nazwa VARCHAR(64) NOT NULL, UNIQUE INDEX UNIQ_73EB050B6017FD2E (nazwa), INDEX IDX_73EB050B5C03E44 (czestotliwosc_sprawozdan_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
