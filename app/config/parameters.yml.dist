@@ -1,10 +1,12 @@
 parameters:
+    # Główne połączenie do bazy danych.
     database_host: 127.0.0.1
     database_port: ~
     database_name: ssfz
     database_user: ssfz
     database_password: ~
 
+    # Połączenie do serwera poczty e-mail.
     mailer_transport: smtp
     mailer_host: beta.parp.gov.pl
     mailer_port: 587
@@ -39,19 +41,20 @@ parameters:
     ldap_user_dn_string: "CN={username},OU=Zespoly_2016,OU=PARP Pracownicy,DC=parp,DC=local"
     default_password_encoder: bcrypt
 
+    # Połączenie do serwera Jasper Reports.
     jasper_host: http://localhost:8080/jasperserver
     jasper_user: jasperadmin
     jasper_password: jasperadmin
-    jasper_org_id:
+    jasper_org_id: ~
     jasper_ssfz_report_path: '/reports/parp'
 
-    # Parametry bazy danych do testów
+    # Parametry bazy danych do testów.
     test_database_host: 127.0.0.1
     test_database_port: ~
     test_database_name: ssfz_test
     test_database_user: ssfz_test
     test_database_password: ~
     
-    # miesiąc i dzień (mm-dd) w którym wysyłane są powiadomienia o zaległych sprawozdaniach (dwa terminy) 
+    # Miesiąc i dzień (mm-dd) w którym wysyłane są powiadomienia o zaległych sprawozdaniach (dwa terminy) 
     przypomnienie_pierwszy_termin_miesiac_dzien: 02-14
     przypomnienie_drugi_termin_miesiac_dzien: 08-14
