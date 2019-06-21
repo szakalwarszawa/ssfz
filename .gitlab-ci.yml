@@ -19,13 +19,6 @@ build:
         expire_in: 1 day
         untracked: true
 
-security:
-    stage: build
-    allow_failure: true
-    script:
-        - php -d memory_limit=1G /usr/bin/composer.phar require roave/security-advisories:dev-master --prefer-dist --no-update --no-suggest --no-progress
-        - php -d memory_limit=5G /usr/bin/composer.phar update --prefer-dist --no-scripts --no-progress --run-dry
-
 parallellint:
     stage: tests
     allow_failure: false
@@ -46,7 +39,7 @@ advisoriesdb:
     allow_failure: false
     script:
         - php -d memory_limit=1G /usr/bin/composer.phar require roave/security-advisories:dev-master --prefer-dist --no-update --no-suggest --no-progress
-        - php -d memory_limit=5G /usr/bin/composer.phar update --prefer-dist --prefer-stable --prefer-lowest --lock --no-autoloader --no-scripts --no-progress --run-dry
+        - php -d memory_limit=5G /usr/bin/composer.phar update --prefer-dist --prefer-stable --prefer-lowest --lock --no-autoloader --no-scripts --no-progress --dry-run
 
 psr2:
     stage: standards
