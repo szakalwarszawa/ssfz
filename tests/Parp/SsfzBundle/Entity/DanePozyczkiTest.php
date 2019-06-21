@@ -3,12 +3,12 @@
 namespace Test\Parp\SsfzBundle\Entity;;
 
 use PHPUnit\Framework\TestCase;
-use Parp\SsfzBundle\Entity\DanePozyczki;
+use Parp\SsfzBundle\Entity\DanePozyczek;
 
 /**
- * Testy encji DanePozyczki.
+ * Testy encji DanePozyczek.
  *
- * @covers \Parp\SsfzBundle\Entity\DanePozyczki
+ * @covers \Parp\SsfzBundle\Entity\DanePozyczek
  *
  * Testy dotyczą anemicznej encji. Każde właściwość zachowuje się identycznie:
  * jest chroniona, ustawiana mutatorem i odczytywana akcesorem - bez żadnych modyfikacji.
@@ -24,9 +24,9 @@ use Parp\SsfzBundle\Entity\DanePozyczki;
  * dostępne metody (getX i setX). Nie będzie konieczna katualizacja wykazu pól po każdej
  * modyfikacji encji.
  *
- * php7.2 ./bin/phpunit --bootstrap ./vendor/autoload.php --config ./tests/phpunit.xml ./tests/Parp/SsfzBundle/Entity/DanePozyczkiTest.php 
+ * php7.2 ./bin/phpunit --bootstrap ./vendor/autoload.php --config ./tests/phpunit.xml ./tests/Parp/SsfzBundle/Entity/DanePozyczekTest.php 
  */
-class DanePozyczkiTest extends TestCase
+class DanePozyczekTest extends TestCase
 {
     /**
      * @var string[]
@@ -194,7 +194,7 @@ class DanePozyczkiTest extends TestCase
     ];
 
     /**
-     * @var DanePozyczki
+     * @var DanePozyczek
      */
     protected $danePozyczki;
 
@@ -203,12 +203,12 @@ class DanePozyczkiTest extends TestCase
      */
     public function setUp()
     {
-        $this->danePozyczki = new DanePozyczki();
+        $this->danePozyczki = new DanePozyczek();
     }
 
     public function testCanBeInstantioned()
     {
-        $this->assertInstanceOf(DanePozyczki::class, $this->danePozyczki);
+        $this->assertInstanceOf(DanePozyczek::class, $this->danePozyczki);
     }
 
     public function testContainsValidInitialIntegers()

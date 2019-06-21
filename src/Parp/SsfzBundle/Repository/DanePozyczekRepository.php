@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Parp\SsfzBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Parp\SsfzBundle\Entity\DanePozyczki;
+use Parp\SsfzBundle\Entity\DanePozyczek;
 use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
 
 /**
- * Repozytorium DanePozyczkiRepository.
+ * Repozytorium DanePozyczekRepository.
  */
-class DanePozyczkiRepository extends EntityRepository
+class DanePozyczekRepository extends EntityRepository
 {
     /**
      * Tworzy nowe dane pożyczki przypisane do sprawozdania.
@@ -19,11 +19,11 @@ class DanePozyczkiRepository extends EntityRepository
      * @param SprawozdaniePozyczkowe $sprawozdanie
      * @param bool $persist
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
-    public function create(SprawozdaniePozyczkowe $sprawozdanie, $persist = false): DanePozyczki
+    public function create(SprawozdaniePozyczkowe $sprawozdanie, $persist = false): DanePozyczek
     {
-        $danePozyczki = new DanePozyczki();
+        $danePozyczki = new DanePozyczek();
         $danePozyczki->setSprawozdanie($sprawozdanie);
         if ($persist) {
             $this->persist($danePozyczki);
@@ -35,11 +35,11 @@ class DanePozyczkiRepository extends EntityRepository
     /**
      * Usuwa dane pożyczki.
      *
-     * @param DanePozyczki $danepozyczki
+     * @param DanePozyczek $danepozyczki
      *
      * @return bool
      */
-    public function delete(DanePozyczki $danePozyczki)
+    public function delete(DanePozyczek $danePozyczki)
     {
         $this->_em->remove($danePozyczki);
         $this->_em->flush($danePozyczki);
@@ -50,11 +50,11 @@ class DanePozyczkiRepository extends EntityRepository
     /**
      * Utrwala dane pożyczki.
      *
-     * @param DanePozyczki $danePozyczki
+     * @param DanePozyczek $danePozyczki
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
-    public function persist(DanePozyczki $danePozyczki)
+    public function persist(DanePozyczek $danePozyczki)
     {
         $this->_em->persist($danePozyczki);
         $this->_em->flush($danePozyczki);
@@ -67,7 +67,7 @@ class DanePozyczkiRepository extends EntityRepository
      *
      * @param SprawozdaniePozyczkowe $sprawozdanie
      *
-     * @return array|DanePozyczki[]
+     * @return array|DanePozyczek[]
      */
     public function findBySprawozdanie(SprawozdaniePozyczkowe $sprawozdanie): array
     {
@@ -81,9 +81,9 @@ class DanePozyczkiRepository extends EntityRepository
      *
      * @param int $idSprawozdania
      *
-     * @return null|DanePozyczki
+     * @return null|DanePozyczek
      */
-    public function findOneByIdSprawozdania(int $idSprawozdania): ?DanePozyczki
+    public function findOneByIdSprawozdania(int $idSprawozdania): ?DanePozyczek
     {
         $result = $this
             ->createQueryBuilder('dp')

@@ -19,9 +19,9 @@
         <div class="panel-heading">Dane pożyczki</div>
             <div class="panel-body">
                 <div>
-                    <span><strong>Numer umowy: </strong>{{ dane_pozyczki.sprawozdanie.numerUmowy }}</span>
+                    <span><strong>Numer umowy: </strong>{{ dane_pozyczek.sprawozdanie.numerUmowy }}</span>
                     <br />
-                    <span><strong>Okres sprawozdawczy: </strong>{{ dane_pozyczki.sprawozdanie.okres }} {{ dane_pozyczki.sprawozdanie.rok }}</span>
+                    <span><strong>Okres sprawozdawczy: </strong>{{ dane_pozyczek.sprawozdanie.okres }} {{ dane_pozyczek.sprawozdanie.rok }}</span>
                 </div>
 
                 <div class="col-md-12">
@@ -344,7 +344,7 @@
                             <br />
                             <a id="button_return"
                                class="btn btn-default"
-                               href="{{ url('lista_sprawozdan_spo', {'umowa': dane_pozyczki.sprawozdanie.umowaId}) }}"><i class="fas fa-chevron-left"></i> Powrót</a>
+                               href="{{ url('lista_sprawozdan_spo', {'umowa': dane_pozyczek.sprawozdanie.umowaId}) }}"><i class="fas fa-chevron-left"></i> Powrót</a>
                             <button id="button_submit" type="submit" class="btn btn-success"><i class="fas fa-save"></i> Zapisz</button>
                         </div>
 

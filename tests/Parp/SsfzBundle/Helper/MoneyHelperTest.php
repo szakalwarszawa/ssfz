@@ -8,7 +8,7 @@ use Parp\SsfzBundle\Helper\MoneyHelper;
 /**
  * Testy klasy pomocniczej dla operacji na kwotach.
  */
-class DanePozyczkiTest extends TestCase
+class MoneyHelperTest extends TestCase
 {
     public function testCanConvertAnyValueToDecimalString()
     {

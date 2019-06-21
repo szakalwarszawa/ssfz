@@ -49,8 +49,8 @@
                                     </a>
 
                                     {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPozyczkowy()|default(false) %}
-                                        <a href="{{ url('edycja_danych_pozyczki_dla_sprawozdania', {id: sprawozdanie.id}) }}" class="btn btn-sm btn-success" role="button"><span class="fas fa-edit"></span> Edycja danych o pożyczkach</a>
-                                        <a href="{{ url('podglad_danych_pozyczki_dla_sprawozdania', {id: sprawozdanie.id}) }}" class="btn btn-sm btn-success" role="button"><span class="fas fa-eye"></span> Podgląd danych o pożyczkach</a>
+                                        <a href="{{ url('edycja_danych_pozyczek_dla_sprawozdania', {id: sprawozdanie.id}) }}" class="btn btn-sm btn-success" role="button"><span class="fas fa-edit"></span> Edycja danych o pożyczkach</a>
+                                        <a href="{{ url('podglad_danych_pozyczek_dla_sprawozdania', {id: sprawozdanie.id}) }}" class="btn btn-sm btn-success" role="button"><span class="fas fa-eye"></span> Podgląd danych o pożyczkach</a>
                                     {% endif %}
 
                                     <span class="btn btn-sm btn-warning btn-send-to-parp" data-href="{{ path('sprawozdania_spo_przeslij', {'czyPozyczkowe': czyPozyczkowe, 'sprawozdanieId': sprawozdanie.id}) }}" role="button">

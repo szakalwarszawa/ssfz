@@ -9,12 +9,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Parp\SsfzBundle\Entity\DanePozyczki;
+use Parp\SsfzBundle\Entity\DanePozyczek;
 
 /**
  * Formularz do wprowadzania danych o pożyczce.
  */
-class DanePozyczkiType extends AbstractType
+class DanePozyczekType extends AbstractType
 {
     const DECIMAL_FIELDS = [
         // Kwoty pożyczek udzielonych w danym okresie sprawozdawczym.
@@ -276,7 +276,7 @@ class DanePozyczkiType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'form_dane_pozyczki';
+        return 'form_dane_pozyczek';
     }
 
     /**
@@ -285,7 +285,7 @@ class DanePozyczkiType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => DanePozyczki::class,
+            'data_class' => DanePozyczek::class,
         ]);
 
         $resolver->setRequired([

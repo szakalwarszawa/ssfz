@@ -17,11 +17,11 @@ use Parp\SsfzBundle\Helper\MoneyHelper;
  * @see https://www.doctrine-project.org/projects/doctrine-dbal/en/2.9/reference/types.html#decimal
  *
  * @ORM\Table(name="sfz_dane_pozyczek")
- * @ORM\Entity(repositoryClass="Parp\SsfzBundle\Repository\DanePozyczkiRepository")
+ * @ORM\Entity(repositoryClass="Parp\SsfzBundle\Repository\DanePozyczekRepository")
  *
- * @see bin/phpunit --configuration ./tests/phpunit.xml --no-coverage --bootstrap ./vendor/autoload.php tests/Parp/SsfzBundle/Entity/DanePozyczkiTest
+ * @see bin/phpunit --configuration ./tests/phpunit.xml --no-coverage --bootstrap ./vendor/autoload.php tests/Parp/SsfzBundle/Entity/DanePozyczekTest
  */
-class DanePozyczki
+class DanePozyczek
 {
     /**
      * Identyfikator.
@@ -3163,7 +3163,7 @@ class DanePozyczki
      *
      * @param SprawozdaniePozyczkowe $sprawozdanie
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setSprawozdanie(SprawozdaniePozyczkowe $sprawozdanie)
     {
@@ -3187,7 +3187,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -3211,7 +3211,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -3235,7 +3235,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -3259,7 +3259,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -3283,7 +3283,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -3307,7 +3307,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -3331,7 +3331,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -3355,7 +3355,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -3379,7 +3379,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -3403,7 +3403,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -3427,7 +3427,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -3451,7 +3451,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -3475,7 +3475,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -3499,7 +3499,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -3523,7 +3523,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -3547,7 +3547,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -3571,7 +3571,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -3595,7 +3595,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw(int $liczbaPozyczek = 0)
     {
@@ -3619,7 +3619,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekObrotowychDo10000Pln(int $liczbaPozyczek = 0)
     {
@@ -3643,7 +3643,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekObrotowychOd10001Do30000Pln(int $liczbaPozyczek = 0)
     {
@@ -3667,7 +3667,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekObrotowychOd30001Do50000Pln(int $liczbaPozyczek = 0)
     {
@@ -3691,7 +3691,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekObrotowychOd50001Do120000Pln(int $liczbaPozyczek = 0)
     {
@@ -3715,7 +3715,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekObrotowychOd120001Do300000Pln(int $liczbaPozyczek = 0)
     {
@@ -3739,7 +3739,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekObrotowychOd300001Pln(int $liczbaPozyczek = 0)
     {
@@ -3763,7 +3763,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekInwestycyjnychDo10000Pln(int $liczbaPozyczek = 0)
     {
@@ -3787,7 +3787,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekInwestycyjnychOd10001Do30000Pln(int $liczbaPozyczek = 0)
     {
@@ -3811,7 +3811,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekInwestycyjnychOd30001Do50000Pln(int $liczbaPozyczek = 0)
     {
@@ -3835,7 +3835,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekInwestycyjnychOd50001Do120000Pln(int $liczbaPozyczek = 0)
     {
@@ -3859,7 +3859,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekInwestycyjnychOd120001Do300000Pln(int $liczbaPozyczek = 0)
     {
@@ -3883,7 +3883,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekInwestycyjnychOd300001Pln(int $liczbaPozyczek = 0)
     {
@@ -3907,7 +3907,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekInwestycyjnoObrotowychDo10000Pln(int $liczbaPozyczek = 0)
     {
@@ -3931,7 +3931,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln(int $liczbaPozyczek = 0)
     {
@@ -3955,7 +3955,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln(int $liczbaPozyczek = 0)
     {
@@ -3979,7 +3979,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln(int $liczbaPozyczek = 0)
     {
@@ -4003,7 +4003,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln(int $liczbaPozyczek = 0)
     {
@@ -4027,7 +4027,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekInwestycyjnoObrotowychOd300001Pln(int $liczbaPozyczek = 0)
     {
@@ -4051,7 +4051,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekDo10000PlnNaDzialaniaProdukcyjne(int $liczbaPozyczek = 0)
     {
@@ -4075,7 +4075,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne(int $liczbaPozyczek = 0)
     {
@@ -4099,7 +4099,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne(int $liczbaPozyczek = 0)
     {
@@ -4123,7 +4123,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne(int $liczbaPozyczek = 0)
     {
@@ -4147,7 +4147,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne(int $liczbaPozyczek = 0)
     {
@@ -4171,7 +4171,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd300001PlnNaDzialaniaProdukcyjne(int $liczbaPozyczek = 0)
     {
@@ -4195,7 +4195,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekDo10000PlnNaDzialaniaHandlowe(int $liczbaPozyczek = 0)
     {
@@ -4219,7 +4219,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe(int $liczbaPozyczek = 0)
     {
@@ -4243,7 +4243,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe(int $liczbaPozyczek = 0)
     {
@@ -4267,7 +4267,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe(int $liczbaPozyczek = 0)
     {
@@ -4291,7 +4291,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe(int $liczbaPozyczek = 0)
     {
@@ -4315,7 +4315,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd300001PlnNaDzialaniaHandlowe(int $liczbaPozyczek = 0)
     {
@@ -4345,7 +4345,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekDo10000PlnNaDzialaniaUslugowe(int $liczbaPozyczek = 0)
     {
@@ -4369,7 +4369,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe(int $liczbaPozyczek = 0)
     {
@@ -4393,7 +4393,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe(int $liczbaPozyczek = 0)
     {
@@ -4417,7 +4417,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe(int $liczbaPozyczek = 0)
     {
@@ -4441,7 +4441,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe(int $liczbaPozyczek = 0)
     {
@@ -4465,7 +4465,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd300001PlnNaDzialaniaUslugowe(int $liczbaPozyczek = 0)
     {
@@ -4489,7 +4489,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekDo10000PlnNaDzialaniaBudownicze(int $liczbaPozyczek = 0)
     {
@@ -4513,7 +4513,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze(int $liczbaPozyczek = 0)
     {
@@ -4537,7 +4537,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze(int $liczbaPozyczek = 0)
     {
@@ -4561,7 +4561,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze(int $liczbaPozyczek = 0)
     {
@@ -4585,7 +4585,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze(int $liczbaPozyczek = 0)
     {
@@ -4609,7 +4609,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd300001PlnNaDzialaniaBudownicze(int $liczbaPozyczek = 0)
     {
@@ -4633,7 +4633,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekDo10000PlnNaDzialaniaRolnicze(int $liczbaPozyczek = 0)
     {
@@ -4657,7 +4657,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze(int $liczbaPozyczek = 0)
     {
@@ -4681,7 +4681,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze(int $liczbaPozyczek = 0)
     {
@@ -4705,7 +4705,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze(int $liczbaPozyczek = 0)
     {
@@ -4729,7 +4729,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze(int $liczbaPozyczek = 0)
     {
@@ -4753,7 +4753,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd300001PlnNaDzialaniaRolnicze(int $liczbaPozyczek = 0)
     {
@@ -4777,7 +4777,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekDo10000PlnNaDzialaniaInne(int $liczbaPozyczek = 0)
     {
@@ -4801,7 +4801,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd10001Do30000PlnNaDzialaniaInne(int $liczbaPozyczek = 0)
     {
@@ -4825,7 +4825,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd30001Do50000PlnNaDzialaniaInne(int $liczbaPozyczek = 0)
     {
@@ -4849,7 +4849,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd50001Do120000PlnNaDzialaniaInne(int $liczbaPozyczek = 0)
     {
@@ -4873,7 +4873,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd120001Do300000PlnNaDzialaniaInne(int $liczbaPozyczek = 0)
     {
@@ -4897,7 +4897,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekOd300001PlnNaDzialaniaInne(int $liczbaPozyczek = 0)
     {
@@ -4921,7 +4921,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
@@ -4945,7 +4945,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
@@ -4969,7 +4969,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
@@ -4993,7 +4993,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
@@ -5017,7 +5017,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
@@ -5041,7 +5041,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
@@ -5065,7 +5065,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
@@ -5089,7 +5089,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
@@ -5113,7 +5113,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
@@ -5137,7 +5137,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
@@ -5161,7 +5161,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
@@ -5185,7 +5185,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
@@ -5209,7 +5209,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
@@ -5233,7 +5233,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
@@ -5257,7 +5257,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
@@ -5281,7 +5281,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
@@ -5305,7 +5305,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
@@ -5329,7 +5329,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
@@ -5353,7 +5353,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekDo10000PlnDlaInnychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
@@ -5377,7 +5377,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd10001Do30000PlnDlaInnychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
@@ -5401,7 +5401,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd30001Do50000PlnDlaInnychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
@@ -5425,7 +5425,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd50001Do120000PlnDlaInnychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
@@ -5449,7 +5449,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd120001Do300000PlnDlaInnychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
@@ -5473,7 +5473,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd300001PlnDlaInnychPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
@@ -5497,7 +5497,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekDo10000PlnDlaInstytucjiEkonomiiSpolecznej(string $kwotaPozyczek = '0.00')
     {
@@ -5521,7 +5521,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd10001Do30000PlnDlaInstytucjiEkonomiiSpolecznej(string $kwotaPozyczek = '0.00')
     {
@@ -5545,7 +5545,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd30001Do50000PlnDlaInstytucjiEkonomiiSpolecznej(string $kwotaPozyczek = '0.00')
     {
@@ -5569,7 +5569,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd50001Do120000PlnDlaInstytucjiEkonomiiSpolecznej(string $kwotaPozyczek = '0.00')
     {
@@ -5593,7 +5593,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd120001Do300000PlnDlaInstytucjiEkonomiiSpolecznej(string $kwotaPozyczek = '0.00')
     {
@@ -5617,7 +5617,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd300001PlnDlaInstytucjiEkonomiiSpolecznej(string $kwotaPozyczek = '0.00')
     {
@@ -5641,7 +5641,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekObrotowychDo10000Pln(string $kwotaPozyczek = '0.00')
     {
@@ -5665,7 +5665,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekObrotowychOd10001Do30000Pln(string $kwotaPozyczek = '0.00')
     {
@@ -5689,7 +5689,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekObrotowychOd30001Do50000Pln(string $kwotaPozyczek = '0.00')
     {
@@ -5713,7 +5713,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekObrotowychOd50001Do120000Pln(string $kwotaPozyczek = '0.00')
     {
@@ -5737,7 +5737,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekObrotowychOd120001Do300000Pln(string $kwotaPozyczek = '0.00')
     {
@@ -5761,7 +5761,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekObrotowychOd300001Pln(string $kwotaPozyczek = '0.00')
     {
@@ -5785,7 +5785,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekInwestycyjnychDo10000Pln(string $kwotaPozyczek = '0.00')
     {
@@ -5809,7 +5809,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekInwestycyjnychOd10001Do30000Pln(string $kwotaPozyczek = '0.00')
     {
@@ -5833,7 +5833,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekInwestycyjnychOd30001Do50000Pln(string $kwotaPozyczek = '0.00')
     {
@@ -5857,7 +5857,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekInwestycyjnychOd50001Do120000Pln(string $kwotaPozyczek = '0.00')
     {
@@ -5881,7 +5881,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekInwestycyjnychOd120001Do300000Pln(string $kwotaPozyczek = '0.00')
     {
@@ -5905,7 +5905,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekInwestycyjnychOd300001Pln(string $kwotaPozyczek = '0.00')
     {
@@ -5929,7 +5929,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekInwestycyjnoObrotowychDo10000Pln(string $kwotaPozyczek = '0.00')
     {
@@ -5953,7 +5953,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln(string $kwotaPozyczek = '0.00')
     {
@@ -5977,7 +5977,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln(string $kwotaPozyczek = '0.00')
     {
@@ -6001,7 +6001,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln(string $kwotaPozyczek = '0.00')
     {
@@ -6025,7 +6025,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln(string $kwotaPozyczek = '0.00')
     {
@@ -6049,7 +6049,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekInwestycyjnoObrotowychOd300001Pln(string $kwotaPozyczek = '0.00')
     {
@@ -6073,7 +6073,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekDo10000PlnNaDzialaniaProdukcyjne(string $kwotaPozyczek = '0.00')
     {
@@ -6097,7 +6097,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne(string $kwotaPozyczek = '0.00')
     {
@@ -6121,7 +6121,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne(string $kwotaPozyczek = '0.00')
     {
@@ -6145,7 +6145,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne(string $kwotaPozyczek = '0.00')
     {
@@ -6169,7 +6169,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne(string $kwotaPozyczek = '0.00')
     {
@@ -6193,7 +6193,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd300001PlnNaDzialaniaProdukcyjne(string $kwotaPozyczek = '0.00')
     {
@@ -6217,7 +6217,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekDo10000PlnNaDzialaniaHandlowe(string $kwotaPozyczek = '0.00')
     {
@@ -6241,7 +6241,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe(string $kwotaPozyczek = '0.00')
     {
@@ -6265,7 +6265,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe(string $kwotaPozyczek = '0.00')
     {
@@ -6289,7 +6289,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe(string $kwotaPozyczek = '0.00')
     {
@@ -6313,7 +6313,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe(string $kwotaPozyczek = '0.00')
     {
@@ -6337,7 +6337,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd300001PlnNaDzialaniaHandlowe(string $kwotaPozyczek = '0.00')
     {
@@ -6367,7 +6367,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekDo10000PlnNaDzialaniaUslugowe(string $kwotaPozyczek = '0.00')
     {
@@ -6391,7 +6391,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe(string $kwotaPozyczek = '0.00')
     {
@@ -6415,7 +6415,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe(string $kwotaPozyczek = '0.00')
     {
@@ -6439,7 +6439,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe(string $kwotaPozyczek = '0.00')
     {
@@ -6463,7 +6463,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe(string $kwotaPozyczek = '0.00')
     {
@@ -6487,7 +6487,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd300001PlnNaDzialaniaUslugowe(string $kwotaPozyczek = '0.00')
     {
@@ -6511,7 +6511,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekDo10000PlnNaDzialaniaBudownicze(string $kwotaPozyczek = '0.00')
     {
@@ -6535,7 +6535,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze(string $kwotaPozyczek = '0.00')
     {
@@ -6559,7 +6559,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze(string $kwotaPozyczek = '0.00')
     {
@@ -6583,7 +6583,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze(string $kwotaPozyczek = '0.00')
     {
@@ -6607,7 +6607,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze(string $kwotaPozyczek = '0.00')
     {
@@ -6631,7 +6631,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd300001PlnNaDzialaniaBudownicze(string $kwotaPozyczek = '0.00')
     {
@@ -6655,7 +6655,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekDo10000PlnNaDzialaniaRolnicze(string $kwotaPozyczek = '0.00')
     {
@@ -6679,7 +6679,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze(string $kwotaPozyczek = '0.00')
     {
@@ -6703,7 +6703,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze(string $kwotaPozyczek = '0.00')
     {
@@ -6727,7 +6727,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze(string $kwotaPozyczek = '0.00')
     {
@@ -6751,7 +6751,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze(string $kwotaPozyczek = '0.00')
     {
@@ -6775,7 +6775,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd300001PlnNaDzialaniaRolnicze(string $kwotaPozyczek = '0.00')
     {
@@ -6799,7 +6799,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekDo10000PlnNaDzialaniaInne(string $kwotaPozyczek = '0.00')
     {
@@ -6823,7 +6823,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd10001Do30000PlnNaDzialaniaInne(string $kwotaPozyczek = '0.00')
     {
@@ -6847,7 +6847,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd30001Do50000PlnNaDzialaniaInne(string $kwotaPozyczek = '0.00')
     {
@@ -6871,7 +6871,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd50001Do120000PlnNaDzialaniaInne(string $kwotaPozyczek = '0.00')
     {
@@ -6895,7 +6895,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd120001Do300000PlnNaDzialaniaInne(string $kwotaPozyczek = '0.00')
     {
@@ -6919,7 +6919,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekOd300001PlnNaDzialaniaInne(string $kwotaPozyczek = '0.00')
     {
@@ -7553,7 +7553,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekAktywnychOgolem(int $liczbaPozyczek = 0)
     {
@@ -7577,7 +7577,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekAktywnychSplacanychTerminowo(int $liczbaPozyczek = 0)
     {
@@ -7601,7 +7601,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekAktywnychWymagajacychMonitorowania(int $liczbaPozyczek = 0)
     {
@@ -7625,7 +7625,7 @@ class DanePozyczki
      *
      * @param int $liczbaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setLiczbaPozyczekStraconych(int $liczbaPozyczek = 0)
     {
@@ -7649,7 +7649,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekAktywnychOgolem(string $kwotaPozyczek = '0.00')
     {
@@ -7673,7 +7673,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekAktywnychSplacanychTerminowo(string $kwotaPozyczek = '0.00')
     {
@@ -7697,7 +7697,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekAktywnychWymagajacychMonitorowania(string $kwotaPozyczek = '0.00')
     {
@@ -7721,7 +7721,7 @@ class DanePozyczki
      *
      * @param string $kwotaPozyczek
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setKwotaPozyczekStraconych(string $kwotaPozyczek = '0.00')
     {
@@ -7745,7 +7745,7 @@ class DanePozyczki
      *
      * @param string $wspolczynnik
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setWspolczynnikStratWDanymOkresieWgLiczbyPozyczek(string $wspolczynnik = '0.00')
     {
@@ -7769,7 +7769,7 @@ class DanePozyczki
      *
      * @param string $wspolczynnik
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setWspolczynnikStratWCalymOkresieWgLiczbyPozyczek(string $wspolczynnik = '0.00')
     {
@@ -7793,7 +7793,7 @@ class DanePozyczki
      *
      * @param string $wspolczynnik
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setWspolczynnikStratWDanymOkresieWgKwotyPozyczek(string $wspolczynnik = '0.00')
     {
@@ -7817,7 +7817,7 @@ class DanePozyczki
      *
      * @param string $wspolczynnik
      *
-     * @return DanePozyczki
+     * @return DanePozyczek
      */
     public function setWspolczynnikStratWCalymOkresieWgKwotyPozyczek(string $wspolczynnik = '0.00')
     {

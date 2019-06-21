@@ -10,14 +10,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Doctrine\ORM\EntityNotFoundException;
-use Parp\SsfzBundle\Entity\DanePozyczki;
+use Parp\SsfzBundle\Entity\DanePozyczek;
 use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
-use Parp\SsfzBundle\Form\Type\DanePozyczkiType;
+use Parp\SsfzBundle\Form\Type\DanePozyczekType;
 
 /**
  * Punkt wejściowy do obsługi danych o pożyczkach dla SPO WKP 1.2.1.
  *
- * @Route("/dane_pozyczki")
+ * @Route("/dane_pozyczek")
  */
 class PozyczkiController extends Controller
 {
@@ -25,7 +25,7 @@ class PozyczkiController extends Controller
      * Wyświetla formularz danych pożyczki na podstawie ID sprawozdania, do którego należy.
      *
      * @Method({"GET"})
-     * @Route("/sprawozdanie/edycja/dane_pozyczki/{id}", name="edycja_danych_pozyczki_dla_sprawozdania")
+     * @Route("/sprawozdanie/edycja/{id}", name="edycja_danych_pozyczek_dla_sprawozdania")
      *
      * @param Request $request
      * @param int $id Identyfikator sprawozdania pożyczkowego
@@ -34,7 +34,7 @@ class PozyczkiController extends Controller
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function edytujDanePozyczkiDlaSprawozdaniaAction(Request $request, int $id): Response
+    public function edytujDanePozyczekDlaSprawozdaniaAction(Request $request, int $id): Response
     {
         $entityManager = $this
             ->getDoctrine()
@@ -42,7 +42,7 @@ class PozyczkiController extends Controller
         ;
 
         $danePozyczki = $entityManager
-            ->getRepository(DanePozyczki::class)
+            ->getRepository(DanePozyczek::class)
             ->findOneByIdSprawozdania($id)
         ;
         if (!$danePozyczki) {
@@ -55,13 +55,13 @@ class PozyczkiController extends Controller
             }
 
             $danePozyczki = $entityManager
-                ->getRepository(DanePozyczki::class)
+                ->getRepository(DanePozyczek::class)
                 ->create($sprawozdanie, true)
             ;
-            return $this->edytujDanePozyczkiAction($request, $danePozyczki->getId());
+            return $this->edytujDanePozyczekAction($request, $danePozyczki->getId());
         }
 
-        return $this->edytujDanePozyczkiAction($request, $danePozyczki->getId());
+        return $this->edytujDanePozyczekAction($request, $danePozyczki->getId());
     }
 
 
@@ -69,7 +69,7 @@ class PozyczkiController extends Controller
      * Wyświetla formularz danych pożyczki na podstawie jej ID.
      *
      * @Method({"GET", "POST"})
-     * @Route("/dane_pozyczki/{id}", name="edycja_danych_pozyczki")
+     * @Route("/{id}", name="edycja_danych_pozyczek")
      *
      * @param Request $request
      * @param int $id Identyfikator danych pożyczki
@@ -78,7 +78,7 @@ class PozyczkiController extends Controller
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function edytujDanePozyczkiAction(Request $request, int $id): Response
+    public function edytujDanePozyczekAction(Request $request, int $id): Response
     {
         $entityManager = $this
             ->getDoctrine()
@@ -86,17 +86,17 @@ class PozyczkiController extends Controller
         ;
 
         $danePozyczki = $entityManager
-            ->getRepository(DanePozyczki::class)
+            ->getRepository(DanePozyczek::class)
             ->find($id)
         ;
         if (!$danePozyczki) {
             throw new EntityNotFoundException('Nie znaleziono danych pożyczki o ID: '.(string) $id);
         }
 
-        $actionUrl = $this->generateUrl('edycja_danych_pozyczki', [
+        $actionUrl = $this->generateUrl('edycja_danych_pozyczek', [
             'id' => $id,
         ]);
-        $formularz = $this->createForm(DanePozyczkiType::class, $danePozyczki, [
+        $formularz = $this->createForm(DanePozyczekType::class, $danePozyczki, [
             'action_url' => $actionUrl,
         ]);
 
@@ -118,9 +118,9 @@ class PozyczkiController extends Controller
             }
         }
 
-        return $this->render('SsfzBundle:Sprawozdanie:dane_pozyczki.html.twig', [
+        return $this->render('SsfzBundle:Sprawozdanie:dane_pozyczek.html.twig', [
             'form'            => $formularz->createView(),
-            'dane_pozyczki'   => $danePozyczki,
+            'dane_pozyczek'   => $danePozyczki,
             'fluid_container' => true,
         ]);
     }
@@ -131,7 +131,7 @@ class PozyczkiController extends Controller
      * Wyświetla raport z podsumowaniem danych pożyczki dla sprawozdania o zadanym ID.
      *
      * @Method({"GET"})
-     * @Route("/sprawozdanie/podglad/dane_pozyczki/{id}", name="podglad_danych_pozyczki_dla_sprawozdania")
+     * @Route("/sprawozdanie/podglad/{id}", name="podglad_danych_pozyczek_dla_sprawozdania")
      *
      * @param Request $request
      * @param int $id Identyfikator sprawozdania pożyczkowego
@@ -140,7 +140,7 @@ class PozyczkiController extends Controller
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function pokazDanePozyczkiDlaSprawozdaniaAction(Request $request, int $id): Response
+    public function pokazDanePozyczekDlaSprawozdaniaAction(Request $request, int $id): Response
     {
         $entityManager = $this
             ->getDoctrine()
@@ -148,14 +148,14 @@ class PozyczkiController extends Controller
         ;
 
         $daneZagregowane = $entityManager
-            ->getRepository(DanePozyczki::class)
+            ->getRepository(DanePozyczek::class)
             ->findDaneZagregowaneByIdSprawozdania($id)
         ;
         if (!$daneZagregowane) {
             throw new EntityNotFoundException('Nie znaleziono danych pożyczek dla sprawozdania o ID: '.(string) $id);
         }
 
-        return $this->render('SsfzBundle:Report:dane_pozyczki.html.twig', [
+        return $this->render('SsfzBundle:Report:dane_pozyczek.html.twig', [
             'dane_zagregowane' => $daneZagregowane,
             'fluid_container' => false,
         ]);
@@ -172,7 +172,7 @@ class PozyczkiController extends Controller
      *
      * @return Response
      */
-    public function usunDanePozyczkiAction(Request $request, int $id)
+    public function usunDanePozyczekAction(Request $request, int $id)
     {
         $entityManager = $this
             ->getDoctrine()
@@ -180,7 +180,7 @@ class PozyczkiController extends Controller
         ;
 
         $danePozyczki = $entityManager
-            ->getRepository(DanePozyczki::class)
+            ->getRepository(DanePozyczek::class)
             ->find($id)
         ;
         if (!$danePozyczki) {
@@ -190,7 +190,7 @@ class PozyczkiController extends Controller
         $sprawozdanie = $danePozyczki->getSprawozdanie();
 
         $danePozyczki = $entityManager
-            ->getRepository(DanePozyczki::class)
+            ->getRepository(DanePozyczek::class)
             ->remove($danePozyczki, true)
         ;
 
