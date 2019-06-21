@@ -38,7 +38,7 @@ RUN php -d memory_limit=2G composer.phar global require \
         "squizlabs/php_codesniffer" \
         "phploc/phploc" \
         "sebastian/phpcpd" \
-        "allocine/twigcs" \
+        "friendsoftwig/twigcs" \
         "phpmd/phpmd" \
         "hexmedia/yaml-linter" \
         "escapestudios/symfony2-coding-standard" \
