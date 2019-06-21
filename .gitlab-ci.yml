@@ -38,7 +38,7 @@ advisoriesdb:
     stage: security
     allow_failure: false
     script:
-        - php -d memory_limit=1G /usr/bin/composer.phar require roave/security-advisories:dev-master --dev --prefer-dist --no-suggest --no-autoloader --no-scripts --no-progress
+        - php -d memory_limit=1G /usr/bin/composer.phar require roave/security-advisories:dev-master --dev --prefer-dist --no-suggest --no-scripts --no-progress
         - php -d memory_limit=5G /usr/bin/composer.phar update --prefer-dist --prefer-stable --prefer-lowest --no-dev --no-autoloader --no-scripts --no-progress --lock --dry-run
 
 psr2:
