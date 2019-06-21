@@ -149,7 +149,6 @@ class DatatableParpService
         }
 
         $idx = 1;
-        $where = [];
         foreach ($config as $cfg) {
             foreach ($okresy as $key => $okres) {
                 $datatable->addJoin('u.' . $nazwaParametru, 's' . $idx, Join::LEFT_JOIN, Join::WITH, 'u.id = s' . $idx . '.umowaId and s' . $idx . '.rok = ' . $cfg->getRok() . ' and s' . $idx . '.czyNajnowsza = 1 and s' . $idx . '.okres = :okres' . $key);
