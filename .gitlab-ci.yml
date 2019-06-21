@@ -33,11 +33,12 @@ yamllint:
         - /root/.composer/vendor/bin/yaml-lint --format txt src/
         - /root/.composer/vendor/bin/yaml-lint --format txt app/
 
+# https://github.com/FriendsOfPHP/security-advisories
 advisoriesdb:
     stage: security
     allow_failure: false
     script:
-        - /root/.composer/vendor/bin/ checker security:check ./composer.lock
+        - /root/.composer/vendor/bin/checker security:check ./composer.lock
 
 psr2:
     stage: standards
