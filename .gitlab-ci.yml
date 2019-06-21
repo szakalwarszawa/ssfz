@@ -13,12 +13,18 @@ build:
     stage: build
     allow_failure: true
     script:
-        - php -d memory_limit=2G /usr/bin/composer.phar require roave/security-advisories:dev-master --prefer-dist --no-update --no-suggest --no-progress
         - /usr/bin/composer.phar global show -i > .gitlab-ci/composer.dump
         - php -d memory_limit=5G /usr/bin/composer.phar install --no-dev --prefer-dist --no-suggest --no-progress --no-interaction --no-scripts
     artifacts:
         expire_in: 1 day
         untracked: true
+
+security:
+    stage: build
+    allow_failure: true
+    script:
+        - php -d memory_limit=1G /usr/bin/composer.phar require roave/security-advisories:dev-master --prefer-dist --no-update --no-suggest --no-progress
+        - php -d memory_limit=5G /usr/bin/composer.phar update --prefer-dist --no-scripts --no-progress --run-dry
 
 parallellint:
     stage: tests
@@ -33,12 +39,14 @@ yamllint:
         - /root/.composer/vendor/bin/yaml-lint --format txt src/
         - /root/.composer/vendor/bin/yaml-lint --format txt app/
 
+# https://github.com/Roave/SecurityAdvisories
 # https://github.com/FriendsOfPHP/security-advisories
 advisoriesdb:
     stage: security
     allow_failure: false
     script:
-        - /root/.composer/vendor/bin/checker security:check ./composer.lock
+        - php -d memory_limit=1G /usr/bin/composer.phar require roave/security-advisories:dev-master --prefer-dist --no-update --no-suggest --no-progress
+        - php -d memory_limit=5G /usr/bin/composer.phar update --prefer-dist --prefer-stable --prefer-lowest --lock --no-autoloader --no-scripts --no-progress --run-dry
 
 psr2:
     stage: standards
