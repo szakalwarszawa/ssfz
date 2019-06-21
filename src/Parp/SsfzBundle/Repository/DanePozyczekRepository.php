@@ -14,7 +14,7 @@ use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
 class DanePozyczekRepository extends EntityRepository
 {
     /**
-     * Tworzy nowe dane pożyczki przypisane do sprawozdania.
+     * Tworzy nowe dane pożyczek przypisane do sprawozdania.
      *
      * @param SprawozdaniePozyczkowe $sprawozdanie
      * @param bool $persist
@@ -23,43 +23,43 @@ class DanePozyczekRepository extends EntityRepository
      */
     public function create(SprawozdaniePozyczkowe $sprawozdanie, $persist = false): DanePozyczek
     {
-        $danePozyczki = new DanePozyczek();
-        $danePozyczki->setSprawozdanie($sprawozdanie);
+        $danePozyczek = new DanePozyczek();
+        $danePozyczek->setSprawozdanie($sprawozdanie);
         if ($persist) {
-            $this->persist($danePozyczki);
+            $this->persist($danePozyczek);
         }
 
-        return $danePozyczki;
+        return $danePozyczek;
     }
 
     /**
-     * Usuwa dane pożyczki.
+     * Usuwa dane pożyczek.
      *
-     * @param DanePozyczek $danepozyczki
+     * @param DanePozyczek $danePozyczek
      *
      * @return bool
      */
-    public function delete(DanePozyczek $danePozyczki)
+    public function delete(DanePozyczek $danePozyczek)
     {
-        $this->_em->remove($danePozyczki);
-        $this->_em->flush($danePozyczki);
+        $this->_em->remove($danePozyczek);
+        $this->_em->flush($danePozyczek);
 
         return true;
     }
 
     /**
-     * Utrwala dane pożyczki.
+     * Utrwala dane pożyczek.
      *
-     * @param DanePozyczek $danePozyczki
+     * @param DanePozyczek $danePozyczek
      *
      * @return DanePozyczek
      */
-    public function persist(DanePozyczek $danePozyczki)
+    public function persist(DanePozyczek $danePozyczek)
     {
-        $this->_em->persist($danePozyczki);
-        $this->_em->flush($danePozyczki);
+        $this->_em->persist($danePozyczek);
+        $this->_em->flush($danePozyczek);
 
-        return $danePozyczki;
+        return $danePozyczek;
     }
 
     /**

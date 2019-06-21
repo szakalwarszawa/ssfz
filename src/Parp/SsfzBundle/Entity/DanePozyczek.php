@@ -9,7 +9,7 @@ use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
 use Parp\SsfzBundle\Helper\MoneyHelper;
 
 /**
- * Pożyczkach dla SPO WKP 1.2.1.
+ * Dane pożyczek do sprawozdania dla SPO WKP 1.2.1.
  *
  * Uwaga!
  * Dane w formacie decimal (po stronie bazy danych) są przez Doctrine mapowane na typ PHP "string",
