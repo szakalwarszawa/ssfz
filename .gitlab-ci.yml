@@ -3,6 +3,7 @@ image: "gitlab.parp.gov.pl:5055/ci/ssfz:latest"
 stages:
     - build
     - tests
+    - security
     - standards
     - stats
     - doc
@@ -31,6 +32,12 @@ yamllint:
     script:
         - /root/.composer/vendor/bin/yaml-lint --format txt src/
         - /root/.composer/vendor/bin/yaml-lint --format txt app/
+
+advisoriesdb:
+    stage: security
+    allow_failure: false
+    script:
+        - /root/.composer/vendor/bin/ checker security:check ./composer.lock
 
 psr2:
     stage: standards
