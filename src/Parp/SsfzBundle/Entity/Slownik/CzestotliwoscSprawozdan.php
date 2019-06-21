@@ -16,7 +16,7 @@ class CzestotliwoscSprawozdan
     const POLROCZNA = 2;
 
     /**
-     * ID programu.
+     * ID częstotliwości.
      *
      * @var int
      *

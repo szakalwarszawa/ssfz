@@ -17,7 +17,7 @@ class OkresSprawozdawczy
     const LIPIEC_GRUDZIEN = 3;
 
     /**
-     * ID programu.
+     * ID okresu.
      *
      * @var int
      *
@@ -28,7 +28,7 @@ class OkresSprawozdawczy
     protected $id;
 
     /**
-     * Nazwa programu.
+     * Nazwa okresu.
      *
      * @var string
      *
