@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Parp\SsfzBundle\Entity\DanePozyczek;
 
 /**
- * Formularz do wprowadzania danych o pożyczce.
+ * Formularz do wprowadzania danych o pożyczkach.
  */
 class DanePozyczekType extends AbstractType
 {

@@ -22,7 +22,7 @@ use Parp\SsfzBundle\Form\Type\DanePozyczekType;
 class PozyczkiController extends Controller
 {
     /**
-     * Wyświetla formularz danych pożyczki na podstawie ID sprawozdania, do którego należy.
+     * Wyświetla formularz danych pożyczek na podstawie ID sprawozdania, do którego należy.
      *
      * @Method({"GET"})
      * @Route("/sprawozdanie/edycja/{id}", name="edycja_danych_pozyczek_dla_sprawozdania")
@@ -41,11 +41,11 @@ class PozyczkiController extends Controller
             ->getManager()
         ;
 
-        $danePozyczki = $entityManager
+        $danePozyczek = $entityManager
             ->getRepository(DanePozyczek::class)
             ->findOneByIdSprawozdania($id)
         ;
-        if (!$danePozyczki) {
+        if (!$danePozyczek) {
             $sprawozdanie = $entityManager
                 ->getRepository(SprawozdaniePozyczkowe::class)
                 ->find($id)
@@ -54,14 +54,14 @@ class PozyczkiController extends Controller
                 throw new EntityNotFoundException('Nie znaleziono sprawozdania pożyczkowego o ID: '.(string) $id);
             }
 
-            $danePozyczki = $entityManager
+            $danePozyczek = $entityManager
                 ->getRepository(DanePozyczek::class)
                 ->create($sprawozdanie, true)
             ;
-            return $this->edytujDanePozyczekAction($request, $danePozyczki->getId());
+            return $this->edytujDanePozyczekAction($request, $danePozyczek->getId());
         }
 
-        return $this->edytujDanePozyczekAction($request, $danePozyczki->getId());
+        return $this->edytujDanePozyczekAction($request, $danePozyczek->getId());
     }
 
 
@@ -85,18 +85,18 @@ class PozyczkiController extends Controller
             ->getManager()
         ;
 
-        $danePozyczki = $entityManager
+        $danePozyczek = $entityManager
             ->getRepository(DanePozyczek::class)
             ->find($id)
         ;
-        if (!$danePozyczki) {
-            throw new EntityNotFoundException('Nie znaleziono danych pożyczki o ID: '.(string) $id);
+        if (!$danePozyczek) {
+            throw new EntityNotFoundException('Nie znaleziono danych pożyczek o ID: '.(string) $id);
         }
 
         $actionUrl = $this->generateUrl('edycja_danych_pozyczek', [
             'id' => $id,
         ]);
-        $formularz = $this->createForm(DanePozyczekType::class, $danePozyczki, [
+        $formularz = $this->createForm(DanePozyczekType::class, $danePozyczek, [
             'action_url' => $actionUrl,
         ]);
 
@@ -107,13 +107,13 @@ class PozyczkiController extends Controller
                 $entityManager->flush();
                 $this
                     ->get('ssfz.service.komunikaty_service')
-                    ->sukcesKomunikat('Dane pożyczki zostały zapisane.')
+                    ->sukcesKomunikat('Dane pożyczek zostały zapisane.')
                 ;
             } else {
                 $errors = (string) $formularz->getErrors(true, false);
                 $this
                     ->get('ssfz.service.komunikaty_service')
-                    ->bladKomunikat('Formularz zawiera nieprawidłowe dane pożyczki.'."<br />".$errors)
+                    ->bladKomunikat('Formularz zawiera nieprawidłowe dane pożyczek.'."<br />".$errors)
                 ;
             }
         }
@@ -163,7 +163,7 @@ class PozyczkiController extends Controller
 
 
     /**
-     * Usuwa dane pożyczki o zadanym ID.
+     * Usuwa dane pożyczek o zadanym ID.
      *
      * @todo Dodać sprawdzanie uprawnień do usuwanych danych.
      *
@@ -179,19 +179,19 @@ class PozyczkiController extends Controller
             ->getManager()
         ;
 
-        $danePozyczki = $entityManager
+        $danePozyczek = $entityManager
             ->getRepository(DanePozyczek::class)
             ->find($id)
         ;
-        if (!$danePozyczki) {
-            throw new EntityNotFoundException('Nie znaleziono danych pożyczki o ID: '.(string) $id);
+        if (!$danePozyczek) {
+            throw new EntityNotFoundException('Nie znaleziono danych pożyczek o ID: '.(string) $id);
         }
 
-        $sprawozdanie = $danePozyczki->getSprawozdanie();
+        $sprawozdanie = $danePozyczek->getSprawozdanie();
 
-        $danePozyczki = $entityManager
+        $danePozyczek = $entityManager
             ->getRepository(DanePozyczek::class)
-            ->remove($danePozyczki, true)
+            ->remove($danePozyczek, true)
         ;
 
         return $this->forward('AppBundle:Something:fancy', [

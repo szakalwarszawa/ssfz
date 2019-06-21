@@ -1,0 +1,130 @@
+{% extends "SsfzBundle::baseLayout.html.twig" %}
+
+{% form_theme form _self %}
+
+{%- block form_widget_simple -%}
+    {%- set type = type|default('text') -%}
+    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-control text-right')|trim}) -%}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+{%- endblock form_widget_simple -%}
+
+{%- block integer_widget -%}
+    {%- set type = type|default('number') -%}
+    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-control text-center')|trim}) -%}
+    {{ block('form_widget_simple') }}
+{%- endblock integer_widget -%}
+
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-heading">Dane poręczeń</div>
+            <div class="panel-body">
+                <div>
+                    <span><strong>Numer umowy: </strong>{{ dane_poreczen.sprawozdanie.numerUmowy }}</span>
+                    <br />
+                    <span><strong>Okres sprawozdawczy: </strong>{{ dane_poreczen.sprawozdanie.okres }} {{ dane_poreczen.sprawozdanie.rok }}</span>
+                </div>
+
+                <div class="col-md-12">
+                    <hr />
+
+                    <h4> Podmioty współpracujące z funduszem</h4>
+                    <div class="col-md-7">
+                        <table class="table table-bordered table-condensed table-striped">
+                            <tr>
+                                <td></td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekAktywnychOgolem) }}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekAktywnychSplacanychTerminowo) }}</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Wymagające szczególnego monitorowania</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekAktywnychWymagajacychMonitorowania) }}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="text-center">{{ form_widget(form.liczbaPozyczekStraconych) }}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="text-center">{{ form_widget(form.wspolczynnikStratWDanymOkresieWgLiczbyPozyczek) }}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="text-center">{{ form_widget(form.wspolczynnikStratWCalymOkresieWgLiczbyPozyczek) }}</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col-md-12">
+                        <hr />
+                        <br />
+                        <a id="button_return"
+                            class="btn btn-default"
+                            href="{{ url('lista_sprawozdan_spo', {'umowa': dane_poreczen.sprawozdanie.umowaId}) }}"><i class="fas fa-chevron-left"></i> Powrót</a>
+                        <button id="button_submit" type="submit" class="btn btn-success"><i class="fas fa-save"></i> Zapisz</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            function sumByGroup() {
+                var verticalGroupsInteger = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+                    verticalGroupsDecimal = ['13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'],
+                    horizontalGroupsInteger = ['1', '2', '3'],
+                    horizontalGroupsDecimal = ['4', '5', '6'],
+                    sum = 0
+                ;
+
+                $.each(verticalGroupsInteger, function (index, value) {
+                    $('[data-vertical-group='+value+']').each(function () {
+                        sum = sum + parseInt($(this).val());
+                    });
+                    $('[data-vertical-group-sum='+value+']').text(sum);
+                    sum = 0;
+                });
+
+                $.each(verticalGroupsDecimal, function (index, value) {
+                    $('[data-vertical-group='+value+']').each(function () {
+                        sum = sum + parseFloat($(this).maskMoney('unmasked')[0]);
+                    });
+
+                    sum = accounting.toFixed(sum, 2);
+                    sum = accounting.formatMoney(sum, {
+                        symbol: ' zł',
+                        precision: 2,
+                        decinal: '.',
+                        thousand: ' ',
+                        format: "%v%s"
+                    });
+
+                    $('[data-vertical-group-sum='+value+']').text(sum);
+                    sum = 0;
+                });
+            }
+
+            $('[data-vertical-group]').change(function () {
+                sumByGroup();
+            });
+
+            $('.decimal-11-2').maskMoney({
+                prefix: '',
+                suffix: ' zł',
+                affixesStay: false,
+                thousands: ' ',
+                decimal: '.',
+                precision: 2,
+                allowZero: true,
+                allowNegative: false,
+                allowEmpty: false,
+                reverse: false
+            });
+
+            sumByGroup();
+        });
+    </script>
+{% endblock %}
