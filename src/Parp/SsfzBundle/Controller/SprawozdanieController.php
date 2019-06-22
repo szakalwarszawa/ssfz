@@ -470,11 +470,19 @@ class SprawozdanieController extends Controller
      */
     public function chekSprawozdanieForGoodPeriod($okres, $rok)
     {
-        $warunek1 = (integer) $rok > (integer) date('Y');
-        $warunek2 = ((integer) $rok == (integer) date('Y')) && ((int) $okres->getId() === OkresSprawozdawczy::LIPIEC_GRUDZIEN || (integer) date('m') < 7);
-        $warunek3 = $warunek1 | $warunek2;
-        if ($warunek3) {
-            $this->getKomunikatyService()->bladKomunikat('Podano błędny okres lub rok', 'Błąd podczas próby zapisu sprawozdania');
+        $czyRokZPrzyszlosci = (integer) $rok > (integer) date('Y');
+        $czyPolroczeZPrzyszlosci = ((integer) $rok == (integer) date('Y'))
+            && (int) $okres->getId() === OkresSprawozdawczy::LIPIEC_GRUDZIEN
+            && (integer) date('m') < 7
+        ;
+        if ($czyRokZPrzyszlosci || $czyPolroczeZPrzyszlosci) {
+            $this
+                ->getKomunikatyService()
+                ->bladKomunikat(
+                'Podano błędny okres lub rok',
+                'Błąd podczas próby zapisu sprawozdania'
+                )
+            ;
 
             return false;
         }
