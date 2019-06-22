@@ -479,8 +479,8 @@ class SprawozdanieController extends Controller
             $this
                 ->getKomunikatyService()
                 ->bladKomunikat(
-                'Podano błędny okres lub rok',
-                'Błąd podczas próby zapisu sprawozdania'
+                    'Podano błędny okres lub rok',
+                    'Błąd podczas próby zapisu sprawozdania'
                 )
             ;
 
