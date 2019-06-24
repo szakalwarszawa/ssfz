@@ -41,11 +41,21 @@ class TypSprawozdaniaGuesserService
         return INNE_SPRAWOZDANIE;
     }
 
+    /**
+     * Czy sprawozdanie jest pożyczkowe.
+     *
+     * @return bool
+     */
     public function jestPozyczkowe(AbstractSprawozdanie $sprawozdanie)
     {
         return $this->guess($sprawozdanie) === self::SPRAWOZDANIE_POZYCZKOWE;
     }
 
+    /**
+     * Czy sprawozdanie jest poręczeniowe.
+     *
+     * @return bool
+     */
     public function jestPoreczeniowe(AbstractSprawozdanie $sprawozdanie)
     {
         return $this->guess($sprawozdanie) === self::SPRAWOZDANIE_PORECZENIOWE;
