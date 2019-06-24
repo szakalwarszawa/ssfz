@@ -120,7 +120,7 @@ class PozyczkiController extends Controller
 
         return $this->render('SsfzBundle:Sprawozdanie:dane_pozyczek.html.twig', [
             'form'            => $formularz->createView(),
-            'dane_pozyczek'   => $danePozyczki,
+            'dane_pozyczek'   => $danePozyczek,
             'fluid_container' => true,
         ]);
     }

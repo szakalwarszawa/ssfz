@@ -1758,18 +1758,4 @@ class DanePoreczen
 
         return $this;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
