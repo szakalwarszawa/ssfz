@@ -8,8 +8,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Parp\SsfzBundle\Exception\KomunikatDlaBeneficjentaException;
-use Parp\SsfzBundle\Entity\Slownik\StatusSprawozdania;
+use Parp\SsfzBundle\Entity\Slownik\CzestotliwoscSprawozdan;
 use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
+use Parp\SsfzBundle\Entity\Slownik\StatusSprawozdania;
 
 /**
  * AbstractSprawozdanie
@@ -577,5 +578,18 @@ class AbstractSprawozdanie
     public function setUwagi($uwagi)
     {
         $this->uwagi = $uwagi;
+    }
+
+    /**
+     * Get czestotliwoscSprawozdan
+     *
+     * @return CzestotliwoscSprawozdan
+     */
+    public function getCzestotliwoscSprawozdanWProgramie()
+    {
+        return $this
+            ->umowa
+            ->getCzestotliwoscSprawozdanWProgramie()
+        ;
     }
 }

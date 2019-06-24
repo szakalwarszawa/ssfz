@@ -27,6 +27,11 @@ use Parp\SsfzBundle\Entity\Slownik\CzestotliwoscSprawozdan;
 class SprawozdanieSpoDodajType extends AbstractType
 {
     /**
+     * @var CzestotliwoscSprawozdan
+     */
+    protected $czestotliwoscSprawozdan;
+    
+    /**
      * Buduje formularz do wypełniania sprawozdania
      *
      * @param FormBuilderInterface $builder
@@ -34,6 +39,8 @@ class SprawozdanieSpoDodajType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $this->czestotliwoscSprawozdan = $builder->getData()->getCzestotliwoscSprawozdanWProgramie();
+        
         $builder->add('numerUmowy', null, array(
             'label' => 'Numer umowy',
             'attr' => array('readonly' => true),
@@ -48,13 +55,12 @@ class SprawozdanieSpoDodajType extends AbstractType
                 'class'         => OkresSprawozdawczy::class,
                 'choice_label'  => 'nazwa',
                 'required'      => false,
-                'placeholder'   => '',
+                'empty_value'   => null,
                 'query_builder' => function (EntityRepository $repo) {
                     return $repo
                         ->createQueryBuilder('o')
-                        ->join('o.czestotliwoscSprawozdan', 'c')
-                        ->where('c.id = :czestotliwoscId')
-                        ->setParameter('czestotliwoscId', CzestotliwoscSprawozdan::ROCZNA)
+                        ->where('o.czestotliwoscSprawozdan = :czestotliwosc')
+                        ->setParameter('czestotliwosc', $this->czestotliwoscSprawozdan)
                         ->orderBy('o.id', 'ASC')
                     ;
                 },
@@ -62,7 +68,7 @@ class SprawozdanieSpoDodajType extends AbstractType
                     new NotBlank(
                         array('message' => 'Należy wypełnić pole')
                     )
-                )
+                ),
             )
         );
 

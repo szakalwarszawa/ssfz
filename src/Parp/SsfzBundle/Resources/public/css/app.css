@@ -67,3 +67,7 @@ td.etykieta {
     font-weight: bold;
     width: 200px;
 }
+
+.hidden {
+    display: none;
+}

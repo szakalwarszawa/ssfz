@@ -5,7 +5,9 @@
             {{ form_start(form) }}
             <div class="panel-body">
                 {{ form_row(form.numerUmowy) }}
-                {{ form_row(form.okres) }}
+                <div{% if umowa.czestotliwoscSprawozdanWProgramie.czyRoczna %} class="hidden"{% endif %}>
+                    {{ form_row(form.okres) }}
+                </div>
                 {{ form_row(form.rok) }}
                 <div id="form-submit-div" class="row btn-toolbar">
                     <a class="btn btn-danger pull-right width-short" href="{{ path('beneficjent') }}"><span class="glyphicon glyphicon-chevron-left"></span> Powrót</a>
@@ -24,7 +26,9 @@
                 <thead>
                     <tr>
                         <th>Rok</th>
-                        <th>Okres</th>
+                        {% if umowa.czestotliwoscSprawozdanWProgramie.czyPolroczna %}
+                            <th>Okres</th>
+                        {% endif %}
                         <th>Nazwa funduszu</th>
                         <th>Status</th>
                         <th>Akcje</th>
@@ -34,7 +38,9 @@
                     {% for sprawozdanie in listaSprawozdan %}
                         <tr>
                             <td>{{ sprawozdanie.rok }}</td>
-                            <td>{{ sprawozdanie.okres }}</td>
+                            {% if umowa.czestotliwoscSprawozdanWProgramie.czyPolroczna %}
+                                <td>{{ sprawozdanie.okres }}</td>
+                            {% endif %}
                             <td>{{ sprawozdanie.nazwaFunduszu }}</td>
                             <td>
                                 {% include 'SsfzBundle:Report:sprawozdanieStatus.html.twig' with {'dt_obj': sprawozdanie} %}
@@ -56,8 +62,7 @@
                                     <span class="btn btn-sm btn-warning btn-send-to-parp" data-href="{{ path('sprawozdania_spo_przeslij', {'czyPozyczkowe': czyPozyczkowe, 'sprawozdanieId': sprawozdanie.id}) }}" role="button">
                                         <span class="fas fa-share-alt"></span> Przesłanie do PARP
                                     </span>
-                                {% endif %}
-                                {% if sprawozdanie.czyStatusWTrakciePoprawy and sprawozdanie.czyNajnowsza %}
+                                {% elseif sprawozdanie.czyStatusWTrakciePoprawy and sprawozdanie.czyNajnowsza %}
                                     <a href="{{ path('sprawozdania_spo_poprawa', {'czyPozyczkowe': czyPozyczkowe, 'sprawozdanieId': sprawozdanie.id}) }}" class="btn btn-sm btn-primary" role="button"><span class="fas fa-edit"></span> Popraw</a>
                                 {% else %}
                                     <span class="btn btn-sm btn-danger" ><span class="fas fa-upload"></span>&nbsp Przesłany &nbsp</span>

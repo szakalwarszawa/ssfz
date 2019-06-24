@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Parp\SsfzBundle\Exception\KomunikatDlaBeneficjentaException;
+use Parp\SsfzBundle\Entity\Slownik\CzestotliwoscSprawozdan;
 use Parp\SsfzBundle\Entity\Slownik\Program;
 
 /**
@@ -397,5 +398,19 @@ class Umowa
         if ((int) $uzytkownik->getId() !== $idWlasciciela) {
             throw new KomunikatDlaBeneficjentaException('Umowa należy do innego użytkownika.');
         }
+    }
+
+    /**
+     * Get czestotliwoscSprawozdan
+     *
+     * @return CzestotliwoscSprawozdan
+     */
+    public function getCzestotliwoscSprawozdanWProgramie()
+    {
+        return $this
+            ->beneficjent
+            ->getProgram()
+            ->getCzestotliwoscSprawozdan()
+        ;
     }
 }
