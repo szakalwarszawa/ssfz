@@ -3,11 +3,13 @@
 namespace Parp\SsfzBundle\Controller;
 
 use DateTime;
+use InvalidArgumentException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use Parp\SsfzBundle\Entity\AbstractSprawozdanie;
 use Parp\SsfzBundle\Entity\Slownik\Program;
 use Parp\SsfzBundle\Entity\Report;
 use Parp\SsfzBundle\Entity\Umowa;
@@ -24,7 +26,7 @@ use Parp\SsfzBundle\Form\Type\SprawozdanieType;
 use Parp\SsfzBundle\Form\Type\SprawozdaniePozyczkoweType;
 use Parp\SsfzBundle\Form\Type\SprawozdaniePoreczenioweType;
 use Parp\SsfzBundle\Form\Type\SprawozdanieSpoDodajType;
-
+use Parp\SsfzBundle\Service\TypSprawozdaniaGuesserService;
 /**
  * Kontroler obsługujący funkcjonalności Sprawozdania
  */
@@ -602,8 +604,14 @@ class SprawozdanieController extends Controller
                 $entityManager->persist($sprawozdanie);
                 $entityManager->flush();
                 $this->getKomunikatyService()->sukcesKomunikat('Dodano nowe sprawozdanie.');
+
+                $typSprawozdania = $this
+                    ->get('ssfz.service.guesser.typ_sprawozdania')
+                    ->guess($sprawozdanie)
+                ;
+
                 return $this->redirectToRoute('sprawozdania_spo_edycja', [
-                    'czyPozyczkowe' => $czyPozyczkowe,
+                    'typSprawozdania' => $typSprawozdania,
                     'sprawozdanieId' => $sprawozdanie->getId()
                 ]);
             }
@@ -617,11 +625,16 @@ class SprawozdanieController extends Controller
             ['rok' => 'ASC', 'okresId' => 'ASC', 'id' => 'ASC']
         );
 
+        $typSprawozdania = $this
+            ->get('ssfz.service.guesser.typ_sprawozdania')
+            ->guess($sprawozdanie)
+        ;
+
         return $this->render('SsfzBundle:Sprawozdanie:listaSpo.html.twig', [
-            'umowa'           => $umowa,
-            'czy_pozyczkowe'  => $czyPozyczkowe,
-            'listaSprawozdan' => $listaSprawozdan,
-            'form'            => $form->createView(),
+            'umowa'            => $umowa,
+            'typ_sprawozdania' => $typSprawozdania,
+            'lista_sprawozdan' => $listaSprawozdan,
+            'form'             => $form->createView(),
         ]);
     }
 
@@ -629,26 +642,27 @@ class SprawozdanieController extends Controller
      * Edycja sprawozdań pożyczkowych.
      *
      * @Route(
-     *      "sprawozdania/spo/edycja/{czyPozyczkowe}/{sprawozdanieId}",
+     *      "sprawozdania/spo/edycja/{typSprawozdania}/{sprawozdanieId}",
      *      name="sprawozdania_spo_edycja"
      *  )
      *
      * @param Request $request
-     * @param bool $czyPozyczkowe
+     * @param string $typSprawozdania
      * @param int $sprawozdanieId
      *
      * @return Response
      */
-    public function edycjaSpoAction(Request $request, bool $czyPozyczkowe, int $sprawozdanieId)
+    public function edycjaSpoAction(Request $request, string $typSprawozdania, int $sprawozdanieId)
     {
-        $sprawozdanie = $this->znajdzSprawozdanie($czyPozyczkowe, $sprawozdanieId);
+        $sprawozdanie = $this->znajdzSprawozdanie($typSprawozdania, $sprawozdanieId);
         $sprawozdanie->sprawdzCzyUzytkownikMozeEdytowac($this->getUser());
         
         $entityManager = $this->getDoctrine()->getManager();
         $program = $sprawozdanie->getUmowa()->getBeneficjent()->getProgram();
         $this->getUser()->setAktywnyProgram($program);
 
-        $klasaFormularza = $czyPozyczkowe
+        $typeGuesser = $this->get('ssfz.service.guesser.typ_sprawozdania');
+        $klasaFormularza = $typeGuesser->jestPozyczkowe($sprawozdanie)
             ? SprawozdaniePozyczkoweType::class
             : SprawozdaniePoreczenioweType::class
         ;
@@ -677,7 +691,7 @@ class SprawozdanieController extends Controller
                     ]);
                 } else {
                     return $this->redirectToRoute('sprawozdania_spo_edycja', [
-                        'czyPozyczkowe'  => $czyPozyczkowe,
+                        'czyPozyczkowe'  => $typSprawozdania,
                         'sprawozdanieId' => $sprawozdanie->getId()
                     ]);
                 }
@@ -696,35 +710,46 @@ class SprawozdanieController extends Controller
                 $this->getKomunikatyService()->bladKomunikat($komunikat);
             }
         }
-        
-        $template = 'SsfzBundle:Sprawozdanie:' . ($czyPozyczkowe ? 'pozyczkowe' : 'poreczeniowe') . 'Edycja.html.twig';
+
+        $template = 'SsfzBundle:Sprawozdanie:';
+        if ($typeGuesser->jestPozyczkowe($sprawozdanie)) {
+            $template = $template . 'pozyczkowe';
+        } else if ($typeGuesser->jestPoreczeniowe($sprawozdanie)) {
+            $template = $template . 'poreczeniowe';
+        } else {
+            $message = 'Nieznany typ sprawozdania. Obsługiwane są tylko sprawozdanie poręczeniowe i pożyczkowe.';
+            throw new InvalidArgumentException($message);
+        }
+        $template = $template.'Edycja.html.twig';
 
         return $this->render($template, [
-            'sprawozdanie'   => $sprawozdanie,
-            'tylkoDoOdczytu' => false,
-            'form'           => $form->createView(),
+            'sprawozdanie'     => $sprawozdanie,
+            'typ_sprawozdania' => $typSprawozdania,
+            'tylkoDoOdczytu'   => false,
+            'form'             => $form->createView(),
         ]);
     }
 
     /**
      * Podgląd sprawozdań SPO.
      *
-     * @Route("sprawozdania/spo/podglad/{czyPozyczkowe}/{sprawozdanieId}", name="sprawozdania_spo_podglad")
+     * @Route("sprawozdania/spo/podglad/{typSprawozdania}/{sprawozdanieId}", name="sprawozdania_spo_podglad")
      *
-     * bool $czyPozyczkowe
-     * int $sprawozdanieId
+     * @param string $typSprawozdania
+     * ? int $sprawozdanieId
      *
      * @return Response
      */
-    public function podgladSpoAction(bool $czyPozyczkowe, int $sprawozdanieId)
+    public function podgladSpoAction(string $typSprawozdania, int $sprawozdanieId)
     {
-        $sprawozdanie = $this->znajdzSprawozdanie($czyPozyczkowe, $sprawozdanieId);
+        $sprawozdanie = $this->znajdzSprawozdanie($typSprawozdania, $sprawozdanieId);
         $sprawozdanie->sprawdzCzyUzytkownikMozeWyswietlac($this->getUser());
         
         $program = $sprawozdanie->getUmowa()->getBeneficjent()->getProgram();
         $this->getUser()->setAktywnyProgram($program);
 
-        $klasaFormularza = $czyPozyczkowe
+        $typeGuesser = $this->get('ssfz.service.guesser.typ_sprawozdania');
+        $klasaFormularza = $typeGuesser->jestPozyczkowe($sprawozdanie)
             ? SprawozdaniePozyczkoweType::class
             : SprawozdaniePoreczenioweType::class
         ;
@@ -732,29 +757,43 @@ class SprawozdanieController extends Controller
         $form = $this->createForm($klasaFormularza, $sprawozdanie, [
             'read_only' => true,
         ]);
-        
-        $template = 'SsfzBundle:Sprawozdanie:' . ($czyPozyczkowe ? 'pozyczkowe' : 'poreczeniowe') . 'Edycja.html.twig';
+
+        $typeGuesser = $this->get('ssfz.service.guesser.typ_sprawozdania');
+        $template = 'SsfzBundle:Sprawozdanie:';
+        if ($typeGuesser->jestPozyczkowe($sprawozdanie)) {
+            $template = $template . 'pozyczkowe';
+        } else if ($typeGuesser->jestPoreczeniowe($sprawozdanie)) {
+            $template = $template . 'poreczeniowe';
+        } else {
+            $message = 'Nieznany typ sprawozdania. Obsługiwane są tylko sprawozdanie poręczeniowe i pożyczkowe.';
+            throw new InvalidArgumentException($message);
+        }
+        $template = $template.'Edycja.html.twig';
 
         return $this->render($template, [
-            'sprawozdanie'   => $sprawozdanie,
-            'tylkoDoOdczytu' => true,
-            'form'           => $form->createView(),
+            'sprawozdanie'     => $sprawozdanie,
+            'typ_sprawozdania' => $typSprawozdania,
+            'tylkoDoOdczytu'   => true,
+            'form'             => $form->createView(),
         ]);
     }
 
     /**
      * Przesłanie sprawozdania do PARP.
      *
-     * @Route("sprawozdania/spo/przeslij/{czyPozyczkowe}/{sprawozdanieId}", name="sprawozdania_spo_przeslij")
+     * @Route(
+     *     "sprawozdania/spo/przeslij/{typSprawozdania}/{sprawozdanieId}",
+     *     name="sprawozdania_spo_przeslij"
+     * )
      *
-     * bool $czyPozyczkowe
-     * int $sprawozdanieId
+     * @param string $typSprawozdania
+     *? int $sprawozdanieId
      *
      * @return RedirectResponse
      */
-    public function przeslijSpoAction(bool $czyPozyczkowe, int $sprawozdanieId)
+    public function przeslijSpoAction(string $typSprawozdania, int $sprawozdanieId)
     {
-        $sprawozdanie = $this->znajdzSprawozdanie($czyPozyczkowe, $sprawozdanieId);
+        $sprawozdanie = $this->znajdzSprawozdanie($typSprawozdania, $sprawozdanieId);
         $sprawozdanie->sprawdzCzyUzytkownikMozeEdytowac($this->getUser());
         
         if ($sprawozdanie->getCzyDaneSaPrawidlowe()) {
@@ -770,11 +809,11 @@ class SprawozdanieController extends Controller
                 ->sukcesKomunikat('Przesłano sprawozdanie do PARP.')
             ;
         } else {
+            $message = 'Nie można przesłać sprawozdania do PARP, ponieważ zawiera błędy.'
+                     . ' Proszę uzupełnić i zapisać formularz.';
             $this
                 ->getKomunikatyService()
-                ->bladKomunikat(
-                    'Nie można przesłać sprawozdania do PARP, ponieważ zawiera błędy. Proszę uzupełnić i zapisać formularz.'
-                )
+                ->bladKomunikat($message)
             ;
         }
 
@@ -782,36 +821,36 @@ class SprawozdanieController extends Controller
             'umowa' => $sprawozdanie->getUmowa()->getId(),
         ]);
     }
-    
 
     /**
      * Edycja sprawozdań pożyczkowych.
      *
      * @Route(
-     *      "sprawozdania/spo/poprawa/{czyPozyczkowe}/{sprawozdanieId}",
+     *      "sprawozdania/spo/poprawa/{typSprawozdania}/{sprawozdanieId}",
      *      name="sprawozdania_spo_poprawa"
      *  )
      *
      * @param Request $request
-     * bool $czyPozyczkowe
-     * int $sprawozdanieId
+     * @param string $typSprawozdania
+     *? int $sprawozdanieId ?
      *
      * @return Response|RedirectResponse
      */
-    public function poprawaSpoAction(Request $request, bool $czyPozyczkowe, int $sprawozdanieId)
+    public function poprawaSpoAction(Request $request, string $typSprawozdania, int $sprawozdanieId)
     {
-        $sprawozdanie = $this->znajdzSprawozdanie($czyPozyczkowe, $sprawozdanieId);
+        $sprawozdanie = $this->znajdzSprawozdanie($typSprawozdania, $sprawozdanieId);
         $sprawozdanie->sprawdzCzyUzytkownikMozePoprawiac($this->getUser());
         
         $entityManager = $this->getDoctrine()->getManager();
         $program = $sprawozdanie->getUmowa()->getBeneficjent()->getProgram();
         $this->getUser()->setAktywnyProgram($program);
 
-        $klasaFormularza = $czyPozyczkowe
+        $typeGuesser = $this->get('ssfz.service.guesser.typ_sprawozdania');
+        $klasaFormularza = $typeGuesser->jestPozyczkowe($sprawozdanie)
             ? SprawozdaniePozyczkoweType::class
             : SprawozdaniePoreczenioweType::class
         ;
-        
+
         $klonSprawozdania = clone $sprawozdanie;
 
         $form = $this->createForm($klasaFormularza, $klonSprawozdania);
@@ -858,33 +897,53 @@ class SprawozdanieController extends Controller
             }
         }
 
-        $template = 'SsfzBundle:Sprawozdanie:' . ($czyPozyczkowe ? 'pozyczkowe' : 'poreczeniowe') . 'Edycja.html.twig';
+        $typeGuesser = $this->get('ssfz.service.guesser.typ_sprawozdania');
+        $template = 'SsfzBundle:Sprawozdanie:';
+        if ($typeGuesser->jestPozyczkowe($sprawozdanie)) {
+            $template = $template . 'pozyczkowe';
+        } else if ($typeGuesser->jestPoreczeniowe($sprawozdanie)) {
+            $template = $template . 'poreczeniowe';
+        } else {
+            $message = 'Nieznany typ sprawozdania. Obsługiwane są tylko sprawozdanie poręczeniowe i pożyczkowe.';
+            throw new InvalidArgumentException($message);
+        }
+        $template = $template.'Edycja.html.twig';
 
         return $this->render($template, [
-            'sprawozdanie'   => $sprawozdanie,
-            'tylkoDoOdczytu' => false,
-            'form'           => $form->createView(),
+            'sprawozdanie'     => $sprawozdanie,
+            'typ_sprawozdania' => $typSprawozdania,
+            'tylkoDoOdczytu'   => false,
+            'form'             => $form->createView(),
         ]);
     }
 
     /**
-     * Zwraca sprawozdanie o podanym ID.
+     * Szuka sprawozdania o zadanym ID.
      *
-     * bool $czyPozyczkowe
-     * int $sprawozdanieId
+     * @todo Dalczego ten kontroler pełni rolę repozytorium?!
      *
-     * @return AbstractSprawozdanieSpo
+     * @param string $typSprawozdania
+     * @param int $sprawozdanieId
+     *
+     * @throws InvalidArgumentException Jeśli typ sprawozdania nie jest obsługiwany
+     * @throws KomunikatDlaBeneficjentaException Jeśli nie znaleziono sprawozdania o zadanum ID
+     *
+     * @return AbstractSprawozdanie
      */
-    protected function znajdzSprawozdanie(bool $czyPozyczkowe, int $sprawozdanieId)
+    protected function znajdzSprawozdanie(string $typSprawozdania, int $sprawozdanieId): AbstractSprawozdanie
     {
-        $entityManager = $this->getDoctrine()->getManager();
-
-        $klasa = $czyPozyczkowe
-            ? SprawozdaniePozyczkowe::class
-            : SprawozdaniePoreczeniowe::class
-        ;
+        if ($typSprawozdania === TypSprawozdaniaGuesserService::SPRAWOZDANIE_POZYCZKOWE) {
+            $klasa = SprawozdaniePozyczkowe::class;
+        } else if ($typSprawozdania === TypSprawozdaniaGuesserService::SPRAWOZDANIE_PORECZENIOWE) {
+            $klasa = SprawozdaniePoreczeniowe::class;
+        } else {
+            $message = 'Nieznany typ sprawozdania. Obsługiwane są tylko sprawozdanie poręczeniowe i pożyczkowe.';
+            throw new InvalidArgumentException($message);
+        }
         
-        $sprawozdanie = $entityManager
+        $sprawozdanie = $this
+            ->getDoctrine()
+            ->getManager()
             ->getRepository($klasa)
             ->find($sprawozdanieId)
         ;

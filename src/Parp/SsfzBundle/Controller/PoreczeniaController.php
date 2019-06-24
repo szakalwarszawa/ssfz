@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Doctrine\ORM\EntityNotFoundException;
-use Parp\SsfzBundle\Entity\DanePozyczek;
+use Parp\SsfzBundle\Entity\DanePoreczen;
 use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
 use Parp\SsfzBundle\Form\Type\DanePoreczenType;
 
@@ -19,7 +19,7 @@ use Parp\SsfzBundle\Form\Type\DanePoreczenType;
  *
  * @Route("/dane_poreczen")
  */
-class PozyczkiController extends Controller
+class PoreczeniaController extends Controller
 {
     /**
      * Wyświetla formularz danych poręczeń na podstawie ID sprawozdania, do którego należy.

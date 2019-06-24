@@ -271,7 +271,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_na_kredyt_obrotowy_od_50001_do_100000pln",
+     *     name="liczba_por_na_kredyt_obrotowy_od_50001_do_100000_pln",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -288,7 +288,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_na_kredyt_obrotowy_od_100001_do_500000pln",
+     *     name="liczba_por_na_kredyt_obrotowy_od_100001_do_500000_pln",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -305,7 +305,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_na_kredyt_obrotowy_od_500001pln",
+     *     name="liczba_por_na_kredyt_obrotowy_od_500001_pln",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -339,7 +339,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_na_kredyt_inwestycyjny_od_50001_do_100000pln",
+     *     name="liczba_por_na_kredyt_inwestycyjny_od_50001_do_100000_pln",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -356,7 +356,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_na_kredyt_inwestycyjny_od_100001_do_500000pln",
+     *     name="liczba_por_na_kredyt_inwestycyjny_od_100001_do_500000_pln",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -373,7 +373,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_na_kredyt_inwestycyjny_od_500001pln",
+     *     name="liczba_por_na_kredyt_inwestycyjny_od_500001_pln",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -407,7 +407,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_na_pozyczke_obrotowa_od_50001_do_100000pln",
+     *     name="liczba_por_na_pozyczke_obrotowa_od_50001_do_100000_pln",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -424,7 +424,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_na_pozyczke_obrotowa_od_100001_do_500000pln",
+     *     name="liczba_por_na_pozyczke_obrotowa_od_100001_do_500000_pln",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -441,7 +441,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_na_pozyczke_obrotowa_od_500001pln",
+     *     name="liczba_por_na_pozyczke_obrotowa_od_500001_pln",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -475,7 +475,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_na_pozyczke_inwestycyjna_od_50001_do_100000pln",
+     *     name="liczba_por_na_pozyczke_inwestycyjna_od_50001_do_100000_pln",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -492,7 +492,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_na_pozyczke_inwestycyjna_od_100001_do_500000pln",
+     *     name="liczba_por_na_pozyczke_inwestycyjna_od_100001_do_500000_pln",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -509,7 +509,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_na_pozyczke_inwestycyjna_od_500001pln",
+     *     name="liczba_por_na_pozyczke_inwestycyjna_od_500001_pln",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -543,7 +543,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_pozostalych_od_50001_do_100000pln",
+     *     name="liczba_por_pozostalych_od_50001_do_100000_pln",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -560,7 +560,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_pozostalych_od_100001_do_500000pln",
+     *     name="liczba_por_pozostalych_od_100001_do_500000_pln",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -577,7 +577,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_pozostalych_od_500001pln",
+     *     name="liczba_por_pozostalych_od_500001_pln",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -611,7 +611,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_wadiow_por_pozostalych_od_50001_do_100000pln",
+     *     name="liczba_wadiow_por_pozostalych_od_50001_do_100000_pln",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -628,7 +628,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_wadiow_por_pozostalych_od_100001_do_500000pln",
+     *     name="liczba_wadiow_por_pozostalych_od_100001_do_500000_pln",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -645,7 +645,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_wadiow_por_pozostalych_od_500001pln",
+     *     name="liczba_wadiow_por_pozostalych_od_500001_pln",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -656,17 +656,73 @@ class DanePoreczen
      */
     protected $liczbaWadiowPoreczenPozostalychOd500001Pln = 0;
 
+    /**
+     * Liczba poręczeń na działania produkcyjne do 50.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_do_50000_pln_dzial_produkcyjne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń na działania produkcyjne do 50.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenDo50000PlnNaDzialaniaProdukcyjne = 0;
 
+    /**
+     * Liczba poręczeń na działania produkcyjne od 50.001zł do 100.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_od_50001_do_100000_pln_dzial_produkcyjne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń na działania produkcyjne od 50.001zł do 100.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenOd50001Do100000PlnNaDzialaniaProdukcyjne = 0;
 
+    /**
+     * Liczba poręczeń na działania produkcyjne od 100.001zł do 500.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_od_100001_do_500000_pln_dzial_produkcyjne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń na działania produkcyjne od 100.001zł do 500.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenOd100001Do500000PlnNaDzialaniaProdukcyjne = 0;
 
-
-
-
-
-
-
-
-
+    /**
+     * Liczba poręczeń na działania produkcyjne powyżej 500.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_od_500001_pln_dzial_produkcyjne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń na działania produkcyjne powyżej 500.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenOd500001PlnNaDzialaniaProdukcyjne = 0;
 
 
 
@@ -1755,6 +1811,102 @@ class DanePoreczen
     public function setLiczbaWadiowPoreczenPozostalychOd500001Pln(int $liczbaPoreczen = 0)
     {
         $this->liczbaPoreczenWadiowPozostalychOd500001Pln = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń na działania produkcyjne do 50.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenDo50000PlnNaDzialaniaProdukcyjne()
+    {
+        return $this->liczbaPoreczenDo50000PlnNaDzialaniaProdukcyjne;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń na działania produkcyjne do 50.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenDo50000PlnNaDzialaniaProdukcyjne(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenDo50000PlnNaDzialaniaProdukcyjne = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń na działania produkcyjne od 50.001zł do 100.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenOd50001Do100000PlnNaDzialaniaProdukcyjne()
+    {
+        return $this->liczbaPoreczenOd50001Do100000PlnNaDzialaniaProdukcyjne;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń na działania produkcyjne od 50.001zł do 100.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenOd50001Do100000PlnNaDzialaniaProdukcyjne(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenOd50001Do100000PlnNaDzialaniaProdukcyjne = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń na działania produkcyjne od 100.001zł do 500.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenOd100001Do500000PlnNaDzialaniaProdukcyjne()
+    {
+        return $this->liczbaPoreczenOd100001Do500000PlnNaDzialaniaProdukcyjne;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń na działania produkcyjne od 100.001zł do 500.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenOd100001Do500000PlnNaDzialaniaProdukcyjne(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenOd100001Do500000PlnNaDzialaniaProdukcyjne = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń na działania produkcyjne powyżej 500.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenOd500001PlnNaDzialaniaProdukcyjne()
+    {
+        return $this->liczbaPoreczenOd500001PlnNaDzialaniaProdukcyjne;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń na działania produkcyjne powyżej 500.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenOd500001PlnNaDzialaniaProdukcyjne(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenOd500001PlnNaDzialaniaProdukcyjne = abs($liczbaPoreczen);
 
         return $this;
     }
