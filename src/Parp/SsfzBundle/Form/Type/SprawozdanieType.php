@@ -2,6 +2,8 @@
 
 namespace Parp\SsfzBundle\Form\Type;
 
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,6 +18,8 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Parp\SsfzBundle\Entity\AbstractSprawozdanie;
 use Parp\SsfzBundle\Entity\Beneficjent;
+use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
+use Parp\SsfzBundle\Entity\Slownik\CzestotliwoscSprawozdan;
 
 /**
  * Typ formularza sprawozdania
@@ -68,19 +72,31 @@ class SprawozdanieType extends AbstractType
             ));
         }
 
-        $builder->add('okres', ChoiceType::class, array(
-            'label' => 'Sprawozdanie za okres',
-            'choices' => array(
-                '' => '',
-                'styczeń - czerwiec' => 'styczeń - czerwiec',
-                'lipiec - grudzień' => 'lipiec - grudzień',
-            ),
-            'constraints' => array(
-                new NotBlank(
-                    array('message' => 'Należy wypełnić pole')
+        $builder->add(
+            'okres',
+            EntityType::class,
+            array(
+                'label'         => 'Sprawozdanie za okres',
+                'class'         => OkresSprawozdawczy::class,
+                'choice_label'  => 'nazwa',
+                'required'      => false,
+                'placeholder'   => '',
+                'query_builder' => function (EntityRepository $repo) {
+                    return $repo
+                        ->createQueryBuilder('o')
+                        ->join('o.czestotliwoscSprawozdan', 'c')
+                        ->where('c.id = :czestotliwoscId')
+                        ->setParameter('czestotliwoscId', CzestotliwoscSprawozdan::POLROCZNA)
+                        ->orderBy('o.id', 'ASC')
+                    ;
+                },
+                'constraints' => array(
+                    new NotBlank(
+                        array('message' => 'Należy wypełnić pole')
+                    )
                 )
             )
-        ));
+        );
 
         $builder->add('rok', ChoiceType::class, array(
             'label' => 'Rok',

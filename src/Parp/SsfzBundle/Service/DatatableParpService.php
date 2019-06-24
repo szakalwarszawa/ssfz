@@ -5,6 +5,7 @@ namespace Parp\SsfzBundle\Service;
 use Doctrine\ORM\Query\Expr\Join;
 use Parp\SsfzBundle\Repository\OkresyKonfiguracjaRepository;
 use Parp\SsfzBundle\Entity\Slownik\Program;
+use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
 
 /**
  * Serwis obsługujący operacje pomocnicze
@@ -70,20 +71,28 @@ class DatatableParpService
      * Zwraca pola tabeli parp
      *
      * @param array $config
+     * @param Program $program
      *
      * @return array
      */
-    public function getDatatableParpFields($config)
+    public function getDatatableParpFields($config, Program $program)
     {
+        $czestotliwosc = $program->getCzestotliwoscSprawozdan();
+        
         $fields['BeneId'] = 'b.id';
         $fields['Nazwa'] = 'b.nazwa';
         $fields['Numer umowy'] = 'u.numer';
         $idx = 1;
         foreach ($config as $cfg) {
-            $fields['1 - 6 ' . $cfg->getRok()] = 's' . $idx . '.idStatus';
-            $idx++;
-            $fields['7 - 12 ' . $cfg->getRok()] = 's' . $idx . '.idStatus';
-            $idx++;
+            if ($czestotliwosc->czyRoczna()) {
+                $fields[$cfg->getRok()] = 's' . $idx . '.idStatus';
+                $idx++;
+            } else {
+                $fields['1 - 6 ' . $cfg->getRok()] = 's' . $idx . '.idStatus';
+                $idx++;
+                $fields['7 - 12 ' . $cfg->getRok()] = 's' . $idx . '.idStatus';
+                $idx++;
+            }
         }
         $fields['_identifier_'] = 'u.id';
 
@@ -95,13 +104,13 @@ class DatatableParpService
      *
      * @param object $datatable
      * @param array $config
-     * @param int $programId
+     * @param Program $program
      *
      * @return datatable
      */
-    public function datatableParpAddJoins($datatable, $config, $programId)
+    public function datatableParpAddJoins($datatable, $config, Program $program)
     {
-        switch ($programId) {
+        switch ($program->getId()) {
             case Program::FUNDUSZ_POZYCZKOWY_SPO_WKP_121:
                 $nazwaParametru = 'sprawozdaniaPozyczkowe';
                 break;
@@ -119,16 +128,35 @@ class DatatableParpService
         $datatable
             ->addJoin('u.beneficjent', 'b', Join::INNER_JOIN)
             ->addJoin('b.program', 'p', Join::INNER_JOIN)
-            ->setWhere('p.id = '. ((int) $programId))
+            ->setWhere('p.id = '. ((int) $program->getId()))
         ;
+        
+        $doctrineQueryBuilder = $datatable
+            ->getQueryBuilder()
+            ->getDoctrineQueryBuilder()
+        ;
+        
+        $entityManager = $doctrineQueryBuilder->getEntityManager();
+        
+        $okresy = $entityManager
+            ->getRepository(OkresSprawozdawczy::class)
+            ->findBy(['czestotliwoscSprawozdan' => $program->getCzestotliwoscSprawozdan()])
+        ;
+        
+        $params = [];
+        foreach ($okresy as $key => $okres) {
+            $params['okres'.$key] = $okres;
+        }
 
         $idx = 1;
         foreach ($config as $cfg) {
-            $datatable->addJoin('u.' . $nazwaParametru, 's' . $idx, Join::LEFT_JOIN, Join::WITH, 'u.id = s' . $idx . '.umowaId and s' . $idx . '.rok = ' . $cfg->getRok() . ' and s' . $idx . '.okresId = 0 and s' . $idx . '.czyNajnowsza = 1');
-            $idx++;
-            $datatable->addJoin('u.' . $nazwaParametru, 's' . $idx, Join::LEFT_JOIN, Join::WITH, 'u.id = s' . $idx . '.umowaId and s' . $idx . '.rok = ' . $cfg->getRok() . ' and s' . $idx . '.okresId = 1 and s' . $idx . '.czyNajnowsza = 1');
-            $idx++;
+            foreach ($okresy as $key => $okres) {
+                $datatable->addJoin('u.' . $nazwaParametru, 's' . $idx, Join::LEFT_JOIN, Join::WITH, 'u.id = s' . $idx . '.umowaId and s' . $idx . '.rok = ' . $cfg->getRok() . ' and s' . $idx . '.czyNajnowsza = 1 and s' . $idx . '.okres = :okres' . $key);
+                $idx++;
+            }
         }
+        
+        $doctrineQueryBuilder->setParameters($params);
 
         return $datatable;
     }
@@ -148,10 +176,10 @@ class DatatableParpService
             ->get('datatable')
             ->setDatatableId('dta-umowy')
             ->setEntity('SsfzBundle:Umowa', 'u')
-            ->setFields($this->getDatatableParpFields($config))
+            ->setFields($this->getDatatableParpFields($config, $program))
         ;
         
-        $datatable = $this->datatableParpAddJoins($datatable, $config, $program->getId());
+        $datatable = $this->datatableParpAddJoins($datatable, $config, $program);
         $datatable
             ->setRenderers($this->getDatatableParpRenderers($config, $program))
             ->setSearch(true)

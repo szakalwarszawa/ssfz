@@ -4,6 +4,7 @@ namespace Parp\SsfzBundle\Service;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Parp\SsfzBundle\Entity\Slownik\Program;
 use Parp\SsfzBundle\Entity\Sprawozdanie;
@@ -79,10 +80,11 @@ class SprawozdanieService
             ->get('datatable')
             ->setDatatableId('dta-sprawozdanie')
             ->setEntity($klasaEncji, 'r')
+            ->addJoin('r.okres', 'o', Join::INNER_JOIN)
             ->setFields([
                 'Status'       => 'r.status',
                 'Rok'          => 'r.rok',
-                'Okres'        => 'r.okres',
+                'Okres'        => 'o.nazwa',
                 'Nazwa spółki' => 'r.id',
                 ' '            => 'r.id',
                 '_identifier_' => 'r.id',
