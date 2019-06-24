@@ -31,28 +31,20 @@
                     <div class="col-md-7">
                         <table class="table table-bordered table-condensed table-striped">
                             <tr>
-                                <td></td>
-                                <td class="text-center">{{ form_widget(form.liczbaPozyczekAktywnychOgolem) }}</td>
+                                <td>Liczba podmiotów współpracujących z funduszem</td>
+                                <td class="text-center"><strong data-vertical-group-sum="34">0</strong></td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td class="text-center">{{ form_widget(form.liczbaPozyczekAktywnychSplacanychTerminowo) }}</td>
+                                <td>Liczba współpracujących banków</td>
+                                <td class="text-center">{{ form_widget(form.liczbaWspolpracujacychBankow, {'attr': {'data-vertical-group': '34', 'data-horizontal-group': '9'}}) }}</td>
                             </tr>
                             <tr>
-                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Wymagające szczególnego monitorowania</td>
-                                <td class="text-center">{{ form_widget(form.liczbaPozyczekAktywnychWymagajacychMonitorowania) }}</td>
+                                <td>Liczba współpracujących funduszy pożyczkowych</td>
+                                <td class="text-center">{{ form_widget(form.liczbaWspolpracujacychFunduszyPozyczkowych, {'attr': {'data-vertical-group': '34', 'data-horizontal-group': '9'}}) }}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td class="text-center">{{ form_widget(form.liczbaPozyczekStraconych) }}</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td class="text-center">{{ form_widget(form.wspolczynnikStratWDanymOkresieWgLiczbyPozyczek) }}</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td class="text-center">{{ form_widget(form.wspolczynnikStratWCalymOkresieWgLiczbyPozyczek) }}</td>
+                                <td>Liczba innych podmiotów współpracujących</td>
+                                <td class="text-center">{{ form_widget(form.liczbaInnychPodmiotowWspolpracujacych, {'attr': {'data-vertical-group': '34', 'data-horizontal-group': '9'}}) }}</td>
                             </tr>
                         </table>
                     </div>
@@ -73,10 +65,10 @@
     <script>
         $(document).ready(function () {
             function sumByGroup() {
-                var verticalGroupsInteger = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-                    verticalGroupsDecimal = ['13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'],
-                    horizontalGroupsInteger = ['1', '2', '3'],
-                    horizontalGroupsDecimal = ['4', '5', '6'],
+                var verticalGroupsInteger = ['34'],
+                    verticalGroupsDecimal = [],
+                    horizontalGroupsInteger = ['9'],
+                    horizontalGroupsDecimal = [],
                     sum = 0
                 ;
 

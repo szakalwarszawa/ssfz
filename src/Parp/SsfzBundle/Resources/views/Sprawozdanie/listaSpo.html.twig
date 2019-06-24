@@ -40,11 +40,11 @@
                                 {% include 'SsfzBundle:Report:sprawozdanieStatus.html.twig' with {'dt_obj': sprawozdanie} %}
                             </td>
                             <td>
-                                <a href="{{ path('sprawozdania_spo_podglad', {'czyPozyczkowe': czyPozyczkowe, 'sprawozdanieId': sprawozdanie.id}) }}" class="btn btn-sm btn-info" role="button">
+                                <a href="{{ path('sprawozdania_spo_podglad', {'czyPozyczkowe': czy_pozyczkowe, 'sprawozdanieId': sprawozdanie.id}) }}" class="btn btn-sm btn-info" role="button">
                                     <span class="fas fa-eye"></span> Podgląd
                                 </a>
                                 {% if not sprawozdanie.dataPrzeslaniaDoParp %}
-                                    <a href="{{ path('sprawozdania_spo_edycja', {'czyPozyczkowe': czyPozyczkowe, 'sprawozdanieId': sprawozdanie.id}) }}" class="btn btn-sm btn-primary" role="button">
+                                    <a href="{{ path('sprawozdania_spo_edycja', {'czyPozyczkowe': czy_pozyczkowe, 'sprawozdanieId': sprawozdanie.id}) }}" class="btn btn-sm btn-primary" role="button">
                                         <i class="fas fa-edit"></i> Edycja
                                     </a>
 
@@ -53,12 +53,16 @@
                                         <a href="{{ url('podglad_danych_pozyczek_dla_sprawozdania', {id: sprawozdanie.id}) }}" class="btn btn-sm btn-success" role="button"><span class="fas fa-eye"></span> Podgląd danych o pożyczkach</a>
                                     {% endif %}
 
-                                    <span class="btn btn-sm btn-warning btn-send-to-parp" data-href="{{ path('sprawozdania_spo_przeslij', {'czyPozyczkowe': czyPozyczkowe, 'sprawozdanieId': sprawozdanie.id}) }}" role="button">
+                                    {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPoreczeniowy()|default(false) %}
+                                        <a href="{{ url('edycja_danych_poreczen_dla_sprawozdania', {id: sprawozdanie.id}) }}" class="btn btn-sm btn-success" role="button"><span class="fas fa-edit"></span> Edycja danych o poręczeniach</a>
+                                    {% endif %}
+
+                                    <span class="btn btn-sm btn-warning btn-send-to-parp" data-href="{{ path('sprawozdania_spo_przeslij', {'czyPozyczkowe': czy_pozyczkowe, 'sprawozdanieId': sprawozdanie.id}) }}" role="button">
                                         <span class="fas fa-share-alt"></span> Przesłanie do PARP
                                     </span>
                                 {% endif %}
                                 {% if sprawozdanie.czyStatusWTrakciePoprawy and sprawozdanie.czyNajnowsza %}
-                                    <a href="{{ path('sprawozdania_spo_poprawa', {'czyPozyczkowe': czyPozyczkowe, 'sprawozdanieId': sprawozdanie.id}) }}" class="btn btn-sm btn-primary" role="button"><span class="fas fa-edit"></span> Popraw</a>
+                                    <a href="{{ path('sprawozdania_spo_poprawa', {'czyPozyczkowe': czy_pozyczkowe, 'sprawozdanieId': sprawozdanie.id}) }}" class="btn btn-sm btn-primary" role="button"><span class="fas fa-edit"></span> Popraw</a>
                                 {% else %}
                                     <span class="btn btn-sm btn-danger" ><span class="fas fa-upload"></span>&nbsp Przesłany &nbsp</span>
                                 {% endif %}

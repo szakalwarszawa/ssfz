@@ -307,7 +307,7 @@ class SprawozdanieController extends Controller
     /**
      * Metoda ustawia spółki
      *
-     * @param ArrayList    $spolki
+     * @param array $spolki
      * @param Sprawozdanie $report
      *
      * @return Sprawozdanie z ustawionymi spolkami
@@ -377,7 +377,7 @@ class SprawozdanieController extends Controller
      *
      * @return Sprawozdanie bez oceny
      */
-    public function setDefaultValuesAfterRepait($newReport, $report)
+    public function setDefaultValuesAfterRepait(Sprawozdanie $newReport, Sprawozdanie $report)
     {
         $newReport->setStatus(StatusSprawozdania::EDYCJA);
         $newReport->setUwagi('');
@@ -401,7 +401,7 @@ class SprawozdanieController extends Controller
      *
      * @throws NotFoundHttpException
      */
-    public function getNumerUmowy($umowaId, $beneficjentId)
+    public function getNumerUmowy(int $umowaId, int $beneficjentId)
     {
         $umowa = new Umowa();
         $entityManager = $this->getDoctrine()->getManager();
@@ -419,9 +419,9 @@ class SprawozdanieController extends Controller
      *
      * @param int $umowaId
      *
-     * @return Array lista spółek
+     * @return array
      */
-    public function getSpolkiList($umowaId)
+    public function getSpolkiList(int $umowaId)
     {
         $entityManager = $this->getDoctrine()->getManager();
         $spolki = $entityManager->getRepository(Spolka::class)->findBy(
@@ -443,7 +443,7 @@ class SprawozdanieController extends Controller
      *
      * @return Flage określającą czy sprawozdanie jest poprawne
      */
-    public function chekSprawozdanieExist($okres, $rok, $editedReportId, $umowaId, $beneficjentId)
+    public function chekSprawozdanieExist(int $okres, int $rok, int $editedReportId, int $umowaId, int $beneficjentId)
     {
         $entityManager = $this->getDoctrine()->getManager();
         $report = $entityManager->getRepository(Sprawozdanie::class)->findBy(
@@ -467,7 +467,7 @@ class SprawozdanieController extends Controller
      *
      * @return Czy sprawozdanie jest poprawne
      */
-    public function chekSprawozdanieForGoodPeriod($okres, $rok)
+    public function chekSprawozdanieForGoodPeriod(int $okres, int $rok)
     {
         $warunek1 = (integer) $rok > (integer) date('Y');
         $warunek2 = ((integer) $rok == (integer) date('Y')) && ($okres == 'lipiec - grudzień' || (integer) date('m') < 7);
@@ -507,7 +507,7 @@ class SprawozdanieController extends Controller
      *
      * @return void
      */
-    public function pokarzFormularzRejestracji($form, $mode, $umowaId)
+    public function pokarzFormularzRejestracji(From $form, string $mode, int $umowaId)
     {
         return $this->render('SsfzBundle:Report:rejestruj.html.twig', [
             'form'      => $form->createView(),
@@ -602,13 +602,10 @@ class SprawozdanieController extends Controller
                 $entityManager->persist($sprawozdanie);
                 $entityManager->flush();
                 $this->getKomunikatyService()->sukcesKomunikat('Dodano nowe sprawozdanie.');
-                return $this->redirectToRoute(
-                    'sprawozdania_spo_edycja',
-                    array(
-                        'czyPozyczkowe' => $czyPozyczkowe,
-                        'sprawozdanieId' => $sprawozdanie->getId()
-                    )
-                );
+                return $this->redirectToRoute('sprawozdania_spo_edycja', [
+                    'czyPozyczkowe' => $czyPozyczkowe,
+                    'sprawozdanieId' => $sprawozdanie->getId()
+                ]);
             }
         }
         
@@ -622,7 +619,7 @@ class SprawozdanieController extends Controller
 
         return $this->render('SsfzBundle:Sprawozdanie:listaSpo.html.twig', [
             'umowa'           => $umowa,
-            'czyPozyczkowe'   => (int) $czyPozyczkowe,
+            'czy_pozyczkowe'  => $czyPozyczkowe,
             'listaSprawozdan' => $listaSprawozdan,
             'form'            => $form->createView(),
         ]);
@@ -637,12 +634,12 @@ class SprawozdanieController extends Controller
      *  )
      *
      * @param Request $request
-     * bool $czyPozyczkowe
-     * int $sprawozdanieId
+     * @param bool $czyPozyczkowe
+     * @param int $sprawozdanieId
      *
      * @return Response
      */
-    public function edycjaSpoAction(Request $request, $czyPozyczkowe, $sprawozdanieId)
+    public function edycjaSpoAction(Request $request, bool $czyPozyczkowe, int $sprawozdanieId)
     {
         $sprawozdanie = $this->znajdzSprawozdanie($czyPozyczkowe, $sprawozdanieId);
         $sprawozdanie->sprawdzCzyUzytkownikMozeEdytowac($this->getUser());
@@ -679,13 +676,10 @@ class SprawozdanieController extends Controller
                         'umowa' => $sprawozdanie->getUmowa()->getId(),
                     ]);
                 } else {
-                    return $this->redirectToRoute(
-                        'sprawozdania_spo_edycja',
-                        array(
-                            'czyPozyczkowe' => $czyPozyczkowe,
-                            'sprawozdanieId' => $sprawozdanie->getId()
-                        )
-                    );
+                    return $this->redirectToRoute('sprawozdania_spo_edycja', [
+                        'czyPozyczkowe'  => $czyPozyczkowe,
+                        'sprawozdanieId' => $sprawozdanie->getId()
+                    ]);
                 }
             } else {
                 $bledy = [];
@@ -703,14 +697,13 @@ class SprawozdanieController extends Controller
             }
         }
         
-        return $this->render(
-            'SsfzBundle:Sprawozdanie:' . ($czyPozyczkowe ? 'pozyczkowe' : 'poreczeniowe') . 'Edycja.html.twig',
-            array(
-                'sprawozdanie' => $sprawozdanie,
-                'tylkoDoOdczytu' => false,
-                'form' => $form->createView(),
-            )
-        );
+        $template = 'SsfzBundle:Sprawozdanie:' . ($czyPozyczkowe ? 'pozyczkowe' : 'poreczeniowe') . 'Edycja.html.twig';
+
+        return $this->render($template, [
+            'sprawozdanie'   => $sprawozdanie,
+            'tylkoDoOdczytu' => false,
+            'form'           => $form->createView(),
+        ]);
     }
 
     /**
@@ -723,7 +716,7 @@ class SprawozdanieController extends Controller
      *
      * @return Response
      */
-    public function podgladSpoAction($czyPozyczkowe, $sprawozdanieId)
+    public function podgladSpoAction(bool $czyPozyczkowe, int $sprawozdanieId)
     {
         $sprawozdanie = $this->znajdzSprawozdanie($czyPozyczkowe, $sprawozdanieId);
         $sprawozdanie->sprawdzCzyUzytkownikMozeWyswietlac($this->getUser());
@@ -736,22 +729,17 @@ class SprawozdanieController extends Controller
             : SprawozdaniePoreczenioweType::class
         ;
 
-        $form = $this->createForm(
-            $klasaFormularza,
-            $sprawozdanie,
-            [
-                'read_only' => true,
-            ]
-        );
+        $form = $this->createForm($klasaFormularza, $sprawozdanie, [
+            'read_only' => true,
+        ]);
         
-        return $this->render(
-            'SsfzBundle:Sprawozdanie:' . ($czyPozyczkowe ? 'pozyczkowe' : 'poreczeniowe') . 'Edycja.html.twig',
-            array(
-                'sprawozdanie' => $sprawozdanie,
-                'tylkoDoOdczytu' => true,
-                'form' => $form->createView(),
-            )
-        );
+        $template = 'SsfzBundle:Sprawozdanie:' . ($czyPozyczkowe ? 'pozyczkowe' : 'poreczeniowe') . 'Edycja.html.twig';
+
+        return $this->render($template, [
+            'sprawozdanie'   => $sprawozdanie,
+            'tylkoDoOdczytu' => true,
+            'form'           => $form->createView(),
+        ]);
     }
 
     /**
@@ -764,7 +752,7 @@ class SprawozdanieController extends Controller
      *
      * @return RedirectResponse
      */
-    public function przeslijSpoAction($czyPozyczkowe, $sprawozdanieId)
+    public function przeslijSpoAction(bool $czyPozyczkowe, int $sprawozdanieId)
     {
         $sprawozdanie = $this->znajdzSprawozdanie($czyPozyczkowe, $sprawozdanieId);
         $sprawozdanie->sprawdzCzyUzytkownikMozeEdytowac($this->getUser());
@@ -790,10 +778,9 @@ class SprawozdanieController extends Controller
             ;
         }
 
-        return $this->redirectToRoute(
-            'lista_sprawozdan_spo',
-            ['umowa' => $sprawozdanie->getUmowa()->getId()]
-        );
+        return $this->redirectToRoute('lista_sprawozdan_spo', [
+            'umowa' => $sprawozdanie->getUmowa()->getId(),
+        ]);
     }
     
 
@@ -811,7 +798,7 @@ class SprawozdanieController extends Controller
      *
      * @return Response|RedirectResponse
      */
-    public function poprawaSpoAction(Request $request, $czyPozyczkowe, $sprawozdanieId)
+    public function poprawaSpoAction(Request $request, bool $czyPozyczkowe, int $sprawozdanieId)
     {
         $sprawozdanie = $this->znajdzSprawozdanie($czyPozyczkowe, $sprawozdanieId);
         $sprawozdanie->sprawdzCzyUzytkownikMozePoprawiac($this->getUser());
@@ -827,10 +814,7 @@ class SprawozdanieController extends Controller
         
         $klonSprawozdania = clone $sprawozdanie;
 
-        $form = $this->createForm(
-            $klasaFormularza,
-            $klonSprawozdania
-        );
+        $form = $this->createForm($klasaFormularza, $klonSprawozdania);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
@@ -873,15 +857,14 @@ class SprawozdanieController extends Controller
                 $this->getKomunikatyService()->bladKomunikat($komunikat);
             }
         }
-        
-        return $this->render(
-            'SsfzBundle:Sprawozdanie:' . ($czyPozyczkowe ? 'pozyczkowe' : 'poreczeniowe') . 'Edycja.html.twig',
-            array(
-                'sprawozdanie' => $sprawozdanie,
-                'tylkoDoOdczytu' => false,
-                'form' => $form->createView(),
-            )
-        );
+
+        $template = 'SsfzBundle:Sprawozdanie:' . ($czyPozyczkowe ? 'pozyczkowe' : 'poreczeniowe') . 'Edycja.html.twig';
+
+        return $this->render($template, [
+            'sprawozdanie'   => $sprawozdanie,
+            'tylkoDoOdczytu' => false,
+            'form'           => $form->createView(),
+        ]);
     }
 
     /**
@@ -892,7 +875,7 @@ class SprawozdanieController extends Controller
      *
      * @return AbstractSprawozdanieSpo
      */
-    protected function znajdzSprawozdanie($czyPozyczkowe, $sprawozdanieId)
+    protected function znajdzSprawozdanie(bool $czyPozyczkowe, int $sprawozdanieId)
     {
         $entityManager = $this->getDoctrine()->getManager();
 
