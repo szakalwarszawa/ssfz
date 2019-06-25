@@ -861,7 +861,7 @@ class DanePoreczen
     protected $liczbaPoreczenOd500001PlnNaDzialaniaUslugowe = 0;
 
     /**
-     * Liczba poręczeń na działania budowniczedo 50.000zł.
+     * Liczba poręczeń na działania budowniczedo do 50.000zł.
      *
      * @var int
      *
@@ -870,7 +870,7 @@ class DanePoreczen
      *     type="integer",
      *     nullable=false,
      *     options={
-     *         "comment":"Liczba poręczeń na działania budowniczedo 50.000zł.",
+     *         "comment":"Liczba poręczeń na działania budowniczedo do 50.000zł.",
      *         "default":0
      *     }
      * )
@@ -912,7 +912,7 @@ class DanePoreczen
     protected $liczbaPoreczenOd100001Do500000PlnNaDzialaniaBudownicze = 0;
 
     /**
-     * Liczba poręczeń na działania budowniczepowyżej 500.000zł.
+     * Liczba poręczeń na działania budownicze powyżej 500.000zł.
      *
      * @var int
      *
@@ -927,6 +927,23 @@ class DanePoreczen
      * )
      */
     protected $liczbaPoreczenOd500001PlnNaDzialaniaBudownicze = 0;
+
+   /**
+     * Liczba poręczeń na działania inne do 50.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_do_50000_pln_dzial_inne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń na działania inne do 50.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenDo50000PlnNaDzialaniaInne = 0;
 
     /**
      * Liczba poręczeń na działania inne od 50.001zł do 100.000zł.
@@ -980,6 +997,264 @@ class DanePoreczen
     protected $liczbaPoreczenOd500001PlnNaDzialaniaInne = 0;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Liczba poręczeń dla banków do 50.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_do_50000_pln_dla_bankow",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń dla banków do 50.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenDo50000PlnDlaBankow = 0;
+
+    /**
+     * Liczba poręczeń dla banków od 50.001zł do 100.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_od_50001_do_100000_pln_dla_bankow",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń dla banków od 50.001zł do 100.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenOd50001Do100000PlnDlaBankow = 0;
+
+    /**
+     * Liczba poręczeń dla banków od 100.001zł do 500.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_od_100001_do_500000_pln_dla_bankow",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń dla banków od 100.001zł do 500.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenOd100001Do500000PlnDlaBankow = 0;
+
+    /**
+     * Liczba poręczeń dla banków powyżej 500.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_od_500001_pln_dla_bankow",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń dla banków powyżej 500.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenOd500001PlnDlaBankow = 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Liczba poręczeń dla funduszy pożyczkowych do 50.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_do_50000_pln_dla_fund_pozyczkowych",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń dla funduszy pożyczkowych do 50.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenDo50000PlnDlaFunduszyPozyczkowych = 0;
+
+    /**
+     * Liczba poręczeń dla funduszy pożyczkowych od 50.001zł do 100.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_od_50001_do_100000_pln_dla_fund_pozyczkowych",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń dla funduszy pożyczkowych od 50.001zł do 100.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenOd50001Do100000PlnDlaFunduszyPozyczkowych = 0;
+
+    /**
+     * Liczba poręczeń dla funduszy pożyczkowych od 100.001zł do 500.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_od_100001_do_500000_pln_dla_fund_pozyczkowych",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń dla funduszy pożyczkowych od 100.001zł do 500.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenOd100001Do500000PlnDlaFunduszyPozyczkowych = 0;
+
+    /**
+     * Liczba poręczeń dla funduszy pożyczkowych powyżej 500.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_od_500001_pln_dla_fund_pozyczkowych",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń dla funduszy pożyczkowych powyżej 500.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenOd500001PlnDlaFunduszyPozyczkowych = 0;
+
+    /**
+     * Liczba poręczeń dla innych podmiotów do 50.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_do_50000_pln_dla_innych_podmiotow",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń dla innych podmiotów do 50.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenDo50000PlnDlaInnychPodmiotow = 0;
+
+    /**
+     * Liczba poręczeń dla innych podmiotów od 50.001zł do 100.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_od_50001_do_100000_pln_dla_innych_podmiotow",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń dla innych podmiotów od 50.001zł do 100.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenOd50001Do100000PlnDlaInnychPodmiotow = 0;
+
+    /**
+     * Liczba poręczeń dla innych podmiotów od 100.001zł do 500.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_od_100001_do_500000_pln_dla_innych_podmiotow",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń dla innych podmiotów od 100.001zł do 500.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenOd100001Do500000PlnDlaInnychPodmiotow = 0;
+
+    /**
+     * Liczba poręczeń dla innych podmiotów powyżej 500.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_od_500001_pln_dla_innych_podmiotow",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń dla innych podmiotów powyżej 500.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenOd500001PlnDlaInnychPodmiotow = 0;
 
 
 
@@ -2531,13 +2806,292 @@ class DanePoreczen
 
 
 
+    /**
+     * Zwraca wartość liczby poręczeń dla banków do 50.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenDo50000PlnDlaBankow()
+    {
+        return $this->liczbaPoreczenDo50000PlnDlaBankow;
+    }
 
+    /**
+     * Ustala wartość liczby poręczeń dla banków do 50.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenDo50000PlnDlaBankow(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenDo50000PlnDlaBankow = abs($liczbaPoreczen);
 
+        return $this;
+    }
 
+    /**
+     * Zwraca wartość liczby poręczeń dla banków od 50.001zł do 100.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenOd50001Do100000PlnDlaBankow()
+    {
+        return $this->liczbaPoreczenOd50001Do100000PlnDlaBankow;
+    }
 
+    /**
+     * Ustala wartość liczby poręczeń dla banków od 50.001zł do 100.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenOd50001Do100000PlnDlaBankow(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenOd50001Do100000PlnDlaBankow = abs($liczbaPoreczen);
 
+        return $this;
+    }
 
+    /**
+     * Zwraca wartość liczby poręczeń dla banków od 100.001zł do 500.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenOd100001Do500000PlnDlaBankow()
+    {
+        return $this->liczbaPoreczenOd100001Do500000PlnDlaBankow;
+    }
 
+    /**
+     * Ustala wartość liczby poręczeń dla banków od 100.001zł do 500.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenOd100001Do500000PlnDlaBankow(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenOd100001Do500000PlnDlaBankow = abs($liczbaPoreczen);
 
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń dla banków powyżej 500.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenOd500001PlnDlaBankow()
+    {
+        return $this->liczbaPoreczenOd500001PlnDlaBankow;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń dla banków powyżej 500.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenOd500001PlnDlaBankow(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenOd500001PlnDlaBankow = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń dla funduszy podatkowych do 50.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenDo50000PlnDlaFunduszyPozyczkowych()
+    {
+        return $this->liczbaPoreczenDo50000PlnDlaFunduszyPozyczkowych;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń dla funduszy podatkowych do 50.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenDo50000PlnDlaFunduszyPozyczkowych(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenDo50000PlnDlaFunduszyPozyczkowych = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń dla funduszy podatkowych od 50.001zł do 100.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenOd50001Do100000PlnDlaFunduszyPozyczkowych()
+    {
+        return $this->liczbaPoreczenOd50001Do100000PlnDlaFunduszyPozyczkowych;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń dla funduszy podatkowych od 50.001zł do 100.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenOd50001Do100000PlnDlaFunduszyPozyczkowych(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenOd50001Do100000PlnDlaFunduszyPozyczkowych = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń dla funduszy podatkowych od 100.001zł do 500.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenOd100001Do500000PlnDlaFunduszyPozyczkowych()
+    {
+        return $this->liczbaPoreczenOd100001Do500000PlnDlaFunduszyPozyczkowych;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń dla funduszy podatkowych od 100.001zł do 500.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenOd100001Do500000PlnDlaFunduszyPozyczkowych(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenOd100001Do500000PlnDlaFunduszyPozyczkowych = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń dla funduszy podatkowych powyżej 500.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenOd500001PlnDlaFunduszyPozyczkowych()
+    {
+        return $this->liczbaPoreczenOd500001PlnDlaFunduszyPozyczkowych;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń dla funduszy podatkowych powyżej 500.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenOd500001PlnDlaFunduszyPozyczkowych(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenOd500001PlnDlaFunduszyPozyczkowych = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń dla innych podmiotów do 50.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenDo50000PlnDlaInnychPodmiotow()
+    {
+        return $this->liczbaPoreczenDo50000PlnDlaInnychPodmiotow;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń dla innych podmiotów do 50.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenDo50000PlnDlaInnychPodmiotow(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenDo50000PlnDlaInnychPodmiotow = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń dla innych podmiotów od 50.001zł do 100.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenOd50001Do100000PlnDlaInnychPodmiotow()
+    {
+        return $this->liczbaPoreczenOd50001Do100000PlnDlaInnychPodmiotow;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń dla innych podmiotów od 50.001zł do 100.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenOd50001Do100000PlnDlaInnychPodmiotow(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenOd50001Do100000PlnDlaInnychPodmiotow = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń dla innych podmiotów od 100.001zł do 500.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenOd100001Do500000PlnDlaInnychPodmiotow()
+    {
+        return $this->liczbaPoreczenOd100001Do500000PlnDlaInnychPodmiotow;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń dla innych podmiotów od 100.001zł do 500.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenOd100001Do500000PlnDlaInnychPodmiotow(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenOd100001Do500000PlnDlaInnychPodmiotow = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń dla innych podmiotów powyżej 500.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenOd500001PlnDlaInnychPodmiotow()
+    {
+        return $this->liczbaPoreczenOd500001PlnDlaInnychPodmiotow;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń dla innych podmiotów powyżej 500.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenOd500001PlnDlaInnychPodmiotow(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenOd500001PlnDlaInnychPodmiotow = abs($liczbaPoreczen);
+
+        return $this;
+    }
 
 }
