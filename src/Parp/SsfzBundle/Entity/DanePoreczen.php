@@ -724,28 +724,260 @@ class DanePoreczen
      */
     protected $liczbaPoreczenOd500001PlnNaDzialaniaProdukcyjne = 0;
 
+    /**
+     * Liczba poręczeń na działania handlowe do 50.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_do_50000_pln_dzial_handlowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń na działania handlowe do 50.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenDo50000PlnNaDzialaniaHandlowe = 0;
 
+    /**
+     * Liczba poręczeń na działania handlowe od 50.001zł do 100.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_od_50001_do_100000_pln_dzial_handlowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń na działania handlowe od 50.001zł do 100.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenOd50001Do100000PlnNaDzialaniaHandlowe = 0;
 
+    /**
+     * Liczba poręczeń na działania handlowe od 100.001zł do 500.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_od_100001_do_500000_pln_dzial_handlowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń na działania handlowe od 100.001zł do 500.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenOd100001Do500000PlnNaDzialaniaHandlowe = 0;
 
+    /**
+     * Liczba poręczeń na działania handlowe powyżej 500.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_od_500001_pln_dzial_handlowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń na działania handlowe powyżej 500.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenOd500001PlnNaDzialaniaHandlowe = 0;
 
+    /**
+     * Liczba poręczeń na działania usługowe do 50.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_do_50000_pln_dzial_uslugowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń na działania usługowe do 50.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenDo50000PlnNaDzialaniaUslugowe = 0;
 
+    /**
+     * Liczba poręczeń na działania usługowe od 50.001zł do 100.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_od_50001_do_100000_pln_dzial_uslugowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń na działania usługowe od 50.001zł do 100.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenOd50001Do100000PlnNaDzialaniaUslugowe = 0;
 
+    /**
+     * Liczba poręczeń na działania usługowe od 100.001zł do 500.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_od_100001_do_500000_pln_dzial_uslugowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń na działania usługowe od 100.001zł do 500.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenOd100001Do500000PlnNaDzialaniaUslugowe = 0;
 
+    /**
+     * Liczba poręczeń na działania usługowe powyżej 500.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_od_500001_pln_dzial_uslugowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń na działania usługowe powyżej 500.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenOd500001PlnNaDzialaniaUslugowe = 0;
 
+    /**
+     * Liczba poręczeń na działania budowniczedo 50.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_do_50000_pln_dzial_budownicze",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń na działania budowniczedo 50.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenDo50000PlnNaDzialaniaBudownicze = 0;
 
+    /**
+     * Liczba poręczeń na działania budowniczeod 50.001zł do 100.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_od_50001_do_100000_pln_dzial_budownicze",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń na działania budowniczeod 50.001zł do 100.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenOd50001Do100000PlnNaDzialaniaBudownicze = 0;
 
+    /**
+     * Liczba poręczeń na działania budowniczeod 100.001zł do 500.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_od_100001_do_500000_pln_dzial_budownicze",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń na działania budowniczeod 100.001zł do 500.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenOd100001Do500000PlnNaDzialaniaBudownicze = 0;
 
+    /**
+     * Liczba poręczeń na działania budowniczepowyżej 500.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_od_500001_pln_dzial_budownicze",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń na działania budowniczepowyżej 500.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenOd500001PlnNaDzialaniaBudownicze = 0;
 
+    /**
+     * Liczba poręczeń na działania inne od 50.001zł do 100.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_od_50001_do_100000_pln_dzial_inne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń na działania inne od 50.001zł do 100.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenOd50001Do100000PlnNaDzialaniaInne = 0;
 
+    /**
+     * Liczba poręczeń na działania inne od 100.001zł do 500.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_od_100001_do_500000_pln_dzial_inne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń na działania inne od 100.001zł do 500.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenOd100001Do500000PlnNaDzialaniaInne = 0;
 
-
-
-
-
-
-
-
-
+    /**
+     * Liczba poręczeń na działania inne powyżej 500.000zł.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_od_500001_pln_dzial_inne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń na działania inne powyżej 500.000zł.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenOd500001PlnNaDzialaniaInne = 0;
 
 
 
@@ -1910,4 +2142,402 @@ class DanePoreczen
 
         return $this;
     }
+
+    /**
+     * Zwraca wartość liczby poręczeń na działania handlowe do 50.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenDo50000PlnNaDzialaniaHandlowe()
+    {
+        return $this->liczbaPoreczenDo50000PlnNaDzialaniaHandlowe;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń na działania handlowe do 50.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenDo50000PlnNaDzialaniaHandlowe(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenDo50000PlnNaDzialaniaHandlowe = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń na działania handlowe od 50.001zł do 100.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenOd50001Do100000PlnNaDzialaniaHandlowe()
+    {
+        return $this->liczbaPoreczenOd50001Do100000PlnNaDzialaniaHandlowe;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń na działania handlowe od 50.001zł do 100.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenOd50001Do100000PlnNaDzialaniaHandlowe(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenOd50001Do100000PlnNaDzialaniaHandlowe = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń na działania handlowe od 100.001zł do 500.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenOd100001Do500000PlnNaDzialaniaHandlowe()
+    {
+        return $this->liczbaPoreczenOd100001Do500000PlnNaDzialaniaHandlowe;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń na działania handlowe od 100.001zł do 500.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenOd100001Do500000PlnNaDzialaniaHandlowe(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenOd100001Do500000PlnNaDzialaniaHandlowe = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń na działania handlowe powyżej 500.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenOd500001PlnNaDzialaniaHandlowe()
+    {
+        return $this->liczbaPoreczenOd500001PlnNaDzialaniaHandlowe;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń na działania handlowe powyżej 500.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenOd500001PlnNaDzialaniaHandlowe(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenOd500001PlnNaDzialaniaHandlowe = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń na działania usługowe do 50.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenDo50000PlnNaDzialaniaUslugowe()
+    {
+        return $this->liczbaPoreczenDo50000PlnNaDzialaniaUslugowe;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń na działania usługowe do 50.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenDo50000PlnNaDzialaniaUslugowe(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenDo50000PlnNaDzialaniaUslugowe = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń na działania usługowe od 50.001zł do 100.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenOd50001Do100000PlnNaDzialaniaUslugowe()
+    {
+        return $this->liczbaPoreczenOd50001Do100000PlnNaDzialaniaUslugowe;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń na działania usługowe od 50.001zł do 100.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenOd50001Do100000PlnNaDzialaniaUslugowe(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenOd50001Do100000PlnNaDzialaniaUslugowe = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń na działania usługowe od 100.001zł do 500.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenOd100001Do500000PlnNaDzialaniaUslugowe()
+    {
+        return $this->liczbaPoreczenOd100001Do500000PlnNaDzialaniaUslugowe;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń na działania usługowe od 100.001zł do 500.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenOd100001Do500000PlnNaDzialaniaUslugowe(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenOd100001Do500000PlnNaDzialaniaUslugowe = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń na działania usługowe powyżej 500.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenOd500001PlnNaDzialaniaUslugowe()
+    {
+        return $this->liczbaPoreczenOd500001PlnNaDzialaniaUslugowe;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń na działania usługowe powyżej 500.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenOd500001PlnNaDzialaniaUslugowe(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenOd500001PlnNaDzialaniaUslugowe = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń na działania budownicze do 50.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenDo50000PlnNaDzialaniaBudownicze()
+    {
+        return $this->liczbaPoreczenDo50000PlnNaDzialaniaBudownicze;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń na działania budownicze do 50.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenDo50000PlnNaDzialaniaBudownicze(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenDo50000PlnNaDzialaniaBudownicze = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń na działania budownicze od 50.001zł do 100.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenOd50001Do100000PlnNaDzialaniaBudownicze()
+    {
+        return $this->liczbaPoreczenOd50001Do100000PlnNaDzialaniaBudownicze;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń na działania budownicze od 50.001zł do 100.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenOd50001Do100000PlnNaDzialaniaBudownicze(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenOd50001Do100000PlnNaDzialaniaBudownicze = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń na działania budownicze od 100.001zł do 500.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenOd100001Do500000PlnNaDzialaniaBudownicze()
+    {
+        return $this->liczbaPoreczenOd100001Do500000PlnNaDzialaniaBudownicze;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń na działania budownicze od 100.001zł do 500.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenOd100001Do500000PlnNaDzialaniaBudownicze(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenOd100001Do500000PlnNaDzialaniaBudownicze = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń na działania budownicze powyżej 500.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenOd500001PlnNaDzialaniaBudownicze()
+    {
+        return $this->liczbaPoreczenOd500001PlnNaDzialaniaBudownicze;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń na działania budownicze powyżej 500.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenOd500001PlnNaDzialaniaBudownicze(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenOd500001PlnNaDzialaniaBudownicze = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń na działania inne do 50.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenDo50000PlnNaDzialaniaInne()
+    {
+        return $this->liczbaPoreczenDo50000PlnNaDzialaniaInne;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń na działania inne do 50.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenDo50000PlnNaDzialaniaInne(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenDo50000PlnNaDzialaniaInne = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń na działania inne od 50.001zł do 100.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenOd50001Do100000PlnNaDzialaniaInne()
+    {
+        return $this->liczbaPoreczenOd50001Do100000PlnNaDzialaniaInne;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń na działania inne od 50.001zł do 100.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenOd50001Do100000PlnNaDzialaniaInne(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenOd50001Do100000PlnNaDzialaniaInne = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń na działania inne od 100.001zł do 500.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenOd100001Do500000PlnNaDzialaniaInne()
+    {
+        return $this->liczbaPoreczenOd100001Do500000PlnNaDzialaniaInne;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń na działania inne od 100.001zł do 500.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenOd100001Do500000PlnNaDzialaniaInne(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenOd100001Do500000PlnNaDzialaniaInne = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń na działania inne powyżej 500.000zł.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenOd500001PlnNaDzialaniaInne()
+    {
+        return $this->liczbaPoreczenOd500001PlnNaDzialaniaInne;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń na działania inne powyżej 500.000zł.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenOd500001PlnNaDzialaniaInne(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenOd500001PlnNaDzialaniaInne = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
