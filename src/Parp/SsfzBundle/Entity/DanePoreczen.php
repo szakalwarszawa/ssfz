@@ -1379,7 +1379,7 @@ class DanePoreczen
      *
      * @return DanePozyczek
      */
-    public function setSprawozdanie(SprawozdaniePozyczkowe $sprawozdanie)
+    public function setSprawozdanie(SprawozdaniePoreczeniowe $sprawozdanie)
     {
         $this->sprawozdanie = $sprawozdanie;
 

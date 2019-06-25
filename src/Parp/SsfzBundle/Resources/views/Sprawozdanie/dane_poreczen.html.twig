@@ -25,13 +25,244 @@
                 </div>
 
                 <div class="col-md-12">
+
+
+
+
+                    <hr />
+                    {{ form_start(form) }}
+                        <h4>Dane dotyczące aktywnych poręczeń w sprawozdawanym okresie</h4>
+                        <table class="table table-bordered table-condensed table-striped">
+                            <tr>
+                                <td rowspan="3" class="info credit-range col-md-1"></td>
+                                <td colspan="3" class="text-center col-md-3"><strong>Według typu przedsiębiorstwa</strong></td>
+                                <td colspan="6" class="text-center col-md-6"><strong>Według przeznaczenia</strong></td>
+                                <td colspan="5" class="text-center col-md-5"><strong>Według działania pożyczkobiorcy</strong></td>
+                                <td colspan="3" class="text-center col-md-3"><strong>Poręczenia udzielone</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td rowspan="2" class="text-center">Mikro</td>
+                                <td rowspan="2" class="text-center">Małe</td>
+                                <td rowspan="2" class="text-center">Śrdnie</td>
+                                <td rowspan="2" class="text-center">kredyt obrotowy</td>
+                                <td rowspan="2" class="text-center">kredyt inwestycyjny</td>
+                                <td rowspan="2" class="text-center">pożyczka obrotowa</td>
+                                <td rowspan="2" class="text-center">pożyczka inwestycyjna</td>
+                                <td colspan="2" class="text-center">pozostale</td>
+                                <td rowspan="2" class="text-center">produkcja</td>
+                                <td rowspan="2" class="text-center">handel</td>
+                                <td rowspan="2" class="text-center">usługi</td>
+                                <td rowspan="2" class="text-center">budownictwo</td>
+                                <td rowspan="2" class="text-center">inne</td>
+                                <td rowspan="2" class="text-center">bankom</td>
+                                <td rowspan="2" class="text-center">funduszom pożyczkowym</td>
+                                <td rowspan="2" class="text-center">innym podmiotom</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center"></td>
+                                <td class="text-center">w tym wadia</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="18" class="info text-center"><strong>Liczba poręczeń (szt.)</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center credit-range">do 50 000 zł</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center credit-range">od 50 001 zł<br />do 100 000 zł</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center credit-range">od 100 001 zł<br />do 500 000 zł</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                            </tr>
+
+                             <tr>
+                                <td class="text-center credit-range">od 500 001 zł</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="18" class="info text-center"><strong>Wartość pożyczek (zł)</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center credit-range">do 50 000 zł</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center credit-range">od 50 001 zł<br />do 100 000 zł</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center credit-range">od 100 001 zł<br />do 500 000 zł</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                            </tr>
+
+                             <tr>
+                                <td class="text-center credit-range">od 500 001 zł</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                            </tr>
+                        </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     <hr />
 
                     <h4> Podmioty współpracujące z funduszem</h4>
                     <div class="col-md-7">
                         <table class="table table-bordered table-condensed table-striped">
                             <tr>
-                                <td>Liczba podmiotów współpracujących z funduszem</td>
+                                <td><strong>Liczba podmiotów współpracujących z funduszem</strong></td>
                                 <td class="text-center"><strong data-vertical-group-sum="34">0</strong></td>
                             </tr>
                             <tr>

@@ -64,9 +64,8 @@ class PozyczkiController extends Controller
         return $this->edytujDanePozyczekAction($request, $danePozyczek->getId());
     }
 
-
     /**
-     * Wyświetla formularz danych pożyczki na podstawie jej ID.
+     * Wyświetla formularz danych pożyczek na podstawie jego ID.
      *
      * @Method({"GET", "POST"})
      * @Route("/{id}", name="edycja_danych_pozyczek")
@@ -125,10 +124,8 @@ class PozyczkiController extends Controller
         ]);
     }
 
-
-
     /**
-     * Wyświetla raport z podsumowaniem danych pożyczki dla sprawozdania o zadanym ID.
+     * Wyświetla raport z podsumowaniem danych pożyczek dla sprawozdania o zadanym ID.
      *
      * @Method({"GET"})
      * @Route("/sprawozdanie/podglad/{id}", name="podglad_danych_pozyczek_dla_sprawozdania")
