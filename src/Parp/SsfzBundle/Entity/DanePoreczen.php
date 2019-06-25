@@ -3093,5 +3093,4 @@ class DanePoreczen
 
         return $this;
     }
-
 }
