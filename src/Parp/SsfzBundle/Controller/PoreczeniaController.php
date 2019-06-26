@@ -64,28 +64,14 @@ class PoreczeniaController extends Controller
         return $this->edytujDanePoreczenAction($request, $danePoreczen->getId());
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Wyświetla formularz danych poręczeń na podstawie jego ID.
      *
      * @Method({"GET", "POST"})
-     * @Route("/{id}", name="edycja_danych_pozyczek")
+     * @Route("/{id}", name="edycja_danych_poreczen")
      *
      * @param Request $request
-     * @param int $id Identyfikator danych pożyczki
+     * @param int $id Identyfikator danych poręczeń
      *
      * @return Response
      *
@@ -106,7 +92,7 @@ class PoreczeniaController extends Controller
             throw new EntityNotFoundException('Nie znaleziono danych poręczeń o ID: '.(string) $id);
         }
 
-        $actionUrl = $this->generateUrl('edycja_danych_pozyczek', [
+        $actionUrl = $this->generateUrl('edycja_danych_poreczen', [
             'id' => $id,
         ]);
         $formularz = $this->createForm(DanePoreczenType::class, $danePoreczen, [
@@ -135,6 +121,44 @@ class PoreczeniaController extends Controller
             'form'            => $formularz->createView(),
             'dane_poreczen'   => $danePoreczen,
             'fluid_container' => true,
+        ]);
+    }
+
+    /**
+     * Usuwa dane poręczeń o zadanym ID.
+     *
+     * @todo Dodać sprawdzanie uprawnień do usuwanych danych.
+     *
+     * @param Request $request
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function usunDanePoreczenAction(Request $request, int $id)
+    {
+        $entityManager = $this
+            ->getDoctrine()
+            ->getManager()
+        ;
+
+        $danePoreczen = $entityManager
+            ->getRepository(DanePoreczen::class)
+            ->find($id)
+        ;
+        if (!$danePoreczen) {
+            throw new EntityNotFoundException('Nie znaleziono danych poręczeń o ID: '.(string) $id);
+        }
+
+        $sprawozdanie = $danePoreczen->getSprawozdanie();
+
+        $danePoreczen = $entityManager
+            ->getRepository(DanePoreczen::class)
+            ->remove($danePoreczen, true)
+        ;
+
+        return $this->forward('AppBundle:Something:fancy', [
+            'id'      => $sprawozdanie->getId(),
+            'request' => $request,
         ]);
     }
 }

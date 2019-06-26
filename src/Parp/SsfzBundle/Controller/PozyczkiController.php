@@ -158,7 +158,6 @@ class PozyczkiController extends Controller
         ]);
     }
 
-
     /**
      * Usuwa dane pożyczek o zadanym ID.
      *

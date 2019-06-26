@@ -25,16 +25,12 @@
                 </div>
 
                 <div class="col-md-12">
-
-
-
-
                     <hr />
                     {{ form_start(form) }}
-                        <h4>Dane dotyczące aktywnych poręczeń w sprawozdawanym okresie</h4>
+                        <h4>Dane dotyczące udzielonych poręczeń w sprawozdawanym okresie </h4>
                         <table class="table table-bordered table-condensed table-striped">
                             <tr>
-                                <td rowspan="3" class="info credit-range col-md-1"></td>
+                                <td rowspan="3" class="info guarantee-range col-md-1"></td>
                                 <td colspan="3" class="text-center col-md-3"><strong>Według typu przedsiębiorstwa</strong></td>
                                 <td colspan="6" class="text-center col-md-6"><strong>Według przeznaczenia</strong></td>
                                 <td colspan="5" class="text-center col-md-5"><strong>Według działania pożyczkobiorcy</strong></td>
@@ -71,86 +67,86 @@
 
                             <tr>
                                 <td class="text-center credit-range">do 50 000 zł</td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenDo50000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenDo50000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenDo50000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenNaKredytObrotowyDo50000Pln, {'attr': {'data-vertical-group': '4', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenNaKredytInwestycyjnyDo50000Pln, {'attr': {'data-vertical-group': '5', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenNaPozyczkeObrotowaDo50000Pln, {'attr': {'data-vertical-group': '6', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenNaPozyczkeInwestycyjnaDo50000Pln, {'attr': {'data-vertical-group': '7', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenPozostalychDo50000Pln, {'attr': {'data-vertical-group': '8', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaWadiowPoreczenPozostalychDo50000Pln, {'attr': {'data-vertical-group': '9', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenDo50000PlnNaDzialaniaProdukcyjne, {'attr': {'data-vertical-group': '10', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenDo50000PlnNaDzialaniaHandlowe, {'attr': {'data-vertical-group': '11', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenDo50000PlnNaDzialaniaUslugowe, {'attr': {'data-vertical-group': '12', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenDo50000PlnNaDzialaniaBudownicze, {'attr': {'data-vertical-group': '13', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenDo50000PlnNaDzialaniaInne, {'attr': {'data-vertical-group': '14', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenDo50000PlnDlaBankow, {'attr': {'data-vertical-group': '15', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenDo50000PlnDlaFunduszyPozyczkowych, {'attr': {'data-vertical-group': '16', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenDo50000PlnDlaInnychPodmiotow, {'attr': {'data-vertical-group': '17', 'data-horizontal-group': '4'}}) }}</td>
                             </tr>
 
                             <tr>
                                 <td class="text-center credit-range">od 50 001 zł<br />do 100 000 zł</td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd50001Do100000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd50001Do100000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd50001Do100000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenNaKredytObrotowyOd50001Do100000Pln, {'attr': {'data-vertical-group': '4', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenNaKredytInwestycyjnyOd50001Do100000Pln, {'attr': {'data-vertical-group': '5', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenNaPozyczkeObrotowaOd50001Do100000Pln, {'attr': {'data-vertical-group': '6', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenNaPozyczkeInwestycyjnaOd50001Do100000Pln, {'attr': {'data-vertical-group': '7', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenPozostalychOd50001Do100000Pln, {'attr': {'data-vertical-group': '8', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaWadiowPoreczenPozostalychOd50001Do100000Pln, {'attr': {'data-vertical-group': '9', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd50001Do100000PlnNaDzialaniaProdukcyjne, {'attr': {'data-vertical-group': '10', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd50001Do100000PlnNaDzialaniaHandlowe, {'attr': {'data-vertical-group': '11', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd50001Do100000PlnNaDzialaniaUslugowe, {'attr': {'data-vertical-group': '12', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd50001Do100000PlnNaDzialaniaBudownicze, {'attr': {'data-vertical-group': '13', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd50001Do100000PlnNaDzialaniaInne, {'attr': {'data-vertical-group': '14', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd50001Do100000PlnDlaBankow, {'attr': {'data-vertical-group': '15', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd50001Do100000PlnDlaFunduszyPozyczkowych, {'attr': {'data-vertical-group': '16', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd50001Do100000PlnDlaInnychPodmiotow, {'attr': {'data-vertical-group': '17', 'data-horizontal-group': '4'}}) }}</td>
                             </tr>
 
                             <tr>
                                 <td class="text-center credit-range">od 100 001 zł<br />do 500 000 zł</td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd100001Do500000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd100001Do500000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd100001Do500000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenNaKredytObrotowyOd100001Do500000Pln, {'attr': {'data-vertical-group': '4', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenNaKredytInwestycyjnyOd100001Do500000Pln, {'attr': {'data-vertical-group': '5', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenNaPozyczkeObrotowaOd100001Do500000Pln, {'attr': {'data-vertical-group': '6', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenNaPozyczkeInwestycyjnaOd100001Do500000Pln, {'attr': {'data-vertical-group': '7', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenPozostalychOd100001Do500000Pln, {'attr': {'data-vertical-group': '8', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaWadiowPoreczenPozostalychOd100001Do500000Pln, {'attr': {'data-vertical-group': '9', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd100001Do500000PlnNaDzialaniaProdukcyjne, {'attr': {'data-vertical-group': '10', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd100001Do500000PlnNaDzialaniaHandlowe, {'attr': {'data-vertical-group': '11', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd100001Do500000PlnNaDzialaniaUslugowe, {'attr': {'data-vertical-group': '12', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd100001Do500000PlnNaDzialaniaBudownicze, {'attr': {'data-vertical-group': '13', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd100001Do500000PlnNaDzialaniaInne, {'attr': {'data-vertical-group': '14', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd100001Do500000PlnDlaBankow, {'attr': {'data-vertical-group': '15', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd100001Do500000PlnDlaFunduszyPozyczkowych, {'attr': {'data-vertical-group': '16', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd100001Do500000PlnDlaInnychPodmiotow, {'attr': {'data-vertical-group': '17', 'data-horizontal-group': '4'}}) }}</td>
                             </tr>
 
                              <tr>
                                 <td class="text-center credit-range">od 500 001 zł</td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd500001PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd500001PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd500001PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3', 'data-horizontal-group': '1'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenNaKredytObrotowyOd500001Pln, {'attr': {'data-vertical-group': '4', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenNaKredytInwestycyjnyOd500001Pln, {'attr': {'data-vertical-group': '5', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenNaPozyczkeObrotowaOd500001Pln, {'attr': {'data-vertical-group': '6', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenNaPozyczkeInwestycyjnaOd500001Pln, {'attr': {'data-vertical-group': '7', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenPozostalychOd500001Pln, {'attr': {'data-vertical-group': '8', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaWadiowPoreczenPozostalychOd500001Pln, {'attr': {'data-vertical-group': '9', 'data-horizontal-group': '2'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd500001PlnNaDzialaniaProdukcyjne, {'attr': {'data-vertical-group': '10', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd500001PlnNaDzialaniaHandlowe, {'attr': {'data-vertical-group': '11', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd500001PlnNaDzialaniaUslugowe, {'attr': {'data-vertical-group': '12', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd500001PlnNaDzialaniaBudownicze, {'attr': {'data-vertical-group': '13', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd500001PlnNaDzialaniaInne, {'attr': {'data-vertical-group': '14', 'data-horizontal-group': '3'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd500001PlnDlaBankow, {'attr': {'data-vertical-group': '15', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd500001PlnDlaFunduszyPozyczkowych, {'attr': {'data-vertical-group': '16', 'data-horizontal-group': '4'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.liczbaPoreczenOd500001PlnDlaInnychPodmiotow, {'attr': {'data-vertical-group': '17', 'data-horizontal-group': '4'}}) }}</td>
                             </tr>
 
                             <tr>
@@ -159,135 +155,124 @@
 
                             <tr>
                                 <td class="text-center credit-range">do 50 000 zł</td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenDo50000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '18', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenDo50000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '19', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenDo50000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '20', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenNaKredytObrotowyDo50000Pln, {'attr': {'data-vertical-group': '21', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenNaKredytInwestycyjnyDo50000Pln, {'attr': {'data-vertical-group': '22', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenNaPozyczkeObrotowaDo50000Pln, {'attr': {'data-vertical-group': '23', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenNaPozyczkeInwestycyjnaDo50000Pln, {'attr': {'data-vertical-group': '24', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenPozostalychDo50000Pln, {'attr': {'data-vertical-group': '25', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaWadiowPoreczenPozostalychDo50000Pln, {'attr': {'data-vertical-group': '26', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenDo50000PlnNaDzialaniaProdukcyjne, {'attr': {'data-vertical-group': '27', 'data-horizontal-group': '7'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenDo50000PlnNaDzialaniaHandlowe, {'attr': {'data-vertical-group': '28', 'data-horizontal-group': '7'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenDo50000PlnNaDzialaniaUslugowe, {'attr': {'data-vertical-group': '29', 'data-horizontal-group': '7'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenDo50000PlnNaDzialaniaBudownicze, {'attr': {'data-vertical-group': '30', 'data-horizontal-group': '7'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenDo50000PlnNaDzialaniaInne, {'attr': {'data-vertical-group': '31', 'data-horizontal-group': '7'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenDo50000PlnDlaBankow, {'attr': {'data-vertical-group': '32', 'data-horizontal-group': '8'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenDo50000PlnDlaFunduszyPozyczkowych, {'attr': {'data-vertical-group': '33', 'data-horizontal-group': '8'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenDo50000PlnDlaInnychPodmiotow, {'attr': {'data-vertical-group': '34', 'data-horizontal-group': '8'}}) }}</td>
                             </tr>
 
                             <tr>
                                 <td class="text-center credit-range">od 50 001 zł<br />do 100 000 zł</td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd50001Do100000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '18', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd50001Do100000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '19', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd50001Do100000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '20', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenNaKredytObrotowyOd50001Do100000Pln, {'attr': {'data-vertical-group': '21', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenNaKredytInwestycyjnyOd50001Do100000Pln, {'attr': {'data-vertical-group': '22', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenNaPozyczkeObrotowaOd50001Do100000Pln, {'attr': {'data-vertical-group': '23', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenNaPozyczkeInwestycyjnaOd50001Do100000Pln, {'attr': {'data-vertical-group': '24', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenPozostalychOd50001Do100000Pln, {'attr': {'data-vertical-group': '25', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaWadiowPoreczenPozostalychOd50001Do100000Pln, {'attr': {'data-vertical-group': '26', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd50001Do100000PlnNaDzialaniaProdukcyjne, {'attr': {'data-vertical-group': '27', 'data-horizontal-group': '7'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd50001Do100000PlnNaDzialaniaHandlowe, {'attr': {'data-vertical-group': '28', 'data-horizontal-group': '7'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd50001Do100000PlnNaDzialaniaUslugowe, {'attr': {'data-vertical-group': '29', 'data-horizontal-group': '7'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd50001Do100000PlnNaDzialaniaBudownicze, {'attr': {'data-vertical-group': '30', 'data-horizontal-group': '7'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd50001Do100000PlnNaDzialaniaInne, {'attr': {'data-vertical-group': '31', 'data-horizontal-group': '7'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd50001Do100000PlnDlaBankow, {'attr': {'data-vertical-group': '32', 'data-horizontal-group': '8'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd50001Do100000PlnDlaFunduszyPozyczkowych, {'attr': {'data-vertical-group': '33', 'data-horizontal-group': '8'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd50001Do100000PlnDlaInnychPodmiotow, {'attr': {'data-vertical-group': '34', 'data-horizontal-group': '8'}}) }}</td>
                             </tr>
 
                             <tr>
                                 <td class="text-center credit-range">od 100 001 zł<br />do 500 000 zł</td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd100001Do500000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '18', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd100001Do500000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '19', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd100001Do500000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '20', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenNaKredytObrotowyOd100001Do500000Pln, {'attr': {'data-vertical-group': '21', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenNaKredytInwestycyjnyOd100001Do500000Pln, {'attr': {'data-vertical-group': '22', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenNaPozyczkeObrotowaOd100001Do500000Pln, {'attr': {'data-vertical-group': '23', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenNaPozyczkeInwestycyjnaOd100001Do500000Pln, {'attr': {'data-vertical-group': '24', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenPozostalychOd100001Do500000Pln, {'attr': {'data-vertical-group': '25', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaWadiowPoreczenPozostalychOd100001Do500000Pln, {'attr': {'data-vertical-group': '26', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd100001Do500000PlnNaDzialaniaProdukcyjne, {'attr': {'data-vertical-group': '27', 'data-horizontal-group': '7'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd100001Do500000PlnNaDzialaniaHandlowe, {'attr': {'data-vertical-group': '28', 'data-horizontal-group': '7'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd100001Do500000PlnNaDzialaniaUslugowe, {'attr': {'data-vertical-group': '29', 'data-horizontal-group': '7'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd100001Do500000PlnNaDzialaniaBudownicze, {'attr': {'data-vertical-group': '30', 'data-horizontal-group': '7'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd100001Do500000PlnNaDzialaniaInne, {'attr': {'data-vertical-group': '31', 'data-horizontal-group': '7'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd100001Do500000PlnDlaBankow, {'attr': {'data-vertical-group': '32', 'data-horizontal-group': '8'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd100001Do500000PlnDlaFunduszyPozyczkowych, {'attr': {'data-vertical-group': '33', 'data-horizontal-group': '8'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd100001Do500000PlnDlaInnychPodmiotow, {'attr': {'data-vertical-group': '34', 'data-horizontal-group': '8'}}) }}</td>
                             </tr>
 
                              <tr>
                                 <td class="text-center credit-range">od 500 001 zł</td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd500001PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '18', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd500001PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '19', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd500001PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '20', 'data-horizontal-group': '5'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenNaKredytObrotowyOd500001Pln, {'attr': {'data-vertical-group': '21', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenNaKredytInwestycyjnyOd500001Pln, {'attr': {'data-vertical-group': '22', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenNaPozyczkeObrotowaOd500001Pln, {'attr': {'data-vertical-group': '23', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenNaPozyczkeInwestycyjnaOd500001Pln, {'attr': {'data-vertical-group': '24', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenPozostalychOd500001Pln, {'attr': {'data-vertical-group': '25', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaWadiowPoreczenPozostalychOd500001Pln, {'attr': {'data-vertical-group': '26', 'data-horizontal-group': '6'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd500001PlnNaDzialaniaProdukcyjne, {'attr': {'data-vertical-group': '27', 'data-horizontal-group': '7'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd500001PlnNaDzialaniaHandlowe, {'attr': {'data-vertical-group': '28', 'data-horizontal-group': '7'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd500001PlnNaDzialaniaUslugowe, {'attr': {'data-vertical-group': '29', 'data-horizontal-group': '7'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd500001PlnNaDzialaniaBudownicze, {'attr': {'data-vertical-group': '30', 'data-horizontal-group': '7'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd500001PlnNaDzialaniaInne, {'attr': {'data-vertical-group': '31', 'data-horizontal-group': '7'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd500001PlnDlaBankow, {'attr': {'data-vertical-group': '32', 'data-horizontal-group': '8'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd500001PlnDlaFunduszyPozyczkowych, {'attr': {'data-vertical-group': '33', 'data-horizontal-group': '8'}}) }}</td>
+                                <td class="text-center">{{ form_widget(form.kwotaPoreczenOd500001PlnDlaInnychPodmiotow, {'attr': {'data-vertical-group': '34', 'data-horizontal-group': '8'}}) }}</td>
                             </tr>
                         </table>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    <hr />
-
-                    <h4> Podmioty współpracujące z funduszem</h4>
-                    <div class="col-md-7">
-                        <table class="table table-bordered table-condensed table-striped">
-                            <tr>
-                                <td><strong>Liczba podmiotów współpracujących z funduszem</strong></td>
-                                <td class="text-center"><strong data-vertical-group-sum="34">0</strong></td>
-                            </tr>
-                            <tr>
-                                <td>Liczba współpracujących banków</td>
-                                <td class="text-center">{{ form_widget(form.liczbaWspolpracujacychBankow, {'attr': {'data-vertical-group': '34', 'data-horizontal-group': '9'}}) }}</td>
-                            </tr>
-                            <tr>
-                                <td>Liczba współpracujących funduszy pożyczkowych</td>
-                                <td class="text-center">{{ form_widget(form.liczbaWspolpracujacychFunduszyPozyczkowych, {'attr': {'data-vertical-group': '34', 'data-horizontal-group': '9'}}) }}</td>
-                            </tr>
-                            <tr>
-                                <td>Liczba innych podmiotów współpracujących</td>
-                                <td class="text-center">{{ form_widget(form.liczbaInnychPodmiotowWspolpracujacych, {'attr': {'data-vertical-group': '34', 'data-horizontal-group': '9'}}) }}</td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <div class="col-md-12">
                         <hr />
-                        <br />
-                        <a id="button_return"
-                            class="btn btn-default"
-                            href="{{ url('lista_sprawozdan_spo', {'umowa': dane_poreczen.sprawozdanie.umowaId}) }}"><i class="fas fa-chevron-left"></i> Powrót</a>
-                        <button id="button_submit" type="submit" class="btn btn-success"><i class="fas fa-save"></i> Zapisz</button>
-                    </div>
+
+                        <h4> Podmioty współpracujące z funduszem</h4>
+                        <div class="col-md-7">
+                            <table class="table table-bordered table-condensed table-striped">
+                                <tr>
+                                    <td><strong>Liczba podmiotów współpracujących z funduszem</strong></td>
+                                    <td class="text-center"><strong data-vertical-group-sum="34">0</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Liczba współpracujących banków</td>
+                                    <td class="text-center">{{ form_widget(form.liczbaWspolpracujacychBankow, {'attr': {'data-vertical-group': '35', 'data-horizontal-group': '9'}}) }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Liczba współpracujących funduszy pożyczkowych</td>
+                                    <td class="text-center">{{ form_widget(form.liczbaWspolpracujacychFunduszyPozyczkowych, {'attr': {'data-vertical-group': '35', 'data-horizontal-group': '9'}}) }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Liczba innych podmiotów współpracujących</td>
+                                    <td class="text-center">{{ form_widget(form.liczbaInnychPodmiotowWspolpracujacych, {'attr': {'data-vertical-group': '35', 'data-horizontal-group': '9'}}) }}</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col-md-12">
+                            <hr />
+                            <br />
+                            <a id="button_return"
+                                class="btn btn-default"
+                                href="{{ url('lista_sprawozdan_spo', {'umowa': dane_poreczen.sprawozdanie.umowaId}) }}"><i class="fas fa-chevron-left"></i> Powrót</a>
+                            <button id="button_submit" type="submit" class="btn btn-success"><i class="fas fa-save"></i> Zapisz</button>
+                        </div>
+
+                    {{ form_widget(form._token) }}
+                    {{ form_end(form, {'render_rest': false}) }}
                 </div>
             </div>
         </div>
@@ -296,7 +281,7 @@
     <script>
         $(document).ready(function () {
             function sumByGroup() {
-                var verticalGroupsInteger = ['34'],
+                var verticalGroupsInteger = ['35'],
                     verticalGroupsDecimal = [],
                     horizontalGroupsInteger = ['9'],
                     horizontalGroupsDecimal = [],
