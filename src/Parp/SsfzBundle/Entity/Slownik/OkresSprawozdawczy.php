@@ -213,6 +213,11 @@ class OkresSprawozdawczy
         return $this->getMonths() === 12;
     }
 
+    /**
+     * Zwraca okres sprawozdawczy jako liczbę miesięcy.
+     *
+     * @return int
+     */
     private function getMonths(): int
     {
         $diff = $this->miesiacKoncowy - $this->miesiacPoczatkowy;

@@ -27,7 +27,7 @@ class OkresSprawozdawczyRepository extends EntityRepository
             ->getQuery()
             ->getResult()
         ;
-        foreach ($dict as $key => $value) {
+        foreach ($result as $key => $value) {
             if ($value->jestRoczny()) {
                 $dict[$key] = $value;
             }
@@ -51,7 +51,7 @@ class OkresSprawozdawczyRepository extends EntityRepository
             ->getQuery()
             ->getResult()
         ;
-        foreach ($dict as $key => $value) {
+        foreach ($result as $key => $value) {
             if ($value->jestPolroczny()) {
                 $dict[$key] = $value;
             }
