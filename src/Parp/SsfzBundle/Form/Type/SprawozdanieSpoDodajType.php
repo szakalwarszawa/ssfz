@@ -22,9 +22,9 @@ use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
 use Parp\SsfzBundle\Entity\Slownik\CzestotliwoscSprawozdan;
 
 /**
- * Typ formularza sprawozdania
+ * Formuularz DodanieSprawozdaniaSpoType
  */
-class SprawozdanieSpoDodajType extends AbstractType
+class DodanieSprawozdaniaSpoType extends AbstractType
 {
     /**
      * @var CzestotliwoscSprawozdan

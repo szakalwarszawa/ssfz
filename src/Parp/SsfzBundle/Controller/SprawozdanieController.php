@@ -26,7 +26,7 @@ use Parp\SsfzBundle\Exception\KomunikatDlaBeneficjentaException;
 use Parp\SsfzBundle\Form\Type\SprawozdanieType;
 use Parp\SsfzBundle\Form\Type\SprawozdaniePozyczkoweType;
 use Parp\SsfzBundle\Form\Type\SprawozdaniePoreczenioweType;
-use Parp\SsfzBundle\Form\Type\SprawozdanieSpoDodajType;
+use Parp\SsfzBundle\Form\Type\DodanieSprawozdaniaSpoType;
 use Parp\SsfzBundle\Service\TypSprawozdaniaGuesserService;
 
 /**
@@ -592,7 +592,7 @@ class SprawozdanieController extends Controller
         $sprawozdanie->setNumerUmowy($umowa->getNumer());
         $okresy = $this->getOkresySprawozdawcze();
         $form = $this->createForm(
-            SprawozdanieSpoDodajType::class,
+            DodanieSprawozdaniaSpoType::class,
             $sprawozdanie,
             array('okresy' => $okresy)
         );
