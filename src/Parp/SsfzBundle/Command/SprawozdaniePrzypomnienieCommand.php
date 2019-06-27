@@ -82,6 +82,7 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand
         
         $czyPierwszyTermin = (0 == $this->dzisiejszaData->diffInDays($this->pierwszyTermin, false));
         $czyDrugiTermin = (0 == $this->dzisiejszaData->diffInDays($this->drugiTermin, false));
+        // 9 poziomów wymieszanych IF i FOREACHów dla większej szytelności i małej złożoności cyklomatycznej.
         if ($czyPierwszyTermin || $czyDrugiTermin) {
             foreach ($beneficjenciKonta as $beneficjentKonto) {
                 foreach ($beneficjentKonto->getBeneficjenci() as $beneficjent) {

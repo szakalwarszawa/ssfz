@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Parp\SsfzBundle\Entity\Sprawozdanie;
 use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
 use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
+use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
 use Parp\SsfzBundle\Form\Type\SprawozdanieType;
 use Parp\SsfzBundle\Form\Type\SprawozdaniePozyczkoweType;
 use Parp\SsfzBundle\Form\Type\SprawozdaniePoreczenioweType;
@@ -43,14 +44,14 @@ class Program
     protected $nazwa;
     
     /**
-     * Częstotliwość sprawozdań w programie.
+     * Okres sprawozdawczy.
      *
-     * @var CzestotliwoscSprawozdan
+     * @var OkresSprawozdawczy
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\CzestotliwoscSprawozdan")
-     * @ORM\JoinColumn(name="czestotliwosc_sprawozdan_id", referencedColumnName="id", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy")
+     * @ORM\JoinColumn(name="okres_sprawozdawczy_id", referencedColumnName="id", nullable=false)
      */
-    protected $czestotliwoscSprawozdan;
+    protected $okresSprawozdawczy;
 
     /**
      * Get id
@@ -91,6 +92,30 @@ class Program
     {
         $this->nazwa = $nazwa;
         
+        return $this;
+    }
+
+    /**
+     * Zwraca okres sprawozdawczy.
+     *
+     * @return OkresSprawozdawczy
+     */
+    public function getOkresSprawozdawczy()
+    {
+        return $this->okresSprawozdawczy;
+    }
+
+    /**
+     * Ustala okres sprawozdawczy.
+     *
+     * @param OkresSprawozdawczy $okresSprawozdawczy
+     *
+     * @return Program
+     */
+    public function setOkresSprawozdawczy(OkresSprawozdawczy $okresSprawozdawczy)
+    {
+        $this->okresSprawozdawczy = $okresSprawozdawczy;
+
         return $this;
     }
     
@@ -188,29 +213,5 @@ class Program
             default:
                 return SprawozdanieType::class;
         }
-    }
-
-    /**
-     * Set czestotliwoscSprawozdan
-     *
-     * @param CzestotliwoscSprawozdan $czestotliwoscSprawozdan
-     *
-     * @return Program
-     */
-    public function setCzestotliwoscSprawozdan(CzestotliwoscSprawozdan $czestotliwoscSprawozdan = null)
-    {
-        $this->czestotliwoscSprawozdan = $czestotliwoscSprawozdan;
-
-        return $this;
-    }
-
-    /**
-     * Get czestotliwoscSprawozdan
-     *
-     * @return CzestotliwoscSprawozdan
-     */
-    public function getCzestotliwoscSprawozdan()
-    {
-        return $this->czestotliwoscSprawozdan;
     }
 }

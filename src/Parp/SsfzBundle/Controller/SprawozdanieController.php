@@ -591,11 +591,9 @@ class SprawozdanieController extends Controller
         $sprawozdanie = $this->setDefaultValues($sprawozdanie, $umowa);
         $sprawozdanie->setNumerUmowy($umowa->getNumer());
         $okresy = $this->getOkresySprawozdawcze();
-        $form = $this->createForm(
-            DodanieSprawozdaniaSpoType::class,
-            $sprawozdanie,
-            array('okresy' => $okresy)
-        );
+        $form = $this->createForm(DodanieSprawozdaniaSpoType::class, $sprawozdanie, [
+            'okresy' => $okresy,
+        ]);
         
         $program = $umowa->getBeneficjent()->getProgram();
         
@@ -622,7 +620,7 @@ class SprawozdanieController extends Controller
 
                 return $this->redirectToRoute('sprawozdania_spo_edycja', [
                     'typSprawozdania' => $typSprawozdania,
-                    'sprawozdanieId' => $sprawozdanie->getId()
+                    'sprawozdanieId'  => $sprawozdanie->getId()
                 ]);
             }
         }
