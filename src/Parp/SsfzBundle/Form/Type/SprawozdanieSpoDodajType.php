@@ -27,60 +27,52 @@ use Parp\SsfzBundle\Entity\Slownik\CzestotliwoscSprawozdan;
 class DodanieSprawozdaniaSpoType extends AbstractType
 {
     /**
-     * @var CzestotliwoscSprawozdan
-     */
-    protected $czestotliwoscSprawozdan;
-    
-    /**
      * Buduje formularz do wypełniania sprawozdania
      *
      * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $this->czestotliwoscSprawozdan = $builder->getData()->getCzestotliwoscSprawozdanWProgramie();
+        $czestotliwoscSprawozdan = $builder->getData()->getCzestotliwoscSprawozdanWProgramie();
         
-        $builder->add('numerUmowy', null, array(
-            'label' => 'Numer umowy',
-            'attr' => array('readonly' => true),
-            'constraints' => array()
-        ));
+        $builder->add('numerUmowy', null, [
+            'label'       => 'Numer umowy',
+            'attr'        => [
+                'readonly' => true,
+            ],
+        ]);
 
-        $builder->add(
-            'okres',
-            EntityType::class,
-            array(
-                'label'         => 'Sprawozdanie za okres',
-                'class'         => OkresSprawozdawczy::class,
-                'choice_label'  => 'nazwa',
-                'required'      => false,
-                'empty_value'   => null,
-                'query_builder' => function (EntityRepository $repo) {
-                    return $repo
-                        ->createQueryBuilder('o')
-                        ->where('o.czestotliwoscSprawozdan = :czestotliwosc')
-                        ->setParameter('czestotliwosc', $this->czestotliwoscSprawozdan)
-                        ->orderBy('o.id', 'ASC')
-                    ;
-                },
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    )
-                ),
-            )
-        );
+        $builder->add('okres', EntityType::class, [
+            'label'         => 'Sprawozdanie za okres',
+            'class'         => OkresSprawozdawczy::class,
+            'choice_label'  => 'nazwa',
+            'required'      => false,
+            'empty_value'   => null,
+            'query_builder' => function (EntityRepository $repozytorium) use ($czestotliwoscSprawozdan) {
+                return $repozytorium
+                    ->createQueryBuilder('o')
+                    ->where('o.czestotliwoscSprawozdan = :czestotliwosc')
+                    ->setParameter('czestotliwosc', $czestotliwoscSprawozdan)
+                    ->orderBy('o.id', 'ASC')
+                ;
+            },
+            'constraints'   => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
-        $builder->add('rok', ChoiceType::class, array(
-            'label' => 'Rok',
-            'choices' => $options['okresy'],
-            'constraints' => array(
-                new NotBlank(
-                    array('message' => 'Należy wypełnić pole')
-                )
-            )
-        ));
+        $builder->add('rok', ChoiceType::class, [
+            'label'       => 'Rok',
+            'choices'     => $options['okresy'],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
     }
 
     /**
@@ -90,12 +82,14 @@ class DodanieSprawozdaniaSpoType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => AbstractSprawozdanieSpo::class,
-            'attr' => array('novalidate' => 'novalidate'),
-            'showRemarks' => null,
-            'okresy' => null,
+        $resolver->setDefaults([
+            'data_class'         => AbstractSprawozdanieSpo::class,
+            'attr'               => [
+                'novalidate' => 'novalidate',
+            ],
+            'showRemarks'        => null,
+            'okresy'             => null,
             'allow_extra_fields' => true,
-        ));
+        ]);
     }
 }
