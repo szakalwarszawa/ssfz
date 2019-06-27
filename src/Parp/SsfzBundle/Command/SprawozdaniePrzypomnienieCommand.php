@@ -82,7 +82,7 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand
         
         $czyPierwszyTermin = (0 == $this->dzisiejszaData->diffInDays($this->pierwszyTermin, false));
         $czyDrugiTermin = (0 == $this->dzisiejszaData->diffInDays($this->drugiTermin, false));
-        // 9 poziomów wymieszanych IF i FOREACHów dla większej szytelności i małej złożoności cyklomatycznej.
+        // 9 poziomów wymieszanych IF i FOREACH dla większej szytelności i małej złożoności cyklomatycznej.
         if ($czyPierwszyTermin || $czyDrugiTermin) {
             foreach ($beneficjenciKonta as $beneficjentKonto) {
                 foreach ($beneficjentKonto->getBeneficjenci() as $beneficjent) {
@@ -90,8 +90,20 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand
                         $umowy = $beneficjent->getUmowy();
                         if (!is_null($umowy)) {
                             foreach ($umowy as $umowa) {
-                                $czestotliwosc = $umowa->getCzestotliwoscSprawozdanWProgramie();
-                                if ($czyPierwszyTermin || $czestotliwosc->czyPolroczna()) {
+
+                                // Kod jest całkowicie niejasny. Zaślepka z określaniem na podstawie
+                                // pierwszego elementu kolekcji jest tymczasowa, żeby była szansa na zadziałanie.
+                                // $czestotliwosc = $umowa->getCzestotliwoscSprawozdanWProgramie();
+                                $czestotliwoscPolroczna = $umowa
+                                    ->getBeneficjent()
+                                    ->getProgram()
+                                    ->getOkresySprawozdawcze()
+                                    ->first()
+                                    ->jestPolroczny()
+                                ;
+
+                                // if ($czyPierwszyTermin || $czestotliwosc->czyPolroczna()) {
+                                if ($czyPierwszyTermin || $czestotliwoscPolroczna) {
                                     $sprawozdania = $umowa->getSprawozdania();
                                     foreach ($sprawozdania as $sprawozdanie) {
                                         if (is_null($sprawozdanie->getDataPrzeslaniaDoParp())

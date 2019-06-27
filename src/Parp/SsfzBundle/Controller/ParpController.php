@@ -185,7 +185,11 @@ class ParpController extends Controller
             return $this->redirectToRoute('parp');
         }
         $okresy = $this->getOkresySprawozdawcze();
-        $formS = $this->createForm(SprawozdanieType::class, $sprawozdanie, array('disabled' => true, 'okresy' => $okresy));
+        $formS = $this->createForm(SprawozdanieType::class, $sprawozdanie, [
+            'disabled' => true,
+            'lata'     => $okresy,
+            'program'  => $program,
+        ]);
         $przeplyw = null;
         $przeplyw = $entityManager->getRepository(PrzeplywFinansowy::class)->findBy(array('sprawozdanieId' => $sprawozdanie->getId()));
         $formP = null;

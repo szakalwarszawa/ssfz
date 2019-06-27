@@ -60,7 +60,10 @@ class SprawozdanieController extends Controller
         $report = $this->setSpolki($spolki, $report);
         $okresy = $this->getOkresySprawozdawcze();
 
-        $form = $this->createForm(SprawozdanieType::class, $report, ['okresy' => $okresy]);
+        $form = $this->createForm(SprawozdanieType::class, $report, [
+            'lata'    => $okresy,
+            'program' => $program,
+        ]);
         if (count($spolki) === 0 && true === $beneficjent->getProgram()->czyJestPortfelSpolek()) {
             $this->getKomunikatyService()->bladKomunikat('Aby dodać sprawozdanie należy wprowadzić dane spółek.', 'Uwaga!');
             return $this->pokazFormularzRejestracji($form, 'not_allowed', $umowaId);
@@ -124,7 +127,8 @@ class SprawozdanieController extends Controller
         $okresy = $this->getOkresySprawozdawcze();
         $form = $this->createForm(SprawozdanieType::class, $report, [
             'read_only' => true,
-            'okresy'    => $okresy,
+            'lata'      => $okresy,
+            'program'   => $program,
         ]);
 
         return $this->pokazFormularzRejestracji($form, 'read', $report->getUmowaId());
@@ -159,7 +163,10 @@ class SprawozdanieController extends Controller
             $report = $this->setSpolki($spolki, $report);
         }
 
-        $form = $this->createForm(SprawozdanieType::class, $report, ['okresy' => $okresy]);
+        $form = $this->createForm(SprawozdanieType::class, $report, [
+            'lata'    => $okresy,
+            'program' => $program,
+        ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             if (!$this->czySprawozdanieZaDobryOkres($report, $umowaId, $beneficjentId)) {
@@ -210,7 +217,8 @@ class SprawozdanieController extends Controller
         }
         $form = $this->createForm(SprawozdanieType::class, clone $report, [
             'showRemarks' => true,
-            'okresy'     => $okresy,
+            'lata'        => $okresy,
+            'program'     => $program,
         ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -592,7 +600,8 @@ class SprawozdanieController extends Controller
         $sprawozdanie->setNumerUmowy($umowa->getNumer());
         $okresy = $this->getOkresySprawozdawcze();
         $form = $this->createForm(DodanieSprawozdaniaSpoType::class, $sprawozdanie, [
-            'okresy' => $okresy,
+            'lata'    => $okresy,
+            'program' => $program,
         ]);
         
         $program = $umowa->getBeneficjent()->getProgram();

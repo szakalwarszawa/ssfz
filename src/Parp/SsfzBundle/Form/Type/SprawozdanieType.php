@@ -19,7 +19,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Parp\SsfzBundle\Entity\AbstractSprawozdanie;
 use Parp\SsfzBundle\Entity\Beneficjent;
 use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
-use Parp\SsfzBundle\Entity\Slownik\CzestotliwoscSprawozdan;
 
 /**
  * Typ formularza sprawozdania
@@ -79,22 +78,15 @@ class SprawozdanieType extends AbstractType
             ]);
         }
 
-        $builder->add('okres', EntityType::class, [
-            'label'         => 'Sprawozdanie za okres',
-            'class'         => OkresSprawozdawczy::class,
-            'choice_label'  => 'nazwa',
-            'required'      => false,
-            'placeholder'   => '',
-            'query_builder' => function (EntityRepository $repository) {
-                return $repository
-                    ->createQueryBuilder('o')
-                    ->join('o.czestotliwoscSprawozdan', 'c')
-                    ->where('c.id = :czestotliwoscId')
-                    ->setParameter('czestotliwoscId', CzestotliwoscSprawozdan::POLROCZNA)
-                    ->orderBy('o.id', 'ASC')
-                ;
-            },
-            'constraints'   => [
+        $builder->add('okres', ChoiceType::class, [
+            'label'             => 'Sprawozdanie za okres',
+            'choices'           => $options['program']->getOkresySprawozdawcze(),
+            'choices_as_values' => true,
+            'choice_label'      => 'nazwa',
+            'choice_name'       => 'id',
+            'required'          => false,
+            'placeholder'       => '',
+            'constraints'       => [
                 new NotBlank([
                     'message' => 'Należy wypełnić pole',
                 ]),
@@ -103,7 +95,7 @@ class SprawozdanieType extends AbstractType
 
         $builder->add('rok', ChoiceType::class, [
             'label'       => 'Rok',
-            'choices'     => $options['okresy'],
+            'choices'     => $options['lata'],
             'constraints' => [
                 new NotBlank([
                     'message' => 'Należy wypełnić pole',
@@ -129,8 +121,9 @@ class SprawozdanieType extends AbstractType
                 'novalidate' => 'novalidate',
             ],
             'showRemarks'        => null,
-            'okresy'             => null,
+            'lata'               => null,
             'allow_extra_fields' => true,
+            'program'            => null,
         ]);
     }
 }

@@ -15,8 +15,19 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class OkresSprawozdawczy
 {
+    /**
+     * @var int
+     */
     const STYCZEN_GRUDZIEN = 1;
+
+    /**
+     * @var int
+     */
     const STYCZEN_CZERWIEC = 2;
+
+    /**
+     * @var int
+     */
     const LIPIEC_GRUDZIEN = 3;
 
     /**

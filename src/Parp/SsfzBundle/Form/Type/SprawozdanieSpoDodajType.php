@@ -19,7 +19,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Parp\SsfzBundle\Entity\AbstractSprawozdanieSpo;
 use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
-use Parp\SsfzBundle\Entity\Slownik\CzestotliwoscSprawozdan;
 
 /**
  * Formuularz DodanieSprawozdaniaSpoType
@@ -34,8 +33,6 @@ class DodanieSprawozdaniaSpoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $czestotliwoscSprawozdan = $builder->getData()->getCzestotliwoscSprawozdanWProgramie();
-        
         $builder->add('numerUmowy', null, [
             'label'       => 'Numer umowy',
             'attr'        => [
@@ -43,21 +40,15 @@ class DodanieSprawozdaniaSpoType extends AbstractType
             ],
         ]);
 
-        $builder->add('okres', EntityType::class, [
-            'label'         => 'Sprawozdanie za okres',
-            'class'         => OkresSprawozdawczy::class,
-            'choice_label'  => 'nazwa',
-            'required'      => false,
-            'empty_value'   => null,
-            'query_builder' => function (EntityRepository $repozytorium) use ($czestotliwoscSprawozdan) {
-                return $repozytorium
-                    ->createQueryBuilder('o')
-                    ->where('o.czestotliwoscSprawozdan = :czestotliwosc')
-                    ->setParameter('czestotliwosc', $czestotliwoscSprawozdan)
-                    ->orderBy('o.id', 'ASC')
-                ;
-            },
-            'constraints'   => [
+        $builder->add('okres', ChoiceType::class, [
+            'label'             => 'Sprawozdanie za okres',
+            'choices'           => $options['program']->getOkresySprawozdawcze(),
+            'choices_as_values' => true,
+            'choice_label'      => 'nazwa',
+            'choice_name'       => 'id',
+            'required'          => false,
+            'placeholder'       => '',
+            'constraints'       => [
                 new NotBlank([
                     'message' => 'Należy wypełnić pole',
                 ]),
@@ -66,7 +57,7 @@ class DodanieSprawozdaniaSpoType extends AbstractType
 
         $builder->add('rok', ChoiceType::class, [
             'label'       => 'Rok',
-            'choices'     => $options['okresy'],
+            'choices'     => $options['lata'],
             'constraints' => [
                 new NotBlank([
                     'message' => 'Należy wypełnić pole',
@@ -88,7 +79,7 @@ class DodanieSprawozdaniaSpoType extends AbstractType
                 'novalidate' => 'novalidate',
             ],
             'showRemarks'        => null,
-            'okresy'             => null,
+            'lata'               => null,
             'allow_extra_fields' => true,
         ]);
     }

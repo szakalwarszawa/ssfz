@@ -8,7 +8,7 @@ use Doctrine\ORM\EntityRepository;
 use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
 
 /**
- * Repozytorium OkresSprawozdawczyepository.
+ * Repozytorium OkresSprawozdawczyRepository.
  */
 class OkresSprawozdawczyRepository extends EntityRepository
 {
@@ -42,7 +42,7 @@ class OkresSprawozdawczyRepository extends EntityRepository
      *
      * @return OkresSprawozdawczy[]
      */
-    public function findPolroczneOkresy($returnQuery = false): array
+    public function findPolroczneOkresy(): array
     {
         $dict = [];
 

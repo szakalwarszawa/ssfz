@@ -76,14 +76,24 @@ class DatatableParpService
      */
     public function getDatatableParpFields($config, Program $program)
     {
-        $czestotliwosc = $program->getCzestotliwoscSprawozdan();
+        // To jest tymczasowa zaślepka. Zastępuje dotychczasowe rozwiązanie
+        // symulacją częstotliwości na podstawie pierwszego elementu kolekcji.
+        // $czestotliwosc = $program->getCzestotliwoscSprawozdan();
+        $czestotliwoscRoczna = $umowa
+            ->getBeneficjent()
+            ->getProgram()
+            ->getOkresySprawozdawcze()
+            ->first()
+            ->jestRoczny()
+        ;
         
         $fields['BeneId'] = 'b.id';
         $fields['Nazwa'] = 'b.nazwa';
         $fields['Numer umowy'] = 'u.numer';
         $idx = 1;
         foreach ($config as $cfg) {
-            if ($czestotliwosc->czyRoczna()) {
+            // if ($czestotliwosc->czyRoczna()) {
+            if ($czestotliwoscRoczna) {
                 $fields[$cfg->getRok()] = 's' . $idx . '.idStatus';
                 $idx++;
             } else {
@@ -136,12 +146,13 @@ class DatatableParpService
         ;
         
         $entityManager = $doctrineQueryBuilder->getEntityManager();
-        
-        $okresy = $entityManager
-            ->getRepository(OkresSprawozdawczy::class)
-            ->findBy(['czestotliwoscSprawozdan' => $program->getCzestotliwoscSprawozdan()])
-        ;
-        
+
+        $okresy = $program->getOkresySprawozdawcze();
+        //$okresy = $entityManager
+        //    ->getRepository(OkresSprawozdawczy::class)
+        //    ->findBy(['czestotliwoscSprawozdan' => $program->getCzestotliwoscSprawozdan()])
+        //;
+
         $params = [];
         foreach ($okresy as $key => $okres) {
             $params['okres'.$key] = $okres;

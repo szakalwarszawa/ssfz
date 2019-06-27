@@ -9,6 +9,8 @@ use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Form\Type\SprawozdanieType;
 
 /**
  * Description of SprawozdanieTypeTest
@@ -34,9 +36,9 @@ class SprawozdanieTypeTest extends TypeTestCase
             ->will($this->returnValue(new ClassMetadata(Form::class)))
         ;
 
-        return array(
+        return [
             new ValidatorExtension($this->validator),
-        );
+        ];
     }
 
     /**
@@ -53,9 +55,15 @@ class SprawozdanieTypeTest extends TypeTestCase
             'rok'        => 2016,
             'uwagi'      => 'uwagi',
         ];
-        $form = $this->factory->create(\Parp\SsfzBundle\Form\Type\SprawozdanieType::class, null, ['okresy' => ['2016' => '2016', '2017' => '2017', '2018' => '2018', '2019' => '2019']]);
-        $object = new \Parp\SsfzBundle\Entity\Sprawozdanie();
-
+        $form = $this->factory->create(SprawozdanieType::class, null, [
+            'lata' => [
+                '2016' => '2016',
+                '2017' => '2017',
+                '2018' => '2018',
+                '2019' => '2019',
+            ],
+        ]);
+        $object = new Sprawozdanie();
 
         $object->setNumerUmowy('1/2017');
         $object->setOkres('styczeń - czerwiec');

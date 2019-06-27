@@ -5,9 +5,19 @@
             {{ form_start(form) }}
             <div class="panel-body">
                 {{ form_row(form.numerUmowy) }}
-                <div{% if umowa.czestotliwoscSprawozdanWProgramie.czyRoczna %} class="hidden"{% endif %}>
+
+                {% set okresySprawozdawcze = umowa.getBeneficjent().getProgram().getOkresySprawozdawcze() %}
+                {% set czestotliwoscRoczna = okresySprawozdawcze.first().jestRoczny()|default('false') %}
+                {% set czestotliwoscPolroczna = okresySprawozdawcze.first().jestPolroczny()|default('false') %}
+
+                {# <div{% if umowa.czestotliwoscSprawozdanWProgramie.czyRoczna %} class="hidden"{% endif %}>
+                    {{ form_row(form.okres) }}
+                </div> #}
+
+                <div{% if czestotliwoscRoczna %} class="hidden"{% endif %}>
                     {{ form_row(form.okres) }}
                 </div>
+
                 {{ form_row(form.rok) }}
                 <div id="form-submit-div" class="row btn-toolbar">
                     <a class="btn btn-danger pull-right width-short" href="{{ path('beneficjent') }}"><span class="glyphicon glyphicon-chevron-left"></span> Powrót</a>
@@ -26,7 +36,9 @@
                 <thead>
                     <tr>
                         <th>Rok</th>
-                        {% if umowa.czestotliwoscSprawozdanWProgramie.czyPolroczna %}
+                        czestotliwoscPolroczna
+                        {% if czestotliwoscPolroczna %}
+                        {# {% if umowa.czestotliwoscSprawozdanWProgramie.czyPolroczna %} #}
                             <th>Okres</th>
                         {% endif %}
                         <th>Nazwa funduszu</th>
@@ -38,7 +50,8 @@
                     {% for sprawozdanie in lista_sprawozdan %}
                         <tr>
                             <td>{{ sprawozdanie.rok }}</td>
-                            {% if umowa.czestotliwoscSprawozdanWProgramie.czyPolroczna %}
+                            {% if czestotliwoscPolroczna %}
+                            {# {% if umowa.czestotliwoscSprawozdanWProgramie.czyPolroczna %} #}
                                 <td>{{ sprawozdanie.okres }}</td>
                             {% endif %}
                             <td>{{ sprawozdanie.nazwaFunduszu }}</td>
