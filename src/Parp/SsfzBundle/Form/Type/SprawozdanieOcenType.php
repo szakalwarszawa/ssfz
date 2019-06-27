@@ -18,14 +18,14 @@ class SprawozdanieOcenType extends AbstractType
      * do beneficjenta
      *
      * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param array $options
      *
      * @SuppressWarnings("unused")
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('uwagi', HiddenType::class, array());
-        $builder->add('status', HiddenType::class, array());
+        $builder->add('uwagi', HiddenType::class, []);
+        $builder->add('status', HiddenType::class, [];
     }
     /**
      * Ustawia opcje konfiguracji
@@ -34,9 +34,11 @@ class SprawozdanieOcenType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => AbstractSprawozdanie::class,
-            'attr' => array('novalidate' => 'novalidate'),
-        ));
+            'attr'       => [
+                'novalidate' => 'novalidate',
+            ],
+        ]);
     }
 }

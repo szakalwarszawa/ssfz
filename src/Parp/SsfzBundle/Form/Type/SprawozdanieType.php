@@ -30,7 +30,7 @@ class SprawozdanieType extends AbstractType
      * Buduje formularz do wypełniania sprawozdania
      *
      * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -43,74 +43,77 @@ class SprawozdanieType extends AbstractType
         ;
 
         $this->showRemarks = $options['showRemarks'];
+
         if ($this->showRemarks === true) {
-            $builder->add('uwagi', TextareaType::class, array(
+            $builder->add('uwagi', TextareaType::class, [
                 'label' => 'Komentarz PARP',
-                'attr' => array('readonly' => true, 'rows' => '5'),
-                'constraints' => array( )
-            ));
-        }
-        if ($this->showRemarks === false || $this->showRemarks === null) {
-            $builder->add('uwagi', HiddenType::class, array(
-                'data' => '',
-            ));
+                'attr'  => [
+                    'readonly' => true,
+                    'rows'     => '5',
+                ],
+            ]);
         }
 
-        $builder->add('numerUmowy', null, array(
+        if ($this->showRemarks === false || $this->showRemarks === null) {
+            $builder->add('uwagi', HiddenType::class, [
+                'data' => '',
+            ]);
+        }
+
+        $builder->add('numerUmowy', null, [
             'label' => 'Numer umowy',
-            'attr' => array('readonly' => true),
-            'constraints' => array()
-        ));
+            'attr'  => [
+                'readonly' => true,
+            ],
+        ]);
 
         if ($czyJestPortfelSpolek) {
-            $builder->add('sprawozdaniaSpolek', CollectionType::class, array(
-                'entry_type' => SprawozdanieSpolkiType::class,
-                'entry_options' => array('label' => false),
-                'allow_add' => true,
-                'by_reference' => false,
-                'allow_delete' => true,
-            ));
+            $builder->add('sprawozdaniaSpolek', CollectionType::class, [
+                'entry_type'    => SprawozdanieSpolkiType::class,
+                'entry_options' => [
+                    'label' => false,
+                ],
+                'allow_add'     => true,
+                'by_reference'  => false,
+                'allow_delete'  => true,
+            ]);
         }
 
-        $builder->add(
-            'okres',
-            EntityType::class,
-            array(
-                'label'         => 'Sprawozdanie za okres',
-                'class'         => OkresSprawozdawczy::class,
-                'choice_label'  => 'nazwa',
-                'required'      => false,
-                'placeholder'   => '',
-                'query_builder' => function (EntityRepository $repo) {
-                    return $repo
-                        ->createQueryBuilder('o')
-                        ->join('o.czestotliwoscSprawozdan', 'c')
-                        ->where('c.id = :czestotliwoscId')
-                        ->setParameter('czestotliwoscId', CzestotliwoscSprawozdan::POLROCZNA)
-                        ->orderBy('o.id', 'ASC')
-                    ;
-                },
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    )
-                )
-            )
-        );
+        $builder->add('okres', EntityType::class, [
+            'label'         => 'Sprawozdanie za okres',
+            'class'         => OkresSprawozdawczy::class,
+            'choice_label'  => 'nazwa',
+            'required'      => false,
+            'placeholder'   => '',
+            'query_builder' => function (EntityRepository $repository) {
+                return $repository
+                    ->createQueryBuilder('o')
+                    ->join('o.czestotliwoscSprawozdan', 'c')
+                    ->where('c.id = :czestotliwoscId')
+                    ->setParameter('czestotliwoscId', CzestotliwoscSprawozdan::POLROCZNA)
+                    ->orderBy('o.id', 'ASC')
+                ;
+            },
+            'constraints'   => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
-        $builder->add('rok', ChoiceType::class, array(
-            'label' => 'Rok',
-            'choices' => $options['okresy'],
-            'constraints' => array(
-                new NotBlank(
-                    array('message' => 'Należy wypełnić pole')
-                )
-            )
-        ));
+        $builder->add('rok', ChoiceType::class, [
+            'label'       => 'Rok',
+            'choices'     => $options['okresy'],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
-        $builder->add('przekierowanie', HiddenType::class, array(
+        $builder->add('przekierowanie', HiddenType::class, [
             'mapped' => false,
-        ));
+        ]);
     }
 
     /**
@@ -120,12 +123,14 @@ class SprawozdanieType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => AbstractSprawozdanie::class,
-            'attr' => array('novalidate' => 'novalidate'),
-            'showRemarks' => null,
-            'okresy' => null,
+        $resolver->setDefaults([
+            'data_class'         => AbstractSprawozdanie::class,
+            'attr'               => [
+                'novalidate' => 'novalidate',
+            ],
+            'showRemarks'        => null,
+            'okresy'             => null,
             'allow_extra_fields' => true,
-        ));
+        ]);
     }
 }

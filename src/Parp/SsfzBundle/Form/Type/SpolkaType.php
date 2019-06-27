@@ -38,7 +38,7 @@ class SpolkaType extends AbstractType
     /**
      * Pobiera wartości do słownika województw
      *
-     * @param  type $narzedziaSvc serwis NarzedziaService
+     * @param  type $narzedziaSvc serwis NarzedziaService?????????????????????????????????????
      *
      * @return array
      */
@@ -55,7 +55,7 @@ class SpolkaType extends AbstractType
     /**
      * Pobiera wartości do słownika działów gospodarki
      *
-     * @param  type $narzedziaSvc serwis NarzedziaService
+     * @param  type $narzedziaSvc serwis NarzedziaService?????????????????????????????????????
      * @return array
      */
     private function getGospodarkaDzialListaWartosci($narzedziaSvc)
@@ -72,7 +72,7 @@ class SpolkaType extends AbstractType
      * Buduje formularz do wypełniania profilu beneficjenta
      *
      * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -332,21 +332,22 @@ class SpolkaType extends AbstractType
             )
         ));
 
-        $builder->add('zarzadPozostali', null, array(
+        $builder->add('zarzadPozostali', null, [
             'label' => 'Pozostali Członkowie Zarządu',
-            'attr' => array(
+            'attr'  => [
                 'maxlength' => '1000',
-            ),
-            'constraints' => array(
-                new Length(
-                    array('max' => '1000', 'maxMessage' => 'W polu nie może znajdować się więcej niż {{ limit }} znaków.')
-                ),
-            ),
-        ));
+            ],
+            'constraints' => [
+                new Length([
+                    'max'        => '1000',
+                    'maxMessage' => 'W polu nie może znajdować się więcej niż {{ limit }} znaków.',
+                ]),
+            ],
+        ]);
 
-        $builder->add('przekierowanie', HiddenType::class, array(
+        $builder->add('przekierowanie', HiddenType::class, [
             'mapped' => false,
-        ));
+        ]);
     }
 
     /**
@@ -357,10 +358,12 @@ class SpolkaType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setRequired('narzedzia_svc');
-        $resolver->setDefaults(array(
-            'data_class' => Spolka::class,
-            'attr' => array('novalidate' => 'novalidate'),
+        $resolver->setDefaults([
+            'data_class'         => Spolka::class,
+            'attr'               => [
+                'novalidate' => 'novalidate',
+            ],
             'allow_extra_fields' => true,
-        ));
+        ]);
     }
 }

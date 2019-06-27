@@ -19,8 +19,8 @@ class SprawozdaniePozyczkoweSkladnikWydzielonyType extends SprawozdaniePozyczkow
     {
         parent::configureOptions($resolver);
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => SprawozdaniePozyczkoweSkladnikWydzielony::class,
-        ));
+        ]);
     }
 }

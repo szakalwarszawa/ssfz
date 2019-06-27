@@ -36,130 +36,98 @@ class SprawozdaniePozyczkoweType extends AbstractSprawozdanieSpoType
     {
         parent::buildForm($builder, $options);
 
-        $builder->add(
-            'minimalneOprocentowanie',
-            NumberType::class,
-            [
-                'label'  => 'Minimalne oprocentowanie',
-                'required'  => false,
-                'scale'  => 2,
-                'mapped' => true,
-                'attr'   => [
-                    'placeholder' => '%',
-                    'class'       => 'width-date',
-                    'maxlength' => 6,
-                ],
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    ),
-                    new LessThan(
-                        array(
-                            'value' => '100',
-                            'message' => 'Wartośc w polu nie może przekroczyć 100%'
-                        )
-                    )
-                )
-            ]
-        );
+        $builder->add('minimalneOprocentowanie', NumberType::class, [
+            'label'     => 'Minimalne oprocentowanie',
+            'required'  => false,
+            'scale'     => 2,
+            'mapped'    => true,
+            'attr'      => [
+                'placeholder' => '%',
+                'class'       => 'width-date',
+                'maxlength'   => 6,
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+                new LessThan([
+                    'value' => '100',
+                    'message' => 'Wartośc w polu nie może przekroczyć 100%'
+                ]),
+            ],
+        ]);
 
-        $builder->add(
-            'maksymalnaWielkoscPozyczki',
-            MoneyType::class,
-            [
-                'label'  => 'Maksymalna wielkość pożyczki (zł)',
-                'required'  => false,
-                'currency'  => 'PLN',
-                'mapped' => true,
-                'attr'   => [
-                    'placeholder' => 'kwota w PLN',
-                    'class'       => 'width-short',
-                    'maxlength' => 12,
-                ],
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    ),
-                    new LessThan(
-                        array(
-                            'value' => '1000000000',
-                            'message' => 'Kwota nie może przekraczać 999 999 999,99'
-                        )
-                    )
-                )
-            ]
-        );
+        $builder->add('maksymalnaWielkoscPozyczki', MoneyType::class, [
+            'label'       => 'Maksymalna wielkość pożyczki (zł)',
+            'required'    => false,
+            'currency'    => 'PLN',
+            'mapped'      => true,
+            'attr'        => [
+                'placeholder' => 'kwota w PLN',
+                'class'       => 'width-short',
+                'maxlength'   => 12,
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+                new LessThan([
+                    'value'   => '1000000000',
+                    'message' => 'Kwota nie może przekraczać 999 999 999,99'
+                ]),
+            ],
+        ]);
 
-        $builder->add(
-            'kapitalOgolem',
-            MoneyType::class,
-            [
-                'label'  => 'Kapitał Pożyczkowy Funduszu Pożyczkowego',
-                'disabled'  => true,
-                'required'  => false,
-                'currency'  => 'PLN',
-                'mapped' => true,
-                'attr'   => [
-                    'class'       => 'width-short',
-                ],
-            ]
-        );
+        $builder->add('kapitalOgolem', MoneyType::class, [
+            'label'     => 'Kapitał Pożyczkowy Funduszu Pożyczkowego',
+            'disabled'  => true,
+            'required'  => false,
+            'currency'  => 'PLN',
+            'mapped'    => true,
+            'attr'      => [
+                'class' => 'width-short',
+            ],
+        ]);
 
-        $builder->add(
-            'skladnikiOgolem',
-            CollectionType::class,
-            array(
-                'label'        => 'Kapitał Pożyczkowy Funduszu Pożyczkowego',
-                'entry_type'   => SprawozdaniePozyczkoweSkladnikOgolemType::class,
-                'allow_add'    => true,
-                'by_reference' => false,
-                'allow_delete' => true,
-                'mapped'       => true,
-                'constraints' => array(
-                    new Count(
-                        array(
-                            'min' => 1,
-                            'minMessage' => 'Należy podać przynajmniej jeden składnik kapitału i jego wartość.'
-                        )
-                    )
-                )
-            )
-        );
+        $builder->add('skladnikiOgolem', CollectionType::class, [
+            'label'        => 'Kapitał Pożyczkowy Funduszu Pożyczkowego',
+            'entry_type'   => SprawozdaniePozyczkoweSkladnikOgolemType::class,
+            'allow_add'    => true,
+            'by_reference' => false,
+            'allow_delete' => true,
+            'mapped'       => true,
+            'constraints'  => [
+                new Count([
+                    'min'        => 1,
+                    'minMessage' => 'Należy podać przynajmniej jeden składnik kapitału i jego wartość.',
+                ]),
+            ],
+        ]);
 
-        $builder->add(
-            'kapitalWydzielony',
-            MoneyType::class,
-            [
-                'label'  => 'w tym kapitał wydzielonego Funduszu Pożyczkowego prowadzonego zgodnie z zasadami gospodarowania monitorowanymi przez PARP',
-                'disabled'  => true,
-                'required'  => false,
-                'currency'  => 'PLN',
-                'mapped' => true,
-                'attr'   => [
-                    'class'       => 'width-short',
-                ],
-            ]
-        );
+        $builder->add('kapitalWydzielony', MoneyType::class, [
+            'label'    => 'w tym kapitał wydzielonego Funduszu Pożyczkowego prowadzonego zgodnie z zasadami gospodarowania monitorowanymi przez PARP',
+            'disabled' => true,
+            'required' => false,
+            'currency' => 'PLN',
+            'mapped'   => true,
+            'attr'     => [
+                'class' => 'width-short',
+            ],
+        ]);
 
-        $builder->add(
-            'skladnikiWydzielone',
-            CollectionType::class,
-            array(
-                'label'  => 'Kapitał wydzielonego Funduszu Pożyczkowego',
-                'entry_type' => SprawozdaniePozyczkoweSkladnikWydzielonyType::class,
-                'allow_add' => true,
-                'by_reference' => false,
-                'allow_delete' => true,
-                'constraints' => array(
-                    new Count(
-                        array(
-                            'min' => 1,
-                            'minMessage' => 'Należy podać przynajmniej jeden składnik wydzielonego kapitału i jego wartość.'
-                        )
-                    )
-                )
-            )
-        );
+        $builder->add('skladnikiWydzielone', CollectionType::class, [
+            'label'        => 'Kapitał wydzielonego Funduszu Pożyczkowego',
+            'entry_type'   => SprawozdaniePozyczkoweSkladnikWydzielonyType::class,
+            'allow_add'    => true,
+            'by_reference' => false,
+            'allow_delete' => true,
+            'constraints'  => [
+                new Count([
+                    'min'        => 1,
+                    'minMessage' => 'Należy podać przynajmniej jeden składnik wydzielonego kapitału i jego wartość.',
+                ]),
+            ],
+        ]);
     }
 
     /**
@@ -171,8 +139,8 @@ class SprawozdaniePozyczkoweType extends AbstractSprawozdanieSpoType
     {
         parent::configureOptions($resolver);
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => SprawozdaniePozyczkowe::class,
-        ));
+        ]);
     }
 }

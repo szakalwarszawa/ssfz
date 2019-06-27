@@ -23,7 +23,6 @@ class DatatableParpService
      * Konstruktor parametryczny
      *
      * @param OkresyKonfiguracjaRepository $okresyKonfiguracjaRepo repozytorium OkresyKonfiguracjaRepository
-     *
      */
     public function __construct(OkresyKonfiguracjaRepository $okresyKonfiguracjaRepo)
     {
@@ -102,7 +101,7 @@ class DatatableParpService
     /**
      * Ustawia joiny w podanej w parametrze datatable
      *
-     * @param object $datatable
+     * @param ?????????????object?? $datatable
      * @param array $config
      * @param Program $program
      *

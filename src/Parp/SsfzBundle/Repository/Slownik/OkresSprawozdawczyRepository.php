@@ -24,6 +24,7 @@ class OkresSprawozdawczyRepository extends EntityRepository
         $result = $this
             ->createQueryBuilder('os')
             ->where('os.id IS NOT NULL')
+            ->orderBy('os.id', 'ASC')
             ->getQuery()
             ->getResult()
         ;
@@ -41,16 +42,18 @@ class OkresSprawozdawczyRepository extends EntityRepository
      *
      * @return OkresSprawozdawczy[]
      */
-    public function findPolroczneOkresy(): array
+    public function findPolroczneOkresy($returnQuery = false): array
     {
         $dict = [];
 
         $result = $this
             ->createQueryBuilder('os')
             ->where('os.id IS NOT NULL')
+            ->orderBy('os.id', 'ASC')
             ->getQuery()
             ->getResult()
         ;
+
         foreach ($result as $key => $value) {
             if ($value->jestPolroczny()) {
                 $dict[$key] = $value;
