@@ -146,14 +146,22 @@ class Beneficjent
     /**
      * Encje OsobaZatrudniona powiązane z beneficjentem - osoby zatrudnione
      *
-     * @ORM\OneToMany(targetEntity="OsobaZatrudniona", mappedBy="beneficjent", cascade={"persist", "remove"})
+     * @ORM\OneToMany(
+     *     targetEntity="OsobaZatrudniona",
+     *     mappedBy="beneficjent",
+     *     cascade={"persist", "remove"}
+     * )
      */
     protected $osobyZatrudnione;
 
     /**
      * Encje Umowa powiazane z beneficjentem - umowy
      *
-     * @ORM\OneToMany(targetEntity="Umowa", mappedBy="beneficjent", cascade={"persist", "remove"})
+     * @ORM\OneToMany(
+     *     targetEntity="Umowa",
+     *     mappedBy="beneficjent",
+     *     cascade={"persist", "remove"}
+     * )
      */
     protected $umowy;
     
@@ -194,7 +202,8 @@ class Beneficjent
     /**
      * Set nazwa
      *
-     * @param  string $nazwa
+     * @param string $nazwa
+     *
      * @return Beneficjent
      */
     public function setNazwa($nazwa)
@@ -217,7 +226,8 @@ class Beneficjent
     /**
      * Set adrWojewodztwo
      *
-     * @param  string $adrWojewodztwo
+     * @param string $adrWojewodztwo
+     *
      * @return Beneficjent
      */
     public function setAdrWojewodztwo($adrWojewodztwo)
@@ -240,7 +250,7 @@ class Beneficjent
     /**
      * Set adrMiejscowosc
      *
-     * @param  string $adrMiejscowosc
+     * @param string $adrMiejscowosc
      *
      * @return Beneficjent
      */
@@ -264,7 +274,7 @@ class Beneficjent
     /**
      * Set adrUlica
      *
-     * @param  string $adrUlica
+     * @param string $adrUlica
      *
      * @return Beneficjent
      */
@@ -288,7 +298,7 @@ class Beneficjent
     /**
      * Set adrBudynek
      *
-     * @param  string $adrBudynek
+     * @param string $adrBudynek
      *
      * @return Beneficjent
      */
@@ -312,7 +322,8 @@ class Beneficjent
     /**
      * Set adrLokal
      *
-     * @param  string $adrLokal
+     * @param string $adrLokal
+     *
      * @return Beneficjent
      */
     public function setAdrLokal($adrLokal)
@@ -335,7 +346,7 @@ class Beneficjent
     /**
      * Set adrKod
      *
-     * @param  string $adrKod
+     * @param string $adrKod
      *
      * @return Beneficjent
      */
@@ -359,7 +370,7 @@ class Beneficjent
     /**
      * Set adrPoczta
      *
-     * @param  string $adrPoczta
+     * @param string $adrPoczta
      *
      * @return Beneficjent
      */
@@ -383,7 +394,8 @@ class Beneficjent
     /**
      * Set telStacjonarny
      *
-     * @param  string $telStacjonarny
+     * @param string $telStacjonarny
+     *
      * @return Beneficjent
      */
     public function setTelStacjonarny($telStacjonarny)
@@ -406,7 +418,8 @@ class Beneficjent
     /**
      * Set telKomorkowy
      *
-     * @param  string $telKomorkowy
+     * @param string $telKomorkowy
+     *
      * @return Beneficjent
      */
     public function setTelKomorkowy($telKomorkowy)
@@ -429,7 +442,7 @@ class Beneficjent
     /**
      * Set email
      *
-     * @param  string $email
+     * @param string $email
      *
      * @return Beneficjent
      */
@@ -453,7 +466,7 @@ class Beneficjent
     /**
      * Set fax
      *
-     * @param  string $fax
+     * @param string $fax
      *
      * @return Beneficjent
      */
@@ -477,7 +490,7 @@ class Beneficjent
     /**
      * Set wypelniony
      *
-     * @param  boolean $wypelniony
+     * @param bool $wypelniony
      *
      * @return Beneficjent
      */
@@ -491,7 +504,7 @@ class Beneficjent
     /**
      * Get wypelniony
      *
-     * @return boolean
+     * @return bool
      */
     public function getWypelniony()
     {
@@ -501,7 +514,7 @@ class Beneficjent
     /**
      * Set umowy
      *
-     * @param  Umowa $umowy
+     * @param Umowa $umowy
      *
      * @return Beneficjent
      */
@@ -525,7 +538,8 @@ class Beneficjent
     /**
      * set osobyZatrudnione
      *
-     * @param  Collection $osobyZatrudnione
+     * @param Collection $osobyZatrudnione
+     *
      * @return Beneficjent
      */
     public function setOsobyZatrudnione($osobyZatrudnione)
@@ -559,6 +573,8 @@ class Beneficjent
      * Set uzytkownik
      *
      * @param Uzytkownik $uzytkownik
+     *
+     * @return Beneficjent
      */
     public function setUzytkownik(Uzytkownik $uzytkownik)
     {
@@ -566,40 +582,53 @@ class Beneficjent
         if (null === $this->program) {
             throw new InvalidArgumentException('Nie wybrano programu.');
         }
-
         $this->uzytkownik = $uzytkownik;
+
+        return $this;
     }
 
     /**
      * Funkcja dodająca umowę do porfilu beneficjenta
      *
      * @param Umowa $umowa
+     *
+     * @return Beneficjent
      */
     public function addUmowa(Umowa $umowa)
     {
         $umowa->setBeneficjent($this);
         $this->umowy->add($umowa);
+    
+        return $this;
     }
 
      /**
      * Funkcja dodająca osobę zatrudnioną do profilu beneficjenta
      *
      * @param OsobaZatrudniona $osoba
+     *
+     * @return Beneficjent
      */
     public function addOsobaZatrudniona(OsobaZatrudniona $osoba)
     {
         $osoba->setBeneficjent($this);
         $this->osobyZatrudnione->add($osoba);
+
+        return $this;
     }
 
     /**
      * Funkcja usuwająca umowę z profilu beneficjenta
      *
      * @param Umowa $umowa
+     *
+     * @return Beneficjent
      */
     public function removeUmowa(Umowa $umowa)
     {
         $this->umowy->removeElement($umowa);
+
+        return $this;
     }
 
     /**

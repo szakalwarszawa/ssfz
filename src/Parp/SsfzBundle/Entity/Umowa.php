@@ -2,10 +2,13 @@
 
 namespace Parp\SsfzBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Parp\SsfzBundle\Exception\KomunikatDlaBeneficjentaException;
+use Parp\SsfzBundle\Entity\Beneficjent;
+use Parp\SsfzBundle\Entity\Umowa;
 use Parp\SsfzBundle\Entity\Slownik\CzestotliwoscSprawozdan;
 use Parp\SsfzBundle\Entity\Slownik\Program;
 
@@ -49,12 +52,16 @@ class Umowa
     /**
      * Encje Spolka powiazane z umową - spółki składające się na portfel
      *
+     * @var Collection
+     *
      * @ORM\OneToMany(targetEntity="Spolka", mappedBy="umowa", cascade={"persist"})
      */
     protected $spolki;
 
     /**
      * Sprawozdania zalążkowe.
+     *
+     * @var Collection
      *
      * @ORM\OneToMany(targetEntity="Sprawozdanie", mappedBy="umowa", cascade={"persist"})
      */
@@ -63,12 +70,16 @@ class Umowa
     /**
      * Sprawozdania pożyczkowe.
      *
+     * @var Collection
+     *
      * @ORM\OneToMany(targetEntity="SprawozdaniePozyczkowe", mappedBy="umowa", cascade={"persist"})
      */
     protected $sprawozdaniaPozyczkowe;
 
     /**
      * Sprawozdania poręczeniowe.
+     *
+     * @var Collection
      *
      * @ORM\OneToMany(targetEntity="SprawozdaniePoreczeniowe", mappedBy="umowa", cascade={"persist"})
      */
@@ -228,7 +239,6 @@ class Umowa
                 $this->sprawozdaniaZalazkowe = $sprawozdania;
                 break;
         }
-        
 
         return $this;
     }
@@ -246,11 +256,9 @@ class Umowa
             case Program::FUNDUSZ_POZYCZKOWY_SPO_WKP_121:
                 return $this->sprawozdaniaPozyczkowe;
                 break;
-
             case Program::FUNDUSZ_PORECZENIOWY_SPO_WKP_122:
                 return $this->sprawozdaniaPoreczeniowe;
                 break;
-
             case Program::FUNDUSZ_ZALAZKOWY_POIG_31:
             default:
                 return $this->sprawozdaniaZalazkowe;

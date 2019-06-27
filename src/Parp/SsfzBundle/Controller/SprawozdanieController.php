@@ -322,7 +322,7 @@ class SprawozdanieController extends Controller
         $counter = 1;
         foreach ($spolki as $spolka) {
             //Dodaj tylko te dla których już nie ma sprawozdań
-            if ($report->findSprawozdanieSpolkiByNazwaSpolki($spolka->getNazwa()) === null) {
+            if ($report->getSprawozdanieSpolki($spolka->getNazwa()) === null) {
                 $sprawozdanieSpolki = new SprawozdanieSpolki();
                 $sprawozdanieSpolki->setNazwaSpolki($spolka->getNazwa());
                 $sprawozdanieSpolki->setKrs($spolka->getKrs());
