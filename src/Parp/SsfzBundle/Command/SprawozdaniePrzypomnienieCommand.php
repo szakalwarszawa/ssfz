@@ -90,7 +90,6 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand
                         $umowy = $beneficjent->getUmowy();
                         if (!is_null($umowy)) {
                             foreach ($umowy as $umowa) {
-
                                 // Kod jest całkowicie niejasny. Zaślepka z określaniem na podstawie
                                 // pierwszego elementu kolekcji jest tymczasowa, żeby była szansa na zadziałanie.
                                 // $czestotliwosc = $umowa->getCzestotliwoscSprawozdanWProgramie();

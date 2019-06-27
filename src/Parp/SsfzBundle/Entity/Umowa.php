@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Parp\SsfzBundle\Exception\KomunikatDlaBeneficjentaException;
 use Parp\SsfzBundle\Entity\Beneficjent;
-use Parp\SsfzBundle\Entity\Umowa;n;
+use Parp\SsfzBundle\Entity\Umowa;
 use Parp\SsfzBundle\Entity\Slownik\Program;
 
 /**

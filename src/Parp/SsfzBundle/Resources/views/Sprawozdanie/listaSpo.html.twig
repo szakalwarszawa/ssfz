@@ -6,15 +6,15 @@
             <div class="panel-body">
                 {{ form_row(form.numerUmowy) }}
 
-                {% set okresySprawozdawcze = umowa.getBeneficjent().getProgram().getOkresySprawozdawcze() %}
-                {% set czestotliwoscRoczna = okresySprawozdawcze.first().jestRoczny()|default('false') %}
-                {% set czestotliwoscPolroczna = okresySprawozdawcze.first().jestPolroczny()|default('false') %}
+                {% set okresy_sprawozdawcze = umowa.getBeneficjent().getProgram().getOkresySprawozdawcze() %}
+                {% set czestotliwosc_roczna = okresy_sprawozdawcze.first().jestRoczny()|default('false') %}
+                {% set czestotliwosc_polroczna = okresySprawozdawcze.first().jestPolroczny()|default('false') %}
 
                 {# <div{% if umowa.czestotliwoscSprawozdanWProgramie.czyRoczna %} class="hidden"{% endif %}>
                     {{ form_row(form.okres) }}
                 </div> #}
 
-                <div{% if czestotliwoscRoczna %} class="hidden"{% endif %}>
+                <div{% if czestotliwosc_roczna %} class="hidden"{% endif %}>
                     {{ form_row(form.okres) }}
                 </div>
 
@@ -36,8 +36,7 @@
                 <thead>
                     <tr>
                         <th>Rok</th>
-                        czestotliwoscPolroczna
-                        {% if czestotliwoscPolroczna %}
+                        {% if czestotliwosc_polroczna %}
                         {# {% if umowa.czestotliwoscSprawozdanWProgramie.czyPolroczna %} #}
                             <th>Okres</th>
                         {% endif %}
@@ -50,7 +49,7 @@
                     {% for sprawozdanie in lista_sprawozdan %}
                         <tr>
                             <td>{{ sprawozdanie.rok }}</td>
-                            {% if czestotliwoscPolroczna %}
+                            {% if czestotliwosc_polroczna %}
                             {# {% if umowa.czestotliwoscSprawozdanWProgramie.czyPolroczna %} #}
                                 <td>{{ sprawozdanie.okres }}</td>
                             {% endif %}

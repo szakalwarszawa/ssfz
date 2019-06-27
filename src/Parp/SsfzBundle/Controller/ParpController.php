@@ -178,9 +178,15 @@ class ParpController extends Controller
     public function sprawozdanieAction($idSprawozdania)
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $sprawozdanie = $entityManager->getRepository(Sprawozdanie::class)->find($idSprawozdania);
+        $sprawozdanie = $entityManager
+            ->getRepository(Sprawozdanie::class)
+            ->find($idSprawozdania)
+        ;
         if (null == $sprawozdanie) {
-            $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Nie znaleziono sprawozdania o podanym identyfikatorze.');
+            $this
+                ->get('ssfz.service.komunikaty_service')
+                ->bladKomunikat('Nie znaleziono sprawozdania o podanym identyfikatorze.')
+            ;
 
             return $this->redirectToRoute('parp');
         }
@@ -188,7 +194,7 @@ class ParpController extends Controller
         $formS = $this->createForm(SprawozdanieType::class, $sprawozdanie, [
             'disabled' => true,
             'lata'     => $okresy,
-            'program'  => $program,
+            'program'  => $sprawozdanie->getUmowa()->getBeneficjent()->getProgram(),
         ]);
         $przeplyw = null;
         $przeplyw = $entityManager->getRepository(PrzeplywFinansowy::class)->findBy(array('sprawozdanieId' => $sprawozdanie->getId()));
