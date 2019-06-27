@@ -12,9 +12,24 @@ use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
  */
 class TypSprawozdaniaGuesserService
 {
+    /**
+     * @var string
+     */
     const SPRAWOZDANIE = 'sprawozdanie standardowe';
+
+    /**
+     * @var string
+     */
     const SPRAWOZDANIE_POZYCZKOWE = 'sprawozdanie pozyczkowe';
+
+    /**
+     * @var string
+     */
     const SPRAWOZDANIE_PORECZENIOWE = 'sprawozdanie poreczeniowe';
+
+    /**
+     * @var string
+     */
     const INNE_SPRAWOZDANIE = 'inne sprawozdanie';
 
     /**
@@ -42,7 +57,10 @@ class TypSprawozdaniaGuesserService
     }
 
     /**
-     * Czy sprawozdanie jest pożyczkowe.
+
+     * Określa czy sprawozdanie dotyczy pożyczek.
+     *
+     * @param AbstractSprawozdanie $sprawozdanie
      *
      * @return bool
      */
@@ -52,7 +70,9 @@ class TypSprawozdaniaGuesserService
     }
 
     /**
-     * Czy sprawozdanie jest poręczeniowe.
+     * Określa czy sprawozdanie dotyczy poręczeń.
+     *
+     * @param AbstractSprawozdanie $sprawozdanie
      *
      * @return bool
      */

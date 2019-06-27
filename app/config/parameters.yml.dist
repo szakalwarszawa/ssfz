@@ -53,7 +53,7 @@ parameters:
     test_database_port: ''
     test_database_name: 'ssfz_test'
     test_database_user: 'ssfz_test'
-    test_database_password: '
+    test_database_password: ''
     
     # Miesiąc i dzień (mm-dd) w którym wysyłane są powiadomienia o zaległych sprawozdaniach (dwa terminy) 
     przypomnienie_pierwszy_termin_miesiac_dzien: '02-14'

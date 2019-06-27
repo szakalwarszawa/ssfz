@@ -24,7 +24,7 @@ use Parp\SsfzBundle\Entity\DanePozyczek;
  * dostępne metody (getX i setX). Nie będzie konieczna katualizacja wykazu pól po każdej
  * modyfikacji encji.
  *
- * php7.2 ./bin/phpunit --bootstrap ./vendor/autoload.php --config ./tests/phpunit.xml ./tests/Parp/SsfzBundle/Entity/DanePozyczekTest.php 
+ * php7.2 ./bin/phpunit --bootstrap ./vendor/autoload.php --config ./tests/phpunit.xml ./tests/Parp/SsfzBundle/Entity/DanePozyczekTest.php
  */
 class DanePozyczekTest extends TestCase
 {
@@ -196,28 +196,28 @@ class DanePozyczekTest extends TestCase
     /**
      * @var DanePozyczek
      */
-    protected $danePozyczki;
+    protected $danePozyczek;
 
     /**
      * Ustawienie środowiska testowego
      */
     public function setUp()
     {
-        $this->danePozyczki = new DanePozyczek();
+        $this->danePozyczek = new DanePozyczek();
     }
 
     public function testCanBeInstantioned()
     {
-        $this->assertInstanceOf(DanePozyczek::class, $this->danePozyczki);
+        $this->assertInstanceOf(DanePozyczek::class, $this->danePozyczek);
     }
 
     public function testContainsValidInitialIntegers()
     {
         foreach (self::INTEGER_FIELDS as $field) {
             $getter = 'get'.ucfirst($field);
-            $value = $this->danePozyczki->$getter();
+            $value = $this->danePozyczek->$getter();
 
-            $this->assertSame(0, $value);
+            $this->assertSame(0, $value, "Failed asserting that $value is identical to 0 (property \"$field\").");
         }
     }
 
@@ -225,9 +225,9 @@ class DanePozyczekTest extends TestCase
     {
         foreach (self::DECIMAL_FIELDS as $field) {
             $getter = 'get'.ucfirst($field);
-            $value = $this->danePozyczki->$getter();
+            $value = $this->danePozyczek->$getter();
 
-            $this->assertSame('0.00', $value);
+            $this->assertSame('0.00', $value, "Failed asserting that $value is identical to 0.00 (property \"$field\").");
         }
     }
 
@@ -238,10 +238,10 @@ class DanePozyczekTest extends TestCase
             $i++;
             $setter = 'set'.ucfirst($field);
             $getter = 'get'.ucfirst($field);
-            $this->danePozyczki->$setter($i);
-            $value = $this->danePozyczki->$getter();
+            $this->danePozyczek->$setter($i);
+            $value = $this->danePozyczek->$getter();
 
-            $this->assertSame($i, $value);
+            $this->assertSame($i, $value, "Failed asserting that $value is identical to $i (property \"$field\").");
         }
     }
 
@@ -252,18 +252,17 @@ class DanePozyczekTest extends TestCase
             $i = (string)((float) $i + 0.01);
             $setter = 'set'.ucfirst($field);
             $getter = 'get'.ucfirst($field);
-            $this->danePozyczki->$setter($i);
-            $value = $this->danePozyczki->$getter();
+            $this->danePozyczek->$setter($i);
+            $value = $this->danePozyczek->$getter();
 
-            $this->assertSame($i, $value);
+            $this->assertSame($i, $value, "Failed asserting that $value is identical to $i (property \"$field\").");
         }
     }
-
 
     public function testCanSumByWielkoscPrzedsiebiorstwa()
     {
         $this
-            ->danePozyczki
+            ->danePozyczek
             ->setLiczbaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw(1)
             ->setLiczbaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw(1)
             ->setLiczbaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw(1)
@@ -285,7 +284,7 @@ class DanePozyczekTest extends TestCase
         ;
 
         $this
-            ->danePozyczki
+            ->danePozyczek
             ->setKwotaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw('1.01')
             ->setKwotaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw('1.01')
             ->setKwotaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw('1.01')
@@ -306,21 +305,21 @@ class DanePozyczekTest extends TestCase
             ->setKwotaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw('3.03')
         ;
         
-        $this->assertSame(6, $this->danePozyczki->getLiczbaPozyczekDlaMikroPrzedsiebiorstwOgolem());
-        $this->assertSame(12, $this->danePozyczki->getLiczbaPozyczekDlaMalychPrzedsiebiorstwOgolem());
-        $this->assertSame(18, $this->danePozyczki->getLiczbaPozyczekDlaSrednichPrzedsiebiorstwOgolem());
-        $this->assertSame(36, $this->danePozyczki->getLiczbaPozyczekDlaPrzedsiebiorstwOgolem());
+        $this->assertSame(6, $this->danePozyczek->getLiczbaPozyczekDlaMikroPrzedsiebiorstwOgolem());
+        $this->assertSame(12, $this->danePozyczek->getLiczbaPozyczekDlaMalychPrzedsiebiorstwOgolem());
+        $this->assertSame(18, $this->danePozyczek->getLiczbaPozyczekDlaSrednichPrzedsiebiorstwOgolem());
+        $this->assertSame(36, $this->danePozyczek->getLiczbaPozyczekDlaPrzedsiebiorstwOgolem());
 
-        $this->assertSame('6.06', $this->danePozyczki->getKwotaPozyczekDlaMikroPrzedsiebiorstwOgolem());
-        $this->assertSame('12.12', $this->danePozyczki->getKwotaPozyczekDlaMalychPrzedsiebiorstwOgolem());
-        $this->assertSame('18.18', $this->danePozyczki->getKwotaPozyczekDlaSrednichPrzedsiebiorstwOgolem());
-        $this->assertSame('36.36', $this->danePozyczki->getKwotaPozyczekDlaPrzedsiebiorstwOgolem());
+        $this->assertSame('6.06', $this->danePozyczek->getKwotaPozyczekDlaMikroPrzedsiebiorstwOgolem());
+        $this->assertSame('12.12', $this->danePozyczek->getKwotaPozyczekDlaMalychPrzedsiebiorstwOgolem());
+        $this->assertSame('18.18', $this->danePozyczek->getKwotaPozyczekDlaSrednichPrzedsiebiorstwOgolem());
+        $this->assertSame('36.36', $this->danePozyczek->getKwotaPozyczekDlaPrzedsiebiorstwOgolem());
     }
 
     public function testCanSumByPrzeznaczenie()
     {
         $this
-            ->danePozyczki
+            ->danePozyczek
             ->setLiczbaPozyczekObrotowychDo10000Pln(1)
             ->setLiczbaPozyczekObrotowychOd10001Do30000Pln(1)
             ->setLiczbaPozyczekObrotowychOd30001Do50000Pln(1)
@@ -342,7 +341,7 @@ class DanePozyczekTest extends TestCase
         ;
 
         $this
-            ->danePozyczki
+            ->danePozyczek
             ->setKwotaPozyczekObrotowychDo10000Pln('1.01')
             ->setKwotaPozyczekObrotowychOd10001Do30000Pln('1.01')
             ->setKwotaPozyczekObrotowychOd30001Do50000Pln('1.01')
@@ -363,21 +362,21 @@ class DanePozyczekTest extends TestCase
             ->setKwotaPozyczekInwestycyjnoObrotowychOd300001Pln('3.03')
         ;
         
-        $this->assertSame(6, $this->danePozyczki->getLiczbaPozyczekObrotowychOgolem());
-        $this->assertSame(12, $this->danePozyczki->getLiczbaPozyczekInwestycyjnychOgolem());
-        $this->assertSame(18, $this->danePozyczki->getLiczbaPozyczekInwestycyjnoObrotowychOgolem());
-        $this->assertSame(36, $this->danePozyczki->getLiczbaPozyczekDlaWszystkichPrzeznaczenOgolem());
+        $this->assertSame(6, $this->danePozyczek->getLiczbaPozyczekObrotowychOgolem());
+        $this->assertSame(12, $this->danePozyczek->getLiczbaPozyczekInwestycyjnychOgolem());
+        $this->assertSame(18, $this->danePozyczek->getLiczbaPozyczekInwestycyjnoObrotowychOgolem());
+        $this->assertSame(36, $this->danePozyczek->getLiczbaPozyczekDlaWszystkichPrzeznaczenOgolem());
 
-        $this->assertSame('6.06', $this->danePozyczki->getKwotaPozyczekObrotowychOgolem());
-        $this->assertSame('12.12', $this->danePozyczki->getKwotaPozyczekInwestycyjnychOgolem());
-        $this->assertSame('18.18', $this->danePozyczki->getKwotaPozyczekInwestycyjnoObrotowychOgolem());
-        $this->assertSame('36.36', $this->danePozyczki->getKwotaPozyczekDlaWszystkichPrzeznaczenOgolem());
+        $this->assertSame('6.06', $this->danePozyczek->getKwotaPozyczekObrotowychOgolem());
+        $this->assertSame('12.12', $this->danePozyczek->getKwotaPozyczekInwestycyjnychOgolem());
+        $this->assertSame('18.18', $this->danePozyczek->getKwotaPozyczekInwestycyjnoObrotowychOgolem());
+        $this->assertSame('36.36', $this->danePozyczek->getKwotaPozyczekDlaWszystkichPrzeznaczenOgolem());
     }
 
     public function testCanSumBySektorDzialalnosci()
     {
         $this
-            ->danePozyczki
+            ->danePozyczek
             ->setLiczbaPozyczekDo10000PlnNaDzialaniaProdukcyjne(1)
             ->setLiczbaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne(1)
             ->setLiczbaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne(1)
@@ -417,7 +416,7 @@ class DanePozyczekTest extends TestCase
         ;
 
         $this
-            ->danePozyczki
+            ->danePozyczek
             ->setKwotaPozyczekDo10000PlnNaDzialaniaProdukcyjne('1.01')
             ->setKwotaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne('1.01')
             ->setKwotaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne('1.01')
@@ -456,20 +455,20 @@ class DanePozyczekTest extends TestCase
             ->setKwotaPozyczekOd300001PlnNaDzialaniaInne('6.06')
         ;
 
-        $this->assertSame(6, $this->danePozyczki->getLiczbaPozyczekNaDzialaniaProdykcyjneOgolem());
-        $this->assertSame(12, $this->danePozyczki->getLiczbaPozyczekNaDzialaniaHandloweOgolem());
-        $this->assertSame(18, $this->danePozyczki->getLiczbaPozyczekNaDzialaniaUslugoweOgolem());
-        $this->assertSame(24, $this->danePozyczki->getLiczbaPozyczekNaDzialaniaBudowniczeOgolem());
-        $this->assertSame(30, $this->danePozyczki->getLiczbaPozyczekNaDzialaniaRolniczeOgolem());
-        $this->assertSame(36, $this->danePozyczki->getLiczbaPozyczekNaDzialaniaInneOgolem());
-        $this->assertSame(126, $this->danePozyczki->getLiczbaPozyczekOgolemDlaWszystkichSektorowDzialan());
+        $this->assertSame(6, $this->danePozyczek->getLiczbaPozyczekNaDzialaniaProdykcyjneOgolem());
+        $this->assertSame(12, $this->danePozyczek->getLiczbaPozyczekNaDzialaniaHandloweOgolem());
+        $this->assertSame(18, $this->danePozyczek->getLiczbaPozyczekNaDzialaniaUslugoweOgolem());
+        $this->assertSame(24, $this->danePozyczek->getLiczbaPozyczekNaDzialaniaBudowniczeOgolem());
+        $this->assertSame(30, $this->danePozyczek->getLiczbaPozyczekNaDzialaniaRolniczeOgolem());
+        $this->assertSame(36, $this->danePozyczek->getLiczbaPozyczekNaDzialaniaInneOgolem());
+        $this->assertSame(126, $this->danePozyczek->getLiczbaPozyczekOgolemDlaWszystkichSektorowDzialan());
 
-        $this->assertSame('6.06', $this->danePozyczki->getKwotaPozyczekNaDzialaniaProdykcyjneOgolem());
-        $this->assertSame('12.12', $this->danePozyczki->getKwotaPozyczekNaDzialaniaHandloweOgolem());
-        $this->assertSame('18.18', $this->danePozyczki->getKwotaPozyczekNaDzialaniaUslugoweOgolem());
-        $this->assertSame('24.24', $this->danePozyczki->getKwotaPozyczekNaDzialaniaBudowniczeOgolem());
-        $this->assertSame('30.30', $this->danePozyczki->getKwotaPozyczekNaDzialaniaRolniczeOgolem());
-        $this->assertSame('36.36', $this->danePozyczki->getKwotaPozyczekNaDzialaniaInneOgolem());
-        $this->assertSame('127.26', $this->danePozyczki->getKwotaPozyczekOgolemDlaWszystkichSektorowDzialan());
+        $this->assertSame('6.06', $this->danePozyczek->getKwotaPozyczekNaDzialaniaProdykcyjneOgolem());
+        $this->assertSame('12.12', $this->danePozyczek->getKwotaPozyczekNaDzialaniaHandloweOgolem());
+        $this->assertSame('18.18', $this->danePozyczek->getKwotaPozyczekNaDzialaniaUslugoweOgolem());
+        $this->assertSame('24.24', $this->danePozyczek->getKwotaPozyczekNaDzialaniaBudowniczeOgolem());
+        $this->assertSame('30.30', $this->danePozyczek->getKwotaPozyczekNaDzialaniaRolniczeOgolem());
+        $this->assertSame('36.36', $this->danePozyczek->getKwotaPozyczekNaDzialaniaInneOgolem());
+        $this->assertSame('127.26', $this->danePozyczek->getKwotaPozyczekOgolemDlaWszystkichSektorowDzialan());
     }
 }
