@@ -613,7 +613,7 @@ class SprawozdanieController extends Controller
 
                 return $this->redirectToRoute('sprawozdania_spo_edycja', [
                     'typSprawozdania' => $typSprawozdania,
-                    'sprawozdanieId' => $sprawozdanie->getId()
+                    'sprawozdanieId'  => $sprawozdanie->getId()
                 ]);
             }
         }
@@ -692,8 +692,8 @@ class SprawozdanieController extends Controller
                     ]);
                 } else {
                     return $this->redirectToRoute('sprawozdania_spo_edycja', [
-                        'czyPozyczkowe'  => $typSprawozdania,
-                        'sprawozdanieId' => $sprawozdanie->getId()
+                        'typSprawozdania' => $typSprawozdania,
+                        'sprawozdanieId'  => $sprawozdanie->getId()
                     ]);
                 }
             } else {
