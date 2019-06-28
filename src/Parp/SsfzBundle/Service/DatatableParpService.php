@@ -79,9 +79,7 @@ class DatatableParpService
         // To jest tymczasowa zaślepka. Zastępuje dotychczasowe rozwiązanie
         // symulacją częstotliwości na podstawie pierwszego elementu kolekcji.
         // $czestotliwosc = $program->getCzestotliwoscSprawozdan();
-        $czestotliwoscRoczna = $umowa
-            ->getBeneficjent()
-            ->getProgram()
+        $czestotliwoscRoczna = $program
             ->getOkresySprawozdawcze()
             ->first()
             ->jestRoczny()
@@ -145,7 +143,7 @@ class DatatableParpService
             ->getDoctrineQueryBuilder()
         ;
         
-        $entityManager = $doctrineQueryBuilder->getEntityManager();
+        // $entityManager = $doctrineQueryBuilder->getEntityManager();
 
         $okresy = $program->getOkresySprawozdawcze();
         //$okresy = $entityManager

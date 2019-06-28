@@ -128,7 +128,7 @@ class SprawozdanieController extends Controller
         $form = $this->createForm(SprawozdanieType::class, $report, [
             'read_only' => true,
             'lata'      => $okresy,
-            'program'   => $program,
+            'program'   => $report->getUmowa()->getBeneficjent()->getProgram(),
         ]);
 
         return $this->pokazFormularzRejestracji($form, 'read', $report->getUmowaId());
@@ -165,7 +165,7 @@ class SprawozdanieController extends Controller
 
         $form = $this->createForm(SprawozdanieType::class, $report, [
             'lata'    => $okresy,
-            'program' => $program,
+            'program' => $report->getUmowa()->getBeneficjent()->getProgram(),
         ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -218,7 +218,7 @@ class SprawozdanieController extends Controller
         $form = $this->createForm(SprawozdanieType::class, clone $report, [
             'showRemarks' => true,
             'lata'        => $okresy,
-            'program'     => $program,
+            'program'     => $report->getUmowa()->getBeneficjent()->getProgram(),
         ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
