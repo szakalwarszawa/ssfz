@@ -57,4 +57,4 @@ parameters:
     
     # Miesiąc i dzień (mm-dd) w którym wysyłane są powiadomienia o zaległych sprawozdaniach (dwa terminy) 
     przypomnienie_pierwszy_termin_miesiac_dzien: '02-14'
-    przypomnienie_drugi_termin_miesiac_dzien: '08-14'
+    przypomnienie_drugi_termin_miesiac_dzien: '07-15'
