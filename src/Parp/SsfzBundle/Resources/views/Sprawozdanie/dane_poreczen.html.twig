@@ -66,7 +66,7 @@
                             </tr>
 
                             <tr>
-                                <td class="text-center credit-range">do 50 000 zł</td>
+                                <td class="text-center guarantee-range">do 50 000 zł</td>
                                 <td class="text-center">{{ form_widget(form.liczbaPoreczenDo50000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1', 'data-horizontal-group': '1'}}) }}</td>
                                 <td class="text-center">{{ form_widget(form.liczbaPoreczenDo50000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2', 'data-horizontal-group': '1'}}) }}</td>
                                 <td class="text-center">{{ form_widget(form.liczbaPoreczenDo50000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3', 'data-horizontal-group': '1'}}) }}</td>
@@ -87,7 +87,7 @@
                             </tr>
 
                             <tr>
-                                <td class="text-center credit-range">od 50 001 zł<br />do 100 000 zł</td>
+                                <td class="text-center guarantee-range">od 50 001 zł<br />do 100 000 zł</td>
                                 <td class="text-center">{{ form_widget(form.liczbaPoreczenOd50001Do100000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1', 'data-horizontal-group': '1'}}) }}</td>
                                 <td class="text-center">{{ form_widget(form.liczbaPoreczenOd50001Do100000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2', 'data-horizontal-group': '1'}}) }}</td>
                                 <td class="text-center">{{ form_widget(form.liczbaPoreczenOd50001Do100000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3', 'data-horizontal-group': '1'}}) }}</td>
@@ -108,7 +108,7 @@
                             </tr>
 
                             <tr>
-                                <td class="text-center credit-range">od 100 001 zł<br />do 500 000 zł</td>
+                                <td class="text-center guarantee-range">od 100 001 zł<br />do 500 000 zł</td>
                                 <td class="text-center">{{ form_widget(form.liczbaPoreczenOd100001Do500000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1', 'data-horizontal-group': '1'}}) }}</td>
                                 <td class="text-center">{{ form_widget(form.liczbaPoreczenOd100001Do500000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2', 'data-horizontal-group': '1'}}) }}</td>
                                 <td class="text-center">{{ form_widget(form.liczbaPoreczenOd100001Do500000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3', 'data-horizontal-group': '1'}}) }}</td>
@@ -129,7 +129,7 @@
                             </tr>
 
                              <tr>
-                                <td class="text-center credit-range">od 500 001 zł</td>
+                                <td class="text-center guarantee-range">od 500 001 zł</td>
                                 <td class="text-center">{{ form_widget(form.liczbaPoreczenOd500001PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '1', 'data-horizontal-group': '1'}}) }}</td>
                                 <td class="text-center">{{ form_widget(form.liczbaPoreczenOd500001PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '2', 'data-horizontal-group': '1'}}) }}</td>
                                 <td class="text-center">{{ form_widget(form.liczbaPoreczenOd500001PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '3', 'data-horizontal-group': '1'}}) }}</td>
@@ -150,11 +150,32 @@
                             </tr>
 
                             <tr>
+                                <td class="text-center guarantee-range"><strong>Suma:</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="1">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="2">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="3">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="4">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="5">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="6">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="7">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="8">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="9">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="10">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="11">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="12">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="13">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="14">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="15">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="16">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="17">0</strong></td>
+                            </tr>
+
+                            <tr>
                                 <td colspan="18" class="info text-center"><strong>Wartość pożyczek (zł)</strong></td>
                             </tr>
 
                             <tr>
-                                <td class="text-center credit-range">do 50 000 zł</td>
+                                <td class="text-center guarantee-range">do 50 000 zł</td>
                                 <td class="text-center">{{ form_widget(form.kwotaPoreczenDo50000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '18', 'data-horizontal-group': '5'}}) }}</td>
                                 <td class="text-center">{{ form_widget(form.kwotaPoreczenDo50000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '19', 'data-horizontal-group': '5'}}) }}</td>
                                 <td class="text-center">{{ form_widget(form.kwotaPoreczenDo50000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '20', 'data-horizontal-group': '5'}}) }}</td>
@@ -175,7 +196,7 @@
                             </tr>
 
                             <tr>
-                                <td class="text-center credit-range">od 50 001 zł<br />do 100 000 zł</td>
+                                <td class="text-center guarantee-range">od 50 001 zł<br />do 100 000 zł</td>
                                 <td class="text-center">{{ form_widget(form.kwotaPoreczenOd50001Do100000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '18', 'data-horizontal-group': '5'}}) }}</td>
                                 <td class="text-center">{{ form_widget(form.kwotaPoreczenOd50001Do100000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '19', 'data-horizontal-group': '5'}}) }}</td>
                                 <td class="text-center">{{ form_widget(form.kwotaPoreczenOd50001Do100000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '20', 'data-horizontal-group': '5'}}) }}</td>
@@ -196,7 +217,7 @@
                             </tr>
 
                             <tr>
-                                <td class="text-center credit-range">od 100 001 zł<br />do 500 000 zł</td>
+                                <td class="text-center guarantee-range">od 100 001 zł<br />do 500 000 zł</td>
                                 <td class="text-center">{{ form_widget(form.kwotaPoreczenOd100001Do500000PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '18', 'data-horizontal-group': '5'}}) }}</td>
                                 <td class="text-center">{{ form_widget(form.kwotaPoreczenOd100001Do500000PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '19', 'data-horizontal-group': '5'}}) }}</td>
                                 <td class="text-center">{{ form_widget(form.kwotaPoreczenOd100001Do500000PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '20', 'data-horizontal-group': '5'}}) }}</td>
@@ -217,7 +238,7 @@
                             </tr>
 
                              <tr>
-                                <td class="text-center credit-range">od 500 001 zł</td>
+                                <td class="text-center guarantee-range">od 500 001 zł</td>
                                 <td class="text-center">{{ form_widget(form.kwotaPoreczenOd500001PlnDlaMikroPrzedsiebiorstw, {'attr': {'data-vertical-group': '18', 'data-horizontal-group': '5'}}) }}</td>
                                 <td class="text-center">{{ form_widget(form.kwotaPoreczenOd500001PlnDlaMalychPrzedsiebiorstw, {'attr': {'data-vertical-group': '19', 'data-horizontal-group': '5'}}) }}</td>
                                 <td class="text-center">{{ form_widget(form.kwotaPoreczenOd500001PlnDlaSrednichPrzedsiebiorstw, {'attr': {'data-vertical-group': '20', 'data-horizontal-group': '5'}}) }}</td>
@@ -235,6 +256,27 @@
                                 <td class="text-center">{{ form_widget(form.kwotaPoreczenOd500001PlnDlaBankow, {'attr': {'data-vertical-group': '32', 'data-horizontal-group': '8'}}) }}</td>
                                 <td class="text-center">{{ form_widget(form.kwotaPoreczenOd500001PlnDlaFunduszyPozyczkowych, {'attr': {'data-vertical-group': '33', 'data-horizontal-group': '8'}}) }}</td>
                                 <td class="text-center">{{ form_widget(form.kwotaPoreczenOd500001PlnDlaInnychPodmiotow, {'attr': {'data-vertical-group': '34', 'data-horizontal-group': '8'}}) }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range"><strong>Suma:</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="18">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="19">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="20">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="21">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="22">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="23">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="24">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="25">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="26">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="27">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="28">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="29">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="30">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="31">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="32">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="33">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="34">0</strong></td>
                             </tr>
                         </table>
 
@@ -281,8 +323,8 @@
     <script>
         $(document).ready(function () {
             function sumByGroup() {
-                var verticalGroupsInteger = ['35'],
-                    verticalGroupsDecimal = [],
+                var verticalGroupsInteger = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '35'],
+                    verticalGroupsDecimal = ['18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34'],
                     horizontalGroupsInteger = ['9'],
                     horizontalGroupsDecimal = [],
                     sum = 0
