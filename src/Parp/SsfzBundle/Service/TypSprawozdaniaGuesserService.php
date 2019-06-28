@@ -12,10 +12,10 @@ use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
  */
 class TypSprawozdaniaGuesserService
 {
-    const SPRAWOZDANIE = 'sprawozdanie standardowe';
-    const SPRAWOZDANIE_POZYCZKOWE = 'sprawozdanie pozyczkowe';
-    const SPRAWOZDANIE_PORECZENIOWE = 'sprawozdanie poreczeniowe';
-    const INNE_SPRAWOZDANIE = 'inne sprawozdanie';
+    const SPRAWOZDANIE = 'sprawozdanie_standardowe';
+    const SPRAWOZDANIE_POZYCZKOWE = 'sprawozdanie_pozyczkowe';
+    const SPRAWOZDANIE_PORECZENIOWE = 'sprawozdanie_poreczeniowe';
+    const INNE_SPRAWOZDANIE = 'inne_sprawozdanie';
 
     /**
      * Na podstawie typu obiektu zwraca typ sprawozdania
