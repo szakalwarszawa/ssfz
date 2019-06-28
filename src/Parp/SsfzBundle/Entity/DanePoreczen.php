@@ -2513,6 +2513,275 @@ class DanePoreczen
      */
     protected $kwotaPoreczenOd500001PlnDlaInnychPodmiotow = '0.00';
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Liczba poręczeń wypłaconych dla mikro przedsiębiorstw.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_mikro_przedsiebiorstwa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych dla mikro przedsiębiorstw.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychDlaMikroPrzedsiebiorstw = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i częściowo spłaconych dla mikro przedsiębiorstw.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_czesciowo_splaconych_mikro_przedsiebiorstwa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i częściowo spłaconych dla mikro przedsiębiorstw.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCzesciowoSplaconychDlaMikroPrzedsiebiorstw = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i całkowicie spłaconych dla mikro przedsiębiorstw.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_calkowicie_splaconych_mikro_przedsiebiorstwa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i całkowicie spłaconych dla mikro przedsiębiorstw.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCalkowicieSplaconychDlaMikroPrzedsiebiorstw = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i nieodzyskanych dla mikro przedsiębiorstw.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_nieodzyskanych_mikro_przedsiebiorstwa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i nieodzyskanych dla mikro przedsiębiorstw.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychNieodzyskanychhDlaMikroPrzedsiebiorstw = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych dla małych przedsiębiorstw.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_male_przedsiebiorstwa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych dla małych przedsiębiorstw.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychDlaMalychPrzedsiebiorstw = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i częściowo spłaconych dla małych przedsiębiorstw.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_czesciowo_splaconych_male_przedsiebiorstwa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i częściowo spłaconych dla małych przedsiębiorstw.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCzesciowoSplaconychDlaMalychPrzedsiebiorstw = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i całkowicie spłaconych dla małych przedsiębiorstw.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_calkowicie_splaconych_male_przedsiebiorstwa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i całkowicie spłaconych dla małych przedsiębiorstw.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCalkowicieSplaconychDlaMalychPrzedsiebiorstw = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i nieodzyskanych dla małych przedsiębiorstw.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_nieodzyskanych_male_przedsiebiorstwa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i nieodzyskanych dla małych przedsiębiorstw.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychNieodzyskanychhDlaMalychPrzedsiebiorstw = 0;
+
+
+
+    /**
+     * Liczba poręczeń wypłaconych dla średnich przedsiębiorstw.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_srednie_przedsiebiorstwa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych dla średnich przedsiębiorstw.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychDlaSrednichPrzedsiebiorstw = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i częściowo spłaconych dla średnich przedsiębiorstw.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_czesciowo_splaconych_srednie_przedsiebiorstwa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i częściowo spłaconych dla średnich przedsiębiorstw.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCzesciowoSplaconychDlaSrednichPrzedsiebiorstw = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i całkowicie spłaconych dla średnich przedsiębiorstw.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_calkowicie_splaconych_srednie_przedsiebiorstwa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i całkowicie spłaconych dla średnich przedsiębiorstw.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCalkowicieSplaconychDlaSrednichPrzedsiebiorstw = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i nieodzyskanych dla średnich przedsiębiorstw.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_nieodzyskanych_srednie_przedsiebiorstwa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i nieodzyskanych dla średnich przedsiębiorstw.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychNieodzyskanychhDlaSrednichPrzedsiebiorstw = 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Liczba współpracujących banków.
      *
