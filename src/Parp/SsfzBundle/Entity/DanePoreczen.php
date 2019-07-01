@@ -2513,40 +2513,6 @@ class DanePoreczen
      */
     protected $kwotaPoreczenOd500001PlnDlaInnychPodmiotow = '0.00';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Liczba poręczeń wypłaconych dla mikro przedsiębiorstw.
      *
@@ -2683,8 +2649,6 @@ class DanePoreczen
      */
     protected $liczbaPoreczenWyplaconychNieodzyskanychhDlaMalychPrzedsiebiorstw = 0;
 
-
-
     /**
      * Liczba poręczeń wypłaconych dla średnich przedsiębiorstw.
      *
@@ -2753,34 +2717,2249 @@ class DanePoreczen
      */
     protected $liczbaPoreczenWyplaconychNieodzyskanychhDlaSrednichPrzedsiebiorstw = 0;
 
+    /**
+     * Liczba poręczeń wypłaconych na kredyt obrotowy.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_na_kredyt_obrotowy",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych na kredyt obrotowy.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychNaKredytObrotowy = 0;
 
+    /**
+     * Liczba poręczeń wypłaconych i częściowo spłaconych na kredyt obrotowy.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_czesciowo_splaconych_na_kredyt_obrotowy",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i częściowo spłaconych na kredyt obrotowy.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCzesciowoSplaconychNaKredytObrotowy = 0;
 
+    /**
+     * Liczba poręczeń wypłaconych i całkowicie spłaconych na kredyt obrotowy.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_calkowicie_splaconych_na_kredyt_obrotowy",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i całkowicie spłaconych na kredyt obrotowy.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCalkowicieSplaconychNaKredytObrotowy = 0;
 
+    /**
+     * Liczba poręczeń wypłaconych i nieodzyskanych na kredyt obrotowy.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_nieodzyskanych_na_kredyt_obrotowy",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i nieodzyskanych na kredyt obrotowy.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychNieodzyskanychNaKredytObrotowy = 0;
 
+    /**
+     * Liczba poręczeń wypłaconych na kredyt inwestycyjny.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_na_kredyt_inwestycyjny",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych na kredyt inwestycyjny.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychNaKredytInwestycyjny = 0;
 
+    /**
+     * Liczba poręczeń wypłaconych i częściowo spłaconych na kredyt inwestycyjny.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_czesciowo_splaconych_na_kredyt_inwestycyjny",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i częściowo spłaconych na kredyt inwestycyjny.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCzesciowoSplaconychNaKredytInwestycyjny = 0;
 
+    /**
+     * Liczba poręczeń wypłaconych i całkowicie spłaconych na kredyt inwestycyjny.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_calkowicie_splaconych_na_kredyt_inwestycyjny",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i całkowicie spłaconych na kredyt inwestycyjny.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCalkowicieSplaconychNaKredytInwestycyjny = 0;
 
+    /**
+     * Liczba poręczeń wypłaconych i nieodzyskanych na kredyt inwestycyjny.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_nieodzyskanych_na_kredyt_inwestycyjny",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i nieodzyskanych na kredyt inwestycyjny.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychNieodzyskanychNaKredytInwestycyjny = 0;
 
+    /**
+     * Liczba poręczeń wypłaconych na pożyczkę obrotową.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_na_pozyczke_obrotowa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych na pożyczkę obrotową.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychNaPozyczkeObrotowa = 0;
 
+    /**
+     * Liczba poręczeń wypłaconych i częściowo spłaconych na pożyczkę obrotową.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_czesciowo_splaconych_na_pozyczke_obrotowa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i częściowo spłaconych na pożyczkę obrotową.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCzesciowoSplaconychNaPozyczkeObrotowa = 0;
 
+    /**
+     * Liczba poręczeń wypłaconych i całkowicie spłaconych na pożyczkę obrotową.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_calkowicie_splaconych_na_pozyczke_obrotowa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i całkowicie spłaconych na pożyczkę obrotową.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeObrotowa = 0;
 
+    /**
+     * Liczba poręczeń wypłaconych i nieodzyskanych na pożyczkę obrotową.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_nieodzyskanych_na_pozyczke_obrotowa",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i nieodzyskanych na pożyczkę obrotową.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychNieodzyskanychNaPozyczkeObrotowa = 0;
 
+    /**
+     * Liczba poręczeń wypłaconych na pożyczkę inwestycyjną.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_na_pozyczke_inwestycyjna",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych na pożyczkę inwestycyjną.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychNaPozyczkeInwestycyjna = 0;
 
+    /**
+     * Liczba poręczeń wypłaconych i częściowo spłaconych na pożyczkę inwestycyjną.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_czesciowo_splaconych_na_pozyczke_inwestycyjna",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i częściowo spłaconych na pożyczkę inwestycyjną.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCzesciowoSplaconychNaPozyczkeInwestycyjna = 0;
 
+    /**
+     * Liczba poręczeń wypłaconych i całkowicie spłaconych na pożyczkę inwestycyjną.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_calkowicie_splaconych_na_pozyczke_inwestycyjna",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i całkowicie spłaconych na pożyczkę inwestycyjną.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeInwestycyjna = 0;
 
+    /**
+     * Liczba poręczeń wypłaconych i nieodzyskanych na pożyczkę inwestycyjną.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_nieodzyskanych_na_pozyczke_inwestycyjna",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i nieodzyskanych na pożyczkę inwestycyjną.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychNieodzyskanychNaPozyczkeInwestycyjna = 0;
 
+    /**
+     * Liczba pozostałych poręczeń wypłaconych.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_pozostalych_wyplaconych",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pozostałych poręczeń wypłaconych.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenPozostalychWyplaconych = 0;
 
+    /**
+     * Liczba pozostałych poręczeń wypłaconych i częściowo spłaconych.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_pozostalych_wyplaconych_czesciowo_splaconych",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pozostałych poręczeń wypłaconych i częściowo spłaconych.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenPozostalychWyplaconychCzesciowoSplaconych = 0;
 
+    /**
+     * Liczba pozostałych poręczeń wypłaconych i całkowicie spłaconych.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_pozostalych_wyplaconych_calkowicie_splaconych",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pozostałych poręczeń wypłaconych i całkowicie spłaconych.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenPozostalychWyplaconychCalkowicieSplaconych = 0;
 
+    /**
+     * Liczba pozostałych poręczeń wypłaconych i nieodzyskanych.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_pozostalych_wyplaconych_nieodzyskanych",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pozostałych poręczeń wypłaconych i nieodzyskanych.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenPozostalychWyplaconychNieodzyskanych = 0;
 
+    /**
+     * Liczba wadiów pozostałych poręczeń wypłaconych.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_wadiow_por_pozostalych_wyplaconych",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba wadiów pozostałych poręczeń wypłaconych.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaWadiowPoreczenPozostalychWyplaconych = 0;
 
+    /**
+     * Liczba wadiów pozostałych poręczeń wypłaconych i częściowo spłaconych.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_wadiow_por_pozostalych_wyplaconych_czesciowo_splaconych",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba wadiów pozostałych poręczeń wypłaconych i częściowo spłaconych.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaWadiowPoreczenPozostalychWyplaconychCzesciowoSplaconych = 0;
 
+    /**
+     * Liczba wadiów pozostałych poręczeń wypłaconych i całkowicie spłaconych.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_wadiow_por_pozostalych_wyplaconych_calkowicie_splaconych",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba wadiów pozostałych poręczeń wypłaconych i całkowicie spłaconych.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaWadiowPoreczenPozostalychWyplaconychCalkowicieSplaconych = 0;
 
+    /**
+     * Liczba wadiów pozostałych poręczeń wypłaconych i nieodzyskanych.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_wadiow_por_pozostalych_wyplaconych_nieodzyskanych",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba wadiów pozostałych poręczeń wypłaconych i nieodzyskanych.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaWadiowPoreczenPozostalychWyplaconychNieodzyskanych = 0;
 
+    /**
+     * Liczba poręczeń wypłaconych na działania produkcyjne.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_dzial_produkcyjne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych na działania produkcyjne.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychNaDzialaniaProdukcyjne = 0;
 
+    /**
+     * Liczba poręczeń wypłaconych i częściowo spłaconych na działania produkcyjne.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_czesciowo_splaconych_dzial_produkcyjne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i częściowo spłaconych na działania produkcyjne.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaProdukcyjne = 0;
 
+    /**
+     * Liczba poręczeń wypłaconych i całkowicie spłaconych na działania produkcyjne.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_calkowicie_splaconych_dzial_produkcyjne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i całkowicie spłaconych na działania produkcyjne.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaProdukcyjne = 0;
 
+    /**
+     * Liczba poręczeń wypłaconych i nieodzyskanych na działania produkcyjne.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_nieodzyskanych_dzial_produkcyjne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i nieodzyskanych na działania produkcyjne.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne = 0;
 
+    /**
+     * Liczba poręczeń wypłaconych na działania handlowe.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_dzial_handlowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych na działania handlowe.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychNaDzialaniaHandlowe = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i częściowo spłaconych na działania handlowe.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_czesciowo_splaconych_dzial_handlowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i częściowo spłaconych na działania handlowe.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaHandlowe = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i całkowicie spłaconych na działania handlowe.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_calkowicie_splaconych_dzial_handlowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i całkowicie spłaconych na działania handlowe.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaHandlowe = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i nieodzyskanych na działania handlowe.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_nieodzyskanych_dzial_handlowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i nieodzyskanych na działania handlowe.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych na działania usługowe.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_dzial_uslugowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych na działania usługowe.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychNaDzialaniaUslugowe = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i częściowo spłaconych na działania usługowe.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_czesciowo_splaconych_dzial_uslugowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i częściowo spłaconych na działania usługowe.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaUslugowe = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i całkowicie spłaconych na działania usługowe.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_calkowicie_splaconych_dzial_uslugowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i całkowicie spłaconych na działania usługowe.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaUslugowe = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i nieodzyskanych na działania usługowe.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_nieodzyskanych_dzial_uslugowe",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i nieodzyskanych na działania usługowe.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaUslugowe = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych na działania budownicze.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_dzial_budownicze",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych na działania budownicze.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychNaDzialaniaBudownicze = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i częściowo spłaconych na działania budownicze.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_czesciowo_splaconych_dzial_budownicze",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i częściowo spłaconych na działania budownicze.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaBudownicze = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i całkowicie spłaconych na działania budownicze.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_calkowicie_splaconych_dzial_budownicze",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i całkowicie spłaconych na działania budownicze.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaBudownicze = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i nieodzyskanych na działania budownicze.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_nieodzyskanych_dzial_budownicze",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i nieodzyskanych na działania budownicze.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaBudownicze = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych na działania inne.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_dzial_inne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych na działania inne.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychNaDzialaniaInne = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i częściowo spłaconych na działania inne
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_czesciowo_splaconych_dzial_inne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i częściowo spłaconych na działania inne.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaInne = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i całkowicie spłaconych na działania inne.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_calkowicie_splaconych_dzial_inne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i całkowicie spłaconych na działania inne.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaInne = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i nieodzyskanych na działania inne.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_nieodzyskanych_dzial_inne",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i nieodzyskanych na działania inne.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaInne = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych dla banków.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_dla_bankow",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych dla banków.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychDlaBankow = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i częściowo spłaconych dla banków.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_czesciowo_splaconych_dla_bankow",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i częściowo spłaconych dla banków.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCzesciowoSplaconychDlaBankow = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i całkowicie spłaconych dla banków.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_calkowicie_splaconych_dla_bankow",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i całkowicie spłaconych dla banków.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCalkowicieSplaconychDlaBankow = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i nieodzyskanych dla banków..
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_nieodzyskanych_dla_bankow",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i nieodzyskanych dla banków.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychNieodzyskanychDlaBankow = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych dla funduszy pożyczkowych.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_dla_fund_pozyczkowych",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych dla funduszy pożyczkowych",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychDlaFunduszyPozyczkowych = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i częściowo spłaconych dla funduszy pożyczkowych.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_czesciowo_splaconych_dla_fund_pozyczkowych",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i częściowo spłaconych dla funduszy pożyczkowych.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCzesciowoSplaconychDlaFunduszyPozyczkowych = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i całkowicie spłaconych dla funduszy pożyczkowych.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_calkowicie_splaconych_dla_fund_pozyczkowych",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i całkowicie spłaconych dla funduszy pożyczkowych.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCalkowicieSplaconychDlaFunduszyPozyczkowych = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i nieodzyskanych dla funduszy pożyczkowych.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_nieodzyskanych_dla_fund_pozyczkowych",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i nieodzyskanych dla funduszy pożyczkowych.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychNieodzyskanychDlaFunduszyPozyczkowych = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych dla innych podmiotów.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_dla_innych_podmiotow",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych dla innych podmiotów",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychDlaInnychPodmiotow = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i częściowo spłaconych dla innych podmiotów.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_czesciowo_splaconych_dla_innych_podmiotow",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i częściowo spłaconych dla innych podmiotów.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCzesciowoSplaconychDlaInnychPodmiotow = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i całkowicie spłaconych dla innych podmiotów.
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_calkowicie_splaconych_dla_innych_podmiotow",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i całkowicie spłaconych dla innych podmiotów.",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychCalkowicieSplaconychDlaInnychPodmiotow = 0;
+
+    /**
+     * Liczba poręczeń wypłaconych i nieodzyskanych dla innych podmiotów
+     *
+     * @var int
+     *
+     * @ORM\Column(
+     *     name="liczba_por_wyplaconych_nieodzyskanych_dla_innych_podmiotow",
+     *     type="integer",
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba poręczeń wypłaconych i nieodzyskanych dla innych podmiotów",
+     *         "default":0
+     *     }
+     * )
+     */
+    protected $liczbaPoreczenWyplaconychNieodzyskanychDlaInnychPodmiotow = 0;
+
+    /**
+     * Kwota poręczeń wypłaconych dla mikro przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_mikro_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych dla mikro przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychDlaMikroPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i częściowo spłaconych dla mikro przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_czesciowo_splaconych_mikro_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i częściowo spłaconych dla mikro przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCzesciowoSplaconychDlaMikroPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i całkowicie spłaconych dla mikro przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_calkowicie_splaconych_mikro_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i całkowicie spłaconych dla mikro przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCalkowicieSplaconychDlaMikroPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i nieodzyskanych dla mikro przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_nieodzyskanych_mikro_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i nieodzyskanych dla mikro przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychNieodzyskanychhDlaMikroPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych dla małych przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_male_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych dla małych przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychDlaMalychPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i częściowo spłaconych dla małych przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_czesciowo_splaconych_male_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i częściowo spłaconych dla małych przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCzesciowoSplaconychDlaMalychPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i całkowicie spłaconych dla małych przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_calkowicie_splaconych_male_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i całkowicie spłaconych dla małych przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCalkowicieSplaconychDlaMalychPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i nieodzyskanych dla małych przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_nieodzyskanych_male_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i nieodzyskanych dla małych przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychNieodzyskanychhDlaMalychPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych dla średnich przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_srednie_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych dla średnich przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychDlaSrednichPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i częściowo spłaconych dla średnich przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_czesciowo_splaconych_srednie_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i częściowo spłaconych dla średnich przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCzesciowoSplaconychDlaSrednichPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i całkowicie spłaconych dla średnich przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_calkowicie_splaconych_srednie_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i całkowicie spłaconych dla średnich przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCalkowicieSplaconychDlaSrednichPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i nieodzyskanych dla średnich przedsiębiorstw.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_nieodzyskanych_srednie_przedsiebiorstwa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i nieodzyskanych dla średnich przedsiębiorstw.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychNieodzyskanychhDlaSrednichPrzedsiebiorstw = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych na kredyt obrotowy.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_na_kredyt_obrotowy",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych na kredyt obrotowy.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychNaKredytObrotowy = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i częściowo spłaconych na kredyt obrotowy.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_czesciowo_splaconych_na_kredyt_obrotowy",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i częściowo spłaconych na kredyt obrotowy.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCzesciowoSplaconychNaKredytObrotowy = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i całkowicie spłaconych na kredyt obrotowy.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_calkowicie_splaconych_na_kredyt_obrotowy",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i całkowicie spłaconych na kredyt obrotowy.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCalkowicieSplaconychNaKredytObrotowy = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i nieodzyskanych na kredyt obrotowy.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_nieodzyskanych_na_kredyt_obrotowy",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i nieodzyskanych na kredyt obrotowy.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychNieodzyskanychNaKredytObrotowy = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych na kredyt inwestycyjny.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_na_kredyt_inwestycyjny",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych na kredyt inwestycyjny.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychNaKredytInwestycyjny = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i częściowo spłaconych na kredyt inwestycyjny.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_czesciowo_splaconych_na_kredyt_inwestycyjny",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i częściowo spłaconych na kredyt inwestycyjny.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCzesciowoSplaconychNaKredytInwestycyjny = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i całkowicie spłaconych na kredyt inwestycyjny.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_calkowicie_splaconych_na_kredyt_inwestycyjny",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i całkowicie spłaconych na kredyt inwestycyjny.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCalkowicieSplaconychNaKredytInwestycyjny = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i nieodzyskanych na kredyt inwestycyjny.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_nieodzyskanych_na_kredyt_inwestycyjny",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i nieodzyskanych na kredyt inwestycyjny.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychNieodzyskanychNaKredytInwestycyjny = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych na pożyczkę obrotową.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_na_pozyczke_obrotowa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych na pożyczkę obrotową.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychNaPozyczkeObrotowa = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i częściowo spłaconych na pożyczkę obrotową.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_czesciowo_splaconych_na_pozyczke_obrotowa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i częściowo spłaconych na pożyczkę obrotową.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCzesciowoSplaconychNaPozyczkeObrotowa = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i całkowicie spłaconych na pożyczkę obrotową.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_calkowicie_splaconych_na_pozyczke_obrotowa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i całkowicie spłaconych na pożyczkę obrotową.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeObrotowa = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i nieodzyskanych na pożyczkę obrotową.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_nieodzyskanych_na_pozyczke_obrotowa",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i nieodzyskanych na pożyczkę obrotową.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychNieodzyskanychNaPozyczkeObrotowa = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych na pożyczkę inwestycyjną.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_na_pozyczke_inwestycyjna",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych na pożyczkę inwestycyjną.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychNaPozyczkeInwestycyjna = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i częściowo spłaconych na pożyczkę inwestycyjną.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_czesciowo_splaconych_na_pozyczke_inwestycyjna",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i częściowo spłaconych na pożyczkę inwestycyjną.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCzesciowoSplaconychNaPozyczkeInwestycyjna = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i całkowicie spłaconych na pożyczkę inwestycyjną.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_calkowicie_splaconych_na_pozyczke_inwestycyjna",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i całkowicie spłaconych na pożyczkę inwestycyjną.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeInwestycyjna = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i nieodzyskanych na pożyczkę inwestycyjną.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_nieodzyskanych_na_pozyczke_inwestycyjna",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i nieodzyskanych na pożyczkę inwestycyjną.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychNieodzyskanychNaPozyczkeInwestycyjna = '0.00';
+
+    /**
+     * Liczba pozostałych poręczeń wypłaconych.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_pozostalych_wyplaconych",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pozostałych poręczeń wypłaconych.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenPozostalychWyplaconych = '0.00';
+
+    /**
+     * Liczba pozostałych poręczeń wypłaconych i częściowo spłaconych.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_pozostalych_wyplaconych_czesciowo_splaconych",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pozostałych poręczeń wypłaconych i częściowo spłaconych.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenPozostalychWyplaconychCzesciowoSplaconych = '0.00';
+
+    /**
+     * Liczba pozostałych poręczeń wypłaconych i całkowicie spłaconych.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_pozostalych_wyplaconych_calkowicie_splaconych",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pozostałych poręczeń wypłaconych i całkowicie spłaconych.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenPozostalychWyplaconychCalkowicieSplaconych = '0.00';
+
+    /**
+     * Liczba pozostałych poręczeń wypłaconych i nieodzyskanych.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_pozostalych_wyplaconych_nieodzyskanych",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba pozostałych poręczeń wypłaconych i nieodzyskanych.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenPozostalychWyplaconychNieodzyskanych = '0.00';
+
+    /**
+     * Liczba wadiów pozostałych poręczeń wypłaconych.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_wadiow_por_pozostalych_wyplaconych",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba wadiów pozostałych poręczeń wypłaconych.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaWadiowPoreczenPozostalychWyplaconych = '0.00';
+
+    /**
+     * Liczba wadiów pozostałych poręczeń wypłaconych i częściowo spłaconych.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_wadiow_por_pozostalych_wyplaconych_czesciowo_splaconych",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba wadiów pozostałych poręczeń wypłaconych i częściowo spłaconych.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaWadiowPoreczenPozostalychWyplaconychCzesciowoSplaconych = '0.00';
+
+    /**
+     * Liczba wadiów pozostałych poręczeń wypłaconych i całkowicie spłaconych.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_wadiow_por_pozostalych_wyplaconych_calkowicie_splaconych",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba wadiów pozostałych poręczeń wypłaconych i całkowicie spłaconych.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaWadiowPoreczenPozostalychWyplaconychCalkowicieSplaconych = '0.00';
+
+    /**
+     * Liczba wadiów pozostałych poręczeń wypłaconych i nieodzyskanych.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_wadiow_por_pozostalych_wyplaconych_nieodzyskanych",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Liczba wadiów pozostałych poręczeń wypłaconych i nieodzyskanych.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaWadiowPoreczenPozostalychWyplaconychNieodzyskanych = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych na działania produkcyjne.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_dzial_produkcyjne",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych na działania produkcyjne.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychNaDzialaniaProdukcyjne = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i częściowo spłaconych na działania produkcyjne.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_czesciowo_splaconych_dzial_produkcyjne",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i częściowo spłaconych na działania produkcyjne.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaProdukcyjne = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i całkowicie spłaconych na działania produkcyjne.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_calkowicie_splaconych_dzial_produkcyjne",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i całkowicie spłaconych na działania produkcyjne.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaProdukcyjne = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i nieodzyskanych na działania produkcyjne.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_nieodzyskanych_dzial_produkcyjne",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i nieodzyskanych na działania produkcyjne.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych na działania handlowe.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_dzial_handlowe",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych na działania handlowe.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychNaDzialaniaHandlowe = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i częściowo spłaconych na działania handlowe.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_czesciowo_splaconych_dzial_handlowe",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i częściowo spłaconych na działania handlowe.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaHandlowe = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i całkowicie spłaconych na działania handlowe.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_calkowicie_splaconych_dzial_handlowe",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i całkowicie spłaconych na działania handlowe.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaHandlowe = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i nieodzyskanych na działania handlowe.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_nieodzyskanych_dzial_handlowe",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i nieodzyskanych na działania handlowe.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych na działania usługowe.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_dzial_uslugowe",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych na działania usługowe.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychNaDzialaniaUslugowe = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i częściowo spłaconych na działania usługowe.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_czesciowo_splaconych_dzial_uslugowe",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i częściowo spłaconych na działania usługowe.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaUslugowe = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i całkowicie spłaconych na działania usługowe.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_calkowicie_splaconych_dzial_uslugowe",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i całkowicie spłaconych na działania usługowe.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaUslugowe = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i nieodzyskanych na działania usługowe.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_nieodzyskanych_dzial_uslugowe",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i nieodzyskanych na działania usługowe.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaUslugowe = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych na działania budownicze.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_dzial_budownicze",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych na działania budownicze.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychNaDzialaniaBudownicze = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i częściowo spłaconych na działania budownicze.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_czesciowo_splaconych_dzial_budownicze",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i częściowo spłaconych na działania budownicze.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaBudownicze = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i całkowicie spłaconych na działania budownicze.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_calkowicie_splaconych_dzial_budownicze",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i całkowicie spłaconych na działania budownicze.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaBudownicze = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i nieodzyskanych na działania budownicze.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_nieodzyskanych_dzial_budownicze",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i nieodzyskanych na działania budownicze.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaBudownicze = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych na działania inne.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_dzial_inne",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych na działania inne.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychNaDzialaniaInne = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i częściowo spłaconych na działania inne
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_czesciowo_splaconych_dzial_inne",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i częściowo spłaconych na działania inne.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaInne = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i całkowicie spłaconych na działania inne.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_calkowicie_splaconych_dzial_inne",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i całkowicie spłaconych na działania inne.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaInne = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i nieodzyskanych na działania inne.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_nieodzyskanych_dzial_inne",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i nieodzyskanych na działania inne.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaInne = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych dla banków.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_dla_bankow",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych dla banków.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychDlaBankow = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i częściowo spłaconych dla banków.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_czesciowo_splaconych_dla_bankow",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i częściowo spłaconych dla banków.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCzesciowoSplaconychDlaBankow = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i całkowicie spłaconych dla banków.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_calkowicie_splaconych_dla_bankow",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i całkowicie spłaconych dla banków.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCalkowicieSplaconychDlaBankow = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i nieodzyskanych dla banków..
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_nieodzyskanych_dla_bankow",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i nieodzyskanych dla banków.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychNieodzyskanychDlaBankow = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych dla funduszy pożyczkowych.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_dla_fund_pozyczkowych",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych dla funduszy pożyczkowych",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychDlaFunduszyPozyczkowych = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i częściowo spłaconych dla funduszy pożyczkowych.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_czesciowo_splaconych_dla_fund_pozyczkowych",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i częściowo spłaconych dla funduszy pożyczkowych.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCzesciowoSplaconychDlaFunduszyPozyczkowych = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i całkowicie spłaconych dla funduszy pożyczkowych.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_calkowicie_splaconych_dla_fund_pozyczkowych",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i całkowicie spłaconych dla funduszy pożyczkowych.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCalkowicieSplaconychDlaFunduszyPozyczkowych = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i nieodzyskanych dla funduszy pożyczkowych.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_nieodzyskanych_dla_fund_pozyczkowych",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i nieodzyskanych dla funduszy pożyczkowych.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychNieodzyskanychDlaFunduszyPozyczkowych = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych dla innych podmiotów.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_dla_innych_podmiotow",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych dla innych podmiotów",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychDlaInnychPodmiotow = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i częściowo spłaconych dla innych podmiotów.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_czesciowo_splaconych_dla_innych_podmiotow",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i częściowo spłaconych dla innych podmiotów.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCzesciowoSplaconychDlaInnychPodmiotow = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i całkowicie spłaconych dla innych podmiotów.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_calkowicie_splaconych_dla_innych_podmiotow",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i całkowicie spłaconych dla innych podmiotów.",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychCalkowicieSplaconychDlaInnychPodmiotow = '0.00';
+
+    /**
+     * Kwota poręczeń wypłaconych i nieodzyskanych dla innych podmiotów
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_por_wyplaconych_nieodzyskanych_dla_innych_podmiotow",
+     *     type="decimal",
+     *     precision=11,
+     *     scale=2,
+     *     nullable=false,
+     *     options={
+     *         "comment":"Kwota poręczeń wypłaconych i nieodzyskanych dla innych podmiotów",
+     *         "default":0.00
+     *     }
+     * )
+     */
+    protected $kwotaPoreczenWyplaconychNieodzyskanychDlaInnychPodmiotow = '0.00';
 
     /**
      * Liczba współpracujących banków.
@@ -2888,120 +5067,6 @@ class DanePoreczen
 
         return $this;
     }
-
-    /**
-     * Zwraca wartość liczby współpracujących banków.
-     *
-     * @return int
-     */
-    public function getLiczbaWspolpracujacychBankow()
-    {
-        return $this->liczbaWspolpracujacychBankow;
-    }
-
-    /**
-     * Ustala wartość liczby współpracujących banków.
-     *
-     * @param int $liczbaWspolpracujacych
-     *
-     * @return DanePoreczen
-     */
-    public function setLiczbaWspolpracujacychBankow(int $liczbaWspolpracujacych = 0)
-    {
-        $this->liczbaWspolpracujacychBankow = abs($liczbaWspolpracujacych);
-
-        return $this;
-    }
-
-    /**
-     * Zwraca wartość liczby współpracujących funduszy pożyczkowych.
-     *
-     * @return int
-     */
-    public function getLiczbaWspolpracujacychFunduszyPozyczkowych()
-    {
-        return $this->liczbaWspolpracujacychFunduszyPozyczkowych;
-    }
-
-    /**
-     * Ustala wartość liczby współpracujących funduszy pożyczkowych.
-     *
-     * @param int $liczbaWspolpracujacych
-     *
-     * @return DanePoreczen
-     */
-    public function setLiczbaWspolpracujacychFunduszyPozyczkowych(int $liczbaWspolpracujacych = 0)
-    {
-        $this->liczbaWspolpracujacychFunduszyPozyczkowych = abs($liczbaWspolpracujacych);
-
-        return $this;
-    }
-
-    /**
-     * Zwraca wartość liczby innych podmiotów współpracujących.
-     *
-     * @return int
-     */
-    public function getLiczbaInnychPodmiotowWspolpracujacych()
-    {
-        return $this->liczbaInnychPodmiotowWspolpracujacych;
-    }
-
-    /**
-     * Ustala wartość liczby innych podmiotów współpracujących.
-     *
-     * @param int $liczbaWspolpracujacych
-     *
-     * @return DanePoreczen
-     */
-    public function setLiczbaInnychPodmiotowWspolpracujacych(int $liczbaWspolpracujacych = 0)
-    {
-        $this->liczbaInnychPodmiotowWspolpracujacych = abs($liczbaWspolpracujacych);
-
-        return $this;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     /**
      * Zwraca wartość liczby poręczeń do 50.000zł dla mikro przedsiębiorstw.
@@ -4346,10 +6411,6 @@ class DanePoreczen
 
         return $this;
     }
-
-
-
-
 
     /**
      * Zwraca wartość liczby poręczeń dla banków do 50.000zł.
@@ -6271,6 +8332,3458 @@ class DanePoreczen
     public function setKwotaPoreczenOd500001PlnDlaInnychPodmiotow(string $kwotaPoreczen = '0.00')
     {
         $this->kwotaPoreczenOd500001PlnDlaInnychPodmiotow = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych dla mikro przedsiębiorstw.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychDlaMikroPrzedsiebiorstw()
+    {
+        return $this->liczbaPoreczenWyplaconychDlaMikroPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych dla mikro przedsiębiorstw.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychDlaMikroPrzedsiebiorstw(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychDlaMikroPrzedsiebiorstw = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i częściowo spłaconych dla mikro przedsiębiorstw.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCzesciowoSplaconychDlaMikroPrzedsiebiorstw()
+    {
+        return $this->liczbaPoreczenWyplaconychCzesciowoSplaconychDlaMikroPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i częściowo spłaconych dla mikro przedsiębiorstw.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCzesciowoSplaconychDlaMikroPrzedsiebiorstw(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCzesciowoSplaconychDlaMikroPrzedsiebiorstw = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i całkowicie spłaconych dla mikro przedsiębiorstw.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCalkowicieSplaconychDlaMikroPrzedsiebiorstw()
+    {
+        return $this->liczbaPoreczenWyplaconychCalkowicieSplaconychDlaMikroPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i całkowicie spłaconych dla mikro przedsiębiorstw.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCalkowicieSplaconychDlaMikroPrzedsiebiorstw(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCalkowicieSplaconychDlaMikroPrzedsiebiorstw = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i nieodzyskanych dla mikro przedsiębiorstw.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychNieodzyskanychhDlaMikroPrzedsiebiorstw()
+    {
+        return $this->liczbaPoreczenWyplaconychNieodzyskanychhDlaMikroPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i nieodzyskanych dla mikro przedsiębiorstw.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychNieodzyskanychhDlaMikroPrzedsiebiorstw(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychNieodzyskanychhDlaMikroPrzedsiebiorstw = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych dla małych przedsiębiorstw.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychDlaMalychPrzedsiebiorstw()
+    {
+        return $this->liczbaPoreczenWyplaconychDlaMalychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych dla małych przedsiębiorstw.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychDlaMalychPrzedsiebiorstw(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychDlaMalychPrzedsiebiorstw = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i częściowo spłaconych dla małych przedsiębiorstw.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCzesciowoSplaconychDlaMalychPrzedsiebiorstw()
+    {
+        return $this->liczbaPoreczenWyplaconychCzesciowoSplaconychDlaMalychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i częściowo spłaconych dla małych przedsiębiorstw.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCzesciowoSplaconychDlaMalychPrzedsiebiorstw(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCzesciowoSplaconychDlaMalychPrzedsiebiorstw = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i całkowicie spłaconych dla małych przedsiębiorstw.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCalkowicieSplaconychDlaMalychPrzedsiebiorstw()
+    {
+        return $this->liczbaPoreczenWyplaconychCalkowicieSplaconychDlaMalychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i całkowicie spłaconych dla małych przedsiębiorstw.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCalkowicieSplaconychDlaMalychPrzedsiebiorstw(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCalkowicieSplaconychDlaMalychPrzedsiebiorstw = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i nieodzyskanych dla małych przedsiębiorstw.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychNieodzyskanychhDlaMalychPrzedsiebiorstw()
+    {
+        return $this->liczbaPoreczenWyplaconychNieodzyskanychhDlaMalychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i nieodzyskanych dla małych przedsiębiorstw.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychNieodzyskanychhDlaMalychPrzedsiebiorstw(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychNieodzyskanychhDlaMalychPrzedsiebiorstw = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych dla średnich przedsiębiorstw.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychDlaSrednichPrzedsiebiorstw()
+    {
+        return $this->liczbaPoreczenWyplaconychDlaSrednichPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych dla średnich przedsiębiorstw.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychDlaSrednichPrzedsiebiorstw(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychDlaSrednichPrzedsiebiorstw = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i częściowo spłaconych dla średnich przedsiębiorstw.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCzesciowoSplaconychDlaSrednichPrzedsiebiorstw()
+    {
+        return $this->liczbaPoreczenWyplaconychCzesciowoSplaconychDlaSrednichPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i częściowo spłaconych dla średnich przedsiębiorstw.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCzesciowoSplaconychDlaSrednichPrzedsiebiorstw(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCzesciowoSplaconychDlaSrednichPrzedsiebiorstw = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i całkowicie spłaconych dla średnich przedsiębiorstw.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCalkowicieSplaconychDlaSrednichPrzedsiebiorstw()
+    {
+        return $this->liczbaPoreczenWyplaconychCalkowicieSplaconychDlaSrednichPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i całkowicie spłaconych dla średnich przedsiębiorstw.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCalkowicieSplaconychDlaSrednichPrzedsiebiorstw(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCalkowicieSplaconychDlaSrednichPrzedsiebiorstw = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i nieodzyskanych dla średnich przedsiębiorstw.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychNieodzyskanychhDlaSrednichPrzedsiebiorstw()
+    {
+        return $this->liczbaPoreczenWyplaconychNieodzyskanychhDlaSrednichPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i nieodzyskanych dla średnich przedsiębiorstw.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychNieodzyskanychhDlaSrednichPrzedsiebiorstw(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychNieodzyskanychhDlaSrednichPrzedsiebiorstw = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych na kredyt obrotowy.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychNaKredytObrotowy()
+    {
+        return $this->liczbaPoreczenWyplaconychNaKredytObrotowy;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych na kredyt obrotowy.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychNaKredytObrotowy(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychNaKredytObrotowy = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i częściowo spłaconych na kredyt obrotowy.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCzesciowoSplaconychNaKredytObrotowy()
+    {
+        return $this->liczbaPoreczenWyplaconychCzesciowoSplaconychNaKredytObrotowy;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i częściowo spłaconych na kredyt obrotowy.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCzesciowoSplaconychNaKredytObrotowy(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCzesciowoSplaconychNaKredytObrotowy = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i całkowicie spłaconych na kredyt obrotowy.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCalkowicieSplaconychNaKredytObrotowy()
+    {
+        return $this->liczbaPoreczenWyplaconychCalkowicieSplaconychNaKredytObrotowy;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i całkowicie spłaconych na kredyt obrotowy.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCalkowicieSplaconychNaKredytObrotowy(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCalkowicieSplaconychNaKredytObrotowy = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i nieodzyskanych na kredyt obrotowy.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychNieodzyskanychNaKredytObrotowy()
+    {
+        return $this->liczbaPoreczenWyplaconychNieodzyskanychNaKredytObrotowy;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i nieodzyskanych na kredyt obrotowy.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychNieodzyskanychNaKredytObrotowy(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychNieodzyskanychNaKredytObrotowy = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych na kredyt inwestycyjny.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychNaKredytInwestycyjny()
+    {
+        return $this->liczbaPoreczenWyplaconychNaKredytInwestycyjny;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych na kredyt inwestycyjny.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychNaKredytInwestycyjny(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychNaKredytInwestycyjny = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i częściowo spłaconych na kredyt inwestycyjny.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCzesciowoSplaconychNaKredytInwestycyjny()
+    {
+        return $this->liczbaPoreczenWyplaconychCzesciowoSplaconychNaKredytInwestycyjny;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i częściowo spłaconych na kredyt inwestycyjny.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCzesciowoSplaconychNaKredytInwestycyjny(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCzesciowoSplaconychNaKredytInwestycyjny = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i całkowicie spłaconych na kredyt inwestycyjny.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCalkowicieSplaconychNaKredytInwestycyjny()
+    {
+        return $this->liczbaPoreczenWyplaconychCalkowicieSplaconychNaKredytInwestycyjny;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i całkowicie spłaconych na kredyt inwestycyjny.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCalkowicieSplaconychNaKredytInwestycyjny(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCalkowicieSplaconychNaKredytInwestycyjny = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i nieodzyskanych na kredyt inwestycyjny.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychNieodzyskanychNaKredytInwestycyjny()
+    {
+        return $this->liczbaPoreczenWyplaconychNieodzyskanychNaKredytInwestycyjny;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i nieodzyskanych na kredyt inwestycyjny.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychNieodzyskanychNaKredytInwestycyjny(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychNieodzyskanychNaKredytInwestycyjny = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych na pożyczkę obrotową.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychNaPozyczkeObrotowa()
+    {
+        return $this->liczbaPoreczenWyplaconychNaPozyczkeObrotowa;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych na pożyczkę obrotową.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychNaPozyczkeObrotowa(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychNaPozyczkeObrotowa = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i częściowo spłaconych na pożyczkę obrotową.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCzesciowoSplaconychNaPozyczkeObrotowa()
+    {
+        return $this->liczbaPoreczenWyplaconychCzesciowoSplaconychNaPozyczkeObrotowa;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i częściowo spłaconych na pożyczkę obrotową.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCzesciowoSplaconychNaPozyczkeObrotowa(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCzesciowoSplaconychNaPozyczkeObrotowa = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i całkowicie spłaconych na pożyczkę obrotową.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeObrotowa()
+    {
+        return $this->liczbaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeObrotowa;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i całkowicie spłaconych na pożyczkę obrotową.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeObrotowa(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeObrotowa = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i nieodzyskanych na pożyczkę obrotową.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychNieodzyskanychNaPozyczkeObrotowa()
+    {
+        return $this->liczbaPoreczenWyplaconychNieodzyskanychNaPozyczkeObrotowa;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i nieodzyskanych na pożyczkę obrotową.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychNieodzyskanychNaPozyczkeObrotowa(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychNieodzyskanychNaPozyczkeObrotowa = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych na pożyczkę inwestycyjną.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychNaPozyczkeInwestycyjna()
+    {
+        return $this->liczbaPoreczenWyplaconychNaPozyczkeInwestycyjna;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych na pożyczkę inwestycyjną.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychNaPozyczkeInwestycyjna(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychNaPozyczkeInwestycyjna = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i częściowo spłaconych na pożyczkę inwestycyjną.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCzesciowoSplaconychNaPozyczkeInwestycyjna()
+    {
+        return $this->liczbaPoreczenWyplaconychCzesciowoSplaconychNaPozyczkeInwestycyjna;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i częściowo spłaconych na pożyczkę inwestycyjną.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCzesciowoSplaconychNaPozyczkeInwestycyjna(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCzesciowoSplaconychNaPozyczkeInwestycyjna = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i całkowicie spłaconych na pożyczkę inwestycyjną.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeInwestycyjna()
+    {
+        return $this->liczbaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeInwestycyjna;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i całkowicie spłaconych na pożyczkę inwestycyjną.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeInwestycyjna(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeInwestycyjna = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i nieodzyskanych na pożyczkę inwestycyjną.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychNieodzyskanychNaPozyczkeInwestycyjna()
+    {
+        return $this->liczbaPoreczenWyplaconychNieodzyskanychNaPozyczkeInwestycyjna;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i nieodzyskanych na pożyczkę inwestycyjną.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychNieodzyskanychNaPozyczkeInwestycyjna(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychNieodzyskanychNaPozyczkeInwestycyjna = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pozostałych poręczeń wypłaconych.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenPozostalychWyplaconych()
+    {
+        return $this->liczbaPoreczenPozostalychWyplaconych;
+    }
+
+    /**
+     * Ustala wartość liczby pozostałych poręczeń wypłaconych.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenPozostalychWyplaconych(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenPozostalychWyplaconych = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pozostałych poręczeń wypłaconych i częściowo spłaconych.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenPozostalychWyplaconychCzesciowoSplaconych()
+    {
+        return $this->liczbaPoreczenPozostalychWyplaconychCzesciowoSplaconych;
+    }
+
+    /**
+     * Ustala wartość liczby pozostałych poręczeń wypłaconych i częściowo spłaconych.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenPozostalychWyplaconychCzesciowoSplaconych(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenPozostalychWyplaconychCzesciowoSplaconych = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pozostałych poręczeń wypłaconych i całkowicie spłaconych.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenPozostalychWyplaconychCalkowicieSplaconych()
+    {
+        return $this->liczbaPoreczenPozostalychWyplaconychCalkowicieSplaconych;
+    }
+
+    /**
+     * Ustala wartość liczby pozostałych poręczeń wypłaconych i całkowicie spłaconych.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenPozostalychWyplaconychCalkowicieSplaconych(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenPozostalychWyplaconychCalkowicieSplaconych = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby pozostałych poręczeń wypłaconych i nieodzyskanych.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenPozostalychWyplaconychNieodzyskanych()
+    {
+        return $this->liczbaPoreczenPozostalychWyplaconychNieodzyskanych;
+    }
+
+    /**
+     * Ustala wartość liczby pozostałych poręczeń wypłaconych i nieodzyskanych.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenPozostalychWyplaconychNieodzyskanych(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenPozostalychWyplaconychNieodzyskanych = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby wadiów pozostałych poręczeń wypłaconych.
+     *
+     * @return int
+     */
+    public function getLiczbaWadiowPoreczenPozostalychWyplaconych()
+    {
+        return $this->liczbaWadiowPoreczenPozostalychWyplaconych;
+    }
+
+    /**
+     * Ustala wartość liczby wadiów pozostałych poręczeń wypłaconych.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaWadiowPoreczenPozostalychWyplaconych(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaWadiowPoreczenPozostalychWyplaconych = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby wadiów pozostałych poręczeń wypłaconych i częściowo spłaconych.
+     *
+     * @return int
+     */
+    public function getLiczbaWadiowPoreczenPozostalychWyplaconychCzesciowoSplaconych()
+    {
+        return $this->liczbaWadiowPoreczenPozostalychWyplaconychCzesciowoSplaconych;
+    }
+
+    /**
+     * Ustala wartość liczby wadiów pozostałych poręczeń wypłaconych i częściowo spłaconych.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaWadiowPoreczenPozostalychWyplaconychCzesciowoSplaconych(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaWadiowPoreczenPozostalychWyplaconychCzesciowoSplaconych = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby wadiów pozostałych poręczeń wypłaconych i całkowicie spłaconych.
+     *
+     * @return int
+     */
+    public function getLiczbaWadiowPoreczenPozostalychWyplaconychCalkowicieSplaconych()
+    {
+        return $this->liczbaWadiowPoreczenPozostalychWyplaconychCalkowicieSplaconych;
+    }
+
+    /**
+     * Ustala wartość liczby wadiów pozostałych poręczeń wypłaconych i całkowicie spłaconych.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaWadiowPoreczenPozostalychWyplaconychCalkowicieSplaconych(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaWadiowPoreczenPozostalychWyplaconychCalkowicieSplaconych = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby wadiów pozostałych poręczeń wypłaconych i nieodzyskanych.
+     *
+     * @return int
+     */
+    public function getLiczbaWadiowPoreczenPozostalychWyplaconychNieodzyskanych()
+    {
+        return $this->liczbaWadiowPoreczenPozostalychWyplaconychNieodzyskanych;
+    }
+
+    /**
+     * Ustala wartość liczby wadiów pozostałych poręczeń wypłaconych i nieodzyskanych.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaWadiowPoreczenPozostalychWyplaconychNieodzyskanych(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaWadiowPoreczenPozostalychWyplaconychNieodzyskanych = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych na działania produkcyjne.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychNaDzialaniaProdukcyjne()
+    {
+        return $this->liczbaPoreczenWyplaconychNaDzialaniaProdukcyjne;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych na działania produkcyjne.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychNaDzialaniaProdukcyjne(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychNaDzialaniaProdukcyjne = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i częściowo spłaconych na działania produkcyjne.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaProdukcyjne()
+    {
+        return $this->liczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaProdukcyjne;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i częściowo spłaconych na działania produkcyjne.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaProdukcyjne(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaProdukcyjne = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i całkowicie spłaconych na działania produkcyjne.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaProdukcyjne()
+    {
+        return $this->liczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaProdukcyjne;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i całkowicie spłaconych na działania produkcyjne.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaProdukcyjne(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaProdukcyjne = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i nieodzyskanych na działania produkcyjne.
+     *
+     * @return int
+     */
+    public function getLiczbaoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne()
+    {
+        return $this->liczbaoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i nieodzyskanych na działania produkcyjne.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych na działania handlowe.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychNaDzialaniaHandlowe()
+    {
+        return $this->liczbaPoreczenWyplaconychNaDzialaniaHandlowe;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych na działania handlowe.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychNaDzialaniaHandlowe(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychNaDzialaniaHandlowe = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i częściowo spłaconych na działania handlowe.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaHandlowe()
+    {
+        return $this->liczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaHandlowe;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i częściowo spłaconych na działania handlowe.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaHandlowe(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaHandlowe = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i całkowicie spłaconych na działania handlowe.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaHandlowe()
+    {
+        return $this->liczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaHandlowe;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i całkowicie spłaconych na działania handlowe.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaHandlowe(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaHandlowe = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i nieodzyskanych na działania handlowe.
+     *
+     * @return int
+     */
+    public function getLiczbaoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe()
+    {
+        return $this->liczbaoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i nieodzyskanych na działania handlowe.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych na działania usługowe.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychNaDzialaniaUslugowe()
+    {
+        return $this->liczbaPoreczenWyplaconychNaDzialaniaUslugowe;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych na działania usługowe.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychNaDzialaniaUslugowe(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychNaDzialaniaUslugowe = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i częściowo spłaconych na działania usługowe.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaUslugowe()
+    {
+        return $this->liczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaUslugowe;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i częściowo spłaconych na działania usługowe.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaUslugowe(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaUslugowe = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i całkowicie spłaconych na działania usługowe.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaUslugowe()
+    {
+        return $this->liczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaUslugowe;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i całkowicie spłaconych na działania usługowe.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaUslugowe(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaUslugowe = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i nieodzyskanych na działania usługowe.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaUslugowe()
+    {
+        return $this->liczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaUslugowe;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i nieodzyskanych na działania usługowe.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaUslugowe(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaUslugowe = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych na działania budownicze.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychNaDzialaniaBudownicze()
+    {
+        return $this->liczbaPoreczenWyplaconychNaDzialaniaBudownicze;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych na działania budownicze.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychNaDzialaniaBudownicze(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychNaDzialaniaBudownicze = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i częściowo spłaconych na działania budownicze.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaBudownicze()
+    {
+        return $this->liczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaBudownicze;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i częściowo spłaconych na działania budownicze.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaBudownicze(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaBudownicze = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i całkowicie spłaconych na działania budownicze.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaBudownicze()
+    {
+        return $this->liczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaBudownicze;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i całkowicie spłaconych na działania budownicze.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaBudownicze(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaBudownicze = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i nieodzyskanych na działania budownicze.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaBudownicze()
+    {
+        return $this->liczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaBudownicze;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i nieodzyskanych na działania budownicze.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaBudownicze(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaBudownicze = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych na działania inne.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychNaDzialaniaInne()
+    {
+        return $this->liczbaPoreczenWyplaconychNaDzialaniaInne;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych na działania inne.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychNaDzialaniaInne(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychNaDzialaniaInne = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i częściowo spłaconych na działania inne
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaInne()
+    {
+        return $this->liczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaInne;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i częściowo spłaconych na działania inne
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaInne(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaInne = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i całkowicie spłaconych na działania inne.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaInne()
+    {
+        return $this->liczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaInne;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i całkowicie spłaconych na działania inne.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaInne(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaInne = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i nieodzyskanych na działania inne.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaInne()
+    {
+        return $this->liczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaInne;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i nieodzyskanych na działania inne.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaInne(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaInne = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych dla banków.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychDlaBankow()
+    {
+        return $this->liczbaPoreczenWyplaconychDlaBankow;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych dla banków.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychDlaBankow(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychDlaBankow = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i częściowo spłaconych dla banków.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCzesciowoSplaconychDlaBankow()
+    {
+        return $this->liczbaPoreczenWyplaconychCzesciowoSplaconychDlaBankow;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i częściowo spłaconych dla banków.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCzesciowoSplaconychDlaBankow(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCzesciowoSplaconychDlaBankow = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i całkowicie spłaconych dla banków.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCalkowicieSplaconychDlaBankow()
+    {
+        return $this->liczbaPoreczenWyplaconychCalkowicieSplaconychDlaBankow;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i całkowicie spłaconych dla banków.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCalkowicieSplaconychDlaBankow(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCalkowicieSplaconychDlaBankow = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i nieodzyskanych dla banków..
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychNieodzyskanychDlaBankow()
+    {
+        return $this->liczbaPoreczenWyplaconychNieodzyskanychDlaBankow;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i nieodzyskanych dla banków..
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychNieodzyskanychDlaBankow(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychNieodzyskanychDlaBankow = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych dla funduszy pożyczkowych.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychDlaFunduszyPozyczkowych()
+    {
+        return $this->liczbaPoreczenWyplaconychDlaFunduszyPozyczkowych;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych dla funduszy pożyczkowych.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychDlaFunduszyPozyczkowych(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychDlaFunduszyPozyczkowych = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i częściowo spłaconych dla funduszy pożyczkowych.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCzesciowoSplaconychDlaFunduszyPozyczkowych()
+    {
+        return $this->liczbaPoreczenWyplaconychCzesciowoSplaconychDlaFunduszyPozyczkowych;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i częściowo spłaconych dla funduszy pożyczkowych.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCzesciowoSplaconychDlaFunduszyPozyczkowych(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCzesciowoSplaconychDlaFunduszyPozyczkowych = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i całkowicie spłaconych dla funduszy pożyczkowych.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCalkowicieSplaconychDlaFunduszyPozyczkowych()
+    {
+        return $this->liczbaPoreczenWyplaconychCalkowicieSplaconychDlaFunduszyPozyczkowych;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i całkowicie spłaconych dla funduszy pożyczkowych.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCalkowicieSplaconychDlaFunduszyPozyczkowych(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCalkowicieSplaconychDlaFunduszyPozyczkowych = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i nieodzyskanych dla funduszy pożyczkowych.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychNieodzyskanychDlaFunduszyPozyczkowych()
+    {
+        return $this->liczbaPoreczenWyplaconychNieodzyskanychDlaFunduszyPozyczkowych;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i nieodzyskanych dla funduszy pożyczkowych.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychNieodzyskanychDlaFunduszyPozyczkowych(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychNieodzyskanychDlaFunduszyPozyczkowych = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych dla innych podmiotów.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychDlaInnychPodmiotow()
+    {
+        return $this->liczbaPoreczenWyplaconychDlaInnychPodmiotow;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych dla innych podmiotów.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychDlaInnychPodmiotow(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychDlaInnychPodmiotow = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i częściowo spłaconych dla innych podmiotów.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCzesciowoSplaconychDlaInnychPodmiotow()
+    {
+        return $this->liczbaPoreczenWyplaconychCzesciowoSplaconychDlaInnychPodmiotow;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i częściowo spłaconych dla innych podmiotów.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCzesciowoSplaconychDlaInnychPodmiotow(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCzesciowoSplaconychDlaInnychPodmiotow = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i całkowicie spłaconych dla innych podmiotów.
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychCalkowicieSplaconychDlaInnychPodmiotow()
+    {
+        return $this->liczbaPoreczenWyplaconychCalkowicieSplaconychDlaInnychPodmiotow;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i całkowicie spłaconych dla innych podmiotów.
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychCalkowicieSplaconychDlaInnychPodmiotow(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychCalkowicieSplaconychDlaInnychPodmiotow = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby poręczeń wypłaconych i nieodzyskanych dla innych podmiotów
+     *
+     * @return int
+     */
+    public function getLiczbaPoreczenWyplaconychNieodzyskanychDlaInnychPodmiotow()
+    {
+        return $this->liczbaPoreczenWyplaconychNieodzyskanychDlaInnychPodmiotow;
+    }
+
+    /**
+     * Ustala wartość liczby poręczeń wypłaconych i nieodzyskanych dla innych podmiotów
+     *
+     * @param int $liczbaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaPoreczenWyplaconychNieodzyskanychDlaInnychPodmiotow(int $liczbaPoreczen = 0)
+    {
+        $this->liczbaPoreczenWyplaconychNieodzyskanychDlaInnychPodmiotow = abs($liczbaPoreczen);
+
+        return $this;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych dla mikro przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychDlaMikroPrzedsiebiorstw()
+    {
+        return $this->kwotaPoreczenWyplaconychDlaMikroPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych dla mikro przedsiębiorstw.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychDlaMikroPrzedsiebiorstw(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychDlaMikroPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i częściowo spłaconych dla mikro przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCzesciowoSplaconychDlaMikroPrzedsiebiorstw()
+    {
+        return $this->kwotaPoreczenWyplaconychCzesciowoSplaconychDlaMikroPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i częściowo spłaconych dla mikro przedsiębiorstw.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCzesciowoSplaconychDlaMikroPrzedsiebiorstw(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCzesciowoSplaconychDlaMikroPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i całkowicie spłaconych dla mikro przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCalkowicieSplaconychDlaMikroPrzedsiebiorstw()
+    {
+        return $this->kwotaPoreczenWyplaconychCalkowicieSplaconychDlaMikroPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i całkowicie spłaconych dla mikro przedsiębiorstw.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCalkowicieSplaconychDlaMikroPrzedsiebiorstw(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCalkowicieSplaconychDlaMikroPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i nieodzyskanych dla mikro przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychNieodzyskanychhDlaMikroPrzedsiebiorstw()
+    {
+        return $this->kwotaPoreczenWyplaconychNieodzyskanychhDlaMikroPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i nieodzyskanych dla mikro przedsiębiorstw.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychNieodzyskanychhDlaMikroPrzedsiebiorstw(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychNieodzyskanychhDlaMikroPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych dla małych przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychDlaMalychPrzedsiebiorstw()
+    {
+        return $this->kwotaPoreczenWyplaconychDlaMalychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych dla małych przedsiębiorstw.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychDlaMalychPrzedsiebiorstw(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychDlaMalychPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i częściowo spłaconych dla małych przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCzesciowoSplaconychDlaMalychPrzedsiebiorstw()
+    {
+        return $this->kwotaPoreczenWyplaconychCzesciowoSplaconychDlaMalychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i częściowo spłaconych dla małych przedsiębiorstw.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCzesciowoSplaconychDlaMalychPrzedsiebiorstw(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCzesciowoSplaconychDlaMalychPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i całkowicie spłaconych dla małych przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCalkowicieSplaconychDlaMalychPrzedsiebiorstw()
+    {
+        return $this->kwotaPoreczenWyplaconychCalkowicieSplaconychDlaMalychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i całkowicie spłaconych dla małych przedsiębiorstw.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCalkowicieSplaconychDlaMalychPrzedsiebiorstw(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCalkowicieSplaconychDlaMalychPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i nieodzyskanych dla małych przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychNieodzyskanychhDlaMalychPrzedsiebiorstw()
+    {
+        return $this->kwotaPoreczenWyplaconychNieodzyskanychhDlaMalychPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i nieodzyskanych dla małych przedsiębiorstw.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychNieodzyskanychhDlaMalychPrzedsiebiorstw(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychNieodzyskanychhDlaMalychPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych dla średnich przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychDlaSrednichPrzedsiebiorstw()
+    {
+        return $this->kwotaPoreczenWyplaconychDlaSrednichPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych dla średnich przedsiębiorstw.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychDlaSrednichPrzedsiebiorstw(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychDlaSrednichPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i częściowo spłaconych dla średnich przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCzesciowoSplaconychDlaSrednichPrzedsiebiorstw()
+    {
+        return $this->kwotaPoreczenWyplaconychCzesciowoSplaconychDlaSrednichPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i częściowo spłaconych dla średnich przedsiębiorstw.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCzesciowoSplaconychDlaSrednichPrzedsiebiorstw(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCzesciowoSplaconychDlaSrednichPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i całkowicie spłaconych dla średnich przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCalkowicieSplaconychDlaSrednichPrzedsiebiorstw()
+    {
+        return $this->kwotaPoreczenWyplaconychCalkowicieSplaconychDlaSrednichPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i całkowicie spłaconych dla średnich przedsiębiorstw.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCalkowicieSplaconychDlaSrednichPrzedsiebiorstw(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCalkowicieSplaconychDlaSrednichPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i nieodzyskanych dla średnich przedsiębiorstw.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychNieodzyskanychhDlaSrednichPrzedsiebiorstw()
+    {
+        return $this->kwotaPoreczenWyplaconychNieodzyskanychhDlaSrednichPrzedsiebiorstw;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i nieodzyskanych dla średnich przedsiębiorstw.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychNieodzyskanychhDlaSrednichPrzedsiebiorstw(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychNieodzyskanychhDlaSrednichPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych na kredyt obrotowy.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychNaKredytObrotowy()
+    {
+        return $this->kwotaPoreczenWyplaconychNaKredytObrotowy;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych na kredyt obrotowy.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychNaKredytObrotowy(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychNaKredytObrotowy = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i częściowo spłaconych na kredyt obrotowy.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCzesciowoSplaconychNaKredytObrotowy()
+    {
+        return $this->kwotaPoreczenWyplaconychCzesciowoSplaconychNaKredytObrotowy;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i częściowo spłaconych na kredyt obrotowy.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCzesciowoSplaconychNaKredytObrotowy(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCzesciowoSplaconychNaKredytObrotowy = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i całkowicie spłaconych na kredyt obrotowy.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCalkowicieSplaconychNaKredytObrotowy()
+    {
+        return $this->kwotaPoreczenWyplaconychCalkowicieSplaconychNaKredytObrotowy;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i całkowicie spłaconych na kredyt obrotowy.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCalkowicieSplaconychNaKredytObrotowy(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCalkowicieSplaconychNaKredytObrotowy = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i nieodzyskanych na kredyt obrotowy.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychNieodzyskanychNaKredytObrotowy()
+    {
+        return $this->kwotaPoreczenWyplaconychNieodzyskanychNaKredytObrotowy;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i nieodzyskanych na kredyt obrotowy.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychNieodzyskanychNaKredytObrotowy(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychNieodzyskanychNaKredytObrotowy = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych na kredyt inwestycyjny.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychNaKredytInwestycyjny()
+    {
+        return $this->kwotaPoreczenWyplaconychNaKredytInwestycyjny;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych na kredyt inwestycyjny.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychNaKredytInwestycyjny(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychNaKredytInwestycyjny = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i częściowo spłaconych na kredyt inwestycyjny.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCzesciowoSplaconychNaKredytInwestycyjny()
+    {
+        return $this->kwotaPoreczenWyplaconychCzesciowoSplaconychNaKredytInwestycyjny;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i częściowo spłaconych na kredyt inwestycyjny.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCzesciowoSplaconychNaKredytInwestycyjny(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCzesciowoSplaconychNaKredytInwestycyjny = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i całkowicie spłaconych na kredyt inwestycyjny.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCalkowicieSplaconychNaKredytInwestycyjny()
+    {
+        return $this->kwotaPoreczenWyplaconychCalkowicieSplaconychNaKredytInwestycyjny;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i całkowicie spłaconych na kredyt inwestycyjny.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCalkowicieSplaconychNaKredytInwestycyjny(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCalkowicieSplaconychNaKredytInwestycyjny = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i nieodzyskanych na kredyt inwestycyjny.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychNieodzyskanychNaKredytInwestycyjny()
+    {
+        return $this->kwotaPoreczenWyplaconychNieodzyskanychNaKredytInwestycyjny;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i nieodzyskanych na kredyt inwestycyjny.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychNieodzyskanychNaKredytInwestycyjny(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychNieodzyskanychNaKredytInwestycyjny = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych na pożyczkę obrotową.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychNaPozyczkeObrotowa()
+    {
+        return $this->kwotaPoreczenWyplaconychNaPozyczkeObrotowa;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych na pożyczkę obrotową.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychNaPozyczkeObrotowa(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychNaPozyczkeObrotowa = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i częściowo spłaconych na pożyczkę obrotową.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCzesciowoSplaconychNaPozyczkeObrotowa()
+    {
+        return $this->kwotaPoreczenWyplaconychCzesciowoSplaconychNaPozyczkeObrotowa;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i częściowo spłaconych na pożyczkę obrotową.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCzesciowoSplaconychNaPozyczkeObrotowa(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCzesciowoSplaconychNaPozyczkeObrotowa = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i całkowicie spłaconych na pożyczkę obrotową.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeObrotowa()
+    {
+        return $this->kwotaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeObrotowa;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i całkowicie spłaconych na pożyczkę obrotową.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeObrotowa(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeObrotowa = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i nieodzyskanych na pożyczkę obrotową.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychNieodzyskanychNaPozyczkeObrotowa()
+    {
+        return $this->kwotaPoreczenWyplaconychNieodzyskanychNaPozyczkeObrotowa;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i nieodzyskanych na pożyczkę obrotową.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychNieodzyskanychNaPozyczkeObrotowa(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychNieodzyskanychNaPozyczkeObrotowa = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych na pożyczkę inwestycyjną.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychNaPozyczkeInwestycyjna()
+    {
+        return $this->kwotaPoreczenWyplaconychNaPozyczkeInwestycyjna;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych na pożyczkę inwestycyjną.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychNaPozyczkeInwestycyjna(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychNaPozyczkeInwestycyjna = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i częściowo spłaconych na pożyczkę inwestycyjną.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCzesciowoSplaconychNaPozyczkeInwestycyjna()
+    {
+        return $this->kwotaPoreczenWyplaconychCzesciowoSplaconychNaPozyczkeInwestycyjna;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i częściowo spłaconych na pożyczkę inwestycyjną.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCzesciowoSplaconychNaPozyczkeInwestycyjna(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCzesciowoSplaconychNaPozyczkeInwestycyjna = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i całkowicie spłaconych na pożyczkę inwestycyjną.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeInwestycyjna()
+    {
+        return $this->kwotaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeInwestycyjna;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i całkowicie spłaconych na pożyczkę inwestycyjną.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeInwestycyjna(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeInwestycyjna = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i nieodzyskanych na pożyczkę inwestycyjną.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychNieodzyskanychNaPozyczkeInwestycyjna()
+    {
+        return $this->kwotaPoreczenWyplaconychNieodzyskanychNaPozyczkeInwestycyjna;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i nieodzyskanych na pożyczkę inwestycyjną.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychNieodzyskanychNaPozyczkeInwestycyjna(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychNieodzyskanychNaPozyczkeInwestycyjna = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty pozostałych poręczeń wypłaconych.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenPozostalychWyplaconych()
+    {
+        return $this->kwotaPoreczenPozostalychWyplaconych;
+    }
+
+    /**
+     * Ustala wartość kwoty pozostałych poręczeń wypłaconych.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenPozostalychWyplaconych(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenPozostalychWyplaconych = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty pozostałych poręczeń wypłaconych i częściowo spłaconych.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenPozostalychWyplaconychCzesciowoSplaconych()
+    {
+        return $this->kwotaPoreczenPozostalychWyplaconychCzesciowoSplaconych;
+    }
+
+    /**
+     * Ustala wartość kwoty pozostałych poręczeń wypłaconych i częściowo spłaconych.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenPozostalychWyplaconychCzesciowoSplaconych(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenPozostalychWyplaconychCzesciowoSplaconych = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty pozostałych poręczeń wypłaconych i całkowicie spłaconych.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenPozostalychWyplaconychCalkowicieSplaconych()
+    {
+        return $this->kwotaPoreczenPozostalychWyplaconychCalkowicieSplaconych;
+    }
+
+    /**
+     * Ustala wartość kwoty pozostałych poręczeń wypłaconych i całkowicie spłaconych.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenPozostalychWyplaconychCalkowicieSplaconych(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenPozostalychWyplaconychCalkowicieSplaconych = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty pozostałych poręczeń wypłaconych i nieodzyskanych.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenPozostalychWyplaconychNieodzyskanych()
+    {
+        return $this->kwotaPoreczenPozostalychWyplaconychNieodzyskanych;
+    }
+
+    /**
+     * Ustala wartość kwoty pozostałych poręczeń wypłaconych i nieodzyskanych.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenPozostalychWyplaconychNieodzyskanych(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenPozostalychWyplaconychNieodzyskanych = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty wadiów pozostałych poręczeń wypłaconych.
+     *
+     * @return string
+     */
+    public function getKwotaWadiowPoreczenPozostalychWyplaconych()
+    {
+        return $this->kwotaWadiowPoreczenPozostalychWyplaconych;
+    }
+
+    /**
+     * Ustala wartość kwoty wadiów pozostałych poręczeń wypłaconych.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaWadiowPoreczenPozostalychWyplaconych(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaWadiowPoreczenPozostalychWyplaconych = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty wadiów pozostałych poręczeń wypłaconych i częściowo spłaconych.
+     *
+     * @return string
+     */
+    public function getKwotaWadiowPoreczenPozostalychWyplaconychCzesciowoSplaconych()
+    {
+        return $this->kwotaWadiowPoreczenPozostalychWyplaconychCzesciowoSplaconych;
+    }
+
+    /**
+     * Ustala wartość kwoty wadiów pozostałych poręczeń wypłaconych i częściowo spłaconych.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaWadiowPoreczenPozostalychWyplaconychCzesciowoSplaconych(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaWadiowPoreczenPozostalychWyplaconychCzesciowoSplaconych = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty wadiów pozostałych poręczeń wypłaconych i całkowicie spłaconych.
+     *
+     * @return string
+     */
+    public function getKwotaWadiowPoreczenPozostalychWyplaconychCalkowicieSplaconych()
+    {
+        return $this->kwotaWadiowPoreczenPozostalychWyplaconychCalkowicieSplaconych;
+    }
+
+    /**
+     * Ustala wartość kwoty wadiów pozostałych poręczeń wypłaconych i całkowicie spłaconych.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaWadiowPoreczenPozostalychWyplaconychCalkowicieSplaconych(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaWadiowPoreczenPozostalychWyplaconychCalkowicieSplaconych = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty wadiów pozostałych poręczeń wypłaconych i nieodzyskanych.
+     *
+     * @return string
+     */
+    public function getKwotaWadiowPoreczenPozostalychWyplaconychNieodzyskanych()
+    {
+        return $this->kwotaWadiowPoreczenPozostalychWyplaconychNieodzyskanych;
+    }
+
+    /**
+     * Ustala wartość kwoty wadiów pozostałych poręczeń wypłaconych i nieodzyskanych.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaWadiowPoreczenPozostalychWyplaconychNieodzyskanych(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaWadiowPoreczenPozostalychWyplaconychNieodzyskanych = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych na działania produkcyjne.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychNaDzialaniaProdukcyjne()
+    {
+        return $this->kwotaPoreczenWyplaconychNaDzialaniaProdukcyjne;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych na działania produkcyjne.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychNaDzialaniaProdukcyjne(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychNaDzialaniaProdukcyjne = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i częściowo spłaconych na działania produkcyjne.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaProdukcyjne()
+    {
+        return $this->kwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaProdukcyjne;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i częściowo spłaconych na działania produkcyjne.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaProdukcyjne(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaProdukcyjne = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i całkowicie spłaconych na działania produkcyjne.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaProdukcyjne()
+    {
+        return $this->kwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaProdukcyjne;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i całkowicie spłaconych na działania produkcyjne.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaProdukcyjne(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaProdukcyjne = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i nieodzyskanych na działania produkcyjne.
+     *
+     * @return string
+     */
+    public function getKwotaoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne()
+    {
+        return $this->kwotaoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i nieodzyskanych na działania produkcyjne.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych na działania handlowe.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychNaDzialaniaHandlowe()
+    {
+        return $this->kwotaPoreczenWyplaconychNaDzialaniaHandlowe;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych na działania handlowe.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychNaDzialaniaHandlowe(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychNaDzialaniaHandlowe = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i częściowo spłaconych na działania handlowe.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaHandlowe()
+    {
+        return $this->kwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaHandlowe;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i częściowo spłaconych na działania handlowe.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaHandlowe(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaHandlowe = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i całkowicie spłaconych na działania handlowe.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaHandlowe()
+    {
+        return $this->kwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaHandlowe;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i całkowicie spłaconych na działania handlowe.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaHandlowe(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaHandlowe = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i nieodzyskanych na działania handlowe.
+     *
+     * @return string
+     */
+    public function getKwotaoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe()
+    {
+        return $this->kwotaoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i nieodzyskanych na działania handlowe.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych na działania usługowe.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychNaDzialaniaUslugowe()
+    {
+        return $this->kwotaPoreczenWyplaconychNaDzialaniaUslugowe;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych na działania usługowe.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychNaDzialaniaUslugowe(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychNaDzialaniaUslugowe = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i częściowo spłaconych na działania usługowe.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaUslugowe()
+    {
+        return $this->kwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaUslugowe;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i częściowo spłaconych na działania usługowe.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaUslugowe(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaUslugowe = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i całkowicie spłaconych na działania usługowe.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaUslugowe()
+    {
+        return $this->kwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaUslugowe;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i całkowicie spłaconych na działania usługowe.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaUslugowe(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaUslugowe = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i nieodzyskanych na działania usługowe.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaUslugowe()
+    {
+        return $this->kwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaUslugowe;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i nieodzyskanych na działania usługowe.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaUslugowe(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaUslugowe = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych na działania budownicze.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychNaDzialaniaBudownicze()
+    {
+        return $this->kwotaPoreczenWyplaconychNaDzialaniaBudownicze;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych na działania budownicze.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychNaDzialaniaBudownicze(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychNaDzialaniaBudownicze = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i częściowo spłaconych na działania budownicze.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaBudownicze()
+    {
+        return $this->kwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaBudownicze;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i częściowo spłaconych na działania budownicze.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaBudownicze(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaBudownicze = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i całkowicie spłaconych na działania budownicze.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaBudownicze()
+    {
+        return $this->kwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaBudownicze;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i całkowicie spłaconych na działania budownicze.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaBudownicze(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaBudownicze = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i nieodzyskanych na działania budownicze.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaBudownicze()
+    {
+        return $this->kwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaBudownicze;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i nieodzyskanych na działania budownicze.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaBudownicze(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaBudownicze = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych na działania inne.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychNaDzialaniaInne()
+    {
+        return $this->kwotaPoreczenWyplaconychNaDzialaniaInne;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych na działania inne.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychNaDzialaniaInne(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychNaDzialaniaInne = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i częściowo spłaconych na działania inne
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaInne()
+    {
+        return $this->kwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaInne;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i częściowo spłaconych na działania inne
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaInne(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaInne = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i całkowicie spłaconych na działania inne.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaInne()
+    {
+        return $this->kwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaInne;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i całkowicie spłaconych na działania inne.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaInne(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaInne = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i nieodzyskanych na działania inne.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaInne()
+    {
+        return $this->kwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaInne;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i nieodzyskanych na działania inne.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaInne(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaInne = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych dla banków.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychDlaBankow()
+    {
+        return $this->kwotaPoreczenWyplaconychDlaBankow;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych dla banków.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychDlaBankow(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychDlaBankow = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i częściowo spłaconych dla banków.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCzesciowoSplaconychDlaBankow()
+    {
+        return $this->kwotaPoreczenWyplaconychCzesciowoSplaconychDlaBankow;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i częściowo spłaconych dla banków.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCzesciowoSplaconychDlaBankow(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCzesciowoSplaconychDlaBankow = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i całkowicie spłaconych dla banków.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCalkowicieSplaconychDlaBankow()
+    {
+        return $this->kwotaPoreczenWyplaconychCalkowicieSplaconychDlaBankow;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i całkowicie spłaconych dla banków.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCalkowicieSplaconychDlaBankow(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCalkowicieSplaconychDlaBankow = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i nieodzyskanych dla banków..
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychNieodzyskanychDlaBankow()
+    {
+        return $this->kwotaPoreczenWyplaconychNieodzyskanychDlaBankow;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i nieodzyskanych dla banków..
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychNieodzyskanychDlaBankow(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychNieodzyskanychDlaBankow = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych dla funduszy pożyczkowych.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychDlaFunduszyPozyczkowych()
+    {
+        return $this->kwotaPoreczenWyplaconychDlaFunduszyPozyczkowych;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych dla funduszy pożyczkowych.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychDlaFunduszyPozyczkowych(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychDlaFunduszyPozyczkowych = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i częściowo spłaconych dla funduszy pożyczkowych.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCzesciowoSplaconychDlaFunduszyPozyczkowych()
+    {
+        return $this->kwotaPoreczenWyplaconychCzesciowoSplaconychDlaFunduszyPozyczkowych;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i częściowo spłaconych dla funduszy pożyczkowych.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCzesciowoSplaconychDlaFunduszyPozyczkowych(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCzesciowoSplaconychDlaFunduszyPozyczkowych = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i całkowicie spłaconych dla funduszy pożyczkowych.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCalkowicieSplaconychDlaFunduszyPozyczkowych()
+    {
+        return $this->kwotaPoreczenWyplaconychCalkowicieSplaconychDlaFunduszyPozyczkowych;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i całkowicie spłaconych dla funduszy pożyczkowych.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCalkowicieSplaconychDlaFunduszyPozyczkowych(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCalkowicieSplaconychDlaFunduszyPozyczkowych = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i nieodzyskanych dla funduszy pożyczkowych.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychNieodzyskanychDlaFunduszyPozyczkowych()
+    {
+        return $this->kwotaPoreczenWyplaconychNieodzyskanychDlaFunduszyPozyczkowych;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i nieodzyskanych dla funduszy pożyczkowych.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychNieodzyskanychDlaFunduszyPozyczkowych(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychNieodzyskanychDlaFunduszyPozyczkowych = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych dla innych podmiotów.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychDlaInnychPodmiotow()
+    {
+        return $this->kwotaPoreczenWyplaconychDlaInnychPodmiotow;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych dla innych podmiotów.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychDlaInnychPodmiotow(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychDlaInnychPodmiotow = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i częściowo spłaconych dla innych podmiotów.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCzesciowoSplaconychDlaInnychPodmiotow()
+    {
+        return $this->kwotaPoreczenWyplaconychCzesciowoSplaconychDlaInnychPodmiotow;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i częściowo spłaconych dla innych podmiotów.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCzesciowoSplaconychDlaInnychPodmiotow(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCzesciowoSplaconychDlaInnychPodmiotow = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i całkowicie spłaconych dla innych podmiotów.
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychCalkowicieSplaconychDlaInnychPodmiotow()
+    {
+        return $this->kwotaPoreczenWyplaconychCalkowicieSplaconychDlaInnychPodmiotow;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i całkowicie spłaconych dla innych podmiotów.
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychCalkowicieSplaconychDlaInnychPodmiotow(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychCalkowicieSplaconychDlaInnychPodmiotow = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość kwoty poręczeń wypłaconych i nieodzyskanych dla innych podmiotów
+     *
+     * @return string
+     */
+    public function getKwotaPoreczenWyplaconychNieodzyskanychDlaInnychPodmiotow()
+    {
+        return $this->kwotaPoreczenWyplaconychNieodzyskanychDlaInnychPodmiotow;
+    }
+
+    /**
+     * Ustala wartość kwoty poręczeń wypłaconych i nieodzyskanych dla innych podmiotów
+     *
+     * @param string $kwotaPoreczen
+     *
+     * @return DanePoreczen
+     */
+    public function setKwotaPoreczenWyplaconychNieodzyskanychDlaInnychPodmiotow(string $kwotaPoreczen = '0.00')
+    {
+        $this->kwotaPoreczenWyplaconychNieodzyskanychDlaInnychPodmiotow = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby współpracujących banków.
+     *
+     * @return int
+     */
+    public function getLiczbaWspolpracujacychBankow()
+    {
+        return $this->liczbaWspolpracujacychBankow;
+    }
+
+    /**
+     * Ustala wartość liczby współpracujących banków.
+     *
+     * @param int $liczbaWspolpracujacych
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaWspolpracujacychBankow(int $liczbaWspolpracujacych = 0)
+    {
+        $this->liczbaWspolpracujacychBankow = abs($liczbaWspolpracujacych);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby współpracujących funduszy pożyczkowych.
+     *
+     * @return int
+     */
+    public function getLiczbaWspolpracujacychFunduszyPozyczkowych()
+    {
+        return $this->liczbaWspolpracujacychFunduszyPozyczkowych;
+    }
+
+    /**
+     * Ustala wartość liczby współpracujących funduszy pożyczkowych.
+     *
+     * @param int $liczbaWspolpracujacych
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaWspolpracujacychFunduszyPozyczkowych(int $liczbaWspolpracujacych = 0)
+    {
+        $this->liczbaWspolpracujacychFunduszyPozyczkowych = abs($liczbaWspolpracujacych);
+
+        return $this;
+    }
+
+    /**
+     * Zwraca wartość liczby innych podmiotów współpracujących.
+     *
+     * @return int
+     */
+    public function getLiczbaInnychPodmiotowWspolpracujacych()
+    {
+        return $this->liczbaInnychPodmiotowWspolpracujacych;
+    }
+
+    /**
+     * Ustala wartość liczby innych podmiotów współpracujących.
+     *
+     * @param int $liczbaWspolpracujacych
+     *
+     * @return DanePoreczen
+     */
+    public function setLiczbaInnychPodmiotowWspolpracujacych(int $liczbaWspolpracujacych = 0)
+    {
+        $this->liczbaInnychPodmiotowWspolpracujacych = abs($liczbaWspolpracujacych);
 
         return $this;
     }
