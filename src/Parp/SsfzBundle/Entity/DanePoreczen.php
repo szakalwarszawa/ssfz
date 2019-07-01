@@ -1070,7 +1070,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_do_50000_pln_dla_fund_pozyczkowych",
+     *     name="liczba_por_do_50000_pln_dla_fund_pozyczk",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -1087,7 +1087,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_50001_do_100000_pln_dla_fund_pozyczkowych",
+     *     name="liczba_por_od_50001_do_100000_pln_dla_fund_pozyczk",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -1104,7 +1104,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_100001_do_500000_pln_dla_fund_pozyczkowych",
+     *     name="liczba_por_od_100001_do_500000_pln_dla_fund_pozyczk",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -1121,7 +1121,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_500001_pln_dla_fund_pozyczkowych",
+     *     name="liczba_por_od_500001_pln_dla_fund_pozyczk",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -1138,7 +1138,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_do_50000_pln_dla_innych_podmiotow",
+     *     name="liczba_por_do_50000_pln_dla_innych_podm",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -1155,7 +1155,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_50001_do_100000_pln_dla_innych_podmiotow",
+     *     name="liczba_por_od_50001_do_100000_pln_dla_innych_podm",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -1172,7 +1172,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_100001_do_500000_pln_dla_innych_podmiotow",
+     *     name="liczba_por_od_100001_do_500000_pln_dla_innych_podm",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -1189,7 +1189,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_500001_pln_dla_innych_podmiotow",
+     *     name="liczba_por_od_500001_pln_dla_innych_podm",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -2367,7 +2367,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="kwota_por_do_50000_pln_dla_fund_pozyczkowych",
+     *     name="kwota_por_do_50000_pln_dla_fund_pozyczk",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -2386,7 +2386,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="kwota_por_od_50001_do_100000_pln_dla_fund_pozyczkowych",
+     *     name="kwota_por_od_50001_do_100000_pln_dla_fund_pozyczk",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -2405,7 +2405,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="kwota_por_od_100001_do_500000_pln_dla_fund_pozyczkowych",
+     *     name="kwota_por_od_100001_do_500000_pln_dla_fund_pozyczk",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -2424,7 +2424,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="kwota_por_od_500001_pln_dla_fund_pozyczkowych",
+     *     name="kwota_por_od_500001_pln_dla_fund_pozyczk",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -2443,7 +2443,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="kwota_por_do_50000_pln_dla_innych_podmiotow",
+     *     name="kwota_por_do_50000_pln_dla_innych_podm",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -2462,7 +2462,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="kwota_por_od_50001_do_100000_pln_dla_innych_podmiotow",
+     *     name="kwota_por_od_50001_do_100000_pln_dla_innych_podm",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -2481,7 +2481,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="kwota_por_od_100001_do_500000_pln_dla_innych_podmiotow",
+     *     name="kwota_por_od_100001_do_500000_pln_dla_innych_podm",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -2500,7 +2500,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="kwota_por_od_500001_pln_dla_innych_podmiotow",
+     *     name="kwota_por_od_500001_pln_dla_innych_podm",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -2791,7 +2791,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_wyplaconych_na_kredyt_inwestycyjny",
+     *     name="liczba_por_wyplaconych_na_kredyt_inwest",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -2808,7 +2808,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_wyplaconych_czesciowo_splaconych_na_kredyt_inwestycyjny",
+     *     name="liczba_por_wyplaconych_czesciowo_splaconych_na_kredyt_inwest",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -2825,7 +2825,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_wyplaconych_calkowicie_splaconych_na_kredyt_inwestycyjny",
+     *     name="liczba_por_wyplaconych_calkowicie_splaconych_na_kredyt_inwest",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -2842,7 +2842,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_wyplaconych_nieodzyskanych_na_kredyt_inwestycyjny",
+     *     name="liczba_por_wyplaconych_nieodzyskanych_na_kredyt_inwest",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -2859,7 +2859,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_wyplaconych_na_pozyczke_obrotowa",
+     *     name="liczba_por_wyplaconych_na_pozyczke_obrot",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -2876,7 +2876,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_wyplaconych_czesciowo_splaconych_na_pozyczke_obrotowa",
+     *     name="liczba_por_wyplaconych_czesciowo_splaconych_na_pozyczke_obrot",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -2893,7 +2893,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_wyplaconych_calkowicie_splaconych_na_pozyczke_obrotowa",
+     *     name="liczba_por_wyplaconych_calkowicie_splaconych_na_pozyczke_obrot",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -2910,7 +2910,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_wyplaconych_nieodzyskanych_na_pozyczke_obrotowa",
+     *     name="liczba_por_wyplaconych_nieodzyskanych_na_pozyczke_obrot",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -2927,7 +2927,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_wyplaconych_na_pozyczke_inwestycyjna",
+     *     name="liczba_por_wyplaconych_na_pozyczke_inwest",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -2944,7 +2944,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_wyplaconych_czesciowo_splaconych_na_pozyczke_inwestycyjna",
+     *     name="liczba_por_wyplaconych_czesciowo_splaconych_na_pozyczke_inwest",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -2961,7 +2961,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_wyplaconych_calkowicie_splaconych_na_pozyczke_inwestycyjna",
+     *     name="liczba_por_wyplaconych_calkowicie_splaconych_na_pozyczke_inwest",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -2978,7 +2978,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_wyplaconych_nieodzyskanych_na_pozyczke_inwestycyjna",
+     *     name="liczba_por_wyplaconych_nieodzyskanych_na_pozyczke_inwest",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -3539,7 +3539,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_wyplaconych_dla_fund_pozyczkowych",
+     *     name="liczba_por_wyplaconych_dla_fund_pozyczk",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -3556,7 +3556,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_wyplaconych_czesciowo_splaconych_dla_fund_pozyczkowych",
+     *     name="liczba_por_wyplaconych_czesciowo_splaconych_dla_fund_pozyczk",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -3573,7 +3573,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_wyplaconych_calkowicie_splaconych_dla_fund_pozyczkowych",
+     *     name="liczba_por_wyplaconych_calkowicie_splaconych_dla_fund_pozyczk",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -3590,7 +3590,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_wyplaconych_nieodzyskanych_dla_fund_pozyczkowych",
+     *     name="liczba_por_wyplaconych_nieodzyskanych_dla_fund_pozyczk",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -3607,7 +3607,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_wyplaconych_dla_innych_podmiotow",
+     *     name="liczba_por_wyplaconych_dla_innych_podm",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -3624,7 +3624,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_wyplaconych_czesciowo_splaconych_dla_innych_podmiotow",
+     *     name="liczba_por_wyplaconych_czesciowo_splaconych_dla_innych_podm",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -3641,7 +3641,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_wyplaconych_calkowicie_splaconych_dla_innych_podmiotow",
+     *     name="liczba_por_wyplaconych_calkowicie_splaconych_dla_innych_podm",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -3658,7 +3658,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_wyplaconych_nieodzyskanych_dla_innych_podmiotow",
+     *     name="liczba_por_wyplaconych_nieodzyskanych_dla_innych_podm",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -3979,7 +3979,7 @@ class DanePoreczen
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_por_wyplaconych_na_kredyt_inwestycyjny",
+     *     name="kwota_por_wyplaconych_na_kredyt_inwest",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -3998,7 +3998,7 @@ class DanePoreczen
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_por_wyplaconych_czesciowo_splaconych_na_kredyt_inwestycyjny",
+     *     name="kwota_por_wyplaconych_czesciowo_splaconych_na_kredyt_inwest",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -4017,7 +4017,7 @@ class DanePoreczen
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_por_wyplaconych_calkowicie_splaconych_na_kredyt_inwestycyjny",
+     *     name="kwota_por_wyplaconych_calkowicie_splaconych_na_kredyt_inwest",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -4036,7 +4036,7 @@ class DanePoreczen
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_por_wyplaconych_nieodzyskanych_na_kredyt_inwestycyjny",
+     *     name="kwota_por_wyplaconych_nieodzyskanych_na_kredyt_inwest",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -4055,7 +4055,7 @@ class DanePoreczen
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_por_wyplaconych_na_pozyczke_obrotowa",
+     *     name="kwota_por_wyplaconych_na_pozyczke_obrot",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -4074,7 +4074,7 @@ class DanePoreczen
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_por_wyplaconych_czesciowo_splaconych_na_pozyczke_obrotowa",
+     *     name="kwota_por_wyplaconych_czesciowo_splaconych_na_pozyczke_obrot",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -4093,7 +4093,7 @@ class DanePoreczen
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_por_wyplaconych_calkowicie_splaconych_na_pozyczke_obrotowa",
+     *     name="kwota_por_wyplaconych_calkowicie_splaconych_na_pozyczke_obrot",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -4112,7 +4112,7 @@ class DanePoreczen
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_por_wyplaconych_nieodzyskanych_na_pozyczke_obrotowa",
+     *     name="kwota_por_wyplaconych_nieodzyskanych_na_pozyczke_obrot",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -4131,7 +4131,7 @@ class DanePoreczen
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_por_wyplaconych_na_pozyczke_inwestycyjna",
+     *     name="kwota_por_wyplaconych_na_pozyczke_inwest",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -4150,7 +4150,7 @@ class DanePoreczen
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_por_wyplaconych_czesciowo_splaconych_na_pozyczke_inwestycyjna",
+     *     name="kwota_por_wyplaconych_czesciowo_splaconych_na_pozyczke_inwest",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -4169,7 +4169,7 @@ class DanePoreczen
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_por_wyplaconych_calkowicie_splaconych_na_pozyczke_inwestycyjna",
+     *     name="kwota_por_wyplaconych_calkowicie_splaconych_na_pozyczke_inwest",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -4188,7 +4188,7 @@ class DanePoreczen
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_por_wyplaconych_nieodzyskanych_na_pozyczke_inwestycyjna",
+     *     name="kwota_por_wyplaconych_nieodzyskanych_na_pozyczke_inwest",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -4815,7 +4815,7 @@ class DanePoreczen
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_por_wyplaconych_dla_fund_pozyczkowych",
+     *     name="kwota_por_wyplaconych_dla_fund_pozyczk",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -4834,7 +4834,7 @@ class DanePoreczen
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_por_wyplaconych_czesciowo_splaconych_dla_fund_pozyczkowych",
+     *     name="kwota_por_wyplaconych_czesciowo_splaconych_dla_fund_pozyczk",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -4853,7 +4853,7 @@ class DanePoreczen
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_por_wyplaconych_calkowicie_splaconych_dla_fund_pozyczkowych",
+     *     name="kwota_por_wyplaconych_calkowicie_splaconych_dla_fund_pozyczk",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -4872,7 +4872,7 @@ class DanePoreczen
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_por_wyplaconych_nieodzyskanych_dla_fund_pozyczkowych",
+     *     name="kwota_por_wyplaconych_nieodzyskanych_dla_fund_pozyczk",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -4891,7 +4891,7 @@ class DanePoreczen
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_por_wyplaconych_dla_innych_podmiotow",
+     *     name="kwota_por_wyplaconych_dla_innych_podm",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -4910,7 +4910,7 @@ class DanePoreczen
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_por_wyplaconych_czesciowo_splaconych_dla_innych_podmiotow",
+     *     name="kwota_por_wyplaconych_czesciowo_splaconych_dla_innych_podm",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -4929,7 +4929,7 @@ class DanePoreczen
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_por_wyplaconych_calkowicie_splaconych_dla_innych_podmiotow",
+     *     name="kwota_por_wyplaconych_calkowicie_splaconych_dla_innych_podm",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -4948,7 +4948,7 @@ class DanePoreczen
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_por_wyplaconych_nieodzyskanych_dla_innych_podmiotow",
+     *     name="kwota_por_wyplaconych_nieodzyskanych_dla_innych_podm",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -4984,7 +4984,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_wspolpracujacych_funduszy_pozyczkowych",
+     *     name="liczba_wspolpracujacych_funduszy_pozyczk",
      *     type="integer",
      *     nullable=false,
      *     options={
