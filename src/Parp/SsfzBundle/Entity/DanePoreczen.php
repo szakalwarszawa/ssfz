@@ -50,7 +50,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_do_50000_pln_mikro_przedsiebiorstw",
+     *     name="liczba_por_do_50000_pln_mikro_przedsiebiorstwa",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -67,7 +67,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_50000_do_100000_pln_mikro_przedsiebiorstw",
+     *     name="liczba_por_od_50000_do_100000_pln_mikro_przedsiebiorstwa",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -84,7 +84,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_100001_do_500000_pln_mikro_przedsiebiorstw",
+     *     name="liczba_por_od_100001_do_500000_pln_mikro_przedsiebiorstwa",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -101,7 +101,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_500001_pln_mikro_przedsiebiorstw",
+     *     name="liczba_por_od_500001_pln_mikro_przedsiebiorstwa",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -118,7 +118,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_do_50000_pln_malych_przedsiebiorstw",
+     *     name="liczba_por_do_50000_pln_malych_przedsiebiorstwa",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -135,7 +135,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_50000_do_100000_pln_malych_przedsiebiorstw",
+     *     name="liczba_por_od_50000_do_100000_pln_malych_przedsiebiorstwa",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -152,7 +152,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_100001_do_500000_pln_malych_przedsiebiorstw",
+     *     name="liczba_por_od_100001_do_500000_pln_malych_przedsiebiorstwa",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -169,7 +169,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_500001_pln_malych_przedsiebiorstw",
+     *     name="liczba_por_od_500001_pln_malych_przedsiebiorstwa",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -186,7 +186,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_do_50000_pln_srednich_przedsiebiorstw",
+     *     name="liczba_por_do_50000_pln_srednich_przedsiebiorstwa",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -203,7 +203,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_50000_do_100000_pln_srednich_przedsiebirstw",
+     *     name="liczba_por_od_50000_do_100000_pln_srednich_przedsiebiorstwa",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -220,7 +220,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_100001_do_500000_pln_srednich_przedsiebiorstw",
+     *     name="liczba_por_od_100001_do_500000_pln_srednich_przedsiebiorstwa",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -237,7 +237,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_500001_pln_srednich_przedsiebiorstw",
+     *     name="liczba_por_od_500001_pln_srednich_przedsiebiorstwa",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -1070,7 +1070,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_do_50000_pln_dla_fund_pozyczk",
+     *     name="liczba_por_do_50000_pln_dla_fund_pozyczkowych",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -1087,7 +1087,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_50001_do_100000_pln_dla_fund_pozyczk",
+     *     name="liczba_por_od_50001_do_100000_pln_dla_fund_pozyczkowych",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -1104,7 +1104,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_100001_do_500000_pln_dla_fund_pozyczk",
+     *     name="liczba_por_od_100001_do_500000_pln_dla_fund_pozyczkowych",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -1121,7 +1121,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_500001_pln_dla_fund_pozyczk",
+     *     name="liczba_por_od_500001_pln_dla_fund_pozyczkowych",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -1138,7 +1138,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_do_50000_pln_dla_innych_podm",
+     *     name="liczba_por_do_50000_pln_dla_innych_podmiotow",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -1155,7 +1155,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_50001_do_100000_pln_dla_innych_podm",
+     *     name="liczba_por_od_50001_do_100000_pln_dla_innych_podmiotow",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -1172,7 +1172,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_100001_do_500000_pln_dla_innych_podm",
+     *     name="liczba_por_od_100001_do_500000_pln_dla_innych_podmiotow",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -1189,7 +1189,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_500001_pln_dla_innych_podm",
+     *     name="liczba_por_od_500001_pln_dla_innych_podmiotow",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -1200,34 +1200,13 @@ class DanePoreczen
      */
     protected $liczbaPoreczenOd500001PlnDlaInnychPodmiotow = 0;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Kwota poręczeń do 50.000zł dla mikro przedsiębiorstw.
      *
      * @var int
      *
      * @ORM\Column(
-     *     name="kwota_por_do_50000_pln_mikro_przeds",
+     *     name="kwota_por_do_50000_pln_mikro_przedsiebiorstwa",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -1246,7 +1225,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="kwota_por_od_50000_do_100000_pln_mikro_przeds",
+     *     name="kwota_por_od_50000_do_100000_pln_mikro_przedsiebiorstwa",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -1265,7 +1244,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="kwota_por_od_100001_do_500000_pln_mikro_przeds",
+     *     name="kwota_por_od_100001_do_500000_pln_mikro_przedsiebiorstwa",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -1284,7 +1263,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="kwota_por_od_500001_pln_mikro_przeds",
+     *     name="kwota_por_od_500001_pln_mikro_przedsiebiorstwa",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -1322,7 +1301,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="kwota_por_od_50000_do_100000_pln_malych_przeds",
+     *     name="kwota_por_od_50000_do_100000_pln_male_przedsiebiorstwa",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -1341,7 +1320,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="kwota_por_od_100001_do_500000_pln_malych_przeds",
+     *     name="kwota_por_od_100001_do_500000_pln_male_przedsiebiorstwa",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -1360,7 +1339,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="kwota_por_od_500001_pln_malych_przeds",
+     *     name="kwota_por_od_500001_pln_male_przedsiebiorstwa",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -1379,7 +1358,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="kwota_por_do_50000_pln_srednich_przeds",
+     *     name="kwota_por_do_50000_pln_srednie_przedsiebiorstwa",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -1398,7 +1377,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="kwota_por_od_50000_do_100000_pln_srednich_przeds",
+     *     name="kwota_por_od_50000_do_100000_pln_srednie_przedsiebiorstwa",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -1417,7 +1396,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="kwota_por_od_100001_do_500000_pln_srednich_przeds",
+     *     name="kwota_por_od_100001_do_500000_pln_srednie_przedsiebiorstwa",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -1436,7 +1415,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="kwota_por_od_500001_pln_srednich_przeds",
+     *     name="kwota_por_od_500001_pln_srednie_przedsiebiorstwa",
      *     type="decimal",
      *     precision=11,
      *     scale=2,
@@ -11025,7 +11004,7 @@ class DanePoreczen
      *
      * @return string
      */
-    public function getKwotaoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne()
+    public function getKwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne()
     {
         return $this->kwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne;
     }
@@ -11037,7 +11016,7 @@ class DanePoreczen
      *
      * @return DanePoreczen
      */
-    public function setKwotaoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne(string $kwotaPoreczen = '0.00')
+    public function setKwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne(string $kwotaPoreczen = '0.00')
     {
         $this->kwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
 
