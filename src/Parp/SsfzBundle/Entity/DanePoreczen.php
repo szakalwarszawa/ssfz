@@ -3191,7 +3191,7 @@ class DanePoreczen
      *     }
      * )
      */
-    protected $liczbaoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne = 0;
+    protected $liczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne = 0;
 
     /**
      * Liczba poręczeń wypłaconych na działania handlowe.
@@ -3259,7 +3259,7 @@ class DanePoreczen
      *     }
      * )
      */
-    protected $liczbaoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe = 0;
+    protected $liczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe = 0;
 
     /**
      * Liczba poręczeń wypłaconych na działania usługowe.
@@ -4427,7 +4427,7 @@ class DanePoreczen
      *     }
      * )
      */
-    protected $kwotaoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne = '0.00';
+    protected $kwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne = '0.00';
 
     /**
      * Kwota poręczeń wypłaconych na działania handlowe.
@@ -4503,7 +4503,7 @@ class DanePoreczen
      *     }
      * )
      */
-    protected $kwotaoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe = '0.00';
+    protected $kwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe = '0.00';
 
     /**
      * Kwota poręczeń wypłaconych na działania usługowe.
@@ -9375,9 +9375,9 @@ class DanePoreczen
      *
      * @return int
      */
-    public function getLiczbaoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne()
+    public function getLiczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne()
     {
-        return $this->liczbaoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne;
+        return $this->liczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne;
     }
 
     /**
@@ -9387,9 +9387,9 @@ class DanePoreczen
      *
      * @return DanePoreczen
      */
-    public function setLiczbaoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne(int $liczbaPoreczen = 0)
+    public function setLiczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne(int $liczbaPoreczen = 0)
     {
-        $this->liczbaoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne = abs($liczbaPoreczen);
+        $this->liczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne = abs($liczbaPoreczen);
 
         return $this;
     }
@@ -9471,9 +9471,9 @@ class DanePoreczen
      *
      * @return int
      */
-    public function getLiczbaoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe()
+    public function getLiczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe()
     {
-        return $this->liczbaoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe;
+        return $this->liczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe;
     }
 
     /**
@@ -9483,9 +9483,9 @@ class DanePoreczen
      *
      * @return DanePoreczen
      */
-    public function setLiczbaoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe(int $liczbaPoreczen = 0)
+    public function setLiczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe(int $liczbaPoreczen = 0)
     {
-        $this->liczbaoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe = abs($liczbaPoreczen);
+        $this->liczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe = abs($liczbaPoreczen);
 
         return $this;
     }
@@ -11027,7 +11027,7 @@ class DanePoreczen
      */
     public function getKwotaoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne()
     {
-        return $this->kwotaoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne;
+        return $this->kwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne;
     }
 
     /**
@@ -11039,7 +11039,7 @@ class DanePoreczen
      */
     public function setKwotaoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne(string $kwotaPoreczen = '0.00')
     {
-        $this->kwotaoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+        $this->kwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
 
         return $this;
     }
@@ -11121,9 +11121,9 @@ class DanePoreczen
      *
      * @return string
      */
-    public function getKwotaoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe()
+    public function getKwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe()
     {
-        return $this->kwotaoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe;
+        return $this->kwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe;
     }
 
     /**
@@ -11133,9 +11133,9 @@ class DanePoreczen
      *
      * @return DanePoreczen
      */
-    public function setKwotaoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe(string $kwotaPoreczen = '0.00')
+    public function setKwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe(string $kwotaPoreczen = '0.00')
     {
-        $this->kwotaoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+        $this->kwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
 
         return $this;
     }
