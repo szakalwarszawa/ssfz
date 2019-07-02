@@ -50,7 +50,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_do_50000_pln_mikro_przeds",
+     *     name="liczba_por_do_50000_pln_mikro_przedsiebiorstw",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -67,7 +67,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_50000_do_100000_pln_mikro_przeds",
+     *     name="liczba_por_od_50000_do_100000_pln_mikro_przedsiebiorstw",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -84,7 +84,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_100001_do_500000_pln_mikro_przeds",
+     *     name="liczba_por_od_100001_do_500000_pln_mikro_przedsiebiorstw",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -101,7 +101,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_500001_pln_mikro_przeds",
+     *     name="liczba_por_od_500001_pln_mikro_przedsiebiorstw",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -118,7 +118,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_do_50000_pln_malych_przeds",
+     *     name="liczba_por_do_50000_pln_malych_przedsiebiorstw",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -135,7 +135,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_50000_do_100000_pln_malych_przeds",
+     *     name="liczba_por_od_50000_do_100000_pln_malych_przedsiebiorstw",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -152,7 +152,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_100001_do_500000_pln_malych_przeds",
+     *     name="liczba_por_od_100001_do_500000_pln_malych_przedsiebiorstw",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -169,7 +169,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_500001_pln_malych_przeds",
+     *     name="liczba_por_od_500001_pln_malych_przedsiebiorstw",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -186,7 +186,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_do_50000_pln_srednich_przeds",
+     *     name="liczba_por_do_50000_pln_srednich_przedsiebiorstw",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -203,7 +203,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_50000_do_100000_pln_srednich_przeds",
+     *     name="liczba_por_od_50000_do_100000_pln_srednich_przedsiebirstw",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -220,7 +220,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_100001_do_500000_pln_srednich_przeds",
+     *     name="liczba_por_od_100001_do_500000_pln_srednich_przedsiebiorstw",
      *     type="integer",
      *     nullable=false,
      *     options={
@@ -237,7 +237,7 @@ class DanePoreczen
      * @var int
      *
      * @ORM\Column(
-     *     name="liczba_por_od_500001_pln_srednich_przeds",
+     *     name="liczba_por_od_500001_pln_srednich_przedsiebiorstw",
      *     type="integer",
      *     nullable=false,
      *     options={
