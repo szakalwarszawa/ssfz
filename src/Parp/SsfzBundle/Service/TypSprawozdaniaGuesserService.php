@@ -15,22 +15,22 @@ class TypSprawozdaniaGuesserService
     /**
      * @var string
      */
-    const SPRAWOZDANIE = 'sprawozdanie standardowe';
+    const SPRAWOZDANIE = 'sprawozdanie_standardowe';
 
     /**
      * @var string
      */
-    const SPRAWOZDANIE_POZYCZKOWE = 'sprawozdanie pozyczkowe';
+    const SPRAWOZDANIE_POZYCZKOWE = 'sprawozdanie_pozyczkowe';
 
     /**
      * @var string
      */
-    const SPRAWOZDANIE_PORECZENIOWE = 'sprawozdanie poreczeniowe';
+    const SPRAWOZDANIE_PORECZENIOWE = 'sprawozdanie_poreczeniowe';
 
     /**
      * @var string
      */
-    const INNE_SPRAWOZDANIE = 'inne sprawozdanie';
+    const INNE_SPRAWOZDANIE = 'inne_sprawozdanie';
 
     /**
      * Na podstawie typu obiektu zwraca typ sprawozdania

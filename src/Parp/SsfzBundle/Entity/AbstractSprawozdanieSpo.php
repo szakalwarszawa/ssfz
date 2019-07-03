@@ -910,7 +910,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
         foreach ($this->skladnikiOgolem as $skladnik) {
             $kwota = $skladnik->getWartosc();
             if (!empty($kwota)) {
-                $this->kapitalOgolem = bcadd($this->kapitalOgolem, $kwota, 2);
+                $this->kapitalOgolem = $this->kapitalOgolem + $kwota;
             }
         }
 
@@ -918,7 +918,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
         foreach ($this->skladnikiWydzielone as $skladnik) {
             $kwota = $skladnik->getWartosc();
             if (!empty($kwota)) {
-                $this->kapitalWydzielony = bcadd($this->kapitalWydzielony, $kwota, 2);
+                $this->kapitalWydzielony = $this->kapitalWydzielony + $kwota;
             }
         }
         
