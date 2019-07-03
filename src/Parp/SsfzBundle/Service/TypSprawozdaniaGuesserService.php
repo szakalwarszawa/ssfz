@@ -50,7 +50,7 @@ class TypSprawozdaniaGuesserService
      */
     public function exceptionsOn()
     {
-        $this->$throwsExceptions = true;
+        $this->throwsExceptions = true;
     }
 
     /**
@@ -60,7 +60,7 @@ class TypSprawozdaniaGuesserService
      */
     public function exceptionsOff()
     {
-        $this->$throwsExceptions = false;
+        $this->throwsExceptions = false;
     }
 
     /**
@@ -86,7 +86,7 @@ class TypSprawozdaniaGuesserService
             return self::SPRAWOZDANIE_PORECZENIOWE;
         }
 
-        if ($throwsExceptions) {
+        if ($this->throwsExceptions) {
             throw new InvalidArgumentException('Can not determine type of "Sprawozdanie".');
         }
         
@@ -116,7 +116,7 @@ class TypSprawozdaniaGuesserService
             return SprawozdaniePoreczenioweType::class;
         }
 
-        if ($throwsExceptions) {
+        if ($this->throwsExceptions) {
             throw new InvalidArgumentException('Can not determine form type for "Sprawozdanie".');
         }
 
