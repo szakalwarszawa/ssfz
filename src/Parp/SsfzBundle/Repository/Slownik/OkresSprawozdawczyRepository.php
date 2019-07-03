@@ -6,6 +6,7 @@ namespace Parp\SsfzBundle\Repository\Slownik;
 
 use Doctrine\ORM\EntityRepository;
 use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
+use Parp\SsfzBundle\Entity\Slownik\Program;
 
 /**
  * Repozytorium OkresSprawozdawczyRepository.
@@ -19,7 +20,7 @@ class OkresSprawozdawczyRepository extends EntityRepository
      */
     public function findRoczneOkresy(): array
     {
-        $dict = [];
+        $intervals = [];
 
         $result = $this
             ->createQueryBuilder('os')
@@ -30,11 +31,11 @@ class OkresSprawozdawczyRepository extends EntityRepository
         ;
         foreach ($result as $key => $value) {
             if ($value->jestRoczny()) {
-                $dict[$key] = $value;
+                $intervals[$key] = $value;
             }
         }
 
-        return $value;
+        return $intervals;
     }
 
     /**
@@ -44,7 +45,7 @@ class OkresSprawozdawczyRepository extends EntityRepository
      */
     public function findPolroczneOkresy(): array
     {
-        $dict = [];
+        $intervals = [];
 
         $result = $this
             ->createQueryBuilder('os')
@@ -56,10 +57,10 @@ class OkresSprawozdawczyRepository extends EntityRepository
 
         foreach ($result as $key => $value) {
             if ($value->jestPolroczny()) {
-                $dict[$key] = $value;
+                $intervals[$key] = $value;
             }
         }
 
-        return $value;
+        return $intervals;
     }
 }

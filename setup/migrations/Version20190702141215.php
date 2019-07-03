@@ -42,11 +42,11 @@ class Version20190702141215 extends AbstractMigration
      */
     public function down(Schema $schema)
     {
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
-
         $this->abortIf(true, 'Not supported.');
 
         /*
+        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+
         $this->addSql('ALTER TABLE sfz_dane_poreczen
             CHANGE liczba_wspolpracujacych_funduszy_pozyczk liczba_wspolpracujacych_funduszy_pozyczkowych INT DEFAULT 0 NOT NULL COMMENT \'Liczba współpracujących funduszy pożyczkowych.\',
             CHANGE kwota_por_do_50000_pln_malych_przeds kwota_por_do_50000_pln_malych_przedsiebiorstwa NUMERIC(11, 2) DEFAULT \'0.00\' NOT NULL COMMENT \'Kwota poręczeń do 50.000zł dla małych przedsiębiorstw.\',

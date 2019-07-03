@@ -30,32 +30,35 @@ class Version20190627141842 extends AbstractMigration
             (2, \'styczeń - czerwiec\', 1, 6),
             (3, \'lipiec - grudzień\', 7, 12)');
 
-        // to się zmieni - na jeden wiele
-        $this->addSql('ALTER TABLE slownik_programow ADD okres_sprawozdawczy_id INT NOT NULL DEFAULT 0');
-        $this->addSql('UPDATE slownik_programow SET okres_sprawozdawczy_id = 2 WHERE id = 1');
-        $this->addSql('UPDATE slownik_programow SET okres_sprawozdawczy_id = 1 WHERE id > 1');
+        $this->addSql('CREATE TABLE programy_okresy_sprawozdawcze (
+            program_id INT NOT NULL,
+            okres_sprawozdawczy_id INT NOT NULL,
+            INDEX IDX_6011A9FF3EB8070A (program_id),
+            INDEX IDX_6011A9FF28E1197A (okres_sprawozdawczy_id),
+            PRIMARY KEY(program_id, okres_sprawozdawczy_id))
+            DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE programy_okresy_sprawozdawcze ADD CONSTRAINT FK_6011A9FF3EB8070A FOREIGN KEY (program_id) REFERENCES slownik_programow (id)');
+        $this->addSql('ALTER TABLE programy_okresy_sprawozdawcze ADD CONSTRAINT FK_6011A9FF28E1197A FOREIGN KEY (okres_sprawozdawczy_id) REFERENCES slownik_okresow_sprawozdawczych (id)');
+        $this->addSql('INSERT INTO programy_okresy_sprawozdawcze (program_id, okres_sprawozdawczy_id) VALUES (1, 2), (1, 3), (2, 1), (3, 1)');
 
-
-        // Niesłownikowane ID okresów sprawozdawczych:
-        // styczen-czerwiec miało ID 0
-        // lipiec-grudzien miało ID 1
-        $this->addSql('ALTER TABLE sfz_sprawozdanie DROP okres');
+        // Wcześniej okresy sprawozdawcze były półroczne: styczeń-czerwiec miało statyczne ID = 0, lipiec-grudzień ID = 1.
+        // Nowe programy (ze sprawozdaniamia pożyczkowymi i poręczeniowymi) mają okres sprawozdawczy styczeń-grudzień (1 rok).
+        // Nowe ID: st-gr 1, st-czer 2, lip-gr 3. 
         $this->addSql('UPDATE sfz_sprawozdanie SET okres_id = 2 WHERE okres_id = 0');
         $this->addSql('UPDATE sfz_sprawozdanie SET okres_id = 3 WHERE okres_id = 1');
-        $this->addSql('ALTER TABLE sfz_sprawozdanie ADD CONSTRAINT FK_2D75FF5A12EA32C6 FOREIGN KEY (okres_id) REFERENCES slownik_okresow_sprawozdawczych (id)');
+        $this->addSql('UPDATE sfz_sprawozdanie_poreczeniowe SET okres_id = 1');
+
         $this->addSql('CREATE INDEX IDX_2D75FF5A12EA32C6 ON sfz_sprawozdanie (okres_id)');
-
-        $this->addSql('ALTER TABLE sfz_sprawozdanie_poreczeniowe DROP okres');
-        $this->addSql('UPDATE sfz_sprawozdanie_poreczeniowe SET okres_id = 2 WHERE okres_id = 0');
-        $this->addSql('UPDATE sfz_sprawozdanie_poreczeniowe SET okres_id = 3 WHERE okres_id = 1');
-        $this->addSql('ALTER TABLE sfz_sprawozdanie_poreczeniowe ADD CONSTRAINT FK_22FEB1EB12EA32C6 FOREIGN KEY (okres_id) REFERENCES slownik_okresow_sprawozdawczych (id)');
         $this->addSql('CREATE INDEX IDX_22FEB1EB12EA32C6 ON sfz_sprawozdanie_poreczeniowe (okres_id)');
-
-        $this->addSql('ALTER TABLE sfz_sprawozdanie_pozyczkowe DROP okres');
-        $this->addSql('UPDATE sfz_sprawozdanie_pozyczkowe SET okres_id = 2 WHERE okres_id = 0');
-        $this->addSql('UPDATE sfz_sprawozdanie_pozyczkowe SET okres_id = 3 WHERE okres_id = 1');
-        $this->addSql('ALTER TABLE sfz_sprawozdanie_pozyczkowe ADD CONSTRAINT FK_DD2BEB8912EA32C6 FOREIGN KEY (okres_id) REFERENCES slownik_okresow_sprawozdawczych (id)');
         $this->addSql('CREATE INDEX IDX_DD2BEB8912EA32C6 ON sfz_sprawozdanie_pozyczkowe (okres_id)');
+
+        $this->addSql('ALTER TABLE sfz_sprawozdanie ADD CONSTRAINT FK_2D75FF5A12EA32C6 FOREIGN KEY (okres_id) REFERENCES slownik_okresow_sprawozdawczych (id)');
+        $this->addSql('ALTER TABLE sfz_sprawozdanie_poreczeniowe ADD CONSTRAINT FK_22FEB1EB12EA32C6 FOREIGN KEY (okres_id) REFERENCES slownik_okresow_sprawozdawczych (id)');
+        $this->addSql('ALTER TABLE sfz_sprawozdanie_pozyczkowe ADD CONSTRAINT FK_DD2BEB8912EA32C6 FOREIGN KEY (okres_id) REFERENCES slownik_okresow_sprawozdawczych (id)');
+
+        $this->addSql('ALTER TABLE sfz_sprawozdanie DROP okres');
+        $this->addSql('ALTER TABLE sfz_sprawozdanie_poreczeniowe DROP okres');
+        $this->addSql('ALTER TABLE sfz_sprawozdanie_pozyczkowe DROP okres');
     }
 
     /**
@@ -67,22 +70,6 @@ class Version20190627141842 extends AbstractMigration
 
         /*
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
-
-        $this->addSql('ALTER TABLE sfz_sprawozdanie DROP FOREIGN KEY FK_2D75FF5A12EA32C6');
-        $this->addSql('ALTER TABLE sfz_sprawozdanie_poreczeniowe DROP FOREIGN KEY FK_22FEB1EB12EA32C6');
-        $this->addSql('ALTER TABLE slownik_programow DROP FOREIGN KEY FK_99E857AB28E1197A');
-        $this->addSql('ALTER TABLE sfz_sprawozdanie_pozyczkowe DROP FOREIGN KEY FK_DD2BEB8912EA32C6');
-        $this->addSql('DROP TABLE slownik_okresow_sprawozdawczych');
-        $this->addSql('DROP INDEX IDX_2D75FF5A12EA32C6 ON sfz_sprawozdanie');
-        $this->addSql('ALTER TABLE sfz_sprawozdanie ADD okres VARCHAR(255) NOT NULL COLLATE utf8_unicode_ci');
-        $this->addSql('DROP INDEX IDX_22FEB1EB12EA32C6 ON sfz_sprawozdanie_poreczeniowe');
-        $this->addSql('ALTER TABLE sfz_sprawozdanie_poreczeniowe ADD okres VARCHAR(255) NOT NULL COLLATE utf8_unicode_ci');
-        $this->addSql('DROP INDEX IDX_DD2BEB8912EA32C6 ON sfz_sprawozdanie_pozyczkowe');
-        $this->addSql('ALTER TABLE sfz_sprawozdanie_pozyczkowe ADD okres VARCHAR(255) NOT NULL COLLATE utf8_unicode_ci');
-        $this->addSql('DROP INDEX IDX_99E857AB28E1197A ON slownik_programow');
-        $this->addSql('ALTER TABLE slownik_programow DROP okres_sprawozdawczy_id, CHANGE id id INT NOT NULL');
-        $this->addSql('DROP INDEX uniq_99e857ab6017fd2e ON slownik_programow');
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_6D6A0E4B6017FD2E ON slownik_programow (nazwa)');
         */
     }
 }
