@@ -1,4 +1,10 @@
 $(document).ready(function () {
+    var changed = false;
+
+    function resetChangeable() {
+        changed = false;
+    }
+
     function sumByGroup() {
         var verticalGroupsInteger = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
             verticalGroupsDecimal = ['13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'],
@@ -51,5 +57,36 @@ $(document).ready(function () {
         reverse: false
     });
 
+    $('#button_return').on('click', function (event) {
+        var dialog;
+
+        event.preventDefault();
+        if (changed === false) {
+            location.href = $('#button_return').attr('href');
+            return true;
+        }
+        
+        dialog = bootbox.dialog({
+            message: 'Czy zapisać dane?',
+            buttons: {
+                cancel: {
+                    label: 'Tak',
+                    className: 'btn btn-info',
+                    callback: function () {
+                        $('#button_submit').click();
+                    }
+                },
+                ok: {
+                    label: 'Nie',
+                    className: 'btn btn-danger',
+                    callback: function () {
+                        location.href = $('#button_return').attr('href');
+                    }
+                }
+            }
+        });
+    }); 
+
     sumByGroup();
+    resetChangeable();
 });
