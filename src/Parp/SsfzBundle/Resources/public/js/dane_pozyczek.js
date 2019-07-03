@@ -40,6 +40,10 @@ $(document).ready(function () {
         });
     }
 
+    $('[data-changeable=\'1\']').change(function () {
+        changed = true;
+    });
+
     $('[data-vertical-group]').change(function () {
         sumByGroup();
     });
@@ -65,7 +69,7 @@ $(document).ready(function () {
             location.href = $('#button_return').attr('href');
             return true;
         }
-        
+
         dialog = bootbox.dialog({
             message: 'Czy zapisać dane?',
             buttons: {
