@@ -2,10 +2,14 @@
 
 namespace Parp\SsfzBundle\Service;
 
+use InvalidArgumentException;
 use Parp\SsfzBundle\Entity\AbstractSprawozdanie;
 use Parp\SsfzBundle\Entity\Sprawozdanie;
 use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
 use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
+use Parp\SsfzBundle\Form\Type\SprawozdanieType;
+use Parp\SsfzBundle\Form\Type\SprawozdaniePozyczkoweType;
+use Parp\SsfzBundle\Form\Type\SprawozdaniePoreczenioweType;
 
 /**
  * Usługa określająca typ sprawozdania.
@@ -33,11 +37,40 @@ class TypSprawozdaniaGuesserService
     const INNE_SPRAWOZDANIE = 'inne_sprawozdanie';
 
     /**
+     * Określa, czy w przypadku niepowodzenia zagadywania/określania powinny być rzucane wyjątki.
+     *
+     * @var bool
+     */
+    private $throwsExceptions = false;
+
+    /**
+     * Włącza rzucanie wyjątków.
+     *
+     * @return TypSprawozdaniaGuesserService
+     */
+    public function exceptionsOn()
+    {
+        $this->$throwsExceptions = true;
+    }
+
+    /**
+     * Wyłącza rzucanie wyjątków.
+     *
+     * @return TypSprawozdaniaGuesserService
+     */
+    public function exceptionsOff()
+    {
+        $this->$throwsExceptions = false;
+    }
+
+    /**
      * Na podstawie typu obiektu zwraca typ sprawozdania
      *
      * @param AbstractSprawozdanie $sprawozdanie
      *
      * @return string
+     *
+     * @throws InvalidArgumentException Jeśli nie można określić dokładnego typu sprawozdania
      */
     public function guess(AbstractSprawozdanie $sprawozdanie)
     {
@@ -53,7 +86,41 @@ class TypSprawozdaniaGuesserService
             return self::SPRAWOZDANIE_PORECZENIOWE;
         }
 
-        return INNE_SPRAWOZDANIE;
+        if ($throwsExceptions) {
+            throw new InvalidArgumentException('Can not determine type of "Sprawozdanie".');
+        }
+        
+        return self::INNE_SPRAWOZDANIE;
+    }
+
+    /**
+     * Na podstawie typu obiektu zwraca typ sprawozdania
+     *
+     * @param AbstractSprawozdanie $sprawozdanie
+     *
+     * @return string|null
+     *
+     * @throws InvalidArgumentException Jeśli nie można określić typu formularza dla sprawozdania
+     */
+    public function guessFormType(AbstractSprawozdanie $sprawozdanie)
+    {
+        if ($sprawozdanie instanceof Sprawozdanie) {
+            return SprawozdanieType::class;
+        }
+
+        if ($sprawozdanie instanceof SprawozdaniePozyczkowe) {
+            return SprawozdaniePozyczkoweType::class;
+        }
+
+        if ($sprawozdanie instanceof SprawozdaniePoreczeniowe) {
+            return SprawozdaniePoreczenioweType::class;
+        }
+
+        if ($throwsExceptions) {
+            throw new InvalidArgumentException('Can not determine form type for "Sprawozdanie".');
+        }
+
+        return null;
     }
 
     /**

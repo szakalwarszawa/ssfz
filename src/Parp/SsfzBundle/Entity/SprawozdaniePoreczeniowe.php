@@ -19,14 +19,22 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
     /**
      * Składniki ogółem.
      *
-     * @ORM\OneToMany(targetEntity="SprawozdaniePoreczenioweSkladnikOgolem", mappedBy="sprawozdanie", cascade={"persist", "remove"})
+     * @ORM\OneToMany(
+     *     targetEntity="SprawozdaniePoreczenioweSkladnikOgolem",
+     *     mappedBy="sprawozdanie",
+     *     cascade={"persist", "remove"}
+     * )
      */
     protected $skladnikiOgolem;
 
     /**
      * Składniki wydzielone.
      *
-     * @ORM\OneToMany(targetEntity="SprawozdaniePoreczenioweSkladnikWydzielony", mappedBy="sprawozdanie", cascade={"persist", "remove"})
+     * @ORM\OneToMany(
+     *     targetEntity="SprawozdaniePoreczenioweSkladnikWydzielony",
+     *     mappedBy="sprawozdanie",
+     *     cascade={"persist", "remove"}
+     * )
      */
     protected $skladnikiWydzielone;
 
@@ -69,6 +77,7 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
      * @ORM\JoinColumn(name="czy_nie_przekraczaja_80_procent", referencedColumnName="id", nullable=true)
      */
     protected $czyNiePrzekraczaja80;
+
     /**
      * Constructor
      */
@@ -81,7 +90,7 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
     /**
      * Set czyPosiadaWydzielonyFundusz
      *
-     * @param boolean $czyPosiadaWydzielonyFundusz
+     * @param bool $czyPosiadaWydzielonyFundusz
      *
      * @return SprawozdaniePoreczeniowe
      */
@@ -95,7 +104,7 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
     /**
      * Get czyPosiadaWydzielonyFundusz
      *
-     * @return boolean
+     * @return bool
      */
     public function getCzyPosiadaWydzielonyFundusz()
     {
@@ -105,7 +114,7 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
     /**
      * Set czyOprocentowanieNieNizszeOdStopy
      *
-     * @param boolean $czyOprocentowanieNieNizszeOdStopy
+     * @param bool $czyOprocentowanieNieNizszeOdStopy
      *
      * @return SprawozdaniePoreczeniowe
      */
@@ -119,7 +128,7 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
     /**
      * Get czyOprocentowanieNieNizszeOdStopy
      *
-     * @return boolean
+     * @return bool
      */
     public function getCzyOprocentowanieNieNizszeOdStopy()
     {
@@ -129,7 +138,7 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
     /**
      * Set czyZaWynagrodzeniem
      *
-     * @param boolean $czyZaWynagrodzeniem
+     * @param bool $czyZaWynagrodzeniem
      *
      * @return SprawozdaniePoreczeniowe
      */
@@ -143,7 +152,7 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
     /**
      * Get czyZaWynagrodzeniem
      *
-     * @return boolean
+     * @return bool
      */
     public function getCzyZaWynagrodzeniem()
     {
@@ -153,7 +162,7 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
     /**
      * Set czyNiePrzekraczaja80
      *
-     * @param boolean $czyNiePrzekraczaja80
+     * @param bool $czyNiePrzekraczaja80
      *
      * @return SprawozdaniePoreczeniowe
      */
@@ -167,7 +176,7 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
     /**
      * Get czyNiePrzekraczaja80
      *
-     * @return boolean
+     * @return bool
      */
     public function getCzyNiePrzekraczaja80()
     {
