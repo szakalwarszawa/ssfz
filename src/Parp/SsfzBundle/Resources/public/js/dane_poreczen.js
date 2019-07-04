@@ -67,6 +67,54 @@ $(document).ready(function () {
         reverse: false
     });
 
+    $('[data-toggle-table=\'1\']').change(function () {
+        toggleTable('1');
+    });
+
+    $('[data-toggle-table=\'2\']').change(function () {
+        toggleTable('2');
+    });
+
+    $('[data-toggle-table=\'3\']').change(function () {
+        toggleTable('3');
+    });
+
+    $('[data-toggle-table=\'4\']').change(function () {
+        toggleTable('4');
+    });
+
+    $('[data-toggle-table=\'5\']').change(function () {
+        toggleTable('5');
+    });
+
+    $('[data-toggle-table=\'6\']').change(function () {
+        toggleTable('6');
+    });
+
+    $('[data-toggle-table=\'7\']').change(function () {
+        toggleTable('7');
+    });
+
+    $('[data-toggle-table=\'8\']').change(function () {
+        toggleTable('8');
+    });
+
+    function toggleTable(tableId) {
+        var togglerSelector = $('[data-toggle-table='+tableId+']'),
+            tableSelector = $('#table_'+tableId),
+            iconSelector = $('[data-toggle-table-icon='+tableId+']');
+
+        if (togglerSelector.is(':checked')) {
+            tableSelector.slideUp('slow');
+            iconSelector.removeClass('fa-minus-circle');
+            iconSelector.addClass('fa-plus-circle');
+        } else {
+            tableSelector.slideDown('slow');
+            iconSelector.removeClass('fa-plus-circle');
+            iconSelector.addClass('fa-minus-circle');
+        }
+    }
+
     $('#button_return').on('click', function (event) {
         var dialog;
 

@@ -120,7 +120,7 @@ class PoreczeniaController extends Controller
         return $this->render('SsfzBundle:Sprawozdanie:dane_poreczen.html.twig', [
             'form'            => $formularz->createView(),
             'dane_poreczen'   => $danePoreczen,
-            'fluid_container' => true,
+            'fluid_container' => false,
         ]);
     }
 
