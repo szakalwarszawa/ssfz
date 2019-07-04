@@ -112,56 +112,56 @@ class DanePozyczekRepository extends EntityRepository
         }
 
         $pozyczkiWgPrzeznaczenia = [
-            'liczba_pozyczek_razem' => $result->getLiczbaPozyczekDlaWszystkichPrzeznaczenOgolem(),
-            'liczba_pozyczek_na_cele_obrotowe' => $result->getLiczbaPozyczekObrotowychOgolem(),
-            'liczba_pozyczek_na_cele_inwestycyjne' => $result->getLiczbaPozyczekInwestycyjnychOgolem(),
+            'liczba_pozyczek_razem'                         => $result->getLiczbaPozyczekDlaWszystkichPrzeznaczenOgolem(),
+            'liczba_pozyczek_na_cele_obrotowe'              => $result->getLiczbaPozyczekObrotowychOgolem(),
+            'liczba_pozyczek_na_cele_inwestycyjne'          => $result->getLiczbaPozyczekInwestycyjnychOgolem(),
             'liczba_pozyczek_na_cele_obrotowo_inwestycyjne' => $result->getLiczbaPozyczekInwestycyjnoObrotowychOgolem(),
-            'kwota_pozyczek_razem' => $result->getKwotaPozyczekDlaWszystkichPrzeznaczenOgolem(),
-            'kwota_pozyczek_na_cele_obrotowe' => $result->getKwotaPozyczekInwestycyjnychOgolem(),
-            'kwota_pozyczek_na_cele_inwestycyjne' => $result->getKwotaPozyczekInwestycyjnoObrotowychOgolem(),
-            'kwota_pozyczek_na_cele_obrotowo_inwestycyjne' => $result->getKwotaPozyczekObrotowychOgolem(),
+            'kwota_pozyczek_razem'                          => $result->getKwotaPozyczekDlaWszystkichPrzeznaczenOgolem(),
+            'kwota_pozyczek_na_cele_obrotowe'               => $result->getKwotaPozyczekObrotowychOgolem(),
+            'kwota_pozyczek_na_cele_inwestycyjne'           => $result->getKwotaPozyczekInwestycyjnychOgolem(),
+            'kwota_pozyczek_na_cele_obrotowo_inwestycyjne'  => $result->getKwotaPozyczekInwestycyjnoObrotowychOgolem(),
         ];
 
         $pozyczkiWgDzialanosci = [
-            'liczba_pozyczek_razem' => $result->getLiczbaPozyczekOgolemDlaWszystkichSektorowDzialan(),
+            'liczba_pozyczek_razem'                 => $result->getLiczbaPozyczekOgolemDlaWszystkichSektorowDzialan(),
             'liczba_pozyczek_dzialania_produkcyjne' => $result->getLiczbaPozyczekNaDzialaniaProdykcyjneOgolem(),
-            'liczba_pozyczek_dzialania_handlowe' => $result->getLiczbaPozyczekNaDzialaniaHandloweOgolem(),
-            'liczba_pozyczek_dzialania_uslugowe' =>$result->getLiczbaPozyczekNaDzialaniaUslugoweOgolem(),
-            'liczba_pozyczek_dzialania_budownicze' => $result->getLiczbaPozyczekNaDzialaniaBudowniczeOgolem(),
-            'liczba_pozyczek_dzialania_rolnicze' => $result->getLiczbaPozyczekNaDzialaniaRolniczeOgolem(),
-            'liczba_pozyczek_dzialania_inne' => $result->getLiczbaPozyczekNaDzialaniaInneOgolem(),
-            'kwota_pozyczek_razem' => $result->getKwotaPozyczekOgolemDlaWszystkichSektorowDzialan(),
-            'kwota_pozyczek_dzialania_produkcyjne' => $result->getKwotaPozyczekNaDzialaniaProdykcyjneOgolem(),
-            'kwota_pozyczek_dzialania_handlowe' => $result->getKwotaPozyczekNaDzialaniaHandloweOgolem(),
-            'kwota_pozyczek_dzialania_uslugowe' => $result->getKwotaPozyczekNaDzialaniaUslugoweOgolem(),
-            'kwota_pozyczek_dzialania_budownicze' => $result->getKwotaPozyczekNaDzialaniaBudowniczeOgolem(),
-            'kwota_pozyczek_dzialania_rolnicze' => $result->getKwotaPozyczekNaDzialaniaRolniczeOgolem(),
-            'kwota_pozyczek_dzialania_inne' => $result->getKwotaPozyczekNaDzialaniaInneOgolem(),
+            'liczba_pozyczek_dzialania_handlowe'    => $result->getLiczbaPozyczekNaDzialaniaHandloweOgolem(),
+            'liczba_pozyczek_dzialania_uslugowe'    =>$result->getLiczbaPozyczekNaDzialaniaUslugoweOgolem(),
+            'liczba_pozyczek_dzialania_budownicze'  => $result->getLiczbaPozyczekNaDzialaniaBudowniczeOgolem(),
+            'liczba_pozyczek_dzialania_rolnicze'    => $result->getLiczbaPozyczekNaDzialaniaRolniczeOgolem(),
+            'liczba_pozyczek_dzialania_inne'        => $result->getLiczbaPozyczekNaDzialaniaInneOgolem(),
+            'kwota_pozyczek_razem'                  => $result->getKwotaPozyczekOgolemDlaWszystkichSektorowDzialan(),
+            'kwota_pozyczek_dzialania_produkcyjne'  => $result->getKwotaPozyczekNaDzialaniaProdykcyjneOgolem(),
+            'kwota_pozyczek_dzialania_handlowe'     => $result->getKwotaPozyczekNaDzialaniaHandloweOgolem(),
+            'kwota_pozyczek_dzialania_uslugowe'     => $result->getKwotaPozyczekNaDzialaniaUslugoweOgolem(),
+            'kwota_pozyczek_dzialania_budownicze'   => $result->getKwotaPozyczekNaDzialaniaBudowniczeOgolem(),
+            'kwota_pozyczek_dzialania_rolnicze'     => $result->getKwotaPozyczekNaDzialaniaRolniczeOgolem(),
+            'kwota_pozyczek_dzialania_inne'         => $result->getKwotaPozyczekNaDzialaniaInneOgolem(),
         ];
 
         $pozyczkiWgWielkosciPrzedsiebiorstwa = [
-            'liczba_pozyczek_razem' => $result->getLiczbaPozyczekDlaPrzedsiebiorstwOgolem(),
-            'liczba_pozyczek_dla_mikro' => $result->getLiczbaPozyczekDlaMikroPrzedsiebiorstwOgolem(),
-            'liczba_pozyczek_dla_malych' => $result->getLiczbaPozyczekDlaMalychPrzedsiebiorstwOgolem(),
+            'liczba_pozyczek_razem'        => $result->getLiczbaPozyczekDlaPrzedsiebiorstwOgolem(),
+            'liczba_pozyczek_dla_mikro'    => $result->getLiczbaPozyczekDlaMikroPrzedsiebiorstwOgolem(),
+            'liczba_pozyczek_dla_malych'   => $result->getLiczbaPozyczekDlaMalychPrzedsiebiorstwOgolem(),
             'liczba_pozyczek_dla_srednich' => $result->getLiczbaPozyczekDlaSrednichPrzedsiebiorstwOgolem(),
-            'kwota_pozyczek_razem' => $result->getKwotaPozyczekDlaPrzedsiebiorstwOgolem(),
-            'kwota_pozyczek_dla_mikro' => $result->getKwotaPozyczekDlaMikroPrzedsiebiorstwOgolem(),
-            'kwota_pozyczek_dla_malych' => $result->getKwotaPozyczekDlaMalychPrzedsiebiorstwOgolem(),
-            'kwota_pozyczek_dla_srednich' => $result->getKwotaPozyczekDlaSrednichPrzedsiebiorstwOgolem(),
+            'kwota_pozyczek_razem'         => $result->getKwotaPozyczekDlaPrzedsiebiorstwOgolem(),
+            'kwota_pozyczek_dla_mikro'     => $result->getKwotaPozyczekDlaMikroPrzedsiebiorstwOgolem(),
+            'kwota_pozyczek_dla_malych'    => $result->getKwotaPozyczekDlaMalychPrzedsiebiorstwOgolem(),
+            'kwota_pozyczek_dla_srednich'  => $result->getKwotaPozyczekDlaSrednichPrzedsiebiorstwOgolem(),
         ];
 
 
         $sprawozdanie = [
-            'id_umowy' => $result->getSprawozdanie()->getUmowaId(),
+            'id_umowy'    => $result->getSprawozdanie()->getUmowaId(),
             'numer_umowy' => $result->getSprawozdanie()->getNumerUmowy(),
-            'okres' => $result->getSprawozdanie()->getOkres(),
-            'rok' => $result->getSprawozdanie()->getRok(),
+            'okres'       => $result->getSprawozdanie()->getOkres(),
+            'rok'         => $result->getSprawozdanie()->getRok(),
         ];
 
         $daneZagregowane = [
-            'sprawozdanie' => $sprawozdanie,
-            'pozyczki_wg_przeznaczenia' => $pozyczkiWgPrzeznaczenia,
-            'pozyczki_wg_dzialanosci' => $pozyczkiWgDzialanosci,
+            'sprawozdanie'                           => $sprawozdanie,
+            'pozyczki_wg_przeznaczenia'              => $pozyczkiWgPrzeznaczenia,
+            'pozyczki_wg_dzialanosci'                => $pozyczkiWgDzialanosci,
             'pozyczki_wg_wielkosci_przedsiebiorstwa' => $pozyczkiWgWielkosciPrzedsiebiorstwa,
         ];
 
