@@ -95,6 +95,9 @@ class DanePozyczekType extends AbstractType
         'kwotaPozyczekAktywnychSplacanychTerminowo',
         'kwotaPozyczekAktywnychWymagajacychMonitorowania',
         'kwotaPozyczekStraconych',
+    ];
+
+    const DECIMAL_PERCENT_FIELDS = [
         // Współczynniki.
         'wspolczynnikStratWDanymOkresieWgLiczbyPozyczek',
         'wspolczynnikStratWCalymOkresieWgLiczbyPozyczek',
@@ -264,6 +267,17 @@ class DanePozyczekType extends AbstractType
                 'label'       => false,
                 'attr'        => [
                     'class' => 'decimal-11-2',
+                ],
+                'constraints' => $constraints,
+                'by_reference' => false,
+            ]);
+        }
+
+        foreach (self::DECIMAL_PERCENT_FIELDS as $field) {
+            $builder->add($field, TextType::class, [
+                'label'       => false,
+                'attr'        => [
+                    'class' => 'percent-11-2',
                 ],
                 'constraints' => $constraints,
                 'by_reference' => false,

@@ -187,6 +187,9 @@ class DanePozyczekTest extends TestCase
         'kwotaPozyczekAktywnychSplacanychTerminowo',
         'kwotaPozyczekAktywnychWymagajacychMonitorowania',
         'kwotaPozyczekStraconych',
+    ];
+
+    const DECIMAL_PERCENT_FIELDS = [
         'wspolczynnikStratWDanymOkresieWgLiczbyPozyczek',
         'wspolczynnikStratWCalymOkresieWgLiczbyPozyczek',
         'wspolczynnikStratWDanymOkresieWgKwotyPozyczek',
@@ -223,7 +226,8 @@ class DanePozyczekTest extends TestCase
 
     public function testContainsValidInitialDecimals()
     {
-        foreach (self::DECIMAL_FIELDS as $field) {
+        $data = array_merge(self::DECIMAL_FIELDS, self::DECIMAL_PERCENT_FIELDS);
+        foreach ($data as $field) {
             $getter = 'get'.ucfirst($field);
             $value = $this->danePozyczek->$getter();
 
@@ -247,8 +251,10 @@ class DanePozyczekTest extends TestCase
 
     public function testCanSetAndGetDecimals()
     {
+        $data = array_merge(self::DECIMAL_FIELDS, self::DECIMAL_PERCENT_FIELDS);
+
         $i = '0.00';
-        foreach (self::DECIMAL_FIELDS as $field) {
+        foreach ($data as $field) {
             $i = (string)((float) $i + 0.01);
             $setter = 'set'.ucfirst($field);
             $getter = 'get'.ucfirst($field);

@@ -61,6 +61,19 @@ $(document).ready(function () {
         reverse: false
     });
 
+    $('.percent-11-2').maskMoney({
+        prefix: '',
+        suffix: ' %',
+        affixesStay: false,
+        thousands: ' ',
+        decimal: '.',
+        precision: 2,
+        allowZero: true,
+        allowNegative: false,
+        allowEmpty: false,
+        reverse: false
+    });
+
     $('#button_return').on('click', function (event) {
         var dialog;
 
