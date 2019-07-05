@@ -48,6 +48,7 @@ $(document).ready(function () {
 
     $('[data-changeable=\'1\']').change(function () {
         changed = true;
+        recalculateDeps();
     });
 
     $('[data-vertical-group]').change(function () {
@@ -147,4 +148,29 @@ $(document).ready(function () {
 
     sumByGroup();
     resetChangeable();
+    recalculateDeps();
+
+
+    function recalculateDeps() {
+        $('[name^=form_dane_poreczen\\[liczba]').each(function (index, value) {
+            var fieldValue = parseInt($(this).val()),
+                fieldName = $(this).attr('name'),
+                correspondingFieldValue,
+                correspondingFieldName;
+
+            correspondingFieldName = fieldName.replace('form_dane_poreczen[liczba', 'form_dane_poreczen[kwota');
+            correspondingFieldName = correspondingFieldName.replace('[', '\\[');
+            correspondingFieldName = correspondingFieldName.replace(']', '\\]');
+
+            correspondingFieldValue = parseFloat($('[name='+correspondingFieldName+']').val());
+
+            if ((fieldValue > 0 && correspondingFieldValue === 0) || (fieldValue <= 0 && correspondingFieldValue !== 0)) {
+                $(this).closest('td').addClass('danger');
+                $('[name='+correspondingFieldName+']').closest('td').addClass('danger');
+            } else {
+                $(this).closest('td').removeClass('danger');
+                $('[name='+correspondingFieldName+']').closest('td').removeClass('danger');
+            }
+        });
+    }
 });

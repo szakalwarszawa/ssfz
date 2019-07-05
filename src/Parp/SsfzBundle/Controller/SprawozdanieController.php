@@ -37,7 +37,7 @@ class SprawozdanieController extends Controller
      * Akcja rejestracji sprawozdania
      *
      * @param Request $request
-     * @param int     $umowaId
+     * @param int $umowaId
      *
      * @Route("sprawozdanie/rejestracja/{umowaId}", name="sprawozdanie_rejestracja")
      *
@@ -183,8 +183,8 @@ class SprawozdanieController extends Controller
      * @Route("sprawozdanie/poprawa/{umowaId}/{reportId}", name="sprawozdanie_poprawa")
      *
      * @param Request $request
-     * @param int     $umowaId
-     * @param int     $reportId
+     * @param int $umowaId
+     * @param int $reportId
      *
      * @return Response
      *
@@ -285,8 +285,8 @@ class SprawozdanieController extends Controller
      * Metoda ustawia parametry domyślne dla sprawozdanie
      *
      * @param Sprawozdanie $report
-     * @param Umowa        $umowa
-     * @param int          $beneficjentId
+     * @param Umowa $umowa
+     * @param int $beneficjentId
      *
      * @return Sprawozdanie z ustawionymi parametrami domyślnymi
      */
@@ -472,8 +472,8 @@ class SprawozdanieController extends Controller
      */
     public function chekSprawozdanieForGoodPeriod(int $okres, int $rok)
     {
-        $warunek1 = (integer) $rok > (integer) date('Y');
-        $warunek2 = ((integer) $rok == (integer) date('Y')) && ($okres == 'lipiec - grudzień' || (integer) date('m') < 7);
+        $warunek1 = (int) $rok > (int) date('Y');
+        $warunek2 = ((int) $rok == (int) date('Y')) && ($okres == 'lipiec - grudzień' || (int) date('m') < 7);
         $warunek3 = $warunek1 | $warunek2;
         if ($warunek3) {
             $this->getKomunikatyService()->bladKomunikat('Podano błędny okres lub rok', 'Błąd podczas próby zapisu sprawozdania');
@@ -493,7 +493,11 @@ class SprawozdanieController extends Controller
      */
     public function getZalogowanyUzytkownik()
     {
-        $uzytkownik = $this->get('security.token_storage')->getToken()->getUser();
+        $uzytkownik = $this
+            ->get('security.token_storage')
+            ->getToken()
+            ->getUser()
+        ;
         if (!$uzytkownik) {
             throw $this->createAccessDeniedException();
         }
@@ -504,9 +508,9 @@ class SprawozdanieController extends Controller
     /**
      * Dodaje komunikat błędu
      *
-     * @param Form   $form
+     * @param Form $form
      * @param string $mode
-     * @param int    $umowaId
+     * @param int $umowaId
      *
      * @return void
      */
@@ -537,8 +541,8 @@ class SprawozdanieController extends Controller
      * Metoda sprawdza czy można złożyć sprawozdanie za zadany okres
      *
      * @param Sprawozdanie $report
-     * @param int          $umowaId
-     * @param int          $beneficjentId
+     * @param int $umowaId
+     * @param int $beneficjentId
      *
      * @return Identyfikator beneficjenta
      */
