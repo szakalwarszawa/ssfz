@@ -48,6 +48,7 @@ $(document).ready(function () {
 
     $('[data-changeable=\'1\']').change(function () {
         changed = true;
+        recalculateDeps();
     });
 
     $('[data-vertical-group]').change(function () {
@@ -66,6 +67,54 @@ $(document).ready(function () {
         allowEmpty: false,
         reverse: false
     });
+
+    $('[data-toggle-table=\'1\']').change(function () {
+        toggleTable('1');
+    });
+
+    $('[data-toggle-table=\'2\']').change(function () {
+        toggleTable('2');
+    });
+
+    $('[data-toggle-table=\'3\']').change(function () {
+        toggleTable('3');
+    });
+
+    $('[data-toggle-table=\'4\']').change(function () {
+        toggleTable('4');
+    });
+
+    $('[data-toggle-table=\'5\']').change(function () {
+        toggleTable('5');
+    });
+
+    $('[data-toggle-table=\'6\']').change(function () {
+        toggleTable('6');
+    });
+
+    $('[data-toggle-table=\'7\']').change(function () {
+        toggleTable('7');
+    });
+
+    $('[data-toggle-table=\'8\']').change(function () {
+        toggleTable('8');
+    });
+
+    function toggleTable(tableId) {
+        var togglerSelector = $('[data-toggle-table='+tableId+']'),
+            tableSelector = $('#table_'+tableId),
+            iconSelector = $('[data-toggle-table-icon='+tableId+']');
+
+        if (togglerSelector.is(':checked')) {
+            tableSelector.slideUp('slow');
+            iconSelector.removeClass('fa-minus-circle');
+            iconSelector.addClass('fa-plus-circle');
+        } else {
+            tableSelector.slideDown('slow');
+            iconSelector.removeClass('fa-plus-circle');
+            iconSelector.addClass('fa-minus-circle');
+        }
+    }
 
     $('#button_return').on('click', function (event) {
         var dialog;
@@ -99,4 +148,28 @@ $(document).ready(function () {
 
     sumByGroup();
     resetChangeable();
+    recalculateDeps();
+
+    function recalculateDeps() {
+        $('[name^=form_dane_poreczen\\[liczba]').each(function (index, value) {
+            var fieldValue = parseInt($(this).val()),
+                fieldName = $(this).attr('name'),
+                correspondingFieldValue,
+                correspondingFieldName;
+
+            correspondingFieldName = fieldName.replace('form_dane_poreczen[liczba', 'form_dane_poreczen[kwota');
+            correspondingFieldName = correspondingFieldName.replace('[', '\\[');
+            correspondingFieldName = correspondingFieldName.replace(']', '\\]');
+
+            correspondingFieldValue = parseFloat($('[name='+correspondingFieldName+']').val());
+
+            if ((fieldValue > 0 && correspondingFieldValue === 0) || (fieldValue <= 0 && correspondingFieldValue !== 0)) {
+                $(this).closest('td').addClass('danger');
+                $('[name='+correspondingFieldName+']').closest('td').addClass('danger');
+            } else {
+                $(this).closest('td').removeClass('danger');
+                $('[name='+correspondingFieldName+']').closest('td').removeClass('danger');
+            }
+        });
+    }
 });

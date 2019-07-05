@@ -38,7 +38,7 @@ class SprawozdanieController extends Controller
      * Akcja rejestracji sprawozdania
      *
      * @param Request $request
-     * @param int     $umowaId
+     * @param int $umowaId
      *
      * @Route("sprawozdanie/rejestracja/{umowaId}", name="sprawozdanie_rejestracja")
      *
@@ -191,8 +191,8 @@ class SprawozdanieController extends Controller
      * @Route("sprawozdanie/poprawa/{umowaId}/{reportId}", name="sprawozdanie_poprawa")
      *
      * @param Request $request
-     * @param int     $umowaId
-     * @param int     $reportId
+     * @param int $umowaId
+     * @param int $reportId
      *
      * @return Response
      *
@@ -294,8 +294,8 @@ class SprawozdanieController extends Controller
      * Metoda ustawia parametry domyślne dla sprawozdanie
      *
      * @param Sprawozdanie $report
-     * @param Umowa        $umowa
-     * @param int          $beneficjentId
+     * @param Umowa $umowa
+     * @param int $beneficjentId
      *
      * @return Sprawozdanie z ustawionymi parametrami domyślnymi
      */
@@ -494,7 +494,6 @@ class SprawozdanieController extends Controller
                     'Błąd podczas próby zapisu sprawozdania'
                 )
             ;
-
             return false;
         }
 
@@ -510,7 +509,11 @@ class SprawozdanieController extends Controller
      */
     public function getZalogowanyUzytkownik()
     {
-        $uzytkownik = $this->get('security.token_storage')->getToken()->getUser();
+        $uzytkownik = $this
+            ->get('security.token_storage')
+            ->getToken()
+            ->getUser()
+        ;
         if (!$uzytkownik) {
             throw $this->createAccessDeniedException();
         }
@@ -521,9 +524,9 @@ class SprawozdanieController extends Controller
     /**
      * Dodaje komunikat błędu
      *
-     * @param Form   $form
+     * @param Form $form
      * @param string $mode
-     * @param int    $umowaId
+     * @param int $umowaId
      *
      * @return void
      */
@@ -554,8 +557,8 @@ class SprawozdanieController extends Controller
      * Metoda sprawdza czy można złożyć sprawozdanie za zadany okres
      *
      * @param Sprawozdanie $report
-     * @param int          $umowaId
-     * @param int          $beneficjentId
+     * @param int $umowaId
+     * @param int $beneficjentId
      *
      * @return Identyfikator beneficjenta
      */
