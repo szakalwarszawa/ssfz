@@ -477,7 +477,7 @@ class SprawozdanieController extends Controller
      * @param int $okres
      * @param int $rok
      *
-     * @return Czy sprawozdanie jest poprawne
+     * @return bool
      */
     public function chekSprawozdanieForGoodPeriod(int $okres, int $rok)
     {
@@ -635,6 +635,9 @@ class SprawozdanieController extends Controller
                     'sprawozdanieId'  => $sprawozdanie->getId()
                 ]);
             }
+        } else {
+            // Do usunięcia lub przerobienia na excpetion!
+            // var_dump((string) $form->getErrors(true, false));
         }
         
         $listaSprawozdan = $repoSprawozdanie->findBy(

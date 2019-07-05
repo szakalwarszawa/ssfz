@@ -40,12 +40,21 @@ class DodanieSprawozdaniaSpoType extends AbstractType
             ],
         ]);
 
+        $okresySprawozdawcze = $options['program']->getOkresySprawozdawcze();
+        $okresDomyslny = null;
+        foreach ($okresySprawozdawcze as $okres) {
+            if ($okres->getId() === OkresSprawozdawczy::STYCZEN_GRUDZIEN) {
+                $okresDomyslny = $okres;
+            }
+        }
+
         $builder->add('okres', ChoiceType::class, [
             'label'             => 'Sprawozdanie za okres',
-            'choices'           => $options['program']->getOkresySprawozdawcze(),
+            'choices'           => $okresySprawozdawcze,
             'choices_as_values' => true,
             'choice_label'      => 'nazwa',
             'choice_name'       => 'id',
+            'data'              => $okresDomyslny,
             'required'          => false,
             'placeholder'       => '',
             'constraints'       => [
@@ -81,6 +90,7 @@ class DodanieSprawozdaniaSpoType extends AbstractType
             'showRemarks'        => null,
             'lata'               => null,
             'allow_extra_fields' => true,
+            'program'            => null,
         ]);
     }
 }
