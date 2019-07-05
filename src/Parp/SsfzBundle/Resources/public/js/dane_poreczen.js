@@ -150,7 +150,6 @@ $(document).ready(function () {
     resetChangeable();
     recalculateDeps();
 
-
     function recalculateDeps() {
         $('[name^=form_dane_poreczen\\[liczba]').each(function (index, value) {
             var fieldValue = parseInt($(this).val()),
