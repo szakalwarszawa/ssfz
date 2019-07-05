@@ -3,6 +3,7 @@
 namespace Parp\SsfzBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
@@ -18,7 +19,13 @@ class Sprawozdanie extends AbstractSprawozdanie
     /**
      * Encje SprawozdanieSpolki powiazane ze sprawozdaniem - sprawozdania spolek
      *
-     * @ORM\OneToMany(targetEntity="SprawozdanieSpolki", mappedBy="sprawozdanie", cascade={"persist", "remove"})
+     * @var Collection
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="SprawozdanieSpolki",
+     *     mappedBy="sprawozdanie",
+     *     cascade={"persist", "remove"}
+     * )
      */
     protected $sprawozdaniaSpolek;
 
@@ -88,12 +95,14 @@ class Sprawozdanie extends AbstractSprawozdanie
     /**
      * Znajduje sprawozdanie dla spółki o podanej nazwie
      *
-     * @param string $nazwa Nazwa spółki której sprawozdania szukać
+     * @param string $nazwaSpolki
+     *
+     * @return SprawozdanieSpolki|null
      */
-    public function findSprawozdanieSpolkiByNazwaSpolki($nazwa)
+    public function getSprawozdanieSpolki($nazwaSpolki)
     {
         foreach ($this->sprawozdaniaSpolek as $sprawozdanie) {
-            if ($sprawozdanie->getNazwaSpolki() == $nazwa) {
+            if ($sprawozdanie->getNazwaSpolki() == $nazwaSpolki) {
                 return $sprawozdanie;
             }
         }

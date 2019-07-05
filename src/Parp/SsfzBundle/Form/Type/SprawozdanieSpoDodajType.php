@@ -3,6 +3,7 @@
 namespace Parp\SsfzBundle\Form\Type;
 
 use Parp\SsfzBundle\Entity\Beneficjent;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,50 +16,54 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Parp\SsfzBundle\Entity\AbstractSprawozdanieSpo;
+use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
 
 /**
- * Typ formularza sprawozdania
+ * Formuularz DodanieSprawozdaniaSpoType
  */
-class SprawozdanieSpoDodajType extends AbstractType
+class DodanieSprawozdaniaSpoType extends AbstractType
 {
     /**
      * Buduje formularz do wypełniania sprawozdania
      *
      * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('numerUmowy', null, array(
-            'label' => 'Numer umowy',
-            'attr' => array('readonly' => true),
-            'constraints' => array()
-        ));
+        $builder->add('numerUmowy', null, [
+            'label'       => 'Numer umowy',
+            'attr'        => [
+                'readonly' => true,
+            ],
+        ]);
 
-        $builder->add('okres', ChoiceType::class, array(
-            'label' => 'Sprawozdanie za okres',
-            'choices' => array(
-                '' => '',
-                'styczeń - czerwiec' => 'styczeń - czerwiec',
-                'lipiec - grudzień' => 'lipiec - grudzień',
-            ),
-            'constraints' => array(
-                new NotBlank(
-                    array('message' => 'Należy wypełnić pole')
-                )
-            )
-        ));
+        $builder->add('okres', ChoiceType::class, [
+            'label'             => 'Sprawozdanie za okres',
+            'choices'           => $options['program']->getOkresySprawozdawcze(),
+            'choices_as_values' => true,
+            'choice_label'      => 'nazwa',
+            'choice_name'       => 'id',
+            'required'          => false,
+            'placeholder'       => '',
+            'constraints'       => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
-        $builder->add('rok', ChoiceType::class, array(
-            'label' => 'Rok',
-            'choices' => $options['okresy'],
-            'constraints' => array(
-                new NotBlank(
-                    array('message' => 'Należy wypełnić pole')
-                )
-            )
-        ));
+        $builder->add('rok', ChoiceType::class, [
+            'label'       => 'Rok',
+            'choices'     => $options['lata'],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
     }
 
     /**
@@ -68,12 +73,14 @@ class SprawozdanieSpoDodajType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => AbstractSprawozdanieSpo::class,
-            'attr' => array('novalidate' => 'novalidate'),
-            'showRemarks' => null,
-            'okresy' => null,
+        $resolver->setDefaults([
+            'data_class'         => AbstractSprawozdanieSpo::class,
+            'attr'               => [
+                'novalidate' => 'novalidate',
+            ],
+            'showRemarks'        => null,
+            'lata'               => null,
             'allow_extra_fields' => true,
-        ));
+        ]);
     }
 }

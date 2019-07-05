@@ -29,6 +29,8 @@ class OkresyKonfiguracja
     protected $rok;
 
     /**
+     * Aleksandro?
+     *
      * @var bool
      *
      * @ORM\Column(name="o1u", type="boolean", nullable=true)
@@ -36,6 +38,8 @@ class OkresyKonfiguracja
     protected $o1u;
 
     /**
+     * Osu?
+     *
      * @var bool
      *
      * @ORM\Column(name="o2u", type="boolean", nullable=true)

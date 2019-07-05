@@ -159,11 +159,12 @@ class Version20190701134658 extends AbstractMigration
      */
     public function down(Schema $schema)
     {
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->abortIf(true, 'Not supported.');
 
         /*
+        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+
         $this->addSql('ALTER TABLE sfz_dane_poreczen
             DROP liczba_por_wyplaconych_mikro_przeds,
             DROP liczba_por_wyplaconych_czesciowo_splaconych_mikro_przeds,

@@ -21,11 +21,12 @@ use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
 use Parp\SsfzBundle\Entity\PrzeplywFinansowy;
 use Parp\SsfzBundle\Entity\OkresyKonfiguracja;
 use Parp\SsfzBundle\Entity\Slownik\StatusSprawozdania;
+use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
 use Parp\SsfzBundle\Exception\KomunikatDlaBeneficjentaException;
 use Parp\SsfzBundle\Form\Type\SprawozdanieType;
 use Parp\SsfzBundle\Form\Type\SprawozdaniePozyczkoweType;
 use Parp\SsfzBundle\Form\Type\SprawozdaniePoreczenioweType;
-use Parp\SsfzBundle\Form\Type\SprawozdanieSpoDodajType;
+use Parp\SsfzBundle\Form\Type\DodanieSprawozdaniaSpoType;
 use Parp\SsfzBundle\Service\TypSprawozdaniaGuesserService;
 
 /**
@@ -59,15 +60,18 @@ class SprawozdanieController extends Controller
         $report = $this->setSpolki($spolki, $report);
         $okresy = $this->getOkresySprawozdawcze();
 
-        $form = $this->createForm(SprawozdanieType::class, $report, ['okresy' => $okresy]);
+        $form = $this->createForm(SprawozdanieType::class, $report, [
+            'lata'    => $okresy,
+            'program' => $program,
+        ]);
         if (count($spolki) === 0 && true === $beneficjent->getProgram()->czyJestPortfelSpolek()) {
             $this->getKomunikatyService()->bladKomunikat('Aby dodać sprawozdanie należy wprowadzić dane spółek.', 'Uwaga!');
-            return $this->pokarzFormularzRejestracji($form, 'not_allowed', $umowaId);
+            return $this->pokazFormularzRejestracji($form, 'not_allowed', $umowaId);
         }
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             if (!$this->czySprawozdanieZaDobryOkres($report, $umowaId, $beneficjentId)) {
-                return $this->pokarzFormularzRejestracji($form, 'create', $umowaId);
+                return $this->pokazFormularzRejestracji($form, 'create', $umowaId);
             }
             $report = $this->setDefaultValues($report, $umowa, $beneficjentId);
             $entityManager->persist($report);
@@ -82,7 +86,7 @@ class SprawozdanieController extends Controller
             $this->getKomunikatyService()->bladKomunikat('Formularz nie został poprawnie wypełniony.');
         }
 
-        return $this->pokarzFormularzRejestracji($form, 'create', $umowaId);
+        return $this->pokazFormularzRejestracji($form, 'create', $umowaId);
     }
 
      /**
@@ -123,10 +127,11 @@ class SprawozdanieController extends Controller
         $okresy = $this->getOkresySprawozdawcze();
         $form = $this->createForm(SprawozdanieType::class, $report, [
             'read_only' => true,
-            'okresy'    => $okresy,
+            'lata'      => $okresy,
+            'program'   => $report->getUmowa()->getBeneficjent()->getProgram(),
         ]);
 
-        return $this->pokarzFormularzRejestracji($form, 'read', $report->getUmowaId());
+        return $this->pokazFormularzRejestracji($form, 'read', $report->getUmowaId());
     }
 
     /**
@@ -158,11 +163,14 @@ class SprawozdanieController extends Controller
             $report = $this->setSpolki($spolki, $report);
         }
 
-        $form = $this->createForm(SprawozdanieType::class, $report, ['okresy' => $okresy]);
+        $form = $this->createForm(SprawozdanieType::class, $report, [
+            'lata'    => $okresy,
+            'program' => $report->getUmowa()->getBeneficjent()->getProgram(),
+        ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             if (!$this->czySprawozdanieZaDobryOkres($report, $umowaId, $beneficjentId)) {
-                return $this->pokarzFormularzRejestracji($form, 'edit', $umowaId);
+                return $this->pokazFormularzRejestracji($form, 'edit', $umowaId);
             }
             $entityManager->flush();
             $this->getKomunikatyService()->sukcesKomunikat('Edycja sprawozdania zakończyła się powodzeniem', 'Edycja sprawozdania');
@@ -176,7 +184,7 @@ class SprawozdanieController extends Controller
             $this->getKomunikatyService()->bladKomunikat('Formularz nie został poprawnie wypełniony.');
         }
 
-        return $this->pokarzFormularzRejestracji($form, 'edit', $umowaId);
+        return $this->pokazFormularzRejestracji($form, 'edit', $umowaId);
     }
 
     /**
@@ -209,7 +217,8 @@ class SprawozdanieController extends Controller
         }
         $form = $this->createForm(SprawozdanieType::class, clone $report, [
             'showRemarks' => true,
-            'okresy'     => $okresy,
+            'lata'        => $okresy,
+            'program'     => $report->getUmowa()->getBeneficjent()->getProgram(),
         ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -225,7 +234,7 @@ class SprawozdanieController extends Controller
             ;
 
             if (!$this->czySprawozdanieZaDobryOkres($newReport, $umowaId, $beneficjentId)) {
-                return $this->pokarzFormularzRejestracji($form, 'edit', $umowaId);
+                return $this->pokazFormularzRejestracji($form, 'edit', $umowaId);
             }
             $newReport = $this->setDefaultValuesAfterRepait($newReport, $report);
             $report->setCzyNajnowsza(false);
@@ -234,15 +243,15 @@ class SprawozdanieController extends Controller
                 $przeplywClone = clone $przeplyw[0];
                 $przeplywClone->setId(null);
                 $przeplywClone->setSprawozdanieId($newReport->getId());
+                $entityManager->persist($przeplywClone);
             }
-            $entityManager->persist($przeplywClone);
             $entityManager->flush();
             $this->getKomunikatyService()->sukcesKomunikat('Poprawa sprawozdania zakończyła się powodzeniem', 'Poprawa sprawozdania');
 
             return $this->redirectToRoute('sprawozdanie_rejestracja', ['umowaId' => (string) $umowaId]);
         }
 
-        return $this->pokarzFormularzRejestracji($form, 'edit', $umowaId);
+        return $this->pokazFormularzRejestracji($form, 'edit', $umowaId);
     }
 
     /**
@@ -321,7 +330,7 @@ class SprawozdanieController extends Controller
         $counter = 1;
         foreach ($spolki as $spolka) {
             //Dodaj tylko te dla których już nie ma sprawozdań
-            if ($report->findSprawozdanieSpolkiByNazwaSpolki($spolka->getNazwa()) === null) {
+            if ($report->getSprawozdanieSpolki($spolka->getNazwa()) === null) {
                 $sprawozdanieSpolki = new SprawozdanieSpolki();
                 $sprawozdanieSpolki->setNazwaSpolki($spolka->getNazwa());
                 $sprawozdanieSpolki->setKrs($spolka->getKrs());
@@ -472,12 +481,19 @@ class SprawozdanieController extends Controller
      */
     public function chekSprawozdanieForGoodPeriod(int $okres, int $rok)
     {
-        $warunek1 = (int) $rok > (int) date('Y');
-        $warunek2 = ((int) $rok == (int) date('Y')) && ($okres == 'lipiec - grudzień' || (int) date('m') < 7);
-        $warunek3 = $warunek1 | $warunek2;
-        if ($warunek3) {
-            $this->getKomunikatyService()->bladKomunikat('Podano błędny okres lub rok', 'Błąd podczas próby zapisu sprawozdania');
-
+        $czyRokZPrzyszlosci = (integer) $rok > (integer) date('Y');
+        $czyPolroczeZPrzyszlosci = ((integer) $rok == (integer) date('Y'))
+            && (int) $okres->getId() === OkresSprawozdawczy::LIPIEC_GRUDZIEN
+            && (integer) date('m') < 7
+        ;
+        if ($czyRokZPrzyszlosci || $czyPolroczeZPrzyszlosci) {
+            $this
+                ->getKomunikatyService()
+                ->bladKomunikat(
+                    'Podano błędny okres lub rok',
+                    'Błąd podczas próby zapisu sprawozdania'
+                )
+            ;
             return false;
         }
 
@@ -514,7 +530,7 @@ class SprawozdanieController extends Controller
      *
      * @return void
      */
-    public function pokarzFormularzRejestracji(From $form, string $mode, int $umowaId)
+    public function pokazFormularzRejestracji($form, string $mode, int $umowaId)
     {
         return $this->render('SsfzBundle:Report:rejestruj.html.twig', [
             'form'      => $form->createView(),
@@ -586,11 +602,10 @@ class SprawozdanieController extends Controller
         $sprawozdanie = $this->setDefaultValues($sprawozdanie, $umowa);
         $sprawozdanie->setNumerUmowy($umowa->getNumer());
         $okresy = $this->getOkresySprawozdawcze();
-        $form = $this->createForm(
-            SprawozdanieSpoDodajType::class,
-            $sprawozdanie,
-            array('okresy' => $okresy)
-        );
+        $form = $this->createForm(DodanieSprawozdaniaSpoType::class, $sprawozdanie, [
+            'lata'    => $okresy,
+            'program' => $program,
+        ]);
         
         $program = $umowa->getBeneficjent()->getProgram();
         
@@ -627,7 +642,7 @@ class SprawozdanieController extends Controller
                 'creatorId' => (int) $umowa->getBeneficjent()->getId(),
                 'umowa' => $umowa
             ],
-            ['rok' => 'ASC', 'okresId' => 'ASC', 'id' => 'ASC']
+            ['rok' => 'ASC', 'okres' => 'ASC', 'id' => 'ASC']
         );
 
         $typSprawozdania = $this

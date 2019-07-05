@@ -15,6 +15,7 @@ use Parp\SsfzBundle\Entity\Sprawozdanie;
 use Parp\SsfzBundle\Entity\OkresyKonfiguracja;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
 
 /**
  * Seeder danych testowych
@@ -156,8 +157,13 @@ class Fixtures implements FixtureInterface
         $value = new DateTime($dateTimeString);
         $sprawozdanie->setDataRejestracji($value);
         $sprawozdanie->setNumerUmowy($umowa->getNumer());
-        $sprawozdanie->setOkres('styczeń - czwerwiec');
-        $sprawozdanie->setOkresId(0);
+        
+        $okresStyczenCzerwiec = $manager
+            ->getRepository(OkresSprawozdawczy::class)
+            ->find(OkresSprawozdawczy::STYCZEN_CZERWIEC)
+        ;
+        
+        $sprawozdanie->setOkres($okresStyczenCzerwiec);
         $sprawozdanie->setRok(2016);
         $sprawozdanie->setStatus(2);
         $sprawozdanie->setWersja(1);
@@ -172,8 +178,7 @@ class Fixtures implements FixtureInterface
         $value = new DateTime($dateTimeString);
         $sprawozdanie2->setDataRejestracji($value);
         $sprawozdanie2->setNumerUmowy($umowa->getNumer());
-        $sprawozdanie2->setOkres('styczeń - czwerwiec');
-        $sprawozdanie2->setOkresId(0);
+        $sprawozdanie2->setOkres($okresStyczenCzerwiec);
         $sprawozdanie2->setRok(2017);
         $sprawozdanie2->setStatus(1);
         $sprawozdanie2->setWersja(1);
@@ -188,8 +193,7 @@ class Fixtures implements FixtureInterface
         $value = new DateTime($dateTimeString);
         $sprawozdanie3->setDataRejestracji($value);
         $sprawozdanie3->setNumerUmowy($umowa->getNumer());
-        $sprawozdanie3->setOkres('styczeń - czwerwiec');
-        $sprawozdanie3->setOkresId(0);
+        $sprawozdanie3->setOkres($okresStyczenCzerwiec);
         $sprawozdanie3->setRok(2018);
         $sprawozdanie3->setStatus(1);
         $sprawozdanie3->setWersja(1);
@@ -204,8 +208,7 @@ class Fixtures implements FixtureInterface
         $value = new DateTime($dateTimeString);
         $sprawozdanie4->setDataRejestracji($value);
         $sprawozdanie4->setNumerUmowy($umowa->getNumer());
-        $sprawozdanie4->setOkres('styczeń - czwerwiec');
-        $sprawozdanie4->setOkresId(0);
+        $sprawozdanie4->setOkres($okresStyczenCzerwiec);
         $sprawozdanie4->setRok(2019);
         $sprawozdanie4->setStatus(4);
         $sprawozdanie4->setWersja(1);

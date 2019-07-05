@@ -22,50 +22,42 @@ class SprawozdaniePozyczkoweSkladnikOgolemType extends AbstractType
      * Buduje formularz do wypełniania sprawozdania
      *
      * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param array $options
      *
      * @SuppressWarnings("unused")
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add(
-            'skladnik',
-            EntityType::class,
-            array(
-                'label'     => 'Składniki',
-                'class'     => Skladnik::class,
-                'required'  => false,
-                'choice_label'  => 'nazwa',
-                'expanded' => false,
-                'placeholder' => '',
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    )
-                )
-            )
-        );
+        $builder->add('skladnik', EntityType::class, [
+            'label'        => 'Składniki',
+            'class'        => Skladnik::class,
+            'required'     => false,
+            'choice_label' => 'nazwa',
+            'expanded'     => false,
+            'placeholder'  => '',
+            'constraints'  => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
-        $builder->add(
-            'wartosc',
-            MoneyType::class,
-            [
-                'label'  => 'Wartość składników (zł)',
-                'required'  => false,
-                'currency'  => 'PLN',
-                'mapped' => true,
-                'attr'   => [
-                    'placeholder' => 'kwota w PLN',
-                    'class'       => 'width-short',
-                    'maxlength' => 12,
-                ],
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    ),
-                )
-            ]
-        );
+        $builder->add('wartosc', MoneyType::class, [
+            'label'     => 'Wartość składników (zł)',
+            'required'  => false,
+            'currency'  => 'PLN',
+            'mapped'    => true,
+            'attr'      => [
+                'placeholder' => 'kwota w PLN',
+                'class'       => 'width-short',
+                'maxlength'   => 12,
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
     }
 
     /**
@@ -77,8 +69,8 @@ class SprawozdaniePozyczkoweSkladnikOgolemType extends AbstractType
     {
         parent::configureOptions($resolver);
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => SprawozdaniePozyczkoweSkladnikOgolem::class,
-        ));
+        ]);
     }
 }

@@ -10,6 +10,7 @@ use Carbon\Carbon;
 
 /**
  * Zadanie CRON do wysyłki powiadomień o niezłożonym sprawozdaniu
+ * Wywołanie: php app/console sfz:sendRemind
  */
 class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand
 {
@@ -78,47 +79,65 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand
         $okres = $this->getOkresRozliczenia();
         $rolaBeneficjent = $this->getContainer()->get('ssfz.service.rola_service')->findOneByCriteria(['nazwa' => 'ROLE_BENEFICJENT']);
         $beneficjenciKonta = $this->getContainer()->get('ssfz.service.uzytkownik_service')->findByCriteria(['rola' => $rolaBeneficjent->getId()]);
-        if (0 == $this->dzisiejszaData->diffInDays($this->pierwszyTermin, false) || 0 == $this->dzisiejszaData->diffInDays($this->drugiTermin, false)) {
+        
+        $czyPierwszyTermin = (0 == $this->dzisiejszaData->diffInDays($this->pierwszyTermin, false));
+        $czyDrugiTermin = (0 == $this->dzisiejszaData->diffInDays($this->drugiTermin, false));
+        // 9 poziomów wymieszanych IF i FOREACH dla większej szytelności i małej złożoności cyklomatycznej.
+        if ($czyPierwszyTermin || $czyDrugiTermin) {
             foreach ($beneficjenciKonta as $beneficjentKonto) {
                 foreach ($beneficjentKonto->getBeneficjenci() as $beneficjent) {
                     if (!is_null($beneficjent)) {
                         $umowy = $beneficjent->getUmowy();
                         if (!is_null($umowy)) {
                             foreach ($umowy as $umowa) {
-                                $sprawozdania = $umowa->getSprawozdania();
-                                foreach ($sprawozdania as $sprawozdanie) {
-                                    if (is_null($sprawozdanie->getDataPrzeslaniaDoParp())
-                                        && !$sprawozdanie->getPowiadomienieWyslane()
-                                        && $sprawozdanie->getRok() != $this->dzisiejszaData->year + 1
-                                    ) {
-                                        $program = $beneficjent->getProgram();
-                                        if ($program->czyFunduszPozyczkowy()) {
-                                            $sufixPliku = 'pozyczkowy';
-                                        } elseif ($program->czyFunduszPoreczeniowy()) {
-                                            $sufixPliku = 'poreczeniowy';
-                                        } else {
-                                            $sufixPliku = 'zalazkowy';
-                                        }
+                                // Kod jest całkowicie niejasny. Zaślepka z określaniem na podstawie
+                                // pierwszego elementu kolekcji jest tymczasowa, żeby była szansa na zadziałanie.
+                                // $czestotliwosc = $umowa->getCzestotliwoscSprawozdanWProgramie();
+                                $czestotliwoscPolroczna = $umowa
+                                    ->getBeneficjent()
+                                    ->getProgram()
+                                    ->getOkresySprawozdawcze()
+                                    ->first()
+                                    ->jestPolroczny()
+                                ;
 
-                                        $nrUmowy = $umowa->getNumer();
-                                        $template = 'SsfzBundle:Email:remindUnsubmittedReport.'
-                                            . $sufixPliku
-                                            . '.html.twig'
-                                        ;
-                                        $templateParams = array(
-                                            'nrUmowy' => $nrUmowy,
-                                            'dzien' => $this->dzisiejszaData->format('Y-m-d')
-                                        );
-                                        $this->getMailerService()->sendMailTopicInTemplate($beneficjentKonto, $template, $templateParams);
-                                        $sprawozdanie->setPowiadomienieWyslane(true);
-                                        $this->getSprawozdanieRepository()->persist($sprawozdanie);
-                                        if (!isset($this->beneficjenciZalegajacy[$sufixPliku])) {
-                                            $this->beneficjenciZalegajacy[$sufixPliku] = [];
+                                // if ($czyPierwszyTermin || $czestotliwosc->czyPolroczna()) {
+                                if ($czyPierwszyTermin || $czestotliwoscPolroczna) {
+                                    $sprawozdania = $umowa->getSprawozdania();
+                                    foreach ($sprawozdania as $sprawozdanie) {
+                                        if (is_null($sprawozdanie->getDataPrzeslaniaDoParp())
+                                            && !$sprawozdanie->getPowiadomienieWyslane()
+                                            && $sprawozdanie->getRok() != $this->dzisiejszaData->year + 1
+                                        ) {
+                                            $program = $beneficjent->getProgram();
+                                            if ($program->czyFunduszPozyczkowy()) {
+                                                $sufixPliku = 'pozyczkowy';
+                                            } elseif ($program->czyFunduszPoreczeniowy()) {
+                                                $sufixPliku = 'poreczeniowy';
+                                            } else {
+                                                $sufixPliku = 'zalazkowy';
+                                            }
+
+                                            $nrUmowy = $umowa->getNumer();
+                                            $template = 'SsfzBundle:Email:remindUnsubmittedReport.'
+                                                . $sufixPliku
+                                                . '.html.twig'
+                                            ;
+                                            $templateParams = array(
+                                                'nrUmowy' => $nrUmowy,
+                                                'dzien' => $this->dzisiejszaData->format('Y-m-d')
+                                            );
+                                            $this->getMailerService()->sendMailTopicInTemplate($beneficjentKonto, $template, $templateParams);
+                                            $sprawozdanie->setPowiadomienieWyslane(true);
+                                            $this->getSprawozdanieRepository()->persist($sprawozdanie);
+                                            if (!isset($this->beneficjenciZalegajacy[$sufixPliku])) {
+                                                $this->beneficjenciZalegajacy[$sufixPliku] = [];
+                                            }
+                                            array_push(
+                                                $this->beneficjenciZalegajacy[$sufixPliku],
+                                                array($umowa->getNumer(), $beneficjent)
+                                            );
                                         }
-                                        array_push(
-                                            $this->beneficjenciZalegajacy[$sufixPliku],
-                                            array($umowa->getNumer(), $beneficjent)
-                                        );
                                     }
                                 }
                             }

@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Parp\SsfzBundle\Exception\KomunikatDlaBeneficjentaException;
+use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
 use Parp\SsfzBundle\Entity\Slownik\StatusSprawozdania;
 
 /**
@@ -66,18 +67,14 @@ class AbstractSprawozdanie
     protected $numerUmowy;
 
     /**
-     * @var string
+     * Okres sprawozdawczy.
      *
-     * @ORM\Column(name="okres", type="string", nullable=false)
+     * @var OkresSprawozdawczy
+     *
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy")
+     * @ORM\JoinColumn(name="okres_id", referencedColumnName="id", nullable=false)
      */
     protected $okres;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="okres_id", type="integer", nullable=false)
-     */
-    protected $okresId;
 
     /**
      * @var string
@@ -252,7 +249,7 @@ class AbstractSprawozdanie
     /**
      * zwraca okres
      *
-     * @return string
+     * @return OkresSprawozdawczy
      */
     public function getOkres()
     {
@@ -266,7 +263,7 @@ class AbstractSprawozdanie
      */
     public function getOkresId()
     {
-        return $this->okresId;
+        return (int) $this->okres->getId();
     }
 
     /**
@@ -426,27 +423,11 @@ class AbstractSprawozdanie
     /**
      * Ustawia okres
      *
-     * @param string $okres
+     * @param OkresSprawozdawczy $okres
      */
-    public function setOkres($okres)
+    public function setOkres(OkresSprawozdawczy $okres)
     {
-        if ($okres == 'styczeń - czerwiec') {
-            $this->okresId = 0;
-        }
-        if ($okres != 'styczeń - czerwiec') {
-            $this->okresId = 1;
-        }
         $this->okres = $okres;
-    }
-
-    /**
-     * Ustawia okres
-     *
-     * @param int $okresId
-     */
-    public function setOkresId($okresId)
-    {
-        $this->okresId = $okresId;
     }
 
     /**

@@ -18,7 +18,11 @@ class SprawozdaniePozyczkoweSkladnikWydzielony extends AbstractSprawozdanieSklad
      *
      * @var SprawozdaniePozyczkowe
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe", inversedBy="skladnikiOgolem", cascade = {"persist"})
+     * @ORM\ManyToOne(
+     *     targetEntity="Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe",
+     *     inversedBy="skladnikiOgolem",
+     *     cascade = {"persist"}
+     * )
      * @ORM\JoinColumn(name="sprawozdanie_pozyczkowe_id", referencedColumnName="id")
      */
     protected $sprawozdanie;
