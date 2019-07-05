@@ -47,6 +47,7 @@ class Version20190627141842 extends AbstractMigration
         $this->addSql('UPDATE sfz_sprawozdanie SET okres_id = 2 WHERE okres_id = 0');
         $this->addSql('UPDATE sfz_sprawozdanie SET okres_id = 3 WHERE okres_id = 1');
         $this->addSql('UPDATE sfz_sprawozdanie_poreczeniowe SET okres_id = 1');
+        $this->addSql('UPDATE sfz_sprawozdanie_pozyczkowe SET okres_id = 1');
 
         $this->addSql('CREATE INDEX IDX_2D75FF5A12EA32C6 ON sfz_sprawozdanie (okres_id)');
         $this->addSql('CREATE INDEX IDX_22FEB1EB12EA32C6 ON sfz_sprawozdanie_poreczeniowe (okres_id)');
