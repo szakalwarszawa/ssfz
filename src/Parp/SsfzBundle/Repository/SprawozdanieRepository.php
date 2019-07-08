@@ -37,9 +37,40 @@ class SprawozdanieRepository extends EntityRepository
         $wynik = $this->findBy([
             'umowa' => $sprawozdanie->getUmowa(),
             'okres' => $sprawozdanie->getOkres(),
-            'rok' => $sprawozdanie->getRok(),
+            'rok'   => $sprawozdanie->getRok(),
         ]);
         
         return count($wynik) > 0;
+    }
+
+    /**
+     * Szuka najnowszego sprawozdania dla danego beneficjenta.
+     *
+     * @param integer $creatorId
+     * @param integer $okresSprawozdawczyId
+     * @param integer $rok
+     * @param integer $umowaId
+     *
+     * @return AbstractSprawozdanie|null
+     */
+    public function findNajnowsze(
+        int $creatorId,
+        int $okresSprawozdawczyId,
+        int $rok,
+        int $umowaId
+    ): ?AbstractSprawozdanie {
+        $result = $this
+            ->createQueryBuilder('s')
+            ->leftJoin('s.okres', 'o')
+            ->where('s.creatorId = :creatorId')
+            ->andWhere('s.czyNajnowsza = TRUE')
+            ->andWhere('o.id = :okresSprawozdawczyId')
+            ->setParameter('creatorId', $creatorId)
+            ->setParameter('okresSprawozdawczyId', $okresSprawozdawczyId)
+            ->getQuery()
+            ->getResult()
+        ;
+
+        return (count($result) > 0) ? $result[0] : null;
     }
 }

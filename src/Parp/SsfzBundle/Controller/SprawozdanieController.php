@@ -447,7 +447,7 @@ class SprawozdanieController extends Controller
     /**
      * Metoda sprawdza czy istnieje sprawozdanie za wskazany okres
      *
-     * @param int $okres
+     * @param OkresSprawozdawczy $okres
      * @param int $rok
      * @param int $editedReportId
      * @param int $umowaId
@@ -455,15 +455,28 @@ class SprawozdanieController extends Controller
      *
      * @return Flage określającą czy sprawozdanie jest poprawne
      */
-    public function checkSprawozdanieExist(int $okres, int $rok, int $editedReportId, int $umowaId, int $beneficjentId)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $report = $entityManager->getRepository(Sprawozdanie::class)->findBy(
-            ['creatorId' => $beneficjentId, 'okres' => $okres, 'czyNajnowsza' => true,  'rok' => $rok, 'umowaId' => $umowaId]
-        );
-        $entityManager->flush();
-        if ($report && $report[0]->getId() != $editedReportId) {
-            $this->getKomunikatyService()->bladKomunikat('Sprawozdanie za wskazany okres istnieje w systemie', 'Błąd podczas próby zapisu sprawozdania');
+    public function checkSprawozdanieExist(
+        OkresSprawozdawczy $okres,
+        int $rok,
+        int $editedReportId,
+        int $umowaId,
+        int $beneficjentId
+    ) {
+        $entityManager = $this
+            ->getDoctrine()
+            ->getManager()
+        ;
+
+        $report = $entityManager
+            ->getRepository(Sprawozdanie::class)
+            ->findNajnowsze($beneficjentId, $okres->getId(), $rok, $umowaId)
+        ;
+
+        if ($report && (int) $report[0]->getId() !== (int) $editedReportId) {
+            $this
+                ->getKomunikatyService()
+                ->bladKomunikat('Sprawozdanie za wskazany okres istnieje w systemie', 'Błąd podczas próby zapisu sprawozdania')
+            ;
 
             return false;
         }
@@ -479,7 +492,7 @@ class SprawozdanieController extends Controller
      *
      * @return bool
      */
-    public function chekSprawozdanieForGoodPeriod(int $okres, int $rok)
+    public function checkSprawozdanieForGoodPeriod(int $okres, int $rok)
     {
         $czyRokZPrzyszlosci = (integer) $rok > (integer) date('Y');
         $czyPolroczeZPrzyszlosci = ((integer) $rok == (integer) date('Y'))
@@ -560,18 +573,21 @@ class SprawozdanieController extends Controller
      * @param int $umowaId
      * @param int $beneficjentId
      *
-     * @return Identyfikator beneficjenta
+     * @return bool
      */
     public function czySprawozdanieZaDobryOkres($report, $umowaId, $beneficjentId)
     {
-        $result = $this->checkSprawozdanieExist($report->getOkres(), $report->getRok(), $report->getId(), $umowaId, $beneficjentId);
-        $result2 = $this->chekSprawozdanieForGoodPeriod($report->getOkres(), $report->getRok());
+        $result = $this->checkSprawozdanieExist(
+            $report->getOkres(),
+            $report->getRok(),
+            $report->getId(),
+            $umowaId,
+            $beneficjentId
+        );
+        $result2 = $this->checkSprawozdanieForGoodPeriod($report->getOkres(), $report->getRok());
         $warunek = $result & $result2;
-        if ($warunek == false) {
-            return false;
-        }
 
-        return true;
+        return ($warunek === false) ? false : true;
     }
 
     /**
