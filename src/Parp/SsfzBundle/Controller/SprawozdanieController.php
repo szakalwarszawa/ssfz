@@ -453,7 +453,7 @@ class SprawozdanieController extends Controller
      * @param int $umowaId
      * @param int $beneficjentId
      *
-     * @return Flage określającą czy sprawozdanie jest poprawne
+     * @return bool
      */
     public function checkSprawozdanieExist(
         OkresSprawozdawczy $okres,
@@ -472,7 +472,7 @@ class SprawozdanieController extends Controller
             ->findNajnowsze($beneficjentId, $okres->getId(), $rok, $umowaId)
         ;
 
-        if ($report && (int) $report[0]->getId() !== (int) $editedReportId) {
+        if (null !== $report && (int) $report->getId() !== (int) $editedReportId) {
             $this
                 ->getKomunikatyService()
                 ->bladKomunikat('Sprawozdanie za wskazany okres istnieje w systemie', 'Błąd podczas próby zapisu sprawozdania')
