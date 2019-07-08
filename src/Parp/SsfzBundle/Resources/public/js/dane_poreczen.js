@@ -123,6 +123,7 @@ $(document).ready(function () {
         value = parseInt($(this).val());
         if (value < 0) {
             $(this).val(0);
+            sumByGroup();
         }
     });
 
