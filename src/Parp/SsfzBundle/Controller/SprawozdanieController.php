@@ -445,22 +445,22 @@ class SprawozdanieController extends Controller
     }
 
     /**
-     * Metoda sprawdza czy istnieje sprawozdanie za wskazany okres
+     * Metoda sprawdza czy istnieje sprawozdanie za wskazany okres.
      *
      * @param OkresSprawozdawczy $okres
      * @param int $rok
-     * @param int $editedReportId
      * @param int $umowaId
      * @param int $beneficjentId
+     * @param ?int $editedReportId
      *
      * @return bool
      */
     public function checkSprawozdanieExist(
         OkresSprawozdawczy $okres,
         int $rok,
-        int $editedReportId,
         int $umowaId,
-        int $beneficjentId
+        int $beneficjentId,
+        ?int $editedReportId = null
     ) {
         $entityManager = $this
             ->getDoctrine()
@@ -478,10 +478,10 @@ class SprawozdanieController extends Controller
                 ->bladKomunikat('Sprawozdanie za wskazany okres istnieje w systemie', 'Błąd podczas próby zapisu sprawozdania')
             ;
 
-            return false;
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     /**
@@ -496,7 +496,7 @@ class SprawozdanieController extends Controller
     {
         $czyRokZPrzyszlosci = (int) $rok > (int) date('Y');
         $czyPolroczeZPrzyszlosci = ((int) $rok === (int) date('Y'))
-            && (int) $okres->getId() === OkresSprawozdawczy::LIPIEC_GRUDZIEN
+            && (int) $okres === OkresSprawozdawczy::LIPIEC_GRUDZIEN
             && (int) date('m') < 7
         ;
         if ($czyRokZPrzyszlosci || $czyPolroczeZPrzyszlosci) {
@@ -580,17 +580,15 @@ class SprawozdanieController extends Controller
         $sprawozdanieIstnieje = $this->checkSprawozdanieExist(
             $report->getOkres(),
             $report->getRok(),
-            $report->getId(),
             $umowaId,
-            $beneficjentId
+            $beneficjentId,
+            $report->getId()
         );
 
         $idOkresu = $report->getOkres()->getId();
-        $goodPeriod = $this->checkSprawozdanieForGoodPeriod($idOkresu, $report->getRok());
+        $poprawnyOkres = $this->checkSprawozdanieForGoodPeriod($idOkresu, $report->getRok());
 
-        $wynik = $sprawozdanieIstnieje & $goodPeriod;
-
-        return ($wynik === false) ? false : true;
+        return !$sprawozdanieIstnieje & $poprawnyOkres;
     }
 
     /**
