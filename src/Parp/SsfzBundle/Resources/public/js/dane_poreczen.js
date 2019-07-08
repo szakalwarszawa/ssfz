@@ -27,6 +27,7 @@ $(document).ready(function () {
             $('[data-vertical-group='+value+']').each(function () {
                 sum = sum + parseInt($(this).val());
             });
+            sum = sum < 0 ? 0 : sum;
             $('[data-vertical-group-sum='+value+']').text(sum);
             sum = 0;
         });
@@ -50,14 +51,49 @@ $(document).ready(function () {
         });
     }
 
-    $('[data-changeable=\'1\']').change(function () {
-        changed = true;
-        recalculateDeps();
-    });
+    function toggleTable(tableId) {
+        var togglerSelector = $('[data-toggle-table='+tableId+']'),
+            tableSelector = $('#table_'+tableId),
+            iconSelector = $('[data-toggle-table-icon='+tableId+']');
 
-    $('[data-vertical-group]').change(function () {
-        sumByGroup();
-    });
+        if (togglerSelector.is(':checked')) {
+            tableSelector.slideUp('slow');
+            iconSelector.removeClass('fa-minus-circle');
+            iconSelector.addClass('fa-plus-circle');
+        } else {
+            tableSelector.slideDown('slow');
+            iconSelector.removeClass('fa-plus-circle');
+            iconSelector.addClass('fa-minus-circle');
+        }
+    }
+
+    function recalculateDeps() {
+        $('[name^=form_dane_poreczen\\[liczba]').each(function (index, value) {
+            var fieldValue = parseInt($(this).val()),
+                fieldName = $(this).attr('name'),
+                correspondingFieldValue,
+                correspondingFieldName,
+                correspondingField;
+
+            correspondingFieldName = fieldName.replace('form_dane_poreczen[liczba', 'form_dane_poreczen[kwota');
+            correspondingFieldName = correspondingFieldName.replace('[', '\\[');
+            correspondingFieldName = correspondingFieldName.replace(']', '\\]');
+
+            correspondingField = $('[name='+correspondingFieldName+']');
+            if (! correspondingField.exists()) {
+                return;
+            }
+            correspondingFieldValue = parseFloat($('[name='+correspondingFieldName+']').val());
+
+            if ((fieldValue > 0 && correspondingFieldValue === 0) || (fieldValue <= 0 && correspondingFieldValue !== 0)) {
+                $(this).closest('td').addClass('danger');
+                $('[name='+correspondingFieldName+']').closest('td').addClass('danger');
+            } else {
+                $(this).closest('td').removeClass('danger');
+                $('[name='+correspondingFieldName+']').closest('td').removeClass('danger');
+            }
+        });
+    }
 
     $('.decimal-11-2').maskMoney({
         prefix: '',
@@ -70,6 +106,24 @@ $(document).ready(function () {
         allowNegative: false,
         allowEmpty: false,
         reverse: false
+    });
+
+    $('[data-changeable=\'1\']').change(function () {
+        changed = true;
+        recalculateDeps();
+    });
+
+    $('[data-vertical-group]').change(function () {
+        sumByGroup();
+    });
+
+    $('.uint-5').change(function () {
+        var value;
+
+        value = parseInt($(this).val());
+        if (value < 0) {
+            $(this).val(0);
+        }
     });
 
     $('[data-toggle-table=\'1\']').change(function () {
@@ -104,22 +158,6 @@ $(document).ready(function () {
         toggleTable('8');
     });
 
-    function toggleTable(tableId) {
-        var togglerSelector = $('[data-toggle-table='+tableId+']'),
-            tableSelector = $('#table_'+tableId),
-            iconSelector = $('[data-toggle-table-icon='+tableId+']');
-
-        if (togglerSelector.is(':checked')) {
-            tableSelector.slideUp('slow');
-            iconSelector.removeClass('fa-minus-circle');
-            iconSelector.addClass('fa-plus-circle');
-        } else {
-            tableSelector.slideDown('slow');
-            iconSelector.removeClass('fa-plus-circle');
-            iconSelector.addClass('fa-minus-circle');
-        }
-    }
-
     $('#button_return').on('click', function (event) {
         var dialog;
 
@@ -153,36 +191,4 @@ $(document).ready(function () {
     sumByGroup();
     resetChangeable();
     recalculateDeps();
-
-    function recalculateDeps() {
-        $('[name^=form_dane_poreczen\\[liczba]').each(function (index, value) {
-            var fieldValue = parseInt($(this).val()),
-                fieldName = $(this).attr('name'),
-                correspondingFieldValue,
-                correspondingFieldName,
-                correspondingField;
-
-
-
-console.log($('[name="form_dane_poreczen\\[kwotaWspolpracujacychBankow\\]"]').exists());
-
-            correspondingFieldName = fieldName.replace('form_dane_poreczen[liczba', 'form_dane_poreczen[kwota');
-            correspondingFieldName = correspondingFieldName.replace('[', '\\[');
-            correspondingFieldName = correspondingFieldName.replace(']', '\\]');
-
-            correspondingField = $('[name='+correspondingFieldName+']');
-            if (! correspondingField.exists()) {
-                return;
-            }
-            correspondingFieldValue = parseFloat($('[name='+correspondingFieldName+']').val());
-
-            if ((fieldValue > 0 && correspondingFieldValue === 0) || (fieldValue <= 0 && correspondingFieldValue !== 0)) {
-                $(this).closest('td').addClass('danger');
-                $('[name='+correspondingFieldName+']').closest('td').addClass('danger');
-            } else {
-                $(this).closest('td').removeClass('danger');
-                $('[name='+correspondingFieldName+']').closest('td').removeClass('danger');
-            }
-        });
-    }
 });
