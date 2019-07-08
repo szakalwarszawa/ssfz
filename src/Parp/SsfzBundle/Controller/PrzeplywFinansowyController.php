@@ -108,23 +108,41 @@ class PrzeplywFinansowyController extends Controller
     private function getSaldoPoczatkowe($report, $beneficjentId, $entityManager)
     {
         if ($report->getOkres()->getId() == OkresSprawozdawczy::LIPIEC_GRUDZIEN) {
-            $okresStyczenCzerwiec = $manager
+            $okresStyczenCzerwiec = $entityManager
                 ->getRepository(OkresSprawozdawczy::class)
                 ->find(OkresSprawozdawczy::STYCZEN_CZERWIEC)
             ;
 
-            $previousReport = $entityManager->getRepository(Sprawozdanie::class)->findBy(array('creatorId' => $beneficjentId, 'umowaId' => $report->getUmowaId(), 'okres' => $okresStyczenCzerwiec, 'rok' => $report->getRok()));
+            $previousReport = $entityManager
+                ->getRepository(Sprawozdanie::class)
+                ->findBy([
+                    'creatorId' => $beneficjentId,
+                    'umowaId'   => $report->getUmowaId(),
+                    'okres'     => $okresStyczenCzerwiec,
+                    'rok'       => $report->getRok(),
+                ]);
         } else {
-            $okresLipiecGrudzien = $manager
+            $okresLipiecGrudzien = $entityManager
                 ->getRepository(OkresSprawozdawczy::class)
                 ->find(OkresSprawozdawczy::LIPIEC_GRUDZIEN)
             ;
 
-            $previousReport = $entityManager->getRepository(Sprawozdanie::class)->findBy(array('creatorId' => $beneficjentId, 'umowaId' => $report->getUmowaId(), 'okres' => $okresLipiecGrudzien, 'rok' => ($report->getRok() - 1)));
+            $previousReport = $entityManager
+                ->getRepository(Sprawozdanie::class)
+                ->findBy([
+                    'creatorId' => $beneficjentId,
+                    'umowaId'   => $report->getUmowaId(),
+                    'okres'     => $okresLipiecGrudzien,
+                    'rok'       => ($report->getRok() - 1),
+                ]);
         }
 
         if ($previousReport) {
-            $przeplyw = $entityManager->getRepository(PrzeplywFinansowy::class)->findBy(array('sprawozdanieId' => $previousReport[0]->getId()));
+            $przeplyw = $entityManager
+                ->getRepository(PrzeplywFinansowy::class)
+                ->findBy([
+                    'sprawozdanieId' => $previousReport[0]->getId(),
+                ]);
             if ($przeplyw) {
                 return $przeplyw[0]->getSaldoKoncowe();
             }

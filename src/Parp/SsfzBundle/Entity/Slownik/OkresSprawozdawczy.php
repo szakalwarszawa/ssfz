@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * OkresSprawozdawczy
  *
  * @ORM\Table(name="slownik_okresow_sprawozdawczych")
- * @ORM\Entity(repositoryClass="Parp\SsfzBundle\Repository\Slownik\OkresSprawozdawcyRepository")
+ * @ORM\Entity(repositoryClass="Parp\SsfzBundle\Repository\Slownik\OkresSprawozdawczyRepository")
  */
 class OkresSprawozdawczy
 {
