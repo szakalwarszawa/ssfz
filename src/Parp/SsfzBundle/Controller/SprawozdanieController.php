@@ -494,10 +494,10 @@ class SprawozdanieController extends Controller
      */
     public function checkSprawozdanieForGoodPeriod(int $okres, int $rok)
     {
-        $czyRokZPrzyszlosci = (integer) $rok > (integer) date('Y');
-        $czyPolroczeZPrzyszlosci = ((integer) $rok == (integer) date('Y'))
+        $czyRokZPrzyszlosci = (int) $rok > (int) date('Y');
+        $czyPolroczeZPrzyszlosci = ((int) $rok === (int) date('Y'))
             && (int) $okres->getId() === OkresSprawozdawczy::LIPIEC_GRUDZIEN
-            && (integer) date('m') < 7
+            && (int) date('m') < 7
         ;
         if ($czyRokZPrzyszlosci || $czyPolroczeZPrzyszlosci) {
             $this
@@ -577,17 +577,20 @@ class SprawozdanieController extends Controller
      */
     public function czySprawozdanieZaDobryOkres($report, $umowaId, $beneficjentId)
     {
-        $result = $this->checkSprawozdanieExist(
+        $sprawozdanieIstnieje = $this->checkSprawozdanieExist(
             $report->getOkres(),
             $report->getRok(),
             $report->getId(),
             $umowaId,
             $beneficjentId
         );
-        $result2 = $this->checkSprawozdanieForGoodPeriod($report->getOkres(), $report->getRok());
-        $warunek = $result & $result2;
 
-        return ($warunek === false) ? false : true;
+        $idOkresu = $report->getOkres()->getId();
+        $goodPeriod = $this->checkSprawozdanieForGoodPeriod($idOkresu, $report->getRok());
+
+        $wynik = $sprawozdanieIstnieje & $goodPeriod;
+
+        return ($wynik === false) ? false : true;
     }
 
     /**
