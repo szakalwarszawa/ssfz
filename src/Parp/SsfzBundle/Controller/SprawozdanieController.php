@@ -455,7 +455,7 @@ class SprawozdanieController extends Controller
      *
      * @return Flage określającą czy sprawozdanie jest poprawne
      */
-    public function chekSprawozdanieExist(int $okres, int $rok, int $editedReportId, int $umowaId, int $beneficjentId)
+    public function checkSprawozdanieExist(int $okres, int $rok, int $editedReportId, int $umowaId, int $beneficjentId)
     {
         $entityManager = $this->getDoctrine()->getManager();
         $report = $entityManager->getRepository(Sprawozdanie::class)->findBy(
@@ -564,7 +564,7 @@ class SprawozdanieController extends Controller
      */
     public function czySprawozdanieZaDobryOkres($report, $umowaId, $beneficjentId)
     {
-        $result = $this->chekSprawozdanieExist($report->getOkres(), $report->getRok(), $report->getId(), $umowaId, $beneficjentId);
+        $result = $this->checkSprawozdanieExist($report->getOkres(), $report->getRok(), $report->getId(), $umowaId, $beneficjentId);
         $result2 = $this->chekSprawozdanieForGoodPeriod($report->getOkres(), $report->getRok());
         $warunek = $result & $result2;
         if ($warunek == false) {
