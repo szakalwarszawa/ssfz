@@ -1,6 +1,10 @@
 $(document).ready(function () {
     var changed = false;
 
+    $.fn.exists = function () {
+        return this.length !== 0;
+    }
+
     function resetChangeable() {
         changed = false;
     }
@@ -155,12 +159,21 @@ $(document).ready(function () {
             var fieldValue = parseInt($(this).val()),
                 fieldName = $(this).attr('name'),
                 correspondingFieldValue,
-                correspondingFieldName;
+                correspondingFieldName,
+                correspondingField;
+
+
+
+console.log($('[name="form_dane_poreczen\\[kwotaWspolpracujacychBankow\\]"]').exists());
 
             correspondingFieldName = fieldName.replace('form_dane_poreczen[liczba', 'form_dane_poreczen[kwota');
             correspondingFieldName = correspondingFieldName.replace('[', '\\[');
             correspondingFieldName = correspondingFieldName.replace(']', '\\]');
 
+            correspondingField = $('[name='+correspondingFieldName+']');
+            if (! correspondingField.exists()) {
+                return;
+            }
             correspondingFieldValue = parseFloat($('[name='+correspondingFieldName+']').val());
 
             if ((fieldValue > 0 && correspondingFieldValue === 0) || (fieldValue <= 0 && correspondingFieldValue !== 0)) {
