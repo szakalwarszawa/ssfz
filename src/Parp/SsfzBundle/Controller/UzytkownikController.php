@@ -5,6 +5,7 @@ namespace Parp\SsfzBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Parp\SsfzBundle\Entity\Uzytkownik;
 use Parp\SsfzBundle\Form\Type\UzytkownikType;
 use Parp\SsfzBundle\Entity\Rola;
@@ -86,15 +87,17 @@ class UzytkownikController extends Controller
      *
      * @Route("/programy", name="uzytkownik_lista_programow")
      *
-     * @return    Response
+     * @return Response
      */
     public function listaProgramowAction()
     {
-        $entityManager = $this->getDoctrine()->getManager();
-        $repoProgram = $entityManager->getRepository(Program::class);
-        
-        $programy = $repoProgram->findBy([], ['id' => 'ASC']);
-        
+        $programy = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository(Program::class)
+            ->findBy([], ['id' => 'ASC'])
+        ;
+
         $uzytkownik = $this->getUser();
         $uzytkownik->setAktywnyProgram(null);
 
@@ -110,24 +113,20 @@ class UzytkownikController extends Controller
      *
      * @param Program $program
      *
-     * @return    Response
+     * @return RedirectResponse
      */
     public function wybierzProgramAction(Program $program)
     {
-        $entityManager = $this->getDoctrine()->getManager();
-        
         $uzytkownik = $this->getUser();
+        $pracownikParp = $uzytkownik->czyPracownikParp();
+        if ($pracownikParp) {
+            return $this->redirectToRoute('parp');
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
         $uzytkownik->setAktywnyProgram($program);
         $entityManager->flush();
 
-        $rolaId = (int) $uzytkownik->getRola()->getId();
-        switch ($rolaId) {
-            case Rola::ROLE_PRACOWNIK_PARP:
-                return $this->redirectToRoute('parp');
-
-            case Rola::ROLE_BENEFICJENT:
-            default:
-                return $this->redirectToRoute('beneficjent');
-        }
+        return $this->redirectToRoute('beneficjent');
     }
 }

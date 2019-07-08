@@ -35,12 +35,6 @@ class ParpController extends Controller
      */
     public function indexAction()
     {
-        if (null === $this->getUser()->getAktywnyProgram()) {
-            return $this->redirectToRoute('uzytkownik_lista_programow');
-        }
-        
-        $program = $this->getUser()->getAktywnyProgram();
-
         $this
             ->get('ssfz.service.datatable_parp_service')
             ->datatableParp($this, $program)

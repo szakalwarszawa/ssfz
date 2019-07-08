@@ -594,7 +594,7 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
     /**
      * Get aktywnyProgram
      *
-     * @return Program
+     * @return int
      */
     public function getAktywnyProgramId()
     {

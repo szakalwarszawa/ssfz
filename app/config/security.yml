@@ -78,4 +78,3 @@ security:
         - { path: ^/parp/raporty, roles: [ROLE_PRACOWNIK_PARP, ROLE_KOORDYNATOR_MERYTORYCZNY] }
         - { path: ^/parp/raporty/pobierz, roles: [ROLE_PRACOWNIK_PARP, ROLE_KOORDYNATOR_MERYTORYCZNY] }
         - { path: ^/, roles: [ROLE_KOORDYNATOR_TECHNICZNY, ROLE_KOORDYNATOR_MERYTORYCZNY, ROLE_PRACOWNIK_PARP, ROLE_BENEFICJENT] }
-        #- { path: ^/test, roles: IS_AUTHENTICATED_ANONYMOUSLY }

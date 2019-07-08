@@ -18,8 +18,10 @@ use Parp\SsfzBundle\Form\Type\BeneficjentType;
 class BeneficjentController extends Controller
 {
     /**
-     * Akcja domyślna - wyświetla widok główny lub, w przypadku gdy użytkownik
-     * nie ma profilu beneficjenta na akcję uzupełnij profil
+     * Akcja domyślna.
+     *
+     * Wwyświetla widok główny lub (w przypadku gdy użytkownik nie ma profilu beneficjenta)
+     * przekierowuje do uzupełnienia profilu.
      *
      * @Route("", name="beneficjent")
      *
@@ -28,8 +30,14 @@ class BeneficjentController extends Controller
     public function indexAction()
     {
         $uzytkownik = $this->getZalogowanyUzytkownik();
-        
-        if (null === $uzytkownik->getAktywnyProgram()) {
+
+        $pracownikParp = $uzytkownik->czyPracownikParp();
+        if ($pracownikParp) {
+            return $this->redirectToRoute('parp');
+        }
+
+        $aktywnyProgram = ($uzytkownik->getAktywnyProgram() !== null);
+        if (!$pracownikParp && !$aktywnyProgram) {
             return $this->redirectToRoute('uzytkownik_lista_programow');
         }
         

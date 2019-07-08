@@ -142,14 +142,8 @@ class DatatableParpService
             ->getQueryBuilder()
             ->getDoctrineQueryBuilder()
         ;
-        
-        // $entityManager = $doctrineQueryBuilder->getEntityManager();
 
         $okresy = $program->getOkresySprawozdawcze();
-        //$okresy = $entityManager
-        //    ->getRepository(OkresSprawozdawczy::class)
-        //    ->findBy(['czestotliwoscSprawozdan' => $program->getCzestotliwoscSprawozdan()])
-        //;
 
         $params = [];
         foreach ($okresy as $key => $okres) {
@@ -176,6 +170,8 @@ class DatatableParpService
      * @param Program $program
      *
      * @return object
+     *
+     * Nie znamy wartości $program bo to jest dana z domeny beneficjenta a nie pracownika PARP.
      */
     public function datatableParp($parentObj, Program $program)
     {
