@@ -35,10 +35,20 @@ class ParpController extends Controller
      */
     public function indexAction()
     {
+            // madness
+        $programy = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository(Program::class)
+            ->findBy([], ['id' => 'ASC'])
+        ;
+
+        $program = $programy[0];
         $this
             ->get('ssfz.service.datatable_parp_service')
             ->datatableParp($this, $program)
         ;
+        
 
         return $this->render('SsfzBundle:Parp:index.html.twig');
     }

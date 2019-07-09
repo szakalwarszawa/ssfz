@@ -121,11 +121,9 @@ class DatatableParpService
             case Program::FUNDUSZ_POZYCZKOWY_SPO_WKP_121:
                 $nazwaParametru = 'sprawozdaniaPozyczkowe';
                 break;
-
             case Program::FUNDUSZ_PORECZENIOWY_SPO_WKP_122:
                 $nazwaParametru = 'sprawozdaniaPoreczeniowe';
                 break;
-
             case Program::FUNDUSZ_ZALAZKOWY_POIG_31:
             default:
                 $nazwaParametru = 'sprawozdaniaZalazkowe';
