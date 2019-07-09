@@ -43,7 +43,7 @@ class ParpController extends Controller
             ->findBy([], ['id' => 'ASC'])
         ;
 
-        $program = $programy[0];
+        $program = $programy[2];
         $this
             ->get('ssfz.service.datatable_parp_service')
             ->datatableParp($this, $program)

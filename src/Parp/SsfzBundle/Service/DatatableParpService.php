@@ -76,9 +76,6 @@ class DatatableParpService
      */
     public function getDatatableParpFields($config, Program $program)
     {
-        // To jest tymczasowa zaślepka. Zastępuje dotychczasowe rozwiązanie
-        // symulacją częstotliwości na podstawie pierwszego elementu kolekcji.
-        // $czestotliwosc = $program->getCzestotliwoscSprawozdan();
         $czestotliwoscRoczna = $program
             ->getOkresySprawozdawcze()
             ->first()
@@ -90,7 +87,6 @@ class DatatableParpService
         $fields['Numer umowy'] = 'u.numer';
         $idx = 1;
         foreach ($config as $cfg) {
-            // if ($czestotliwosc->czyRoczna()) {
             if ($czestotliwoscRoczna) {
                 $fields[$cfg->getRok()] = 's' . $idx . '.idStatus';
                 $idx++;
