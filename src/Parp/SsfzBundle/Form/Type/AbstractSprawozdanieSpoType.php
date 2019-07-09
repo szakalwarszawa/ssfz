@@ -374,9 +374,11 @@ class AbstractSprawozdanieSpoType extends AbstractType
                 'widget'     => 'single_text',
                 'format'     => 'yyyy-MM-dd',
                     'mapped' => true,
-                'attr'       => [
-                    'class'       => 'width-date',
-                ],
+                'attr' => array(
+                    'class' => 'js-datepicker width-date',
+                    'data-provide' => 'datepicker',
+                    'data-date-format' => 'yyyy-mm-dd'
+                ),
                 'constraints' => array(
                     new NotBlank(
                         array('message' => 'Należy wypełnić pole')
