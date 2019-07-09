@@ -24,7 +24,7 @@ class SprawozdaniePozyczkoweType extends AbstractSprawozdanieSpoType
      *
      * @var boolean
      */
-    protected $czyPozyczkowy = false;
+    protected $czyPozyczkowy = true;
 
     /**
      * Buduje formularz do wypełniania sprawozdania
