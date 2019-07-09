@@ -56,7 +56,7 @@ class OkresSprawozdawczy
      * @var int
      *
      * @ORM\Column
-     *     name="miesiacPoczatkowy",
+     *     name="miesiac_poczatkowy",
      *     type="smallint",
      *     nullable=false,
      *     options={
@@ -72,7 +72,7 @@ class OkresSprawozdawczy
      * @var int
      *
      * @ORM\Column
-     *     name="miesiacKoncowy",
+     *     name="miesiac_koncowy",
      *     type="smallint",
      *     nullable=false,
      *     options={
