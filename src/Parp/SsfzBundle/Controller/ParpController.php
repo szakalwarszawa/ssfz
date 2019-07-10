@@ -364,4 +364,23 @@ class ParpController extends Controller
 
         return $array;
     }
+
+    /**
+     * Zmienia obsługiwany program.
+     *
+     * @Route("/program/{id}", name="przelacz_program")
+     *
+     * @param int $id ID programu.
+     *
+     * @return Response
+     */
+    public function przelaczProgramAction(int $id)
+    {
+        $this
+            ->get('ssfz.service.wybor_programu')
+            ->setProgram($id)
+        ;
+
+        return $this->indexAction();
+    }
 }

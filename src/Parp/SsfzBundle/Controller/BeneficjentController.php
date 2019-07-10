@@ -183,7 +183,7 @@ class BeneficjentController extends Controller
             ->getToken()
             ->getUser()
         ;
-        if (null == $uzytkownik) {
+        if (null === $uzytkownik) {
             throw $this->createAccessDeniedException();
         }
 
