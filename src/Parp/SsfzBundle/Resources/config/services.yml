@@ -97,6 +97,7 @@ services:
         class: Parp\SsfzBundle\Service\DatatableParpService
         arguments:
             - '@ssfz.repository.okresy_konfiguracja_repository'
+            - '@ssfz.service.wybor_programu'
 
     ssfz.service.datatable_spolki_service:
         class: Parp\SsfzBundle\Service\DatatableSpolkiService
@@ -156,14 +157,21 @@ services:
         arguments: ['@ssfz.repository.rola_repository']
 
     ssfz.event_listener.exception_listener:
-            class: 'Parp\SsfzBundle\EventListener\ExceptionListener'
-            arguments:
-                - '@kernel'
-                - '@request_stack'
-                - '@router'
-                - '@ssfz.service.komunikaty_service'
-            tags:
-                - { name: kernel.event_subscriber }
+        class: 'Parp\SsfzBundle\EventListener\ExceptionListener'
+        arguments:
+            - '@kernel'
+            - '@request_stack'
+            - '@router'
+            - '@ssfz.service.komunikaty_service'
+        tags:
+            - { name: kernel.event_subscriber }
 
     ssfz.service.guesser.typ_sprawozdania:
         class: Parp\SsfzBundle\Service\TypSprawozdaniaGuesserService
+
+    ssfz.service.wybor_programu:
+        class: Parp\SsfzBundle\Service\WyborProgramuService
+        shared: true
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@session'

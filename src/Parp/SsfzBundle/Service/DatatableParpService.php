@@ -2,7 +2,9 @@
 
 namespace Parp\SsfzBundle\Service;
 
+use Symfony\Component\HttpFoundation\Session\Session;
 use Doctrine\ORM\Query\Expr\Join;
+use Parp\SsfzBundle\Service\WyborProgramuService;
 use Parp\SsfzBundle\Repository\OkresyKonfiguracjaRepository;
 use Parp\SsfzBundle\Entity\Slownik\Program;
 use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
@@ -20,13 +22,20 @@ class DatatableParpService
     protected $okresyKonfiguracjaRepo;
 
     /**
+     * @var Session
+     */
+    private $wyborProgramu;
+
+    /**
      * Konstruktor parametryczny
      *
-     * @param OkresyKonfiguracjaRepository $okresyKonfiguracjaRepo repozytorium OkresyKonfiguracjaRepository
+     * @param OkresyKonfiguracjaRepository $konfiguracjaOkresow
+     * @param WyborProgramuService $wyborProgramu
      */
-    public function __construct(OkresyKonfiguracjaRepository $okresyKonfiguracjaRepo)
+    public function __construct(OkresyKonfiguracjaRepository $konfiguracjaOkresow, WyborProgramuService $wyborProgramu)
     {
-        $this->okresyKonfiguracjaRepo = $okresyKonfiguracjaRepo;
+        $this->okresyKonfiguracjaRepo = $konfiguracjaOkresow;
+        $this->wyborProgramu = $wyborProgramu;
     }
 
     /**
@@ -149,6 +158,7 @@ class DatatableParpService
             foreach ($okresy as $key => $okres) {
                 $datatable->addJoin('u.' . $nazwaParametru, 's' . $idx, Join::LEFT_JOIN, Join::WITH, 'u.id = s' . $idx . '.umowaId and s' . $idx . '.rok = ' . $cfg->getRok() . ' and s' . $idx . '.czyNajnowsza = 1 and s' . $idx . '.okres = :okres' . $key);
                 $idx++;
+                echo $idx;
             }
         }
         
