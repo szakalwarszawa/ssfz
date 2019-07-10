@@ -22,7 +22,7 @@ class DatatableOsobyService
             'Data rozpoczęcia pracy' => 'o.rozpoczecieData',
             'Stanowisko'             => 'o.stanowisko',
             'Wymiar etatu'           => 'o.wymiar',
-            '_identifier_'           => 'o.id'
+            '_identifier_'           => 'o.id',
         ];
     }
 

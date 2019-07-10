@@ -45,10 +45,12 @@ class BeneficjentController extends Controller
         if (!$beneficjent || !$beneficjent->getWypelniony()) {
             return $this->redirectToRoute('beneficjent_uzupelnij');
         }
+
         $this
             ->get('ssfz.service.datatable_osoby_service')
             ->datatableOsoby($this, $beneficjent->getId())
         ;
+
         $this
             ->get('ssfz.service.datatable_umowy_service')
             ->datatableUmowy($this, $beneficjent->getId())
@@ -86,20 +88,20 @@ class BeneficjentController extends Controller
         $beneficjent = $uzytkownik->getBeneficjent();
         if (!$beneficjent) {
             $beneficjent = $this
-                ->getBeneficjentService()
+                ->get('ssfz.service.beneficjent_service')
                 ->addBeneficjent($uzytkownik)
             ;
         }
         $originalUmowy = $this
-            ->getBeneficjentService()
+            ->get('ssfz.service.beneficjent_service')
             ->getBeneficjentUmowy($beneficjent)
         ;
         $originalOsoby = $this
-            ->getBeneficjentService()
+            ->get('ssfz.service.beneficjent_service')
             ->getBeneficjentOsoby($beneficjent)
         ;
         $this
-            ->getBeneficjentService()
+            ->get('ssfz.service.beneficjent_service')
             ->addUmowaOsobaIfEmpty($beneficjent)
         ;
         $form = $this->createForm(BeneficjentType::class, $beneficjent);
@@ -107,7 +109,7 @@ class BeneficjentController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form->isValid()) {
                 $this
-                    ->getBeneficjentService()
+                    ->get('ssfz.service.beneficjent_service')
                     ->updateBeneficjent($beneficjent, $originalUmowy, $originalOsoby)
                 ;
                 $this
@@ -162,18 +164,9 @@ class BeneficjentController extends Controller
 
         return $this
             ->get('ssfz.service.datatable_umowy_service')
-            ->datatableUmowy($this, $beneficjentId)->execute()
+            ->datatableUmowy($this, $beneficjentId)
+            ->execute()
         ;
-    }
-
-    /**
-     * Pomocnicza metoda
-     *
-     * @return BneficjentService z kontenera
-     */
-    protected function getBeneficjentService()
-    {
-        return $this->get('ssfz.service.beneficjent_service');
     }
 
     /**

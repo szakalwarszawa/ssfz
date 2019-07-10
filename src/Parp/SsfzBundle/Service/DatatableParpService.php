@@ -193,7 +193,7 @@ class DatatableParpService
             ->setFields($fields)
         ;
 
-        $this->datatableParpAddJoins($config, $program);
+       $this->datatableParpAddJoins($config, $program);
 
         $this
             ->dataTable
