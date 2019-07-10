@@ -4,6 +4,7 @@ namespace Parp\SsfzBundle\Service;
 
 use Symfony\Component\HttpFoundation\Session\Session;
 use Doctrine\ORM\Query\Expr\Join;
+use Waldo\DatatableBundle\Util\Datatable;
 use Parp\SsfzBundle\Service\WyborProgramuService;
 use Parp\SsfzBundle\Repository\OkresyKonfiguracjaRepository;
 use Parp\SsfzBundle\Entity\Slownik\Program;
@@ -27,15 +28,25 @@ class DatatableParpService
     private $wyborProgramu;
 
     /**
-     * Konstruktor parametryczny
+     * @var Datatable
+     */
+    private $dataTable;
+
+    /**
+     * Konstruktor.
      *
      * @param OkresyKonfiguracjaRepository $konfiguracjaOkresow
      * @param WyborProgramuService $wyborProgramu
+     * @param Datatable $dataTable
      */
-    public function __construct(OkresyKonfiguracjaRepository $konfiguracjaOkresow, WyborProgramuService $wyborProgramu)
-    {
+    public function __construct(
+        OkresyKonfiguracjaRepository $konfiguracjaOkresow,
+        WyborProgramuService $wyborProgramu,
+        Datatable $dataTable
+    ) {
         $this->okresyKonfiguracjaRepo = $konfiguracjaOkresow;
         $this->wyborProgramu = $wyborProgramu;
+        $this->dataTable = $dataTable;
     }
 
     /**
@@ -114,13 +125,10 @@ class DatatableParpService
     /**
      * Ustawia joiny w podanej w parametrze datatable
      *
-     * @param ?????????????object?? $datatable
      * @param array $config
      * @param Program $program
-     *
-     * @return datatable
      */
-    public function datatableParpAddJoins($datatable, $config, Program $program)
+    public function datatableParpAddJoins($config, Program $program)
     {
         switch ($program->getId()) {
             case Program::FUNDUSZ_POZYCZKOWY_SPO_WKP_121:
@@ -135,13 +143,15 @@ class DatatableParpService
                 break;
         }
         
-        $datatable
+        $this
+            ->dataTable
             ->addJoin('u.beneficjent', 'b', Join::INNER_JOIN)
             ->addJoin('b.program', 'p', Join::INNER_JOIN)
             ->setWhere('p.id = '. ((int) $program->getId()))
         ;
         
-        $doctrineQueryBuilder = $datatable
+        $doctrineQueryBuilder = $this
+            ->dataTable
             ->getQueryBuilder()
             ->getDoctrineQueryBuilder()
         ;
@@ -156,45 +166,43 @@ class DatatableParpService
         $idx = 1;
         foreach ($config as $cfg) {
             foreach ($okresy as $key => $okres) {
-                $datatable->addJoin('u.' . $nazwaParametru, 's' . $idx, Join::LEFT_JOIN, Join::WITH, 'u.id = s' . $idx . '.umowaId and s' . $idx . '.rok = ' . $cfg->getRok() . ' and s' . $idx . '.czyNajnowsza = 1 and s' . $idx . '.okres = :okres' . $key);
+                $this
+                    ->dataTable
+                    ->addJoin('u.' . $nazwaParametru, 's' . $idx, Join::LEFT_JOIN, Join::WITH, 'u.id = s' . $idx . '.umowaId and s' . $idx . '.rok = ' . $cfg->getRok() . ' and s' . $idx . '.czyNajnowsza = 1 and s' . $idx . '.okres = :okres' . $key)
+                ;
                 $idx++;
-                echo $idx;
             }
         }
         
         $doctrineQueryBuilder->setParameters($params);
-
-        return $datatable;
     }
 
     /**
-     * Zwraca datatable parp
-     *
-     * @param Controller $parentObj
-     * @param Program $program
-     *
-     * @return object
-     *
-     * Nie znamy wartości $program bo to jest dana z domeny beneficjenta a nie pracownika PARP.
+     * @return Datatable
      */
-    public function datatableParp($parentObj, Program $program)
+    public function datatableParp()
     {
         $config = $this->getParpKonfiguracja();
-        $datatable = $parentObj
-            ->get('datatable')
+        $program = $this->wyborProgramu->getProgram();
+        $fields = $this->getDatatableParpFields($config, $program);
+
+        $this
+            ->dataTable
             ->setDatatableId('dta-umowy')
             ->setEntity('SsfzBundle:Umowa', 'u')
-            ->setFields($this->getDatatableParpFields($config, $program))
+            ->setFields($fields)
         ;
-        
-        $datatable = $this->datatableParpAddJoins($datatable, $config, $program);
-        $datatable
+
+        $this->datatableParpAddJoins($config, $program);
+
+        $this
+            ->dataTable
             ->setRenderers($this->getDatatableParpRenderers($config, $program))
             ->setSearch(true)
             ->setOrder('b.nazwa', 'asc')
             ->setOrder('u.numer', 'asc')
         ;
 
-        return $datatable;
+        return $this->dataTable;
     }
 }

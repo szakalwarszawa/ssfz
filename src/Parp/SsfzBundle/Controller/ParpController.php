@@ -36,19 +36,11 @@ class ParpController extends Controller
      */
     public function indexAction()
     {
-        $program = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository(Program::class)
-            ->find(Program::PROGRAM_DOMYSLNY)
-        ;
-
         $this
             ->get('ssfz.service.datatable_parp_service')
-            ->datatableParp($this, $program)
+            ->datatableParp()
         ;
         
-
         return $this->render('SsfzBundle:Parp:index.html.twig');
     }
 
@@ -329,14 +321,9 @@ class ParpController extends Controller
      */
     public function parpGridAction()
     {
-        $program = $this
-            ->get('ssfz.service.wybor_programu')
-            ->getProgram()
-        ;
-
         return $this
             ->get('ssfz.service.datatable_parp_service')
-            ->datatableParp($this, $program)
+            ->datatableParp()
             ->execute()
         ;
     }

@@ -42,10 +42,13 @@ class WyborProgramuService
      * @param EntityManager $entityManager
      * @param Session $session
      */
-    public function _construct(EntityManager $entityManager, Session $session)
+    public function __construct(EntityManager $entityManager, Session $session)
     {
         $this->entityManager = $entityManager;
         $this->session = $session;
+
+        // Na wszelki wypadek. Włączy sesję tylko jeśli nie jest aktywna.
+        $this->session->start();
 
         $this->setProgram(Program::PROGRAM_DOMYSLNY);
     }
