@@ -24,6 +24,11 @@ class Program
     /**
      * @var int
      */
+    const PROGRAM_DOMYSLNY = 1;
+
+    /**
+     * @var int
+     */
     const FUNDUSZ_ZALAZKOWY_POIG_31 = 1;
 
     /**

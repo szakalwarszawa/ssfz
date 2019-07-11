@@ -30,7 +30,8 @@ class DatatableParpServiceTest extends TestCase
             ->getMock();
 
         $dict = new OkresyKonfiguracja();
-        $this->okresyKonfiguracjaRepo
+        $this
+            ->okresyKonfiguracjaRepo
             ->method('findBy')
             ->will($this->returnValue($dict));
 

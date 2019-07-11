@@ -6,20 +6,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Carbon\Carbon;
 use Parp\SsfzBundle\Entity\Umowa;
 use Parp\SsfzBundle\Entity\Uzytkownik;
 use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Entity\Slownik\Program;
+use Parp\SsfzBundle\Entity\Slownik\StatusSprawozdania;
 use Parp\SsfzBundle\Form\Type\SpolkaType;
 use Parp\SsfzBundle\Form\Type\SprawozdanieOcenType;
-use Carbon\Carbon;
 use Parp\SsfzBundle\Form\Type\SprawozdanieType;
 use Parp\SsfzBundle\Entity\PrzeplywFinansowy;
 use Parp\SsfzBundle\Form\Type\PrzeplywFinansowyType;
 use Parp\SsfzBundle\Entity\Beneficjent;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Parp\SsfzBundle\Entity\Spolka;
 use Parp\SsfzBundle\Entity\OkresyKonfiguracja;
-use Parp\SsfzBundle\Entity\Slownik\Program;
 
 /**
  * @Route("/parp", name="parp")
@@ -35,17 +36,11 @@ class ParpController extends Controller
      */
     public function indexAction()
     {
-        if (null === $this->getUser()->getAktywnyProgram()) {
-            return $this->redirectToRoute('uzytkownik_lista_programow');
-        }
-        
-        $program = $this->getUser()->getAktywnyProgram();
-
         $this
             ->get('ssfz.service.datatable_parp_service')
-            ->datatableParp($this, $program)
+            ->datatableParp()
         ;
-
+        
         return $this->render('SsfzBundle:Parp:index.html.twig');
     }
 
@@ -74,7 +69,8 @@ class ParpController extends Controller
             $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Nie znaleziono sprawozdania o podanym identyfikatorze.');
             return $this->redirectToRoute('parp');
         }
-        if (2 !== $sprawozdanie->getStatus()) {
+
+        if ($sprawozdanie->getStatus() !== StatusSprawozdania::PRZESLANO_DO_PARP) {
             $this->addFlash('notice', [
                 'alert'   => 'warning',
                 'title'   => '',
@@ -82,23 +78,31 @@ class ParpController extends Controller
             ]);
             return $this->redirectToRoute('parp_sprawozdanie', array('idSprawozdania' => $idSprawozdania));
         }
-        if (2 === $sprawozdanie->getStatus() && null !== $sprawozdanie->getOceniajacyId() && $uzytkownik->getId() !== $sprawozdanie->getOceniajacyId()) {
+    
+        if ($sprawozdanie->getStatus() === StatusSprawozdania::PRZESLANO_DO_PARP && null !== $sprawozdanie->getOceniajacyId() && $uzytkownik->getId() !== $sprawozdanie->getOceniajacyId()) {
             $this->addFlash('notice', [
                 'alert'   => 'warning',
                 'title'   => '',
                 'message' => 'Sprawozdanie jest zajęte do oceny przez innego użytkownika.'
             ]);
-            return $this->redirectToRoute('parp_sprawozdanie', array('idSprawozdania' => $idSprawozdania));
+            return $this->redirectToRoute('parp_sprawozdanie', [
+                'idSprawozdania' => $idSprawozdania,
+            ]);
         }
         $okresy = $this->getOkresySprawozdawcze();
-        $formS = $this->createForm($klasaFormularza, $sprawozdanie, array('disabled' => true, 'okresy' => $okresy));
+        $formS = $this->createForm($klasaFormularza, $sprawozdanie, [
+            'disabled' => true,
+            'okresy' => $okresy,
+        ]);
         $przeplyw = $entityManager
             ->getRepository(PrzeplywFinansowy::class)
             ->findBy(['sprawozdanieId' => $sprawozdanie->getId()])
         ;
         $formP = null;
         if ($przeplyw != null) {
-            $formP = $this->createForm(PrzeplywFinansowyType::class, $przeplyw[0], array('disabled' => true))->createView();
+            $formP = $this->createForm(PrzeplywFinansowyType::class, $przeplyw[0], [
+                'disabled' => true,
+            ])->createView();
         }
 
         $sprawozdanie->setOceniajacyId($uzytkownik->getId());
@@ -107,10 +111,10 @@ class ParpController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
-                if (2 === $sprawozdanie->getStatus()) {
+                if ($sprawozdanie->getStatus() === StatusSprawozdania::PRZESLANO_DO_PARP) {
                     $sprawozdanie->setOceniajacyId(null);
                 }
-                if (2 !== $sprawozdanie->getStatus()) {
+                if ($sprawozdanie->getStatus() !== StatusSprawozdania::PRZESLANO_DO_PARP) {
                     $sprawozdanie->setDataZatwierdzenia(new Carbon('Europe/Warsaw'));
                 }
                 $repoSprawozdanie->persist($sprawozdanie);
@@ -123,26 +127,26 @@ class ParpController extends Controller
             case Program::FUNDUSZ_POZYCZKOWY_SPO_WKP_121:
                 $szablon = 'SsfzBundle:Sprawozdanie:pozyczkoweEdycja.html.twig';
                 $blockParams = [
-                    'form'         => $formS->createView(),
+                    'form'           => $formS->createView(),
                     'tylkoDoOdczytu' => true,
-                    'app'          => $this,
+                    'app'            => $this,
                 ];
                 break;
 
             case Program::FUNDUSZ_PORECZENIOWY_SPO_WKP_122:
                 $szablon = 'SsfzBundle:Sprawozdanie:poreczenioweEdycja.html.twig';
                 $blockParams = [
-                    'form'         => $formS->createView(),
+                    'form'           => $formS->createView(),
                     'tylkoDoOdczytu' => true,
-                    'app'          => $this,
+                    'app'            => $this,
                 ];
                 break;
 
             default:
                 $szablon = 'SsfzBundle:Parp:sprawozdanieForm.html.twig';
                 $blockParams = [
-                    'formS'        => $formS->createView(),
-                    'formP'        => $formP,
+                    'formS' => $formS->createView(),
+                    'formP' => $formP,
                 ];
                 break;
         }
@@ -310,15 +314,16 @@ class ParpController extends Controller
      * Akcja pobrania danych do tabeli kontroli sprawozdawczości
      *
      * @Route("/gridParp", name="datatableParp")
-     * @return             Response
+     *
+     * @param int $idProgramu
+     *
+     * @return Response
      */
     public function parpGridAction()
     {
-        $program = $this->getUser()->getAktywnyProgram();
-
         return $this
             ->get('ssfz.service.datatable_parp_service')
-            ->datatableParp($this, $program)
+            ->datatableParp()
             ->execute()
         ;
     }
@@ -347,16 +352,35 @@ class ParpController extends Controller
      */
     private function getOkresySprawozdawcze()
     {
-        $array = array();
+        $array = [];
         $entityManager = $this->getDoctrine()->getManager();
         $okresySprawozdawcze = $entityManager
             ->getRepository(OkresyKonfiguracja::class)
-            ->findBy(array(), array('rok' => 'ASC'))
+            ->findBy([], ['rok' => 'ASC'])
         ;
         foreach ($okresySprawozdawcze as $okres) {
             $array[$okres->getRok()]  = $okres->getRok();
         }
 
         return $array;
+    }
+
+    /**
+     * Zmienia obsługiwany program.
+     *
+     * @Route("/program/{id}", name="przelacz_program")
+     *
+     * @param int $id ID programu.
+     *
+     * @return Response
+     */
+    public function przelaczProgramAction(int $id)
+    {
+        $this
+            ->get('ssfz.service.wybor_programu')
+            ->setProgram($id)
+        ;
+
+        return $this->indexAction();
     }
 }

@@ -18,8 +18,10 @@ use Parp\SsfzBundle\Form\Type\BeneficjentType;
 class BeneficjentController extends Controller
 {
     /**
-     * Akcja domyślna - wyświetla widok główny lub, w przypadku gdy użytkownik
-     * nie ma profilu beneficjenta na akcję uzupełnij profil
+     * Akcja domyślna.
+     *
+     * Wwyświetla widok główny lub (w przypadku gdy użytkownik nie ma profilu beneficjenta)
+     * przekierowuje do uzupełnienia profilu.
      *
      * @Route("", name="beneficjent")
      *
@@ -28,8 +30,14 @@ class BeneficjentController extends Controller
     public function indexAction()
     {
         $uzytkownik = $this->getZalogowanyUzytkownik();
-        
-        if (null === $uzytkownik->getAktywnyProgram()) {
+
+        $pracownikParp = $uzytkownik->czyPracownikParp();
+        if ($pracownikParp) {
+            return $this->redirectToRoute('parp');
+        }
+
+        $aktywnyProgram = ($uzytkownik->getAktywnyProgram() !== null);
+        if (!$pracownikParp && !$aktywnyProgram) {
             return $this->redirectToRoute('uzytkownik_lista_programow');
         }
         
@@ -37,10 +45,12 @@ class BeneficjentController extends Controller
         if (!$beneficjent || !$beneficjent->getWypelniony()) {
             return $this->redirectToRoute('beneficjent_uzupelnij');
         }
+
         $this
             ->get('ssfz.service.datatable_osoby_service')
             ->datatableOsoby($this, $beneficjent->getId())
         ;
+
         $this
             ->get('ssfz.service.datatable_umowy_service')
             ->datatableUmowy($this, $beneficjent->getId())
@@ -78,20 +88,20 @@ class BeneficjentController extends Controller
         $beneficjent = $uzytkownik->getBeneficjent();
         if (!$beneficjent) {
             $beneficjent = $this
-                ->getBeneficjentService()
+                ->get('ssfz.service.beneficjent_service')
                 ->addBeneficjent($uzytkownik)
             ;
         }
         $originalUmowy = $this
-            ->getBeneficjentService()
+            ->get('ssfz.service.beneficjent_service')
             ->getBeneficjentUmowy($beneficjent)
         ;
         $originalOsoby = $this
-            ->getBeneficjentService()
+            ->get('ssfz.service.beneficjent_service')
             ->getBeneficjentOsoby($beneficjent)
         ;
         $this
-            ->getBeneficjentService()
+            ->get('ssfz.service.beneficjent_service')
             ->addUmowaOsobaIfEmpty($beneficjent)
         ;
         $form = $this->createForm(BeneficjentType::class, $beneficjent);
@@ -99,7 +109,7 @@ class BeneficjentController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form->isValid()) {
                 $this
-                    ->getBeneficjentService()
+                    ->get('ssfz.service.beneficjent_service')
                     ->updateBeneficjent($beneficjent, $originalUmowy, $originalOsoby)
                 ;
                 $this
@@ -154,18 +164,9 @@ class BeneficjentController extends Controller
 
         return $this
             ->get('ssfz.service.datatable_umowy_service')
-            ->datatableUmowy($this, $beneficjentId)->execute()
+            ->datatableUmowy($this, $beneficjentId)
+            ->execute()
         ;
-    }
-
-    /**
-     * Pomocnicza metoda
-     *
-     * @return BneficjentService z kontenera
-     */
-    protected function getBeneficjentService()
-    {
-        return $this->get('ssfz.service.beneficjent_service');
     }
 
     /**
@@ -182,7 +183,7 @@ class BeneficjentController extends Controller
             ->getToken()
             ->getUser()
         ;
-        if (null == $uzytkownik) {
+        if (null === $uzytkownik) {
             throw $this->createAccessDeniedException();
         }
 

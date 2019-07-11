@@ -172,3 +172,11 @@ DataTable.ext.buttons.print = {
  
 return DataTable.Buttons;
 })); 
+
+$(document).ready(function () {
+    $('.zmiana-programu').click(function () {
+        location.href = $(this).attr('href');
+
+        return true;
+    });
+});

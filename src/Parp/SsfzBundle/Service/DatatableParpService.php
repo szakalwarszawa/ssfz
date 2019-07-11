@@ -2,7 +2,10 @@
 
 namespace Parp\SsfzBundle\Service;
 
+use Symfony\Component\HttpFoundation\Session\Session;
 use Doctrine\ORM\Query\Expr\Join;
+use Waldo\DatatableBundle\Util\Datatable;
+use Parp\SsfzBundle\Service\WyborProgramuService;
 use Parp\SsfzBundle\Repository\OkresyKonfiguracjaRepository;
 use Parp\SsfzBundle\Entity\Slownik\Program;
 use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
@@ -20,13 +23,30 @@ class DatatableParpService
     protected $okresyKonfiguracjaRepo;
 
     /**
-     * Konstruktor parametryczny
-     *
-     * @param OkresyKonfiguracjaRepository $okresyKonfiguracjaRepo repozytorium OkresyKonfiguracjaRepository
+     * @var Session
      */
-    public function __construct(OkresyKonfiguracjaRepository $okresyKonfiguracjaRepo)
-    {
-        $this->okresyKonfiguracjaRepo = $okresyKonfiguracjaRepo;
+    private $wyborProgramu;
+
+    /**
+     * @var Datatable
+     */
+    private $dataTable;
+
+    /**
+     * Konstruktor.
+     *
+     * @param OkresyKonfiguracjaRepository $konfiguracjaOkresow
+     * @param WyborProgramuService $wyborProgramu
+     * @param Datatable $dataTable
+     */
+    public function __construct(
+        OkresyKonfiguracjaRepository $konfiguracjaOkresow,
+        WyborProgramuService $wyborProgramu,
+        Datatable $dataTable
+    ) {
+        $this->okresyKonfiguracjaRepo = $konfiguracjaOkresow;
+        $this->wyborProgramu = $wyborProgramu;
+        $this->dataTable = $dataTable;
     }
 
     /**
@@ -76,9 +96,6 @@ class DatatableParpService
      */
     public function getDatatableParpFields($config, Program $program)
     {
-        // To jest tymczasowa zaślepka. Zastępuje dotychczasowe rozwiązanie
-        // symulacją częstotliwości na podstawie pierwszego elementu kolekcji.
-        // $czestotliwosc = $program->getCzestotliwoscSprawozdan();
         $czestotliwoscRoczna = $program
             ->getOkresySprawozdawcze()
             ->first()
@@ -90,7 +107,6 @@ class DatatableParpService
         $fields['Numer umowy'] = 'u.numer';
         $idx = 1;
         foreach ($config as $cfg) {
-            // if ($czestotliwosc->czyRoczna()) {
             if ($czestotliwoscRoczna) {
                 $fields[$cfg->getRok()] = 's' . $idx . '.idStatus';
                 $idx++;
@@ -109,47 +125,38 @@ class DatatableParpService
     /**
      * Ustawia joiny w podanej w parametrze datatable
      *
-     * @param ?????????????object?? $datatable
      * @param array $config
      * @param Program $program
-     *
-     * @return datatable
      */
-    public function datatableParpAddJoins($datatable, $config, Program $program)
+    public function datatableParpAddJoins($config, Program $program)
     {
         switch ($program->getId()) {
             case Program::FUNDUSZ_POZYCZKOWY_SPO_WKP_121:
                 $nazwaParametru = 'sprawozdaniaPozyczkowe';
                 break;
-
             case Program::FUNDUSZ_PORECZENIOWY_SPO_WKP_122:
                 $nazwaParametru = 'sprawozdaniaPoreczeniowe';
                 break;
-
             case Program::FUNDUSZ_ZALAZKOWY_POIG_31:
             default:
                 $nazwaParametru = 'sprawozdaniaZalazkowe';
                 break;
         }
         
-        $datatable
+        $this
+            ->dataTable
             ->addJoin('u.beneficjent', 'b', Join::INNER_JOIN)
             ->addJoin('b.program', 'p', Join::INNER_JOIN)
             ->setWhere('p.id = '. ((int) $program->getId()))
         ;
         
-        $doctrineQueryBuilder = $datatable
+        $doctrineQueryBuilder = $this
+            ->dataTable
             ->getQueryBuilder()
             ->getDoctrineQueryBuilder()
         ;
-        
-        // $entityManager = $doctrineQueryBuilder->getEntityManager();
 
         $okresy = $program->getOkresySprawozdawcze();
-        //$okresy = $entityManager
-        //    ->getRepository(OkresSprawozdawczy::class)
-        //    ->findBy(['czestotliwoscSprawozdan' => $program->getCzestotliwoscSprawozdan()])
-        //;
 
         $params = [];
         foreach ($okresy as $key => $okres) {
@@ -159,42 +166,43 @@ class DatatableParpService
         $idx = 1;
         foreach ($config as $cfg) {
             foreach ($okresy as $key => $okres) {
-                $datatable->addJoin('u.' . $nazwaParametru, 's' . $idx, Join::LEFT_JOIN, Join::WITH, 'u.id = s' . $idx . '.umowaId and s' . $idx . '.rok = ' . $cfg->getRok() . ' and s' . $idx . '.czyNajnowsza = 1 and s' . $idx . '.okres = :okres' . $key);
+                $this
+                    ->dataTable
+                    ->addJoin('u.' . $nazwaParametru, 's' . $idx, Join::LEFT_JOIN, Join::WITH, 'u.id = s' . $idx . '.umowaId and s' . $idx . '.rok = ' . $cfg->getRok() . ' and s' . $idx . '.czyNajnowsza = 1 and s' . $idx . '.okres = :okres' . $key)
+                ;
                 $idx++;
             }
         }
         
         $doctrineQueryBuilder->setParameters($params);
-
-        return $datatable;
     }
 
     /**
-     * Zwraca datatable parp
-     *
-     * @param Controller $parentObj
-     * @param Program $program
-     *
-     * @return object
+     * @return Datatable
      */
-    public function datatableParp($parentObj, Program $program)
+    public function datatableParp()
     {
         $config = $this->getParpKonfiguracja();
-        $datatable = $parentObj
-            ->get('datatable')
+        $program = $this->wyborProgramu->getProgram();
+        $fields = $this->getDatatableParpFields($config, $program);
+
+        $this
+            ->dataTable
             ->setDatatableId('dta-umowy')
             ->setEntity('SsfzBundle:Umowa', 'u')
-            ->setFields($this->getDatatableParpFields($config, $program))
+            ->setFields($fields)
         ;
-        
-        $datatable = $this->datatableParpAddJoins($datatable, $config, $program);
-        $datatable
+
+        $this->datatableParpAddJoins($config, $program);
+
+        $this
+            ->dataTable
             ->setRenderers($this->getDatatableParpRenderers($config, $program))
             ->setSearch(true)
             ->setOrder('b.nazwa', 'asc')
             ->setOrder('u.numer', 'asc')
         ;
 
-        return $datatable;
+        return $this->dataTable;
     }
 }

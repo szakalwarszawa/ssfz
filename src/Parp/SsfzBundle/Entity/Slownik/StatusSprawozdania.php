@@ -12,9 +12,24 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class StatusSprawozdania
 {
+    /**
+     * @var int
+     */
     const EDYCJA = 1;
+
+    /**
+     * @var int
+     */
     const PRZESLANO_DO_PARP = 2;
+    
+    /**
+     * @var int
+     */
     const ZAAKCEPTOWANE = 3;
+
+    /**
+     * @var int
+     */
     const POPRAWA = 4;
 
     /**

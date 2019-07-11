@@ -32,6 +32,7 @@ class SecurityController extends Controller
             'error'         => $error,
         ]);
     }
+
     /**
      * Operacje wykonywane przed wylogowaniem użytkownika.
      *
