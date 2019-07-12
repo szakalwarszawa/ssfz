@@ -64,8 +64,16 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ path('uzytkownik_lista_programow') }}">SSFZ ></a>
-                    {% if app.user and app.user.aktywnyProgram %}
+
+
+                    {% if app.user and app.user.czyPracownikParp() %}
+                        <a class="navbar-brand" href="{{ path('parp') }}">SSFZ ></a>
+                    {% else %}
+                        <a class="navbar-brand" href="{{ path('uzytkownik_lista_programow') }}">SSFZ ></a>
+                    {% endif %}
+
+
+                    {% if app.user and app.user.aktywnyProgram|default('') != '' %}
                         <a class="navbar-brand" href="{{ path('default') }}">{{ app.user.aktywnyProgram.nazwa }}</a>
                     {% endif %}
                 </div>
