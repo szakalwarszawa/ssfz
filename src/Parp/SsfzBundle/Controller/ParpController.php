@@ -66,7 +66,10 @@ class ParpController extends Controller
         
         $sprawozdanie = $repoSprawozdanie->find($idSprawozdania);
         if (null == $sprawozdanie) {
-            $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Nie znaleziono sprawozdania o podanym identyfikatorze.');
+            $this
+                ->get('ssfz.service.komunikaty_service')
+                ->bladKomunikat('Nie znaleziono sprawozdania o podanym identyfikatorze.')
+            ;
             return $this->redirectToRoute('parp');
         }
 
@@ -76,7 +79,7 @@ class ParpController extends Controller
                 'title'   => '',
                 'message' => 'Sprawozdanie nie ma statusu "przesłane". Ocena sprawozdania z innym statusem jest niemożliwa.'
             ]);
-            return $this->redirectToRoute('parp_sprawozdanie', array('idSprawozdania' => $idSprawozdania));
+            return $this->redirectToRoute('parp_sprawozdanie', ['idSprawozdania' => $idSprawozdania]);
         }
     
         if ($sprawozdanie->getStatus() === StatusSprawozdania::PRZESLANO_DO_PARP && null !== $sprawozdanie->getOceniajacyId() && $uzytkownik->getId() !== $sprawozdanie->getOceniajacyId()) {
@@ -92,7 +95,7 @@ class ParpController extends Controller
         $okresy = $this->getOkresySprawozdawcze();
         $formS = $this->createForm($klasaFormularza, $sprawozdanie, [
             'disabled' => true,
-            'okresy' => $okresy,
+            'lata'   => $okresy,
         ]);
         $przeplyw = $entityManager
             ->getRepository(PrzeplywFinansowy::class)
@@ -132,7 +135,6 @@ class ParpController extends Controller
                     'app'            => $this,
                 ];
                 break;
-
             case Program::FUNDUSZ_PORECZENIOWY_SPO_WKP_122:
                 $szablon = 'SsfzBundle:Sprawozdanie:poreczenioweEdycja.html.twig';
                 $blockParams = [
@@ -141,7 +143,6 @@ class ParpController extends Controller
                     'app'            => $this,
                 ];
                 break;
-
             default:
                 $szablon = 'SsfzBundle:Parp:sprawozdanieForm.html.twig';
                 $blockParams = [
@@ -161,11 +162,11 @@ class ParpController extends Controller
         $bodySprawozdanie = $templateContent->renderBlock('body', $blockParams);
 
         return $this->render('SsfzBundle:Parp:ocen.html.twig', [
-            'form'         => $form->createView(),
-            'sprawozdanie' => $sprawozdanie,
-            'formS'        => $formS->createView(),
-            'formP'        => $formP,
-            'program'      => $program,
+            'form'             => $form->createView(),
+            'sprawozdanie'     => $sprawozdanie,
+            'formS'            => $formS->createView(),
+            'formP'            => $formP,
+            'program'          => $program,
             'bodySprawozdanie' => $bodySprawozdanie,
         ]);
     }
@@ -201,10 +202,15 @@ class ParpController extends Controller
             'program'  => $sprawozdanie->getUmowa()->getBeneficjent()->getProgram(),
         ]);
         $przeplyw = null;
-        $przeplyw = $entityManager->getRepository(PrzeplywFinansowy::class)->findBy(array('sprawozdanieId' => $sprawozdanie->getId()));
+        $przeplyw = $entityManager
+            ->getRepository(PrzeplywFinansowy::class)
+            ->findBy(array('sprawozdanieId' => $sprawozdanie->getId()))
+        ;
         $formP = null;
         if (null != $przeplyw) {
-            $formP = $this->createForm(PrzeplywFinansowyType::class, $przeplyw[0], array('disabled' => true))->createView();
+            $formP = $this->createForm(PrzeplywFinansowyType::class, $przeplyw[0], [
+                'disabled' => true,
+            ])->createView();
         }
 
         return $this->render('SsfzBundle:Parp:sprawozdanie.html.twig', [
