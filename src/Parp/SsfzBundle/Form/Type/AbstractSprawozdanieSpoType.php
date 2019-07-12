@@ -356,7 +356,7 @@ class AbstractSprawozdanieSpoType extends AbstractType
             )
         );
 
-        $label = $this->czyPozyczkowy
+        $label = $czyPozyczkowy
             ? 'Data zatwierdzenia zasad gospodarowania funduszem pożyczkowym przez PARP'
             : 'Data zatwierdzenia zasad gospodarowania funduszem poręczeniowym przez PARP'
         ;
@@ -400,7 +400,7 @@ class AbstractSprawozdanieSpoType extends AbstractType
             )
         );
 
-        $label = $this->czyPozyczkowy
+        $label = $czyPozyczkowy
             ? 'Fundusz udziela pożyczek po analizie ryzyka niespłacenia i po ustanowieniu zabezpieczenia'
             : 'Poręczenia są udzielane po przeprowadzeniu analizy ryzyka'
         ;
@@ -421,7 +421,7 @@ class AbstractSprawozdanieSpoType extends AbstractType
             )
         );
 
-        $label = $this->czyPozyczkowy
+        $label = $czyPozyczkowy
             ? 'Pożyczki udzielane są przedsiębiorcom nie będącym w trudniej sytuacji'
             : 'Poręczenia udzielane są przedsiębiorcom nie będącym w trudniej sytuacji'
         ;
