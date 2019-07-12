@@ -22,13 +22,6 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 class SprawozdaniePoreczenioweType extends AbstractSprawozdanieSpoType
 {
     /**
-     * Informuje, czy dany formularz dotyczy pożyczek.
-     *
-     * @var bool
-     */
-    protected $czyPozyczkowy = false;
-
-    /**
      * Buduje formularz do wypełniania sprawozdania
      *
      * @param FormBuilderInterface $builder
@@ -151,8 +144,8 @@ class SprawozdaniePoreczenioweType extends AbstractSprawozdanieSpoType
     {
         parent::configureOptions($resolver);
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => SprawozdaniePoreczeniowe::class,
-        ));
+        ]);
     }
 }

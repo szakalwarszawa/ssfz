@@ -30,7 +30,7 @@ class SprawozdaniePozyczkoweType extends AbstractSprawozdanieSpoType
      * Buduje formularz do wypełniania sprawozdania
      *
      * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

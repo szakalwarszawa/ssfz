@@ -3,12 +3,13 @@
 namespace Test\Parp\SsfzBundle\Form\Type;
 
 use Symfony\Component\Form\Test\TypeTestCase;
-use Parp\SsfzBundle\Entity;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Parp\SsfzBundle\Entity\PrzeplywFinansowy;
+use Parp\SsfzBundle\Form\Type\PrzeplywFinansowyType;
 
 /**
  * Description of PrzeplywTypeTest
@@ -63,8 +64,8 @@ class PrzeplywFinansowyTypeTest extends TypeTestCase
             'liczbaDokonanychInwestycji' => 6,
         );
 
-        $form = $this->factory->create(\Parp\SsfzBundle\Form\Type\PrzeplywFinansowyType::class);
-        $object = new \Parp\SsfzBundle\Entity\PrzeplywFinansowy();
+        $form = $this->factory->create(PrzeplywFinansowyType::class);
+        $object = new PrzeplywFinansowy();
 
 
         $object->setSaldoPoczatkowe('0.00');
