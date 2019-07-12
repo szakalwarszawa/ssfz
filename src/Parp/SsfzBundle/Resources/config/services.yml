@@ -172,6 +172,7 @@ services:
 
     ssfz.service.wybor_programu:
         class: Parp\SsfzBundle\Service\WyborProgramuService
+        shared: true
         arguments:
             - '@doctrine.orm.entity_manager'
             - '@session'

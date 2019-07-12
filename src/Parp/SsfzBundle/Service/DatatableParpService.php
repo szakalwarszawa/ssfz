@@ -143,6 +143,7 @@ class DatatableParpService
                 break;
         }
         
+        file_put_contents('/home/luklub//projects/ssfz/development/ssfz/app/logs/zupa4.txt', $program->getId(), \FILE_APPEND);
         $this
             ->dataTable
             ->addJoin('u.beneficjent', 'b', Join::INNER_JOIN)
