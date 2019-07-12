@@ -20,13 +20,6 @@ use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
 class SprawozdaniePozyczkoweType extends AbstractSprawozdanieSpoType
 {
     /**
-     * Informuje, czy dany formularz dotyczy pożyczek.
-     *
-     * @var boolean
-     */
-    protected $czyPozyczkowy = true;
-
-    /**
      * Buduje formularz do wypełniania sprawozdania
      *
      * @param FormBuilderInterface $builder
