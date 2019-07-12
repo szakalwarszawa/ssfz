@@ -275,15 +275,29 @@ class ParpController extends Controller
      */
     public function portfelAction($idUmowy)
     {
-        $entityManager = $this->getDoctrine()->getManager();
-        $umowa = $entityManager->getRepository(Umowa::class)->find($idUmowy);
+        $umowa =  $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository(Umowa::class)
+            ->find($idUmowy)
+        ;
         if (null == $umowa) {
-            $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Nie znaleziono umowy o podanym identyfikatorze.');
+            $this
+                ->get('ssfz.service.komunikaty_service')
+                ->bladKomunikat('Nie znaleziono umowy o podanym identyfikatorze.')
+            ;
             return $this->redirectToRoute('parp');
         }
-        $this->get('ssfz.service.datatable_spolki_service')->datatableSpolki($this, $umowa->getId())->execute();
+
+        $this
+            ->get('ssfz.service.datatable_spolki_service')
+            ->datatableSpolki($this, $umowa->getId())->execute()
+        ;
         $spolka = new Spolka();
-        $form = $this->createForm(SpolkaType::class, $spolka, array('disabled' => true, 'narzedzia_svc' => $this->get('ssfz.service.narzedzia_service')));
+        $form = $this->createForm(SpolkaType::class, $spolka, [
+            'disabled'      => true,
+            'narzedzia_svc' => $this->get('ssfz.service.narzedzia_service'),
+        ]);
 
         return $this->render('SsfzBundle:Parp:portfel.html.twig', [
             'umowa'             => $umowa,

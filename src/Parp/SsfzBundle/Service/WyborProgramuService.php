@@ -45,12 +45,14 @@ class WyborProgramuService
     public function __construct(EntityManager $entityManager, Session $session)
     {
         $this->entityManager = $entityManager;
+    
+        // Zapewnienie, że sesja działa i przechowuje informację o wybranym programie.
+        $session->start();
+        if (! $session->has(self::SESSION_KEY) || null === $session->get(self::SESSION_KEY)) {
+            $session->set(self::SESSION_KEY, Program::PROGRAM_DOMYSLNY);
+        }
+
         $this->session = $session;
-
-        // Na wszelki wypadek. Włączy sesję tylko jeśli nie jest aktywna.
-        $this->session->start();
-
-        $this->setProgram(Program::PROGRAM_DOMYSLNY);
     }
 
     /**
