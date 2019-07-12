@@ -36,22 +36,22 @@ use Parp\SsfzBundle\Constraints\Nip;
 class AbstractSprawozdanieSpoType extends AbstractType
 {
     /**
-     * Informuje, czy dany formularz dotyczy pożyczek.
-     *
-     * @var boolean
-     */
-    protected $czyPozyczkowy = false;
-
-    /**
      * Buduje formularz do wypełniania sprawozdania
      *
      * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param array $options
      *
      * @SuppressWarnings("unused")
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $czyPozyczkowy = false;
+        if (array_key_exists('program', $options)) {
+            if (null !== $options['program']) {
+                $czyPozyczkowy = ($options['program'])->czyFunduszPozyczkowy();
+            }
+        }
+
         $builder->add(
             'nazwaFunduszu',
             TextType::class,
@@ -249,23 +249,19 @@ class AbstractSprawozdanieSpoType extends AbstractType
             )
         );
 
-        $builder->add(
-            'telStacjonarny',
-            TextType::class,
-            array(
-                'label' => 'Telefon stacjonarny',
-                'required' => false,
-                'attr' => array(
-                    'placeholder' => 'nr tel.',
-                    'maxlength' => 15,
-                ),
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    )
-                )
-            )
-        );
+        $builder->add('telStacjonarny', TextType::class, [
+            'label'       => 'Telefon stacjonarny',
+            'required'    => false,
+            'attr'        => [
+                'placeholder' => 'nr tel.',
+                'maxlength'   => 15,
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
         $builder->add(
             'telKomorkowy',
@@ -497,17 +493,6 @@ class AbstractSprawozdanieSpoType extends AbstractType
                 )
             )
         );
-
-//        $builder->add(
-//            'zapisz',
-//            SubmitType::class,
-//                array(
-//                    'label' => 'Zapisz',
-//                    'attr' => array(
-//                        'class' => 'btn btn-primary pull-right width-short',
-//                    ),
-//            )
-//        );
     }
 
     /**
@@ -517,10 +502,11 @@ class AbstractSprawozdanieSpoType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => AbstractSprawozdanieSpo::class,
+        $resolver->setDefaults([
+            'data_class'         => AbstractSprawozdanieSpo::class,
             'allow_extra_fields' => true,
-            'okresy' => null, // nieużywane, tylko dla zgodności ze starym kodem
-        ));
+            'lata'               => null,
+            'program'            => null,
+        ]);
     }
 }
