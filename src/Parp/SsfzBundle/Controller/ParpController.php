@@ -95,7 +95,8 @@ class ParpController extends Controller
         $okresy = $this->getOkresySprawozdawcze();
         $formS = $this->createForm($klasaFormularza, $sprawozdanie, [
             'disabled' => true,
-            'lata'   => $okresy,
+            'program'  => $program,
+            'lata'     => $okresy,
         ]);
         $przeplyw = $entityManager
             ->getRepository(PrzeplywFinansowy::class)
