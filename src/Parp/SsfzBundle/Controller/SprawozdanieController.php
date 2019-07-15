@@ -670,7 +670,7 @@ class SprawozdanieController extends Controller
             ->guess($sprawozdanie)
         ;
 
-        return $this->render('SsfzBundle:Sprawozdanie:listaSpo.html.twig', [
+        return $this->render('SsfzBundle:Sprawozdanie:lista_spo.html.twig', [
             'umowa'            => $umowa,
             'typ_sprawozdania' => $typSprawozdania,
             'lista_sprawozdan' => $listaSprawozdan,
