@@ -1,0 +1,909 @@
+{% block dane_poreczen_odczyt %}
+    <div class="panel panel-default">
+        <div class="panel-heading">Dane poręczeń</div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <hr />
+
+                    <h4>Dane dotyczące udzielonych poręczeń w sprawozdawanym okresie</h4>
+
+                    <div id="table_1">
+                        <table class="table table-bordered table-condensed table-striped">
+                            <tr>
+                                <td rowspan="2" class="info guarantee-range col-md-1"></td>
+                                <td colspan="3" class="text-center col-md-3"><strong>Według typu przedsiębiorstwa</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td rowspan="1" class="text-center">Mikro</td>
+                                <td rowspan="1" class="text-center">Małe</td>
+                                <td rowspan="1" class="text-center">Średnie</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="4" class="info text-center"><strong>Liczba poręczeń (szt.)</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">do 50 000 zł</td>
+                                <td class="text-center" data-vertical-group="1" data-horizontal-group="1">{{ dane_poreczen.liczbaPoreczenDo50000PlnDlaMikroPrzedsiebiorstw|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="2" data-horizontal-group="1">{{ dane_poreczen.liczbaPoreczenDo50000PlnDlaMalychPrzedsiebiorstw|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="3" data-horizontal-group="1">{{ dane_poreczen.liczbaPoreczenDo50000PlnDlaSrednichPrzedsiebiorstw|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">od 50 001 zł<br />do 100 000 zł</td>
+                                <td class="text-center" data-vertical-group="1" data-horizontal-group="1">{{ dane_poreczen.liczbaPoreczenOd50001Do100000PlnDlaMikroPrzedsiebiorstw|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="2" data-horizontal-group="1">{{ dane_poreczen.liczbaPoreczenOd50001Do100000PlnDlaMalychPrzedsiebiorstw|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="3" data-horizontal-group="1">{{ dane_poreczen.liczbaPoreczenOd50001Do100000PlnDlaSrednichPrzedsiebiorstw|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">od 100 001 zł<br />do 500 000 zł</td>
+                                <td class="text-center" data-vertical-group="1" data-horizontal-group="1">{{ dane_poreczen.liczbaPoreczenOd100001Do500000PlnDlaMikroPrzedsiebiorstw|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="2" data-horizontal-group="1">{{ dane_poreczen.liczbaPoreczenOd100001Do500000PlnDlaMalychPrzedsiebiorstw|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="3" data-horizontal-group="1">{{ dane_poreczen.liczbaPoreczenOd100001Do500000PlnDlaSrednichPrzedsiebiorstw|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">od 500 001 zł</td>
+                                <td class="text-center" data-vertical-group="1" data-horizontal-group="1">{{ dane_poreczen.liczbaPoreczenOd500001PlnDlaMikroPrzedsiebiorstw|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="2" data-horizontal-group="1">{{ dane_poreczen.liczbaPoreczenOd500001PlnDlaMalychPrzedsiebiorstw|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="3" data-horizontal-group="1">{{ dane_poreczen.liczbaPoreczenOd500001PlnDlaSrednichPrzedsiebiorstw|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range"><strong>Suma:</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="1">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="2">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="3">0</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="4" class="info text-center"><strong>Wartość poręczeń (zł)</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">do 50 000 zł</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="18" data-horizontal-group="5">{{ dane_poreczen.kwotaPoreczenDo50000PlnDlaMikroPrzedsiebiorstw|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="19" data-horizontal-group="5">{{ dane_poreczen.kwotaPoreczenDo50000PlnDlaMalychPrzedsiebiorstw|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="20" data-horizontal-group="5">{{ dane_poreczen.kwotaPoreczenDo50000PlnDlaSrednichPrzedsiebiorstw|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">od 50 001 zł<br />do 100 000 zł</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="18" data-horizontal-group="5">{{ dane_poreczen.kwotaPoreczenOd50001Do100000PlnDlaMikroPrzedsiebiorstw|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="19" data-horizontal-group="5">{{ dane_poreczen.kwotaPoreczenOd50001Do100000PlnDlaMalychPrzedsiebiorstw|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="20" data-horizontal-group="5">{{ dane_poreczen.kwotaPoreczenOd50001Do100000PlnDlaSrednichPrzedsiebiorstw|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">od 100 001 zł<br />do 500 000 zł</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="18" data-horizontal-group="5">{{ dane_poreczen.kwotaPoreczenOd100001Do500000PlnDlaMikroPrzedsiebiorstw|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="19" data-horizontal-group="5">{{ dane_poreczen.kwotaPoreczenOd100001Do500000PlnDlaMalychPrzedsiebiorstw|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="20" data-horizontal-group="5">{{ dane_poreczen.kwotaPoreczenOd100001Do500000PlnDlaSrednichPrzedsiebiorstw|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">od 500 001 zł</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="18" data-horizontal-group="5">{{ dane_poreczen.kwotaPoreczenOd500001PlnDlaMikroPrzedsiebiorstw|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="19" data-horizontal-group="5">{{ dane_poreczen.kwotaPoreczenOd500001PlnDlaMalychPrzedsiebiorstw|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="20" data-horizontal-group="5">{{ dane_poreczen.kwotaPoreczenOd500001PlnDlaSrednichPrzedsiebiorstw|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range"><strong>Suma:</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="18">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="19">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="20">0</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div id="table_2">
+                        <table class="table table-bordered table-condensed table-striped">
+                            <tr>
+                                <td rowspan="3" class="info guarantee-range col-md-1"></td>
+                                <td colspan="6" class="text-center col-md-6"><strong>Według przeznaczenia</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td rowspan="2" class="text-center">kredyt obrotowy</td>
+                                <td rowspan="2" class="text-center">kredyt inwestycyjny</td>
+                                <td rowspan="2" class="text-center">pożyczka obrotowa</td>
+                                <td rowspan="2" class="text-center">pożyczka inwestycyjna</td>
+                                <td colspan="2" class="text-center">pozostale</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center"></td>
+                                <td class="text-center">w tym wadia</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="7" class="info text-center"><strong>Liczba poręczeń (szt.)</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">do 50 000 zł</td>
+                                <td class="text-center" data-vertical-group="4" data-horizontal-group="2">{{ dane_poreczen.liczbaPoreczenNaKredytObrotowyDo50000Pln|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="5" data-horizontal-group="2">{{ dane_poreczen.liczbaPoreczenNaKredytInwestycyjnyDo50000Pln|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="6" data-horizontal-group="2">{{ dane_poreczen.liczbaPoreczenNaPozyczkeObrotowaDo50000Pln|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="7" data-horizontal-group="2">{{ dane_poreczen.liczbaPoreczenNaPozyczkeInwestycyjnaDo50000Pln|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="8" data-horizontal-group="2">{{ dane_poreczen.liczbaPoreczenPozostalychDo50000Pln|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="9" data-horizontal-group="2">{{ dane_poreczen.liczbaWadiowPoreczenPozostalychDo50000Pln|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">od 50 001 zł<br />do 100 000 zł</td>
+                                <td class="text-center" data-vertical-group="4" data-horizontal-group="2">{{ dane_poreczen.liczbaPoreczenNaKredytObrotowyOd50001Do100000Pln|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="5" data-horizontal-group="2">{{ dane_poreczen.liczbaPoreczenNaKredytInwestycyjnyOd50001Do100000Pln|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="6" data-horizontal-group="2">{{ dane_poreczen.liczbaPoreczenNaPozyczkeObrotowaOd50001Do100000Pln|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="7" data-horizontal-group="2">{{ dane_poreczen.liczbaPoreczenNaPozyczkeInwestycyjnaOd50001Do100000Pln|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="8" data-horizontal-group="2">{{ dane_poreczen.liczbaPoreczenPozostalychOd50001Do100000Pln|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="9" data-horizontal-group="2">{{ dane_poreczen.liczbaWadiowPoreczenPozostalychOd50001Do100000Pln|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">od 100 001 zł<br />do 500 000 zł</td>
+                                <td class="text-center" data-vertical-group="4" data-horizontal-group="2">{{ dane_poreczen.liczbaPoreczenNaKredytObrotowyOd100001Do500000Pln|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="5" data-horizontal-group="2">{{ dane_poreczen.liczbaPoreczenNaKredytInwestycyjnyOd100001Do500000Pln|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="6" data-horizontal-group="2">{{ dane_poreczen.liczbaPoreczenNaPozyczkeObrotowaOd100001Do500000Pln|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="7" data-horizontal-group="2">{{ dane_poreczen.liczbaPoreczenNaPozyczkeInwestycyjnaOd100001Do500000Pln|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="8" data-horizontal-group="2">{{ dane_poreczen.liczbaPoreczenPozostalychOd100001Do500000Pln|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="9" data-horizontal-group="2">{{ dane_poreczen.liczbaWadiowPoreczenPozostalychOd100001Do500000Pln|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">od 500 001 zł</td>
+                                <td class="text-center" data-vertical-group="4" data-horizontal-group="2">{{ dane_poreczen.liczbaPoreczenNaKredytObrotowyOd500001Pln|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="5" data-horizontal-group="2">{{ dane_poreczen.liczbaPoreczenNaKredytInwestycyjnyOd500001Pln|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="6" data-horizontal-group="2">{{ dane_poreczen.liczbaPoreczenNaPozyczkeObrotowaOd500001Pln|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="7" data-horizontal-group="2">{{ dane_poreczen.liczbaPoreczenNaPozyczkeInwestycyjnaOd500001Pln|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="8" data-horizontal-group="2">{{ dane_poreczen.liczbaPoreczenPozostalychOd500001Pln|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="9" data-horizontal-group="2">{{ dane_poreczen.liczbaWadiowPoreczenPozostalychOd500001Pln|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range"><strong>Suma:</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="4">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="5">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="6">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="7">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="8">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="9">0</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="7" class="info text-center"><strong>Wartość poręczeń (zł)</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">do 50 000 zł</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="21" data-horizontal-group="6">{{ dane_poreczen.kwotaPoreczenNaKredytObrotowyDo50000Pln|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="22" data-horizontal-group="6">{{ dane_poreczen.kwotaPoreczenNaKredytInwestycyjnyDo50000Pln|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="23" data-horizontal-group="6">{{ dane_poreczen.kwotaPoreczenNaPozyczkeObrotowaDo50000Pln|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="24" data-horizontal-group="6">{{ dane_poreczen.kwotaPoreczenNaPozyczkeInwestycyjnaDo50000Pln|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="25" data-horizontal-group="6">{{ dane_poreczen.kwotaPoreczenPozostalychDo50000Pln|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="26" data-horizontal-group="6">{{ dane_poreczen.kwotaWadiowPoreczenPozostalychDo50000Pln|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">od 50 001 zł<br />do 100 000 zł</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="21" data-horizontal-group="6">{{ dane_poreczen.kwotaPoreczenNaKredytObrotowyOd50001Do100000Pln|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="22" data-horizontal-group="6">{{ dane_poreczen.kwotaPoreczenNaKredytInwestycyjnyOd50001Do100000Pln|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="23" data-horizontal-group="6">{{ dane_poreczen.kwotaPoreczenNaPozyczkeObrotowaOd50001Do100000Pln|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="24" data-horizontal-group="6">{{ dane_poreczen.kwotaPoreczenNaPozyczkeInwestycyjnaOd50001Do100000Pln|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="25" data-horizontal-group="6">{{ dane_poreczen.kwotaPoreczenPozostalychOd50001Do100000Pln|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="26" data-horizontal-group="6">{{ dane_poreczen.kwotaWadiowPoreczenPozostalychOd50001Do100000Pln|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">od 100 001 zł<br />do 500 000 zł</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="21" data-horizontal-group="6">{{ dane_poreczen.kwotaPoreczenNaKredytObrotowyOd100001Do500000Pln|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="22" data-horizontal-group="6">{{ dane_poreczen.kwotaPoreczenNaKredytInwestycyjnyOd100001Do500000Pln|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="23" data-horizontal-group="6">{{ dane_poreczen.kwotaPoreczenNaPozyczkeObrotowaOd100001Do500000Pln|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="24" data-horizontal-group="6">{{ dane_poreczen.kwotaPoreczenNaPozyczkeInwestycyjnaOd100001Do500000Pln|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="25" data-horizontal-group="6">{{ dane_poreczen.kwotaPoreczenPozostalychOd100001Do500000Pln|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="26" data-horizontal-group="6">{{ dane_poreczen.kwotaWadiowPoreczenPozostalychOd100001Do500000Pln|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">od 500 001 zł</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="21" data-horizontal-group="6">{{ dane_poreczen.kwotaPoreczenNaKredytObrotowyOd500001Pln|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="22" data-horizontal-group="6">{{ dane_poreczen.kwotaPoreczenNaKredytInwestycyjnyOd500001Pln|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="23" data-horizontal-group="6">{{ dane_poreczen.kwotaPoreczenNaPozyczkeObrotowaOd500001Pln|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="24" data-horizontal-group="6">{{ dane_poreczen.kwotaPoreczenNaPozyczkeInwestycyjnaOd500001Pln|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="26" data-horizontal-group="6">{{ dane_poreczen.kwotaWadiowPoreczenPozostalychOd500001Pln|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range"><strong>Suma:</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="21">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="22">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="23">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="24">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="25">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="26">0</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div id="table_3">
+                        <table class="table table-bordered table-condensed table-striped">
+                            <tr>
+                                <td rowspan="2" class="info guarantee-range col-md-1"></td>
+                                <td colspan="5" class="text-center col-md-5"><strong>Według działania pożyczkobiorcy</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td rowspan="1" class="text-center">produkcja</td>
+                                <td rowspan="1" class="text-center">handel</td>
+                                <td rowspan="1" class="text-center">usługi</td>
+                                <td rowspan="1" class="text-center">budownictwo</td>
+                                <td rowspan="1" class="text-center">inne</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="6" class="info text-center"><strong>Liczba poręczeń (szt.)</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">do 50 000 zł</td>
+                                <td class="text-center" data-vertical-group="10" data-horizontal-group="3">{{ dane_poreczen.liczbaPoreczenDo50000PlnNaDzialaniaProdukcyjne|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="11" data-horizontal-group="3">{{ dane_poreczen.liczbaPoreczenDo50000PlnNaDzialaniaHandlowe|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="12" data-horizontal-group="3">{{ dane_poreczen.liczbaPoreczenDo50000PlnNaDzialaniaUslugowe|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="13" data-horizontal-group="3">{{ dane_poreczen.liczbaPoreczenDo50000PlnNaDzialaniaBudownicze|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="14" data-horizontal-group="3">{{ dane_poreczen.liczbaPoreczenDo50000PlnNaDzialaniaInne|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">od 50 001 zł<br />do 100 000 zł</td>
+                                <td class="text-center" data-vertical-group="10" data-horizontal-group="3">{{ dane_poreczen.liczbaPoreczenOd50001Do100000PlnNaDzialaniaProdukcyjne|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="11" data-horizontal-group="3">{{ dane_poreczen.liczbaPoreczenOd50001Do100000PlnNaDzialaniaHandlowe|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="12" data-horizontal-group="3">{{ dane_poreczen.liczbaPoreczenOd50001Do100000PlnNaDzialaniaUslugowe|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="13" data-horizontal-group="3">{{ dane_poreczen.liczbaPoreczenOd50001Do100000PlnNaDzialaniaBudownicze|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="14" data-horizontal-group="3">{{ dane_poreczen.liczbaPoreczenOd50001Do100000PlnNaDzialaniaInne|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">od 100 001 zł<br />do 500 000 zł</td>
+                                <td class="text-center" data-vertical-group="10" data-horizontal-group="3">{{ dane_poreczen.liczbaPoreczenOd100001Do500000PlnNaDzialaniaProdukcyjne|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="11" data-horizontal-group="3">{{ dane_poreczen.liczbaPoreczenOd100001Do500000PlnNaDzialaniaHandlowe|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="12" data-horizontal-group="3">{{ dane_poreczen.liczbaPoreczenOd100001Do500000PlnNaDzialaniaUslugowe|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="13" data-horizontal-group="3">{{ dane_poreczen.liczbaPoreczenOd100001Do500000PlnNaDzialaniaBudownicze|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="14" data-horizontal-group="3">{{ dane_poreczen.liczbaPoreczenOd100001Do500000PlnNaDzialaniaInne|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">od 500 001 zł</td>
+                                <td class="text-center" data-vertical-group="10" data-horizontal-group="3">{{ dane_poreczen.liczbaPoreczenOd500001PlnNaDzialaniaProdukcyjne|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="11" data-horizontal-group="3">{{ dane_poreczen.liczbaPoreczenOd500001PlnNaDzialaniaHandlowe|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="12" data-horizontal-group="3">{{ dane_poreczen.liczbaPoreczenOd500001PlnNaDzialaniaUslugowe|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="13" data-horizontal-group="3">{{ dane_poreczen.liczbaPoreczenOd500001PlnNaDzialaniaBudownicze|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="14" data-horizontal-group="3">{{ dane_poreczen.liczbaPoreczenOd500001PlnNaDzialaniaInne|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range"><strong>Suma:</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="10">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="11">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="12">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="13">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="14">0</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="6" class="info text-center"><strong>Wartość poręczeń (zł)</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">do 50 000 zł</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="27" data-horizontal-group="7">{{ dane_poreczen.kwotaPoreczenDo50000PlnNaDzialaniaProdukcyjne|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="28" data-horizontal-group="7">{{ dane_poreczen.kwotaPoreczenDo50000PlnNaDzialaniaHandlowe|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="29" data-horizontal-group="7">{{ dane_poreczen.kwotaPoreczenDo50000PlnNaDzialaniaUslugowe|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="30" data-horizontal-group="7">{{ dane_poreczen.kwotaPoreczenDo50000PlnNaDzialaniaBudownicze|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="31" data-horizontal-group="7">{{ dane_poreczen.kwotaPoreczenDo50000PlnNaDzialaniaInne|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">od 50 001 zł<br />do 100 000 zł</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="27" data-horizontal-group="7">{{ dane_poreczen.kwotaPoreczenOd50001Do100000PlnNaDzialaniaProdukcyjne|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="28" data-horizontal-group="7">{{ dane_poreczen.kwotaPoreczenOd50001Do100000PlnNaDzialaniaHandlow|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="29" data-horizontal-group="7">{{ dane_poreczen.kwotaPoreczenOd50001Do100000PlnNaDzialaniaUslugowe|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="30" data-horizontal-group="7">{{ dane_poreczen.kwotaPoreczenOd50001Do100000PlnNaDzialaniaBudownicze|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="31" data-horizontal-group="7">{{ dane_poreczen.kwotaPoreczenOd50001Do100000PlnNaDzialaniaInne|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">od 100 001 zł<br />do 500 000 zł</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="27" data-horizontal-group="7">{{ dane_poreczen.kwotaPoreczenOd100001Do500000PlnNaDzialaniaProdukcyjne|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="28" data-horizontal-group="7">{{ dane_poreczen.kwotaPoreczenOd100001Do500000PlnNaDzialaniaHandlowe|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="29" data-horizontal-group="7">{{ dane_poreczen.kwotaPoreczenOd100001Do500000PlnNaDzialaniaUslugowe|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="30" data-horizontal-group="7">{{ dane_poreczen.kwotaPoreczenOd100001Do500000PlnNaDzialaniaBudownicze|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="31" data-horizontal-group="7">{{ dane_poreczen.kwotaPoreczenOd100001Do500000PlnNaDzialaniaInne|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">od 500 001 zł</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="27" data-horizontal-group="7">{{ dane_poreczen.kwotaPoreczenOd500001PlnNaDzialaniaProdukcyjne|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="28" data-horizontal-group="7">{{ dane_poreczen.kwotaPoreczenOd500001PlnNaDzialaniaHandlowe|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="29" data-horizontal-group="7">{{ dane_poreczen.kwotaPoreczenOd500001PlnNaDzialaniaUslugowe|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="30" data-horizontal-group="7">{{ dane_poreczen.kwotaPoreczenOd500001PlnNaDzialaniaBudownicze|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="31" data-horizontal-group="7">{{ dane_poreczen.kwotaPoreczenOd500001PlnNaDzialaniaInne|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range"><strong>Suma:</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="27">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="28">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="29">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="30">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="31">0</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div id="table_4">
+                        <table class="table table-bordered table-condensed table-striped">
+                            <tr>
+                                <td rowspan="2" class="info guarantee-range col-md-1"></td>
+                                <td colspan="3" class="text-center col-md-3"><strong>Poręczenia udzielone</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td rowspan="1" class="text-center">bankom</td>
+                                <td rowspan="1" class="text-center">funduszom pożyczkowym</td>
+                                <td rowspan="1" class="text-center">innym podmiotom</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="4" class="info text-center"><strong>Liczba poręczeń (szt.)</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">do 50 000 zł</td>
+                                <td class="text-center" data-vertical-group="15" data-horizontal-group="4">{{ dane_poreczen.liczbaPoreczenDo50000PlnDlaBankow|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="16" data-horizontal-group="4">{{ dane_poreczen.liczbaPoreczenDo50000PlnDlaFunduszyPozyczkowych|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="17" data-horizontal-group="4">{{ dane_poreczen.liczbaPoreczenDo50000PlnDlaInnychPodmiotow|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">od 50 001 zł<br />do 100 000 zł</td>
+                                <td class="text-center" data-vertical-group="15" data-horizontal-group="4">{{ dane_poreczen.liczbaPoreczenOd50001Do100000PlnDlaBankow|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="16" data-horizontal-group="4">{{ dane_poreczen.liczbaPoreczenOd50001Do100000PlnDlaFunduszyPozyczkowych|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="17" data-horizontal-group="4">{{ dane_poreczen.liczbaPoreczenOd50001Do100000PlnDlaInnychPodmiotow|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">od 100 001 zł<br />do 500 000 zł</td>
+                                <td class="text-center" data-vertical-group="15" data-horizontal-group="4">{{ dane_poreczen.liczbaPoreczenOd100001Do500000PlnDlaBankow|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="16" data-horizontal-group="4">{{ dane_poreczen.liczbaPoreczenOd100001Do500000PlnDlaFunduszyPozyczkowych|default('0') }}</td>>
+                                <td class="text-center" data-vertical-group="17" data-horizontal-group="4">{{ dane_poreczen.liczbaPoreczenOd100001Do500000PlnDlaInnychPodmiotow|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">od 500 001 zł</td>
+                                <td class="text-center" data-vertical-group="15" data-horizontal-group="4">{{ dane_poreczen.liczbaPoreczenOd500001PlnDlaBankow|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="16" data-horizontal-group="4">{{ dane_poreczen.liczbaPoreczenOd500001PlnDlaFunduszyPozyczkowych|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="17" data-horizontal-group="4">{{ dane_poreczen.liczbaPoreczenOd500001PlnDlaInnychPodmiotow|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range"><strong>Suma:</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="15">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="16">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="17">0</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="4" class="info text-center"><strong>Wartość poręczeń (zł)</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">do 50 000 zł</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="32" data-horizontal-group="8">{{ dane_poreczen.kwotaPoreczenDo50000PlnDlaBankow|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="33" data-horizontal-group="8">{{ dane_poreczen.kwotaPoreczenDo50000PlnDlaFunduszyPozyczkowych|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="34" data-horizontal-group="8">{{ dane_poreczen.kwotaPoreczenDo50000PlnDlaInnychPodmiotow|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">od 50 001 zł<br />do 100 000 zł</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="32" data-horizontal-group="8">{{ dane_poreczen.kwotaPoreczenOd50001Do100000PlnDlaBankow|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="33" data-horizontal-group="8">{{ dane_poreczen.kwotaPoreczenOd50001Do100000PlnDlaFunduszyPozyczkowych|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="34" data-horizontal-group="8">{{ dane_poreczen.kwotaPoreczenOd50001Do100000PlnDlaInnychPodmiotow|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">od 100 001 zł<br />do 500 000 zł</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="32" data-horizontal-group="8">{{ dane_poreczen.kwotaPoreczenOd100001Do500000PlnDlaBankow|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="33" data-horizontal-group="8">{{ dane_poreczen.kwotaPoreczenOd100001Do500000PlnDlaFunduszyPozyczkowych|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="34" data-horizontal-group="8">{{ dane_poreczen.kwotaPoreczenOd100001Do500000PlnDlaInnychPodmiotow|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">od 500 001 zł</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="32" data-horizontal-group="8">{{ dane_poreczen.kwotaPoreczenOd500001PlnDlaBankow|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="33" data-horizontal-group="8">{{ dane_poreczen.kwotaPoreczenOd500001PlnDlaFunduszyPozyczkowych|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="34" data-horizontal-group="8">{{ dane_poreczen.kwotaPoreczenOd500001PlnDlaInnychPodmiotow|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range"><strong>Suma:</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="32">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="33">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="34">0</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <hr />
+
+                    <h4>Dane dotyczące aktywnych poręczeń w sprawozdawanym okresie</h4>
+
+                    <div id="table_5">
+                        <table class="table table-bordered table-condensed table-striped">
+                            <tr>
+                                <td rowspan="2" class="info guarantee-range col-md-1"></td>
+                                <td colspan="3" class="text-center col-md-3"><strong>Według typu przedsiębiorstwa</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td rowspan="1" class="text-center">Mikro</td>
+                                <td rowspan="1" class="text-center">Małe</td>
+                                <td rowspan="1" class="text-center">Średnie</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="4" class="info text-center"><strong>Liczba poręczeń (szt.)</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych</td>
+                                <td class="text-center" data-vertical-group="36" data-horizontal-group="10">{{ dane_poreczen.liczbaPoreczenWyplaconychDlaMikroPrzedsiebiorstw|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="37" data-horizontal-group="10">{{ dane_poreczen.liczbaPoreczenWyplaconychDlaMalychPrzedsiebiorstw|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="38" data-horizontal-group="10">{{ dane_poreczen.liczbaPoreczenWyplaconychDlaSrednichPrzedsiebiorstw|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych i częściowo spłaconych</td>
+                                <td class="text-center" data-vertical-group="36" data-horizontal-group="10">{{ dane_poreczen.liczbaPoreczenWyplaconychCzesciowoSplaconychDlaMikroPrzedsiebiorstw|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="37" data-horizontal-group="10">{{ dane_poreczen.liczbaPoreczenWyplaconychCzesciowoSplaconychDlaMalychPrzedsiebiorstw|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="38" data-horizontal-group="10">{{ dane_poreczen.liczbaPoreczenWyplaconychCzesciowoSplaconychDlaSrednichPrzedsiebiorstw|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych i całkowicie spłaconych</td>
+                                <td class="text-center" data-vertical-group="36" data-horizontal-group="10">{{ dane_poreczen.liczbaPoreczenWyplaconychCalkowicieSplaconychDlaMikroPrzedsiebiorstw|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="37" data-horizontal-group="10">{{ dane_poreczen.liczbaPoreczenWyplaconychCalkowicieSplaconychDlaMalychPrzedsiebiorstw|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="38" data-horizontal-group="10">{{ dane_poreczen.liczbaPoreczenWyplaconychCalkowicieSplaconychDlaSrednichPrzedsiebiorstw|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych i nie odzyskanych</td>
+                                <td class="text-center" data-vertical-group="36" data-horizontal-group="10">{{ dane_poreczen.liczbaPoreczenWyplaconychNieodzyskanychhDlaMikroPrzedsiebiorstw|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="37" data-horizontal-group="10">{{ dane_poreczen.liczbaPoreczenWyplaconychNieodzyskanychhDlaMalychPrzedsiebiorstw|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="38" data-horizontal-group="10">{{ dane_poreczen.liczbaPoreczenWyplaconychNieodzyskanychhDlaSrednichPrzedsiebiorstw|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range"><strong>Suma:</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="36">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="37">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="38">0</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="18" class="info text-center"><strong>Wartość poręczeń (zł)</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="53" data-horizontal-group="10">{{ dane_poreczen.kwotaPoreczenWyplaconychDlaMikroPrzedsiebiorstw|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="54" data-horizontal-group="10">{{ dane_poreczen.kwotaPoreczenWyplaconychDlaMalychPrzedsiebiorstw|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="55" data-horizontal-group="10">{{ dane_poreczen.kwotaPoreczenWyplaconychDlaSrednichPrzedsiebiorstw|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych i częściowo spłaconych</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="53" data-horizontal-group="10">{{ dane_poreczen.kwotaPoreczenWyplaconychCzesciowoSplaconychDlaMikroPrzedsiebiorstw|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="54" data-horizontal-group="10">{{ dane_poreczen.kwotaPoreczenWyplaconychCzesciowoSplaconychDlaMalychPrzedsiebiorstw|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="55" data-horizontal-group="10">{{ dane_poreczen.kwotaPoreczenWyplaconychCzesciowoSplaconychDlaSrednichPrzedsiebiorstw|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych i całkowicie spłaconych</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="53" data-horizontal-group="10">{{ dane_poreczen.kwotaPoreczenWyplaconychCalkowicieSplaconychDlaMikroPrzedsiebiorstw|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="54" data-horizontal-group="10">{{ dane_poreczen.kwotaPoreczenWyplaconychCalkowicieSplaconychDlaMalychPrzedsiebiorstw|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="55" data-horizontal-group="10">{{ dane_poreczen.kwotaPoreczenWyplaconychCalkowicieSplaconychDlaSrednichPrzedsiebiorstw|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych i nie odzyskanych</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="53" data-horizontal-group="10">{{ dane_poreczen.kwotaPoreczenWyplaconychNieodzyskanychhDlaMikroPrzedsiebiorstw|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="54" data-horizontal-group="10">{{ dane_poreczen.kwotaPoreczenWyplaconychNieodzyskanychhDlaMalychPrzedsiebiorstw|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="55" data-horizontal-group="10">{{ dane_poreczen.kwotaPoreczenWyplaconychNieodzyskanychhDlaSrednichPrzedsiebiorstw|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range"><strong>Suma:</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="53">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="54">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="55">0</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div id="table_6">
+                        <table class="table table-bordered table-condensed table-striped">
+                            <tr>
+                                <td rowspan="3" class="info guarantee-range col-md-1"></td>
+                                <td colspan="6" class="text-center col-md-6"><strong>Według przeznaczenia</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td rowspan="2" class="text-center">kredyt obrotowy</td>
+                                <td rowspan="2" class="text-center">kredyt inwestycyjny</td>
+                                <td rowspan="2" class="text-center">pożyczka obrotowa</td>
+                                <td rowspan="2" class="text-center">pożyczka inwestycyjna</td>
+                                <td colspan="2" class="text-center">pozostale</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center"></td>
+                                <td class="text-center">w tym wadia</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="7" class="info text-center"><strong>Liczba poręczeń (szt.)</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych</td>
+                                <td class="text-center" data-vertical-group="39" data-horizontal-group="11">{{ dane_poreczen.liczbaPoreczenWyplaconychNaKredytObrotowy|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="40" data-horizontal-group="11">{{ dane_poreczen.liczbaPoreczenWyplaconychNaKredytInwestycyjny|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="41" data-horizontal-group="11">{{ dane_poreczen.liczbaPoreczenWyplaconychNaPozyczkeObrotowa|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="42" data-horizontal-group="11">{{ dane_poreczen.liczbaPoreczenWyplaconychNaPozyczkeInwestycyjna|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="43" data-horizontal-group="11">{{ dane_poreczen.liczbaPoreczenPozostalychWyplaconych|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="44" data-horizontal-group="11">{{ dane_poreczen.liczbaWadiowPoreczenPozostalychWyplaconych|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych i częściowo spłaconych</td>
+                                <td class="text-center" data-vertical-group="39" data-horizontal-group="11">{{ dane_poreczen.liczbaPoreczenWyplaconychCzesciowoSplaconychNaKredytObrotowy|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="40" data-horizontal-group="11">{{ dane_poreczen.liczbaPoreczenWyplaconychCzesciowoSplaconychNaKredytInwestycyjny|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="41" data-horizontal-group="11">{{ dane_poreczen.liczbaPoreczenWyplaconychCzesciowoSplaconychNaPozyczkeObrotowa|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="42" data-horizontal-group="11">{{ dane_poreczen.liczbaPoreczenWyplaconychCzesciowoSplaconychNaPozyczkeInwestycyjna|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="43" data-horizontal-group="11">{{ dane_poreczen.liczbaPoreczenPozostalychWyplaconychCzesciowoSplaconych|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="44" data-horizontal-group="11">{{ dane_poreczen.liczbaWadiowPoreczenPozostalychWyplaconychCzesciowoSplaconych|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych i całkowicie spłaconych</td>
+                                <td class="text-center" data-vertical-group="39" data-horizontal-group="11">{{ dane_poreczen.liczbaPoreczenWyplaconychCalkowicieSplaconychNaKredytObrotowy|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="40" data-horizontal-group="11">{{ dane_poreczen.liczbaPoreczenWyplaconychCalkowicieSplaconychNaKredytInwestycyjny|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="41" data-horizontal-group="11">{{ dane_poreczen.liczbaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeObrotowa|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="42" data-horizontal-group="11">{{ dane_poreczen.liczbaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeInwestycyjna|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="43" data-horizontal-group="11">{{ dane_poreczen.liczbaPoreczenPozostalychWyplaconychCalkowicieSplaconych|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="44" data-horizontal-group="11">{{ dane_poreczen.liczbaWadiowPoreczenPozostalychWyplaconychCalkowicieSplaconych|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych i nie odzyskanych</td>
+                                <td class="text-center" data-vertical-group="39" data-horizontal-group="11">{{ dane_poreczen.liczbaPoreczenWyplaconychNieodzyskanychNaKredytObrotowy|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="40" data-horizontal-group="11">{{ dane_poreczen.liczbaPoreczenWyplaconychNieodzyskanychNaKredytInwestycyjny|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="41" data-horizontal-group="11">{{ dane_poreczen.liczbaPoreczenWyplaconychNieodzyskanychNaPozyczkeObrotowa|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="42" data-horizontal-group="11">{{ dane_poreczen.liczbaPoreczenWyplaconychNieodzyskanychNaPozyczkeInwestycyjna|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="43" data-horizontal-group="11">{{ dane_poreczen.liczbaPoreczenPozostalychWyplaconychNieodzyskanych|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="44" data-horizontal-group="11">{{ dane_poreczen.liczbaWadiowPoreczenPozostalychWyplaconychNieodzyskanych|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range"><strong>Suma:</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="39">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="40">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="41">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="42">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="43">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="44">0</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="18" class="info text-center"><strong>Wartość poręczeń (zł)</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="56" data-horizontal-group="11">{{ dane_poreczen.kwotaPoreczenWyplaconychNaKredytObrotowy|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="57" data-horizontal-group="11">{{ dane_poreczen.kwotaPoreczenWyplaconychNaKredytInwestycyjny|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="58" data-horizontal-group="11">{{ dane_poreczen.kwotaPoreczenWyplaconychNaPozyczkeObrotowa|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="59" data-horizontal-group="11">{{ dane_poreczen.kwotaPoreczenWyplaconychNaPozyczkeInwestycyjna|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="60" data-horizontal-group="11">{{ dane_poreczen.kwotaPoreczenPozostalychWyplaconych|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="61" data-horizontal-group="11">{{ dane_poreczen.kwotaWadiowPoreczenPozostalychWyplaconych|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych i częściowo spłaconych</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="56" data-horizontal-group="11">{{ dane_poreczen.kwotaPoreczenWyplaconychCzesciowoSplaconychNaKredytObrotowy|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="57" data-horizontal-group="11">{{ dane_poreczen.kwotaPoreczenWyplaconychCzesciowoSplaconychNaKredytInwestycyjny|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="58" data-horizontal-group="11">{{ dane_poreczen.kwotaPoreczenWyplaconychCzesciowoSplaconychNaPozyczkeObrotowa|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="59" data-horizontal-group="11">{{ dane_poreczen.kwotaPoreczenWyplaconychCzesciowoSplaconychNaPozyczkeInwestycyjna|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="60" data-horizontal-group="11">{{ dane_poreczen.kwotaPoreczenPozostalychWyplaconychCzesciowoSplaconych|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="61" data-horizontal-group="11">{{ dane_poreczen.kwotaWadiowPoreczenPozostalychWyplaconychCzesciowoSplaconych|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych i całkowicie spłaconych</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="56" data-horizontal-group="11">{{ dane_poreczen.kwotaPoreczenWyplaconychCalkowicieSplaconychNaKredytObrotowy|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="57" data-horizontal-group="11">{{ dane_poreczen.kwotaPoreczenWyplaconychCalkowicieSplaconychNaKredytInwestycyjny|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="58" data-horizontal-group="11">{{ dane_poreczen.kwotaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeObrotowa|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="59" data-horizontal-group="11">{{ dane_poreczen.kwotaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeInwestycyjna|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="60" data-horizontal-group="11">{{ dane_poreczen.kwotaPoreczenPozostalychWyplaconychCalkowicieSplaconych|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="61" data-horizontal-group="11">{{ dane_poreczen.kwotaWadiowPoreczenPozostalychWyplaconychCalkowicieSplaconych|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych i nie odzyskanych</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="56" data-horizontal-group="11">{{ dane_poreczen.kwotaPoreczenWyplaconychNieodzyskanychNaKredytObrotowy|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="57" data-horizontal-group="11">{{ dane_poreczen.kwotaPoreczenWyplaconychNieodzyskanychNaKredytInwestycyjny|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="58" data-horizontal-group="11">{{ dane_poreczen.kwotaPoreczenWyplaconychNieodzyskanychNaPozyczkeObrotowa|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="59" data-horizontal-group="11">{{ dane_poreczen.kwotaPoreczenWyplaconychNieodzyskanychNaPozyczkeInwestycyjna|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="60" data-horizontal-group="11">{{ dane_poreczen.kwotaPoreczenPozostalychWyplaconychNieodzyskanych|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="61" data-horizontal-group="11">{{ dane_poreczen.kwotaWadiowPoreczenPozostalychWyplaconychNieodzyskanych|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range"><strong>Suma:</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="56">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="57">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="58">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="59">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="60">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="61">0</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div id="table_7">
+                        <table class="table table-bordered table-condensed table-striped">
+                            <tr>
+                                <td rowspan="2" class="info guarantee-range col-md-1"></td>
+                                <td colspan="5" class="text-center col-md-5"><strong>Według działania pożyczkobiorcy</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td rowspan="1" class="text-center">produkcja</td>
+                                <td rowspan="1" class="text-center">handel</td>
+                                <td rowspan="1" class="text-center">usługi</td>
+                                <td rowspan="1" class="text-center">budownictwo</td>
+                                <td rowspan="1" class="text-center">inne</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="6" class="info text-center"><strong>Liczba poręczeń (szt.)</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych</td>
+                                <td class="text-center" data-vertical-group="45" data-horizontal-group="12">{{ dane_poreczen.liczbaPoreczenWyplaconychNaDzialaniaProdukcyjne|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="46" data-horizontal-group="12">{{ dane_poreczen.liczbaPoreczenWyplaconychNaDzialaniaHandlowe|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="47" data-horizontal-group="12">{{ dane_poreczen.liczbaPoreczenWyplaconychNaDzialaniaUslugowe|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="48" data-horizontal-group="12">{{ dane_poreczen.liczbaPoreczenWyplaconychNaDzialaniaBudownicze|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="49" data-horizontal-group="12">{{ dane_poreczen.liczbaPoreczenWyplaconychNaDzialaniaInne|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych i częściowo spłaconych</td>
+                                <td class="text-center" data-vertical-group="45" data-horizontal-group="12">{{ dane_poreczen.liczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaProdukcyjne|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="46" data-horizontal-group="12">{{ dane_poreczen.liczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaHandlowe|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="47" data-horizontal-group="12">{{ dane_poreczen.liczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaUslugowe|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="48" data-horizontal-group="12">{{ dane_poreczen.liczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaBudownicze|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="49" data-horizontal-group="12">{{ dane_poreczen.liczbaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaInne|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych i całkowicie spłaconych</td>
+                                <td class="text-center" data-vertical-group="45" data-horizontal-group="12">{{ dane_poreczen.liczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaProdukcyjne|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="46" data-horizontal-group="12">{{ dane_poreczen.liczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaHandlowe|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="47" data-horizontal-group="12">{{ dane_poreczen.liczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaUslugowe|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="48" data-horizontal-group="12">{{ dane_poreczen.liczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaBudownicze|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="49" data-horizontal-group="12">{{ dane_poreczen.liczbaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaInne|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych i nie odzyskanych</td>
+                                <td class="text-center" data-vertical-group="45" data-horizontal-group="12">{{ dane_poreczen.liczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="46" data-horizontal-group="12">{{ dane_poreczen.liczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="47" data-horizontal-group="12">{{ dane_poreczen.liczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaUslugowe|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="48" data-horizontal-group="12">{{ dane_poreczen.liczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaBudownicze|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="49" data-horizontal-group="12">{{ dane_poreczen.liczbaPoreczenWyplaconychNieodzyskanychNaDzialaniaInne|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range"><strong>Suma:</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="45">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="46">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="47">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="48">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="49">0</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="18" class="info text-center"><strong>Wartość poręczeń (zł)</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="62" data-horizontal-group="12">{{ dane_poreczen.kwotaPoreczenWyplaconychNaDzialaniaProdukcyjne|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="63" data-horizontal-group="12">{{ dane_poreczen.kwotaPoreczenWyplaconychNaDzialaniaHandlowe|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="64" data-horizontal-group="12">{{ dane_poreczen.kwotaPoreczenWyplaconychNaDzialaniaUslugowe|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="65" data-horizontal-group="12">{{ dane_poreczen.kwotaPoreczenWyplaconychNaDzialaniaBudownicze|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="66" data-horizontal-group="12">{{ dane_poreczen.kwotaPoreczenWyplaconychNaDzialaniaInne|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych i częściowo spłaconych</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="62" data-horizontal-group="12">{{ dane_poreczen.kwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaProdukcyjne|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="63" data-horizontal-group="12">{{ dane_poreczen.kwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaHandlowe|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="64" data-horizontal-group="12">{{ dane_poreczen.kwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaUslugowe|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="65" data-horizontal-group="12">{{ dane_poreczen.kwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaBudownicze|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="66" data-horizontal-group="12">{{ dane_poreczen.kwotaPoreczenWyplaconychCzesciowoSplaconychNaDzialaniaInne|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych i całkowicie spłaconych</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="62" data-horizontal-group="12">{{ dane_poreczen.kwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaProdukcyjne|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="63" data-horizontal-group="12">{{ dane_poreczen.kwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaHandlowe|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="64" data-horizontal-group="12">{{ dane_poreczen.kwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaUslugowe|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="65" data-horizontal-group="12">{{ dane_poreczen.kwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaBudownicze|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="66" data-horizontal-group="12">{{ dane_poreczen.kwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaInne|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych i nie odzyskanych</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="62" data-horizontal-group="12">{{ dane_poreczen.kwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaProdukcyjne|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="63" data-horizontal-group="12">{{ dane_poreczen.kwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaHandlowe|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="64" data-horizontal-group="12">{{ dane_poreczen.kwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaUslugowe|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="65" data-horizontal-group="12">{{ dane_poreczen.kwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaBudownicze|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="66" data-horizontal-group="12">{{ dane_poreczen.kwotaPoreczenWyplaconychNieodzyskanychNaDzialaniaInne|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range"><strong>Suma:</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="62">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="63">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="64">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="65">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="66">0</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div id="table_8">
+                        <table class="table table-bordered table-condensed table-striped">
+                            <tr>
+                                <td rowspan="2" class="info guarantee-range col-md-1"></td>
+                                <td colspan="3" class="text-center col-md-3"><strong>Poręczenia udzielone</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td rowspan="1" class="text-center">bankom</td>
+                                <td rowspan="1" class="text-center">funduszom pożyczkowym</td>
+                                <td rowspan="1" class="text-center">innym podmiotom</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="4" class="info text-center"><strong>Liczba poręczeń (szt.)</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych</td>
+                                <td class="text-center" data-vertical-group="50" data-horizontal-group="13">{{ dane_poreczen.liczbaPoreczenWyplaconychDlaBankow|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="51" data-horizontal-group="13">{{ dane_poreczen.liczbaPoreczenWyplaconychDlaFunduszyPozyczkowych|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="52" data-horizontal-group="13">{{ dane_poreczen.liczbaPoreczenWyplaconychDlaInnychPodmiotow|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych i częściowo spłaconych</td>
+                                <td class="text-center" data-vertical-group="50" data-horizontal-group="13">{{ dane_poreczen.liczbaPoreczenWyplaconychCzesciowoSplaconychDlaBankow|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="51" data-horizontal-group="13">{{ dane_poreczen.liczbaPoreczenWyplaconychCzesciowoSplaconychDlaFunduszyPozyczkowych|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="52" data-horizontal-group="13">{{ dane_poreczen.liczbaPoreczenWyplaconychCzesciowoSplaconychDlaInnychPodmiotow|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych i całkowicie spłaconych</td>
+                                <td class="text-center" data-vertical-group="50" data-horizontal-group="13">{{ dane_poreczen.liczbaPoreczenWyplaconychCalkowicieSplaconychDlaBankow|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="51" data-horizontal-group="13">{{ dane_poreczen.liczbaPoreczenWyplaconychCalkowicieSplaconychDlaFunduszyPozyczkowych|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="52" data-horizontal-group="13">{{ dane_poreczen.liczbaPoreczenWyplaconychCalkowicieSplaconychDlaInnychPodmiotow|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych i nie odzyskanych</td>
+                                <td class="text-center" data-vertical-group="50" data-horizontal-group="13">{{ dane_poreczen.liczbaPoreczenWyplaconychNieodzyskanychDlaBankow|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="51" data-horizontal-group="13">{{ dane_poreczen.liczbaPoreczenWyplaconychNieodzyskanychDlaFunduszyPozyczkowych|default('0') }}</td>
+                                <td class="text-center" data-vertical-group="52" data-horizontal-group="13">{{ dane_poreczen.liczbaPoreczenWyplaconychNieodzyskanychDlaInnychPodmiotow|default('0') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range"><strong>Suma:</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="50">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="51">0</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="52">0</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="18" class="info text-center"><strong>Wartość poręczeń (zł)</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="67" data-horizontal-group="13">{{ dane_poreczen.kwotaPoreczenWyplaconychDlaBankow|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="68" data-horizontal-group="13">{{ dane_poreczen.kwotaPoreczenWyplaconychDlaFunduszyPozyczkowych|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="69" data-horizontal-group="13">{{ dane_poreczen.kwotaPoreczenWyplaconychDlaInnychPodmiotow|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych i częściowo spłaconych</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="67" data-horizontal-group="13">{{ dane_poreczen.kwotaPoreczenWyplaconychCzesciowoSplaconychDlaBankow|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="68" data-horizontal-group="13">{{ dane_poreczen.kwotaPoreczenWyplaconychCzesciowoSplaconychDlaFunduszyPozyczkowych|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="69" data-horizontal-group="13">{{ dane_poreczen.kwotaPoreczenWyplaconychCzesciowoSplaconychDlaInnychPodmiotow|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych i całkowicie spłaconych</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="67" data-horizontal-group="13">{{ dane_poreczen.kwotaPoreczenWyplaconychCalkowicieSplaconychDlaBankow|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="68" data-horizontal-group="13">{{ dane_poreczen.kwotaPoreczenWyplaconychCalkowicieSplaconychDlaFunduszyPozyczkowych|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="69" data-horizontal-group="13">{{ dane_poreczen.kwotaPoreczenWyplaconychCalkowicieSplaconychDlaInnychPodmiotow|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range">Wypłaconych i nie odzyskanych</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="67" data-horizontal-group="13">{{ dane_poreczen.kwotaPoreczenWyplaconychNieodzyskanychDlaBankow|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="68" data-horizontal-group="13">{{ dane_poreczen.kwotaPoreczenWyplaconychNieodzyskanychDlaFunduszyPozyczkowych|default('0.00') }}</td>
+                                <td class="text-center decimal-11-2" data-vertical-group="69" data-horizontal-group="13">{{ dane_poreczen.kwotaPoreczenWyplaconychNieodzyskanychDlaInnychPodmiotow|default('0.00') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center guarantee-range"><strong>Suma:</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="67">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="68">0</strong></td>
+                                <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="69">0</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <hr />
+
+                    <h4> Podmioty współpracujące z funduszem</h4>
+
+                    <div class="col-md-7">
+                        <table class="table table-bordered table-condensed table-striped">
+                            <tr>
+                                <td><strong>Liczba podmiotów współpracujących z funduszem</strong></td>
+                                <td class="text-center"><strong data-vertical-group-sum="35">0</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Liczba współpracujących banków</td>
+                                <td class="text-center" data-vertical-group="35" data-horizontal-group="9">{{ dane_poreczen.liczbaWspolpracujacychBankow|default('0') }}</td>
+                            </tr>
+                            <tr>
+                                <td>Liczba współpracujących funduszy pożyczkowych</td>
+                                <td class="text-center" data-vertical-group="35" data-horizontal-group="9">{{ dane_poreczen.liczbaWspolpracujacychFunduszyPozyczkowych|default('0') }}</td>
+                            </tr>
+                            <tr>
+                                <td>Liczba innych podmiotów współpracujących</td>
+                                <td class="text-center" data-vertical-group="35" data-horizontal-group="9">{{ dane_poreczen.liczbaInnychPodmiotowWspolpracujacych|default('0') }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts '@SsfzBundle/Resources/public/js/dane_poreczen_odczyt.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

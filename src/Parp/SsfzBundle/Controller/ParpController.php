@@ -22,6 +22,7 @@ use Parp\SsfzBundle\Entity\Beneficjent;
 use Parp\SsfzBundle\Entity\Spolka;
 use Parp\SsfzBundle\Entity\OkresyKonfiguracja;
 use Parp\SsfzBundle\Entity\DanePozyczek;
+use Parp\SsfzBundle\Entity\DanePoreczen;
 
 /**
  * @Route("/parp", name="parp")
@@ -159,6 +160,11 @@ class ParpController extends Controller
             ->findOneByIdSprawozdania($idSprawozdania)
         ;
 
+        $danePoreczen = $entityManager
+            ->getRepository(DanePoreczen::class)
+            ->findOneByIdSprawozdania($idSprawozdania)
+        ;
+
         $templateContent = $this
             ->get('twig')
             ->loadTemplate($szablon)
@@ -176,6 +182,7 @@ class ParpController extends Controller
             'program'          => $program,
             'bodySprawozdanie' => $bodySprawozdanie,
             'dane_pozyczek'    => $danePozyczek,
+            'dane_poreczen'    => $danePoreczen,
         ]);
     }
 

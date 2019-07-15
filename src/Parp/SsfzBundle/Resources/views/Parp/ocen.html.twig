@@ -17,6 +17,10 @@
                  {% include 'SsfzBundle:Sprawozdanie:dane_pozyczek_odczyt.html.twig' with {'dane_pozyczek': dane_pozyczek} %}
             {% endif %}
 
+            {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPoreczeniowy() and dane_poreczen|default(null) %}
+                 {% include 'SsfzBundle:Sprawozdanie:dane_poreczen_odczyt.html.twig' with {'dane_poreczen': dane_poreczen} %}
+            {% endif %}
+
             <div class="pull-right">
                 <button id="ocena-zatwierdz"
                         name="ocena-zatwierdz"
