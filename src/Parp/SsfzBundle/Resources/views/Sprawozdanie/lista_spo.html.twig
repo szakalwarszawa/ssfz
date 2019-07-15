@@ -10,10 +10,6 @@
                 {% set czestotliwosc_roczna = okresy_sprawozdawcze.first().jestRoczny()|default('false') %}
                 {% set czestotliwosc_polroczna = okresySprawozdawcze.first().jestPolroczny()|default('false') %}
 
-                {# <div{% if umowa.czestotliwoscSprawozdanWProgramie.czyRoczna %} class="hidden"{% endif %}>
-                    {{ form_row(form.okres) }}
-                </div> #}
-
                 <div{% if czestotliwosc_roczna %} class="hidden"{% endif %}>
                     {{ form_row(form.okres) }}
                 </div>

@@ -13,6 +13,10 @@
         <div class="panel-body">
             {{ bodySprawozdanie|raw }}
 
+            {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPozyczkowy() and dane_pozyczek|default(null) %}
+                 {% include 'SsfzBundle:Sprawozdanie:dane_pozyczek_odczyt.html.twig' with {'dane_pozyczek': dane_pozyczek} %}
+            {% endif %}
+
             <div class="pull-right">
                 <button id="ocena-zatwierdz"
                         name="ocena-zatwierdz"

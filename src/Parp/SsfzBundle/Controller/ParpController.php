@@ -21,6 +21,7 @@ use Parp\SsfzBundle\Form\Type\PrzeplywFinansowyType;
 use Parp\SsfzBundle\Entity\Beneficjent;
 use Parp\SsfzBundle\Entity\Spolka;
 use Parp\SsfzBundle\Entity\OkresyKonfiguracja;
+use Parp\SsfzBundle\Entity\DanePozyczek;
 
 /**
  * @Route("/parp", name="parp")
@@ -153,6 +154,11 @@ class ParpController extends Controller
                 break;
         }
 
+        $danePozyczek = $entityManager
+            ->getRepository(DanePozyczek::class)
+            ->findOneByIdSprawozdania($idSprawozdania)
+        ;
+
         $templateContent = $this
             ->get('twig')
             ->loadTemplate($szablon)
@@ -169,6 +175,7 @@ class ParpController extends Controller
             'formP'            => $formP,
             'program'          => $program,
             'bodySprawozdanie' => $bodySprawozdanie,
+            'dane_pozyczek'    => $danePozyczek,
         ]);
     }
 
@@ -403,5 +410,43 @@ class ParpController extends Controller
         ;
 
         return $this->indexAction();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     *
+     * @Route("/pozyczki/podglad/{idSprawozdania}", name="parp_pozyczki_podlglad")
+     *
+     * @return Response
+     */
+    public function pozyczkiPodgladAction($idSprawozdania)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $danePozyczek = $entityManager
+            ->getRepository(DanePozyczek::class)
+            ->findOneByIdSprawozdania($idSprawozdania)
+        ;
+        if (null == $danePozyczek) {
+            $this
+                ->get('ssfz.service.komunikaty_service')
+                ->bladKomunikat('Nie znaleziono danych pożyczek dla sprawozdania o ID:'.(string) $idSprawozdania.'.')
+            ;
+
+            return $this->redirectToRoute('parp');
+        }
+
+        return $this->render('SsfzBundle:Sprawozdanie:dane_pozyczek_odczyt.html.twig', [
+            'dane_pozyczek' => $danePozyczek,
+        ]);
     }
 }

@@ -73,25 +73,21 @@ class AbstractSprawozdanieSpoType extends AbstractType
             )
         );
 
-        $builder->add(
-            'nip',
-            TextType::class,
-            array(
-                'label' => 'NIP',
-                'required' => false,
-                'attr' => array(
-                    'placeholder' => 'NIP',
-                    'maxlength' => 10,
-                    'class' => 'ssfz-digits',
-                ),
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    ),
-                    new Nip()
-                )
-            )
-        );
+        $builder->add('nip', TextType::class, [
+            'label'       => 'NIP',
+            'required'    => false,
+            'attr'        => [
+                'placeholder' => 'NIP',
+                'maxlength'   => 10,
+                'class'       => 'ssfz-digits',
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+                new Nip(),
+            ],
+        ]);
 
         $builder->add(
             'krs',
@@ -130,11 +126,11 @@ class AbstractSprawozdanieSpoType extends AbstractType
                         ->orderBy('w.id', 'ASC')
                     ;
                 },
-                'constraints'   => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    )
-                )
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Należy wypełnić pole',
+                    ]),
+                ],
             )
         );
 
@@ -148,11 +144,11 @@ class AbstractSprawozdanieSpoType extends AbstractType
                     'placeholder' => 'Miejscowość',
                     'maxlength' => 100,
                 ),
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    )
-                )
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Należy wypełnić pole',
+                    ]),
+                ],
             )
         );
 
@@ -166,11 +162,11 @@ class AbstractSprawozdanieSpoType extends AbstractType
                     'placeholder' => 'Ulica',
                     'maxlength' => 100,
                 ),
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    )
-                )
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Należy wypełnić pole',
+                    ]),
+                ],
             )
         );
 
@@ -184,11 +180,11 @@ class AbstractSprawozdanieSpoType extends AbstractType
                     'placeholder' => 'nr budynku',
                     'maxlength' => 10,
                 ),
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    )
-                )
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Należy wypełnić pole',
+                    ]),
+                ],
             )
         );
 
@@ -202,11 +198,11 @@ class AbstractSprawozdanieSpoType extends AbstractType
                     'placeholder' => 'nr lokalu',
                     'maxlength' => 10,
                 ),
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    )
-                )
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Należy wypełnić pole',
+                    ]),
+                ],
             )
         );
 
@@ -241,11 +237,11 @@ class AbstractSprawozdanieSpoType extends AbstractType
                     'placeholder' => 'poczta',
                     'maxlength' => 100,
                 ),
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    )
-                )
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Należy wypełnić pole',
+                    ]),
+                ],
             )
         );
 
@@ -307,11 +303,11 @@ class AbstractSprawozdanieSpoType extends AbstractType
                     'placeholder' => 'fax',
                     'maxlength' => 15,
                 ),
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    )
-                )
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Należy wypełnić pole',
+                    ]),
+                ],
             )
         );
 
@@ -325,11 +321,11 @@ class AbstractSprawozdanieSpoType extends AbstractType
                     'placeholder' => 'rok',
                     'maxlength' => 4,
                 ),
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    )
-                )
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Należy wypełnić pole',
+                    ]),
+                ],
             )
         );
 
@@ -348,11 +344,11 @@ class AbstractSprawozdanieSpoType extends AbstractType
                         ->orderBy('f.id', 'ASC')
                     ;
                 },
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    )
-                )
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Należy wypełnić pole',
+                    ]),
+                ],
             )
         );
 
@@ -375,30 +371,26 @@ class AbstractSprawozdanieSpoType extends AbstractType
                     'data-provide' => 'datepicker',
                     'data-date-format' => 'yyyy-mm-dd'
                 ),
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    ),
-                )
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Należy wypełnić pole',
+                    ]),
+                ],
             ]
         );
 
-        $builder->add(
-            'czyNieDzialaDlaZysku',
-            EntityType::class,
-            array(
-                'label'     => 'Fundusz nie działa dla zysku',
-                'class'     => TakNie::class,
-                'required'  => false,
-                'expanded' => true,
-                'placeholder' => false,
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    )
-                )
-            )
-        );
+        $builder->add('czyNieDzialaDlaZysku', EntityType::class, [
+            'label'       => 'Fundusz nie działa dla zysku',
+            'class'       => TakNie::class,
+            'required'    => false,
+            'expanded'    => true,
+            'placeholder' => false,
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
         $label = $czyPozyczkowy
             ? 'Fundusz udziela pożyczek po analizie ryzyka niespłacenia i po ustanowieniu zabezpieczenia'
@@ -413,11 +405,11 @@ class AbstractSprawozdanieSpoType extends AbstractType
                 'required'  => false,
                 'expanded' => true,
                 'placeholder' => false,
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    )
-                )
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Należy wypełnić pole',
+                    ]),
+                ],
             )
         );
 
@@ -425,74 +417,59 @@ class AbstractSprawozdanieSpoType extends AbstractType
             ? 'Pożyczki udzielane są przedsiębiorcom nie będącym w trudniej sytuacji'
             : 'Poręczenia udzielane są przedsiębiorcom nie będącym w trudniej sytuacji'
         ;
-        $builder->add(
-            'czyNieWTrudnejSytuacji',
-            EntityType::class,
-            array(
-                'label'     => $label,
-                'class'     => TakNie::class,
-                'required'  => false,
-                'expanded' => true,
-                'placeholder' => false,
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    )
-                )
-            )
-        );
+        $builder->add('czyNieWTrudnejSytuacji', EntityType::class, [
+            'label'     => $label,
+            'class'     => TakNie::class,
+            'required'  => false,
+            'expanded' => true,
+            'placeholder' => false,
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
-        $builder->add(
-            'czyOdpowiedniPotencjalEkonomiczny',
-            EntityType::class,
-            array(
-                'label'     => 'Fundusz posiada odpowiedni potencjał ekonomiczny',
-                'class'     => TakNie::class,
-                'required'  => false,
-                'expanded' => true,
-                'placeholder' => false,
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    )
-                )
-            )
-        );
+        $builder->add('czyOdpowiedniPotencjalEkonomiczny', EntityType::class, [
+            'label'       => 'Fundusz posiada odpowiedni potencjał ekonomiczny',
+            'class'       => TakNie::class,
+            'required'    => false,
+            'expanded'    => true,
+            'placeholder' => false,
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
-        $builder->add(
-            'czyPracownicyPosiadajaKwalifikacje',
-            EntityType::class,
-            array(
-                'label'     => 'Fundusz zatrudnia pracowników posiadających odpowiednie kwalifikacje',
-                'class'     => TakNie::class,
-                'required'  => false,
-                'expanded' => true,
-                'placeholder' => false,
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    )
-                )
-            )
-        );
+        $builder->add('czyPracownicyPosiadajaKwalifikacje', EntityType::class, [
+            'label'       => 'Fundusz zatrudnia pracowników posiadających odpowiednie kwalifikacje',
+            'class'       => TakNie::class,
+            'required'    => false,
+            'expanded'    => true,
+            'placeholder' => false,
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
-        $builder->add(
-            'inne',
-            TextareaType::class,
-            array(
-                'label' => 'Inne (nazwa definiowana przez fundusz)',
-                'required' => false,
-                'attr' => array(
-                    'placeholder' => 'inne',
-                    'maxlength' => 1000,
-                ),
-                'constraints' => array(
-                    new Length(
-                        array('max' => '1000', 'maxMessage' => 'W polu nie może znajdować się więcej niż {{ limit }} znaków.')
-                    ),
-                )
-            )
-        );
+        $builder->add('inne', TextareaType::class, [
+            'label'    => 'Inne (nazwa definiowana przez fundusz)',
+            'required' => false,
+            'attr'     => [
+                'placeholder' => 'inne',
+                'maxlength'   => 1000,
+            ],
+            'constraints' => [
+                new Length([
+                    'max' => '1000',
+                    'maxMessage' => 'W polu nie może znajdować się więcej niż {{ limit }} znaków.',
+                ]),
+            ],
+        ]);
     }
 
     /**
