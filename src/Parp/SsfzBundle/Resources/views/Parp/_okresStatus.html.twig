@@ -1,25 +1,29 @@
 {% if dt_item == null %}
     <button class="btn btn-xs btn-danger btn-block btn-static">Nieprzesłane</button>
 {% endif %}
+
 {% if dt_item %}
     {% set status_id = dt_item|split(',') %}
+
     {% if (status_id and status_id[0] and status_id[0] == 1) %}
         <button class="btn btn-xs btn-danger btn-block btn-static">Nieprzesłane</button>
     {% endif %}
+
     {% if (status_id and status_id[0] and status_id[0] == 2 and status_id[1]) %}
         <a href="{{ path('ocen', {'umowa': dt_id, 'idSprawozdania': status_id[1]}) }}"
            class="btn btn-xs btn-info btn-block"
            role="button">Przesłane</a>
     {% endif %}
+
     {% if (status_id and status_id[0] and status_id[0] == 3 and status_id[1]) %}
         <a href="{{ path('parp_sprawozdanie', {'idSprawozdania': status_id[1]}) }}"
            class="btn btn-xs btn-success btn-block"
            role="button">Zatwierdzone</a>
     {% endif %}
+
     {% if (status_id and status_id[0] and status_id[0] == 4 and status_id[1]) %}
         <a href="{{ path('parp_sprawozdanie', {'idSprawozdania': status_id[1]}) }}"
            class="btn btn-xs btn-warning btn-block"
            role="button">Do poprawy</a>
     {% endif %}
 {% endif %}
-<script></script>

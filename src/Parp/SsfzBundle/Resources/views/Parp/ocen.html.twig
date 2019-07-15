@@ -5,12 +5,14 @@
     {{ form_start(form) }}
     {{ form_row(form._token) }}
     {{ form_end(form) }}
+
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4>Sprawozdanie do umowy {{ sprawozdanie.numerUmowy }} za okres {{ sprawozdanie.okres }} {{ sprawozdanie.rok }}</h4>
         </div>
         <div class="panel-body">
             {{ bodySprawozdanie|raw }}
+
             <div class="pull-right">
                 <button id="ocena-zatwierdz"
                         name="ocena-zatwierdz"
@@ -30,7 +32,12 @@
         </div>
     </div>
 
-    <div class="modal fade" id="confirm-ocena-popraw" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade"
+         id="confirm-ocena-popraw"
+         tabindex="-1"
+         role="dialog"
+         aria-labelledby="myModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

@@ -129,7 +129,7 @@ class ParpController extends Controller
         
         switch ($program->getId()) {
             case Program::FUNDUSZ_POZYCZKOWY_SPO_WKP_121:
-                $szablon = 'SsfzBundle:Sprawozdanie:pozyczkoweEdycja.html.twig';
+                $szablon = 'SsfzBundle:Sprawozdanie:pozyczkowe_edycja.html.twig';
                 $blockParams = [
                     'form'           => $formS->createView(),
                     'tylkoDoOdczytu' => true,
@@ -137,7 +137,7 @@ class ParpController extends Controller
                 ];
                 break;
             case Program::FUNDUSZ_PORECZENIOWY_SPO_WKP_122:
-                $szablon = 'SsfzBundle:Sprawozdanie:poreczenioweEdycja.html.twig';
+                $szablon = 'SsfzBundle:Sprawozdanie:poreczeniowe_edycja.html.twig';
                 $blockParams = [
                     'form'           => $formS->createView(),
                     'tylkoDoOdczytu' => true,
