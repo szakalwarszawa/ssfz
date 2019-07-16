@@ -62,7 +62,7 @@ services:
             - 'SsfzBundle:OkresyKonfiguracja'
  
     ssfz.repository.sprawozdanie_repository:
-        class: Parp\SsfzBundle\Repository\SprawozdanieRepository
+        class: Parp\SsfzBundle\Repository\SprawozdanieZalazkoweRepository
         factory: ['@doctrine', getRepository]
         arguments:
             - 'SsfzBundle:Sprawozdanie'

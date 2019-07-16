@@ -185,8 +185,7 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand
     }
 
     /**
-     * Załadowanie serwisu MailerService
-     * odpowiedzialnego za wysyłkę powiadomień
+     * Załadowanie serwisu MailerService odpowiedzialnego za wysyłkę powiadomień
      *
      * @return MailerService
      */
@@ -202,7 +201,11 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand
      */
     protected function getSprawozdanieRepository()
     {
-        return $this->getContainer()->get('ssfz.service.sprawozdanie_service')->getSprawozdanieRepository();
+        return $this
+            ->getContainer()
+            ->get('ssfz.service.sprawozdanie_service')
+            ->getSprawozdanieRepository()
+        ;
     }
 
     /**
@@ -212,6 +215,10 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand
      */
     protected function getUzytkownikRepository()
     {
-        return $this->getContainer()->get('ssfz.service.uzytkownik_service')->getUzytkownikRepository();
+        return $this
+            ->getContainer()
+            ->get('ssfz.service.uzytkownik_service')
+            ->getUzytkownikRepository()
+        ;
     }
 }

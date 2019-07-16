@@ -7,6 +7,6 @@ use Doctrine\ORM\EntityRepository;
 /**
  * Repozytorium SprawozdaniePoreczenioweRepository.
  */
-class SprawozdaniePoreczenioweRepository extends SprawozdanieRepository
+class SprawozdaniePoreczenioweRepository extends EntityRepository
 {
 }
