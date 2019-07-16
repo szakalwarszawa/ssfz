@@ -28,7 +28,7 @@ class ReportController extends Controller
             ->listAllReports()
         ;
 
-        return $this->render('SsfzBundle:Report:indexJasper.html.twig', [
+        return $this->render('SsfzBundle:Report:index_jasper.html.twig', [
             'reports' => $reports,
         ]);
     }

@@ -151,7 +151,7 @@ class ParpController extends Controller
                 ];
                 break;
             default:
-                $szablon = 'SsfzBundle:Parp:sprawozdanieForm.html.twig';
+                $szablon = 'SsfzBundle:Parp:sprawozdanie_form.html.twig';
                 $blockParams = [
                     'formS' => $formS->createView(),
                     'formP' => $formP,

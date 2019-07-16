@@ -65,7 +65,7 @@ class DatatableSpolkiServiceTest extends TestCase
         $renderers[7]['view'] = 'SsfzBundle:Beneficjent:_date.html.twig';
         $renderers[13]['view'] = 'SsfzBundle:Portfel:_zakonczona.html.twig';
         $renderers[22]['view'] = 'SsfzBundle:Portfel:_spolkaActions.html.twig';
-        $renderers[23]['view'] = 'SsfzBundle:Parp:_portfelActions.html.twig';
+        $renderers[23]['view'] = 'SsfzBundle:Parp:portfel_actions.html.twig';
         $value = $this->service->getDatatableSpolkiRenderers();
         $this->assertNotNull($value);
         $this->assertEquals($value, $renderers);

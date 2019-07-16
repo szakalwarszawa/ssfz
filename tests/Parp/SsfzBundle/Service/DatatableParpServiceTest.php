@@ -54,13 +54,13 @@ class DatatableParpServiceTest extends TestCase
     public function testGetDatatableParpRenderers()
     {
         $config = $this->service->getParpKonfiguracja();
-        $renderers[1]['view'] = 'SsfzBundle:Parp:_beneficjentNazwa.html.twig';
-        $renderers[2]['view'] = 'SsfzBundle:Parp:_umowaNumer.html.twig';
+        $renderers[1]['view'] = 'SsfzBundle:Parp:beneficjent_nazwa.html.twig';
+        $renderers[2]['view'] = 'SsfzBundle:Parp:umowa_numer.html.twig';
         $idx = 3;
         foreach ($config as $cfg) {
-            $renderers[$idx]['view'] = 'SsfzBundle:Parp:_okresStatus.html.twig';
+            $renderers[$idx]['view'] = 'SsfzBundle:Parp:okres_status.html.twig';
             $idx++;
-            $renderers[$idx]['view'] = 'SsfzBundle:Parp:_okresStatus.html.twig';
+            $renderers[$idx]['view'] = 'SsfzBundle:Parp:okres_status.html.twig';
             $idx++;
         }
 

@@ -69,17 +69,17 @@ class DatatableParpService
      */
     public function getDatatableParpRenderers($config, Program $program)
     {
-        $renderers[1]['view'] = 'SsfzBundle:Parp:_beneficjentNazwa.html.twig';
+        $renderers[1]['view'] = 'SsfzBundle:Parp:beneficjent_nazwa.html.twig';
         $renderers[2]['view'] = $program->czyJestPortfelSpolek()
-            ? 'SsfzBundle:Parp:_umowaNumer.html.twig'
-            : 'SsfzBundle:Parp:_umowaNumer.spo.html.twig'
+            ? 'SsfzBundle:Parp:umowa_numer.html.twig'
+            : 'SsfzBundle:Parp:umowa_numer.spo.html.twig'
         ;
 
         $idx = 3;
         foreach ($config as $cfg) {
-            $renderers[$idx]['view'] = 'SsfzBundle:Parp:_okresStatus.html.twig';
+            $renderers[$idx]['view'] = 'SsfzBundle:Parp:okres_status.html.twig';
             $idx++;
-            $renderers[$idx]['view'] = 'SsfzBundle:Parp:_okresStatus.html.twig';
+            $renderers[$idx]['view'] = 'SsfzBundle:Parp:okres_status.html.twig';
             $idx++;
         }
 

@@ -72,7 +72,7 @@ class DatatableSpolkiService
         $renderers[20]['view'] = 'SsfzBundle:Portfel:_zakonczona.html.twig';
         $renderers[21]['view'] = 'SsfzBundle:Portfel:_zakonczona.html.twig';
         $renderers[22]['view'] = 'SsfzBundle:Portfel:_spolkaActions.html.twig';
-        $renderers[23]['view'] = 'SsfzBundle:Parp:_portfelActions.html.twig';
+        $renderers[23]['view'] = 'SsfzBundle:Parp:portfel_actions.html.twig';
 
         return $renderers;
     }
