@@ -10,7 +10,7 @@
                 {{ form_row(form.rok) }}
                 {{ form_row(form.uwagi) }}
                 <div class="sprawozdaniaSpolek" data-prototype="{{ form_widget(form.sprawozdaniaSpolek.vars.prototype)|e('html_attr') }}">
-                    {% for sprawozdanie in form.sprawozdaniaSpolek %}
+                    {% for sprawozdanie in form.sprawozdaniaSpolek|default([]) %}
                         <div class="panel panel-default">
                             <div class="panel-heading">Sprawozdanie spółki</div>
                             <div class=" panel-body">

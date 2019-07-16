@@ -1,6 +1,6 @@
 {% block body %}
     <div>
-        {% if formS is defined %}
+        {% if formS is defined and formS is not empty %}
             <div>
                 {{ form_start(formS) }}
                 {{ form_row(formS.numerUmowy) }}
@@ -41,7 +41,7 @@
             </div>
         {% endif %}
 
-        {% if formP is defined %}
+        {% if formP is defined and formP is not empty %}
             <div class="panel panel-default">
                 <div class="panel-heading">Przepływ finansowy</div>
                 <div class="panel-body">

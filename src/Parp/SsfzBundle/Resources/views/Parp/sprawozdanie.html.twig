@@ -4,13 +4,14 @@
     <div class="panel panel-default">
         <div class="panel-heading"><h4>Sprawozdanie do umowy {{ sprawozdanie.numerUmowy }} za okres {{ sprawozdanie.okres }} {{ sprawozdanie.rok }}</h4></div>
         <div class="panel-body">
-            {% include 'SsfzBundle:Parp:sprawozdanieForm.html.twig' with {'formS': formS, 'formP': formP } %}
 
-            {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPozyczkowy() and dane_pozyczek|default(null) %}
+            {% include 'SsfzBundle:Parp:sprawozdanieForm.html.twig' with {'formS': formS, 'formP': formP} %}
+
+            {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPozyczkowy() and dane_pozyczek|default(null) is not empty %}
                  {% include 'SsfzBundle:Sprawozdanie:dane_pozyczek_odczyt.html.twig' with {'dane_pozyczek': dane_pozyczek} %}
             {% endif %}
 
-            {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPoreczeniowy() and dane_poreczen|default(null) %}
+            {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPoreczeniowy() and dane_poreczen|default(null) is not empty %}
                  {% include 'SsfzBundle:Sprawozdanie:dane_poreczen_odczyt.html.twig' with {'dane_poreczen': dane_poreczen} %}
             {% endif %}
 

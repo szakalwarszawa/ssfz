@@ -179,14 +179,14 @@ class ParpController extends Controller
         $bodySprawozdanie = $templateContent->renderBlock('body', $blockParams);
 
         return $this->render('SsfzBundle:Parp:ocen.html.twig', [
-            'form'             => $form->createView(),
-            'sprawozdanie'     => $sprawozdanie,
-            'formS'            => $formS->createView(),
-            'formP'            => $formP,
-            'program'          => $program,
-            'bodySprawozdanie' => $bodySprawozdanie,
-            'dane_pozyczek'    => $danePozyczek,
-            'dane_poreczen'    => $danePoreczen,
+            'form'              => $form->createView(),
+            'sprawozdanie'      => $sprawozdanie,
+            'formS'             => $formS->createView(),
+            'formP'             => $formP,
+            'program'           => $program,
+            'body_sprawozdanie' => $bodySprawozdanie,
+            'dane_pozyczek'     => $danePozyczek,
+            'dane_poreczen'     => $danePoreczen,
         ]);
     }
 
@@ -239,10 +239,22 @@ class ParpController extends Controller
             ])->createView();
         }
 
+        $danePozyczek = $entityManager
+            ->getRepository(DanePozyczek::class)
+            ->findOneByIdSprawozdania($idSprawozdania)
+        ;
+
+        $danePoreczen = $entityManager
+            ->getRepository(DanePoreczen::class)
+            ->findOneByIdSprawozdania($idSprawozdania)
+        ;
+
         return $this->render('SsfzBundle:Parp:sprawozdanie.html.twig', [
-            'sprawozdanie' => $sprawozdanie,
-            'formS'        => $formS->createView(),
-            'formP'        => $formP
+            'sprawozdanie'  => $sprawozdanie,
+            'formS'         => $formS->createView(),
+            'formP'         => $formP,
+            'dane_pozyczek' => $danePozyczek,
+            'dane_poreczen' => $danePoreczen,
         ]);
     }
 
