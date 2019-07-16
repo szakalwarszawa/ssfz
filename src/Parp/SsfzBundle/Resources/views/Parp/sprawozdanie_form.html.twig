@@ -1,15 +1,15 @@
 {% block body %}
     <div>
-        {% if formS is defined and formS is not empty %}
+        {% if form_okresy is defined and form_okresy is not empty %}
             <div>
-                {{ form_start(formS) }}
-                {{ form_row(formS.numerUmowy) }}
-                {{ form_row(formS.okres) }}
-                {{ form_row(formS.rok) }}
-                {% if formS.sprawozdaniaSpolek is defined %}
+                {{ form_start(form_okresy) }}
+                {{ form_row(form_okresy.numerUmowy) }}
+                {{ form_row(form_okresy.okres) }}
+                {{ form_row(form_okresy.rok) }}
+                {% if form_okresy.sprawozdaniaSpolek is defined %}
                     <div class="sprawozdaniaSpolek panel-body"
-                         data-prototype="{{ form_widget(formS.sprawozdaniaSpolek.vars.prototype)|e('html_attr') }}">
-                        {% for sprawozdanie in formS.sprawozdaniaSpolek %}
+                         data-prototype="{{ form_widget(form_okresy.sprawozdaniaSpolek.vars.prototype)|e('html_attr') }}">
+                        {% for sprawozdanie in form_okresy.sprawozdaniaSpolek %}
                             <div class="row sprawozdanie-row">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">Podgląd sprawozdania</div>
@@ -37,39 +37,39 @@
                         {% endfor %}
                     </div>
                 {% endif %}
-                {{ form_end(formS) }}
+                {{ form_end(form_okresy) }}
             </div>
         {% endif %}
 
-        {% if formP is defined and formP is not empty %}
+        {% if form_przeplywy_finansowe is defined and form_przeplywy_finansowe is not empty %}
             <div class="panel panel-default">
                 <div class="panel-heading">Przepływ finansowy</div>
                 <div class="panel-body">
                     <div>
-                        {{ form_start(formP) }}
+                        {{ form_start(form_przeplywy_finansowe) }}
                         <div>
-                            {{ form_row(formP.saldoPoczatkowe) }}
-                            {{ form_row(formP.wplywy) }}
-                            {{ form_row(formP.wyjsciaZInwestycji) }}
-                            {{ form_row(formP.udzialWZyskach) }}
-                            {{ form_row(formP.inneWplywy) }}
-                            {{ form_row(formP.wyplywy) }}
-                            {{ form_row(formP.wejsciaKapitalowe) }}
-                            {{ form_row(formP.preinkubacjaPomyslow) }}
-                            {{ form_row(formP.wydatkiOperacyjne) }}
-                            {{ form_row(formP.podatki) }}
-                            {{ form_row(formP.inneWyplywy) }}
-                            {{ form_row(formP.saldoKoncowe) }}
+                            {{ form_row(form_przeplywy_finansowe.saldoPoczatkowe) }}
+                            {{ form_row(form_przeplywy_finansowe.wplywy) }}
+                            {{ form_row(form_przeplywy_finansowe.wyjsciaZInwestycji) }}
+                            {{ form_row(form_przeplywy_finansowe.udzialWZyskach) }}
+                            {{ form_row(form_przeplywy_finansowe.inneWplywy) }}
+                            {{ form_row(form_przeplywy_finansowe.wyplywy) }}
+                            {{ form_row(form_przeplywy_finansowe.wejsciaKapitalowe) }}
+                            {{ form_row(form_przeplywy_finansowe.preinkubacjaPomyslow) }}
+                            {{ form_row(form_przeplywy_finansowe.wydatkiOperacyjne) }}
+                            {{ form_row(form_przeplywy_finansowe.podatki) }}
+                            {{ form_row(form_przeplywy_finansowe.inneWyplywy) }}
+                            {{ form_row(form_przeplywy_finansowe.saldoKoncowe) }}
                             <br />
                             <br />
-                            {{ form_row(formP.liczbaPomyslowWInkubatorze) }}
-                            {{ form_row(formP.liczbaPomyslowOcenionych) }}
-                            {{ form_row(formP.liczbaPomyslowOcenionychPozytywnie) }}
-                            {{ form_row(formP.liczbaPomyslowOcenionychNegatywnie) }}
-                            {{ form_row(formP.liczbaZakonczonychPreinkubacji) }}
-                            {{ form_row(formP.liczbaDokonanychInwestycji) }}
+                            {{ form_row(form_przeplywy_finansowe.liczbaPomyslowWInkubatorze) }}
+                            {{ form_row(form_przeplywy_finansowe.liczbaPomyslowOcenionych) }}
+                            {{ form_row(form_przeplywy_finansowe.liczbaPomyslowOcenionychPozytywnie) }}
+                            {{ form_row(form_przeplywy_finansowe.liczbaPomyslowOcenionychNegatywnie) }}
+                            {{ form_row(form_przeplywy_finansowe.liczbaZakonczonychPreinkubacji) }}
+                            {{ form_row(form_przeplywy_finansowe.liczbaDokonanychInwestycji) }}
                         </div>
-                        {{ form_end(formP) }}
+                        {{ form_end(form_przeplywy_finansowe) }}
                     </div>
                 </div>
             </div>

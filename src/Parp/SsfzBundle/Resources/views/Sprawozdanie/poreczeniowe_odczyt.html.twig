@@ -1,0 +1,169 @@
+{% block sprawozdanie_poreczeniowe_odczyt %}
+    <div class="panel panel-default">
+        <div class="panel-heading">Podgląd sprawozdania</div>
+        <div class="panel-body"
+            <div class="col-md-12">
+                <table class="table table-bordered table-condensed table-striped">
+                    <tbody>
+                        <tr>
+                            <td><strong>Nazwa Funduszu (Nazwa instytucji prowadzącej fundusz pożyczkowy)</strong></td>
+                            <td>{{ sprawozdanie.nazwaFunduszu|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>NIP</strong></td>
+                            <td>{{ sprawozdanie.nip|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>KRS</strong></td>
+                            <td>{{ sprawozdanie.krs|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Województwo</strong></td>
+                            <td>{{ sprawozdanie.wojewodztwo|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Miejscowość</strong></td>
+                            <td>{{ sprawozdanie.miejscowosc|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ulica</strong></td>
+                            <td>{{ sprawozdanie.ulica|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nr budynku</strong></td>
+                            <td>{{ sprawozdanie.budynek|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nr lokalu</strong></td>
+                            <td>{{ sprawozdanie.lokal|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Kod pocztowy</strong></td>
+                            <td>{{ sprawozdanie.kodPocztowy|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Poczta</strong></td>
+                            <td>{{ sprawozdanie.Poczta|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Telefon stacjonarny</strong></td>
+                            <td>{{ sprawozdanie.telStacjonarny|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Telefon komórkowy</strong></td>
+                            <td>{{ sprawozdanie.telKomorkowy|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Adres e-mail</strong></td>
+                            <td>{{ sprawozdanie.email|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fax</strong></td>
+                            <td>{{ sprawozdanie.fax|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rok założenia</strong></td>
+                            <td>{{ sprawozdanie.rokZalozenia|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Forma prawna</strong></td>
+                            <td>{{ sprawozdanie.formaPrawna|default('') }}</td>
+                        </tr>
+                    </tbody>
+
+
+            {#
+                {{ form_row(form.kapitalOgolem) }}
+                <div id="skladniki-ogolem" class="skladniki-ogolem panel-body" data-prototype="{{ form_widget(form.skladnikiOgolem.vars.prototype)|e('html_attr') }}">
+                    {% for skladnik in form.skladnikiOgolem %}
+                        <div class="row skladnik-ogolem-row">
+                            <div class="skladnik-ogolem-col col-sm-11">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        {{ form_row(skladnik.skladnik) }}
+                                        {{ form_row(skladnik.wartosc) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="hidden">{{ form_row(form.skladnikiOgolem) }}</div>
+
+                <hr>
+
+                {{ form_row(form.kapitalWydzielony) }}
+                <div id="skladniki-wydzielone" class="skladniki-wydzielone panel-body" data-prototype="{{ form_widget(form.skladnikiWydzielone.vars.prototype)|e('html_attr') }}">
+                    {% for skladnik in form.skladnikiWydzielone %}
+                        <div class="row skladnik-wydzielony-row">
+                            <div class="skladnik-wydzielony-col col-sm-11">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        {{ form_row(skladnik.skladnik) }}
+                                        {{ form_row(skladnik.wartosc) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="hidden">{{ form_row(form.skladnikiWydzielone) }}</div>
+            #}
+
+                    <tbody>
+                        <tr>
+                            <td><strong>Data zatwierdzenia zasad gospodarowania funduszem poręczeniowym przez PARP</strong></td>
+                            <td>
+                                {% if sprawozdanie.dataZatwierdzeniaZasadGospodarowania|default('') != '' %}
+                                    {{ sprawozdanie.dataZatwierdzeniaZasadGospodarowania|date('Y-m-d') }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fundusz nie działa dla zysku</strong></td>
+                            <td>{{ sprawozdanie.czyNieDzialaDlaZysku|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Posiada wydzielony księgowo fundusz</strong></td>
+                            <td>{{ sprawozdanie.czyPosiadaWydzielonyFundusz|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fundusz udziela poręczeń kredytów i pożyczek nie niżej oprocentowanych niż stopa referencyjna</strong></td>
+                            <td>{{ sprawozdanie.czyOprocentowanieNieNizszeOdStopy|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Poręczenia są udzielane po przeprowadzeniu analizy ryzyka</td>
+                            <td>{{ sprawozdanie.czyUdzielaPoAnalizieRyzyka|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Poręczenia udzielane są przedsiębiorcom nie będącym w trudniej sytuacji</strong></td>
+                            <td>{{ sprawozdanie.czyNieWTrudnejSytuacji|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Poręczenia są udzielane w wysokości nie przekraczającej 80% zobowiązania którego dotyczą</strong></td>
+                            <td>{{ sprawozdanie.czyNiePrzekraczaja80|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Poręczenia udzielane są za wynagrodzeniem</strong></td>
+                            <td>{{ sprawozdanie.czyZaWynagrodzeniem|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fundusz posiada odpowiedni potencjał ekonomiczny</strong></td>
+                            <td>{{ sprawozdanie.czyOdpowiedniPotencjalEkonomiczny|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fundusz zatrudnia pracowników posiadających odpowiednie kwalifikacje</strong></td>
+                            <td>{{ sprawozdanie.czyPracownicyPosiadajaKwalifikacje|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Inne (nazwa definiowana przez fundusz)</strong></td>
+                            <td>{{ sprawozdanie.inne|default('') }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

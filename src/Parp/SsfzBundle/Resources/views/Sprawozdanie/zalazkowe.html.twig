@@ -1,4 +1,5 @@
 {% extends "SsfzBundle::baseLayout.html.twig" %}
+
 {% block body %}
     {% set sprawozdanie = form.vars.value %}
 
@@ -31,10 +32,9 @@
                         </tr>
                     {% endif %}
                 </table>
-                <hr>
+                <hr />
 
-                {% block bodyEdit %}
-                {% endblock %}
+                {% block bodyEdit %}{% endblock %}
 
                 <div id="form-submit-div" class="row btn-toolbar">
                     {% if app.user.rola == 'ROLE_BENEFICJENT' %}

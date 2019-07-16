@@ -40,6 +40,16 @@ class Wojewodztwo
     }
 
     /**
+     * Zwraca reprezentację tekstową obiektu.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->nazwa;
+    }
+
+    /**
      * Get kod
      *
      * @return string

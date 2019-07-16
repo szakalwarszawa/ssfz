@@ -98,19 +98,21 @@ class ParpController extends Controller
                 'idUmowy'        => $umowa->getId(),
             ]);
         }
+
         $okresy = $this->getOkresySprawozdawcze();
-        $formS = $this->createForm($klasaFormularza, $sprawozdanie, [
+        $formOkresy = $this->createForm($klasaFormularza, $sprawozdanie, [
             'disabled' => true,
             'program'  => $program,
             'lata'     => $okresy,
         ]);
+
         $przeplyw = $entityManager
             ->getRepository(PrzeplywFinansowy::class)
             ->findBy(['sprawozdanieId' => $sprawozdanie->getId()])
         ;
-        $formP = null;
+        $formPrzeplywyFinansowe = null;
         if ($przeplyw != null) {
-            $formP = $this->createForm(PrzeplywFinansowyType::class, $przeplyw[0], [
+            $formPrzeplywyFinansowe = $this->createForm(PrzeplywFinansowyType::class, $przeplyw[0], [
                 'disabled' => true,
             ])->createView();
         }
@@ -132,61 +134,68 @@ class ParpController extends Controller
                 return $this->redirectToRoute('parp');
             }
         }
-        
-        switch ($program->getId()) {
-            case Program::FUNDUSZ_POZYCZKOWY_SPO_WKP_121:
-                $szablon = 'SsfzBundle:Sprawozdanie:pozyczkowe_edycja.html.twig';
-                $blockParams = [
-                    'form'           => $formS->createView(),
-                    'tylkoDoOdczytu' => true,
-                    'app'            => $this,
-                ];
-                break;
-            case Program::FUNDUSZ_PORECZENIOWY_SPO_WKP_122:
-                $szablon = 'SsfzBundle:Sprawozdanie:poreczeniowe_edycja.html.twig';
-                $blockParams = [
-                    'form'           => $formS->createView(),
-                    'tylkoDoOdczytu' => true,
-                    'app'            => $this,
-                ];
-                break;
-            default:
-                $szablon = 'SsfzBundle:Parp:sprawozdanie_form.html.twig';
-                $blockParams = [
-                    'formS' => $formS->createView(),
-                    'formP' => $formP,
-                ];
-                break;
+
+
+
+        $szablon = null;
+
+        if ($program->czyFunduszZalazkowy()) {
+            die('dd');
+            $szablon = 'SsfzBundle:Parp:sprawozdanie_form.html.twig';
+            $blockParams = [
+                'form_okresy' => $formOkresy->createView(),
+                'form_rzeplywy_finansowe' => $formPrzeplywyFinansowe,
+            ];
+            
         }
 
-        $danePozyczek = $entityManager
-            ->getRepository(DanePozyczek::class)
-            ->findOneByIdSprawozdania($idSprawozdania)
-        ;
+        $danePozyczek = null;
+        if ($program->czyFunduszPozyczkowy()) {
+            $danePozyczek = $entityManager
+                ->getRepository(DanePozyczek::class)
+                ->findOneByIdSprawozdania($idSprawozdania)
+            ;
 
-        $danePoreczen = $entityManager
-            ->getRepository(DanePoreczen::class)
-            ->findOneByIdSprawozdania($idSprawozdania)
-        ;
+            $szablon = 'SsfzBundle:Sprawozdanie:pozyczkowe_odczyt.html.twig';
+            $blockParams = [
+                'form'           => $formOkresy->createView(),
+                'app'            => $this,
+            ];
+        }
+
+        $danePoreczen = null;
+        if ($program->czyFunduszPoreczeniowy()) {
+            $danePoreczen = $entityManager
+                ->getRepository(DanePoreczen::class)
+                ->findOneByIdSprawozdania($idSprawozdania)
+            ;
+
+            $szablon = 'SsfzBundle:Sprawozdanie:poreczeniowe_odczyt.html.twig';
+            $blockParams = [
+                'form'           => $formOkresy->createView(),
+                'app'            => $this,
+            ];
+        }
 
         $templateContent = $this
             ->get('twig')
             ->loadTemplate($szablon)
         ;
 
-        // jeśli wyświetla pustą stronę bez żadnej informacji:
-        // podmienić renderBlock na displayBlock, będzie widać treść błędów
-        $bodySprawozdanie = $templateContent->renderBlock('body', $blockParams);
+        $bodySprawozdanie = null;
+        if (null !== $blockParams) {
+            $bodySprawozdanie = $templateContent->renderBlock('body', $blockParams);
+        }
 
         return $this->render('SsfzBundle:Parp:ocen.html.twig', [
-            'form'              => $form->createView(),
-            'sprawozdanie'      => $sprawozdanie,
-            'formS'             => $formS->createView(),
-            'formP'             => $formP,
-            'program'           => $program,
-            'body_sprawozdanie' => $bodySprawozdanie,
-            'dane_pozyczek'     => $danePozyczek,
-            'dane_poreczen'     => $danePoreczen,
+            'form'                     => $form->createView(),
+            'sprawozdanie'             => $sprawozdanie,
+            'form_okresy'              => $formOkresy->createView(),
+            'form_przeplywy_finansowe' => $formPrzeplywyFinansowe,
+            'program'                  => $program,
+            'body_sprawozdanie'        => $bodySprawozdanie,
+            'dane_pozyczek'            => $danePozyczek,
+            'dane_poreczen'            => $danePoreczen,
         ]);
     }
 
@@ -221,20 +230,21 @@ class ParpController extends Controller
 
             return $this->redirectToRoute('parp');
         }
+
         $okresy = $this->getOkresySprawozdawcze();
-        $formS = $this->createForm(SprawozdanieType::class, $sprawozdanie, [
+        $formOkresy = $this->createForm(SprawozdanieType::class, $sprawozdanie, [
             'disabled' => true,
             'lata'     => $okresy,
             'program'  => $sprawozdanie->getUmowa()->getBeneficjent()->getProgram(),
         ]);
-        $przeplyw = null;
+
         $przeplyw = $entityManager
             ->getRepository(PrzeplywFinansowy::class)
             ->findBy(['sprawozdanieId' => $sprawozdanie->getId()])
         ;
-        $formP = null;
+        $formPrzeplywyFinansowe = null;
         if (null != $przeplyw) {
-            $formP = $this->createForm(PrzeplywFinansowyType::class, $przeplyw[0], [
+            $formPrzeplywyFinansowe = $this->createForm(PrzeplywFinansowyType::class, $przeplyw[0], [
                 'disabled' => true,
             ])->createView();
         }
@@ -250,11 +260,11 @@ class ParpController extends Controller
         ;
 
         return $this->render('SsfzBundle:Parp:sprawozdanie.html.twig', [
-            'sprawozdanie'  => $sprawozdanie,
-            'formS'         => $formS->createView(),
-            'formP'         => $formP,
-            'dane_pozyczek' => $danePozyczek,
-            'dane_poreczen' => $danePoreczen,
+            'sprawozdanie'             => $sprawozdanie,
+            'form_okresy'              => $formOkresy->createView(),
+            'form_przeplywy_finansowe' => $formPrzeplywyFinansowe,
+            'dane_pozyczek'            => $danePozyczek,
+            'dane_poreczen'            => $danePoreczen,
         ]);
     }
 

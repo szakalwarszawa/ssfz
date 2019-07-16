@@ -11,14 +11,22 @@
             <h4>Sprawozdanie do umowy {{ sprawozdanie.numerUmowy }} za okres {{ sprawozdanie.okres }} {{ sprawozdanie.rok }}</h4>
         </div>
         <div class="panel-body">
-            {{ body_sprawozdanie|raw }}
-
-            {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPozyczkowy() and dane_pozyczek|default(null) is not empty %}
-                 {% include 'SsfzBundle:Sprawozdanie:dane_pozyczek_odczyt.html.twig' with {'dane_pozyczek': dane_pozyczek} %}
+            {% if body_sprawozdanie is defined and body_sprawozdanie is not empty %}
+                {{ body_sprawozdanie|raw }}
             {% endif %}
 
-            {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPoreczeniowy() and dane_poreczen|default(null) is not empty %}
-                 {% include 'SsfzBundle:Sprawozdanie:dane_poreczen_odczyt.html.twig' with {'dane_poreczen': dane_poreczen} %}
+            {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPozyczkowy() %}
+                {% include 'SsfzBundle:Sprawozdanie:pozyczkowe_odczyt.html.twig' with {'sprawozdanie': sprawozdanie} %}
+                {% if dane_pozyczek|default(null) is not empty %}
+                    {% include 'SsfzBundle:Sprawozdanie:dane_pozyczek_odczyt.html.twig' with {'dane_pozyczek': dane_pozyczek} %}
+                {% endif %}
+            {% endif %}
+
+            {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPoreczeniowy() %}
+                {% include 'SsfzBundle:Sprawozdanie:poreczeniowe_odczyt.html.twig' with {'sprawozdanie': sprawozdanie} %}
+                {% if dane_poreczen|default(null) is not empty %}
+                    {% include 'SsfzBundle:Sprawozdanie:dane_poreczen_odczyt.html.twig' with {'dane_poreczen': dane_poreczen} %}
+                {% endif %}
             {% endif %}
 
             <div class="pull-right">

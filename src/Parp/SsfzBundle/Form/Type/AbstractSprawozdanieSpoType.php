@@ -52,26 +52,23 @@ class AbstractSprawozdanieSpoType extends AbstractType
             }
         }
 
-        $builder->add(
-            'nazwaFunduszu',
-            TextType::class,
-            array(
-                'label' => 'Nazwa Funduszu (Nazwa instytucji prowadzącej fundusz pożyczkowy)',
-                'required' => false,
-                'attr' => array(
-                    'placeholder' => 'nazwa funduszu',
-                    'maxlength' => 250,
-                ),
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    ),
-                    new Length(
-                        array('max' => '250', 'maxMessage' => 'W polu nie może znajdować się więcej niż {{ limit }} znaków.')
-                    ),
-                )
-            )
-        );
+        $builder->add('nazwaFunduszu', TextType::class, [
+            'label'       => 'Nazwa Funduszu (Nazwa instytucji prowadzącej fundusz pożyczkowy)',
+            'required'    => false,
+            'attr'        => [
+                'placeholder' => 'nazwa funduszu',
+                'maxlength'   => 250,
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+                new Length([
+                    'max'        => '250',
+                    'maxMessage' => 'W polu nie może znajdować się więcej niż {{ limit }} znaków.',
+                ]),
+            ],
+        ]);
 
         $builder->add('nip', TextType::class, [
             'label'       => 'NIP',
@@ -89,27 +86,24 @@ class AbstractSprawozdanieSpoType extends AbstractType
             ],
         ]);
 
-        $builder->add(
-            'krs',
-            TextType::class,
-            array(
-                'label' => 'KRS',
-                'required' => false,
-                'attr' => array(
-                    'placeholder' => 'KRS',
-                    'maxlength' => 10,
-                    'class' => 'ssfz-digits',
-                ),
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    ),
-                    new Regex(
-                        array('message' => 'Niepoprawny format KRS', 'pattern' => '/^[0-9]{10}$/')
-                    )
-                )
-            )
-        );
+        $builder->add('krs', TextType::class, [
+            'label'    => 'KRS',
+            'required' => false,
+            'attr'     => [
+                'placeholder' => 'KRS',
+                'maxlength'   => 10,
+                'class'       => 'ssfz-digits',
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+                new Regex([
+                    'message' => 'Niepoprawny format KRS',
+                    'pattern' => '/^[0-9]{10}$/',
+                ]),
+            ],
+        ]);
 
         $builder->add(
             'wojewodztwo',

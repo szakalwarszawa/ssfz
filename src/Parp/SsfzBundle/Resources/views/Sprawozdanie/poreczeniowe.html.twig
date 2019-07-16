@@ -1,4 +1,4 @@
-{% extends "SsfzBundle:Sprawozdanie:zalazkowe_edycja.html.twig" %}
+{% extends "SsfzBundle:Sprawozdanie:zalazkowe.html.twig" %}
 
 {% block bodyEdit %}
 {{ form_row(form.nazwaFunduszu) }}
@@ -62,10 +62,12 @@
 
     {{ form_row(form.dataZatwierdzeniaZasadGospodarowania) }}
     {{ form_row(form.czyNieDzialaDlaZysku) }}
-    {{ form_row(form.minimalneOprocentowanie) }}
+    {{ form_row(form.czyPosiadaWydzielonyFundusz) }}
+    {{ form_row(form.czyOprocentowanieNieNizszeOdStopy) }}
     {{ form_row(form.czyUdzielaPoAnalizieRyzyka) }}
-    {{ form_row(form.maksymalnaWielkoscPozyczki) }}
     {{ form_row(form.czyNieWTrudnejSytuacji) }}
+    {{ form_row(form.czyNiePrzekraczaja80) }}
+    {{ form_row(form.czyZaWynagrodzeniem) }}
     {{ form_row(form.czyOdpowiedniPotencjalEkonomiczny) }}
     {{ form_row(form.czyPracownicyPosiadajaKwalifikacje) }}
     {{ form_row(form.inne) }}
