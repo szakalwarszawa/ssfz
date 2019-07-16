@@ -3,10 +3,11 @@
 namespace Parp\SsfzBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Parp\SsfzBundle\Repository\SprawozdanieZalazkoweRepository;
 
 /**
  * Repozytorium SprawozdaniePoreczenioweRepository.
  */
-class SprawozdaniePoreczenioweRepository extends EntityRepository
+class SprawozdaniePoreczenioweRepository extends SprawozdanieZalazkoweRepository
 {
 }
