@@ -11,7 +11,7 @@ use Parp\SsfzBundle\Entity\GospodarkaDzial;
 use Parp\SsfzBundle\Entity\Beneficjent;
 use Parp\SsfzBundle\Entity\Umowa;
 use Parp\SsfzBundle\Entity\Spolka;
-use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Entity\SprawozdanieZalazkowe;
 use Parp\SsfzBundle\Entity\OkresyKonfiguracja;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -150,7 +150,7 @@ class Fixtures implements FixtureInterface
         $manager->persist($spolka);
         $manager->flush();
 
-        $sprawozdanie = new Sprawozdanie();
+        $sprawozdanie = new SprawozdanieZalazkowe();
         $sprawozdanie->setUmowa($umowa);
         $sprawozdanie->setCreatorId($userBeneficjent->getId());
         $dateTimeString = '1/1/2017 11:36:12 AM';
@@ -171,7 +171,7 @@ class Fixtures implements FixtureInterface
         $manager->persist($sprawozdanie);
         $manager->flush();
 
-        $sprawozdanie2 = new Sprawozdanie();
+        $sprawozdanie2 = new SprawozdanieZalazkowe();
         $sprawozdanie2->setUmowa($umowa);
         $sprawozdanie2->setCreatorId($beneficjentKonto->getId());
         $dateTimeString = '1/1/2017 11:36:12 AM';
@@ -186,7 +186,7 @@ class Fixtures implements FixtureInterface
         $manager->persist($sprawozdanie2);
         $manager->flush();
 
-        $sprawozdanie3 = new Sprawozdanie();
+        $sprawozdanie3 = new SprawozdanieZalazkowe();
         $sprawozdanie3->setUmowa($umowa);
         $sprawozdanie3->setCreatorId($beneficjentKonto->getId());
         $dateTimeString = '1/1/2017 11:36:12 AM';
@@ -201,7 +201,7 @@ class Fixtures implements FixtureInterface
         $manager->persist($sprawozdanie3);
         $manager->flush();
 
-        $sprawozdanie4 = new Sprawozdanie();
+        $sprawozdanie4 = new SprawozdanieZalazkowe();
         $sprawozdanie4->setUmowa($umowa);
         $sprawozdanie4->setCreatorId($beneficjentKonto->getId());
         $dateTimeString = '1/1/2017 11:36:12 AM';

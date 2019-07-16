@@ -62,7 +62,7 @@ class Umowa
      *
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="Sprawozdanie", mappedBy="umowa", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="SprawozdanieZalazkowe", mappedBy="umowa", cascade={"persist"})
      */
     protected $sprawozdaniaZalazkowe;
 

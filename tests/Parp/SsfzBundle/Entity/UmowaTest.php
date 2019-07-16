@@ -5,7 +5,7 @@ namespace Test\Parp\SsfzBundle\Entity;
 use PHPUnit\Framework\TestCase;
 use Parp\SsfzBundle\Entity\Beneficjent;
 use Parp\SsfzBundle\Entity\Umowa;
-use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Entity\SprawozdanieZalazkowe;
 use Parp\SsfzBundle\Entity\Spolka;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -93,8 +93,8 @@ class UmowaTest extends TestCase
      */
     public function testSprawozdania()
     {
-        $value1 = new Sprawozdanie();
-        $value2 = new Sprawozdanie();
+        $value1 = new SprawozdanieZalazkowe();
+        $value2 = new SprawozdanieZalazkowe();
         $this->umowa->addSprawozdanie($value1);
         $this->umowa->addSprawozdanie($value2);
         $this->assertCount(2, $this->umowa->getSprawozdania());

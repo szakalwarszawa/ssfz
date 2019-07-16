@@ -2,79 +2,78 @@
 
 namespace Parp\SsfzBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityNotFoundException;
+use Parp\SsfzBundle\Entity\Umowa;
 use Parp\SsfzBundle\Entity\AbstractSprawozdanie;
+use Parp\SsfzBundle\Entity\SprawozdanieZalazkowe;
+use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
+use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
+use Parp\SsfzBundle\Service\TypSprawozdaniaGuesserService;
 
 /**
- * Description of SprawozdanieRepository
+ * Repozytorium SprawozdanieRepository.
+ *
+ * Centralizuje dostęp do danych sprawozdań różnych typów.
+ * Repozytorium nie jest powiązane z żadną encją. Jest zdefiniowane jako usługa.
  */
-class SprawozdanieRepository extends EntityRepository
+class SprawozdanieRepository
 {
     /**
-     * Dodanie nowego sprawozdania do bazy danych
-     *
-     * @param AbstractSprawozdanie $sprawozdanie
-     *
-     * @return AbstractSprawozdanie
+     * @var EntityManager
      */
-    public function persist(AbstractSprawozdanie $sprawozdanie)
-    {
-        $this->_em->persist($sprawozdanie);
-        $this->_em->flush();
+    private $entityManager;
 
-        return $sprawozdanie;
-    }
-    
     /**
-     * Sprawdzenie, czy już istnieje sprawozdanie o takich parametrach
-     *
-     * @param AbstractSprawozdanie $sprawozdanie
-     *
-     * @return bool
+     * @var TypSprawozdaniaGuesserService
      */
-    public function czyTakieJuzIstnieje(AbstractSprawozdanie $sprawozdanie)
+    private $guesser;
+
+    /**
+     * Konstruktor.
+     *
+     * @param EntityManager $entityManager
+     * @param TypSprawozdaniaGuesserService $guesser
+     */
+    public function __construct(EntityManager $entityManager, TypSprawozdaniaGuesserService $guesser)
     {
-        $wynik = $this->findBy([
-            'umowa' => $sprawozdanie->getUmowa(),
-            'okres' => $sprawozdanie->getOkres(),
-            'rok'   => $sprawozdanie->getRok(),
-        ]);
-        
-        return count($wynik) > 0;
+        $this->entityManager = $entityManager;
+        $this->guesser = $guesser; 
     }
 
     /**
-     * Szuka najnowszego sprawozdania dla danego beneficjenta.
+     * Szuka sprawozdania właściwego typu wg zadanych identyfikatorów umowy i sprawozdania.
      *
-     * @param integer $creatorId
-     * @param integer $okresSprawozdawczyId
-     * @param integer $rok
-     * @param integer $umowaId
+     * @param int $idUmowy
+     * @param int $idSprawozdania
      *
      * @return AbstractSprawozdanie|null
      */
-    public function findNajnowsze(
-        int $creatorId,
-        int $okresSprawozdawczyId,
-        int $rok,
-        int $umowaId
-    ): ?AbstractSprawozdanie {
-        $result = $this
-            ->createQueryBuilder('s')
-            ->leftJoin('s.okres', 'o')
-            ->where('s.creatorId = :creatorId')
-            ->andWhere('s.umowaId = :umowaId')
-            ->andWhere('s.rok = :rok')
-            ->andWhere('s.czyNajnowsza = TRUE')
-            ->andWhere('o.id = :okresSprawozdawczyId')
-            ->setParameter('creatorId', $creatorId)
-            ->setParameter('umowaId', $umowaId)
-            ->setParameter('rok', $rok)
-            ->setParameter('okresSprawozdawczyId', $okresSprawozdawczyId)
-            ->getQuery()
-            ->getResult()
-        ;
+    public function findByIdUmowyAndIdSprawozdania(int $idUmowy, int $idSprawozdania): ?AbstractSprawozdanie
+    {
+        $entityManager = $this->entityManager;
+        $guesser = $this->guesser;
 
-        return (count($result) > 0) ? $result[0] : null;
+        $umowa = $entityManager
+            ->getRepository(Umowa::class)
+            ->find($idUmowy)
+        ;
+        if (null === $umowa) {
+            throw new EntityNotFoundException('Nie znaleziono umowy o podanym identyfikatorze.');
+        }
+
+        $program = $umowa->getBeneficjent()->getProgram();
+        $typSprawozdania = $guesser->guessByProgram($program);
+        $klasaSprawozdania = $guesser->getClass($typSprawozdania);
+
+        $sprawozdanie = $entityManager
+            ->getRepository($klasaSprawozdania)
+            ->find($idSprawozdania)
+        ;
+        if (null === $sprawozdanie) {
+            throw new EntityNotFoundException('Nie znaleziono sprawozdania o podanym identyfikatorze.');
+        }
+
+        return $sprawozdanie;
     }
 }

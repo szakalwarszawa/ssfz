@@ -14,7 +14,7 @@ use Parp\SsfzBundle\Entity\Report;
 use Parp\SsfzBundle\Entity\Umowa;
 use Parp\SsfzBundle\Entity\Spolka;
 use Parp\SsfzBundle\Entity\AbstractSprawozdanie;
-use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Entity\SprawozdanieZalazkowe;
 use Parp\SsfzBundle\Entity\SprawozdanieSpolki;
 use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
 use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
@@ -53,7 +53,7 @@ class SprawozdanieController extends Controller
         $beneficjent = $umowa->getBeneficjent();
         $beneficjentId = $beneficjent->getId();
         $this->getSprawozdanieService()->datatableSprawozdanie($this, $umowa);
-        $report = new Sprawozdanie();
+        $report = new SprawozdanieZalazkowe();
         $report->setNumerUmowy($this->getNumerUmowy($umowaId, $beneficjentId));
         $report->setUmowa($umowa);
         $spolki = $this->getSpolkiList($umowaId);
@@ -122,7 +122,7 @@ class SprawozdanieController extends Controller
     {
         $beneficjentId = $this->getBeneficjentId();
         $entityManager = $this->getDoctrine()->getManager();
-        $report = $entityManager->getRepository(Sprawozdanie::class)->find($reportId);
+        $report = $entityManager->getRepository(SprawozdanieZalazkowe::class)->find($reportId);
         $this->getSprawozdanieService()->checkSprawozdaniePermission($report, $beneficjentId);
         $okresy = $this->getOkresySprawozdawcze();
         $form = $this->createForm(SprawozdanieType::class, $report, [
@@ -149,7 +149,7 @@ class SprawozdanieController extends Controller
     {
         $beneficjentId = $this->getBeneficjentId();
         $entityManager = $this->getDoctrine()->getManager();
-        $report = $entityManager->getRepository(Sprawozdanie::class)->find($reportId);
+        $report = $entityManager->getRepository(SprawozdanieZalazkowe::class)->find($reportId);
         $this->getSprawozdanieService()->checkSprawozdaniePermission($report, $beneficjentId);
         if ($report->getStatus() != 1) {
             throw $this->createNotFoundException('Nie można edytować sprawozdania');
@@ -202,7 +202,7 @@ class SprawozdanieController extends Controller
     {
         $beneficjentId = $this->getBeneficjentId();
         $entityManager = $this->getDoctrine()->getManager();
-        $report = $entityManager->getRepository(Sprawozdanie::class)->find($reportId);
+        $report = $entityManager->getRepository(SprawozdanieZalazkowe::class)->find($reportId);
         $this->getSprawozdanieService()->checkSprawozdaniePermission($report, $beneficjentId);
         $umowaId = $report->getUmowaId();
         $this->getSprawozdanieService()->datatableSprawozdanie($this, $report->getUmowa());
@@ -222,7 +222,7 @@ class SprawozdanieController extends Controller
         ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $newReport = new Sprawozdanie();
+            $newReport = new SprawozdanieZalazkowe();
             $raportFromForm = $form->getData();
             $newReport = clone $raportFromForm;
             foreach ($raportFromForm->getSprawozdaniaSpolek() as $spolka) {
@@ -266,7 +266,7 @@ class SprawozdanieController extends Controller
         $sprawozdanieId = $this->get('request')->request->get('sprawozdanieId');
         $beneficjentId = $this->getBeneficjentId();
         $entityManager = $this->getDoctrine()->getManager();
-        $sprawozdanie = $entityManager->getRepository(Sprawozdanie::class)->find($sprawozdanieId);
+        $sprawozdanie = $entityManager->getRepository(SprawozdanieZalazkowe::class)->find($sprawozdanieId);
         $this->getSprawozdanieService()->checkSprawozdaniePermission($sprawozdanie, $beneficjentId);
 
         $przeplyw = $entityManager
@@ -468,7 +468,7 @@ class SprawozdanieController extends Controller
         ;
 
         $report = $entityManager
-            ->getRepository(Sprawozdanie::class)
+            ->getRepository(SprawozdanieZalazkowe::class)
             ->findNajnowsze($beneficjentId, $okres->getId(), $rok, $umowaId)
         ;
 

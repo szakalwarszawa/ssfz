@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Expr\Join;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Parp\SsfzBundle\Entity\Slownik\Program;
-use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Entity\SprawozdanieZalazkowe;
 use Parp\SsfzBundle\Entity\Umowa;
 use Parp\SsfzBundle\Repository\SprawozdanieRepository;
 

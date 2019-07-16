@@ -9,7 +9,7 @@ use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Entity\SprawozdanieZalazkowe;
 use Parp\SsfzBundle\Form\Type\SprawozdanieType;
 
 /**
@@ -63,7 +63,7 @@ class SprawozdanieTypeTest extends TypeTestCase
                 '2019' => '2019',
             ],
         ]);
-        $object = new Sprawozdanie();
+        $object = new SprawozdanieZalazkowe();
 
         $object->setNumerUmowy('1/2017');
         $object->setOkres('styczeń - czerwiec');

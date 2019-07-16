@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  * @ORM\Table(name="sfz_sprawozdanie")
  * @ORM\Entity(repositoryClass="Parp\SsfzBundle\Repository\SprawozdanieRepository")
  */
-class Sprawozdanie extends AbstractSprawozdanie
+class SprawozdanieZalazkowe extends AbstractSprawozdanie
 {
     /**
      * Encje SprawozdanieSpolki powiazane ze sprawozdaniem - sprawozdania spolek

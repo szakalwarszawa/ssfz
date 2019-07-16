@@ -1,12 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Parp\SsfzBundle\Service;
 
 use InvalidArgumentException;
 use Parp\SsfzBundle\Entity\AbstractSprawozdanie;
-use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Entity\SprawozdanieZalazkowe;
 use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
 use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
+use Parp\SsfzBundle\Entity\Slownik\Program;
 use Parp\SsfzBundle\Form\Type\SprawozdanieType;
 use Parp\SsfzBundle\Form\Type\SprawozdaniePozyczkoweType;
 use Parp\SsfzBundle\Form\Type\SprawozdaniePoreczenioweType;
@@ -19,7 +22,7 @@ class TypSprawozdaniaGuesserService
     /**
      * @var string
      */
-    const SPRAWOZDANIE = 'sprawozdanie_standardowe';
+    const SPRAWOZDANIE_ZALAZKOWE = 'sprawozdanie_zalazkowe';
 
     /**
      * @var string
@@ -48,9 +51,11 @@ class TypSprawozdaniaGuesserService
      *
      * @return TypSprawozdaniaGuesserService
      */
-    public function exceptionsOn()
+    public function exceptionsOn(): TypSprawozdaniaGuesserService
     {
         $this->throwsExceptions = true;
+
+        return $this;
     }
 
     /**
@@ -58,9 +63,11 @@ class TypSprawozdaniaGuesserService
      *
      * @return TypSprawozdaniaGuesserService
      */
-    public function exceptionsOff()
+    public function exceptionsOff(): TypSprawozdaniaGuesserService
     {
         $this->throwsExceptions = false;
+
+        return $this;
     }
 
     /**
@@ -72,10 +79,10 @@ class TypSprawozdaniaGuesserService
      *
      * @throws InvalidArgumentException Jeśli nie można określić dokładnego typu sprawozdania
      */
-    public function guess(AbstractSprawozdanie $sprawozdanie)
+    public function guess(AbstractSprawozdanie $sprawozdanie): string
     {
         if ($sprawozdanie instanceof Sprawozdanie) {
-            return self::SPRAWOZDANIE;
+            return self::SPRAWOZDANIE_ZALAZKOWE;
         }
 
         if ($sprawozdanie instanceof SprawozdaniePozyczkowe) {
@@ -83,6 +90,36 @@ class TypSprawozdaniaGuesserService
         }
 
         if ($sprawozdanie instanceof SprawozdaniePoreczeniowe) {
+            return self::SPRAWOZDANIE_PORECZENIOWE;
+        }
+
+        if ($this->throwsExceptions) {
+            throw new InvalidArgumentException('Can not determine type of "Sprawozdanie".');
+        }
+        
+        return self::INNE_SPRAWOZDANIE;
+    }
+
+    /**
+     * Na podstawie programu zwraca typ sprawozdania.
+     *
+     * @param Program $program
+     *
+     * @return string
+     *
+     * @throws InvalidArgumentException Jeśli nie można określić dokładnego typu sprawozdania
+     */
+    public function guessByProgram(Program $program): string
+    {
+        if ($program->czyFunduszZalazkowy()) {
+            return self::SPRAWOZDANIE_ZALAZKOWE;
+        }
+ 
+        if ($program->czyFunduszPozyczkowy()) {
+            return self::SPRAWOZDANIE_POZYCZKOWE;
+        }
+    
+        if ($program->czyFunduszPoreczeniowy()) {
             return self::SPRAWOZDANIE_PORECZENIOWE;
         }
 
@@ -102,7 +139,7 @@ class TypSprawozdaniaGuesserService
      *
      * @throws InvalidArgumentException Jeśli nie można określić typu formularza dla sprawozdania
      */
-    public function guessFormType(AbstractSprawozdanie $sprawozdanie)
+    public function guessFormType(AbstractSprawozdanie $sprawozdanie): string
     {
         if ($sprawozdanie instanceof Sprawozdanie) {
             return SprawozdanieType::class;
@@ -124,14 +161,37 @@ class TypSprawozdaniaGuesserService
     }
 
     /**
+     * Zwraca nazwę klasy (FQCN) sprawozdania na podstawie jego typu.
+     *
+     * @param string $typSprawozdania
+     *
+     * @return string|null
+     */
+    public function getClass(string $typSprawozdania): ?string
+    {
+        if ($typSprawozdania === self::SPRAWOZDANIE_ZALAZKOWE) {
+            return SprawozdanieZalazkowe::class;
+        }
 
+        if ($typSprawozdania === self::SPRAWOZDANIE_POZYCZKOWE) {
+            return SprawozdaniePozyczkowe::class;
+        }
+
+        if ($typSprawozdania === self::SPRAWOZDANIE_PORECZENIOWE) {
+            return SprawozdaniePoreczeniowe::class;
+        }
+
+        return null;
+    }
+
+    /**
      * Określa czy sprawozdanie dotyczy pożyczek.
      *
      * @param AbstractSprawozdanie $sprawozdanie
      *
      * @return bool
      */
-    public function jestPozyczkowe(AbstractSprawozdanie $sprawozdanie)
+    public function jestPozyczkowe(AbstractSprawozdanie $sprawozdanie): bool
     {
         return $this->guess($sprawozdanie) === self::SPRAWOZDANIE_POZYCZKOWE;
     }
@@ -143,7 +203,7 @@ class TypSprawozdaniaGuesserService
      *
      * @return bool
      */
-    public function jestPoreczeniowe(AbstractSprawozdanie $sprawozdanie)
+    public function jestPoreczeniowe(AbstractSprawozdanie $sprawozdanie): bool
     {
         return $this->guess($sprawozdanie) === self::SPRAWOZDANIE_PORECZENIOWE;
     }

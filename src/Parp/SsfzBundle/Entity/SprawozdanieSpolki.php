@@ -146,7 +146,7 @@ class SprawozdanieSpolki
     protected $zatrudnieniewStosunkuDoPoprzedniegoOkresu;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Sprawozdanie", inversedBy="sprawozdaniaSpolek", cascade = {"persist"})
+     * @ORM\ManyToOne(targetEntity="SprawozdanieZalazkowe", inversedBy="sprawozdaniaSpolek", cascade = {"persist"})
      * @ORM\JoinColumn(name="sprawozdanie_id", referencedColumnName="id")
      */
     protected $sprawozdanie;

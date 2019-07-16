@@ -5,7 +5,7 @@ namespace Parp\SsfzBundle\Entity\Slownik;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
-use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Entity\SprawozdanieZalazkowe;
 use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
 use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
 use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
@@ -217,7 +217,7 @@ class Program
 
             case Program::FUNDUSZ_ZALAZKOWY_POIG_31:
             default:
-                return Sprawozdanie::class;
+                return SprawozdanieZalazkowe::class;
         }
     }
     

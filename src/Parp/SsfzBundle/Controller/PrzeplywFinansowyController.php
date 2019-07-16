@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use Parp\SsfzBundle\Entity\Report;
 use Parp\SsfzBundle\Entity\PrzeplywFinansowy;
-use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Entity\SprawozdanieZalazkowe;
 use Parp\SsfzBundle\Form\Type\PrzeplywFinansowyType;
 use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
 
@@ -37,7 +37,7 @@ class PrzeplywFinansowyController extends Controller
         $przeplyw = new PrzeplywFinansowy();
         $entityManager = $this->getDoctrine()->getManager();
         $report = $entityManager
-            ->getRepository(Sprawozdanie::class)
+            ->getRepository(SprawozdanieZalazkowe::class)
             ->find($sprawozdanieId)
         ;
         if ($report->getCreatorId() != $beneficjentId || ($report->getStatus() != 1 && $report->getStatus() != 4)) {
@@ -114,7 +114,7 @@ class PrzeplywFinansowyController extends Controller
             ;
 
             $previousReport = $entityManager
-                ->getRepository(Sprawozdanie::class)
+                ->getRepository(SprawozdanieZalazkowe::class)
                 ->findBy([
                     'creatorId' => $beneficjentId,
                     'umowaId'   => $report->getUmowaId(),
@@ -128,7 +128,7 @@ class PrzeplywFinansowyController extends Controller
             ;
 
             $previousReport = $entityManager
-                ->getRepository(Sprawozdanie::class)
+                ->getRepository(SprawozdanieZalazkowe::class)
                 ->findBy([
                     'creatorId' => $beneficjentId,
                     'umowaId'   => $report->getUmowaId(),

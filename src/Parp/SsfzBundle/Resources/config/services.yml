@@ -176,3 +176,9 @@ services:
         arguments:
             - '@doctrine.orm.entity_manager'
             - '@session'
+
+    ssfz.service.repozitory.sprawozdanie:
+        class: Parp\SsfzBundle\Repository\SprawozdanieRepository
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@ssfz.service.guesser.typ_sprawozdania'

@@ -10,7 +10,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Carbon\Carbon;
 use Parp\SsfzBundle\Entity\Umowa;
 use Parp\SsfzBundle\Entity\Uzytkownik;
-use Parp\SsfzBundle\Entity\Sprawozdanie;
+use Parp\SsfzBundle\Entity\SprawozdanieZalazkowe;
 use Parp\SsfzBundle\Entity\Slownik\Program;
 use Parp\SsfzBundle\Entity\Slownik\StatusSprawozdania;
 use Parp\SsfzBundle\Form\Type\SpolkaType;
@@ -81,7 +81,10 @@ class ParpController extends Controller
                 'title'   => '',
                 'message' => 'Sprawozdanie nie ma statusu "przesłane". Ocena sprawozdania z innym statusem jest niemożliwa.'
             ]);
-            return $this->redirectToRoute('parp_sprawozdanie', ['idSprawozdania' => $idSprawozdania]);
+            return $this->redirectToRoute('parp_sprawozdanie', [
+                'idSprawozdania' => $idSprawozdania,
+                'idUmowy'        => $umowa->getId(),
+            ]);
         }
     
         if ($sprawozdanie->getStatus() === StatusSprawozdania::PRZESLANO_DO_PARP && null !== $sprawozdanie->getOceniajacyId() && $uzytkownik->getId() !== $sprawozdanie->getOceniajacyId()) {
@@ -92,6 +95,7 @@ class ParpController extends Controller
             ]);
             return $this->redirectToRoute('parp_sprawozdanie', [
                 'idSprawozdania' => $idSprawozdania,
+                'idUmowy'        => $umowa->getId(),
             ]);
         }
         $okresy = $this->getOkresySprawozdawcze();
@@ -187,20 +191,27 @@ class ParpController extends Controller
     }
 
     /**
-     * Akcja podglądu sprawozdania
+     * Wyświetla podgląd sprawozdania.
      *
-     * @param int $idSprawozdania identyfikator sprawozdania
+     * Identyfikator umowy jest konieczny do określenia, którego z programów dotyczy sprawozdanie
+     * (oraz jakiej klasy obiekty używać i gdzie są przechowywane w bazie danych).
+     * Wcześniej SSFZ obsługiwało jeden program i identyfikator sprawozdania był informacją
+     * jednoznaczną.
      *
-     * @Route("/sprawozdanie/{idSprawozdania}", name="parp_sprawozdanie")
+     * @param int $idUmowy
+     * @param int $idSprawozdania
+     *
+     * @Route("/sprawozdanie/{idUmowy}/{idSprawozdania}", name="parp_sprawozdanie")
      *
      * @return Response
      */
     public function sprawozdanieAction($idSprawozdania)
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $sprawozdanie = $entityManager
-            ->getRepository(Sprawozdanie::class)
-            ->find($idSprawozdania)
+
+        $sprawozdanie = $this
+            ->get('ssfz.service.repozitory.sprawozdanie')
+            ->findByIdUmowyAndIdSprawozdania($idUmowy, $idSprawozdania)
         ;
         if (null == $sprawozdanie) {
             $this
@@ -219,7 +230,7 @@ class ParpController extends Controller
         $przeplyw = null;
         $przeplyw = $entityManager
             ->getRepository(PrzeplywFinansowy::class)
-            ->findBy(array('sprawozdanieId' => $sprawozdanie->getId()))
+            ->findBy(['sprawozdanieId' => $sprawozdanie->getId()])
         ;
         $formP = null;
         if (null != $przeplyw) {

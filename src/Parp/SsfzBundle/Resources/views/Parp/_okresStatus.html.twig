@@ -16,13 +16,13 @@
     {% endif %}
 
     {% if (status_id and status_id[0] and status_id[0] == 3 and status_id[1]) %}
-        <a href="{{ path('parp_sprawozdanie', {'idSprawozdania': status_id[1]}) }}"
+        <a href="{{ path('parp_sprawozdanie', {'idSprawozdania': status_id[1], 'idUmowy': dt_id}) }}"
            class="btn btn-xs btn-success btn-block"
            role="button">Zatwierdzone</a>
     {% endif %}
 
     {% if (status_id and status_id[0] and status_id[0] == 4 and status_id[1]) %}
-        <a href="{{ path('parp_sprawozdanie', {'idSprawozdania': status_id[1]}) }}"
+        <a href="{{ path('parp_sprawozdanie', {'idSprawozdania': status_id[1], 'idUmowy': dt_id}) }}"
            class="btn btn-xs btn-warning btn-block"
            role="button">Do poprawy</a>
     {% endif %}
