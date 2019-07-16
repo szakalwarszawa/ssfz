@@ -38,7 +38,7 @@ class SprawozdanieRepository
     public function __construct(EntityManager $entityManager, TypSprawozdaniaGuesserService $guesser)
     {
         $this->entityManager = $entityManager;
-        $this->guesser = $guesser; 
+        $this->guesser = $guesser;
     }
 
     /**

@@ -60,7 +60,7 @@ class SprawozdanieService
         $beneficjent = $umowa->getBeneficjent();
         $program = $beneficjent->getProgram();
         $klasaEncji = Program::jakaEncjaDlaProgramu($program);
-        
+
         $tabRenderers = [
             0 => [
                 'view' => 'SsfzBundle:Report:sprawozdanieStatus.html.twig',
@@ -69,7 +69,7 @@ class SprawozdanieService
                 'view' => 'SsfzBundle:Report:sprawozdanieActions.html.twig',
             ]
         ];
-        
+
         if (Program::FUNDUSZ_ZALAZKOWY_POIG_31 === (int) $program->getId()) {
             $tabRenderers[3] = [
                 'view' => 'SsfzBundle:Report:sprawozdanieSpolki.html.twig',

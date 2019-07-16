@@ -205,7 +205,7 @@ class ParpController extends Controller
      *
      * @return Response
      */
-    public function sprawozdanieAction($idSprawozdania)
+    public function sprawozdanieAction($idUmowy, $idSprawozdania)
     {
         $entityManager = $this->getDoctrine()->getManager();
 
@@ -213,7 +213,7 @@ class ParpController extends Controller
             ->get('ssfz.service.repozitory.sprawozdanie')
             ->findByIdUmowyAndIdSprawozdania($idUmowy, $idSprawozdania)
         ;
-        if (null == $sprawozdanie) {
+        if (null === $sprawozdanie) {
             $this
                 ->get('ssfz.service.komunikaty_service')
                 ->bladKomunikat('Nie znaleziono sprawozdania o podanym identyfikatorze.')
