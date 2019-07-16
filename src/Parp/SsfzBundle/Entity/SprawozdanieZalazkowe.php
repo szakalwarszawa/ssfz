@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  * Sprawozdanie
  *
  * @ORM\Table(name="sfz_sprawozdanie")
- * @ORM\Entity(repositoryClass="Parp\SsfzBundle\Repository\SprawozdanieRepository")
+ * @ORM\Entity(repositoryClass="Parp\SsfzBundle\Repository\SprawozdanieZalazkoweRepository")
  */
 class SprawozdanieZalazkowe extends AbstractSprawozdanie
 {
