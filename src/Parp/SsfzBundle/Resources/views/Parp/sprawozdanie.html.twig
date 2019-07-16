@@ -6,6 +6,14 @@
         <div class="panel-body">
             {% include 'SsfzBundle:Parp:sprawozdanieForm.html.twig' with {'formS': formS, 'formP': formP } %}
 
+            {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPozyczkowy() and dane_pozyczek|default(null) %}
+                 {% include 'SsfzBundle:Sprawozdanie:dane_pozyczek_odczyt.html.twig' with {'dane_pozyczek': dane_pozyczek} %}
+            {% endif %}
+
+            {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPoreczeniowy() and dane_poreczen|default(null) %}
+                 {% include 'SsfzBundle:Sprawozdanie:dane_poreczen_odczyt.html.twig' with {'dane_poreczen': dane_poreczen} %}
+            {% endif %}
+
             <a href="{{ path('parp') }}"
                class="btn btn-danger pull-right"
                role="button"><span class="fas fa-chevron-left"></span> Powrót</a>
