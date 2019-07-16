@@ -296,7 +296,7 @@ class Umowa
      *
      * @return Umowa
      */
-    public function addSprawozdaniaZalazkowe(Sprawozdanie $sprawozdaniaZalazkowe)
+    public function addSprawozdaniaZalazkowe(SprawozdanieZalazkowe $sprawozdaniaZalazkowe)
     {
         $this->sprawozdaniaZalazkowe[] = $sprawozdaniaZalazkowe;
 
@@ -308,7 +308,7 @@ class Umowa
      *
      * @param Sprawozdanie $sprawozdaniaZalazkowe
      */
-    public function removeSprawozdaniaZalazkowe(Sprawozdanie $sprawozdaniaZalazkowe)
+    public function removeSprawozdaniaZalazkowe(SprawozdanieZalazkowe $sprawozdaniaZalazkowe)
     {
         $this->sprawozdaniaZalazkowe->removeElement($sprawozdaniaZalazkowe);
     }
