@@ -9,11 +9,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
-use Parp\SsfzBundle\Entity\AbstractSprawozdanie;
 use Parp\SsfzBundle\Entity\Slownik\Program;
 use Parp\SsfzBundle\Entity\Report;
 use Parp\SsfzBundle\Entity\Umowa;
 use Parp\SsfzBundle\Entity\Spolka;
+use Parp\SsfzBundle\Entity\AbstractSprawozdanie;
 use Parp\SsfzBundle\Entity\Sprawozdanie;
 use Parp\SsfzBundle\Entity\SprawozdanieSpolki;
 use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
@@ -384,12 +384,12 @@ class SprawozdanieController extends Controller
     /**
      * Metoda czyści dane związane z oceną PARP po poprawie sprawozdania
      *
-     * @param Sprawozdanie $newReport
-     * @param Sprawozdanie $report
+     * @param AbstractSprawozdanie $newReport
+     * @param AbstractSprawozdanie $report
      *
-     * @return Sprawozdanie bez oceny
+     * @return AbstractSprawozdanie bez oceny
      */
-    public function setDefaultValuesAfterRepait(Sprawozdanie $newReport, Sprawozdanie $report)
+    public function setDefaultValuesAfterRepait(AbstractSprawozdanie $newReport, AbstractSprawozdanie $report)
     {
         $newReport->setStatus(StatusSprawozdania::EDYCJA);
         $newReport->setUwagi('');

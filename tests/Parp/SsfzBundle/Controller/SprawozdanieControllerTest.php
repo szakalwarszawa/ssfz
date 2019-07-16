@@ -8,12 +8,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Parp\SsfzBundle\Controller\SprawozdanieController;
 
 /**
  * Description of sprawozdanieControllerTest
- *
- *
- * @covers \Parp\SsfzBundle\Controller\sprawozdanieController
  */
 class SprawozdanieControllerTest extends WebTestCase
 {
@@ -168,7 +166,7 @@ class SprawozdanieControllerTest extends WebTestCase
      */
     public function testSetDefaultValues()
     {
-        $sprawozdanieControler = new \Parp\SsfzBundle\Controller\SprawozdanieController();
+        $sprawozdanieControler = new SprawozdanieController();
         $report = new \Parp\SsfzBundle\Entity\Sprawozdanie();
         $umowa = new \Parp\SsfzBundle\Entity\Umowa();
         $report = $sprawozdanieControler->setDefaultValues($report, $umowa, 13);
@@ -189,7 +187,7 @@ class SprawozdanieControllerTest extends WebTestCase
         $spolka1 = new \Parp\SsfzBundle\Entity\Spolka();
         $spolka2 = new \Parp\SsfzBundle\Entity\Spolka();
         $spolki = array($spolka1,$spolka2);
-        $sprawozdanieControler = new \Parp\SsfzBundle\Controller\SprawozdanieController();
+        $sprawozdanieControler = new SprawozdanieController();
         $report = $sprawozdanieControler->setSpolki($spolki, $report);
         $this->assertSame(count($report->getSprawozdaniaSpolek()), count($spolki));
     }
@@ -205,7 +203,7 @@ class SprawozdanieControllerTest extends WebTestCase
         $oldReport->setId(1);
         $report = new \Parp\SsfzBundle\Entity\Sprawozdanie();
 
-        $sprawozdanieControler = new \Parp\SsfzBundle\Controller\SprawozdanieController();
+        $sprawozdanieControler = new SprawozdanieController();
 
         $report = $sprawozdanieControler->setDefaultValuesAfterRepait($report, $oldReport);
         $this->assertSame($report->getWersja(), $wersja +1);
@@ -234,7 +232,7 @@ class SprawozdanieControllerTest extends WebTestCase
             ->method('getRepository')
             ->willReturn($umowaRepository);
 
-        $sprawozdanieControler = new \Parp\SsfzBundle\Controller\SprawozdanieController();
+        $sprawozdanieControler = new SprawozdanieController();
         $numerUmowy = $sprawozdanieControler->getNumerUmowy(1);
         $this->assertSame($numerUmowy,'1/2015');*/
     }
@@ -256,7 +254,7 @@ class SprawozdanieControllerTest extends WebTestCase
             ->method('getRepository')
             ->willReturn($umowaRepository);
 
-        $sprawozdanieControler = new \Parp\SsfzBundle\Controller\SprawozdanieController();
+        $sprawozdanieControler = new SprawozdanieController();
 
         $spolki = $sprawozdanieControler->getSpolkiList(1);
         $this->assertSame(count($spolki),1);*/
