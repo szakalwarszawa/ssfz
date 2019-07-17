@@ -29,50 +29,52 @@ class BeneficjentType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nazwa', null, array(
-            'label' => 'Nazwa',
-            'constraints' => array(
-                new NotBlank(
-                    array('message' => 'Należy wypełnić pole')
-                )
-            )
-        ));
+        $builder->add('nazwa', null, [
+            'label'       => 'Nazwa',
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
-        $builder->add('umowy', CollectionType::class, array(
-            'entry_type' => UmowaType::class,
-            'entry_options' => array('label' => false),
-            'allow_add' => true,
-            'by_reference' => false,
-            'allow_delete' => true,
-        ));
+        $builder->add('umowy', CollectionType::class, [
+            'entry_type'    => UmowaType::class,
+            'entry_options' => [
+                'label' => false,
+            ],
+            'allow_add'     => true,
+            'by_reference'  => false,
+            'allow_delete'  => true,
+        ]);
 
-        $builder->add('adrWojewodztwo', ChoiceType::class, array(
-            'label' => 'Województwo',
-            'choices' => array(
-                '' => '',
-                'dolnośląskie' => 'dolnośląskie',
-                'kujawsko-pomorskie' => 'kujawsko-pomorskie',
-                'lubelskie' => 'lubelskie',
-                'lubuskie' => 'lubuskie',
-                'łódzkie' => 'łódzkie',
-                'małopolskie' => 'małopolskie',
-                'mazowieckie' => 'mazowieckie',
-                'opolskie' => 'opolskie',
-                'podkarpackie' => 'podkarpackie',
-                'podlaskie' => 'podlaskie',
-                'pomorskie' => 'pomorskie',
-                'śląskie' => 'śląskie',
-                'świętokrzyskie' => 'świętokrzyskie',
+        $builder->add('adrWojewodztwo', ChoiceType::class, [
+            'label'      => 'Województwo',
+            'choices'    => [
+                ''                    => '',
+                'dolnośląskie'        => 'dolnośląskie',
+                'kujawsko-pomorskie'  => 'kujawsko-pomorskie',
+                'lubelskie'           => 'lubelskie',
+                'lubuskie'            => 'lubuskie',
+                'łódzkie'             => 'łódzkie',
+                'małopolskie'         => 'małopolskie',
+                'mazowieckie'         => 'mazowieckie',
+                'opolskie'            => 'opolskie',
+                'podkarpackie'        => 'podkarpackie',
+                'podlaskie'           => 'podlaskie',
+                'pomorskie'           => 'pomorskie',
+                'śląskie'             => 'śląskie',
+                'świętokrzyskie'      => 'świętokrzyskie',
                 'warmińsko-mazurskie' => 'warmińsko-mazurskie',
-                'wielkopolskie' => 'wielkopolskie',
-                'zachodniopomorskie' => 'zachodniopomorskie',
-            ),
-            'constraints' => array(
-                new NotBlank(
-                    array('message' => 'Należy wypełnić pole')
-                )
-            )
-        ));
+                'wielkopolskie'       => 'wielkopolskie',
+                'zachodniopomorskie'  => 'zachodniopomorskie',
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
         $builder->add('adrMiejscowosc', null, array(
             'label' => 'Miejscowość',
@@ -157,13 +159,15 @@ class BeneficjentType extends AbstractType
             'label' => 'Fax'
         ));
 
-        $builder->add('osobyZatrudnione', CollectionType::class, array(
-            'entry_type' => OsobaZatrudnionaType::class,
-            'entry_options' => array('label' => false),
-            'allow_add' => true,
-            'by_reference' => false,
-            'allow_delete' => true,
-        ));
+        $builder->add('osobyZatrudnione', CollectionType::class, [
+            'entry_type'    => OsobaZatrudnionaType::class,
+            'entry_options' => [
+                'label' => false,
+            ],
+            'allow_add'     => true,
+            'by_reference'  => false,
+            'allow_delete'  => true,
+        ]);
     }
 
     /**
@@ -173,9 +177,11 @@ class BeneficjentType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => Beneficjent::class,
-            'attr' => array('novalidate' => 'novalidate'),
-        ));
+            'attr'       => [
+                'novalidate' => 'novalidate',
+            ],
+        ]);
     }
 }

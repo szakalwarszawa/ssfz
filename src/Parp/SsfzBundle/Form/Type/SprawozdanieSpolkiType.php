@@ -17,6 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Parp\SsfzBundle\Entity\SprawozdanieSpolki;
 
 /**
  * Typ formularza sprawozdania spolki
@@ -37,6 +38,7 @@ class SprawozdanieSpolkiType extends AbstractType
             'label' => 'Lp.',
             'attr' => array('readonly' => true)
         ));
+
         $builder->add('nazwaSpolki', null, array(
             'label' => 'Nazwa spółki',
             'attr' => array('readonly' => true),
@@ -46,6 +48,7 @@ class SprawozdanieSpolkiType extends AbstractType
                 )
             )
         ));
+
         $builder->add('krs', TextType::class, array(
             'label' => 'Nr KRS',
             'attr' => array('readonly' => true),
@@ -55,6 +58,7 @@ class SprawozdanieSpolkiType extends AbstractType
                 )
             )
         ));
+
         $builder->add('uzyskanePrzychody', TextType::class, array(
             'label' => 'Uzyskane przychody w okresie sprawozdawczym',
             'attr' => array('class' => 'ndecimal'),
@@ -67,6 +71,7 @@ class SprawozdanieSpolkiType extends AbstractType
                 )
             ),
         ));
+
         $builder->add('planowanePrzychody', TextType::class, array(
             'label' => 'Planowane przychody w nast. okresie w stosunku do aktualnego (%)',
             'attr' => array('class' => 'decimal'),
@@ -79,6 +84,7 @@ class SprawozdanieSpolkiType extends AbstractType
                 )
             )
         ));
+
         $builder->add('ebitda', TextType::class, array(
             'label' => 'EBITDA',
             'attr' => array('class' => 'ndecimal'),
@@ -91,6 +97,7 @@ class SprawozdanieSpolkiType extends AbstractType
                 )
             )
         ));
+
         $builder->add('ncf', TextType::class, array(
             'label' => 'NCF',
             'attr' => array('class' => 'ndecimal'),
@@ -103,6 +110,7 @@ class SprawozdanieSpolkiType extends AbstractType
                 )
             )
         ));
+
         $builder->add('sumaBilansowa', TextType::class, array(
             'label' => 'Suma bilansowa',
             'attr' => array('class' => 'ndecimal'),
@@ -115,6 +123,7 @@ class SprawozdanieSpolkiType extends AbstractType
                 )
             )
         ));
+
         $builder->add('zatrudnienieEtaty', null, array(
             'label' => 'Zatrudnienie (Etaty)',
             'attr' => array('class' => 'integer'),
@@ -124,6 +133,7 @@ class SprawozdanieSpolkiType extends AbstractType
                 )
             )
         ));
+
         $builder->add('zatrudnioneKobiety', null, array(
             'label' => 'W tym kobiety',
             'attr' => array('class' => 'integer'),
@@ -133,6 +143,7 @@ class SprawozdanieSpolkiType extends AbstractType
                 )
             )
         ));
+
         $builder->add('zatrudnieniMezczyzni', null, array(
             'label' => 'W tym mężczyźni',
             'attr' => array('class' => 'integer'),
@@ -142,6 +153,7 @@ class SprawozdanieSpolkiType extends AbstractType
                 )
             )
         ));
+
         $builder->add('zatrudnienieInneFormy', null, array(
             'label' => 'Zatrudnienie (Inne formy)',
             'attr' => array('class' => 'integer'),
@@ -151,6 +163,7 @@ class SprawozdanieSpolkiType extends AbstractType
                 )
             )
         ));
+
         $builder->add('zatrudnienieInneFormyKobiety', null, array(
             'label' => 'W tym kobiety',
             'attr' => array('class' => 'integer'),
@@ -160,6 +173,7 @@ class SprawozdanieSpolkiType extends AbstractType
                 )
             )
         ));
+
         $builder->add('zatrudnienieInneFormyMezczyzni', null, array(
             'label' => 'W tym mężczyźni',
             'attr' => array('class' => 'integer'),
@@ -169,6 +183,7 @@ class SprawozdanieSpolkiType extends AbstractType
                 )
             )
         ));
+
         $builder->add('zatrudnieniewStosunkuDoPoprzedniegoRoku', null, array(
             'label' => 'Zmiana zatrudnienia w stosunku do poprzedniego okresu (Etaty)',
             'attr' => array('class' => 'integer'),
@@ -178,6 +193,7 @@ class SprawozdanieSpolkiType extends AbstractType
                 )
             )
         ));
+
         $builder->add('zatrudnieniewStosunkuDoPoprzedniegoOkresu', null, array(
             'label' => 'Zmiana zatrudnienia w stosunku do poprzedniego okresu (Inne formy)',
             'attr' => array('class' => 'integer'),
@@ -189,7 +205,6 @@ class SprawozdanieSpolkiType extends AbstractType
         ));
     }
 
-
     /**
      * Ustawia opcje konfiguracji
      *
@@ -197,10 +212,12 @@ class SprawozdanieSpolkiType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => \Parp\SsfzBundle\Entity\SprawozdanieSpolki::class,
-            'attr' => array('novalidate' => 'novalidate'),
+        $resolver->setDefaults([
+            'data_class'  => SprawozdanieSpolki::class,
+            'attr'        => [
+                'novalidate' => 'novalidate',
+            ],
             'showRemarks' => null,
-        ));
+        ]);
     }
 }

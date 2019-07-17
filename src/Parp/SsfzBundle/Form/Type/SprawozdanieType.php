@@ -51,9 +51,7 @@ class SprawozdanieType extends AbstractType
                     'rows'     => '5',
                 ],
             ]);
-        }
-
-        if ($this->showRemarks === false || $this->showRemarks === null) {
+        } else {
             $builder->add('uwagi', HiddenType::class, [
                 'data' => '',
             ]);

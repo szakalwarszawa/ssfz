@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Parp\SsfzBundle\Entity\Umowa;
 use Parp\SsfzBundle\Entity\Uzytkownik;
 use Parp\SsfzBundle\Entity\SprawozdanieZalazkowe;
+use Parp\SsfzBundle\Entity\SprawozdanieSpolki;
 use Parp\SsfzBundle\Entity\Slownik\Program;
 use Parp\SsfzBundle\Entity\Slownik\StatusSprawozdania;
 use Parp\SsfzBundle\Form\Type\SpolkaType;
@@ -232,21 +233,18 @@ class ParpController extends Controller
             ->getProgram()
         ;
 
-        $okresy = $this->getOkresySprawozdawcze();
-        $formOkresy = $this->createForm(SprawozdanieType::class, $sprawozdanie, [
-            'disabled' => true,
-            'lata'     => $okresy,
-            'program'  => $program,
-        ]);
-
-
-
-
-        // Prawdopodobnie to pobiera dane nie bacząc na typ sprawozdania.
-        $pzeplywFinansowy = $entityManager
-            ->getRepository(PrzeplywFinansowy::class)
-            ->findBy(['sprawozdanieId' => $sprawozdanie->getId()])
-        ;
+        $sprawozdanieSpolki = null;
+        $przeplywFinansowy = null;
+        if ($program->czyFunduszZalazkowy()) {
+            $przeplywFinansowy = $entityManager
+                ->getRepository(PrzeplywFinansowy::class)
+                ->findOneByIdSprawozdania($idSprawozdania)
+            ;
+            $sprawozdanieSpolki = $entityManager
+                ->getRepository(SprawozdanieSpolki::class)
+                ->findOneByIdSprawozdania($idSprawozdania)
+            ;
+        }
 
         $danePozyczek = null;
         if ($program->czyFunduszPozyczkowy()) {
@@ -254,11 +252,6 @@ class ParpController extends Controller
                 ->getRepository(DanePozyczek::class)
                 ->findOneByIdSprawozdania($idSprawozdania)
             ;
-
-            $szablon = 'SsfzBundle:Sprawozdanie:pozyczkowe_odczyt.html.twig';
-            $blockParams = [
-                'form' => $formOkresy->createView(),
-            ];
         }
 
         $danePoreczen = null;
@@ -267,22 +260,12 @@ class ParpController extends Controller
                 ->getRepository(DanePoreczen::class)
                 ->findOneByIdSprawozdania($idSprawozdania)
             ;
-
-            $szablon = 'SsfzBundle:Sprawozdanie:poreczeniowe_odczyt.html.twig';
-            $blockParams = [
-                'form' => $formOkresy->createView(),
-            ];
         }
-
-
-
-
-
 
         return $this->render('SsfzBundle:Parp:sprawozdanie.html.twig', [
             'sprawozdanie'             => $sprawozdanie,
-            'form_okresy'              => $formOkresy->createView(),
-            'przeplyw_finansowy'       => $pzeplywFinansowy,
+            'sprawozdanie_spolki'      => $sprawozdanieSpolki,
+            'przeplyw_finansowy'       => $przeplywFinansowy,
             'dane_pozyczek'            => $danePozyczek,
             'dane_poreczen'            => $danePoreczen,
         ]);

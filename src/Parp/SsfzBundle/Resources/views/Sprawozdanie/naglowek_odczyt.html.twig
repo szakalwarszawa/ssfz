@@ -1,0 +1,33 @@
+{% block sprawozdanie_naglowek_odczyt %}
+    <div class="panel panel-default">
+        <div class="panel-heading">Dane podstawowe</div>
+        <div class="panel-body">
+            <div class="col-md-12">
+                <table class="table table-bordered table-condensed table-striped">
+                    <tbody>
+                        <tr>
+                            <td class="col-md-3"><strong>Numer umowy</strong></td>
+                            <td>{{ sprawozdanie.numerUmowy|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3"><strong>Sprawozdanie za okres</strong></td>
+                            <td>{{ sprawozdanie.okres|default('') }}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3"><strong>Rok</strong></td>
+                            <td>{{ sprawozdanie.rok|default('') }}</td>
+                        </tr>
+
+                        {% set komentarz_parp = sprawozdanie.uwagi|default('') %}
+                        {% if komentarz_parp != '' %}
+                            <tr>
+                                <td class="col-md-3"><strong>Komentarz PARP</strong></td>
+                                <td>{{ komentarz_parp }}</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
