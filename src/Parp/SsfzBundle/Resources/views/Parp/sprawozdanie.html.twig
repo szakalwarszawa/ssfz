@@ -5,7 +5,12 @@
         <div class="panel-heading"><h4>Sprawozdanie do umowy {{ sprawozdanie.numerUmowy }} za okres {{ sprawozdanie.okres }} {{ sprawozdanie.rok }}</h4></div>
         <div class="panel-body">
 
-            {% include 'SsfzBundle:Parp:sprawozdanie_form.html.twig' with {'form_okresy': form_okresy, 'form_przeplywy_finansowe': form_przeplywy_finansowe} %}
+            {% include 'SsfzBundle:Parp:sprawozdanie_form.html.twig' with {'form_okresy': form_okresy} %}
+
+            {% if sprawozdanie.umowa.beneficjent.program.czyFunduszZalazkowy() and przeplyw_finansowy|default(null) is not empty %}
+                 {% include 'SsfzBundle:Sprawozdanie:przeplyw_finansowy_odczyt.html.twig' with {'przeplyw_finansowy': przeplyw_finansowy} %}
+            {% endif %}
+                             {% include 'SsfzBundle:Sprawozdanie:przeplyw_finansowy_odczyt.html.twig' with {'przeplyw_finansowy': przeplyw_finansowy} %}
 
             {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPozyczkowy() and dane_pozyczek|default(null) is not empty %}
                  {% include 'SsfzBundle:Sprawozdanie:dane_pozyczek_odczyt.html.twig' with {'dane_pozyczek': dane_pozyczek} %}
