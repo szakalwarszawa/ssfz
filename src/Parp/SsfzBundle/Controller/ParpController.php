@@ -143,7 +143,7 @@ class ParpController extends Controller
             die('dd');
             $szablon = 'SsfzBundle:Parp:sprawozdanie_form.html.twig';
             $blockParams = [
-                'form_okresy' => $formOkresy->createView(),
+                'form_okresy'             => $formOkresy->createView(),
                 'form_rzeplywy_finansowe' => $formPrzeplywyFinansowe,
             ];
             
@@ -158,8 +158,8 @@ class ParpController extends Controller
 
             $szablon = 'SsfzBundle:Sprawozdanie:pozyczkowe_odczyt.html.twig';
             $blockParams = [
-                'form'           => $formOkresy->createView(),
-                'app'            => $this,
+                'form' => $formOkresy->createView(),
+                'app'  => $this,
             ];
         }
 
@@ -172,8 +172,7 @@ class ParpController extends Controller
 
             $szablon = 'SsfzBundle:Sprawozdanie:poreczeniowe_odczyt.html.twig';
             $blockParams = [
-                'form'           => $formOkresy->createView(),
-                'app'            => $this,
+                'form' => $formOkresy->createView(),
             ];
         }
 

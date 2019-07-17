@@ -47,7 +47,6 @@
                         <tr>
                             <td>{{ sprawozdanie.rok }}</td>
                             {% if czestotliwosc_polroczna %}
-                            {# {% if umowa.czestotliwoscSprawozdanWProgramie.czyPolroczna %} #}
                                 <td>{{ sprawozdanie.okres }}</td>
                             {% endif %}
                             <td>{{ sprawozdanie.nazwaFunduszu }}</td>
@@ -55,13 +54,13 @@
                                 {% include 'SsfzBundle:Report:sprawozdanieStatus.html.twig' with {'dt_obj': sprawozdanie} %}
                             </td>
                             <td>
-                                <a href="{{ path('sprawozdania_spo_podglad', {'typSprawozdania': typ_sprawozdania, 'sprawozdanieId': sprawozdanie.id}) }}" class="btn btn-sm btn-info" role="button">
-                                    <span class="fas fa-eye"></span> Podgląd
-                                </a>
+                                <a href="{{ path('sprawozdania_spo_podglad', {'typSprawozdania': typ_sprawozdania, 'sprawozdanieId': sprawozdanie.id}) }}"
+                                   class="btn btn-sm btn-info"
+                                   role="button"><span class="fas fa-eye"></span> Podgląd</a>
                                 {% if not sprawozdanie.dataPrzeslaniaDoParp %}
-                                    <a href="{{ path('sprawozdania_spo_edycja', {'typSprawozdania': typ_sprawozdania, 'sprawozdanieId': sprawozdanie.id}) }}" class="btn btn-sm btn-primary" role="button">
-                                        <i class="fas fa-edit"></i> Edycja
-                                    </a>
+                                    <a href="{{ path('sprawozdania_spo_edycja', {'typSprawozdania': typ_sprawozdania, 'sprawozdanieId': sprawozdanie.id}) }}"
+                                       class="btn btn-sm btn-primary"
+                                       role="button"><i class="fas fa-edit"></i> Edycja</a>
 
                                     {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPozyczkowy()|default(false) %}
                                         <a href="{{ url('edycja_danych_pozyczek_dla_sprawozdania', {'id': sprawozdanie.id}) }}" class="btn btn-sm btn-success" role="button"><span class="fas fa-edit"></span> Edycja danych o pożyczkach</a>
