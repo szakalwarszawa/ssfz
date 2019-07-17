@@ -70,47 +70,63 @@
                             <td>{{ sprawozdanie.formaPrawna|default('') }}</td>
                         </tr>
                     </tbody>
+                </table>
 
+                <hr />
 
-            {#
-                {{ form_row(form.kapitalOgolem) }}
-                <div id="skladniki-ogolem" class="skladniki-ogolem panel-body" data-prototype="{{ form_widget(form.skladnikiOgolem.vars.prototype)|e('html_attr') }}">
-                    {% for skladnik in form.skladnikiOgolem %}
-                        <div class="row skladnik-ogolem-row">
-                            <div class="skladnik-ogolem-col col-sm-11">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        {{ form_row(skladnik.skladnik) }}
-                                        {{ form_row(skladnik.wartosc) }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <table class="table table-bordered table-condensed">
+                    <tbody>
+                        <tr>
+                            <td class="col-md-8"><strong>Kapitał Funduszu Poręczeniowego</strong></td>
+                            <td>{{ sprawozdanie.kapitalOgolem }} zł</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="table table-bordered table-condensed">
+                    <tr>
+                        <th class="col-sm-1">Składnik</th>
+                        <th class="col-sm-1">Wartość</th>
+                    </tr>
+                    {% for skladnik in sprawozdanie.skladnikiOgolem %}
+                        <tr>
+                            <td><strong>{{ skladnik.skladnik }}</strong></td>
+                            <td>{{ skladnik.wartosc }} zł</td>
+                        </tr>
                     {% endfor %}
-                </div>
+                </table>
+     
+                <hr />
 
-                <div class="hidden">{{ form_row(form.skladnikiOgolem) }}</div>
+                <table class="table table-bordered table-condensed">
+                    <tbody>
+                        <tr>
+                            <td class="col-md-8"><strong>w tym kapitał wydzielonego Funduszu Poręczeniowego prowadzonego zgodnie z zasadami gospodarowania monitorowanymi przez PARP</strong></td>
+                            <td>{{ sprawozdanie.kapitalWydzielony }} zł</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-                <hr>
+                <table class="table table-bordered table-condensed">
+                    <tbody>
+                        <tr>
+                            <th class="col-sm-1">Składnik</th>
+                            <th class="col-sm-1">Wartość</th>
+                        </tr>
+                        <tr>
+                            {% for skladnik in sprawozdanie.skladnikiWydzielone %}
+                                <tr>
+                                    <td><strong>{{ skladnik.skladnik }}</strong></td>
+                                    <td>{{ skladnik.wartosc }} zł</td>
+                                </tr>
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
 
-                {{ form_row(form.kapitalWydzielony) }}
-                <div id="skladniki-wydzielone" class="skladniki-wydzielone panel-body" data-prototype="{{ form_widget(form.skladnikiWydzielone.vars.prototype)|e('html_attr') }}">
-                    {% for skladnik in form.skladnikiWydzielone %}
-                        <div class="row skladnik-wydzielony-row">
-                            <div class="skladnik-wydzielony-col col-sm-11">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        {{ form_row(skladnik.skladnik) }}
-                                        {{ form_row(skladnik.wartosc) }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-                <div class="hidden">{{ form_row(form.skladnikiWydzielone) }}</div>
-            #}
+                <hr />
 
+                <table class="table table-bordered table-condensed">
                     <tbody>
                         <tr>
                             <td><strong>Data zatwierdzenia zasad gospodarowania funduszem poręczeniowym przez PARP</strong></td>
