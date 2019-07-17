@@ -1,6 +1,10 @@
 $(document).ready(function () {
     var changed = false;
 
+    $.fn.exists = function () {
+        return this.length !== 0;
+    }
+
     function resetChangeable() {
         changed = false;
     }
@@ -40,8 +44,37 @@ $(document).ready(function () {
         });
     }
 
+    function recalculateDeps() {
+        $('[name^=form_dane_pozyczek\\[liczba]').each(function (index, value) {
+            var fieldValue = parseInt($(this).val()),
+                fieldName = $(this).attr('name'),
+                correspondingFieldValue,
+                correspondingFieldName,
+                correspondingField;
+
+            correspondingFieldName = fieldName.replace('form_dane_pozyczek[liczba', 'form_dane_pozyczek[kwota');
+            correspondingFieldName = correspondingFieldName.replace('[', '\\[');
+            correspondingFieldName = correspondingFieldName.replace(']', '\\]');
+
+            correspondingField = $('[name='+correspondingFieldName+']');
+            if (! correspondingField.exists()) {
+                return;
+            }
+            correspondingFieldValue = parseFloat($('[name='+correspondingFieldName+']').val());
+
+            if ((fieldValue > 0 && correspondingFieldValue === 0) || (fieldValue <= 0 && correspondingFieldValue !== 0)) {
+                $(this).closest('td').addClass('danger');
+                $('[name='+correspondingFieldName+']').closest('td').addClass('danger');
+            } else {
+                $(this).closest('td').removeClass('danger');
+                $('[name='+correspondingFieldName+']').closest('td').removeClass('danger');
+            }
+        });
+    }
+
     $('[data-changeable=\'1\']').change(function () {
         changed = true;
+        recalculateDeps();
     });
 
     $('[data-vertical-group]').change(function () {
@@ -106,4 +139,5 @@ $(document).ready(function () {
 
     sumByGroup();
     resetChangeable();
+    recalculateDeps();
 });
