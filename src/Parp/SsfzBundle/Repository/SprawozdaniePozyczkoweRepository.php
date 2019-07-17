@@ -8,6 +8,6 @@ use Parp\SsfzBundle\Repository\SprawozdanieZalazkoweRepository;
 /**
  * Repozytorium SprawozdaniePozyczkoweRepository.
  */
-class SprawozdaniePozyczkoweRepository extends SprawozdanieZalazkoweRepository 
+class SprawozdaniePozyczkoweRepository extends SprawozdanieZalazkoweRepository
 {
 }

@@ -135,18 +135,14 @@ class ParpController extends Controller
             }
         }
 
-
-
         $szablon = null;
 
         if ($program->czyFunduszZalazkowy()) {
-            die('dd');
             $szablon = 'SsfzBundle:Parp:sprawozdanie_form.html.twig';
             $blockParams = [
                 'form_okresy'             => $formOkresy->createView(),
                 'form_rzeplywy_finansowe' => $formPrzeplywyFinansowe,
             ];
-            
         }
 
         $danePozyczek = null;
