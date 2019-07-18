@@ -142,7 +142,7 @@
                         </tr>
                         <tr>
                             <td><strong>Minimalne oprocentowanie</strong></td>
-                            <td>{{ sprawozdanie.minimalneOprocentowanie|default('') }}</td>
+                            <td class="percent-11-2">{{ sprawozdanie.minimalneOprocentowanie|default('') }}</td>
                         </tr>
                         <tr>
                             <td><strong>Fundusz udziela pożyczek po analizie ryzyka niespłacenia i po ustanowieniu zabezpieczenia</td>
@@ -150,7 +150,7 @@
                         </tr>
                         <tr>
                             <td><strong>Maksymalna wielkość pożyczki (zł)</strong></td>
-                            <td>{{ sprawozdanie.maksymalnaWielkoscPozyczki|default('') }}</td>
+                            <td class="decimal-11-2">{{ sprawozdanie.maksymalnaWielkoscPozyczki|default('') }}</td>
                         </tr>
                         <tr>
                             <td><strong>Pożyczki udzielane są przedsiębiorcom nie będącym w trudniej sytuacji</strong></td>
@@ -173,4 +173,10 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts '@SsfzBundle/Resources/public/js/sprawozdanie_pozyczkowe_odczyt.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

@@ -181,5 +181,10 @@
             </div>
         </div>
     </div>
+{% endblock %}
 
+{% block javascripts %}
+    {% javascripts '@SsfzBundle/Resources/public/js/sprawozdanie_poreczeniowe_odczyt.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}
