@@ -8,7 +8,7 @@
                     <tbody>
                         <tr>
                             <td class="col-md-8"><strong>Saldo początkowe</strong></td>
-                            <td>{{ przeplyw_finansowy.saldoPoczatkowe|default('') }}</td>
+                            <td class="decimal-11-2">{{ przeplyw_finansowy.saldoPoczatkowe|default('') }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -17,19 +17,19 @@
                     <tbody>
                         <tr>
                             <td class="col-md-8"><strong>Wpływy</strong></td>
-                            <td>{{ przeplyw_finansowy.wplywy|default('') }}</td>
+                            <td class="decimal-11-2">{{ przeplyw_finansowy.wplywy|default('') }}</td>
                         </tr>
                         <tr>
                             <td>{{ odstep_6_spacji|raw }}<strong>Wyjścia z inwestycji</strong></td>
-                            <td>{{ przeplyw_finansowy.wyjsciaZInwestycji|default('') }}</td>
+                            <td class="decimal-11-2">{{ przeplyw_finansowy.wyjsciaZInwestycji|default('') }}</td>
                         </tr>
                         <tr>
                             <td>{{ odstep_6_spacji|raw }}<strong>Udział w zyskach</strong></td>
-                            <td>{{ przeplyw_finansowy.udzialWZyskach|default('') }}</td>
+                            <td class="decimal-11-2">{{ przeplyw_finansowy.udzialWZyskach|default('') }}</td>
                         </tr>
                         <tr>
                             <td>{{ odstep_6_spacji|raw }}<strong>Inne</strong></td>
-                            <td>{{ przeplyw_finansowy.inneWplywy|default('') }}</td>
+                            <td class="decimal-11-2">{{ przeplyw_finansowy.inneWplywy|default('') }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -38,27 +38,27 @@
                     <tbody>
                         <tr>
                             <td class="col-md-8"><strong>Wypływy</strong></td>
-                            <td>{{ przeplyw_finansowy.wyplywy|default('') }}</td>
+                            <td class="decimal-11-2">{{ przeplyw_finansowy.wyplywy|default('') }}</td>
                         </tr>
                         <tr>
                             <td>{{ odstep_6_spacji|raw }}<strong>Wejścia kapitałowe</strong></td>
-                            <td>{{ przeplyw_finansowy.wejsciaKapitalowe|default('') }}</td>
+                            <td class="decimal-11-2">{{ przeplyw_finansowy.wejsciaKapitalowe|default('') }}</td>
                         </tr>
                         <tr>
                             <td>{{ odstep_6_spacji|raw }}<strong>Preinkubacja pomysłów</strong></td>
-                            <td>{{ przeplyw_finansowy.preinkubacjaPomyslow|default('') }}</td>
+                            <td class="decimal-11-2">{{ przeplyw_finansowy.preinkubacjaPomyslow|default('') }}</td>
                         </tr>
                         <tr>
                             <td>{{ odstep_6_spacji|raw }}<strong>Wydatki operacyjne</strong></td>
-                            <td>{{ przeplyw_finansowy.wydatkiOperacyjne|default('') }}</td>
+                            <td class="decimal-11-2">{{ przeplyw_finansowy.wydatkiOperacyjne|default('') }}</td>
                         </tr>
                         <tr>
                             <td>{{ odstep_6_spacji|raw }}<strong>Podatki</strong></td>
-                            <td>{{ przeplyw_finansowy.podatki|default('') }}</td>
+                            <td class="decimal-11-2">{{ przeplyw_finansowy.podatki|default('') }}</td>
                         </tr>
                         <tr>
                             <td>{{ odstep_6_spacji|raw }}<strong>Inne</strong></td>
-                            <td>{{ przeplyw_finansowy.inneWyplywy|default('') }}</td>
+                            <td class="decimal-11-2">{{ przeplyw_finansowy.inneWyplywy|default('') }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -67,7 +67,7 @@
                     <tbody>
                         <tr>
                             <td class="col-md-8"><strong>Saldo końcowe</strong></td>
-                            <td>{{ przeplyw_finansowy.saldoKoncowe|default('') }}</td>
+                            <td class="decimal-11-2">{{ przeplyw_finansowy.saldoKoncowe|default('') }}</td>
                         </tr>
                     </tbody>
                 </table>

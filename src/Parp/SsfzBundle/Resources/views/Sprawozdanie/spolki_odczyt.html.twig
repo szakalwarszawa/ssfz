@@ -19,19 +19,19 @@
                         </tr>
                         <tr>
                             <td><strong>Uzyskane przychody w okresie sprawozdawczym</strong></td>
-                            <td>{{ sprawozdanie_spolki.uzyskanePrzychody|default('') }}</td>
+                            <td class="decimal-11-2">{{ sprawozdanie_spolki.uzyskanePrzychody|default('') }}</td>
                         </tr>
                         <tr>
                             <td><strong>Planowane przychody w nast. okresie w stosunku do aktualnego (%)</strong></td>
-                            <td>{{ sprawozdanie_spolki.planowanePrzychody|default('') }}</td>
+                            <td class="percent-11-2">{{ sprawozdanie_spolki.planowanePrzychody|default('') }}</td>
                         </tr>
                         <tr>
                             <td><strong>EBITDA</strong></td>
-                            <td>{{ sprawozdanie_spolki.ebitda|default('') }}</td>
+                            <td class="decimal-11-2">{{ sprawozdanie_spolki.ebitda|default('') }}</td>
                         </tr>
                         <tr>
                             <td><strong>NCF</strong></td>
-                            <td>{{ sprawozdanie_spolki.ncf|default('') }}</td>
+                            <td class="decimal-11-2">{{ sprawozdanie_spolki.ncf|default('') }}</td>
                         </tr>
                         <tr>
                             <td><strong>Suma bilansowa</strong></td>
@@ -74,4 +74,10 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts '@SsfzBundle/Resources/public/js/sprawozdanie_spolki_odczyt.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}
