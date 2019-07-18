@@ -7538,7 +7538,7 @@ class DanePoreczen
      */
     public function setKwotaWadiowPoreczenPozostalychOd500001Pln(string $kwotaPoreczen = '0.00')
     {
-        $this->kwotaPoreczenWadiowPozostalychOd500001Pln = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
+        $this->kwotaWadiowPoreczenPozostalychOd500001Pln = MoneyHelper::anyToDecimalString($kwotaPoreczen, 2, true);
 
         return $this;
     }

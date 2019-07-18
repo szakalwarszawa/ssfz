@@ -76,7 +76,8 @@ class ParpController extends Controller
             return $this->redirectToRoute('parp');
         }
 
-        if ($sprawozdanie->getStatus() !== StatusSprawozdania::PRZESLANO_DO_PARP) {
+        $sprawozdaniePrzeslano = ($sprawozdanie->getStatus() === StatusSprawozdania::PRZESLANO_DO_PARP);
+        if (!$sprawozdaniePrzeslano) {
             $this->addFlash('notice', [
                 'alert'   => 'warning',
                 'title'   => '',
@@ -88,7 +89,9 @@ class ParpController extends Controller
             ]);
         }
     
-        if ($sprawozdanie->getStatus() === StatusSprawozdania::PRZESLANO_DO_PARP && null !== $sprawozdanie->getOceniajacyId() && $uzytkownik->getId() !== $sprawozdanie->getOceniajacyId()) {
+        $przypisanoOceniajacego = (null !== $sprawozdanie->getOceniajacyId());
+        $uzytkownikNieJestOceniajacym = ($uzytkownik->getId() !== $sprawozdanie->getOceniajacyId());
+        if ($sprawozdaniePrzeslano && $przypisanoOceniajacego && $uzytkownikNieJestOceniajacym) {
             $this->addFlash('notice', [
                 'alert'   => 'warning',
                 'title'   => '',
