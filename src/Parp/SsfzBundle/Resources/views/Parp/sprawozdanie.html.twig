@@ -1,35 +1,37 @@
 {% extends 'SsfzBundle::baseLayout.html.twig' %}
 
 {% block body %}
-    <div class="panel panel-default">
-        <div class="panel-heading text-center"><h4>Sprawozdanie do umowy <strong>{{ sprawozdanie.numerUmowy }}</strong> za okres {{ sprawozdanie.okres }} {{ sprawozdanie.rok }}</h4></div>
-        <div class="panel-body">
-            {% if sprawozdanie|default(null) is not empty %}
-                 {% include 'SsfzBundle:Sprawozdanie:naglowek_odczyt.html.twig' with {'sprawozdanie': sprawozdanie} %}
-            {% endif %}
-
-            {% if sprawozdanie.umowa.beneficjent.program.czyFunduszZalazkowy() %}
-               {% if sprawozdanie_spolki|default(null) is not empty %}
-                    {% include 'SsfzBundle:Sprawozdanie:spolki_odczyt.html.twig' with {'sprawozdanie_spolki': sprawozdanie_spolki} %}
+     <div class="panel panel-default">
+          <div class="panel-heading text-center"><h4>Sprawozdanie do umowy <strong>{{ sprawozdanie.numerUmowy }}</strong> za okres {{ sprawozdanie.okres }} {{ sprawozdanie.rok }}</h4></div>
+          <div class="panel-body">
+               {% if sprawozdanie|default(null) is not empty %}
+                    {% include 'SsfzBundle:Sprawozdanie:naglowek_odczyt.html.twig' with {'sprawozdanie': sprawozdanie} %}
                {% endif %}
 
-               {% if przeplyw_finansowy|default(null) is not empty %}
-                    {% include 'SsfzBundle:Sprawozdanie:przeplyw_finansowy_odczyt.html.twig' with {'przeplyw_finansowy': przeplyw_finansowy} %}
+               {% if sprawozdanie.umowa.beneficjent.program.czyFunduszZalazkowy() %}
+                    {% if sprawozdanie_spolki|default(null) is not empty %}
+                         {% include 'SsfzBundle:Sprawozdanie:spolki_odczyt.html.twig' with {'sprawozdanie_spolki': sprawozdanie_spolki} %}
+                    {% endif %}
+
+                    {% if przeplyw_finansowy|default(null) is not empty %}
+                         {% include 'SsfzBundle:Sprawozdanie:przeplyw_finansowy_odczyt.html.twig' with {'przeplyw_finansowy': przeplyw_finansowy} %}
+                    {% endif %}
                {% endif %}
-            {% endif %}
 
-            {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPozyczkowy() and dane_pozyczek|default(null) is not empty %}
-                 {% include 'SsfzBundle:Sprawozdanie:dane_pozyczek_odczyt.html.twig' with {'dane_pozyczek': dane_pozyczek} %}
-            {% endif %}
+               {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPozyczkowy() and dane_pozyczek|default(null) is not empty %}
+                    {% include 'SsfzBundle:Sprawozdanie:pozyczkowe_odczyt.html.twig' with {'sprawozdanie': sprawozdanie} %}
+                    {% include 'SsfzBundle:Sprawozdanie:dane_pozyczek_odczyt.html.twig' with {'dane_pozyczek': dane_pozyczek} %}
+               {% endif %}
 
-            {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPoreczeniowy() and dane_poreczen|default(null) is not empty %}
-                 {% include 'SsfzBundle:Sprawozdanie:dane_poreczen_odczyt.html.twig' with {'dane_poreczen': dane_poreczen} %}
-            {% endif %}
+               {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPoreczeniowy() and dane_poreczen|default(null) is not empty %}
+                    {% include 'SsfzBundle:Sprawozdanie:poreczeniowe_odczyt.html.twig' with {'sprawozdanie': sprawozdanie} %}
+                    {% include 'SsfzBundle:Sprawozdanie:dane_poreczen_odczyt.html.twig' with {'dane_poreczen': dane_poreczen} %}
+               {% endif %}
 
-            <a href="{{ path('parp') }}"
-               class="btn btn-danger pull-right"
-               role="button"><span class="fas fa-chevron-left"></span> Powrót</a>
-        </div>
+               <a href="{{ path('parp') }}"
+                  class="btn btn-danger pull-right"
+                  role="button"><span class="fas fa-chevron-left"></span> Powrót</a>
+          </div>
     </div>
 {% endblock %}
 

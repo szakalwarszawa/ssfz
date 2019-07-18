@@ -141,12 +141,17 @@ class ParpController extends Controller
 
         $szablon = null;
 
+        $sprawozdanieSpolki = null;
+        $przeplywFinansowy = null;
         if ($program->czyFunduszZalazkowy()) {
-            $szablon = 'SsfzBundle:Parp:sprawozdanie_form.html.twig';
-            $blockParams = [
-                'form_okresy'             => $formOkresy->createView(),
-                'form_rzeplywy_finansowe' => $formPrzeplywyFinansowe,
-            ];
+            $przeplywFinansowy = $entityManager
+                ->getRepository(PrzeplywFinansowy::class)
+                ->findOneByIdSprawozdania($idSprawozdania)
+            ;
+            $sprawozdanieSpolki = $entityManager
+                ->getRepository(SprawozdanieSpolki::class)
+                ->findOneByIdSprawozdania($idSprawozdania)
+            ;
         }
 
         $danePozyczek = null;
@@ -155,12 +160,6 @@ class ParpController extends Controller
                 ->getRepository(DanePozyczek::class)
                 ->findOneByIdSprawozdania($idSprawozdania)
             ;
-
-            $szablon = 'SsfzBundle:Sprawozdanie:pozyczkowe_odczyt.html.twig';
-            $blockParams = [
-                'form' => $formOkresy->createView(),
-                'app'  => $this,
-            ];
         }
 
         $danePoreczen = null;
@@ -169,30 +168,17 @@ class ParpController extends Controller
                 ->getRepository(DanePoreczen::class)
                 ->findOneByIdSprawozdania($idSprawozdania)
             ;
-
-            $szablon = 'SsfzBundle:Sprawozdanie:poreczeniowe_odczyt.html.twig';
-            $blockParams = [
-                'form' => $formOkresy->createView(),
-            ];
-        }
-
-        $templateContent = $this
-            ->get('twig')
-            ->loadTemplate($szablon)
-        ;
-
-        $bodySprawozdanie = null;
-        if (null !== $blockParams) {
-            $bodySprawozdanie = $templateContent->renderBlock('body', $blockParams);
         }
 
         return $this->render('SsfzBundle:Parp:ocen.html.twig', [
             'form'                     => $form->createView(),
-            'sprawozdanie'             => $sprawozdanie,
             'form_okresy'              => $formOkresy->createView(),
             'form_przeplywy_finansowe' => $formPrzeplywyFinansowe,
             'program'                  => $program,
-            'body_sprawozdanie'        => $bodySprawozdanie,
+           // 'body_sprawozdanie'        => $bodySprawozdanie,
+            'sprawozdanie'             => $sprawozdanie,
+            'sprawozdanie_spolki'      => $sprawozdanieSpolki,
+            'przeplyw_finansowy'       => $przeplywFinansowy,
             'dane_pozyczek'            => $danePozyczek,
             'dane_poreczen'            => $danePoreczen,
         ]);
