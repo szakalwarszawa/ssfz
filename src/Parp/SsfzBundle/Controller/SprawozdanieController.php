@@ -797,16 +797,14 @@ class SprawozdanieController extends Controller
         ]);
 
         $typeGuesser = $this->get('ssfz.service.guesser.typ_sprawozdania');
-        $template = 'SsfzBundle:Sprawozdanie:';
         if ($typeGuesser->jestPozyczkowe($sprawozdanie)) {
-            $template = $template . 'pozyczkowe';
+            $template = 'SsfzBundle:Sprawozdanie:pozyczkowe_edycja.html.twig';
         } else if ($typeGuesser->jestPoreczeniowe($sprawozdanie)) {
-            $template = $template . 'poreczeniowe';
+            $template = 'SsfzBundle:Sprawozdanie:poreczeniowe_edycja.html.twig';
         } else {
             $message = 'Nieznany typ sprawozdania. Obsługiwane są tylko sprawozdanie poręczeniowe i pożyczkowe.';
             throw new InvalidArgumentException($message);
         }
-        $template = $template.'Edycja.html.twig';
 
         return $this->render($template, [
             'sprawozdanie'     => $sprawozdanie,
