@@ -1,0 +1,118 @@
+{% block dane_pozyczek_zagregowane %}
+    {% set odstep_6_spacji = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' %}
+    <div class="panel panel-default">
+        <div class="panel-heading">Zagregowane dane pożyczek</div>
+        <div class="panel-body">
+            <div class="col-md-8">
+                <table class="table table-bordered table-condensed table-striped">
+                    <tbody>
+                        <tr>
+                            <th class="col-md-4">Pożyczki wg przeznaczenia</th>
+                            <th class="text-center col-md-2">Liczba (szt.)</th>
+                            <th class="text-center col-md-2">Wartość (zł)</th>
+                        </tr>
+                        <tr>
+                            <td>Razem</td>
+                            <td class="text-center">{{ dane_zagregowane.pozyczki_wg_przeznaczenia.liczba_pozyczek_razem|default('0') }}</td>
+                            <td class="text-center decimal-11-2">{{ dane_zagregowane.pozyczki_wg_przeznaczenia.kwota_pozyczek_razem|default('0.00') }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ odstep_6_spacji|raw }}Na cele obrotowe</td>
+                            <td class="text-center">{{ dane_zagregowane.pozyczki_wg_przeznaczenia.liczba_pozyczek_na_cele_obrotowe|default('0') }}</td>
+                            <td class="text-center decimal-11-2">{{ dane_zagregowane.pozyczki_wg_przeznaczenia.kwota_pozyczek_na_cele_obrotowe|default('0.00') }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ odstep_6_spacji|raw }}Na cele inwestycyjne</td>
+                            <td class="text-center">{{ dane_zagregowane.pozyczki_wg_przeznaczenia.liczba_pozyczek_na_cele_inwestycyjne|default('0') }}</td>
+                            <td class="text-center decimal-11-2">{{ dane_zagregowane.pozyczki_wg_przeznaczenia.kwota_pozyczek_na_cele_inwestycyjne|default('0.00') }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ odstep_6_spacji|raw }}Na cele obrotowo-inwestycyjne</td>
+                            <td class="text-center">{{ dane_zagregowane.pozyczki_wg_przeznaczenia.liczba_pozyczek_na_cele_obrotowo_inwestycyjne|default('0') }}</td>
+                            <td class="text-center decimal-11-2">{{ dane_zagregowane.pozyczki_wg_przeznaczenia.kwota_pozyczek_na_cele_obrotowo_inwestycyjne|default('0.00') }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md-8">
+                <table class="table table-bordered table-condensed table-striped">
+                    <tbody>
+                        <tr>
+                            <th class="col-md-4">Pożyczki wg sektora działania pożyczkobiorcy</th>
+                            <th class="text-center col-md-2">Liczba (szt.)</th>
+                            <th class="text-center col-md-2">Wartość (zł)</th>
+                        </tr>
+                        <tr>
+                            <td>Razem</td>
+                            <td class="text-center">{{ dane_zagregowane.pozyczki_wg_dzialanosci.liczba_pozyczek_razem|default('0') }}</td>
+                            <td class="text-center decimal-11-2">{{ dane_zagregowane.pozyczki_wg_dzialanosci.kwota_pozyczek_razem|default('0.00') }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ odstep_6_spacji|raw }}Produkcja</td>
+                            <td class="text-center">{{ dane_zagregowane.pozyczki_wg_dzialanosci.liczba_pozyczek_dzialania_produkcyjne|default('0') }}</td>
+                            <td class="text-center decimal-11-2">{{ dane_zagregowane.pozyczki_wg_dzialanosci.kwota_pozyczek_dzialania_produkcyjne|default('0.00') }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ odstep_6_spacji|raw }}Handel</td>
+                            <td class="text-center">{{ dane_zagregowane.pozyczki_wg_dzialanosci.liczba_pozyczek_dzialania_handlowe|default('0') }}</td>
+                            <td class="text-center decimal-11-2">{{ dane_zagregowane.pozyczki_wg_dzialanosci.kwota_pozyczek_dzialania_handlowe|default('0.00') }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ odstep_6_spacji|raw }}Usługi</td>
+                            <td class="text-center">{{ dane_zagregowane.pozyczki_wg_dzialanosci.liczba_pozyczek_dzialania_uslugowe|default('0') }}</td>
+                            <td class="text-center decimal-11-2">{{ dane_zagregowane.pozyczki_wg_dzialanosci.kwota_pozyczek_dzialania_uslugowe|default('0.00') }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ odstep_6_spacji|raw }}Budownictwo</td>
+                            <td class="text-center">{{ dane_zagregowane.pozyczki_wg_dzialanosci.liczba_pozyczek_dzialania_budownicze|default('0') }}</td>
+                            <td class="text-center decimal-11-2">{{ dane_zagregowane.pozyczki_wg_dzialanosci.kwota_pozyczek_dzialania_budownicze|default('0.00') }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ odstep_6_spacji|raw }}Rolnictwo</td>
+                            <td class="text-center">{{ dane_zagregowane.pozyczki_wg_dzialanosci.liczba_pozyczek_dzialania_rolnicze|default('0') }}</td>
+                            <td class="text-center decimal-11-2">{{ dane_zagregowane.pozyczki_wg_dzialanosci.kwota_pozyczek_dzialania_rolnicze|default('0.00') }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ odstep_6_spacji|raw }}Inne</td>
+                            <td class="text-center">{{ dane_zagregowane.pozyczki_wg_dzialanosci.liczba_pozyczek_dzialania_inne|default('0') }}</td>
+                            <td class="text-center decimal-11-2">{{ dane_zagregowane.pozyczki_wg_dzialanosci.kwota_pozyczek_dzialania_inne|default('0.00') }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md-8">
+                <table class="table table-bordered table-condensed table-striped">
+                    <tbody>
+                        <tr>
+                            <th class="col-md-4">Pożyczki wg wielkości przedsiębiorstwa</th>
+                            <th class="text-center col-md-2">Liczba (szt.)</th>
+                            <th class="text-center col-md-2">Wartość (zł)</th>
+                        </tr>
+                        <tr>
+                            <td>Razem</td>
+                            <td class="text-center">{{ dane_zagregowane.pozyczki_wg_wielkosci_przedsiebiorstwa.liczba_pozyczek_razem|default('0') }}</td>
+                            <td class="text-center decimal-11-2">{{ dane_zagregowane.pozyczki_wg_wielkosci_przedsiebiorstwa.kwota_pozyczek_razem|default('0.00') }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ odstep_6_spacji|raw }}Mikro</td>
+                            <td class="text-center">{{ dane_zagregowane.pozyczki_wg_wielkosci_przedsiebiorstwa.liczba_pozyczek_dla_mikro|default('0') }}</td>
+                            <td class="text-center decimal-11-2">{{ dane_zagregowane.pozyczki_wg_wielkosci_przedsiebiorstwa.kwota_pozyczek_dla_mikro|default('0.00') }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ odstep_6_spacji|raw }}Małe</td>
+                            <td class="text-center">{{ dane_zagregowane.pozyczki_wg_wielkosci_przedsiebiorstwa.liczba_pozyczek_dla_malych|default('0') }}</td>
+                            <td class="text-center decimal-11-2">{{ dane_zagregowane.pozyczki_wg_wielkosci_przedsiebiorstwa.kwota_pozyczek_dla_malych|default('0.00') }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ odstep_6_spacji|raw }}Średnie</td>
+                            <td class="text-center">{{ dane_zagregowane.pozyczki_wg_wielkosci_przedsiebiorstwa.liczba_pozyczek_dla_srednich|default('0') }}</td>
+                            <td class="text-center decimal-11-2">{{ dane_zagregowane.pozyczki_wg_wielkosci_przedsiebiorstwa.kwota_pozyczek_dla_srednich|default('0.00') }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -2,76 +2,78 @@
     <div class="panel panel-default">
         <div class="panel-heading">Podgląd sprawozdania</div>
         <div class="panel-body">
-            <div class="col-md-12">
-                <table class="table table-bordered table-condensed table-striped">
-                    <tbody>
-                        <tr>
-                            <td class="col-md-8"><strong>Lp.</strong></td>
-                            <td>{{ sprawozdanie_spolki.liczbaPorzadkowa|default('x') }}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Nazwa spółki</strong></td>
-                            <td>{{ sprawozdanie_spolki.nazwaSpolki|default('') }}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>KRS</strong></td>
-                            <td>{{ sprawozdanie_spolki.krs|default('') }}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Uzyskane przychody w okresie sprawozdawczym</strong></td>
-                            <td class="decimal-11-2">{{ sprawozdanie_spolki.uzyskanePrzychody|default('') }}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Planowane przychody w nast. okresie w stosunku do aktualnego (%)</strong></td>
-                            <td class="percent-11-2">{{ sprawozdanie_spolki.planowanePrzychody|default('') }}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>EBITDA</strong></td>
-                            <td class="decimal-11-2">{{ sprawozdanie_spolki.ebitda|default('') }}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>NCF</strong></td>
-                            <td class="decimal-11-2">{{ sprawozdanie_spolki.ncf|default('') }}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Suma bilansowa</strong></td>
-                            <td>{{ sprawozdanie_spolki.sumaBilansowa|default('') }}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Zatrudnienie (Etaty)</strong></td>
-                            <td>{{ sprawozdanie_spolki.zatrudnienieEtaty|default('') }}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>W tym kobiety</strong></td>
-                            <td>{{ sprawozdanie_spolki.zatrudnioneKobiety|default('') }}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>W tym mężczyźni</strong></td>
-                            <td>{{ sprawozdanie_spolki.zatrudnieniMezczyzni|default('') }}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Zatrudnienie (Inne formy)</strong></td>
-                            <td>{{ sprawozdanie_spolki.zatrudnienieInneFormy|default('') }}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>W tym kobiety</strong></td>
-                            <td>{{ sprawozdanie_spolki.zatrudnienieInneFormyKobiety|default('') }}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>W tym mężczyźni</strong></td>
-                            <td>{{ sprawozdanie_spolki.zatrudnienieInneFormyMezczyzni|default('') }}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Zmiana zatrudnienia w stosunku do poprzedniego okresu (Etaty)</strong></td>
-                            <td>{{ sprawozdanie_spolki.zatrudnieniewStosunkuDoPoprzedniegoRoku|default('') }}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Zmiana zatrudnienia w stosunku do poprzedniego okresu (Inne formy)</strong></td>
-                            <td>{{ sprawozdanie_spolki.zatrudnieniewStosunkuDoPoprzedniegoOkresu|default('') }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            {% for sprawozdanie_spolki in sprawozdania_spolek|default([]) %}
+                <div class="col-md-12">
+                    <table class="table table-bordered table-condensed table-striped">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-8"><strong>Lp.</strong></td>
+                                <td>{{ sprawozdanie_spolki.liczbaPorzadkowa|default('x') }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Nazwa spółki</strong></td>
+                                <td>{{ sprawozdanie_spolki.nazwaSpolki|default('') }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>KRS</strong></td>
+                                <td>{{ sprawozdanie_spolki.krs|default('') }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Uzyskane przychody w okresie sprawozdawczym</strong></td>
+                                <td class="decimal-11-2">{{ sprawozdanie_spolki.uzyskanePrzychody|default('') }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Planowane przychody w nast. okresie w stosunku do aktualnego (%)</strong></td>
+                                <td class="percent-11-2">{{ sprawozdanie_spolki.planowanePrzychody|default('') }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>EBITDA</strong></td>
+                                <td class="decimal-11-2">{{ sprawozdanie_spolki.ebitda|default('') }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>NCF</strong></td>
+                                <td class="decimal-11-2">{{ sprawozdanie_spolki.ncf|default('') }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Suma bilansowa</strong></td>
+                                <td>{{ sprawozdanie_spolki.sumaBilansowa|default('') }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Zatrudnienie (Etaty)</strong></td>
+                                <td>{{ sprawozdanie_spolki.zatrudnienieEtaty|default('') }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>W tym kobiety</strong></td>
+                                <td>{{ sprawozdanie_spolki.zatrudnioneKobiety|default('') }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>W tym mężczyźni</strong></td>
+                                <td>{{ sprawozdanie_spolki.zatrudnieniMezczyzni|default('') }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Zatrudnienie (Inne formy)</strong></td>
+                                <td>{{ sprawozdanie_spolki.zatrudnienieInneFormy|default('') }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>W tym kobiety</strong></td>
+                                <td>{{ sprawozdanie_spolki.zatrudnienieInneFormyKobiety|default('') }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>W tym mężczyźni</strong></td>
+                                <td>{{ sprawozdanie_spolki.zatrudnienieInneFormyMezczyzni|default('') }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Zmiana zatrudnienia w stosunku do poprzedniego okresu (Etaty)</strong></td>
+                                <td>{{ sprawozdanie_spolki.zatrudnieniewStosunkuDoPoprzedniegoRoku|default('') }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Zmiana zatrudnienia w stosunku do poprzedniego okresu (Inne formy)</strong></td>
+                                <td>{{ sprawozdanie_spolki.zatrudnieniewStosunkuDoPoprzedniegoOkresu|default('') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

@@ -1,33 +1,43 @@
 {% extends 'SsfzBundle::baseLayout.html.twig' %}
 
 {% block body %}
-    {% form_theme form 'bootstrap_3_layout.html.twig' %}
-    {{ form_start(form) }}
-    {{ form_row(form._token) }}
-    {{ form_end(form) }}
+    <div>
+        {% form_theme form 'bootstrap_3_layout.html.twig' %}
+        {{ form_start(form) }}
+        {{ form_row(form._token) }}
+        {{ form_end(form) }}
+    </div>
 
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4>Sprawozdanie do umowy {{ sprawozdanie.numerUmowy }} za okres {{ sprawozdanie.okres }} {{ sprawozdanie.rok }}</h4>
+        <div class="panel-heading text-center">
+            <h4>Sprawozdanie do umowy <strong>{{ sprawozdanie.numerUmowy }}</strong> za okres {{ sprawozdanie.okres }} {{ sprawozdanie.rok }}</h4>
         </div>
+
         <div class="panel-body">
             {% if sprawozdanie|default(null) is not empty %}
                 {% include 'SsfzBundle:Sprawozdanie:naglowek_odczyt.html.twig' with {'sprawozdanie': sprawozdanie} %}
             {% endif %}
 
             {% if sprawozdanie.umowa.beneficjent.program.czyFunduszZalazkowy() %}
-                {% if sprawozdanie_spolki|default(null) is not empty %}
-                        {% include 'SsfzBundle:Sprawozdanie:spolki_odczyt.html.twig' with {'sprawozdanie_spolki': sprawozdanie_spolki} %}
+                {% if sprawozdania_spolek|default(null) is not empty %}
+                    {% include 'SsfzBundle:Sprawozdanie:spolki_odczyt.html.twig' with {'sprawozdania_spolek': sprawozdania_spolek} %}
                 {% endif %}
 
                 {% if przeplyw_finansowy|default(null) is not empty %}
-                        {% include 'SsfzBundle:Sprawozdanie:przeplyw_finansowy_odczyt.html.twig' with {'przeplyw_finansowy': przeplyw_finansowy} %}
+                    {% include 'SsfzBundle:Sprawozdanie:przeplyw_finansowy_odczyt.html.twig' with {'przeplyw_finansowy': przeplyw_finansowy} %}
                 {% endif %}
             {% endif %}
 
-            {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPozyczkowy() and dane_pozyczek|default(null) is not empty %}
+            {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPozyczkowy() %}
                 {% include 'SsfzBundle:Sprawozdanie:pozyczkowe_odczyt.html.twig' with {'sprawozdanie': sprawozdanie} %}
-                {% include 'SsfzBundle:Sprawozdanie:dane_pozyczek_odczyt.html.twig' with {'dane_pozyczek': dane_pozyczek} %}
+
+                {% if dane_pozyczek|default(null) is not empty %}
+                    {% include 'SsfzBundle:Sprawozdanie:dane_pozyczek_odczyt.html.twig' with {'dane_pozyczek': dane_pozyczek} %}
+                {% endif %}
+
+                {% if dane_pozyczek_zagregowane|default(null) is not empty %}
+                    {% include 'SsfzBundle:Sprawozdanie:dane_pozyczek_zagregowane.html.twig' with {'dane_zagregowane': dane_pozyczek_zagregowane} %}
+                {% endif %}
             {% endif %}
 
             {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPoreczeniowy() and dane_poreczen|default(null) is not empty %}
@@ -52,6 +62,7 @@
                         class="btn btn-danger"><span class="fas fa-chevron-left"></span> Powrót</button>
             </div>
         </div>
+    </div>
 
     <div class="modal fade"
          id="confirm-ocena-popraw"

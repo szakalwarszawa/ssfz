@@ -1,323 +1,320 @@
 {% block dane_pozyczek_odczyt %}
     <div class="panel panel-default">
         <div class="panel-heading">Dane pożyczek</div>
-            <div class="panel-body"
-                <div class="col-md-12">
-                    <hr />
+        <div class="panel-body">
+            <div class="col-md-12">
+                <h4>Dane dotyczące udzielonych pożyczek w sprawozdawanym okresie</h4>
 
-                    <h4>Dane dotyczące udzielonych pożyczek w sprawozdawanym okresie</h4>
+                <table class="table table-bordered table-condensed table-striped">
+                    <tr>
+                        <td rowspan="2" class="info credit-range col-md-1"></td>
+                        <td colspan="3" class="text-center col-md-3"><strong>Według typu przedsiębiorstwa</strong></td>
+                        <td colspan="3" class="text-center col-md-3"><strong>Według przeznaczenia</strong></td>
+                        <td colspan="6" class="text-center col-md-5"><strong>Według działania pożyczkobiorcy</strong></td>
+                    </tr>
 
+                    <tr>
+                        <td class="text-center">Mikro</td>
+                        <td class="text-center">Małe</td>
+                        <td class="text-center">Średnie</td>
+                        <td class="text-center">obrotowe</td>
+                        <td class="text-center">inwestycyjne</td>
+                        <td class="text-center">inwestycyjno-obrotowe</td>
+                        <td class="text-center">produkcja</td>
+                        <td class="text-center">handel</td>
+                        <td class="text-center">usługi</td>
+                        <td class="text-center">budownictwo</td>
+                        <td class="text-center">rolnictwo</td>
+                        <td class="text-center">inne</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="13" class="info text-center"><strong>Liczba pożyczek (szt.)</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td class="text-center credit-range">do 10 000 zł</td>
+                        <td class="text-center" data-vertical-group="1" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="2" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="3 "data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="4" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekObrotowychDo10000Pln|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="5" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekInwestycyjnychDo10000Pln|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="6" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekInwestycyjnoObrotowychDo10000Pln|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="7" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekDo10000PlnNaDzialaniaProdukcyjne|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="8" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekDo10000PlnNaDzialaniaHandlowe|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="9" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekDo10000PlnNaDzialaniaUslugowe|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="10" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekDo10000PlnNaDzialaniaBudownicze|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="11" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekDo10000PlnNaDzialaniaRolnicze|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="12" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekDo10000PlnNaDzialaniaInne|default('0') }}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="text-center credit-range">od 10 001 zł<br />do 30 000 zł</td>
+                        <td class="text-center" data-vertical-group="1" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="2" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="3" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="4" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekObrotowychOd10001Do30000Pln|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="5" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekInwestycyjnychOd10001Do30000Pln|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="6" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="7" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="8" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="9" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="10" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="11" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="12" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd10001Do30000PlnNaDzialaniaInne|default('0') }}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="text-center credit-range">od 30 001zł<br />do 50 000 zł</td>
+                        <td class="text-center" data-vertical-group="1" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="2" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="3" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="4" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekObrotowychOd30001Do50000Pln|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="5" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekInwestycyjnychOd30001Do50000Pln|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="6" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="7" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="8" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="9" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="10" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="11" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="12" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd30001Do50000PlnNaDzialaniaInne|default('0') }}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="text-center credit-range">od 50 001 zł<br />do 120 000 zł</td>
+                        <td class="text-center" data-vertical-group="1" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="2" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="3" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="4" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekObrotowychOd50001Do120000Pln|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="5" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekInwestycyjnychOd50001Do120000Pln|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="6" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="7" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="8" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="9" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="10" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="11" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="12" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd50001Do120000PlnNaDzialaniaInne|default('0') }}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="text-center credit-range">od 120 001 zł<br />do 300 000 zł</td>
+                        <td class="text-center" data-vertical-group="1" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw }}</td>
+                        <td class="text-center" data-vertical-group="2" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw }}</td>
+                        <td class="text-center" data-vertical-group="3" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw }}</td>
+                        <td class="text-center" data-vertical-group="4" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekObrotowychOd120001Do300000Pln }}</td>
+                        <td class="text-center" data-vertical-group="5" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekInwestycyjnychOd120001Do300000Pln }}</td>
+                        <td class="text-center" data-vertical-group="6" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln }}</td>
+                        <td class="text-center" data-vertical-group="7" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne }}</td>
+                        <td class="text-center" data-vertical-group="8" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe }}</td>
+                        <td class="text-center" data-vertical-group="9" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe }}</td>
+                        <td class="text-center" data-vertical-group="10" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze }}</td>
+                        <td class="text-center" data-vertical-group="11" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze }}</td>
+                        <td class="text-center" data-vertical-group="12" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd120001Do300000PlnNaDzialaniaInne }}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="text-center credit-range">od 300 001 zł</td>
+                        <td class="text-center" data-vertical-group="1" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="2" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="3" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="4" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekObrotowychOd300001Pln|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="5" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekInwestycyjnychOd300001Pln|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="6" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekInwestycyjnoObrotowychOd300001Pln|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="7" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd300001PlnNaDzialaniaProdukcyjne|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="8" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd300001PlnNaDzialaniaHandlowe|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="9" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd300001PlnNaDzialaniaUslugowe|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="10" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd300001PlnNaDzialaniaBudownicze|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="11" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd300001PlnNaDzialaniaRolnicze|default('0') }}</td>
+                        <td class="text-center" data-vertical-group="12" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd300001PlnNaDzialaniaInne|default('0') }}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="text-center credit-range"><strong>Suma:</strong></td>
+                        <td class="text-center"><strong data-vertical-group-sum="1">0</strong></td>
+                        <td class="text-center"><strong data-vertical-group-sum="2">0</strong></td>
+                        <td class="text-center"><strong data-vertical-group-sum="3">0</strong></td>
+                        <td class="text-center"><strong data-vertical-group-sum="4">0</strong></td>
+                        <td class="text-center"><strong data-vertical-group-sum="5">0</strong></td>
+                        <td class="text-center"><strong data-vertical-group-sum="6">0</strong></td>
+                        <td class="text-center"><strong data-vertical-group-sum="7">0</strong></td>
+                        <td class="text-center"><strong data-vertical-group-sum="8">0</strong></td>
+                        <td class="text-center"><strong data-vertical-group-sum="9">0</strong></td>
+                        <td class="text-center"><strong data-vertical-group-sum="10">0</strong></td>
+                        <td class="text-center"><strong data-vertical-group-sum="11">0</strong></td>
+                        <td class="text-center"><strong data-vertical-group-sum="12">0</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="13" class="info text-center"><strong>Wartość pożyczek (zł)</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td class="text-center credit-range">do 10 000 zł</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="13" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="14" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="15" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="16" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekObrotowychDo10000Pln|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="17" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekInwestycyjnychDo10000Pln|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="18" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekInwestycyjnoObrotowychDo10000Pln|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="19" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekDo10000PlnNaDzialaniaProdukcyjne|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="20" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekDo10000PlnNaDzialaniaHandlowe|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="21" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekDo10000PlnNaDzialaniaUslugowe|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="22" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekDo10000PlnNaDzialaniaBudownicze|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="23" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekDo10000PlnNaDzialaniaRolnicze|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="24" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekDo10000PlnNaDzialaniaInne|default('0.00') }}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="text-center credit-range">od 10 001 zł<br />do 30 000 zł</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="13" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="14" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="15" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="16" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekObrotowychOd10001Do30000Pln|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="17" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekInwestycyjnychOd10001Do30000Pln|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="18" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="19" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="20" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="21" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="22" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="23" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="24" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd10001Do30000PlnNaDzialaniaInne|default('0.00') }}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="text-center credit-range">od 30 001 zł<br />do 50 000 zł</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="13" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="14" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="15" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="16" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekObrotowychOd30001Do50000Pln|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="17" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekInwestycyjnychOd30001Do50000Pln|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="18" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="19" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="20" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="21" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="22" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="23" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="24" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd30001Do50000PlnNaDzialaniaInne|default('0.00') }}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="text-center credit-range">od 50 001 zł<br />do 120 000 zł</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="13" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="14" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="15" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="16" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekObrotowychOd50001Do120000Pln|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="17" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekInwestycyjnychOd50001Do120000Pln|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="18" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="19" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="20" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="21" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="22" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="23" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="24" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd50001Do120000PlnNaDzialaniaInne|default('0.00') }}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="text-center credit-range">od 120 001 zł<br />do 300 000 zł</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="13" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="14" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="15" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="16" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekObrotowychOd120001Do300000Pln|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="17" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekInwestycyjnychOd120001Do300000Pln|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="18" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="19" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="20" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="21" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="22" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="23" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="24" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd120001Do300000PlnNaDzialaniaInne|default('0.00') }}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="text-center credit-range">od 300 001 zł</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="13" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="14" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="15" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="16" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekObrotowychOd300001Pln|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="17" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekInwestycyjnychOd300001Pln|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="18" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekInwestycyjnoObrotowychOd300001Pln|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="19" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd300001PlnNaDzialaniaProdukcyjne|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="20" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd300001PlnNaDzialaniaHandlowe|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="21" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd300001PlnNaDzialaniaUslugowe|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="22" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd300001PlnNaDzialaniaBudownicze|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="23" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd300001PlnNaDzialaniaRolnicze|default('0.00') }}</td>
+                        <td class="text-center decimal-11-2" data-vertical-group="24" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd300001PlnNaDzialaniaInne|default('0.00') }}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="text-center credit-range"><strong>Suma:</strong></td>
+                        <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="13">0.00</strong></td>
+                        <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="14">0.00</strong></td>
+                        <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="15">0.00</strong></td>
+                        <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="16">0.00</strong></td>
+                        <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="17">0.00</strong></td>
+                        <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="18">0.00</strong></td>
+                        <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="19">0.00</strong></td>
+                        <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="20">0.00</strong></td>
+                        <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="21">0.00</strong></td>
+                        <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="22">0.00</strong></td>
+                        <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="23">0.00</strong></td>
+                        <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="24">0.00</strong></td>
+                    </tr>
+                </table>
+
+                <hr />
+
+                <h4> Dane dotyczące aktywnych i straconych pożyczek w sprawozdawanym okresie</h4>
+
+                <div class="col-md-7">
                     <table class="table table-bordered table-condensed table-striped">
                         <tr>
-                            <td rowspan="2" class="info credit-range col-md-1"></td>
-                            <td colspan="3" class="text-center col-md-3"><strong>Według typu przedsiębiorstwa</strong></td>
-                            <td colspan="3" class="text-center col-md-3"><strong>Według przeznaczenia</strong></td>
-                            <td colspan="6" class="text-center col-md-5"><strong>Według działania pożyczkobiorcy</strong></td>
+                            <td class="col-md-3"></td>
+                            <td class="text-center col-md-2">Liczba pożyczek (szt.)</td>
+                            <td class="text-center col-md-2">Wartość pożyczek (zł)</td>
                         </tr>
-
                         <tr>
-                            <td class="text-center">Mikro</td>
-                            <td class="text-center">Małe</td>
-                            <td class="text-center">Średnie</td>
-                            <td class="text-center">obrotowe</td>
-                            <td class="text-center">inwestycyjne</td>
-                            <td class="text-center">inwestycyjno-obrotowe</td>
-                            <td class="text-center">produkcja</td>
-                            <td class="text-center">handel</td>
-                            <td class="text-center">usługi</td>
-                            <td class="text-center">budownictwo</td>
-                            <td class="text-center">rolnictwo</td>
-                            <td class="text-center">inne</td>
+                            <td>Pożyczki aktywne</td>
+                            <td class="text-center">{{ dane_pozyczek.liczbaPozyczekAktywnychOgolem }}</td>
+                            <td class="text-center decimal-11-2">{{ dane_pozyczek.kwotaPozyczekAktywnychOgolem }} </td>
                         </tr>
-
                         <tr>
-                            <td colspan="13" class="info text-center"><strong>Liczba pożyczek (szt.)</strong></td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Spłacane terminowo</td>
+                            <td class="text-center">{{ dane_pozyczek.liczbaPozyczekAktywnychSplacanychTerminowo }}</td>
+                            <td class="text-center decimal-11-2">{{ dane_pozyczek.kwotaPozyczekAktywnychSplacanychTerminowo }}</td>
                         </tr>
-
                         <tr>
-                            <td class="text-center credit-range">do 10 000 zł</td>
-                            <td class="text-center" data-vertical-group="1" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="2" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="3 "data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="4" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekObrotowychDo10000Pln|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="5" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekInwestycyjnychDo10000Pln|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="6" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekInwestycyjnoObrotowychDo10000Pln|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="7" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekDo10000PlnNaDzialaniaProdukcyjne|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="8" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekDo10000PlnNaDzialaniaHandlowe|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="9" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekDo10000PlnNaDzialaniaUslugowe|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="10" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekDo10000PlnNaDzialaniaBudownicze|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="11" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekDo10000PlnNaDzialaniaRolnicze|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="12" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekDo10000PlnNaDzialaniaInne|default('0') }}</td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Wymagające szczególnego monitorowania</td>
+                            <td class="text-center">{{ dane_pozyczek.liczbaPozyczekAktywnychWymagajacychMonitorowania }}</td>
+                            <td class="text-center decimal-11-2">{{ dane_pozyczek.kwotaPozyczekAktywnychWymagajacychMonitorowania }}</td>
                         </tr>
-
                         <tr>
-                            <td class="text-center credit-range">od 10 001 zł<br />do 30 000 zł</td>
-                            <td class="text-center" data-vertical-group="1" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="2" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="3" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="4" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekObrotowychOd10001Do30000Pln|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="5" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekInwestycyjnychOd10001Do30000Pln|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="6" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="7" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="8" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="9" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="10" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="11" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="12" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd10001Do30000PlnNaDzialaniaInne|default('0') }}</td>
+                            <td>Pożyczki stracone</td>
+                            <td class="text-center">{{ dane_pozyczek.liczbaPozyczekStraconych }}</td>
+                            <td class="text-center decimal-11-2">{{ dane_pozyczek.kwotaPozyczekStraconych }}</td>
                         </tr>
-
                         <tr>
-                            <td class="text-center credit-range">od 30 001zł<br />do 50 000 zł</td>
-                            <td class="text-center" data-vertical-group="1" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="2" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="3" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="4" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekObrotowychOd30001Do50000Pln|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="5" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekInwestycyjnychOd30001Do50000Pln|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="6" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="7" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="8" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="9" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="10" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="11" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="12" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd30001Do50000PlnNaDzialaniaInne|default('0') }}</td>
+                            <td>Współczynnik strat w danym okresie (%)</td>
+                            <td class="text-center percent-11-2">{{ dane_pozyczek.wspolczynnikStratWDanymOkresieWgLiczbyPozyczek }}</td>
+                            <td class="text-center percent-11-2">{{ dane_pozyczek.wspolczynnikStratWDanymOkresieWgKwotyPozyczek }}</td>
                         </tr>
-
                         <tr>
-                            <td class="text-center credit-range">od 50 001 zł<br />do 120 000 zł</td>
-                            <td class="text-center" data-vertical-group="1" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="2" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="3" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="4" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekObrotowychOd50001Do120000Pln|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="5" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekInwestycyjnychOd50001Do120000Pln|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="6" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="7" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="8" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="9" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="10" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="11" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="12" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd50001Do120000PlnNaDzialaniaInne|default('0') }}</td>
-                        </tr>
-
-                        <tr>
-                            <td class="text-center credit-range">od 120 001 zł<br />do 300 000 zł</td>
-                            <td class="text-center" data-vertical-group="1" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw }}</td>
-                            <td class="text-center" data-vertical-group="2" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw }}</td>
-                            <td class="text-center" data-vertical-group="3" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw }}</td>
-                            <td class="text-center" data-vertical-group="4" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekObrotowychOd120001Do300000Pln }}</td>
-                            <td class="text-center" data-vertical-group="5" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekInwestycyjnychOd120001Do300000Pln }}</td>
-                            <td class="text-center" data-vertical-group="6" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln }}</td>
-                            <td class="text-center" data-vertical-group="7" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne }}</td>
-                            <td class="text-center" data-vertical-group="8" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe }}</td>
-                            <td class="text-center" data-vertical-group="9" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe }}</td>
-                            <td class="text-center" data-vertical-group="10" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze }}</td>
-                            <td class="text-center" data-vertical-group="11" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze }}</td>
-                            <td class="text-center" data-vertical-group="12" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd120001Do300000PlnNaDzialaniaInne }}</td>
-                        </tr>
-
-                        <tr>
-                            <td class="text-center credit-range">od 300 001 zł</td>
-                            <td class="text-center" data-vertical-group="1" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="2" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="3" data-horizontal-group="1">{{ dane_pozyczek.liczbaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="4" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekObrotowychOd300001Pln|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="5" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekInwestycyjnychOd300001Pln|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="6" data-horizontal-group="2">{{ dane_pozyczek.liczbaPozyczekInwestycyjnoObrotowychOd300001Pln|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="7" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd300001PlnNaDzialaniaProdukcyjne|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="8" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd300001PlnNaDzialaniaHandlowe|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="9" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd300001PlnNaDzialaniaUslugowe|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="10" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd300001PlnNaDzialaniaBudownicze|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="11" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd300001PlnNaDzialaniaRolnicze|default('0') }}</td>
-                            <td class="text-center" data-vertical-group="12" data-horizontal-group="3">{{ dane_pozyczek.liczbaPozyczekOd300001PlnNaDzialaniaInne|default('0') }}</td>
-                        </tr>
-
-                        <tr>
-                            <td class="text-center credit-range"><strong>Suma:</strong></td>
-                            <td class="text-center"><strong data-vertical-group-sum="1">0</strong></td>
-                            <td class="text-center"><strong data-vertical-group-sum="2">0</strong></td>
-                            <td class="text-center"><strong data-vertical-group-sum="3">0</strong></td>
-                            <td class="text-center"><strong data-vertical-group-sum="4">0</strong></td>
-                            <td class="text-center"><strong data-vertical-group-sum="5">0</strong></td>
-                            <td class="text-center"><strong data-vertical-group-sum="6">0</strong></td>
-                            <td class="text-center"><strong data-vertical-group-sum="7">0</strong></td>
-                            <td class="text-center"><strong data-vertical-group-sum="8">0</strong></td>
-                            <td class="text-center"><strong data-vertical-group-sum="9">0</strong></td>
-                            <td class="text-center"><strong data-vertical-group-sum="10">0</strong></td>
-                            <td class="text-center"><strong data-vertical-group-sum="11">0</strong></td>
-                            <td class="text-center"><strong data-vertical-group-sum="12">0</strong></td>
-                        </tr>
-
-                        <tr>
-                            <td colspan="13" class="info text-center"><strong>Wartość pożyczek (zł)</strong></td>
-                        </tr>
-
-                        <tr>
-                            <td class="text-center credit-range">do 10 000 zł</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="13" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekDo10000PlnDlaMikroPrzedsiebiorstw|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="14" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekDo10000PlnDlaMalychPrzedsiebiorstw|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="15" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekDo10000PlnDlaSrednichPrzedsiebiorstw|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="16" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekObrotowychDo10000Pln|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="17" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekInwestycyjnychDo10000Pln|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="18" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekInwestycyjnoObrotowychDo10000Pln|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="19" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekDo10000PlnNaDzialaniaProdukcyjne|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="20" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekDo10000PlnNaDzialaniaHandlowe|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="21" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekDo10000PlnNaDzialaniaUslugowe|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="22" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekDo10000PlnNaDzialaniaBudownicze|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="23" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekDo10000PlnNaDzialaniaRolnicze|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="24" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekDo10000PlnNaDzialaniaInne|default('0.00') }}</td>
-                        </tr>
-
-                        <tr>
-                            <td class="text-center credit-range">od 10 001 zł<br />do 30 000 zł</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="13" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd10001Do30000PlnDlaMikroPrzedsiebiorstw|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="14" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd10001Do30000PlnDlaMalychPrzedsiebiorstw|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="15" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd10001Do30000PlnDlaSrednichPrzedsiebiorstw|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="16" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekObrotowychOd10001Do30000Pln|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="17" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekInwestycyjnychOd10001Do30000Pln|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="18" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekInwestycyjnoObrotowychOd10001Do30000Pln|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="19" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd10001Do30000PlnNaDzialaniaProdukcyjne|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="20" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd10001Do30000PlnNaDzialaniaHandlowe|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="21" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd10001Do30000PlnNaDzialaniaUslugowe|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="22" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd10001Do30000PlnNaDzialaniaBudownicze|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="23" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd10001Do30000PlnNaDzialaniaRolnicze|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="24" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd10001Do30000PlnNaDzialaniaInne|default('0.00') }}</td>
-                        </tr>
-
-                        <tr>
-                            <td class="text-center credit-range">od 30 001 zł<br />do 50 000 zł</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="13" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd30001Do50000PlnDlaMikroPrzedsiebiorstw|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="14" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd30001Do50000PlnDlaMalychPrzedsiebiorstw|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="15" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd30001Do50000PlnDlaSrednichPrzedsiebiorstw|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="16" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekObrotowychOd30001Do50000Pln|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="17" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekInwestycyjnychOd30001Do50000Pln|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="18" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekInwestycyjnoObrotowychOd30001Do50000Pln|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="19" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd30001Do50000PlnNaDzialaniaProdukcyjne|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="20" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd30001Do50000PlnNaDzialaniaHandlowe|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="21" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd30001Do50000PlnNaDzialaniaUslugowe|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="22" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd30001Do50000PlnNaDzialaniaBudownicze|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="23" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd30001Do50000PlnNaDzialaniaRolnicze|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="24" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd30001Do50000PlnNaDzialaniaInne|default('0.00') }}</td>
-                        </tr>
-
-                        <tr>
-                            <td class="text-center credit-range">od 50 001 zł<br />do 120 000 zł</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="13" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd50001Do120000PlnDlaMikroPrzedsiebiorstw|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="14" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd50001Do120000PlnDlaMalychPrzedsiebiorstw|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="15" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd50001Do120000PlnDlaSrednichPrzedsiebiorstw|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="16" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekObrotowychOd50001Do120000Pln|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="17" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekInwestycyjnychOd50001Do120000Pln|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="18" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekInwestycyjnoObrotowychOd50001Do120000Pln|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="19" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd50001Do120000PlnNaDzialaniaProdukcyjne|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="20" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd50001Do120000PlnNaDzialaniaHandlowe|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="21" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd50001Do120000PlnNaDzialaniaUslugowe|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="22" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd50001Do120000PlnNaDzialaniaBudownicze|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="23" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd50001Do120000PlnNaDzialaniaRolnicze|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="24" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd50001Do120000PlnNaDzialaniaInne|default('0.00') }}</td>
-                        </tr>
-
-                        <tr>
-                            <td class="text-center credit-range">od 120 001 zł<br />do 300 000 zł</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="13" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd120001Do300000PlnDlaMikroPrzedsiebiorstw|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="14" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd120001Do300000PlnDlaMalychPrzedsiebiorstw|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="15" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd120001Do300000PlnDlaSrednichPrzedsiebiorstw|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="16" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekObrotowychOd120001Do300000Pln|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="17" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekInwestycyjnychOd120001Do300000Pln|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="18" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekInwestycyjnoObrotowychOd120001Do300000Pln|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="19" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd120001Do300000PlnNaDzialaniaProdukcyjne|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="20" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd120001Do300000PlnNaDzialaniaHandlowe|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="21" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd120001Do300000PlnNaDzialaniaUslugowe|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="22" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd120001Do300000PlnNaDzialaniaBudownicze|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="23" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd120001Do300000PlnNaDzialaniaRolnicze|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="24" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd120001Do300000PlnNaDzialaniaInne|default('0.00') }}</td>
-                        </tr>
-
-                        <tr>
-                            <td class="text-center credit-range">od 300 001 zł</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="13" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="14" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd300001PlnDlaMalychPrzedsiebiorstw|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="15" data-horizontal-group="4">{{ dane_pozyczek.kwotaPozyczekOd300001PlnDlaSrednichPrzedsiebiorstw|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="16" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekObrotowychOd300001Pln|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="17" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekInwestycyjnychOd300001Pln|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="18" data-horizontal-group="5">{{ dane_pozyczek.kwotaPozyczekInwestycyjnoObrotowychOd300001Pln|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="19" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd300001PlnNaDzialaniaProdukcyjne|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="20" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd300001PlnNaDzialaniaHandlowe|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="21" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd300001PlnNaDzialaniaUslugowe|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="22" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd300001PlnNaDzialaniaBudownicze|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="23" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd300001PlnNaDzialaniaRolnicze|default('0.00') }}</td>
-                            <td class="text-center decimal-11-2" data-vertical-group="24" data-horizontal-group="6">{{ dane_pozyczek.kwotaPozyczekOd300001PlnNaDzialaniaInne|default('0.00') }}</td>
-                        </tr>
-
-                        <tr>
-                            <td class="text-center credit-range"><strong>Suma:</strong></td>
-                            <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="13">0.00</strong></td>
-                            <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="14">0.00</strong></td>
-                            <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="15">0.00</strong></td>
-                            <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="16">0.00</strong></td>
-                            <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="17">0.00</strong></td>
-                            <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="18">0.00</strong></td>
-                            <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="19">0.00</strong></td>
-                            <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="20">0.00</strong></td>
-                            <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="21">0.00</strong></td>
-                            <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="22">0.00</strong></td>
-                            <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="23">0.00</strong></td>
-                            <td class="text-center"><strong class="decimal-11-2" data-vertical-group-sum="24">0.00</strong></td>
+                            <td>Współczynnik strat w całym okresie (%)</td>
+                            <td class="text-center percent-11-2">{{ dane_pozyczek.wspolczynnikStratWCalymOkresieWgLiczbyPozyczek }}</td>
+                            <td class="text-center percent-11-2">{{ dane_pozyczek.wspolczynnikStratWCalymOkresieWgKwotyPozyczek }}</td>
                         </tr>
                     </table>
+                </div>
 
-                    <hr />
-
-                    <h4> Dane dotyczące aktywnych i straconych pożyczek w sprawozdawanym okresie</h4>
-
-                    <div class="col-md-7">
-                        <table class="table table-bordered table-condensed table-striped">
-                            <tr>
-                                <td class="col-md-3"></td>
-                                <td class="text-center col-md-2">Liczba pożyczek (szt.)</td>
-                                <td class="text-center col-md-2">Wartość pożyczek (zł)</td>
-                            </tr>
-                            <tr>
-                                <td>Pożyczki aktywne</td>
-                                <td class="text-center">{{ dane_pozyczek.liczbaPozyczekAktywnychOgolem }}</td>
-                                <td class="text-center decimal-11-2">{{ dane_pozyczek.kwotaPozyczekAktywnychOgolem }} </td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Spłacane terminowo</td>
-                                <td class="text-center">{{ dane_pozyczek.liczbaPozyczekAktywnychSplacanychTerminowo }}</td>
-                                <td class="text-center decimal-11-2">{{ dane_pozyczek.kwotaPozyczekAktywnychSplacanychTerminowo }}</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Wymagające szczególnego monitorowania</td>
-                                <td class="text-center">{{ dane_pozyczek.liczbaPozyczekAktywnychWymagajacychMonitorowania }}</td>
-                                <td class="text-center decimal-11-2">{{ dane_pozyczek.kwotaPozyczekAktywnychWymagajacychMonitorowania }}</td>
-                            </tr>
-                            <tr>
-                                <td>Pożyczki stracone</td>
-                                <td class="text-center">{{ dane_pozyczek.liczbaPozyczekStraconych }}</td>
-                                <td class="text-center decimal-11-2">{{ dane_pozyczek.kwotaPozyczekStraconych }}</td>
-                            </tr>
-                            <tr>
-                                <td>Współczynnik strat w danym okresie (%)</td>
-                                <td class="text-center percent-11-2">{{ dane_pozyczek.wspolczynnikStratWDanymOkresieWgLiczbyPozyczek }}</td>
-                                <td class="text-center percent-11-2">{{ dane_pozyczek.wspolczynnikStratWDanymOkresieWgKwotyPozyczek }}</td>
-                            </tr>
-                            <tr>
-                                <td>Współczynnik strat w całym okresie (%)</td>
-                                <td class="text-center percent-11-2">{{ dane_pozyczek.wspolczynnikStratWCalymOkresieWgLiczbyPozyczek }}</td>
-                                <td class="text-center percent-11-2">{{ dane_pozyczek.wspolczynnikStratWCalymOkresieWgKwotyPozyczek }}</td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <div class="col-md-12">
-                        <p>
-                            <strong>Objaśnienia:</strong><br />
-                            <strong>Pożyczki aktywne</strong> – pożyczki, pozostałe do spłaty przez przedsiębiorców wg stanu na ostatni dzień okresu sprawozdawczego, z których kapitał pożyczkowy po spłacie przeznaczony będzie ponownie na wypłatę kolejnych pożyczek.<br />
-                            <strong>Pożyczki spłacane terminowo</strong> – kapitał pożyczkowy spłacany jest zgodnie z harmonogramem spłat stanowiącym załącznik do umowy pożyczki.<br />
-                            <strong>Pożyczki wymagające szczególnego monitorowania</strong> – pożyczki/ kapitał pożyczkowy, które zgodnie z przyjętą w funduszu procedurą wymagają szczególnego nadzoru i/ lub podjęcia kroków zmierzających do odzyskania kapitału pożyczkowego.<br />
-                            <strong>Pożyczki stracone</strong> – pożyczki /kapitał pożyczkowy zaksięgowany w straty.<br />
-                            <strong>Współczynnik strat w danym okresie</strong> - łączna wartość kapitału pożyczek straconych w danym okresie sprawozdawczym w odniesieniu do łącznej wartości kapitału pożyczkowego.<br />
-                            <strong>Współczynnik strat w całym okresie</strong> - łączna wartość kapitału pożyczek straconych od początku działalności funduszu w odniesieniu do łącznej wartości kapitału pożyczkowego funduszy.
-                        </p>
-                    </div>
+                <div class="col-md-12">
+                    <p>
+                        <strong>Objaśnienia:</strong><br />
+                        <strong>Pożyczki aktywne</strong> – pożyczki, pozostałe do spłaty przez przedsiębiorców wg stanu na ostatni dzień okresu sprawozdawczego, z których kapitał pożyczkowy po spłacie przeznaczony będzie ponownie na wypłatę kolejnych pożyczek.<br />
+                        <strong>Pożyczki spłacane terminowo</strong> – kapitał pożyczkowy spłacany jest zgodnie z harmonogramem spłat stanowiącym załącznik do umowy pożyczki.<br />
+                        <strong>Pożyczki wymagające szczególnego monitorowania</strong> – pożyczki/ kapitał pożyczkowy, które zgodnie z przyjętą w funduszu procedurą wymagają szczególnego nadzoru i/ lub podjęcia kroków zmierzających do odzyskania kapitału pożyczkowego.<br />
+                        <strong>Pożyczki stracone</strong> – pożyczki /kapitał pożyczkowy zaksięgowany w straty.<br />
+                        <strong>Współczynnik strat w danym okresie</strong> - łączna wartość kapitału pożyczek straconych w danym okresie sprawozdawczym w odniesieniu do łącznej wartości kapitału pożyczkowego.<br />
+                        <strong>Współczynnik strat w całym okresie</strong> - łączna wartość kapitału pożyczek straconych od początku działalności funduszu w odniesieniu do łącznej wartości kapitału pożyczkowego funduszy.
+                    </p>
                 </div>
             </div>
         </div>

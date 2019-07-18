@@ -11,8 +11,10 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Validator\Constraints;
 use Symfony\Component\Validator\Constraints\Count;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\Regex;
 
 /**
  * Typ formularza profilu beneficjenta
@@ -23,7 +25,7 @@ class BeneficjentType extends AbstractType
      * Buduje formularz do wypełniania profilu beneficjenta
      *
      * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param array $options
      *
      * @SuppressWarnings("unused")
      */
@@ -107,14 +109,23 @@ class BeneficjentType extends AbstractType
             'label' => 'Nr lokalu'
         ));
 
-        $builder->add('adrKod', null, array(
-            'label' => 'Kod pocztowy',
-            'constraints' => array(
-                new NotBlank(
-                    array('message' => 'Należy wypełnić pole')
-                )
-            )
-        ));
+        $builder->add('adrKod', TextType::class, [
+            'label'       => 'Kod pocztowy',
+            'required'    => false,
+            'attr'        => [
+                'placeholder' => '',
+                'maxlength'   => 6,
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+                new Regex([
+                    'message' => 'Niepoprawny format kodu pocztowego',
+                    'pattern' => '/^[0-9]{2}\-[0-9]{3}$/',
+                ]),
+            ],
+        ]);
 
         $builder->add('adrPoczta', null, array(
             'label' => 'Poczta',

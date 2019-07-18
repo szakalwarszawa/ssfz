@@ -11,13 +11,13 @@ use Parp\SsfzBundle\Entity\SprawozdanieSpolki;
 class SprawozdanieSpolkiRepository extends EntityRepository
 {
     /**
-     * Znajduje sprawozdanie spółki przypisane do zadanego ID sprawozdania.
+     * Znajduje sprawozdania spółek przypisane do zadanego ID sprawozdania.
      *
      * @param int $idSprawozdania
      *
-     * @return null|SprawozdanieSpolki
+     * @return null|SprawozdanieSpolki[]
      */
-    public function findOneByIdSprawozdania(int $idSprawozdania): ?SprawozdanieSpolki
+    public function findByIdSprawozdania(int $idSprawozdania): ?array
     {
         $result = $this
             ->createQueryBuilder('ss')
@@ -27,6 +27,6 @@ class SprawozdanieSpolkiRepository extends EntityRepository
             ->getResult()
         ;
 
-        return (count($result) > 0) ? $result[0] : null;
+        return (count($result) > 0) ? $result : null;
     }
 }

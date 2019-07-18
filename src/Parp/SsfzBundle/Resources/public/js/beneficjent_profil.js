@@ -5,21 +5,24 @@ var $addOsobaLink = $('<a href="#" class="btn btn-success" role="button"><span c
 var $newLinkUmowaDiv = $('<div></div>').append($addUmowaLink);
 var $newLinkOsobaDiv = $('<div></div>').append($addOsobaLink);
 
-jQuery(document).ready(function() {
+$(document).ready(function () {
     $('.js-datepicker').datepicker({
         language:"pl",
         locale: "pl",
         autoclose: true
     });
+
     $umowyCollectionHolder = $('div.umowy');
     $osobyZatrudnioneCollectionHolder = $('div.osoby-zatrudnione');
 
     $umowyCollectionHolder.find('.umowa-row').each(function() {
         //addFormDeleteLink($(this));
     });
+
     $osobyZatrudnioneCollectionHolder.find('.osoba-row').each(function() {
         addFormDeleteLink($(this));
-    });    
+    });
+
     $umowyCollectionHolder.append($newLinkUmowaDiv);
     $osobyZatrudnioneCollectionHolder.append($newLinkOsobaDiv);
     $umowyCollectionHolder.data('index', $umowyCollectionHolder.find(':input').length);
@@ -28,7 +31,8 @@ jQuery(document).ready(function() {
     $addUmowaLink.on('click', function(e) {        
         e.preventDefault();
         addForm($umowyCollectionHolder, $newLinkUmowaDiv, 0);
-    });    
+    });  
+  
     $addOsobaLink.on('click', function(e) {
         e.preventDefault();
         addForm($osobyZatrudnioneCollectionHolder, $newLinkOsobaDiv, 1);
@@ -37,39 +41,47 @@ jQuery(document).ready(function() {
             locale: "pl",
             autoclose: true
         });
-    }); 
+    });
+
     $('#beneficjent-profil-powrot').on('click', function(e) {
         $form = $('form[name=beneficjent]').serialize();
+
         if($form === $formB) {
             location.href = '/beneficjent';
         } else {
-        var dialog = bootbox.dialog({
-        message: "Czy zapisać dane?",
-        buttons: {
-            cancel: {
-                label: "Tak",
-                className: 'btn-info',
-                callback: function(){            
+            var dialog = bootbox.dialog({
+                message: "Czy zapisać dane?",
+                buttons: {
+                    cancel: {
+                        label: "Tak",
+                        className: 'btn-info',
+                        callback: function(){            
+                        }
+                    },
+                    ok: {
+                        label: "Nie",
+                        className: 'btn-danger',
+                        callback: function(){
+                            location.href = '/beneficjent';
+                        }
+                    }
                 }
-            },
-            ok: {
-                label: "Nie",
-                className: 'btn-danger',
-                callback: function(){
-                    location.href = '/beneficjent';
-                }
-            }
-        }
-    });
+            });
         }
     }); 
+
     $formB = $('form[name=beneficjent]').serialize();
+
+    $('.kod-pocztowy').mask("99-999", {
+        placeholder: '__-___'
+    });
 });   
 
 function addForm($collectionHolder, $newLinkDiv, $formType) {
     var prototype = $collectionHolder.data('prototype');
     var index = $collectionHolder.data('index');
     var newForm = prototype;
+
     newForm = newForm.replace(/__name__/g, index);
     $collectionHolder.data('index', index + 1);
     switch ($formType) {
@@ -84,12 +96,14 @@ function addForm($collectionHolder, $newLinkDiv, $formType) {
             var $newFormDiv = $('<div class="row osoba-row"></div>').append($newFormDivPt3);            
             break;
     }    
+
     $newLinkDiv.before($newFormDiv);
     addFormDeleteLink($newFormDiv);    
 }
 
 function addFormDeleteLink($formDiv) {
     var $removeFormA = $('<a class="btn btn-danger" href="#"><span class="fas fa-times"></span> Usuń</a>');
+
     $formDiv.append($removeFormA);
     $removeFormA.on('click', function(e) {
         e.preventDefault();

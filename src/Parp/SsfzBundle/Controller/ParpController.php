@@ -141,24 +141,30 @@ class ParpController extends Controller
 
         $szablon = null;
 
-        $sprawozdanieSpolki = null;
+        $sprawozdaniaSpolek = null;
         $przeplywFinansowy = null;
         if ($program->czyFunduszZalazkowy()) {
             $przeplywFinansowy = $entityManager
                 ->getRepository(PrzeplywFinansowy::class)
                 ->findOneByIdSprawozdania($idSprawozdania)
             ;
-            $sprawozdanieSpolki = $entityManager
+            $sprawozdaniaSpolek = $entityManager
                 ->getRepository(SprawozdanieSpolki::class)
-                ->findOneByIdSprawozdania($idSprawozdania)
+                ->findByIdSprawozdania($idSprawozdania)
             ;
         }
 
         $danePozyczek = null;
+        $danePozyczekZagregowane = null;
         if ($program->czyFunduszPozyczkowy()) {
             $danePozyczek = $entityManager
                 ->getRepository(DanePozyczek::class)
                 ->findOneByIdSprawozdania($idSprawozdania)
+            ;
+
+            $danePozyczekZagregowane = $entityManager
+                ->getRepository(DanePozyczek::class)
+                ->findDaneZagregowaneByIdSprawozdania($idSprawozdania)
             ;
         }
 
@@ -171,16 +177,16 @@ class ParpController extends Controller
         }
 
         return $this->render('SsfzBundle:Parp:ocen.html.twig', [
-            'form'                     => $form->createView(),
-            'form_okresy'              => $formOkresy->createView(),
-            'form_przeplywy_finansowe' => $formPrzeplywyFinansowe,
-            'program'                  => $program,
-           // 'body_sprawozdanie'        => $bodySprawozdanie,
-            'sprawozdanie'             => $sprawozdanie,
-            'sprawozdanie_spolki'      => $sprawozdanieSpolki,
-            'przeplyw_finansowy'       => $przeplywFinansowy,
-            'dane_pozyczek'            => $danePozyczek,
-            'dane_poreczen'            => $danePoreczen,
+            'form'                      => $form->createView(),
+            'form_okresy'               => $formOkresy->createView(),
+            'form_przeplywy_finansowe'  => $formPrzeplywyFinansowe,
+            'program'                   => $program,
+            'sprawozdanie'              => $sprawozdanie,
+            'sprawozdania_spolek'       => $sprawozdaniaSpolek,
+            'przeplyw_finansowy'        => $przeplywFinansowy,
+            'dane_pozyczek'             => $danePozyczek,
+            'dane_pozyczek_zagregowane' => $danePozyczekZagregowane,
+            'dane_poreczen'             => $danePoreczen,
         ]);
     }
 
@@ -222,24 +228,30 @@ class ParpController extends Controller
             ->getProgram()
         ;
 
-        $sprawozdanieSpolki = null;
+        $sprawozdaniaSpolek = null;
         $przeplywFinansowy = null;
         if ($program->czyFunduszZalazkowy()) {
             $przeplywFinansowy = $entityManager
                 ->getRepository(PrzeplywFinansowy::class)
                 ->findOneByIdSprawozdania($idSprawozdania)
             ;
-            $sprawozdanieSpolki = $entityManager
+            $sprawozdaniaSpolek = $entityManager
                 ->getRepository(SprawozdanieSpolki::class)
-                ->findOneByIdSprawozdania($idSprawozdania)
+                ->findByIdSprawozdania($idSprawozdania)
             ;
         }
 
         $danePozyczek = null;
+        $danePozyczekZagregowane = null;
         if ($program->czyFunduszPozyczkowy()) {
             $danePozyczek = $entityManager
                 ->getRepository(DanePozyczek::class)
                 ->findOneByIdSprawozdania($idSprawozdania)
+            ;
+
+            $danePozyczekZagregowane = $entityManager
+                ->getRepository(DanePozyczek::class)
+                ->findDaneZagregowaneByIdSprawozdania($idSprawozdania)
             ;
         }
 
@@ -252,11 +264,12 @@ class ParpController extends Controller
         }
 
         return $this->render('SsfzBundle:Parp:sprawozdanie.html.twig', [
-            'sprawozdanie'             => $sprawozdanie,
-            'sprawozdanie_spolki'      => $sprawozdanieSpolki,
-            'przeplyw_finansowy'       => $przeplywFinansowy,
-            'dane_pozyczek'            => $danePozyczek,
-            'dane_poreczen'            => $danePoreczen,
+            'sprawozdanie'              => $sprawozdanie,
+            'sprawozdania_spolek'       => $sprawozdaniaSpolek,
+            'przeplyw_finansowy'        => $przeplywFinansowy,
+            'dane_pozyczek'             => $danePozyczek,
+            'dane_pozyczek_zagregowane' => $danePozyczekZagregowane,
+            'dane_poreczen'             => $danePoreczen,
         ]);
     }
 
@@ -444,19 +457,7 @@ class ParpController extends Controller
         return $this->indexAction();
     }
 
-
-
-
-
-
-
-
-
-
-
-
     /**
-     *
      * @Route("/pozyczki/podglad/{idSprawozdania}", name="parp_pozyczki_podlglad")
      *
      * @return Response

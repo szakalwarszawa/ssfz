@@ -104,9 +104,11 @@ class BeneficjentController extends Controller
             ->get('ssfz.service.beneficjent_service')
             ->addUmowaOsobaIfEmpty($beneficjent)
         ;
+    
         $form = $this->createForm(BeneficjentType::class, $beneficjent);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+
+        if ($form->isSubmitted()) {
             if ($form->isValid()) {
                 $this
                     ->get('ssfz.service.beneficjent_service')

@@ -200,26 +200,23 @@ class AbstractSprawozdanieSpoType extends AbstractType
             )
         );
 
-        $builder->add(
-            'kodPocztowy',
-            TextType::class,
-            array(
-                'label' => 'Kod pocztowy',
-                'required' => false,
-                'attr' => array(
-                    'placeholder' => '',
-                    'maxlength' => 6,
-                ),
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    ),
-                    new Regex(
-                        array('message' => 'Niepoprawny format kodu pocztowego', 'pattern' => '/^[0-9]{2}\-[0-9]{3}$/')
-                    )
-                )
-            )
-        );
+        $builder->add('kodPocztowy', TextType::class, [
+            'label'       => 'Kod pocztowy',
+            'required'    => false,
+            'attr'        => [
+                'placeholder' => '',
+                'maxlength'   => 6,
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+                new Regex([
+                    'message' => 'Niepoprawny format kodu pocztowego',
+                    'pattern' => '/^[0-9]{2}\-[0-9]{3}$/',
+                ]),
+            ],
+        ]);
 
         $builder->add(
             'poczta',
