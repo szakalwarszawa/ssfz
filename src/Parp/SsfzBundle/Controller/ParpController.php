@@ -139,8 +139,6 @@ class ParpController extends Controller
             }
         }
 
-        $szablon = null;
-
         $sprawozdaniaSpolek = null;
         $przeplywFinansowy = null;
         if ($program->czyFunduszZalazkowy()) {
