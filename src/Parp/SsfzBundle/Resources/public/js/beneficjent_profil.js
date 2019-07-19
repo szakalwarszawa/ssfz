@@ -15,11 +15,11 @@ $(document).ready(function () {
     $umowyCollectionHolder = $('div.umowy');
     $osobyZatrudnioneCollectionHolder = $('div.osoby-zatrudnione');
 
-    $umowyCollectionHolder.find('.umowa-row').each(function() {
+    $umowyCollectionHolder.find('.umowa-row').each(function () {
         //addFormDeleteLink($(this));
     });
 
-    $osobyZatrudnioneCollectionHolder.find('.osoba-row').each(function() {
+    $osobyZatrudnioneCollectionHolder.find('.osoba-row').each(function () {
         addFormDeleteLink($(this));
     });
 
@@ -28,12 +28,12 @@ $(document).ready(function () {
     $umowyCollectionHolder.data('index', $umowyCollectionHolder.find(':input').length);
     $osobyZatrudnioneCollectionHolder.data('index', $osobyZatrudnioneCollectionHolder.find(':input').length);
 
-    $addUmowaLink.on('click', function(e) {        
+    $addUmowaLink.on('click', function (e) {
         e.preventDefault();
         addForm($umowyCollectionHolder, $newLinkUmowaDiv, 0);
-    });  
-  
-    $addOsobaLink.on('click', function(e) {
+    });
+
+    $addOsobaLink.on('click', function (e) {
         e.preventDefault();
         addForm($osobyZatrudnioneCollectionHolder, $newLinkOsobaDiv, 1);
         $('.js-datepicker').datepicker({
@@ -43,10 +43,10 @@ $(document).ready(function () {
         });
     });
 
-    $('#beneficjent-profil-powrot').on('click', function(e) {
+    $('#beneficjent-profil-powrot').on('click', function (e) {
         $form = $('form[name=beneficjent]').serialize();
 
-        if($form === $formB) {
+        if ($form === $formB) {
             location.href = '/beneficjent';
         } else {
             var dialog = bootbox.dialog({
@@ -55,7 +55,7 @@ $(document).ready(function () {
                     cancel: {
                         label: "Tak",
                         className: 'btn-info',
-                        callback: function(){            
+                        callback: function () {
                         }
                     },
                     ok: {
@@ -68,14 +68,14 @@ $(document).ready(function () {
                 }
             });
         }
-    }); 
+    });
 
     $formB = $('form[name=beneficjent]').serialize();
 
     $('.kod-pocztowy').mask("99-999", {
         placeholder: '__-___'
     });
-});   
+});
 
 function addForm($collectionHolder, $newLinkDiv, $formType) {
     var prototype = $collectionHolder.data('prototype');
@@ -87,15 +87,15 @@ function addForm($collectionHolder, $newLinkDiv, $formType) {
     switch ($formType) {
         case 0:
             var $newFormDivPt1 = $('<div class="umowa-col col-sm-11"></div>').append(newForm);
-            var $newFormDiv = $('<div class="row umowa-row"></div>').append($newFormDivPt1);           
+            var $newFormDiv = $('<div class="row umowa-row"></div>').append($newFormDivPt1);
             break;
         case 1:
             var $newFormDivPt1 = $('<div class="panel-body"></div>').append(newForm);
-            var $newFormDivPt2 = $('<div class="panel panel-default"></div>').append($newFormDivPt1);                                       
+            var $newFormDivPt2 = $('<div class="panel panel-default"></div>').append($newFormDivPt1);
             var $newFormDivPt3 = $('<div class="osoba-col col-sm-11"></div>').append($newFormDivPt2);
-            var $newFormDiv = $('<div class="row osoba-row"></div>').append($newFormDivPt3);            
+            var $newFormDiv = $('<div class="row osoba-row"></div>').append($newFormDivPt3);
             break;
-    }    
+    }
 
     $newLinkDiv.before($newFormDiv);
     addFormDeleteLink($newFormDiv);    
@@ -105,7 +105,7 @@ function addFormDeleteLink($formDiv) {
     var $removeFormA = $('<a class="btn btn-danger" href="#"><span class="fas fa-times"></span> Usuń</a>');
 
     $formDiv.append($removeFormA);
-    $removeFormA.on('click', function(e) {
+    $removeFormA.on('click', function (e) {
         e.preventDefault();
         $formDiv.remove();
     });

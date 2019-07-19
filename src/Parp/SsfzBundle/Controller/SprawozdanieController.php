@@ -868,7 +868,7 @@ class SprawozdanieController extends Controller
      *
      * @param Request $request
      * @param string $typSprawozdania
-     *? int $sprawozdanieId ?
+     * @param int $sprawozdanieId
      *
      * @return Response|RedirectResponse
      */
@@ -913,10 +913,9 @@ class SprawozdanieController extends Controller
                     )
                 ;
                 
-                return $this->redirectToRoute(
-                    'lista_sprawozdan_spo',
-                    array('umowa' => $sprawozdanie->getUmowa()->getId())
-                );
+                return $this->redirectToRoute('lista_sprawozdan_spo', [
+                    'umowa' => $sprawozdanie->getUmowa()->getId(),
+                ]);
             } else {
                 $bledy = [];
                 foreach ($form->all() as $field) {
@@ -934,16 +933,14 @@ class SprawozdanieController extends Controller
         }
 
         $typeGuesser = $this->get('ssfz.service.guesser.typ_sprawozdania');
-        $template = 'SsfzBundle:Sprawozdanie:';
         if ($typeGuesser->jestPozyczkowe($sprawozdanie)) {
-            $template = $template . 'pozyczkowe';
+            $template = 'SsfzBundle:Sprawozdanie:pozyczkowe.html.twig';
         } else if ($typeGuesser->jestPoreczeniowe($sprawozdanie)) {
-            $template = $template . 'poreczeniowe';
+            $template = 'SsfzBundle:Sprawozdanie:poreczeniowe.html.twig';
         } else {
             $message = 'Nieznany typ sprawozdania. Obsługiwane są tylko sprawozdanie poręczeniowe i pożyczkowe.';
             throw new InvalidArgumentException($message);
         }
-        $template = $template.'Edycja.html.twig';
 
         return $this->render($template, [
             'sprawozdanie'     => $sprawozdanie,
