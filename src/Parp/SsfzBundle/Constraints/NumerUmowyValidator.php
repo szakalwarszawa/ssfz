@@ -52,7 +52,7 @@ class NumerUmowyValidator extends ConstraintValidator
 
         $result = $this->sprawdzNumerUmowy($value);
         if (true !== $result) {
-            $this->context->addViolation($constraint->message);
+            $this->context->addViolation($this->getMessage($constraint));
         }
 
         return $result;
@@ -96,6 +96,41 @@ class NumerUmowyValidator extends ConstraintValidator
         return $regexp;
     }
 
+    /**
+     * Generuje komunikat błędu walidacji specyficzny dla zadanego programu.
+     *
+     * @param Constraint $constraint
+     *
+     * @return string
+     */
+    private function getMessage(Constraint $constraint): string
+    {
+        $program = $constraint->program;
+
+        if (null === $program) {
+            return $constraint->message;
+        }
+
+        if ($program->czyFunduszZalazkowy()) {
+            return $constraint->message.' '.$constraint->messageFunduszZalazkowy;
+        }
+
+        if ($program->czyFunduszPozyczkowy()) {
+            return $constraint->message.' '.$constraint->messageFunduszPozyczkowy;
+        }
+
+        if ($program->czyFunduszPoreczeniowy()) {
+            return $constraint->message.' '.$constraint->messageFunduszPoreczeniowy;
+        }
+    }
+
+    /**
+     * Sprawdza zgodność numeru umowy z wyrażeniem regularnym specyficznym dla programu.
+     *
+     * @param string $nrUmowy
+     *
+     * @return bool
+     */
     private function sprawdzNumerUmowy(string $nrUmowy): bool
     {
         return (preg_match($this->pattern, $nrUmowy) === 1);
