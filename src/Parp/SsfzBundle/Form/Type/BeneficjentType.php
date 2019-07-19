@@ -43,7 +43,8 @@ class BeneficjentType extends AbstractType
         $builder->add('umowy', CollectionType::class, [
             'entry_type'    => UmowaType::class,
             'entry_options' => [
-                'label' => false,
+                'label'   => false,
+                'program' => $options['program'],
             ],
             'allow_add'     => true,
             'by_reference'  => false,
@@ -193,6 +194,7 @@ class BeneficjentType extends AbstractType
             'attr'       => [
                 'novalidate' => 'novalidate',
             ],
+            'program'    => null,
         ]);
     }
 }

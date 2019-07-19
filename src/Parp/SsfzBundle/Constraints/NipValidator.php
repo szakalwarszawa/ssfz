@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: muchar
- * Date: 29.08.2015
- * Time: 02:18.
- */
 
 namespace Parp\SsfzBundle\Constraints;
 

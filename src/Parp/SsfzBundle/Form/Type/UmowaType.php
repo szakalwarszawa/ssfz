@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Parp\SsfzBundle\Constraints\NumerUmowy;
 
 /**
  * Typ formularza Umowa - podformularz profilu beneficjenta
@@ -30,6 +31,9 @@ class UmowaType extends AbstractType
                 new NotBlank([
                     'message' => 'Należy wypełnić pole',
                 ]),
+                new NumerUmowy([
+                    'program' => $options['program'],
+                ]),
             ],
         ]);
     }
@@ -42,7 +46,8 @@ class UmowaType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Umowa::class
+            'data_class' => Umowa::class,
+            'program'    => null,
         ]);
     }
 }

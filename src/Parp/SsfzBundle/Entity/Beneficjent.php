@@ -174,9 +174,9 @@ class Beneficjent
     /**
      * Program, którego dotyczy profil beneficjenta.
      *
-     * @var int
+     * @var Program
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\Program")
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\Program", fetch="EAGER")
      */
     protected $program;
 
