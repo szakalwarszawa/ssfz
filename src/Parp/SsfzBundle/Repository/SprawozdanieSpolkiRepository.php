@@ -21,7 +21,8 @@ class SprawozdanieSpolkiRepository extends EntityRepository
     {
         $result = $this
             ->createQueryBuilder('ss')
-            ->where('ss.sprawozdanieId = :idSprawozdania')
+            ->leftJoin('ss.sprawozdanie', 's')
+            ->where('s.id = :idSprawozdania')
             ->setParameter('idSprawozdania', $idSprawozdania)
             ->getQuery()
             ->getResult()
