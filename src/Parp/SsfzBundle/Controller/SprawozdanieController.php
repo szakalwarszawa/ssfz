@@ -340,7 +340,7 @@ class SprawozdanieController extends Controller
             $template = 'SsfzBundle:Sprawozdanie:pozyczkowe.html.twig';
             return $this->render($template, [
                 'sprawozdanie'     => $report,
-                'typ_sprawozdania' => $typSprawozdania,
+                'typ_sprawozdania' => TypSprawozdaniaGuesserService::SPRAWOZDANIE_POZYCZKOWE,
                 'tylkoDoOdczytu'   => false,
                 'form'             => $form->createView(),
             ]);
@@ -350,7 +350,7 @@ class SprawozdanieController extends Controller
             $template = 'SsfzBundle:Sprawozdanie:poreczeniowe.html.twig';
             return $this->render($template, [
                 'sprawozdanie'     => $report,
-                'typ_sprawozdania' => $typSprawozdania,
+                'typ_sprawozdania' => TypSprawozdaniaGuesserService::SPRAWOZDANIE_PORECZENIOWE,
                 'tylkoDoOdczytu'   => false,
                 'form'             => $form->createView(),
             ]);
