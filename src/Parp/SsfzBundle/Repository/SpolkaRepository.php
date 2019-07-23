@@ -215,8 +215,10 @@ class SpolkaRepository extends EntityRepository
             return 1;
         }
         $queryBuilder = $this->createQueryBuilder('s');
-        $queryBuilder->select('MAX(s.liczbaPorzadkowa) as maxLp')
-            ->where('s.umowaId = :umowaId')
+        $queryBuilder
+            ->select('MAX(s.liczbaPorzadkowa) as maxLp')
+            ->leftJoin('s.umowa', 'u')
+            ->where('u.id = :umowaId')
             ->setParameter('umowaId', $umowaId);
 
         return $queryBuilder->getQuery()->getSingleScalarResult() + 1;

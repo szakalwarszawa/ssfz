@@ -24,13 +24,6 @@ class Spolka
     protected $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="umowa_id", type="integer", nullable=true)
-     */
-    protected $umowaId;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Umowa", inversedBy="spolki")
      * @ORM\JoinColumn(name="umowa_id", referencedColumnName="id")
      */

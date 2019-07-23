@@ -62,8 +62,9 @@ class SprawozdanieZalazkoweRepository extends EntityRepository
         $result = $this
             ->createQueryBuilder('s')
             ->leftJoin('s.okres', 'o')
+            ->leftJoin('s.umowa', 'u')
             ->where('s.creatorId = :creatorId')
-            ->andWhere('s.umowaId = :umowaId')
+            ->andWhere('u.id = :umowaId')
             ->andWhere('s.rok = :rok')
             ->andWhere('s.czyNajnowsza = TRUE')
             ->andWhere('o.id = :okresSprawozdawczyId')
