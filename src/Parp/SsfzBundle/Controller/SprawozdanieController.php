@@ -336,27 +336,27 @@ class SprawozdanieController extends Controller
 
 
         $typeGuesser = $this->get('ssfz.service.guesser.typ_sprawozdania');
-        if ($typeGuesser->jestPozyczkowe($sprawozdanie)) {
+        if ($typeGuesser->jestPozyczkowe($report)) {
             $template = 'SsfzBundle:Sprawozdanie:pozyczkowe.html.twig';
             return $this->render($template, [
-                'sprawozdanie'     => $sprawozdanie,
+                'sprawozdanie'     => $report,
                 'typ_sprawozdania' => $typSprawozdania,
                 'tylkoDoOdczytu'   => false,
                 'form'             => $form->createView(),
             ]);
         }
         
-        if ($typeGuesser->jestPoreczeniowe($sprawozdanie)) {
+        if ($typeGuesser->jestPoreczeniowe($report)) {
             $template = 'SsfzBundle:Sprawozdanie:poreczeniowe.html.twig';
             return $this->render($template, [
-                'sprawozdanie'     => $sprawozdanie,
+                'sprawozdanie'     => $report,
                 'typ_sprawozdania' => $typSprawozdania,
                 'tylkoDoOdczytu'   => false,
                 'form'             => $form->createView(),
             ]);
         }
 
-        if ($typeGuesser->jestZalazkowe($sprawozdanie)) {
+        if ($typeGuesser->jestZalazkowe($report)) {
             return $this->pokazFormularzRejestracji($form, 'edit', $umowaId);
         }
 
