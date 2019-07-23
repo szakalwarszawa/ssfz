@@ -68,7 +68,7 @@ class NumerUmowyValidator extends ConstraintValidator
      * Z parametrów został usunięty typehint "Program". Formularz (pole Collection) przekazywał
      * obiekty proxy zamiast realnych obiektów. Wygląda to na błąd Sf lub Doctrine.
      * Zamiast "Parp\SsfzBundle\Entity\Slownik\Program" przekazywany był
-     * "Proxies\__CG__\Parp\SsfzBundle\Entity\Slownik\Program". 
+     * "Proxies\__CG__\Parp\SsfzBundle\Entity\Slownik\Program".
      * Nie pomagało wymuszenie w encjach EAGER LOADING.
      *
      * @param Program|null $program

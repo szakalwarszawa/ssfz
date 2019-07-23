@@ -40,7 +40,7 @@ class NumerUmowy extends Constraint
 
     /**
      * Zwraca FQCN klasy wykonującej sprawdzenie.
-     
+
      * @return string
      */
     public function validatedBy()
