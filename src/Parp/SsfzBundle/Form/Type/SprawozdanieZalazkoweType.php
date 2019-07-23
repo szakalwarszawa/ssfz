@@ -121,6 +121,7 @@ class SprawozdanieZalazkoweType extends AbstractType
             'showRemarks'        => null,
             'lata'               => null,
             'allow_extra_fields' => true,
+            'program'            => null,
         ]);
     }
 }

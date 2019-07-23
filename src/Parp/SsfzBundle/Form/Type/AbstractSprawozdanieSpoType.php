@@ -107,8 +107,8 @@ class AbstractSprawozdanieSpoType extends AbstractType
                 'choice_label'  => 'nazwa',
                 'required'      => false,
                 'placeholder'   => '',
-                'query_builder' => function (EntityRepository $repo) {
-                    return $repo
+                'query_builder' => function (EntityRepository $repository) {
+                    return $repository
                         ->createQueryBuilder('w')
                         ->orderBy('w.id', 'ASC')
                     ;
@@ -297,28 +297,24 @@ class AbstractSprawozdanieSpoType extends AbstractType
             )
         );
 
-        $builder->add(
-            'formaPrawna',
-            EntityType::class,
-            array(
-                'label'         => 'Forma prawna',
-                'class'         => FormaPrawna::class,
-                'choice_label'  => 'nazwa',
-                'required'      => false,
-                'placeholder'   => '',
-                'query_builder' => function (EntityRepository $repo) {
-                    return $repo
-                        ->createQueryBuilder('f')
-                        ->orderBy('f.id', 'ASC')
-                    ;
-                },
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Należy wypełnić pole',
-                    ]),
-                ],
-            )
-        );
+        $builder->add('formaPrawna', EntityType::class, [
+            'label'         => 'Forma prawna',
+            'class'         => FormaPrawna::class,
+            'choice_label'  => 'nazwa',
+            'required'      => false,
+            'placeholder'   => '',
+            'query_builder' => function (EntityRepository $repository) {
+                return $repository
+                    ->createQueryBuilder('f')
+                    ->orderBy('f.id', 'ASC')
+                ;
+            },
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
         $builder->add('czyNieDzialaDlaZysku', EntityType::class, [
             'label'       => 'Fundusz nie działa dla zysku',

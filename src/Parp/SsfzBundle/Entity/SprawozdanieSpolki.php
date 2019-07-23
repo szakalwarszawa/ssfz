@@ -361,175 +361,238 @@ class SprawozdanieSpolki
      * Ustawia id
      *
      * @param int $id
+     *
+     * @return SprawozdanieSpolki
      */
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
     }
-
-
-
-
-
 
     /**
      * Ustawia $liczbaPorzadkowa
      *
      * @param int $liczbaPorzadkowa
+     *
+     * @return SprawozdanieSpolki
      */
     public function setLiczbaPorzadkowa($liczbaPorzadkowa)
     {
         $this->liczbaPorzadkowa = $liczbaPorzadkowa;
+
+        return $this;
     }
 
     /**
      * Ustawia $nazwaSpolki
      *
      * @param string $nazwaSpolki
+     *
+     * @return SprawozdanieSpolki
      */
     public function setNazwaSpolki($nazwaSpolki)
     {
         $this->nazwaSpolki = $nazwaSpolki;
+
+        return $this;
     }
 
     /**
      * Ustawia $krs
      *
      * @param string $krs
+     *
+     * @return SprawozdanieSpolki
      */
     public function setKrs($krs)
     {
         $this->krs = $krs;
+
+        return $this;
     }
 
     /**
      * Ustawia $uzyskanePrzychody
      *
      * @param float $uzyskanePrzychody
+     *
+     * @return SprawozdanieSpolki
      */
     public function setUzyskanePrzychody($uzyskanePrzychody)
     {
         $this->uzyskanePrzychody = $uzyskanePrzychody;
+
+        return $this;
     }
 
     /**
      * Ustawia $planowanePrzychody
      *
      * @param float $planowanePrzychody
+     *
+     * @return SprawozdanieSpolki
      */
     public function setPlanowanePrzychody($planowanePrzychody)
     {
         $this->planowanePrzychody = $planowanePrzychody;
+
+        return $this;
     }
 
     /**
      * Ustawia $ebitda
      *
      * @param float $ebitda
+     *
+     * @return SprawozdanieSpolki
      */
     public function setEbitda($ebitda)
     {
         $this->ebitda = $ebitda;
+
+        return $this;
     }
 
     /**
      * Ustawia $ncf
      *
      * @param float $ncf
+     *
+     * @return SprawozdanieSpolki
      */
     public function setNcf($ncf)
     {
         $this->ncf = $ncf;
+
+        return $this;
     }
 
     /**
      * Ustawia $sumaBilansowa
      *
      * @param float $sumaBilansowa
+     * 
+     * @return SprawozdanieSpolki
      */
     public function setSumaBilansowa($sumaBilansowa)
     {
         $this->sumaBilansowa = $sumaBilansowa;
+
+        return $this;
     }
 
     /**
      * Ustawia $zatrudnienieEtaty
      *
      * @param int $zatrudnienieEtaty
+     * 
+     * @return SprawozdanieSpolki
      */
     public function setZatrudnienieEtaty($zatrudnienieEtaty)
     {
         $this->zatrudnienieEtaty = $zatrudnienieEtaty;
+
+        return $this;
     }
 
     /**
      * Ustawia $zatrudnioneKobiety
      *
      * @param int $zatrudnioneKobiety
+     *
+     * @return SprawozdanieSpolki
      */
     public function setZatrudnioneKobiety($zatrudnioneKobiety)
     {
         $this->zatrudnioneKobiety = $zatrudnioneKobiety;
+
+        return $this;
     }
 
     /**
      * Ustawia $zatrudnieniMezczyzni
      *
      * @param int $zatrudnieniMezczyzni
+     *
+     * @return SprawozdanieSpolki
      */
     public function setZatrudnieniMezczyzni($zatrudnieniMezczyzni)
     {
         $this->zatrudnieniMezczyzni = $zatrudnieniMezczyzni;
+
+        return $this;
     }
 
     /**
      * Ustawia $zatrudnienieInneFormy
      *
      * @param int $zatrudnienieInneFormy
+     *
+     * @return SprawozdanieSpolki
      */
     public function setZatrudnienieInneFormy($zatrudnienieInneFormy)
     {
         $this->zatrudnienieInneFormy = $zatrudnienieInneFormy;
+
+        return $this;
     }
 
     /**
      * Ustawia $zatrudnienieInneFormyKobiety
      *
      * @param int $zatrudnienieInneFormyKobiety
+     *
+     * @return SprawozdanieSpolki
      */
     public function setZatrudnienieInneFormyKobiety($zatrudnienieInneFormyKobiety)
     {
         $this->zatrudnienieInneFormyKobiety = $zatrudnienieInneFormyKobiety;
+
+        return $this;
     }
 
     /**
      * Ustawia $zatrudnienieInneFormyMezczyzni
      *
      * @param int $zatrudnienieInneFormyMezczyzni
+     *
+     * @return SprawozdanieSpolki
      */
     public function setZatrudnienieInneFormyMezczyzni($zatrudnienieInneFormyMezczyzni)
     {
         $this->zatrudnienieInneFormyMezczyzni = $zatrudnienieInneFormyMezczyzni;
+
+        return $this;
     }
 
     /**
      * Ustawia $zatrudnieniewStosunkuDoPoprzedniegoRoku
      *
      * @param int $zatrudnieniewStosunkuDoPoprzedniegoRoku
+     *
+     * @return SprawozdanieSpolki
      */
     public function setZatrudnieniewStosunkuDoPoprzedniegoRoku($zatrudnieniewStosunkuDoPoprzedniegoRoku)
     {
         $this->zatrudnieniewStosunkuDoPoprzedniegoRoku = $zatrudnieniewStosunkuDoPoprzedniegoRoku;
+
+        return $this;
     }
 
     /**
      * Ustawia $zatrudnieniewStosunkuDoPoprzedniegoOkresu
      *
      * @param int $zatrudnieniewStosunkuDoPoprzedniegoOkresu
+     *
+     * @return SprawozdanieSpolki
      */
     public function setZatrudnieniewStosunkuDoPoprzedniegoOkresu($zatrudnieniewStosunkuDoPoprzedniegoOkresu)
     {
         $this->zatrudnieniewStosunkuDoPoprzedniegoOkresu = $zatrudnieniewStosunkuDoPoprzedniegoOkresu;
+
+        return $this;
     }
 
     /**
@@ -544,6 +607,7 @@ class SprawozdanieSpolki
                 ->atPath('rok')
                 ->addViolation();
         }
+
         if ($this->getZatrudnienieInneFormy() != ($this->getZatrudnienieInneFormyMezczyzni() + $this->getZatrudnienieInneFormyKobiety())) {
             $context->buildViolation('Suma pól "w tym kobiety" oraz "w tym mężczyźni" musi być równa wartości w polu "Zatrudnienie (inne formy)" spółka ( '.$this->getNazwaSpolki().' )')
                 ->atPath('rok')

@@ -14,6 +14,7 @@ use Parp\SsfzBundle\Form\Type\SprawozdanieZalazkoweType;
 
 /**
  * Description of SprawozdanieZalazkoweTypeTest
+ * Ale, że ta klasa to "Opis SprawozdanieZalazkoweTypeTest"?
  */
 class SprawozdanieZalazkoweTypeTest extends TypeTestCase
 {

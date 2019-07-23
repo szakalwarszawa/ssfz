@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityNotFoundException;
 use Parp\SsfzBundle\Entity\Slownik\Program;
 use Parp\SsfzBundle\Entity\Slownik\StatusSprawozdania;
 use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
@@ -57,17 +58,18 @@ class SprawozdanieController extends Controller
             ->datatableSprawozdanie($this, $umowa)
         ;
         $report = new SprawozdanieZalazkowe();
-        $report->setNumerUmowy($this->getNumerUmowy($umowaId, $beneficjentId));
-        $report->setUmowa($umowa);
-        $spolki = $this->getSpolkiList($umowaId);
-        $report = $this->setSpolki($spolki, $report);
+        $report
+            ->setNumerUmowy($this->getNumerUmowy($umowaId, $beneficjentId))
+            ->setUmowa($umowa)
+        ;
+        $report = $this->odswiezSpolki($report, $umowaId);
         $okresy = $this->getOkresySprawozdawcze();
 
         $form = $this->createForm(SprawozdanieZalazkoweType::class, $report, [
             'lata'    => $okresy,
             'program' => $program,
         ]);
-        if (count($spolki) === 0 && true === $beneficjent->getProgram()->czyJestPortfelSpolek()) {
+        if (0 === $report->countSprawozdaniaSpolek() && true === $beneficjent->getProgram()->czyJestPortfelSpolek()) {
             $this
                 ->get('ssfz.service.komunikaty_service')
                 ->bladKomunikat('Aby dodać sprawozdanie należy wprowadzić dane spółek.', 'Uwaga!')
@@ -177,8 +179,7 @@ class SprawozdanieController extends Controller
         $okresy = $this->getOkresySprawozdawcze();
 
         if ($request->query->get('odswiezSpolki') !== null) {
-            $spolki = $this->getSpolkiList($umowaId);
-            $report = $this->setSpolki($spolki, $report);
+            $report = $this->odswiezSpolki($report, $umowaId);
         }
 
         $form = $this->createForm(SprawozdanieZalazkoweType::class, $report, [
@@ -195,11 +196,13 @@ class SprawozdanieController extends Controller
                 ->get('ssfz.service.komunikaty_service')
                 ->sukcesKomunikat('Edycja sprawozdania zakończyła się powodzeniem', 'Edycja sprawozdania')
             ;
-            if ($form['przekierowanie']->getData() == 'beneficjent') {
+            if ($form['przekierowanie']->getData() === 'beneficjent') {
                 return $this->redirectToRoute('beneficjent');
             }
 
-            return $this->redirectToRoute('sprawozdanie_rejestracja', ['umowaId' => (string) $umowaId]);
+            return $this->redirectToRoute('sprawozdanie_rejestracja', [
+                'umowaId' => (string) $umowaId,
+            ]);
         }
         if ($form->isSubmitted() && !$form->isValid()) {
             $this
@@ -210,28 +213,6 @@ class SprawozdanieController extends Controller
 
         return $this->pokazFormularzRejestracji($form, 'edit', $umowaId);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     /**
      * @Route("sprawozdanie/poprawa/{umowaId}/{sprawozdanieId}", name="sprawozdanie_poprawa")
@@ -274,12 +255,8 @@ class SprawozdanieController extends Controller
 
         $okresy = $this->getOkresySprawozdawcze();
 
-
-        // Fajnie, że wiadomo po co to jest robione, bo wygląda jak prowizoryczne naprawienie jakiegoś problemu.
-        // To raczej powinno być ogarnięte oddzielną akcją. Teraz są już tu ze 3 niezależne czynności robione.
         if ($request->query->get('odswiezSpolki') !== null) {
-            $spolki = $this->getSpolkiList($umowaId);
-            $report = $this->setSpolki($spolki, $report);
+            $report = $this->odswiezSpolki($report, $umowaId);
         }
 
         $formTypeClass = $this
@@ -333,7 +310,6 @@ class SprawozdanieController extends Controller
             ;
         }
 
-
         $typeGuesser = $this->get('ssfz.service.guesser.typ_sprawozdania');
         if ($typeGuesser->jestPozyczkowe($report)) {
             $template = 'SsfzBundle:Sprawozdanie:pozyczkowe.html.twig';
@@ -362,30 +338,6 @@ class SprawozdanieController extends Controller
         $message = 'Nieznany typ sprawozdania. Obsługiwane są tylko sprawozdanie poręczeniowe i pożyczkowe.';
         throw new InvalidArgumentException($message);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     /**
      * Akcja wysłania sprawozdania do PARP
@@ -447,40 +399,14 @@ class SprawozdanieController extends Controller
             $beneficjentId = $umowa->getBeneficjent()->getId();
         }
         
-        $report->setCreatorId($beneficjentId);
-        $report->setWersja(1);
-        $report->setUmowa($umowa);
-        $report->setCzyNajnowsza(true);
-        $report->setStatus(StatusSprawozdania::EDYCJA);
-        $creationDate = new DateTime('now');
-        $report->setDataRejestracji($creationDate);
-
-        return $report;
-    }
-
-    /**
-     * Metoda ustawia spółki
-     *
-     * @param array $spolki
-     * @param Sprawozdanie $report
-     *
-     * @return Sprawozdanie z ustawionymi spolkami
-     */
-    public function setSpolki($spolki, $report)
-    {
-
-        $counter = 1;
-        foreach ($spolki as $spolka) {
-            //Dodaj tylko te dla których już nie ma sprawozdań
-            if ($report->getSprawozdanieSpolki($spolka->getNazwa()) === null) {
-                $sprawozdanieSpolki = new SprawozdanieSpolki();
-                $sprawozdanieSpolki->setNazwaSpolki($spolka->getNazwa());
-                $sprawozdanieSpolki->setKrs($spolka->getKrs());
-                $sprawozdanieSpolki->setLiczbaPorzadkowa($counter);
-                $report->addSprawozdaniaSpolek($sprawozdanieSpolki);
-            }
-            $counter = $counter + 1;
-        }
+        $report
+            ->setCreatorId($beneficjentId)
+            ->setWersja(1)
+            ->setUmowa($umowa)
+            ->setCzyNajnowsza(true)
+            ->setStatus(StatusSprawozdania::EDYCJA)
+            ->setDataRejestracji(new DateTime('now'))
+        ;
 
         return $report;
     }
@@ -524,24 +450,6 @@ class SprawozdanieController extends Controller
         }
 
         return $umowa->getNumer();
-    }
-
-    /**
-     * Metoda zwraca listę spółek dla danej umowy
-     *
-     * @param int $umowaId
-     *
-     * @return array
-     */
-    public function getSpolkiList(int $umowaId)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $spolki = $entityManager->getRepository(Spolka::class)->findBy(
-            ['umowaId' => $umowaId, 'zakonczona' => 0]
-        );
-        $entityManager->flush();
-
-        return $spolki;
     }
 
     /**
@@ -785,38 +693,6 @@ class SprawozdanieController extends Controller
         ]);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Edycja sprawozdań pożyczkowych.
      *
@@ -912,45 +788,6 @@ class SprawozdanieController extends Controller
         ]);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Podgląd sprawozdań SPO.
      *
@@ -997,28 +834,6 @@ class SprawozdanieController extends Controller
         ]);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Przesłanie sprawozdania do PARP.
      *
@@ -1036,184 +851,26 @@ class SprawozdanieController extends Controller
     {
         $sprawozdanie = $this->znajdzSprawozdanie($typSprawozdania, $sprawozdanieId);
         $sprawozdanie->sprawdzCzyUzytkownikMozeEdytowac($this->getUser());
-        // NIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-        // WTF?!?!?!?!?!??! CO TO NA CO TO PO CO GDZIE JAK!?!
-        // TO OZNACZA, ŻE MOŻNA ZAPISAĆ FORMULARZ Z BŁEDAMI!!!!!!!!!!!!
-       // if ($sprawozdanie->getCzyDaneSaPrawidlowe()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            
-            $sprawozdanie->setStatus(StatusSprawozdania::PRZESLANO_DO_PARP);
-            $sprawozdanie->setDataPrzeslaniaDoParp(new DateTime());
-            
-            $entityManager->flush();
-            
-            $this
-                ->get('ssfz.service.komunikaty_service')
-                ->sukcesKomunikat('Przesłano sprawozdanie do PARP.')
-            ;
-      //  } else {
-      //      $message = 'Nie można przesłać sprawozdania do PARP, ponieważ zawiera błędy.'
-      //               . ' Proszę uzupełnić i zapisać formularz.';
-      //      $this
-      //          ->get('ssfz.service.komunikaty_service')
-        //        ->bladKomunikat($message)
-        //    ;
-       // }
+        $sprawozdanie
+            ->setStatus(StatusSprawozdania::PRZESLANO_DO_PARP)
+           ->setDataPrzeslaniaDoParp(new DateTime())
+        ;
+        
+        $entityManager = $this
+            ->getDoctrine()
+            ->getManager()
+            ->flush()
+        ;
+        
+        $this
+            ->get('ssfz.service.komunikaty_service')
+            ->sukcesKomunikat('Przesłano sprawozdanie do PARP.')
+        ;
 
         return $this->redirectToRoute('lista_sprawozdan_spo', [
             'umowa' => $sprawozdanie->getUmowa()->getId(),
         ]);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Ludzie, w jednym kontrolerze poprawAction i poprawaAction? Skąd ktokolwiek ma wiedzieć kiedy użyć które!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-     * Edycja sprawozdań pożyczkowych.
-     *
-     * @Route(
-     *      "sprawozdania/spo/poprawa/{typSprawozdania}/{sprawozdanieId}",
-     *      name="sprawozdania_spo_poprawa"
-     *  )
-     *
-     * @param Request $request
-     * @param string $typSprawozdania
-     * @param int $sprawozdanieId
-     *
-     * @return Response|RedirectResponse
-     */
-    /*
-    public function poprawaSpoAction(Request $request, string $typSprawozdania, int $sprawozdanieId)
-    {
-        $sprawozdanie = $this->znajdzSprawozdanie($typSprawozdania, $sprawozdanieId);
-        $sprawozdanie->sprawdzCzyUzytkownikMozePoprawiac($this->getUser());
-        
-        $entityManager = $this->getDoctrine()->getManager();
-        $program = $sprawozdanie->getUmowa()->getBeneficjent()->getProgram();
-        $this->getUser()->setAktywnyProgram($program);
-
-        $typeGuesser = $this->get('ssfz.service.guesser.typ_sprawozdania');
-        $klasaFormularza = $typeGuesser->jestPozyczkowe($sprawozdanie)
-            ? SprawozdaniePozyczkoweType::class
-            : SprawozdaniePoreczenioweType::class
-        ;
-
-        $klonSprawozdania = clone $sprawozdanie;
-
-        $form = $this->createForm($klasaFormularza, $klonSprawozdania);
-        $form->handleRequest($request);
-        if ($form->isSubmitted()) {
-            if ($form->isValid()) {
-                $klonSprawozdania
-                    ->powiazSkladnikiZeSprawozdaniem()
-                    ->obliczKapital()
-                ;
-
-                $klonSprawozdania = $this->setDefaultValuesAfterRepait($klonSprawozdania, $sprawozdanie);
-                $sprawozdanie->setCzyNajnowsza(false);
-
-                $entityManager->persist($klonSprawozdania);
-                $entityManager->flush();
-                $komunikat = 'Zapisano zmiany.';
-                $this
-                    ->get('ssfz.service.komunikaty_service')
-                    ->sukcesKomunikat(
-                        'Poprawa sprawozdania zakończyła się powodzeniem',
-                        'Poprawa sprawozdania'
-                    )
-                ;
-                
-                return $this->redirectToRoute('lista_sprawozdan_spo', [
-                    'umowa' => $sprawozdanie->getUmowa()->getId(),
-                ]);
-            } else {
-                $bledy = [];
-                foreach ($form->all() as $field) {
-                    if ($field->getErrors()->count() > 0) {
-                        $fieldName = $field->getName();
-                        foreach ($field->getErrors() as $error) {
-                            $bledy[] = '[' . $fieldName . ']: ' . $error->getMessage();
-                        }
-                    }
-                }
-
-                $komunikat = implode("; \r\n", $bledy);
-                $this
-                    ->get('ssfz.service.komunikaty_service')
-                    ->bladKomunikat($komunikat)
-                ;
-            }
-        }
-
-        $typeGuesser = $this->get('ssfz.service.guesser.typ_sprawozdania');
-        if ($typeGuesser->jestPozyczkowe($sprawozdanie)) {
-            $template = 'SsfzBundle:Sprawozdanie:pozyczkowe.html.twig';
-        } else if ($typeGuesser->jestPoreczeniowe($sprawozdanie)) {
-            $template = 'SsfzBundle:Sprawozdanie:poreczeniowe.html.twig';
-        } else {
-            $message = 'Nieznany typ sprawozdania. Obsługiwane są tylko sprawozdanie poręczeniowe i pożyczkowe.';
-            throw new InvalidArgumentException($message);
-        }
-
-        return $this->render($template, [
-            'sprawozdanie'     => $sprawozdanie,
-            'typ_sprawozdania' => $typSprawozdania,
-            'tylkoDoOdczytu'   => false,
-            'form'             => $form->createView(),
-        ]);
-    }
-
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     /**
      * Szuka sprawozdania o zadanym ID.
@@ -1250,6 +907,55 @@ class SprawozdanieController extends Controller
             throw new PublicVisibleExcpetion('Nie znaleziono sprawozdania o podanym ID.');
         }
         
+        return $sprawozdanie;
+    }
+
+    /**
+     * Odświeża portfel spółek.
+     *
+     * W przypadku korekty sprawozdania (odesłane do poprawy przez PARP), może dojść
+     * do sytuacji, w której korekta będzie dotyczyła zakresu spółek.
+     * Dodanie spółki do profilu beneficjenta nie powoduje automatycznego uzupełnienia
+     * wykazu spółek na sprawozdaniu. Wykonanie tej metody (dostępna także jako akcja
+     * kontrolera) odświeża (uzupełnia) wykaz spółek na sprawozdaniu o spółki dodane
+     * do profilu beneficjenta.
+     *
+     * @todo To wymaga dopracowania i wstawienia jako niezależna akcja kontrolera
+     * w miejsce tych fikołków z mieszaniem danych z POST i QUERY w celu określania co zrobić.
+     *
+     * @param AbstractSprawozdanie $sprawozdanie
+     * @param int $umowaId
+     *
+     * @return AbstractSprawozdanie
+     *
+     * @throws EntityNotFoundException Jeśli nie znaleziono sprawozdania o zadanym ID.
+     */
+    public function odswiezSpolki(AbstractSprawozdanie $sprawozdanie, int $umowaId): AbstractSprawozdanie
+    {
+        $entityManager = $this
+            ->getDoctrine()
+            ->getManager()
+        ;
+        $spolki = $entityManager
+            ->getRepository(Spolka::class)
+            -> findNiezakonczoneByIdUmowy($umowaId)
+        ;
+
+        $counter = 1;
+        foreach ($spolki as $spolka) {
+            if ($sprawozdanie->getSprawozdanieSpolki($spolka->getNazwa()) === null) {
+                $sprawozdanieSpolki = new SprawozdanieSpolki();
+                $sprawozdanieSpolki
+                    ->setNazwaSpolki($spolka->getNazwa())
+                    ->setKrs($spolka->getKrs())
+                    ->setLiczbaPorzadkowa($counter)
+                ;
+                $entityManager->persist($sprawozdanieSpolki);
+                $sprawozdanie->addSprawozdaniaSpolek($sprawozdanieSpolki);
+            }
+            $counter++;
+        }
+
         return $sprawozdanie;
     }
 }

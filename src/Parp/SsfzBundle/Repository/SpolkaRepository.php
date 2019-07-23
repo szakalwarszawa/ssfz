@@ -224,6 +224,8 @@ class SpolkaRepository extends EntityRepository
 
     /**
      * Pobiera wartość Lp dla dodawanej spółki
+     * Olać konwencję. Nie nazywać nic w repozytorium findX, bo to nie szuka nigdzie w bazie
+     * tylko zwraca coś z obiektu.
      *
      * @param int $umowaId
      *
@@ -254,5 +256,27 @@ class SpolkaRepository extends EntityRepository
         ;
 
         return $result + 1;
+    }
+
+    /**
+     * Znajduje wszystkie niezakończone spółki przypidane do umowy o zadanym ID.
+     *
+     * @param integer $umowaId
+     *
+     * @return Spolka[]
+     */
+    public function findNiezakonczoneByIdUmowy(int $umowaId)
+    {
+        $result = $this
+            ->createQueryBuilder('s')
+            ->leftJoin('s.umowa', 'u')
+            ->where('u.id = :umowaId')
+            ->andWhere('s.zakonczona = 0')
+            ->setParameter('umowaId', $umowaId)
+            ->getQuery()
+            ->getResult()
+        ;
+        
+        return $result;
     }
 }
