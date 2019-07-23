@@ -37,7 +37,7 @@ class SpolkaRepository extends EntityRepository
         $historia = new stdClass;
         $historia->dataZmiany = new Carbon('Europe/Warsaw');
         $historia->uzytkownikId = $idUzytkownika;
-        $historia->umowaId = $spolka->getUmowa()->getId();
+        $historia->umowa = $spolka->getUmowa();
         $historia->lp = $spolka->getLp();
         $historia->nazwa = $spolka->getNazwa();
         $historia->forma = $spolka->getForma();
@@ -210,17 +210,28 @@ class SpolkaRepository extends EntityRepository
      */
     public function getNastepnaLp($umowaId)
     {
-        $spolki = $this->findBy(['umowaId' => $umowaId]);
-        if (!$spolki) {
+        $result = $this
+            ->createQueryBuilder('s')
+            ->leftJoin('s.umowa', 'u')
+            ->where('u.id = :umowaId')
+            ->setParameter('umowaId', $umowaId)
+            ->getQuery()
+            ->getResult()
+        ;
+        if (0 === count($result)) {
             return 1;
         }
-        $queryBuilder = $this->createQueryBuilder('s');
-        $queryBuilder
+
+        $result = $this
+            ->createQueryBuilder('s')
             ->select('MAX(s.liczbaPorzadkowa) as maxLp')
             ->leftJoin('s.umowa', 'u')
             ->where('u.id = :umowaId')
-            ->setParameter('umowaId', $umowaId);
+            ->setParameter('umowaId', $umowaId)
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
 
-        return $queryBuilder->getQuery()->getSingleScalarResult() + 1;
+        return $result + 1;
     }
 }
