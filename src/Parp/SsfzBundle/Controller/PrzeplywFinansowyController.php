@@ -48,7 +48,7 @@ class PrzeplywFinansowyController extends Controller
         }
         $przeplywZBazy = $entityManager
             ->getRepository(PrzeplywFinansowy::class)
-            ->findBy(['sprawozdanieId' => $sprawozdanieId])
+            ->findOneByIdSprawozdania($sprawozdanieId)
         ;
         if ($przeplywZBazy) {
             $przeplyw = $przeplywZBazy[0];
@@ -141,9 +141,8 @@ class PrzeplywFinansowyController extends Controller
         if ($previousReport) {
             $przeplyw = $entityManager
                 ->getRepository(PrzeplywFinansowy::class)
-                ->findBy([
-                    'sprawozdanieId' => $previousReport[0]->getId(),
-                ]);
+                ->findOneByIdSprawozdania($previousReport[0]->getId())
+            ;
             if ($przeplyw) {
                 return $przeplyw[0]->getSaldoKoncowe();
             }

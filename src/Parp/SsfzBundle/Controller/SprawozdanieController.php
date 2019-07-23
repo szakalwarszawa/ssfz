@@ -408,7 +408,7 @@ class SprawozdanieController extends Controller
 
         $przeplyw = $entityManager
             ->getRepository(PrzeplywFinansowy::class)
-            ->findBy(['sprawozdanieId' => $sprawozdanieId])
+            ->findOneByIdSprawozdania($sprawozdanieId)
         ;
         $umowaId = $sprawozdanie->getUmowaId();
         if (count($przeplyw) !== 1) {
