@@ -2,11 +2,11 @@
 
 namespace Parp\SsfzBundle\Entity;
 
-use Date;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Doctrine\Common\Collections\ArrayCollection;
+use Parp\SsfzBundle\Entity\DanePozyczek;
 
 /**
  * SprawozdaniePozyczkowe
@@ -45,7 +45,13 @@ class SprawozdaniePozyczkowe extends AbstractSprawozdanieSpo
      *
      * @var string
      *
-     * @ORM\Column(name="minimalne_oprocentowanie", type="decimal", precision=15, scale=2, nullable=true)
+     * @ORM\Column(
+     *     name="minimalne_oprocentowanie",
+     *     type="decimal",
+     *     precision=15,
+     *     scale=2,
+     *     nullable=true
+     * )
      */
     protected $minimalneOprocentowanie;
 
@@ -54,17 +60,43 @@ class SprawozdaniePozyczkowe extends AbstractSprawozdanieSpo
      *
      * @var string
      *
-     * @ORM\Column(name="maksymalna_wielkosc_pozyczki", type="decimal", precision=15, scale=2, nullable=true)
+     * @ORM\Column(
+     *     name="maksymalna_wielkosc_pozyczki",
+     *     type="decimal",
+     *     precision=15,
+     *     scale=2,
+     *     nullable=true
+     * )
      */
     protected $maksymalnaWielkoscPozyczki;
 
     /**
-     * Constructor
+     * @var DanePozyczek
+     *
+     * @ORM\OneToOne(
+     *     targetEntity="Parp\SsfzBundle\Entity\DanePozyczek",
+     *     mappedBy="sprawozdanie"
+     * )
+     */
+    protected $danePozyczek;
+
+    /**
+     * Konstruktor.
      */
     public function __construct()
     {
         $this->skladnikiOgolem = new ArrayCollection();
         $this->skladnikiWydzielone = new ArrayCollection();
+    }
+
+    /**
+     * Zwraca reprezentację tekstową obiektu.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->id;
     }
 
     /**
@@ -181,5 +213,29 @@ class SprawozdaniePozyczkowe extends AbstractSprawozdanieSpo
     public function getSkladnikiWydzielone()
     {
         return $this->skladnikiWydzielone;
+    }
+
+    /**
+     * Zwraca dane pożyczek.
+     *
+     * @return DanePozyczek
+     */
+    public function getDanePozyczek()
+    {
+        return $this->danePozyczek;
+    }
+
+    /**
+     * Ustala dane pożyczek.
+     *
+     * @param DanePozyczek $danePozyczek
+     *
+     * @return SprawozdaniePozyczkowe
+     */
+    public function setDanePozyczek(DanePozyczek $danePozyczek = null)
+    {
+        $this->danePozyczek = $danePozyczek;
+
+        return $this;
     }
 }

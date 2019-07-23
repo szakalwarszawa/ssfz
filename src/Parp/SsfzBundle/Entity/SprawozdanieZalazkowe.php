@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Parp\SsfzBundle\Entity\SprawozdanieSpolki;
+use Parp\SsfzBundle\Entity\PrzeplywFinansowy;
 
 /**
  * Sprawozdanie
@@ -17,12 +19,12 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 class SprawozdanieZalazkowe extends AbstractSprawozdanie
 {
     /**
-     * Encje SprawozdanieSpolki powiazane ze sprawozdaniem - sprawozdania spolek
+     * Sprawozdania spółek powiazane ze sprawozdaniem.
      *
      * @var Collection
      *
      * @ORM\OneToMany(
-     *     targetEntity="SprawozdanieSpolki",
+     *     targetEntity="Parp\SsfzBundle\Entity\SprawozdanieSpolki",
      *     mappedBy="sprawozdanie",
      *     cascade={"persist", "remove"}
      * )
@@ -30,39 +32,55 @@ class SprawozdanieZalazkowe extends AbstractSprawozdanie
     protected $sprawozdaniaSpolek;
 
     /**
-     * Konstruktor
+     * Przepływy finansowe powiazane ze sprawozdaniem.
+     *
+     * @var Collection
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="Parp\SsfzBundle\Entity\PrzeplywFinansowy",
+     *     mappedBy="sprawozdanie",
+     *     cascade={"persist", "remove"}
+     * )
+     */
+    protected $przeplywyFinansowe;
+
+    /**
+     * Konstruktor.
      */
     public function __construct()
     {
         $this->sprawozdaniaSpolek = new ArrayCollection();
+        $this->przeplywyFinansowe = new ArrayCollection();
     }
 
     /**
-     * Ustawia status powiadomienia
+     * Ustawia status powiadomienia.
      *
      * @param int $powiadomienieWyslane
      */
     public function setPowiadomienieWyslane($powiadomienieWyslane)
     {
         $this->powiadomienieWyslane = $powiadomienieWyslane;
-    }
-
-    /**
-     * Set sprawozdaniaSpolek
-     *
-     * @param SprawozdanieSpolki $spr
-     *
-     * @return Sprawozdanie
-     */
-    public function setSprawozdaniaSpolek($spr)
-    {
-        $this->sprawozdaniaSpolek = $spr;
 
         return $this;
     }
 
     /**
-     * Get sprawozdaniaSpolek
+     * Ustala kolekcję sprawozdań spółek.
+     *
+     * @param Collection $sprawozdaniaSpolek
+     *
+     * @return SprawozdanieZalazkowe
+     */
+    public function setSprawozdaniaSpolek(Collection $sprawozdaniaSpolek)
+    {
+        $this->sprawozdaniaSpolek = $sprawozdaniaSpolek;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca kolekcję sprawozdań spółek.
      *
      * @return Collection
      */
@@ -72,28 +90,36 @@ class SprawozdanieZalazkowe extends AbstractSprawozdanie
     }
 
     /**
-     * Funkcja dodająca sprawozdanie spolki do sprawozdania
+     * Dodaje do kolekcji sprawozdanie spółki.
      *
-     * @param SprawozdanieSpolki $sprSpolki
+     * @param SprawozdanieSpolki $sprawozdanieSpolki
+     *
+     * @return SprawozdanieZalazkowe
      */
-    public function addSprawozdaniaSpolek(SprawozdanieSpolki $sprSpolki)
+    public function addSprawozdaniaSpolek(SprawozdanieSpolki $sprawozdanieSpolki)
     {
-        $sprSpolki->setSprawozdanie($this);
-        $this->sprawozdaniaSpolek->add($sprSpolki);
+        $sprawozdanieSpolki->setSprawozdanie($this);
+        $this->sprawozdaniaSpolek->add($sprawozdanieSpolki);
+
+        return $this;
     }
 
     /**
-     * Funkcja usuwająca sprawozdanie spolki ze sprawozdania
+     * Usuwa z kolekcji sprawozdanie spółki.
      *
-     * @param SprawozdanieSpolki $sprSpolki
+     * @param SprawozdanieSpolki $sprawozdanieSpolki
+     *
+     * @return SprawozdanieZalazkowe
      */
-    public function removeSprawozdaniaSpolek(SprawozdanieSpolki $sprSpolki)
+    public function removeSprawozdaniaSpolek(SprawozdanieSpolki $sprawozdanieSpolki)
     {
-        $this->sprawozdaniaSpolek->removeElement($sprSpolki);
+        $this->sprawozdaniaSpolek->removeElement($sprawozdanieSpolki);
+
+        return $this;
     }
 
     /**
-     * Znajduje sprawozdanie dla spółki o podanej nazwie
+     * Zwraca sprawozdanie spółki dla spółki o zadanej nazwie.
      *
      * @param string $nazwaSpolki
      *
@@ -108,6 +134,59 @@ class SprawozdanieZalazkowe extends AbstractSprawozdanie
         }
 
         return null;
+    }
+
+    /**
+     * Ustala kolekcję przepływów finansowych.
+     *
+     * @param Collection $przeplywyFinansowe
+     *
+     * @return Sprawozdanie
+     */
+    public function setPrzeplywyFinansowe(Collection $przeplywyFinansowe)
+    {
+        $this->przeplywyFinansowe = $przeplywyFinansowe;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca kolekcję przepływów fianansowych.
+     *
+     * @return Collection
+     */
+    public function getPrzeplywyFinansowe()
+    {
+        return $this->przeplywyFinansowe;
+    }
+
+    /**
+     * Dodaje przepływ finansowy do kolekcji.
+     *
+     * @param PrzeplywFinansowy $przeplywFinansowy
+     *
+     * @return SprawozdanieZalazkowe
+     */
+    public function addPrzeplywyFinansowe(PrzeplywFinansowy $przeplywFinansowy)
+    {
+        $$przeplywFinansowy->setSprawozdanie($this);
+        $this->przeplywyFinansowe->add($przeplywFinansowy);
+
+        return $this;
+    }
+
+    /**
+     * Funkcja usuwająca sprawozdanie spolki ze sprawozdania
+     *
+     * @param PrzeplywFinansowy $przeplywFinansowy
+     *
+     * @return SprawozdanieZalazkowe
+     */
+    public function removePrzeplywyFinansowe(PrzeplywFinansowy $przeplywFinansowy)
+    {
+        $this->przeplywyFinansowe->removeElement($przeplywFinansowy);
+
+        return $this;
     }
 
     /**

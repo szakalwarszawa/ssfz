@@ -2,11 +2,11 @@
 
 namespace Parp\SsfzBundle\Entity;
 
-use Date;
 use Doctrine\ORM\Mapping as ORM;
 use Parp\SsfzBundle\Entity\Slownik\FormaPrawna;
 use Doctrine\Common\Collections\ArrayCollection;
 use Parp\SsfzBundle\Entity\Slownik\TakNie;
+use Parp\SsfzBundle\Entity\DanePoreczen;
 
 /**
  * SprawozdaniePoreczeniowe
@@ -44,7 +44,11 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
      * @var TakNie
      *
      * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie")
-     * @ORM\JoinColumn(name="czy_posiada_wydzielony_fundusz", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(
+     *     name="czy_posiada_wydzielony_fundusz",
+     *     referencedColumnName="id",
+     *     nullable=true
+     * )
      */
     protected $czyPosiadaWydzielonyFundusz;
 
@@ -54,7 +58,11 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
      * @var bool
      *
      * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie")
-     * @ORM\JoinColumn(name="czy_procent_nie_nizszy_od_stopy", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(
+     *     name="czy_procent_nie_nizszy_od_stopy",
+     *     referencedColumnName="id",
+     *     nullable=true
+     * )
      */
     protected $czyOprocentowanieNieNizszeOdStopy;
 
@@ -64,7 +72,10 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
      * @var bool
      *
      * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie")
-     * @ORM\JoinColumn(name="czy_za_wynagrodzeniem", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(
+     *     name="czy_za_wynagrodzeniem",
+     *     referencedColumnName="id",
+     *     nullable=true)
      */
     protected $czyZaWynagrodzeniem;
 
@@ -74,17 +85,41 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
      * @var bool
      *
      * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie")
-     * @ORM\JoinColumn(name="czy_nie_przekraczaja_80_procent", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(
+     *     name="czy_nie_przekraczaja_80_procent",
+     *     referencedColumnName="id",
+     *     nullable=true
+     * )
      */
     protected $czyNiePrzekraczaja80;
 
     /**
-     * Constructor
+     * @var DanePoreczen
+     *
+     * @ORM\OneToOne(
+     *     targetEntity="Parp\SsfzBundle\Entity\DanePoreczen",
+     *     mappedBy="sprawozdanie"
+     * )
+     */
+    protected $danePoreczen;
+
+    /**
+     * Konstruktor.
      */
     public function __construct()
     {
         $this->skladnikiOgolem = new ArrayCollection();
         $this->skladnikiWydzielone = new ArrayCollection();
+    }
+
+    /**
+     * Zwraca reprezentację tekstową obiektu.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->id;
     }
 
     /**
@@ -249,5 +284,29 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
     public function getSkladnikiWydzielone()
     {
         return $this->skladnikiWydzielone;
+    }
+
+    /**
+     * Zwraca dane poreczen.
+     *
+     * @return DanePoreczen
+     */
+    public function getDanePoreczen()
+    {
+        return $this->danePoreczen;
+    }
+
+    /**
+     * Ustala dane poreczen.
+     *
+     * @param DanePoreczen $danePoreczen
+     *
+     * @return SprawozdaniePoreczeniowe
+     */
+    public function setDanePoreczen(DanePoreczen $danePoreczen = null)
+    {
+        $this->danePoreczen = $danePoreczen;
+
+        return $this;
     }
 }

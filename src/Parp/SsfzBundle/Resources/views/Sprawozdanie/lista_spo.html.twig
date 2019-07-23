@@ -34,7 +34,6 @@
                     <tr>
                         <th>Rok</th>
                         {% if czestotliwosc_polroczna %}
-                        {# {% if umowa.czestotliwoscSprawozdanWProgramie.czyPolroczna %} #}
                             <th>Okres</th>
                         {% endif %}
                         <th>Nazwa funduszu</th>
@@ -75,7 +74,7 @@
                                         <span class="fas fa-share-alt"></span> Przesłanie do PARP
                                     </span>
                                 {% elseif sprawozdanie.czyStatusWTrakciePoprawy and sprawozdanie.czyNajnowsza %}
-                                    <a href="{{ path('sprawozdania_spo_poprawa', {'typSprawozdania': typ_sprawozdania, 'sprawozdanieId': sprawozdanie.id}) }}" class="btn btn-sm btn-primary" role="button"><span class="fas fa-edit"></span> Popraw</a>
+                                    <a href="{{ path('sprawozdanie_poprawa', {'umowaId': umowa.id, 'sprawozdanieId': sprawozdanie.id}) }}" class="btn btn-sm btn-primary" role="button"><span class="fas fa-edit"></span> Popraw</a>
                                 {% elseif sprawozdanie.dataPrzeslaniaDoParp %}
                                     <span class="btn btn-sm btn-danger" ><span class="fas fa-upload"></span>&nbsp Przesłany &nbsp</span>
                                 {% endif %}

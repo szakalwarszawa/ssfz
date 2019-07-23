@@ -193,29 +193,6 @@ class SprawozdanieControllerTest extends WebTestCase
     }
 
     /**
-     * testuje metodę setDefaultValuesAfterRepait
-     */
-    public function testSetDefaultValuesAfterRepait()
-    {
-        $wersja = 2;
-        $oldReport = new \Parp\SsfzBundle\Entity\Sprawozdanie();
-        $oldReport->setWersja($wersja);
-        $oldReport->setId(1);
-        $report = new \Parp\SsfzBundle\Entity\Sprawozdanie();
-
-        $sprawozdanieControler = new SprawozdanieController();
-
-        $report = $sprawozdanieControler->setDefaultValuesAfterRepait($report, $oldReport);
-        $this->assertSame($report->getWersja(), $wersja +1);
-        $this->assertSame($report->getPreviousVersionId(), 1);
-        $this->assertSame($report->getStatus(), 1);
-        $this->assertSame($report->getUwagi(), '');
-        $this->assertSame($report->getOceniajacyId(), null);
-        $this->assertSame($report->getDataPrzeslaniaDoParp(), null);
-        $this->assertSame($report->getDataZatwierdzenia(), null);
-    }
-
-    /**
      * testuje metodę getNumerUmowy
      */
     public function testGetNumerUmowy()

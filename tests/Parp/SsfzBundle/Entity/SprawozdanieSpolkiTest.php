@@ -34,12 +34,12 @@ class SprawozdanieSpolkiTest extends TestCase
     /**
      * Testownaia pola sprawozdanieId
      */
-    public function testSprawozdanieId()
-    {
-        $var = 5;
-        $this->sprawozdanieSpolki->setSprawozdanieId($var);
-        $this->assertEquals($var, $this->sprawozdanieSpolki->getSprawozdanieId());
-    }
+  //  public function testSprawozdanieId()
+  //  {
+  //      $var = 5;
+  //      $this->sprawozdanieSpolki->setSprawozdanieId($var);
+  //      $this->assertEquals($var, $this->sprawozdanieSpolki->getSprawozdanieId());
+  //  }
 
     /**
      * Testownaia pola liczbaPorzadkowa

@@ -9,7 +9,7 @@ use Carbon\Carbon;
  * SpolkaHistoriaZmian
  *
  * Historia zmian w spółkach
- * Encja niezbędna do wykonania raportu wg Jasperreports
+ * Encja niezbędna do wykonania raportu wg JasperReports
  *
  * @ORM\Table(name="sfz_spolka_historia_zmian")
  * @ORM\Entity(repositoryClass="Parp\SsfzBundle\Repository\SpolkaHistoriaZmianRepository")

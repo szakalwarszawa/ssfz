@@ -36,6 +36,7 @@ class PrzeplywFinansowyController extends Controller
         $beneficjentId = $this->getBeneficjentId();
         $przeplyw = new PrzeplywFinansowy();
         $entityManager = $this->getDoctrine()->getManager();
+
         $report = $entityManager
             ->getRepository(SprawozdanieZalazkowe::class)
             ->find($sprawozdanieId)
@@ -63,7 +64,7 @@ class PrzeplywFinansowyController extends Controller
             $creating = $przeplyw->getId() == null;
             if ($creating) {
                 $entityManager = $this->getDoctrine()->getManager();
-                $przeplyw->setSprawozdanieId($sprawozdanieId);
+                $przeplyw->setSprawozdanie($report);
                 $przeplyw->setCreatorId($beneficjentId);
                 $creationDate = new DateTime('now');
                 $przeplyw->setDataRejestracji($creationDate);

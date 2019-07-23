@@ -39,7 +39,7 @@ class DanePozyczek
      *
      * @var SprawozdaniePozyczkowe
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe")
+     * @ORM\OneToOne(targetEntity="Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe", inversedBy="danePozyczek")
      * @ORM\JoinColumn(name="sprawozdanie_id", referencedColumnName="id", nullable=false)
      */
     protected $sprawozdanie;
@@ -2863,38 +2863,6 @@ class DanePozyczek
      * )
      */
     protected $kwotaPozyczekOd300001PlnNaDzialaniaInne = '0.00';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     /**
      * Liczba pożyczek aktywnych ogółem.

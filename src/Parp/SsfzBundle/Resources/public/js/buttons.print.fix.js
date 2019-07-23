@@ -30,8 +30,7 @@
 }(function( $, window, document, undefined ) {
 'use strict';
 var DataTable = $.fn.dataTable;
- 
- 
+
 var _link = document.createElement( 'a' );
  
 /**
@@ -41,10 +40,10 @@ var _link = document.createElement( 'a' );
  * @param  {node}     el Element to convert
  */
 var _relToAbs = function( el ) {
-    var url;
-    var clone = $(el).clone()[0];
-    var linkHost;
- 
+    var url,
+        clone = $(el).clone()[0],
+        linkHost;
+
     if ( clone.nodeName.toLowerCase() === 'link' ) {
         _link.href = clone.href;
         linkHost = _link.host;
@@ -60,11 +59,10 @@ var _relToAbs = function( el ) {
  
     return clone.outerHTML;
 };
- 
- 
+
 DataTable.ext.buttons.print = {
     className: 'buttons-print',
- 
+
     text: function ( dt ) {
         return dt.i18n( 'buttons.print', 'Print' );
     },
@@ -77,17 +75,17 @@ DataTable.ext.buttons.print = {
             for ( var i=0, ien=d.length ; i<ien ; i++ ) {
                 str += '<'+tag+'>'+d[i]+'</'+tag+'>';
             }
- 
+
             return str + '</tr>';
         };
- 
+
         // Construct a table for printing
         var html = '<table class="'+dt.table().node().className+'">';
- 
+
         if ( config.header ) {
             html += '<thead>'+ addRow( data.header, 'th' ) +'</thead>';
         }
- 
+
         html += '<tbody>';
         for ( var i=0, ien=data.body.length ; i<ien ; i++ ) {
             html += addRow( data.body[i], 'td' );
@@ -97,24 +95,24 @@ DataTable.ext.buttons.print = {
         if ( config.footer && data.footer ) {
             html += '<tfoot>'+ addRow( data.footer, 'th' ) +'</tfoot>';
         }
- 
+
         var frame1 = $("<iframe />");
         frame1[0].name = "frame1";
         frame1.css({ "position": "absolute", "top": "-1000000px" });
         $("body").append(frame1);
         var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
- 
+
         // Open a new window for the printable table
         var title = config.title;
- 
+
         if ( typeof title === 'function' ) {
             title = title();
         }
- 
+
         if ( title.indexOf( '*' ) !== -1 ) {
             title= title.replace( '*', $('title').text() );
         }
- 
+
         // Inject the title and also a copy of the style and link tags from this
         // document so the table can retain its base styling. Note that we have
         // to use string manipulation as IE won't allow elements to be created
@@ -123,14 +121,14 @@ DataTable.ext.buttons.print = {
         $('style, link').each( function () {
             head += _relToAbs( this );
         } );
- 
+
         try {
             frameDoc.document.head.innerHTML = head; // Work around for Edge
         }
         catch (e) {
             $(frameDoc.document.head).html(head); // Old IE
         }
- 
+
         // Inject the table and other surrounding information
         frameDoc.document.body.innerHTML =
             '<h1>'+title+'</h1>'+
@@ -141,11 +139,11 @@ DataTable.ext.buttons.print = {
                 )+
             '</div>'+
             html;
- 
+
         if ( config.customize ) {
             config.customize(frameDoc);
         }
- 
+
         setTimeout( function () {
             window.frames["frame1"].focus();
             window.frames["frame1"].print();
@@ -154,24 +152,18 @@ DataTable.ext.buttons.print = {
             frame1 = null;
         }, 250 );
     },
- 
+
     title: '*',
- 
     message: '',
- 
     exportOptions: {},
- 
     header: true,
- 
     footer: false,
- 
     autoPrint: true,
- 
     customize: null
 };
- 
+
 return DataTable.Buttons;
-})); 
+}))
 
 $(document).ready(function () {
     $('.zmiana-programu').click(function () {

@@ -1,7 +1,7 @@
 {% extends "SsfzBundle:Sprawozdanie:zalazkowe.html.twig" %}
 
 {% block bodyEdit %}
-{{ form_row(form.nazwaFunduszu) }}
+    {{ form_row(form.nazwaFunduszu) }}
     {{ form_row(form.nip) }}
     {{ form_row(form.krs) }}
     {{ form_row(form.wojewodztwo) }}
@@ -9,7 +9,7 @@
     {{ form_row(form.ulica) }}
     {{ form_row(form.budynek) }}
     {{ form_row(form.lokal) }}
-    {{ form_row(form.kodPocztowy) }}
+    {{ form_row(form.kodPocztowy, {'attr': {'class': 'kod-pocztowy'}}) }}
     {{ form_row(form.poczta) }}
     {{ form_row(form.telStacjonarny) }}
     {{ form_row(form.telKomorkowy) }}
@@ -18,7 +18,7 @@
     {{ form_row(form.rokZalozenia) }}
     {{ form_row(form.formaPrawna) }}
 
-    <hr>
+    <hr />
 
     {{ form_errors(form) }}
     {{ form_row(form.kapitalOgolem) }}

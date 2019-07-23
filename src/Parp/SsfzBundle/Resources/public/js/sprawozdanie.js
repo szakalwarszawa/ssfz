@@ -8,8 +8,7 @@ function cancelSendToParp() {
     $('#sendToParpForm').dialog('close');
 }
 
-function send(id)
-{
+function send(id) {
     var dialog = bootbox.dialog({
             message: "Czy wysłać sprawozdanie do PARP?",
             buttons: {
@@ -33,89 +32,84 @@ function send(id)
         });
 }
 
-function prepareMoneyFormat(element)
-{
-        $value = $(element).val();
-        $value = $value.replace(',','.');
-        if($value && !isNaN($value)) {  
-            $value = parseFloat(Math.round($value * 100) / 100).toFixed(2);            
-        }
-        //$value = $value.replace('.',',');
-        $(element).val($value);
-        $(element).text($value);
+function prepareMoneyFormat(element) {
+    $value = $(element).val();
+    $value = $value.replace(',','.');
+    if ($value && !isNaN($value)) {  
+        $value = parseFloat(Math.round($value * 100) / 100).toFixed(2);            
+    }
+    //$value = $value.replace('.',',');
+    $(element).val($value);
+    $(element).text($value);
 }
 
-function validateZatrudnieniSection(men_id,women_id,all_id,errorId)
-{
-        if($('#' + men_id).val() == '' && $('#' + all_id).val() != '')
-        {
-            var new_val =  parseInt($('#' + all_id).val()) - parseInt($('#' + women_id).val());
-            $('#' + men_id).val(new_val);
-            if($('#' + errorId).length)
-            {
-                $('#' + errorId).remove();
-            }
+function validateZatrudnieniSection(men_id, women_id,all_id, errorId) {
+    if ($('#' + men_id).val() == '' && $('#' + all_id).val() != '') {
+        var new_val =  parseInt($('#' + all_id).val()) - parseInt($('#' + women_id).val());
+        $('#' + men_id).val(new_val);
+        if ($('#' + errorId).length) {
+            $('#' + errorId).remove();
         }
-        else if($('#' + men_id).val() != '' && $('#' + all_id).val() != '' && $('#' + women_id).val() != '')
-        {
-            if((parseInt($('#' + all_id).val()) - parseInt($('#' + women_id).val())) != parseInt($('#' + men_id).val()))
-            {
-                if(!$('#' + errorId).length)
-                {
-                    var error = '<span id="'+errorId+'" class="help-block"><span class="fas fa-exclamation-circle"></span> Suma zatrudnionych kobiet i mężczyzn powinna być równa liczbie osób zatrudnionych </span>';
-                    $('#' + all_id).parent().append(error);
-                }
+    } else if ($('#' + men_id).val() != '' && $('#' + all_id).val() != '' && $('#' + women_id).val() != '') {
+        if ((parseInt($('#' + all_id).val()) - parseInt($('#' + women_id).val())) != parseInt($('#' + men_id).val())) {
+            if (!$('#' + errorId).length) {
+                var error = '<span id="'+errorId+'" class="help-block"><span class="fas fa-exclamation-circle"></span> Suma zatrudnionych kobiet i mężczyzn powinna być równa liczbie osób zatrudnionych </span>';
+                $('#' + all_id).parent().append(error);
             }
-            else if($('#' + errorId).length)
-                $('#' + errorId).remove();
+        } else if($('#' + errorId).length) {
+            $('#' + errorId).remove();
         }
+    }
 }
 
 function formatDecimalValue(value)
 {
     value = value.replace(',','.');
-    if(value != '')
+    if (value != '') {
         return parseFloat(value);
+    }
+
     return parseFloat(0);
 }
 
-jQuery(document).ready(function() {
-    
+$(document).ready(function() {
     $(".decimal").each(function( index ) {
         prepareMoneyFormat(this);
     });
-    
+
     $(".decimal" ).keyup(function() {
-    		  $(this).val($(this).val().replace(',', '.'));
-    	  });
-	  
+        $(this).val($(this).val().replace(',', '.'));
+    });
+
     $(".decimal").on('paste', function () {
-		var element = this;
-		setTimeout(function () {
-				var text = $(element).val();
-				$(element).val($(element).val().replace(',', '.'));
-                                if(text.indexOf('.') == -1)
-                                {
-                                    if(text.length > 13)
-                                        $(element).val(text.substring(0,13));
-                                }
-                                else
-                    {
-                        if(text.length > 16)
-                            $(element).val(text.substring(0,16));
+        var element = this;
+        
+        setTimeout(function () {
+            var text = $(element).val();
+
+            $(element).val($(element).val().replace(',', '.'));
+            if (text.indexOf('.') == -1) {
+                if (text.length > 13) {
+                    $(element).val(text.substring(0,13));
+                } else {
+                    if (text.length > 16) {
+                        $(element).val(text.substring(0,16));
                     }
-                                
-    }, 100);});
+                }
+            }
+        }, 100);
+    });
 
     $(".integer").on('paste', function () {
-		var element = this;
-		setTimeout(function () {
-				var text = $(element).val();
-                                if(text.length > 5)
-                                    $(element).val(text.substring(0,5));
-                                
-    }, 100);});
-    
+        var element = this;
+        setTimeout(function () {
+            var text = $(element).val();
+            if (text.length > 5) {
+                $(element).val(text.substring(0,5));
+            }
+        }, 100);
+    });
+
     $('#sprawozdanie-powrot').on('click', function(e) {
         var dialog = bootbox.dialog({
             message: "Czy zapisać dane?",
@@ -138,7 +132,8 @@ jQuery(document).ready(function() {
                 }
             }
         });
-    }); 
+    });
+
     $('#przeplyw-powrot').on('click', function(e) {
         var dialog = bootbox.dialog({
             message: "Czy zapisać dane?",
@@ -160,8 +155,8 @@ jQuery(document).ready(function() {
                 }
             }
         });
-    }); 
-    
+    });
+
     $('.btn-send-to-parp').on('click', function(e) {
         var dialog = bootbox.dialog({
             message: "Czy wysłać sprawozdanie do PARP?",
@@ -183,8 +178,9 @@ jQuery(document).ready(function() {
                 }
             }
         });
-    }); 
-    if(window.location.href.indexOf("przeplyw") > -1) {
+    });
+
+    if (window.location.href.indexOf("przeplyw") > -1) {
         $( "input" ).change(function() {
             var value1 =  formatDecimalValue($('#przeplyw_finansowy_udzialWZyskach').val()) 
                     + formatDecimalValue($('#przeplyw_finansowy_wyjsciaZInwestycji').val()) 
@@ -204,17 +200,18 @@ jQuery(document).ready(function() {
             $("#przeplyw_finansowy_saldoKoncowe").val(value3.toFixed(2).replace(',','.'));
         });
     }
+
     // negative bool - czy pozwolić na wprowadzanie wartości ujemnych
     // el - element do którego przypiety jest handler
     var decimalKeypressEventHandler = function (event, el, negative) {
         // Allow: backspace, delete, tab, escape, enter and .
         if ($.inArray(event.keyCode, [8, 9, 27, 13, 110, 190]) !== -1 ||
-             // Allow: Ctrl+A, Command+A
+                // Allow: Ctrl+A, Command+A
             (event.keyCode === 65 && (event.ctrlKey === true || event.metaKey === true)) || 
-             // Allow: home, end, left, right, down, up
+                // Allow: home, end, left, right, down, up
             (event.keyCode >= 35 && event.keyCode <= 40)) {
-                 // let it happen, don't do anything
-                 return;
+                    // let it happen, don't do anything
+                    return;
         }
         if(event.which == 44)
             event.which = 46;
@@ -243,12 +240,12 @@ jQuery(document).ready(function() {
     $('.integer').on('keypress',function (event) {
         // Allow: backspace, delete, tab, escape, enter and .
         if ($.inArray(event.keyCode, [ 8, 9, 27, 13, 110, 190]) !== -1 ||
-             // Allow: Ctrl+A, Command+A
+                // Allow: Ctrl+A, Command+A
             (event.keyCode === 65 && (event.ctrlKey === true || event.metaKey === true)) || 
-             // Allow: home, end, left, right, down, up
+                // Allow: home, end, left, right, down, up
             (event.keyCode >= 35 && event.keyCode <= 40)) {
-                 // let it happen, don't do anything
-                 return;
+                    // let it happen, don't do anything
+                    return;
         }
         if ((event.which < 48 || event.which > 57) && event.which != 45) {
             event.preventDefault();
@@ -259,17 +256,17 @@ jQuery(document).ready(function() {
             event.preventDefault();
         }
     });
-    
+
     $( ".decimal, .ndecimal" ).focusout(function() {
         prepareMoneyFormat(this);
-    });    
-    
+    });
+
     $('input[id$="zatrudnienieInneFormyKobiety"]').focusout(function() {
         var men_id = $(this).attr('id').replace('zatrudnienieInneFormyKobiety','zatrudnienieInneFormyMezczyzni');
         var all_id = $(this).attr('id').replace('zatrudnienieInneFormyKobiety','zatrudnienieInneFormy');
         var errorId = $(this).attr('id').replace('zatrudnienieInneFormyKobiety','zatrudnienieInneFormy_error');
-        
-        if($('#' + men_id).val() == '' && $('#' + all_id).val() != '')
+
+        if ($('#' + men_id).val() == '' && $('#' + all_id).val() != '')
         {
             var new_val =  parseInt($('#' + all_id).val()) - parseInt($(this).val());
             $('#' + men_id).val(new_val);
@@ -298,7 +295,7 @@ jQuery(document).ready(function() {
         }
         
     });
-    
+
     $('input[id$="zatrudnienieInneFormyMezczyzni"]').focusout(function() {
         var men_id = $(this).attr('id');
         var women_id = $(this).attr('id').replace('zatrudnienieInneFormyMezczyzni','zatrudnienieInneFormyKobiety');
@@ -334,7 +331,7 @@ jQuery(document).ready(function() {
         }
         
     });
-    
+
     $('input[id$="zatrudnienieInneFormy"]').focusout(function() {
         var men_id = $(this).attr('id').replace('zatrudnienieInneFormy','zatrudnieniMezczyzni');;
         var women_id = $(this).attr('id').replace('zatrudnienieInneFormy','zatrudnioneKobiety');
@@ -342,7 +339,7 @@ jQuery(document).ready(function() {
         var errorId = $(this).attr('id').replace('zatrudnienieInneFormy','zatrudnienieInneFormy_error');
         validateZatrudnieniSection(men_id,women_id,all_id,errorId);
     });
-    
+
     $('input[id$="zatrudnienieEtaty"]').focusout(function() {
         var men_id = $(this).attr('id').replace('zatrudnienieEtaty','zatrudnienieInneFormyMezczyzni');;
         var women_id = $(this).attr('id').replace('zatrudnienieEtaty','zatrudnienieInneFormyKobiety');
@@ -350,8 +347,7 @@ jQuery(document).ready(function() {
         var errorId = $(this).attr('id').replace('zatrudnienieEtaty','zatrudnienieEtaty_error');
         validateZatrudnieniSection(men_id,women_id,all_id,errorId);
     });
-    
-    
+
     $('input[id$="zatrudnioneKobiety"]').focusout(function() {
         var men_id = $(this).attr('id').replace('zatrudnioneKobiety','zatrudnieniMezczyzni');
         var all_id = $(this).attr('id').replace('zatrudnioneKobiety','zatrudnienieEtaty');
@@ -386,7 +382,7 @@ jQuery(document).ready(function() {
         }
         
     });
-    
+
     $('input[id$="zatrudnieniMezczyzni"]').focusout(function() {
         var men_id = $(this).attr('id');
         var women_id = $(this).attr('id').replace('zatrudnieniMezczyzni','zatrudnioneKobiety');
@@ -398,9 +394,8 @@ jQuery(document).ready(function() {
         {
             var new_val =  parseInt($('#' + all_id).val()) - parseInt($('#' + women_id).val());
             $('#' + men_id).val(new_val);
-            if($('#' + errorId).length)
-            {
-                    $('#' + errorId).remove();
+            if ($('#' + errorId).length) {
+                $('#' + errorId).remove();
             }
         }
         else if($('#' + men_id).val() != '' && $('#' + all_id).val() != '' && $('#' + women_id).val() != '')
@@ -421,12 +416,5 @@ jQuery(document).ready(function() {
                 }
             }
         }
-        
     });
-    
-}); 
-
-
-
-
-
+});

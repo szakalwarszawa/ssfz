@@ -71,7 +71,7 @@ class SprawozdanieSpolkiTypeTest
         $object = new \Parp\SsfzBundle\Entity\SprawozdanieSpolki();
 
         $object->setId(1);
-        $object->setSprawozdanieId(2);
+        $object->setSprawozdanie($sprawozdanie);
         $object->setLp($dateNow);
         $object->setNazwaSpolki(3);
         $object->setKrs('12345');

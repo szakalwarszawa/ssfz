@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Parp\SsfzBundle\Entity\SprawozdanieZalazkowe;
 
 /**
  * PrzeplywFinansowy
@@ -39,11 +40,18 @@ class PrzeplywFinansowy
     protected $dataRejestracji;
 
     /**
-     * @var int
+     * Sprawozdanie, do którego przypisano dane pożyczki.
      *
-     * @ORM\Column(name="sprawozdanie_id", type="integer", nullable=false)
+     * @var SprawozdaniePoreczeniowe
+     *
+     * @ORM\ManyToOne(
+     *     targetEntity="Parp\SsfzBundle\Entity\SprawozdanieZalazkowe",
+     *     inversedBy="przeplywyFinansowe",
+     *     cascade={"persist"}
+     * )
+     * @ORM\JoinColumn(name="sprawozdanie_id", referencedColumnName="id", nullable=false)
      */
-    protected $sprawozdanieId;
+    protected $sprawozdanie;
 
     /**
      * @var string
@@ -172,6 +180,44 @@ class PrzeplywFinansowy
     protected $liczbaDokonanychInwestycji;
 
     /**
+     * Zwraca wartość sprawozdania, do którego przypisano dane pożyczki.
+     *
+     * @return SprawozdanieZalazkowe
+     */
+    public function getSprawozdanie()
+    {
+        return $this->sprawozdanie;
+    }
+
+    /**
+     * Zwraca ID sprawozdania.
+     *
+     * @return int|null
+     */
+    public function getSprawozdanieId()
+    {
+        if (null !== $this->sprawozdanie) {
+            return $this->sprawozdanie->getId();
+        }
+
+        return null;
+    }
+
+    /**
+     * Ustala wartość sprawozdania, do którego przypisano dane pożyczki.
+     *
+     * @param SprawozdanieZalazkowe $sprawozdanie
+     *
+     * @return PrzeplywFinansowy
+     */
+    public function setSprawozdanie(SprawozdanieZalazkowe $sprawozdanie): PrzeplywFinansowy
+    {
+        $this->sprawozdanie = $sprawozdanie;
+
+        return $this;
+    }
+
+    /**
      * Zwraca Id
      *
      * @return int
@@ -199,16 +245,6 @@ class PrzeplywFinansowy
     public function getDataRejestracji()
     {
         return $this->dataRejestracji;
-    }
-
-    /**
-     * Zwraca sprawozdanieID
-     *
-     * @return int
-     */
-    public function getSprawozdanieId()
-    {
-        return $this->sprawozdanieId;
     }
 
     /**
@@ -419,16 +455,6 @@ class PrzeplywFinansowy
     public function setDataRejestracji($dataRejestracji)
     {
         $this->dataRejestracji = $dataRejestracji;
-    }
-
-    /**
-     * Ustawia $sprawozdanieId
-     *
-     * @param int $sprawozdanieId
-     */
-    public function setSprawozdanieId($sprawozdanieId)
-    {
-        $this->sprawozdanieId = $sprawozdanieId;
     }
 
     /**

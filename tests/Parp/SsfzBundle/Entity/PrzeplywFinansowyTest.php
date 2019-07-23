@@ -65,12 +65,12 @@ class PrzeplywFinansowyTest extends TestCase
     /**
      * Testownaia pola SprawozdanieId
      */
-    public function testSprawozdanieId()
-    {
-        $var = 4;
-        $this->przeplywFinansowy->setSprawozdanieId($var);
-        $this->assertEquals($var, $this->przeplywFinansowy->getSprawozdanieId());
-    }
+    //public function testSprawozdanieId()
+    //{
+    //    $var = 4;
+    //    $this->przeplywFinansowy->setSprawozdanieId($var);
+    //    $this->assertEquals($var, $this->przeplywFinansowy->getSprawozdanieId());
+    //}
 
     /**
      * Testownaia pola wplywy

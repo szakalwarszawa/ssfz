@@ -5,7 +5,7 @@ var $newLinkSkladnikOgolemDiv = $('<div></div>').append($addSkladnikOgolemLink);
 var $addSkladnikWydzielonyLink = $('<a href="#" class="btn btn-success" role="button"><span class="fas fa-plus"></span> Dodaj składnik</a>');
 var $newLinkSkladnikWydzielonyDiv = $('<div></div>').append($addSkladnikWydzielonyLink);
 
-jQuery(document).ready(function() {
+$(document).ready(function() {
     $('.js-datepicker').datepicker({
         language:"pl",
         locale: "pl",
@@ -65,8 +65,12 @@ jQuery(document).ready(function() {
                     }
                 }
             }
-        }); 
-    }); 
+        });
+    });
+
+    $('.kod-pocztowy').mask("99-999", {
+        placeholder: '__-___'
+    });
 });
 
 function addForm($collectionHolder, $newLinkDiv, $formType) {

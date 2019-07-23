@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use Parp\SsfzBundle\Entity\Slownik\Program;
+use Parp\SsfzBundle\Entity\Slownik\StatusSprawozdania;
+use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
 use Parp\SsfzBundle\Entity\Report;
 use Parp\SsfzBundle\Entity\Umowa;
 use Parp\SsfzBundle\Entity\Spolka;
@@ -20,8 +22,6 @@ use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
 use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
 use Parp\SsfzBundle\Entity\PrzeplywFinansowy;
 use Parp\SsfzBundle\Entity\OkresyKonfiguracja;
-use Parp\SsfzBundle\Entity\Slownik\StatusSprawozdania;
-use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
 use Parp\SsfzBundle\Exception\KomunikatDlaBeneficjentaException;
 use Parp\SsfzBundle\Form\Type\SprawozdanieType;
 use Parp\SsfzBundle\Form\Type\SprawozdaniePozyczkoweType;
@@ -52,7 +52,10 @@ class SprawozdanieController extends Controller
         $this->getUser()->setAktywnyProgram($program);
         $beneficjent = $umowa->getBeneficjent();
         $beneficjentId = $beneficjent->getId();
-        $this->getSprawozdanieService()->datatableSprawozdanie($this, $umowa);
+        $this
+            ->get('ssfz.service.sprawozdanie_service')
+            ->datatableSprawozdanie($this, $umowa)
+        ;
         $report = new SprawozdanieZalazkowe();
         $report->setNumerUmowy($this->getNumerUmowy($umowaId, $beneficjentId));
         $report->setUmowa($umowa);
@@ -65,7 +68,10 @@ class SprawozdanieController extends Controller
             'program' => $program,
         ]);
         if (count($spolki) === 0 && true === $beneficjent->getProgram()->czyJestPortfelSpolek()) {
-            $this->getKomunikatyService()->bladKomunikat('Aby dodać sprawozdanie należy wprowadzić dane spółek.', 'Uwaga!');
+            $this
+                ->get('ssfz.service.komunikaty_service')
+                ->bladKomunikat('Aby dodać sprawozdanie należy wprowadzić dane spółek.', 'Uwaga!')
+            ;
             return $this->pokazFormularzRejestracji($form, 'not_allowed', $umowaId);
         }
         $form->handleRequest($request);
@@ -83,7 +89,10 @@ class SprawozdanieController extends Controller
             return $this->redirectToRoute('sprawozdanie_rejestracja', ['umowaId' => (string) $umowaId]);
         }
         if ($form->isSubmitted() && !$form->isValid()) {
-            $this->getKomunikatyService()->bladKomunikat('Formularz nie został poprawnie wypełniony.');
+            $this
+                ->get('ssfz.service.komunikaty_service')
+                ->bladKomunikat('Formularz nie został poprawnie wypełniony.')
+            ;
         }
 
         return $this->pokazFormularzRejestracji($form, 'create', $umowaId);
@@ -123,7 +132,10 @@ class SprawozdanieController extends Controller
         $beneficjentId = $this->getBeneficjentId();
         $entityManager = $this->getDoctrine()->getManager();
         $report = $entityManager->getRepository(SprawozdanieZalazkowe::class)->find($reportId);
-        $this->getSprawozdanieService()->checkSprawozdaniePermission($report, $beneficjentId);
+        $this
+            ->get('ssfz.service.sprawozdanie_service')
+            ->checkSprawozdaniePermission($report, $beneficjentId)
+        ;
         $okresy = $this->getOkresySprawozdawcze();
         $form = $this->createForm(SprawozdanieType::class, $report, [
             'read_only' => true,
@@ -150,12 +162,18 @@ class SprawozdanieController extends Controller
         $beneficjentId = $this->getBeneficjentId();
         $entityManager = $this->getDoctrine()->getManager();
         $report = $entityManager->getRepository(SprawozdanieZalazkowe::class)->find($reportId);
-        $this->getSprawozdanieService()->checkSprawozdaniePermission($report, $beneficjentId);
+        $this
+            ->get('ssfz.service.sprawozdanie_service')
+            ->checkSprawozdaniePermission($report, $beneficjentId)
+        ;
         if ($report->getStatus() != 1) {
             throw $this->createNotFoundException('Nie można edytować sprawozdania');
         }
         $umowaId = $report->getUmowaId();
-        $this->getSprawozdanieService()->datatableSprawozdanie($this, $report->getUmowa());
+        $this
+            ->get('ssfz.service.sprawozdanie_service')
+            ->datatableSprawozdanie($this, $report->getUmowa())
+        ;
         $okresy = $this->getOkresySprawozdawcze();
 
         if ($request->query->get('odswiezSpolki') !== null) {
@@ -173,7 +191,10 @@ class SprawozdanieController extends Controller
                 return $this->pokazFormularzRejestracji($form, 'edit', $umowaId);
             }
             $entityManager->flush();
-            $this->getKomunikatyService()->sukcesKomunikat('Edycja sprawozdania zakończyła się powodzeniem', 'Edycja sprawozdania');
+            $this
+                ->get('ssfz.service.komunikaty_service')
+                ->sukcesKomunikat('Edycja sprawozdania zakończyła się powodzeniem', 'Edycja sprawozdania')
+            ;
             if ($form['przekierowanie']->getData() == 'beneficjent') {
                 return $this->redirectToRoute('beneficjent');
             }
@@ -181,11 +202,36 @@ class SprawozdanieController extends Controller
             return $this->redirectToRoute('sprawozdanie_rejestracja', ['umowaId' => (string) $umowaId]);
         }
         if ($form->isSubmitted() && !$form->isValid()) {
-            $this->getKomunikatyService()->bladKomunikat('Formularz nie został poprawnie wypełniony.');
+            $this
+                ->get('ssfz.service.komunikaty_service')
+                ->bladKomunikat('Formularz nie został poprawnie wypełniony.')
+            ;
         }
 
         return $this->pokazFormularzRejestracji($form, 'edit', $umowaId);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * @Route("sprawozdanie/poprawa/{umowaId}/{reportId}", name="sprawozdanie_poprawa")
@@ -198,61 +244,149 @@ class SprawozdanieController extends Controller
      *
      * @throws Exception
      */
-    public function poprawaAction(Request $request, $umowaId, $reportId)
+    public function poprawAction(Request $request, int $umowaId, int $reportId)
     {
+        $entityManager = $this
+            ->getDoctrine()
+            ->getManager()
+        ;
+
+        $report = $this
+            ->get('ssfz.service.repository.sprawozdanie')
+            ->findByIdUmowyAndIdSprawozdania($umowaId, $reportId)
+        ;
+
         $beneficjentId = $this->getBeneficjentId();
-        $entityManager = $this->getDoctrine()->getManager();
-        $report = $entityManager->getRepository(SprawozdanieZalazkowe::class)->find($reportId);
-        $this->getSprawozdanieService()->checkSprawozdaniePermission($report, $beneficjentId);
-        $umowaId = $report->getUmowaId();
-        $this->getSprawozdanieService()->datatableSprawozdanie($this, $report->getUmowa());
-        if ($report->getStatus() != 4) {
-            throw $this->createNotFoundException('Nie można poprawić sprawozdania');
+        $this
+            ->get('ssfz.service.sprawozdanie_service')
+            ->checkSprawozdaniePermission($report, $beneficjentId)
+        ;
+
+        // Po co to jest do czego tu?
+        $this
+            ->get('ssfz.service.sprawozdanie_service')
+            ->datatableSprawozdanie($this, $report->getUmowa())
+        ;
+
+        if ((int) $report->getStatus() !== StatusSprawozdania::POPRAWA) {
+            throw $this->createNotFoundException('Nie można poprawić sprawozdania.');
         }
+
         $okresy = $this->getOkresySprawozdawcze();
 
+
+        // Fajnie, że wiadomo po co to jest robione, bo wygląda jak prowizoryczne naprawienie jakiegoś problemu.
+        // To raczej powinno być ogarnięte oddzielną akcją. Teraz są już tu ze 3 niezależne czynności robione.
         if ($request->query->get('odswiezSpolki') !== null) {
             $spolki = $this->getSpolkiList($umowaId);
             $report = $this->setSpolki($spolki, $report);
         }
-        $form = $this->createForm(SprawozdanieType::class, clone $report, [
+
+        $formTypeClass = $this
+            ->get('ssfz.service.guesser.typ_sprawozdania')
+            ->guessFormType($report)
+        ;
+        $program = $report
+            ->getUmowa()
+            ->getBeneficjent()
+            ->getProgram()
+        ;
+        $form = $this->createForm($formTypeClass, $report, [
             'showRemarks' => true,
             'lata'        => $okresy,
-            'program'     => $report->getUmowa()->getBeneficjent()->getProgram(),
+            'program'     => $program,
         ]);
+
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $newReport = new SprawozdanieZalazkowe();
-            $raportFromForm = $form->getData();
-            $newReport = clone $raportFromForm;
-            foreach ($raportFromForm->getSprawozdaniaSpolek() as $spolka) {
-                $newReport->addSprawozdaniaSpolek(clone $spolka);
-            }
-            $przeplyw = $entityManager
-                ->getRepository(PrzeplywFinansowy::class)
-                ->findBy(['sprawozdanieId' => $reportId])
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $persist = false;
+                $newReport = $this
+                    ->get('ssfz.service.object_cloner')
+                    ->cloneSprawozdanieDoPoprawy($report, $persist)
+                ;
+
+                // TODO: Do tego powinien być napisany walidator a nie spagetti w kontrolerze.
+                if (!$this->czySprawozdanieZaDobryOkres($newReport, $umowaId, $beneficjentId)) {
+                    $this
+                        ->get('ssfz.service.komunikaty_service')
+                        ->bladKomunikat('Formularz zawiera nieprawidłowe dane okresu sprawozdawczego.')
+                    ;
+                    return $this->pokazFormularzRejestracji($form, 'edit', $umowaId);
+                }
+
+                $entityManager->persist($newReport);
+                $entityManager->flush();
+
+                $this
+                    ->get('ssfz.service.komunikaty_service')
+                    ->sukcesKomunikat('Poprawa sprawozdania zakończyła się powodzeniem', 'Poprawa sprawozdania')
+                ;
+
+                return $this->redirectToRoute('sprawozdanie_rejestracja', [
+                    'umowaId' => (string) $umowaId,
+                ]);
+            } 
+
+            $this
+                ->get('ssfz.service.komunikaty_service')
+                ->bladKomunikat('Formularz zawiera błędy.')
             ;
-
-            if (!$this->czySprawozdanieZaDobryOkres($newReport, $umowaId, $beneficjentId)) {
-                return $this->pokazFormularzRejestracji($form, 'edit', $umowaId);
-            }
-            $newReport = $this->setDefaultValuesAfterRepait($newReport, $report);
-            $report->setCzyNajnowsza(false);
-            $entityManager->persist($newReport);
-            if (count($przeplyw) == 1) {
-                $przeplywClone = clone $przeplyw[0];
-                $przeplywClone->setId(null);
-                $przeplywClone->setSprawozdanieId($newReport->getId());
-                $entityManager->persist($przeplywClone);
-            }
-            $entityManager->flush();
-            $this->getKomunikatyService()->sukcesKomunikat('Poprawa sprawozdania zakończyła się powodzeniem', 'Poprawa sprawozdania');
-
-            return $this->redirectToRoute('sprawozdanie_rejestracja', ['umowaId' => (string) $umowaId]);
         }
 
-        return $this->pokazFormularzRejestracji($form, 'edit', $umowaId);
+
+        $typeGuesser = $this->get('ssfz.service.guesser.typ_sprawozdania');
+        if ($typeGuesser->jestPozyczkowe($sprawozdanie)) {
+            $template = 'SsfzBundle:Sprawozdanie:pozyczkowe.html.twig';
+            return $this->render($template, [
+                'sprawozdanie'     => $sprawozdanie,
+                'typ_sprawozdania' => $typSprawozdania,
+                'tylkoDoOdczytu'   => false,
+                'form'             => $form->createView(),
+            ]);
+        }
+        
+        if ($typeGuesser->jestPoreczeniowe($sprawozdanie)) {
+            $template = 'SsfzBundle:Sprawozdanie:poreczeniowe.html.twig';
+            return $this->render($template, [
+                'sprawozdanie'     => $sprawozdanie,
+                'typ_sprawozdania' => $typSprawozdania,
+                'tylkoDoOdczytu'   => false,
+                'form'             => $form->createView(),
+            ]);
+        }
+
+        if ($typeGuesser->jestZalazkowe($sprawozdanie)) {
+            return $this->pokazFormularzRejestracji($form, 'edit', $umowaId);
+        }
+
+        $message = 'Nieznany typ sprawozdania. Obsługiwane są tylko sprawozdanie poręczeniowe i pożyczkowe.';
+        throw new InvalidArgumentException($message);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Akcja wysłania sprawozdania do PARP
@@ -267,15 +401,21 @@ class SprawozdanieController extends Controller
         $beneficjentId = $this->getBeneficjentId();
         $entityManager = $this->getDoctrine()->getManager();
         $sprawozdanie = $entityManager->getRepository(SprawozdanieZalazkowe::class)->find($sprawozdanieId);
-        $this->getSprawozdanieService()->checkSprawozdaniePermission($sprawozdanie, $beneficjentId);
+        $this
+            ->get('ssfz.service.sprawozdanie_service')
+            ->checkSprawozdaniePermission($sprawozdanie, $beneficjentId)
+        ;
 
         $przeplyw = $entityManager
             ->getRepository(PrzeplywFinansowy::class)
             ->findBy(['sprawozdanieId' => $sprawozdanieId])
         ;
         $umowaId = $sprawozdanie->getUmowaId();
-        if (count($przeplyw) != 1) {
-            $this->getKomunikatyService()->bladKomunikat('Nie zdefiniowano przepływu finansowego', 'Wysyłka sprawozdania');
+        if (count($przeplyw) !== 1) {
+            $this
+                ->get('ssfz.service.komunikaty_service')
+                ->bladKomunikat('Nie zdefiniowano przepływu finansowego', 'Wysyłka sprawozdania')
+            ;
 
             return $this->redirectToRoute('sprawozdanie_rejestracja', ['umowaId' => (string) $umowaId]);
         }
@@ -283,7 +423,10 @@ class SprawozdanieController extends Controller
             $dateNow = new DateTime('now');
             $sprawozdanie->setStatus(StatusSprawozdania::PRZESLANO_DO_PARP);
             $sprawozdanie->setDataPrzeslaniaDoParp($dateNow);
-            $this->getKomunikatyService()->sukcesKomunikat('Sprawozdanie wysłano do PARP', 'Wysyłka sprawozdania');
+            $$this
+                ->get('ssfz.service.komunikaty_service')
+                ->sukcesKomunikat('Sprawozdanie wysłano do PARP', 'Wysyłka sprawozdania')
+            ;
         }
         $entityManager->flush();
 
@@ -291,7 +434,7 @@ class SprawozdanieController extends Controller
     }
 
     /**
-     * Metoda ustawia parametry domyślne dla sprawozdanie
+     * Metoda ustawia parametry domyślne dla sprawozdania
      *
      * @param Sprawozdanie $report
      * @param Umowa $umowa
@@ -355,52 +498,10 @@ class SprawozdanieController extends Controller
     public function sprawozdanieGridAction(Umowa $umowa)
     {
         return $this
-            ->getSprawozdanieService()
+            ->get('ssfz.service.sprawozdanie_service')
             ->datatableSprawozdanie($this, $umowa)
             ->execute()
         ;
-    }
-
-    /**
-     * Pomocnicza metoda
-     *
-     * @return SprawozdanieService z kontenera
-     */
-    protected function getSprawozdanieService()
-    {
-        return $this->get('ssfz.service.sprawozdanie_service');
-    }
-
-    /**
-     * Pomocnicza metoda
-     *
-     * @return KomunikatyService z kontenera
-     */
-    protected function getKomunikatyService()
-    {
-        return $this->get('ssfz.service.komunikaty_service');
-    }
-
-    /**
-     * Metoda czyści dane związane z oceną PARP po poprawie sprawozdania
-     *
-     * @param AbstractSprawozdanie $newReport
-     * @param AbstractSprawozdanie $report
-     *
-     * @return AbstractSprawozdanie bez oceny
-     */
-    public function setDefaultValuesAfterRepait(AbstractSprawozdanie $newReport, AbstractSprawozdanie $report)
-    {
-        $newReport->setStatus(StatusSprawozdania::EDYCJA);
-        $newReport->setUwagi('');
-        $newReport->setOceniajacyId(null);
-        $newReport->setDataPrzeslaniaDoParp(null);
-        $newReport->setDataZatwierdzenia(null);
-        $newReport->setWersja($report->getWersja() + 1);
-        $newReport->setCzyNajnowsza(true);
-        $newReport->setPreviousVersionId($report->getId());
-
-        return $newReport;
     }
 
     /**
@@ -474,7 +575,7 @@ class SprawozdanieController extends Controller
 
         if (null !== $report && (int) $report->getId() !== (int) $editedReportId) {
             $this
-                ->getKomunikatyService()
+                ->get('ssfz.service.komunikaty_service')
                 ->bladKomunikat('Sprawozdanie za wskazany okres istnieje w systemie', 'Błąd podczas próby zapisu sprawozdania')
             ;
 
@@ -501,7 +602,7 @@ class SprawozdanieController extends Controller
         ;
         if ($czyRokZPrzyszlosci || $czyPolroczeZPrzyszlosci) {
             $this
-                ->getKomunikatyService()
+                ->get('ssfz.service.komunikaty_service')
                 ->bladKomunikat(
                     'Podano błędny okres lub rok',
                     'Błąd podczas próby zapisu sprawozdania'
@@ -535,7 +636,8 @@ class SprawozdanieController extends Controller
     }
 
     /**
-     * Dodaje komunikat błędu
+     * Dodaje komunikat błędu????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
+     * Ale, że co, że jak? O co chodzi? WTF!?
      *
      * @param Form $form
      * @param string $mode
@@ -627,7 +729,7 @@ class SprawozdanieController extends Controller
         $program = $umowa->getBeneficjent()->getProgram();
         
         $repoSprawozdanie = $this
-            ->getSprawozdanieService()
+            ->get('ssfz.service.sprawozdanie_service')
             ->wyznaczRepozytoriumDlaProgramu($program)
             ->getSprawozdanieRepository()
         ;
@@ -636,11 +738,17 @@ class SprawozdanieController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $czyTakieJuzIstnieje = $repoSprawozdanie->czyTakieJuzIstnieje($sprawozdanie);
             if ($czyTakieJuzIstnieje) {
-                $this->getKomunikatyService()->bladKomunikat('Już istnieje sprawozdanie dla tego roku i okresu.');
+                $this
+                    ->get('ssfz.service.komunikaty_service')
+                    ->bladKomunikat('Już istnieje sprawozdanie dla tego roku i okresu.')
+                ;
             } else {
                 $entityManager->persist($sprawozdanie);
                 $entityManager->flush();
-                $this->getKomunikatyService()->sukcesKomunikat('Dodano nowe sprawozdanie.');
+                $this
+                    ->get('ssfz.service.komunikaty_service')
+                    ->sukcesKomunikat('Dodano nowe sprawozdanie.')
+                ;
 
                 $typSprawozdania = $this
                     ->get('ssfz.service.guesser.typ_sprawozdania')
@@ -677,6 +785,38 @@ class SprawozdanieController extends Controller
             'form'             => $form->createView(),
         ]);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Edycja sprawozdań pożyczkowych.
@@ -717,12 +857,14 @@ class SprawozdanieController extends Controller
                 $sprawozdanie
                     ->powiazSkladnikiZeSprawozdaniem()
                     ->obliczKapital()
-                    ->setCzyDaneSaPrawidlowe(true)
                 ;
 
                 $entityManager->flush();
                 $komunikat = 'Zapisano zmiany.';
-                $this->getKomunikatyService()->sukcesKomunikat($komunikat);
+                $this
+                    ->get('ssfz.service.komunikaty_service')
+                    ->sukcesKomunikat($komunikat)
+                ;
                 
                 $czyPowrot = empty($request->get('zapisz'));
                 if ($czyPowrot) {
@@ -747,7 +889,10 @@ class SprawozdanieController extends Controller
                 }
 
                 $komunikat = implode("; \r\n", $bledy);
-                $this->getKomunikatyService()->bladKomunikat($komunikat);
+                $this
+                    ->get('ssfz.service.komunikaty_service')
+                    ->bladKomunikat($komunikat)
+                ;
             }
         }
 
@@ -767,6 +912,45 @@ class SprawozdanieController extends Controller
             'form'             => $form->createView(),
         ]);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Podgląd sprawozdań SPO.
@@ -814,6 +998,28 @@ class SprawozdanieController extends Controller
         ]);
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Przesłanie sprawozdania do PARP.
      *
@@ -831,8 +1037,10 @@ class SprawozdanieController extends Controller
     {
         $sprawozdanie = $this->znajdzSprawozdanie($typSprawozdania, $sprawozdanieId);
         $sprawozdanie->sprawdzCzyUzytkownikMozeEdytowac($this->getUser());
-        
-        if ($sprawozdanie->getCzyDaneSaPrawidlowe()) {
+        // NIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+        // WTF?!?!?!?!?!??! CO TO NA CO TO PO CO GDZIE JAK!?!
+        // TO OZNACZA, ŻE MOŻNA ZAPISAĆ FORMULARZ Z BŁEDAMI!!!!!!!!!!!!
+       // if ($sprawozdanie->getCzyDaneSaPrawidlowe()) {
             $entityManager = $this->getDoctrine()->getManager();
             
             $sprawozdanie->setStatus(StatusSprawozdania::PRZESLANO_DO_PARP);
@@ -841,24 +1049,60 @@ class SprawozdanieController extends Controller
             $entityManager->flush();
             
             $this
-                ->getKomunikatyService()
+                ->get('ssfz.service.komunikaty_service')
                 ->sukcesKomunikat('Przesłano sprawozdanie do PARP.')
             ;
-        } else {
-            $message = 'Nie można przesłać sprawozdania do PARP, ponieważ zawiera błędy.'
-                     . ' Proszę uzupełnić i zapisać formularz.';
-            $this
-                ->getKomunikatyService()
-                ->bladKomunikat($message)
-            ;
-        }
+      //  } else {
+      //      $message = 'Nie można przesłać sprawozdania do PARP, ponieważ zawiera błędy.'
+      //               . ' Proszę uzupełnić i zapisać formularz.';
+      //      $this
+      //          ->get('ssfz.service.komunikaty_service')
+        //        ->bladKomunikat($message)
+        //    ;
+       // }
 
         return $this->redirectToRoute('lista_sprawozdan_spo', [
             'umowa' => $sprawozdanie->getUmowa()->getId(),
         ]);
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
+     * Ludzie, w jednym kontrolerze poprawAction i poprawaAction? Skąd ktokolwiek ma wiedzieć kiedy użyć które!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
      * Edycja sprawozdań pożyczkowych.
      *
      * @Route(
@@ -872,6 +1116,7 @@ class SprawozdanieController extends Controller
      *
      * @return Response|RedirectResponse
      */
+    /*
     public function poprawaSpoAction(Request $request, string $typSprawozdania, int $sprawozdanieId)
     {
         $sprawozdanie = $this->znajdzSprawozdanie($typSprawozdania, $sprawozdanieId);
@@ -896,7 +1141,6 @@ class SprawozdanieController extends Controller
                 $klonSprawozdania
                     ->powiazSkladnikiZeSprawozdaniem()
                     ->obliczKapital()
-                    ->setCzyDaneSaPrawidlowe(true)
                 ;
 
                 $klonSprawozdania = $this->setDefaultValuesAfterRepait($klonSprawozdania, $sprawozdanie);
@@ -906,7 +1150,7 @@ class SprawozdanieController extends Controller
                 $entityManager->flush();
                 $komunikat = 'Zapisano zmiany.';
                 $this
-                    ->getKomunikatyService()
+                    ->get('ssfz.service.komunikaty_service')
                     ->sukcesKomunikat(
                         'Poprawa sprawozdania zakończyła się powodzeniem',
                         'Poprawa sprawozdania'
@@ -928,7 +1172,10 @@ class SprawozdanieController extends Controller
                 }
 
                 $komunikat = implode("; \r\n", $bledy);
-                $this->getKomunikatyService()->bladKomunikat($komunikat);
+                $this
+                    ->get('ssfz.service.komunikaty_service')
+                    ->bladKomunikat($komunikat)
+                ;
             }
         }
 
@@ -949,6 +1196,25 @@ class SprawozdanieController extends Controller
             'form'             => $form->createView(),
         ]);
     }
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Szuka sprawozdania o zadanym ID.

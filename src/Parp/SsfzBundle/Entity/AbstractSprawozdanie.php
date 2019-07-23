@@ -42,13 +42,6 @@ class AbstractSprawozdanie
     /**
      * @var int
      *
-     * @ORM\Column(name="umowa_id", type="integer", nullable=false)
-     */
-    protected $umowaId;
-
-    /**
-     * @var int
-     *
      * @ORM\Column(name="previous_version_id", type="integer", nullable=true)
      */
     protected $previousVersionId;
@@ -147,6 +140,16 @@ class AbstractSprawozdanie
     protected $uwagi;
 
     /**
+     * Zwraca reprezentację tekstową obiektu.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->id;
+    }
+
+    /**
      * zwraca ID statusu
      *
      * @return idStatus
@@ -160,10 +163,14 @@ class AbstractSprawozdanie
      * ustawia idStatus
      *
      * @param int $idStatus
+     *
+     * @return AbstractSprawozdanie
      */
     public function setIdStatus($idStatus)
     {
         $this->idStatus = $idStatus;
+
+        return $this;
     }
 
     /**
@@ -223,7 +230,11 @@ class AbstractSprawozdanie
      */
     public function getUmowaId()
     {
-        return $this->umowaId;
+        if (null !== $this->umowa) {
+            return $this->umowa->getId();
+        }
+
+        return null;
     }
 
     /**
@@ -297,13 +308,27 @@ class AbstractSprawozdanie
     }
 
     /**
-     * zwraca czyNajnowsza
+     * Zwraca informację czy obiekt zawiera najnowszą wersję danych.
      *
-     * @return boolean
+     * @return bool
      */
     public function getCzyNajnowsza()
     {
         return $this->czyNajnowsza;
+    }
+
+    /**
+     * Ustawia informację czy obiekt zwiera dane w najnowszej wersji.
+     *
+     * @param bool $czyNajnowsza
+     *
+     * @param AbstractSprawozdanie
+     */
+    public function setCzyNajnowsza(bool $czyNajnowsza): AbstractSprawozdanie
+    {
+        $this->czyNajnowsza = $czyNajnowsza;
+
+        return $this;
     }
 
     /**
@@ -330,10 +355,14 @@ class AbstractSprawozdanie
      * Ustawia umowaId
      *
      * @param int $umowaId
+     *
+     * @return AbstractSprawozdanie
      */
     public function setUmowaId($umowaId)
     {
         $this->umowaId = $umowaId;
+
+        return $this;
     }
 
     /**
@@ -350,50 +379,70 @@ class AbstractSprawozdanie
      * ustawia id
      *
      * @param int $id
+     *
+     * @return AbstractSprawozdanie
      */
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
     }
 
     /**
      * ustawia creatorId
      *
      * @param int $creatorId
+     *
+     * @return AbstractSprawozdanie
      */
     public function setCreatorId($creatorId)
     {
         $this->creatorId = $creatorId;
+
+        return $this;
     }
 
     /**
      * ustawia dateRejestracji
      *
      * @param datetime $dataRejestracji
+     *
+     * @return AbstractSprawozdanie
      */
     public function setDataRejestracji($dataRejestracji)
     {
         $this->dataRejestracji = $dataRejestracji;
+
+        return $this;
     }
 
     /**
      * Ustawia datePrzeslaniaDoParp
      *
      * @param datetime $dataPrzeslaniaDoParp
+     *
+     * @return AbstractSprawozdanie
      */
     public function setDataPrzeslaniaDoParp($dataPrzeslaniaDoParp)
     {
         $this->dataPrzeslaniaDoParp = $dataPrzeslaniaDoParp;
+
+        return $this;
     }
 
     /**
      * Ustawia previousVersionID
      *
      * @param int $previousVersionId
+     *
+     * @return AbstractSprawozdanie
      */
     public function setPreviousVersionId($previousVersionId)
     {
         $this->previousVersionId = $previousVersionId;
+
+        return $this;
     }
 
     /**
@@ -401,7 +450,7 @@ class AbstractSprawozdanie
      *
      * @param  Umowa $umowa
      *
-     * @return Spolka
+    * @return AbstractSprawozdanie
      */
     public function setUmowa($umowa)
     {
@@ -414,36 +463,50 @@ class AbstractSprawozdanie
      * Ustawia numerUmowy
      *
      * @param string $numerUmowy
+     *
+     * @return AbstractSprawozdanie
      */
     public function setNumerUmowy($numerUmowy)
     {
         $this->numerUmowy = $numerUmowy;
+
+        return $this;
     }
 
     /**
      * Ustawia okres
      *
      * @param OkresSprawozdawczy $okres
+     *
+     * @return AbstractSprawozdanie
      */
     public function setOkres(OkresSprawozdawczy $okres)
     {
         $this->okres = $okres;
+
+        return $this;
     }
 
     /**
      * Ustawia rok
      *
      * @param string $rok
+     *
+     * @return AbstractSprawozdanie
      */
     public function setRok($rok)
     {
         $this->rok = $rok;
+
+        return $this;
     }
 
     /**
      * Ustawia status
      *
      * @param int $status
+     *
+     * @return AbstractSprawozdanie
      */
     public function setStatus($status)
     {
@@ -451,46 +514,50 @@ class AbstractSprawozdanie
         if ($this->status && $this->id) {
             $this->idStatus = $this->status . ',' . $this->id;
         }
+
+        return $this;
     }
 
     /**
      * Ustawia wersję
      *
      * @param int $wersja
+     *
+     * @return AbstractSprawozdanie
      */
     public function setWersja($wersja)
     {
         $this->wersja = $wersja;
-    }
 
-    /**
-     * Ustawia  flage czy najnowsza
-     *
-     * @param bool $czyNajnowsza
-     */
-    public function setCzyNajnowsza($czyNajnowsza)
-    {
-        $this->czyNajnowsza = $czyNajnowsza;
+        return $this;
     }
 
     /**
      * Ustawia oceniajacyId
      *
      * @param int $oceniajacyId
+     *
+     * @return AbstractSprawozdanie
      */
     public function setOceniajacyId($oceniajacyId)
     {
         $this->oceniajacyId = $oceniajacyId;
+
+        return $this;
     }
 
     /**
      * Ustawia dataZatwierdzenia
      *
      * @param datetime $dataZatwierdzenia
+     *
+     * @return AbstractSprawozdanie
      */
     public function setDataZatwierdzenia($dataZatwierdzenia)
     {
         $this->dataZatwierdzenia = $dataZatwierdzenia;
+
+        return $this;
     }
     
     /**
@@ -498,21 +565,26 @@ class AbstractSprawozdanie
      *
      * @param Uzytkownik $uzytkownik
      *
+     * @return bool
+     *
      * @throws KomunikatDlaBeneficjentaException
      */
-    public function sprawdzCzyUzytkownikMozeWyswietlac(Uzytkownik $uzytkownik)
+    public function sprawdzCzyUzytkownikMozeWyswietlac(Uzytkownik $uzytkownik): bool
     {
         $idWlasciciela = (int) $this->umowa->getBeneficjent()->getUzytkownik()->getId();
-
         if ((int) $uzytkownik->getId() !== $idWlasciciela) {
             throw new KomunikatDlaBeneficjentaException('Nie można wyświetlić - sprawozdanie należy do innego użytkownika.');
         }
+
+        return true;
     }
     
     /**
      * Wyrzuca wyjątek, jeśli użytkownik nie ma uprawnień do edycji.
      *
      * @param Uzytkownik $uzytkownik
+     *
+     * @return bool
      *
      * @throws KomunikatDlaBeneficjentaException
      */
@@ -527,12 +599,16 @@ class AbstractSprawozdanie
         if (null !== $this->dataPrzeslaniaDoParp) {
             throw new KomunikatDlaBeneficjentaException('Nie można edytować - sprawozdanie już przesłano do PARP.');
         }
+
+        return true;
     }
     
     /**
      * Wyrzuca wyjątek, jeśli użytkownik nie ma uprawnień do poprawy.
      *
      * @param Uzytkownik $uzytkownik
+     *
+     * @return bool
      *
      * @throws KomunikatDlaBeneficjentaException
      */
@@ -547,6 +623,8 @@ class AbstractSprawozdanie
         if (StatusSprawozdania::POPRAWA !== $this->status) {
             throw new KomunikatDlaBeneficjentaException('Nie można poprawiać - sprawozdanie już przesłano do PARP.');
         }
+
+        return true;
     }
     
     /**
@@ -573,9 +651,13 @@ class AbstractSprawozdanie
      * Ustawia uwagi
      *
      * @param string $uwagi
+     *
+     * @return AbstractSprawozdanie
      */
     public function setUwagi($uwagi)
     {
         $this->uwagi = $uwagi;
+
+        return $this;
     }
 }

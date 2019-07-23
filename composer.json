@@ -34,7 +34,8 @@
         "symfony/symfony": "2.8.*",
         "twig/twig": "^1.0||^2.0",
         "waldo/datatable-bundle": "^4.0",
-        "zendframework/zend-ldap": "~2.4"
+        "zendframework/zend-ldap": "^2.4",
+        "myclabs/deep-copy": "^1.9"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",
@@ -65,7 +66,7 @@
     "config": {
         "bin-dir": "bin",
         "platform": {
-            "php": "5.6.40"
+            "php": "7.2.0"
         },
         "sort-packages": true
     },

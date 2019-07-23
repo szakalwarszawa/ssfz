@@ -39,7 +39,7 @@ class DanePoreczen
      *
      * @var SprawozdaniePoreczeniowe
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe")
+     * @ORM\OneToOne(targetEntity="Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe", inversedBy="danePoreczen")
      * @ORM\JoinColumn(name="sprawozdanie_id", referencedColumnName="id", nullable=false)
      */
     protected $sprawozdanie;

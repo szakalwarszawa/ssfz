@@ -3,6 +3,7 @@
 namespace Parp\SsfzBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
@@ -23,13 +24,6 @@ class SprawozdanieSpolki
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="sprawozdanie_id", type="integer", nullable=false)
-     */
-    protected $sprawozdanieId;
 
     /**
      * @var int
@@ -146,10 +140,38 @@ class SprawozdanieSpolki
     protected $zatrudnieniewStosunkuDoPoprzedniegoOkresu;
 
     /**
-     * @ORM\ManyToOne(targetEntity="SprawozdanieZalazkowe", inversedBy="sprawozdaniaSpolek", cascade = {"persist"})
+     * @ORM\ManyToOne(
+     *    targetEntity="Parp\SsfzBundle\Entity\SprawozdanieZalazkowe",
+     *    inversedBy="sprawozdaniaSpolek",
+     *    cascade={"persist"}
+     * )
      * @ORM\JoinColumn(name="sprawozdanie_id", referencedColumnName="id")
      */
     protected $sprawozdanie;
+
+    /**
+     * Get sprawozdanie
+     *
+     * @return Sprawozdanie
+     */
+    public function getSprawozdanie()
+    {
+        return $this->sprawozdanie;
+    }
+
+    /**
+     * Zwraca ID sprawozdania.
+     *
+     * @return int|null
+     */
+    public function getSprawozdanieId()
+    {
+        if (null !== $this->sprawozdanie) {
+            return $this->sprawozdanie->getId();
+        }
+
+        return null;
+    }
 
     /**
      * Set sprawozdanie
@@ -166,16 +188,6 @@ class SprawozdanieSpolki
     }
 
     /**
-     * Get sprawozdanie
-     *
-     * @return Sprawozdanie
-     */
-    public function getSprawozdanie()
-    {
-        return $this->sprawozdanie;
-    }
-
-    /**
      * Zwraca id
      *
      * @return int
@@ -183,16 +195,6 @@ class SprawozdanieSpolki
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Zwraca sprawozdanieId
-     *
-     * @return int
-     */
-    public function getSprawozdanieId()
-    {
-        return $this->sprawozdanieId;
     }
 
     /**
@@ -365,15 +367,10 @@ class SprawozdanieSpolki
         $this->id = $id;
     }
 
-    /**
-     * Ustawia $sprawozdanieId
-     *
-     * @param int $sprawozdanieId
-     */
-    public function setSprawozdanieId($sprawozdanieId)
-    {
-        $this->sprawozdanieId = $sprawozdanieId;
-    }
+
+
+
+
 
     /**
      * Ustawia $liczbaPorzadkowa
