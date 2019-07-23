@@ -21,7 +21,8 @@ class PrzeplywFinansowyRepository extends EntityRepository
     {
         $result = $this
             ->createQueryBuilder('pf')
-            ->where('pf.sprawozdanieId = :idSprawozdania')
+            ->leftJoin('pf.sprawozdanie', 's')
+            ->where('s.id = :idSprawozdania')
             ->setParameter('idSprawozdania', $idSprawozdania)
             ->getQuery()
             ->getResult()

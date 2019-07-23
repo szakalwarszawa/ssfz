@@ -122,7 +122,7 @@ class ParpController extends Controller
 
         $przeplyw = $entityManager
             ->getRepository(PrzeplywFinansowy::class)
-            ->findOneByIdSprawozdania(idSprawozdania)
+            ->findOneByIdSprawozdania($idSprawozdania)
         ;
         $formPrzeplywyFinansowe = null;
         if ($przeplyw != null) {
