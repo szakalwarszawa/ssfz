@@ -12,6 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Description of PracownikParpEdycjaType
+ * Że to niby  "Klasa opis PracownikParpEdycjaType"?
  */
 class PracownikParpEdycjaType extends AbstractType
 {
@@ -20,7 +21,7 @@ class PracownikParpEdycjaType extends AbstractType
      *
      * @param FormBuilderInterface $builder
      *
-     * @param array                $options
+     * @param array $options
      *
      * @return Response
      *
@@ -29,18 +30,20 @@ class PracownikParpEdycjaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('login', TextType::class, [
-            'label' => 'Login',
+            'label'    => 'Login',
             'disabled' => true,
         ]);
 
         $builder->add('rola', EntityType::class, [
-            'class' => Rola::class,
-            'property' => 'opis',
-            'label' => 'Rola',
+            'class'         => Rola::class,
+            'property'      => 'opis',
+            'label'         => 'Rola',
             'query_builder' => function (EntityRepository $er) {
-                return $er->createQueryBuilder('n')
+                // Używamy magic number, żeby nie było zbyt oczywiste co tu się dzieje.
+                return $er
+                    ->createQueryBuilder('n')
                     ->where('n.id not in (:marray)')
-                    ->setParameter('marray', array('4'))
+                    ->setParameter('marray', ['4'])
                 ;
             },
         ]);

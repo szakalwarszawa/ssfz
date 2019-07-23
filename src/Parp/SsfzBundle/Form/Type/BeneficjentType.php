@@ -2,7 +2,6 @@
 
 namespace Parp\SsfzBundle\Form\Type;
 
-use Parp\SsfzBundle\Entity\Beneficjent;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Regex;
+use Parp\SsfzBundle\Entity\Beneficjent;
 
 /**
  * Typ formularza profilu beneficjenta
@@ -79,36 +79,36 @@ class BeneficjentType extends AbstractType
             ],
         ]);
 
-        $builder->add('adrMiejscowosc', null, array(
-            'label' => 'Miejscowość',
-            'constraints' => array(
-                new NotBlank(
-                    array('message' => 'Należy wypełnić pole')
-                )
-            )
-        ));
+        $builder->add('adrMiejscowosc', TextType::class, [
+            'label'       => 'Miejscowość',
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
-        $builder->add('adrUlica', null, array(
-            'label' => 'Ulica',
-            'constraints' => array(
-                new NotBlank(
-                    array('message' => 'Należy wypełnić pole')
-                )
-            )
-        ));
+        $builder->add('adrUlica', TextType::class, [
+            'label'       => 'Ulica',
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
-        $builder->add('adrBudynek', null, array(
-            'label' => 'Nr budynku',
-            'constraints' => array(
-                new NotBlank(
-                    array('message' => 'Należy wypełnić pole')
-                )
-            )
-        ));
+        $builder->add('adrBudynek', TextType::class, [
+            'label'       => 'Nr budynku',
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
-        $builder->add('adrLokal', null, array(
+        $builder->add('adrLokal', TextType::class, [
             'label' => 'Nr lokalu'
-        ));
+        ]);
 
         $builder->add('adrKod', TextType::class, [
             'label'       => 'Kod pocztowy',
@@ -128,48 +128,48 @@ class BeneficjentType extends AbstractType
             ],
         ]);
 
-        $builder->add('adrPoczta', null, array(
-            'label' => 'Poczta',
-            'constraints' => array(
-                new NotBlank(
-                    array('message' => 'Należy wypełnić pole')
-                )
-            )
-        ));
+        $builder->add('adrPoczta', TextType::class, [
+            'label'       => 'Poczta',
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ]
+        ]);
 
-        $builder->add('telStacjonarny', null, array(
-            'label' => 'Telefon stacjonarny',
-            'constraints' => array(
-                new NotBlank(
-                    array('message' => 'Należy wypełnić pole')
-                )
-            )
-        ));
+        $builder->add('telStacjonarny', TextType::class, [
+            'label'       => 'Telefon stacjonarny',
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
-        $builder->add('telKomorkowy', null, array(
-            'label' => 'Telefon komórkowy',
-            'constraints' => array(
-                new NotBlank(
-                    array('message' => 'Należy wypełnić pole')
-                )
-            )
-        ));
+        $builder->add('telKomorkowy', TextType::class, [
+            'label'       => 'Telefon komórkowy',
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
-        $builder->add('email', null, array(
-            'label' => 'Adres e-mail',
-            'constraints' => array(
-                new NotBlank(
-                    array('message' => 'Należy wypełnić pole')
-                ),
-                new Email(
-                    array('message' => 'Adres email nie zawiera poprawnej konstrukcji, sprawdź czy adres nie zawiera błędów.')
-                )
-            )
-        ));
+        $builder->add('email', TextType::class, [
+            'label'       => 'Adres e-mail',
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+                new Email([
+                    'message' => 'Adres email nie zawiera poprawnej konstrukcji, sprawdź czy adres nie zawiera błędów.',
+                ]),
+            ],
+        ]);
 
-        $builder->add('fax', null, array(
+        $builder->add('fax', TextType::class, [
             'label' => 'Fax'
-        ));
+        ]);
 
         $builder->add('osobyZatrudnione', CollectionType::class, [
             'entry_type'    => OsobaZatrudnionaType::class,

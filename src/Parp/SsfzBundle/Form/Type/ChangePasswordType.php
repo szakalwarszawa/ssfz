@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Parp\SsfzBundle\Form\Model\ChangePassword;
 
 /**
  * Typ formularza zmiany hasła
@@ -25,38 +26,38 @@ class ChangePasswordType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('oldPassword', PasswordType::class, array(
+        $builder->add('oldPassword', PasswordType::class, [
             'label' => 'Stare hasło'
-        ));
+        ]);
 
-        $builder->add('newPassword', RepeatedType::class, array(
-            'type' => PasswordType::class,
-            'first_options' => array(
+        $builder->add('newPassword', RepeatedType::class, [
+            'type'            => PasswordType::class,
+            'invalid_message' => 'Podane hasła nie zgadzają się.',
+            'first_options'   => [
                 'label' => 'Nowe hasło',
-                'attr' => array(
-                    'data-toggle' => 'tooltip',
+                'attr'  => [
+                    'data-toggle'    => 'tooltip',
                     'data-placement' => 'right',
-                    'title' => 'Hasło musi zawierać co najmniej
-                                8 znaków i maksymalnie 255,
-                                2 duże litery,
-                                2 cyfry,
-                                1 znak specjalny'
-                )
-            ),
-            'second_options' => array(
+                    'title'          => 'Hasło musi zawierać co najmniej
+                                         8 znaków i maksymalnie 255,
+                                         2 duże litery,
+                                         2 cyfry,
+                                         1 znak specjalny',
+                ],
+            ],
+            'second_options' => [
                 'label' => 'Powtórz hasło',
-                'attr' => array(
-                    'data-toggle' => 'tooltip',
+                'attr'  => [
+                    'data-toggle'    => 'tooltip',
                     'data-placement' => 'right',
-                    'title' => 'Hasło musi zawierać co najmniej
-                                8 znaków i maksymalnie 255,
-                                2 duże litery,
-                                2 cyfry,
-                                1 znak specjalny'
-                )
-            ),
-            'invalid_message' => 'Podane hasła nie zgadzają się.'
-        ));
+                    'title'          => 'Hasło musi zawierać co najmniej
+                                         8 znaków i maksymalnie 255,
+                                         2 duże litery,
+                                         2 cyfry,
+                                         1 znak specjalny',
+                ],
+            ],
+        ]);
     }
 
     /**
@@ -66,9 +67,9 @@ class ChangePasswordType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'Parp\SsfzBundle\Form\Model\ChangePassword',
-        ));
+        $resolver->setDefaults([
+            'data_class' => ChangePassword::class,
+        ]);
     }
 
     /**
