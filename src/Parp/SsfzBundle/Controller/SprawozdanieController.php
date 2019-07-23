@@ -234,7 +234,7 @@ class SprawozdanieController extends Controller
 
 
     /**
-     * @Route("sprawozdanie/poprawa/{umowaId}/{reportId}", name="sprawozdanie_poprawa")
+     * @Route("sprawozdanie/poprawa/{umowaId}/{sprawozdanieId}", name="sprawozdanie_poprawa")
      *
      * @param Request $request
      * @param int $umowaId
@@ -244,7 +244,7 @@ class SprawozdanieController extends Controller
      *
      * @throws Exception
      */
-    public function poprawAction(Request $request, int $umowaId, int $reportId)
+    public function poprawAction(Request $request, int $umowaId, int $sprawozdanieId)
     {
         $entityManager = $this
             ->getDoctrine()
@@ -253,7 +253,7 @@ class SprawozdanieController extends Controller
 
         $report = $this
             ->get('ssfz.service.repository.sprawozdanie')
-            ->findByIdUmowyAndIdSprawozdania($umowaId, $reportId)
+            ->findByIdUmowyAndIdSprawozdania($umowaId, $sprawozdanieId)
         ;
 
         $beneficjentId = $this->getBeneficjentId();
