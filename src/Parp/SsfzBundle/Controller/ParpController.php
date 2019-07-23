@@ -122,11 +122,11 @@ class ParpController extends Controller
 
         $przeplyw = $entityManager
             ->getRepository(PrzeplywFinansowy::class)
-            ->findBy(['sprawozdanieId' => $sprawozdanie->getId()])
+            ->findOneByIdSprawozdania(idSprawozdania)
         ;
         $formPrzeplywyFinansowe = null;
         if ($przeplyw != null) {
-            $formPrzeplywyFinansowe = $this->createForm(PrzeplywFinansowyType::class, $przeplyw[0], [
+            $formPrzeplywyFinansowe = $this->createForm(PrzeplywFinansowyType::class, $przeplyw, [
                 'disabled' => true,
             ])->createView();
         }
