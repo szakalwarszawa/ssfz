@@ -475,6 +475,10 @@ class AbstractSprawozdanieSpoType extends AbstractType
             'allow_extra_fields' => true,
             'lata'               => null,
             'program'            => null,
+            'showRemarks'        => null,
+            'attr'               => [
+                'novalidate' => 'novalidate',
+            ],
         ]);
     }
 }
