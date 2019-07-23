@@ -36,7 +36,7 @@ class ObjectClonerService
     /**
      * @var EntityManager
      */
-    private $eEntityManager;
+    private $entityManager;
 
     /**
      * Konstruktor.

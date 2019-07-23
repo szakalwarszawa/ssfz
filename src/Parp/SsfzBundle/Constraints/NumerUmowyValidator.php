@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Parp\SsfzBundle\Constraints;
 
+use InvalidArgumentException;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
@@ -74,6 +75,8 @@ class NumerUmowyValidator extends ConstraintValidator
      * @param Program|null $program
      *
      * @return string
+     *
+     * @throws InvalidArgumentException Jeśli dla wskazanego programu nie istnieje regexp numeru umowy.
      */
     private function getRegexp($program = null): string
     {
@@ -93,7 +96,7 @@ class NumerUmowyValidator extends ConstraintValidator
             return '/'.self::REGEXP_FUNDUSZ_PORECZENIOWY.'/';
         }
 
-        return $regexp;
+        throw new InvalidArgumentException('Nie można określić zasad numeracji umów dla wskazanego programu.');
     }
 
     /**
