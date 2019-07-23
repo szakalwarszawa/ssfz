@@ -12,10 +12,12 @@ use Symfony\Component\Validator\Constraints;
 use Symfony\Component\Validator\Constraints\Count;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\LessThan;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
+use Parp\SsfzBundle\Entity\Slownik\TakNie;
 
 /**
- * Typ formularza sprawozdania
+ * Formularz dla sprawozdania pożyczkowego.
  */
 class SprawozdaniePozyczkoweType extends AbstractSprawozdanieSpoType
 {
@@ -118,6 +120,51 @@ class SprawozdaniePozyczkoweType extends AbstractSprawozdanieSpoType
                 new Count([
                     'min'        => 1,
                     'minMessage' => 'Należy podać przynajmniej jeden składnik wydzielonego kapitału i jego wartość.',
+                ]),
+            ],
+        ]);
+
+        $builder->add('dataZatwierdzeniaZasadGospodarowania', DateType::class, [
+            'label'       => 'Data zatwierdzenia zasad gospodarowania funduszem pożyczkowym przez PARP',
+            'required'    => false,
+            'html5'       => false,
+            'widget'      => 'single_text',
+            'format'      => 'yyyy-MM-dd',
+                'mapped' => true,
+            'attr'        => [
+                'class'            => 'js-datepicker width-date',
+                'data-provide'     => 'datepicker',
+                'data-date-format' => 'yyyy-mm-dd'
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
+
+        $builder->add('czyUdzielaPoAnalizieRyzyka', EntityType::class, [
+            'label'       => 'Fundusz udziela pożyczek po analizie ryzyka niespłacenia i po ustanowieniu zabezpieczenia',
+            'class'       => TakNie::class,
+            'required'    => false,
+            'expanded'    => true,
+            'placeholder' => false,
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
+
+        $builder->add('czyNieWTrudnejSytuacji', EntityType::class, [
+            'label'       => 'Pożyczki udzielane są przedsiębiorcom nie będącym w trudniej sytuacji',
+            'class'       => TakNie::class,
+            'required'    => false,
+            'expanded'    => true,
+            'placeholder' => false,
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
                 ]),
             ],
         ]);

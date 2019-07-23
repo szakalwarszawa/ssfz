@@ -10,7 +10,7 @@ use Parp\SsfzBundle\Entity\SprawozdanieZalazkowe;
 use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
 use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
 use Parp\SsfzBundle\Entity\Slownik\Program;
-use Parp\SsfzBundle\Form\Type\SprawozdanieType;
+use Parp\SsfzBundle\Form\Type\SprawozdanieZalazkoweType;
 use Parp\SsfzBundle\Form\Type\SprawozdaniePozyczkoweType;
 use Parp\SsfzBundle\Form\Type\SprawozdaniePoreczenioweType;
 
@@ -142,7 +142,7 @@ class TypSprawozdaniaGuesserService
     public function guessFormType(AbstractSprawozdanie $sprawozdanie): string
     {
         if ($sprawozdanie instanceof Sprawozdanie) {
-            return SprawozdanieType::class;
+            return SprawozdanieZalazkoweType::class;
         }
 
         if ($sprawozdanie instanceof SprawozdaniePozyczkowe) {

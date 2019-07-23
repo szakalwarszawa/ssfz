@@ -45,13 +45,6 @@ class AbstractSprawozdanieSpoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $czyPozyczkowy = false;
-        if (array_key_exists('program', $options)) {
-            if (null !== $options['program']) {
-                $czyPozyczkowy = ($options['program'])->czyFunduszPozyczkowy();
-            }
-        }
-
         $builder->add('nazwaFunduszu', TextType::class, [
             'label'       => 'Nazwa Funduszu (Nazwa instytucji prowadzącej fundusz pożyczkowy)',
             'required'    => false,
@@ -164,23 +157,19 @@ class AbstractSprawozdanieSpoType extends AbstractType
             )
         );
 
-        $builder->add(
-            'budynek',
-            TextType::class,
-            array(
-                'label' => 'Nr budynku',
-                'required' => false,
-                'attr' => array(
-                    'placeholder' => 'nr budynku',
-                    'maxlength' => 10,
-                ),
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Należy wypełnić pole',
-                    ]),
-                ],
-            )
-        );
+        $builder->add('budynek', TextType::class, [
+            'label'       => 'Nr budynku',
+            'required'    => false,
+            'attr'        => [
+                'placeholder' => 'nr budynku',
+                'maxlength'   => 10,
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
         $builder->add(
             'lokal',
@@ -218,23 +207,19 @@ class AbstractSprawozdanieSpoType extends AbstractType
             ],
         ]);
 
-        $builder->add(
-            'poczta',
-            TextType::class,
-            array(
-                'label' => 'Poczta',
-                'required' => false,
-                'attr' => array(
-                    'placeholder' => 'poczta',
-                    'maxlength' => 100,
-                ),
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Należy wypełnić pole',
-                    ]),
-                ],
-            )
-        );
+        $builder->add('poczta', TextType::class, [
+            'label'       => 'Poczta',
+            'required'    => false,
+            'attr'        => [
+                'placeholder' => 'poczta',
+                'maxlength'   => 100,
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
         $builder->add('telStacjonarny', TextType::class, [
             'label'       => 'Telefon stacjonarny',
@@ -250,39 +235,31 @@ class AbstractSprawozdanieSpoType extends AbstractType
             ],
         ]);
 
-        $builder->add(
-            'telKomorkowy',
-            TextType::class,
-            array(
-                'label' => 'Telefon komórkowy',
-                'required' => false,
-                'attr' => array(
-                    'placeholder' => 'nr tel.',
-                    'maxlength' => 15,
-                ),
-            )
-        );
+        $builder->add('telKomorkowy', TextType::class, [
+            'label'    => 'Telefon komórkowy',
+            'required' => false,
+            'attr'     => [
+                'placeholder' => 'nr tel.',
+                'maxlength'   => 15,
+            ],
+        ]);
 
-        $builder->add(
-            'email',
-            TextType::class,
-            array(
-                'label' => 'Adres e-mail',
-                'required' => false,
-                'attr' => array(
-                    'placeholder' => 'e-mail',
-                    'maxlength' => 250,
-                ),
-                'constraints' => array(
-                    new NotBlank(
-                        array('message' => 'Należy wypełnić pole')
-                    ),
-                    new Email(
-                        array('message' => 'Nieprawidłowy format e-mail')
-                    )
-                )
-            )
-        );
+        $builder->add('email', TextType::class, [
+            'label'       => 'Adres e-mail',
+            'required'    => false,
+            'attr'        => [
+                'placeholder' => 'e-mail',
+                'maxlength'   => 250,
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+                new Email([
+                    'message' => 'Nieprawidłowy format e-mail',
+                ]),
+            ],
+        ]);
 
         $builder->add(
             'fax',
@@ -343,76 +320,11 @@ class AbstractSprawozdanieSpoType extends AbstractType
             )
         );
 
-        $label = $czyPozyczkowy
-            ? 'Data zatwierdzenia zasad gospodarowania funduszem pożyczkowym przez PARP'
-            : 'Data zatwierdzenia zasad gospodarowania funduszem poręczeniowym przez PARP'
-        ;
-        $builder->add(
-            'dataZatwierdzeniaZasadGospodarowania',
-            DateType::class,
-            [
-                'label'      => $label,
-                'required' => false,
-                'html5'      => false,
-                'widget'     => 'single_text',
-                'format'     => 'yyyy-MM-dd',
-                    'mapped' => true,
-                'attr' => array(
-                    'class' => 'js-datepicker width-date',
-                    'data-provide' => 'datepicker',
-                    'data-date-format' => 'yyyy-mm-dd'
-                ),
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Należy wypełnić pole',
-                    ]),
-                ],
-            ]
-        );
-
         $builder->add('czyNieDzialaDlaZysku', EntityType::class, [
             'label'       => 'Fundusz nie działa dla zysku',
             'class'       => TakNie::class,
             'required'    => false,
             'expanded'    => true,
-            'placeholder' => false,
-            'constraints' => [
-                new NotBlank([
-                    'message' => 'Należy wypełnić pole',
-                ]),
-            ],
-        ]);
-
-        $label = $czyPozyczkowy
-            ? 'Fundusz udziela pożyczek po analizie ryzyka niespłacenia i po ustanowieniu zabezpieczenia'
-            : 'Poręczenia są udzielane po przeprowadzeniu analizy ryzyka'
-        ;
-        $builder->add(
-            'czyUdzielaPoAnalizieRyzyka',
-            EntityType::class,
-            array(
-                'label'     => $label,
-                'class'     => TakNie::class,
-                'required'  => false,
-                'expanded' => true,
-                'placeholder' => false,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Należy wypełnić pole',
-                    ]),
-                ],
-            )
-        );
-
-        $label = $czyPozyczkowy
-            ? 'Pożyczki udzielane są przedsiębiorcom nie będącym w trudniej sytuacji'
-            : 'Poręczenia udzielane są przedsiębiorcom nie będącym w trudniej sytuacji'
-        ;
-        $builder->add('czyNieWTrudnejSytuacji', EntityType::class, [
-            'label'     => $label,
-            'class'     => TakNie::class,
-            'required'  => false,
-            'expanded' => true,
             'placeholder' => false,
             'constraints' => [
                 new NotBlank([
@@ -474,7 +386,6 @@ class AbstractSprawozdanieSpoType extends AbstractType
             'data_class'         => AbstractSprawozdanieSpo::class,
             'allow_extra_fields' => true,
             'lata'               => null,
-            'program'            => null,
             'showRemarks'        => null,
             'attr'               => [
                 'novalidate' => 'novalidate',

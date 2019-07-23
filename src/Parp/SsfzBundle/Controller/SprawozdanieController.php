@@ -23,7 +23,7 @@ use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
 use Parp\SsfzBundle\Entity\PrzeplywFinansowy;
 use Parp\SsfzBundle\Entity\OkresyKonfiguracja;
 use Parp\SsfzBundle\Exception\PublicVisibleExcpetion;
-use Parp\SsfzBundle\Form\Type\SprawozdanieType;
+use Parp\SsfzBundle\Form\Type\SprawozdanieZalazkoweType;
 use Parp\SsfzBundle\Form\Type\SprawozdaniePozyczkoweType;
 use Parp\SsfzBundle\Form\Type\SprawozdaniePoreczenioweType;
 use Parp\SsfzBundle\Form\Type\DodanieSprawozdaniaSpoType;
@@ -63,7 +63,7 @@ class SprawozdanieController extends Controller
         $report = $this->setSpolki($spolki, $report);
         $okresy = $this->getOkresySprawozdawcze();
 
-        $form = $this->createForm(SprawozdanieType::class, $report, [
+        $form = $this->createForm(SprawozdanieZalazkoweType::class, $report, [
             'lata'    => $okresy,
             'program' => $program,
         ]);
@@ -137,7 +137,7 @@ class SprawozdanieController extends Controller
             ->checkSprawozdaniePermission($report, $beneficjentId)
         ;
         $okresy = $this->getOkresySprawozdawcze();
-        $form = $this->createForm(SprawozdanieType::class, $report, [
+        $form = $this->createForm(SprawozdanieZalazkoweType::class, $report, [
             'read_only' => true,
             'lata'      => $okresy,
             'program'   => $report->getUmowa()->getBeneficjent()->getProgram(),
@@ -181,7 +181,7 @@ class SprawozdanieController extends Controller
             $report = $this->setSpolki($spolki, $report);
         }
 
-        $form = $this->createForm(SprawozdanieType::class, $report, [
+        $form = $this->createForm(SprawozdanieZalazkoweType::class, $report, [
             'lata'    => $okresy,
             'program' => $report->getUmowa()->getBeneficjent()->getProgram(),
         ]);
@@ -294,7 +294,6 @@ class SprawozdanieController extends Controller
         $form = $this->createForm($formTypeClass, $report, [
             'showRemarks' => true,
             'lata'        => $okresy,
-            'program'     => $program,
         ]);
 
         $form->handleRequest($request);

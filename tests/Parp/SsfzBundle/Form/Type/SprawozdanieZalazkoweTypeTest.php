@@ -10,12 +10,12 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Parp\SsfzBundle\Entity\SprawozdanieZalazkowe;
-use Parp\SsfzBundle\Form\Type\SprawozdanieType;
+use Parp\SsfzBundle\Form\Type\SprawozdanieZalazkoweType;
 
 /**
- * Description of SprawozdanieTypeTest
+ * Description of SprawozdanieZalazkoweTypeTest
  */
-class SprawozdanieTypeTest extends TypeTestCase
+class SprawozdanieZalazkoweTypeTest extends TypeTestCase
 {
     /**
      * Dodaje rozszerzenia formularzy
@@ -55,7 +55,7 @@ class SprawozdanieTypeTest extends TypeTestCase
             'rok'        => 2016,
             'uwagi'      => 'uwagi',
         ];
-        $form = $this->factory->create(SprawozdanieType::class, null, [
+        $form = $this->factory->create(SprawozdanieZalazkoweType::class, null, [
             'lata' => [
                 '2016' => '2016',
                 '2017' => '2017',

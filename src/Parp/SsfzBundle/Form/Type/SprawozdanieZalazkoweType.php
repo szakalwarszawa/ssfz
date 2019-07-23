@@ -23,7 +23,7 @@ use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
 /**
  * Typ formularza sprawozdania
  */
-class SprawozdanieType extends AbstractType
+class SprawozdanieZalazkoweType extends AbstractType
 {
     /**
      * Buduje formularz do wypełniania sprawozdania
@@ -121,7 +121,6 @@ class SprawozdanieType extends AbstractType
             'showRemarks'        => null,
             'lata'               => null,
             'allow_extra_fields' => true,
-            'program'            => null,
         ]);
     }
 }
