@@ -5,7 +5,7 @@ namespace Parp\SsfzBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * GospodarkaDzialRepository
+ * Repozytorium GospodarkaDzialRepository.
  */
 class GospodarkaDzialRepository extends EntityRepository
 {

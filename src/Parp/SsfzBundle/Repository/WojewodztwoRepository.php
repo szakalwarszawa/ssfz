@@ -5,7 +5,7 @@ namespace Parp\SsfzBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * WojewodztwoRepository
+ * Repozytorium WojewodztwoRepository.
  */
 class WojewodztwoRepository extends EntityRepository
 {

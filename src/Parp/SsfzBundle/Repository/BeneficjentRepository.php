@@ -8,7 +8,7 @@ use Parp\SsfzBundle\Entity\Beneficjent;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * BeneficjentRepository
+ * Repozytorium BeneficjentRepository.
  */
 class BeneficjentRepository extends EntityRepository
 {

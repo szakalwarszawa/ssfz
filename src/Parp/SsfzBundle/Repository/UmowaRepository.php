@@ -5,7 +5,7 @@ namespace Parp\SsfzBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * UmowaRepository
+ * Repozytorium UmowaRepository.
  */
 class UmowaRepository extends EntityRepository
 {

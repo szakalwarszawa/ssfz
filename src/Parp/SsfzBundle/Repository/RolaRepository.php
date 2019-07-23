@@ -5,7 +5,7 @@ namespace Parp\SsfzBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * RolaRepository
+ * Repozytorium RolaRepository.
  */
 class RolaRepository extends EntityRepository
 {

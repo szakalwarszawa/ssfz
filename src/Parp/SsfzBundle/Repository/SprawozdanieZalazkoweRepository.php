@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityRepository;
 use Parp\SsfzBundle\Entity\AbstractSprawozdanie;
 
 /**
- * Description of SprawozdanieZalazkoweRepository
+ * Repozytorium SprawozdanieZalazkoweRepository.
  */
 class SprawozdanieZalazkoweRepository extends EntityRepository
 {

@@ -5,7 +5,7 @@ namespace Parp\SsfzBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * BeneficjentFormaPrawnaRepository
+ * Repozytorium BeneficjentFormaPrawnaRepository.
  */
 class BeneficjentFormaPrawnaRepository extends EntityRepository
 {

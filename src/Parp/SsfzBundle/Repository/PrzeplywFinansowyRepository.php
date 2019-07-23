@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityRepository;
 use Parp\SsfzBundle\Entity\PrzeplywFinansowy;
 
 /**
- * Description of PrzeplywFinansowyRepository
+ * Repozytorium PrzeplywFinansowyRepository.
  */
 class PrzeplywFinansowyRepository extends EntityRepository
 {
