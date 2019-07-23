@@ -6,7 +6,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
-use Parp\SsfzBundle\Exception\KomunikatDlaBeneficjentaException;
+use Parp\SsfzBundle\Exception\PublicVisibleExcpetion;
 use Parp\SsfzBundle\Entity\Beneficjent;
 use Parp\SsfzBundle\Entity\Umowa;
 use Parp\SsfzBundle\Entity\Slownik\Program;
@@ -396,14 +396,14 @@ class Umowa
      *
      * @param Uzytkownik $uzytkownik
      *
-     * @throws KomunikatDlaBeneficjentaException
+     * @throws PublicVisibleExcpetion
      */
     public function sprawdzCzyUzytkownikMozeWyswietlac(Uzytkownik $uzytkownik)
     {
         $idWlasciciela = (int) $this->beneficjent->getUzytkownik()->getId();
 
         if ((int) $uzytkownik->getId() !== $idWlasciciela) {
-            throw new KomunikatDlaBeneficjentaException('Umowa należy do innego użytkownika.');
+            throw new PublicVisibleExcpetion('Umowa należy do innego użytkownika.');
         }
     }
 }

@@ -22,7 +22,7 @@ use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
 use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
 use Parp\SsfzBundle\Entity\PrzeplywFinansowy;
 use Parp\SsfzBundle\Entity\OkresyKonfiguracja;
-use Parp\SsfzBundle\Exception\KomunikatDlaBeneficjentaException;
+use Parp\SsfzBundle\Exception\PublicVisibleExcpetion;
 use Parp\SsfzBundle\Form\Type\SprawozdanieType;
 use Parp\SsfzBundle\Form\Type\SprawozdaniePozyczkoweType;
 use Parp\SsfzBundle\Form\Type\SprawozdaniePoreczenioweType;
@@ -1225,7 +1225,7 @@ class SprawozdanieController extends Controller
      * @param int $sprawozdanieId
      *
      * @throws InvalidArgumentException Jeśli typ sprawozdania nie jest obsługiwany
-     * @throws KomunikatDlaBeneficjentaException Jeśli nie znaleziono sprawozdania o zadanum ID
+     * @throws PublicVisibleExcpetion Jeśli nie znaleziono sprawozdania o zadanum ID
      *
      * @return AbstractSprawozdanie
      */
@@ -1248,7 +1248,7 @@ class SprawozdanieController extends Controller
         ;
         
         if (null === $sprawozdanie) {
-            throw new KomunikatDlaBeneficjentaException('Nie znaleziono sprawozdania o podanym ID.');
+            throw new PublicVisibleExcpetion('Nie znaleziono sprawozdania o podanym ID.');
         }
         
         return $sprawozdanie;

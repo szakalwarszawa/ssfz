@@ -9,7 +9,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Parp\SsfzBundle\Exception\KomunikatDlaBeneficjentaException;
+use Parp\SsfzBundle\Exception\PublicVisibleExcpetion;
 use Parp\SsfzBundle\Service\KomunikatyService;
 
 /**
@@ -80,7 +80,7 @@ class ExceptionListener implements EventSubscriberInterface
         $exception = $event->getException();
 
         switch (get_class($exception)) {
-            case KomunikatDlaBeneficjentaException::class:
+            case PublicVisibleExcpetion::class:
                 $komunikat = $exception->getMessage();
 
                 $route = 'beneficjent';
