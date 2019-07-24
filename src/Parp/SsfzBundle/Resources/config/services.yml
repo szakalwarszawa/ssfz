@@ -184,7 +184,7 @@ services:
             - '@ssfz.service.guesser.typ_sprawozdania'
 
     ssfz.service.object_cloner:
-        class: Parp\SsfzBundle\Service\ObjectCloner
+        class: Parp\SsfzBundle\Service\ObjectClonerService
         arguments:
             - '@doctrine.orm.entity_manager'
             - '@ssfz.service.guesser.typ_sprawozdania'
