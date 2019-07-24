@@ -288,26 +288,21 @@ class SprawozdanieController extends Controller
                         ->get('ssfz.service.komunikaty_service')
                         ->bladKomunikat('Formularz zawiera nieprawidłowe dane okresu sprawozdawczego.')
                     ;
-                    return $this->pokazFormularzRejestracji($form, 'edit', $umowaId);
+                } else {
+                    $entityManager->persist($newReport);
+                    $entityManager->flush();
+
+                    $this
+                        ->get('ssfz.service.komunikaty_service')
+                        ->sukcesKomunikat('Poprawa sprawozdania zakończyła się powodzeniem', 'Poprawa sprawozdania')
+                    ;
                 }
-
-                $entityManager->persist($newReport);
-                $entityManager->flush();
-
+            } else {
                 $this
                     ->get('ssfz.service.komunikaty_service')
-                    ->sukcesKomunikat('Poprawa sprawozdania zakończyła się powodzeniem', 'Poprawa sprawozdania')
+                    ->bladKomunikat('Formularz zawiera błędy.')
                 ;
-
-                return $this->redirectToRoute('sprawozdanie_rejestracja', [
-                    'umowaId' => (string) $umowaId,
-                ]);
-            } 
-
-            $this
-                ->get('ssfz.service.komunikaty_service')
-                ->bladKomunikat('Formularz zawiera błędy.')
-            ;
+            }
         }
 
         $typeGuesser = $this->get('ssfz.service.guesser.typ_sprawozdania');
