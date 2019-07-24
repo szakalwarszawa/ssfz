@@ -293,7 +293,7 @@ class AbstractSprawozdanieSpoType extends AbstractType
             )
         );
 
-        $builder->add('formaPrawna', EntityType::class, [
+        $builder->add('formaPrawnaFunduszu', EntityType::class, [
             'label'         => 'Forma prawna',
             'class'         => FormaPrawnaFunduszu::class,
             'choice_label'  => 'nazwa',
