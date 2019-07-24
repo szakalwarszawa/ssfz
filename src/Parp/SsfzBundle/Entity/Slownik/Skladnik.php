@@ -24,7 +24,7 @@ class Skladnik
     /**
      * @var string
      *
-     * @ORM\Column(name="nazwa", type="string", length=200)
+     * @ORM\Column(name="nazwa", type="string", length=200, unique=true))
      */
     protected $nazwa;
 

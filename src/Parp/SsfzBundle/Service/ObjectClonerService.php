@@ -19,7 +19,13 @@ use Parp\SsfzBundle\Entity\AbstractSprawozdanie;
 use Parp\SsfzBundle\Entity\SprawozdanieZalazkowe;
 use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
 use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
+use Parp\SsfzBundle\Entity\Slownik\FormaPrawna;
+use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
+use Parp\SsfzBundle\Entity\Slownik\Program;
+use Parp\SsfzBundle\Entity\Slownik\Skladnik;
 use Parp\SsfzBundle\Entity\Slownik\StatusSprawozdania;
+use Parp\SsfzBundle\Entity\Slownik\TakNie;
+use Parp\SsfzBundle\Entity\Slownik\Wojewodztwo;
 
 /**
  * Usługa klonująca obiekty oparta na bibliotece DeepCopy.
@@ -68,7 +74,9 @@ class ObjectClonerService
         $copier->addFilter(new SetNullFilter(), new PropertyNameMatcher('id'));
         $copier->addFilter(new KeepFilter(), new PropertyNameMatcher('umowa'));
         $copier->addFilter(new KeepFilter(), new PropertyNameMatcher('okres'));
-    //    $copier->addFilter(new KeepFilter(), new PropertyNameMatcher('okres'));
+
+        $copier->addFilter(new KeepFilter(), new PropertyTypeMatcher(Collection::class));
+        
     //    $copier->addFilter(new DoctrineCollectionFilter(), new PropertyTypeMatcher(Collection::class));
         $copy = $copier->copy($sprawozdanie);
 

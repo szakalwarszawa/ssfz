@@ -30,14 +30,14 @@ class TakNie
     /**
      * @var string
      *
-     * @ORM\Column(name="wartosc", type="text", nullable=false)
+     * @ORM\Column(name="wartosc", type="string", length=25, nullable=false, unique=true)
      */
     protected $wartosc;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="kod", type="text", nullable=false)
+     * @ORM\Column(name="kod", type="string", length=25, nullable=false, unique=true)
      */
     protected $kod;
 

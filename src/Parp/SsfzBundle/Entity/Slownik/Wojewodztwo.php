@@ -1,6 +1,6 @@
 <?php
 
-namespace Parp\SsfzBundle\Entity\Slownik;
+namespace Parp\SsfzBundle\Entity\Slownik\Wojewodztwo;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -27,7 +27,7 @@ class Wojewodztwo
     /**
      * @var string
      *
-     * @ORM\Column(name="nazwa", type="string", length=60)
+     * @ORM\Column(name="nazwa", type="string", length=60, unique=true))
      */
     protected $nazwa;
 
