@@ -3,11 +3,12 @@
 namespace Parp\SsfzBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\EntityNotFoundException;
 use Carbon\Carbon;
 use DeepCopy\DeepCopy;
 use DeepCopy\Matcher\PropertyMatcher;
@@ -215,13 +216,13 @@ class ParpController extends Controller
      */
     public function sprawozdanieAction($idUmowy, $idSprawozdania)
     {
-        $entityManager = $this->getDoctrine()->getManager();
-
-        $sprawozdanie = $this
-            ->get('ssfz.service.repository.sprawozdanie')
-            ->findByIdUmowyAndIdSprawozdania($idUmowy, $idSprawozdania)
-        ;
-        if (null === $sprawozdanie) {
+        try {
+            $report = $this
+                ->get('ssfz.service.podglad_sprawozdania')
+                ->findSprawozdanie($idUmowy, $idSprawozdania)
+                ->generujSprawozdanieSpo()
+            ;
+        } catch (EntityNotFoundException $exception) {
             $this
                 ->get('ssfz.service.komunikaty_service')
                 ->bladKomunikat('Nie znaleziono sprawozdania o podanym identyfikatorze.')
@@ -230,55 +231,7 @@ class ParpController extends Controller
             return $this->redirectToRoute('parp');
         }
 
-        $program = $sprawozdanie
-            ->getUmowa()
-            ->getBeneficjent()
-            ->getProgram()
-        ;
-
-        $sprawozdaniaSpolek = null;
-        $przeplywFinansowy = null;
-        if ($program->czyFunduszZalazkowy()) {
-            $przeplywFinansowy = $entityManager
-                ->getRepository(PrzeplywFinansowy::class)
-                ->findOneByIdSprawozdania($idSprawozdania)
-            ;
-            $sprawozdaniaSpolek = $entityManager
-                ->getRepository(SprawozdanieSpolki::class)
-                ->findByIdSprawozdania($idSprawozdania)
-            ;
-        }
-
-        $danePozyczek = null;
-        $danePozyczekZagregowane = null;
-        if ($program->czyFunduszPozyczkowy()) {
-            $danePozyczek = $entityManager
-                ->getRepository(DanePozyczek::class)
-                ->findOneByIdSprawozdania($idSprawozdania)
-            ;
-
-            $danePozyczekZagregowane = $entityManager
-                ->getRepository(DanePozyczek::class)
-                ->findDaneZagregowaneByIdSprawozdania($idSprawozdania)
-            ;
-        }
-
-        $danePoreczen = null;
-        if ($program->czyFunduszPoreczeniowy()) {
-            $danePoreczen = $entityManager
-                ->getRepository(DanePoreczen::class)
-                ->findOneByIdSprawozdania($idSprawozdania)
-            ;
-        }
-
-        return $this->render('SsfzBundle:Parp:sprawozdanie.html.twig', [
-            'sprawozdanie'              => $sprawozdanie,
-            'sprawozdania_spolek'       => $sprawozdaniaSpolek,
-            'przeplyw_finansowy'        => $przeplywFinansowy,
-            'dane_pozyczek'             => $danePozyczek,
-            'dane_pozyczek_zagregowane' => $danePozyczekZagregowane,
-            'dane_poreczen'             => $danePoreczen,
-        ]);
+        return new Response($report);
     }
 
     /**

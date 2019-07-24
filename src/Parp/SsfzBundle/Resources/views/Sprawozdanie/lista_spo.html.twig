@@ -53,7 +53,7 @@
                                 {% include 'SsfzBundle:Report:sprawozdanieStatus.html.twig' with {'dt_obj': sprawozdanie} %}
                             </td>
                             <td>
-                                <a href="{{ path('sprawozdania_spo_podglad', {'typSprawozdania': typ_sprawozdania, 'sprawozdanieId': sprawozdanie.id}) }}"
+                                <a href="{{ path('sprawozdania_spo_podglad', {'umowaId': umowa.id, 'sprawozdanieId': sprawozdanie.id}) }}"
                                    class="btn btn-sm btn-info"
                                    role="button"><span class="fas fa-eye"></span> Podgląd</a>
                                 {% if not sprawozdanie.dataPrzeslaniaDoParp %}

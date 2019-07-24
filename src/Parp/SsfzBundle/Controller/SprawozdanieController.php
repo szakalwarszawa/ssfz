@@ -131,18 +131,29 @@ class SprawozdanieController extends Controller
      */
     public function podgladAction($reportId)
     {
+        $report = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository(SprawozdanieZalazkowe::class)
+            ->find($reportId)
+        ;
+
         $beneficjentId = $this->getBeneficjentId();
-        $entityManager = $this->getDoctrine()->getManager();
-        $report = $entityManager->getRepository(SprawozdanieZalazkowe::class)->find($reportId);
         $this
             ->get('ssfz.service.sprawozdanie_service')
             ->checkSprawozdaniePermission($report, $beneficjentId)
         ;
+
         $okresy = $this->getOkresySprawozdawcze();
+        $program = $report
+            ->getUmowa()
+            ->getBeneficjent()
+            ->getProgram()
+        ;
         $form = $this->createForm(SprawozdanieZalazkoweType::class, $report, [
             'read_only' => true,
             'lata'      => $okresy,
-            'program'   => $report->getUmowa()->getBeneficjent()->getProgram(),
+            'program'   => $program,
         ]);
 
         return $this->pokazFormularzRejestracji($form, 'read', $report->getUmowaId());
@@ -786,47 +797,32 @@ class SprawozdanieController extends Controller
     /**
      * Podgląd sprawozdań SPO.
      *
-     * @Route("sprawozdania/spo/podglad/{typSprawozdania}/{sprawozdanieId}", name="sprawozdania_spo_podglad")
+     * @Route("sprawozdania/spo/podglad/{umowaId}/{sprawozdanieId}", name="sprawozdania_spo_podglad")
      *
-     * @param string $typSprawozdania
-     * ? int $sprawozdanieId
+     * @param int $umowaId
+     * @param int $sprawozdanieId
      *
      * @return Response
      */
-    public function podgladSpoAction(string $typSprawozdania, int $sprawozdanieId)
+    public function podgladSpoAction(int $umowaId, int $sprawozdanieId)
     {
-        $sprawozdanie = $this->znajdzSprawozdanie($typSprawozdania, $sprawozdanieId);
-        $sprawozdanie->sprawdzCzyUzytkownikMozeWyswietlac($this->getUser());
-        
-        $program = $sprawozdanie->getUmowa()->getBeneficjent()->getProgram();
-        $this->getUser()->setAktywnyProgram($program);
-
-        $typeGuesser = $this->get('ssfz.service.guesser.typ_sprawozdania');
-        $klasaFormularza = $typeGuesser->jestPozyczkowe($sprawozdanie)
-            ? SprawozdaniePozyczkoweType::class
-            : SprawozdaniePoreczenioweType::class
+        $sprawozdanie = $this
+            ->get('ssfz.service.repository.sprawozdanie')
+            ->findByIdUmowyAndIdSprawozdania($umowaId, $sprawozdanieId)
         ;
-
-        $form = $this->createForm($klasaFormularza, $sprawozdanie, [
-            'read_only' => true,
-        ]);
-
-        $typeGuesser = $this->get('ssfz.service.guesser.typ_sprawozdania');
-        if ($typeGuesser->jestPozyczkowe($sprawozdanie)) {
-            $template = 'SsfzBundle:Sprawozdanie:pozyczkowe.html.twig';
-        } else if ($typeGuesser->jestPoreczeniowe($sprawozdanie)) {
-            $template = 'SsfzBundle:Sprawozdanie:poreczeniowe.html.twig';
-        } else {
-            $message = 'Nieznany typ sprawozdania. Obsługiwane są tylko sprawozdanie poręczeniowe i pożyczkowe.';
-            throw new InvalidArgumentException($message);
+        if (null === $sprawozdanie) {
+            throw new EntityNotFoundException('Nie znaleziono zprawozdania.');
         }
 
-        return $this->render($template, [
-            'sprawozdanie'     => $sprawozdanie,
-            'typ_sprawozdania' => $typSprawozdania,
-            'tylkoDoOdczytu'   => true,
-            'form'             => $form->createView(),
-        ]);
+        $sprawozdanie->sprawdzCzyUzytkownikMozeWyswietlac($this->getUser());
+
+        $report = $this
+            ->get('ssfz.service.podglad_sprawozdania')
+            ->setSprawozdanie($sprawozdanie)
+            ->generujSprawozdanieSpo()
+        ;
+   
+        return new Response($report);
     }
 
     /**
@@ -901,7 +897,7 @@ class SprawozdanieController extends Controller
         if (null === $sprawozdanie) {
             throw new PublicVisibleExcpetion('Nie znaleziono sprawozdania o podanym ID.');
         }
-        
+
         return $sprawozdanie;
     }
 
@@ -933,7 +929,7 @@ class SprawozdanieController extends Controller
         ;
         $spolki = $entityManager
             ->getRepository(Spolka::class)
-            -> findNiezakonczoneByIdUmowy($umowaId)
+            ->findNiezakonczoneByIdUmowy($umowaId)
         ;
 
         $counter = 1;

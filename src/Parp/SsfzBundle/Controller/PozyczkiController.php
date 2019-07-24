@@ -154,7 +154,7 @@ class PozyczkiController extends Controller
 
         return $this->render('SsfzBundle:Report:dane_pozyczek.html.twig', [
             'dane_zagregowane' => $daneZagregowane,
-            'fluid_container' => false,
+            'fluid_container'  => false,
         ]);
     }
 

@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Parp\SsfzBundle\Entity\SprawozdanieInterface;
 use Parp\SsfzBundle\Entity\Slownik\FormaPrawnaFunduszu;
 use Parp\SsfzBundle\Entity\Slownik\TakNie;
 use Parp\SsfzBundle\Entity\Slownik\Wojewodztwo;
@@ -15,7 +16,7 @@ use Parp\SsfzBundle\Entity\Slownik\Wojewodztwo;
 /**
  * AbstractSprawozdanieSpo
  */
-class AbstractSprawozdanieSpo extends AbstractSprawozdanie
+class AbstractSprawozdanieSpo extends AbstractSprawozdanie implements SprawozdanieInterface
 {
     /**
      * Nazwa funduszu.

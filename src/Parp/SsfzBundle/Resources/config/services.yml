@@ -1,6 +1,6 @@
 services:
     app.twig_extension:
-        class: Parp\SsfzBundle\Twig\AppExtension
+        class: 'Parp\SsfzBundle\Twig\AppExtension'
         public: false
         arguments: 
             - '%kernel.root_dir%'
@@ -8,85 +8,85 @@ services:
             - { name: twig.extension }
 
     ssfz.repository.uzytkownik_repository:
-        class: Parp\SsfzBundle\Repository\UzytkownikRepository
+        class: 'Parp\SsfzBundle\Repository\UzytkownikRepository'
         factory: ['@doctrine', getRepository]
         arguments:
             - 'SsfzBundle:Uzytkownik'
 
     ssfz.repository.rola_repository:
-        class: Parp\SsfzBundle\Repository\RolaRepository
+        class: 'Parp\SsfzBundle\Repository\RolaRepository'
         factory: ['@doctrine', getRepository]
         arguments:
             - 'SsfzBundle:Rola'
 
     ssfz.repository.beneficjent_repository:
-        class: Parp\SsfzBundle\Repository\BeneficjentRepository
+        class: 'Parp\SsfzBundle\Repository\BeneficjentRepository'
         factory: ['@doctrine', getRepository]
         arguments:
             - 'SsfzBundle:Beneficjent'
 
     ssfz.repository.umowa_repository:
-        class: Parp\SsfzBundle\Repository\UmowaRepository
+        class: 'Parp\SsfzBundle\Repository\UmowaRepository'
         factory: ['@doctrine', getRepository]
         arguments:
             - 'SsfzBundle:Umowa'
  
     ssfz.repository.osoba_zatrudniona_repository:
-        class: Parp\SsfzBundle\Repository\OsobaZatrudnionaRepository
+        class: 'Parp\SsfzBundle\Repository\OsobaZatrudnionaRepository'
         factory: ['@doctrine', getRepository]
         arguments:
             - 'SsfzBundle:OsobaZatrudniona'
 
     ssfz.repository.beneficjent_forma_prawna_repository:
-        class: Parp\SsfzBundle\Repository\Slownik\FormaPrawnaBeneficjentaRepository
+        class: 'Parp\SsfzBundle\Repository\Slownik\FormaPrawnaBeneficjentaRepository'
         factory: ['@doctrine', getRepository]
         arguments:
             - 'Parp\SsfzBundle\Entity\Slownik\FormaPrawnaBeneficjenta'
 
     ssfz.repository.wojewodztwo_repository:
-        class: Parp\SsfzBundle\Repository\Slownik\WojewodztwoRepository
+        class: 'Parp\SsfzBundle\Repository\Slownik\WojewodztwoRepository'
         factory: ['@doctrine', getRepository]
         arguments:
             - 'Parp\SsfzBundle\Entity\Slownik\Wojewodztwo'
 
     ssfz.repository.gospodarka_dzial_repository:
-        class: Parp\SsfzBundle\Repository\GospodarkaDzialRepository
+        class: 'Parp\SsfzBundle\Repository\GospodarkaDzialRepository'
         factory: ['@doctrine', getRepository]
         arguments:
             - 'SsfzBundle:GospodarkaDzial'
 
     ssfz.repository.okresy_konfiguracja_repository:
-        class: Parp\SsfzBundle\Repository\OkresyKonfiguracjaRepository
+        class: 'Parp\SsfzBundle\Repository\OkresyKonfiguracjaRepository'
         factory: ['@doctrine', getRepository]
         arguments:
             - 'SsfzBundle:OkresyKonfiguracja'
  
     ssfz.repository.sprawozdanie_repository:
-        class: Parp\SsfzBundle\Repository\SprawozdanieZalazkoweRepository
+        class: 'Parp\SsfzBundle\Repository\SprawozdanieZalazkoweRepository'
         factory: ['@doctrine', getRepository]
         arguments:
             - 'SsfzBundle:Sprawozdanie'
  
     ssfz.service.uzytkownik_service:
-        class: Parp\SsfzBundle\Service\UzytkownikService
+        class: 'Parp\SsfzBundle\Service\UzytkownikService'
         arguments:
             - '@ssfz.repository.uzytkownik_repository'
             - '@ssfz.repository.rola_repository'
 
     ssfz.service.beneficjent_service:
-        class: Parp\SsfzBundle\Service\BeneficjentService
+        class: 'Parp\SsfzBundle\Service\BeneficjentService'
         arguments:
             - '@ssfz.repository.beneficjent_repository'
             - '@ssfz.repository.umowa_repository'
             - '@ssfz.repository.osoba_zatrudniona_repository'
 
     ssfz.service.osoba_zatrudniona_service:
-        class: Parp\SsfzBundle\Service\BeneficjentService
+        class: 'Parp\SsfzBundle\Service\BeneficjentService'
         arguments:
             - '@ssfz.repository.osoba_zatrudniona_repository'
 
     ssfz.service.narzedzia_service:
-        class: Parp\SsfzBundle\Service\NarzedziaService
+        class: 'Parp\SsfzBundle\Service\NarzedziaService'
         arguments:
             - '@doctrine.orm.entity_manager'
             - '@ssfz.repository.beneficjent_forma_prawna_repository'
@@ -94,33 +94,33 @@ services:
             - '@ssfz.repository.gospodarka_dzial_repository'
 
     ssfz.service.datatable_parp_service:
-        class: Parp\SsfzBundle\Service\DatatableParpService
+        class: 'Parp\SsfzBundle\Service\DatatableParpService'
         arguments:
             - '@ssfz.repository.okresy_konfiguracja_repository'
             - '@ssfz.service.wybor_programu'
             - '@datatable'
 
     ssfz.service.datatable_spolki_service:
-        class: Parp\SsfzBundle\Service\DatatableSpolkiService
+        class: 'Parp\SsfzBundle\Service\DatatableSpolkiService'
         
     ssfz.service.datatable_umowy_service:
-        class: Parp\SsfzBundle\Service\DatatableUmowyService
+        class: 'Parp\SsfzBundle\Service\DatatableUmowyService'
 
     ssfz.service.datatable_osoby_service:
-        class: Parp\SsfzBundle\Service\DatatableOsobyService
+        class: 'Parp\SsfzBundle\Service\DatatableOsobyService'
 
     ssfz.service.sprawozdanie_service:
-        class: Parp\SsfzBundle\Service\SprawozdanieService
+        class: 'Parp\SsfzBundle\Service\SprawozdanieService'
         arguments:
             - '@doctrine.orm.entity_manager'
 
     ssfz.service.komunikaty_service:
-        class: Parp\SsfzBundle\Service\KomunikatyService
+        class: 'Parp\SsfzBundle\Service\KomunikatyService'
         arguments:
             - '@session'
 
     ssfz.security.user.provider.custom_ldap_user_provider:
-        class: Parp\SsfzBundle\Security\User\Provider\CustomLdapUserProvider
+        class: 'Parp\SsfzBundle\Security\User\Provider\CustomLdapUserProvider'
         arguments:
             - '@ssfz.service.uzytkownik_service'
             - '@ldap'
@@ -132,20 +132,20 @@ services:
             - ({uid_key}={username})
 
     ssfz.service.ldap_data_service:
-        class: Parp\SsfzBundle\Service\LdapDataService
+        class: 'Parp\SsfzBundle\Service\LdapDataService'
         arguments:
             - '%ldap%'
             - '%ldap_uid_key%'
 
     ssfz.service.mailer_service:
-        class: Parp\SsfzBundle\Service\MailerService
+        class: 'Parp\SsfzBundle\Service\MailerService'
         arguments:
             - '%powiadomienie_nadawca%'
             - '@mailer'
             - '@twig'
             
     ssfz.service.jasperreports_service:
-        class: Parp\SsfzBundle\Service\JasperReportsService
+        class: 'Parp\SsfzBundle\Service\JasperReportsService'
         arguments:
             - '%jasper_host%'
             - '%jasper_user%'
@@ -154,8 +154,9 @@ services:
             - '%jasper_ssfz_report_path%'
 
     ssfz.service.rola_service:
-        class: Parp\SsfzBundle\Service\RolaService
-        arguments: ['@ssfz.repository.rola_repository']
+        class: 'Parp\SsfzBundle\Service\RolaService'
+        arguments: 
+            - '@ssfz.repository.rola_repository'
 
     ssfz.event_listener.exception_listener:
         class: 'Parp\SsfzBundle\EventListener\ExceptionListener'
@@ -168,23 +169,30 @@ services:
             - { name: kernel.event_subscriber }
 
     ssfz.service.guesser.typ_sprawozdania:
-        class: Parp\SsfzBundle\Service\TypSprawozdaniaGuesserService
+        class: 'Parp\SsfzBundle\Service\TypSprawozdaniaGuesserService'
 
     ssfz.service.wybor_programu:
-        class: Parp\SsfzBundle\Service\WyborProgramuService
+        class: 'Parp\SsfzBundle\Service\WyborProgramuService'
         shared: true
         arguments:
             - '@doctrine.orm.entity_manager'
             - '@session'
 
     ssfz.service.repository.sprawozdanie:
-        class: Parp\SsfzBundle\Repository\SprawozdanieRepository
+        class: 'Parp\SsfzBundle\Repository\SprawozdanieRepository'
         arguments:
             - '@doctrine.orm.entity_manager'
             - '@ssfz.service.guesser.typ_sprawozdania'
 
     ssfz.service.object_cloner:
-        class: Parp\SsfzBundle\Service\ObjectClonerService
+        class: 'Parp\SsfzBundle\Service\ObjectClonerService'
         arguments:
             - '@doctrine.orm.entity_manager'
             - '@ssfz.service.guesser.typ_sprawozdania'
+
+    ssfz.service.podglad_sprawozdania:
+        class: 'Parp\SsfzBundle\Service\PodgladSprawozdaniaService'
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@templating'
+            - '@ssfz.service.repository.sprawozdanie'

@@ -8,13 +8,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Parp\SsfzBundle\Exception\PublicVisibleExcpetion;
+use Parp\SsfzBundle\Entity\SprawozdanieInterface;
 use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
 use Parp\SsfzBundle\Entity\Slownik\StatusSprawozdania;
 
 /**
  * AbstractSprawozdanie
  */
-class AbstractSprawozdanie
+class AbstractSprawozdanie implements SprawozdanieInterface
 {
     /**
      * @var int
