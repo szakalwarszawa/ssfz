@@ -32,7 +32,7 @@ use Parp\SsfzBundle\Entity\DanePozyczek;
 use Parp\SsfzBundle\Entity\DanePoreczen;
 use Parp\SsfzBundle\Form\Type\SpolkaType;
 use Parp\SsfzBundle\Form\Type\SprawozdanieOcenType;
-use Parp\SsfzBundle\Form\Type\SprawozdanieType;
+use Parp\SsfzBundle\Form\Type\SprawozdanieZalazkoweType;
 use Parp\SsfzBundle\Form\Type\PrzeplywFinansowyType;
 
 /**

@@ -90,6 +90,16 @@ class SprawozdanieZalazkowe extends AbstractSprawozdanie
     }
 
     /**
+     * Zwraca liczbę sprawozdań spółek przypisanych do sprawozdania.
+     *
+     * @return int
+     */
+    public function countSprawozdaniaSpolek()
+    {
+        return count($this->sprawozdaniaSpolek);
+    }
+
+    /**
      * Dodaje do kolekcji sprawozdanie spółki.
      *
      * @param SprawozdanieSpolki $sprawozdanieSpolki

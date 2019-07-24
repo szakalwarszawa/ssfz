@@ -6,7 +6,7 @@ use Parp\SsfzBundle\Entity\SpolkaHistoriaZmian;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * HistoriaZmianRepository
+ * Repozytorium HistoriaZmianRepository.
  */
 class HistoriaZmianRepository extends EntityRepository
 {

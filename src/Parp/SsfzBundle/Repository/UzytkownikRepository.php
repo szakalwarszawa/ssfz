@@ -11,13 +11,12 @@ use Parp\SsfzBundle\Entity\Uzytkownik;
 use Parp\SsfzBundle\Entity\Rola;
 
 /**
- * UzytkownikRepository
+ * Repozytorium UzytkownikRepository.
  */
 class UzytkownikRepository extends EntityRepository implements UserProviderInterface
 {
-
     /**
-     * Dodanie nowego użytkownika do bazy danych
+     * Dodaje nowego użytkownika do bazy danych.
      *
      * @param Uzytkownik $user
      *
@@ -107,7 +106,7 @@ class UzytkownikRepository extends EntityRepository implements UserProviderInter
     {
         $user = $this->findBy(['login' => $username]);
         if (!$user) {
-            throw new UsernameNotFoundException('No user found for username ' . $username);
+            throw new UsernameNotFoundException('No user found for username '.$username);
         }
 
         return $user;

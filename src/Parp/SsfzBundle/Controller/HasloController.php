@@ -134,8 +134,7 @@ class HasloController extends Controller
     }
 
     /**
-     * Załadowanie serwisu MailerService
-     * odpowiedzialnego za wysyłkę powiadomień
+     * Załadowanie serwisu MailerService odpowiedzialnego za wysyłkę powiadomień
      *
      * @return MailerService
      */

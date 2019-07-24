@@ -5,16 +5,15 @@ namespace  Parp\SsfzBundle\Exception;
 use Exception;
 
 /**
- * Klasa wyjątku generowanego z klasy LdapDataServiceException
- *
+ * Wyjątek obsługi połączenia z LDAP.
  */
 class LdapDataServiceException extends Exception
 {
     /**
-     * Konstruktor
+     * Konstruktor.
      *
-     * @param string    $message  wiadomość powiązana z wyjątkiem
-     * @param integer   $code     kod wyjątku
+     * @param string $message
+     * @param int $code
      * @param Exception $previous
      */
     public function __construct($message = '', $code = 0, Exception $previous = null)

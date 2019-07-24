@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
-use Parp\SsfzBundle\Exception\KomunikatDlaBeneficjentaException;
+use Parp\SsfzBundle\Exception\PublicVisibleExcpetion;
 use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
 use Parp\SsfzBundle\Entity\Slownik\StatusSprawozdania;
 
@@ -567,13 +567,13 @@ class AbstractSprawozdanie
      *
      * @return bool
      *
-     * @throws KomunikatDlaBeneficjentaException
+     * @throws PublicVisibleExcpetion
      */
     public function sprawdzCzyUzytkownikMozeWyswietlac(Uzytkownik $uzytkownik): bool
     {
         $idWlasciciela = (int) $this->umowa->getBeneficjent()->getUzytkownik()->getId();
         if ((int) $uzytkownik->getId() !== $idWlasciciela) {
-            throw new KomunikatDlaBeneficjentaException('Nie można wyświetlić - sprawozdanie należy do innego użytkownika.');
+            throw new PublicVisibleExcpetion('Nie można wyświetlić - sprawozdanie należy do innego użytkownika.');
         }
 
         return true;
@@ -586,18 +586,18 @@ class AbstractSprawozdanie
      *
      * @return bool
      *
-     * @throws KomunikatDlaBeneficjentaException
+     * @throws PublicVisibleExcpetion
      */
     public function sprawdzCzyUzytkownikMozeEdytowac(Uzytkownik $uzytkownik)
     {
         $this->sprawdzCzyUzytkownikMozeWyswietlac($uzytkownik);
         
         if (!$this->czyNajnowsza) {
-            throw new KomunikatDlaBeneficjentaException('Nie można edytować starych kopii sprawozdań.');
+            throw new PublicVisibleExcpetion('Nie można edytować starych kopii sprawozdań.');
         }
         
         if (null !== $this->dataPrzeslaniaDoParp) {
-            throw new KomunikatDlaBeneficjentaException('Nie można edytować - sprawozdanie już przesłano do PARP.');
+            throw new PublicVisibleExcpetion('Nie można edytować - sprawozdanie już przesłano do PARP.');
         }
 
         return true;
@@ -610,18 +610,18 @@ class AbstractSprawozdanie
      *
      * @return bool
      *
-     * @throws KomunikatDlaBeneficjentaException
+     * @throws PublicVisibleExcpetion
      */
     public function sprawdzCzyUzytkownikMozePoprawiac(Uzytkownik $uzytkownik)
     {
         $this->sprawdzCzyUzytkownikMozeWyswietlac($uzytkownik);
         
         if (!$this->czyNajnowsza) {
-            throw new KomunikatDlaBeneficjentaException('Nie można poprawiać starych kopii sprawozdań.');
+            throw new PublicVisibleExcpetion('Nie można poprawiać starych kopii sprawozdań.');
         }
         
         if (StatusSprawozdania::POPRAWA !== $this->status) {
-            throw new KomunikatDlaBeneficjentaException('Nie można poprawiać - sprawozdanie już przesłano do PARP.');
+            throw new PublicVisibleExcpetion('Nie można poprawiać - sprawozdanie już przesłano do PARP.');
         }
 
         return true;

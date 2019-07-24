@@ -9,7 +9,7 @@ use Parp\SsfzBundle\Entity\SprawozdanieZalazkowe;
 use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
 use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
 use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
-use Parp\SsfzBundle\Form\Type\SprawozdanieType;
+use Parp\SsfzBundle\Form\Type\SprawozdanieZalazkoweType;
 use Parp\SsfzBundle\Form\Type\SprawozdaniePozyczkoweType;
 use Parp\SsfzBundle\Form\Type\SprawozdaniePoreczenioweType;
 
@@ -240,7 +240,7 @@ class Program
 
             case Program::FUNDUSZ_ZALAZKOWY_POIG_31:
             default:
-                return SprawozdanieType::class;
+                return SprawozdanieZalazkoweType::class;
         }
     }
 }

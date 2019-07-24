@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
@@ -19,94 +20,94 @@ class OsobaZatrudnionaType extends AbstractType
      * Buduje formularz do wypełnienia danych osoby zatrudnionej
      *
      * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param array $options
      *
      * @SuppressWarnings("unused")
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('imie', null, array(
-            'label' => 'Imię',
-            'constraints' => array(
-                new NotBlank(
-                    array('message' => 'Należy wypełnić pole')
-                )
-            )
-        ));
+        $builder->add('imie', TextType::class, [
+            'label'       => 'Imię',
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
-        $builder->add('nazwisko', null, array(
-            'label' => 'Nazwisko',
-            'constraints' => array(
-                new NotBlank(
-                    array('message' => 'Należy wypełnić pole')
-                )
-            )
-        ));
+        $builder->add('nazwisko', TextType::class, [
+            'label'       => 'Nazwisko',
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
-        $builder->add('umowaRodzaj', ChoiceType::class, array(
-            'choices' => array(
-                '' => '',
-                'na czas nieokreślony' => 'na czas nieokreślony',
-                'na czas określony' => 'na czas określony',
+        $builder->add('umowaRodzaj', ChoiceType::class, [
+            'choices' => [
+                ''                                     => '',
+                'na czas nieokreślony'                 => 'na czas nieokreślony',
+                'na czas określony'                    => 'na czas określony',
                 'na czas wykonywania określonej pracy' => 'na czas wykonywania określonej pracy',
-                'na okres próbny' => 'na okres próbny',
-            ),
-            'constraints' => array(
-                new NotBlank(
-                    array('message' => 'Należy wypełnić pole')
-                )
-            )
-        ));
+                'na okres próbny'                      => 'na okres próbny',
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
-        $builder->add('umowaData', DateTimeType::class, array(
-            'widget' => 'single_text',
-            'format' => 'yyyy-MM-dd',
-            'attr' => array(
-                'class' => 'js-datepicker',
-                'data-provide' => 'datepicker',
+        $builder->add('umowaData', DateTimeType::class, [
+            'widget'      => 'single_text',
+            'format'      => 'yyyy-MM-dd',
+            'attr'        => [
+                'class'            => 'js-datepicker',
+                'data-provide'     => 'datepicker',
                 'data-date-format' => 'yyyy-mm-dd'
-            ),
-            'label' => 'Data zawarcia umowy',
-            'constraints' => array(
-                new NotBlank(
-                    array('message' => 'Należy wypełnić pole')
-                )
-            )
-        ));
+            ],
+            'label'       => 'Data zawarcia umowy',
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
         $builder->add('rozpoczecieData', DateTimeType::class, array(
-            'widget' => 'single_text',
-            'format' => 'yyyy-MM-dd',
-            'attr' => array(
-                'class' => 'js-datepicker',
-                'data-provide' => 'datepicker',
+            'widget'      => 'single_text',
+            'format'      => 'yyyy-MM-dd',
+            'attr'        => [
+                'class'            => 'js-datepicker',
+                'data-provide'     => 'datepicker',
                 'data-date-format' => 'yyyy-mm-dd'
-            ),
-            'label' => 'Data rozpoczęcia pracy',
-            'constraints' => array(
-                new NotBlank(
-                    array('message' => 'Należy wypełnić pole')
-                )
-            )
+            ],
+            'label'       => 'Data rozpoczęcia pracy',
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
         ));
 
-        $builder->add('stanowisko', null, array(
-            'label' => 'Stanowisko',
-            'constraints' => array(
-                new NotBlank(
-                    array('message' => 'Należy wypełnić pole')
-                )
-            )
-        ));
+        $builder->add('stanowisko', TextType::class, [
+            'label'       => 'Stanowisko',
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
-        $builder->add('wymiar', null, array(
-            'label' => 'Wymiar etatu',
-            'constraints' => array(
-                new NotBlank(
-                    array('message' => 'Należy wypełnić pole')
-                )
-            )
-        ));
+        $builder->add('wymiar', TextType::class, [
+            'label'       => 'Wymiar etatu',
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
     }
 
     /**
@@ -116,8 +117,8 @@ class OsobaZatrudnionaType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => OsobaZatrudniona::class,
-        ));
+        ]);
     }
 }

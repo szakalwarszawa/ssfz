@@ -55,18 +55,21 @@ class PracownikParpRejestracjaType extends AbstractType
     {
         $ldapService = $options['ssfz.service.ldap_data_service'];
         $uzytkRepo = $options['uzytk_repo'];
+
         $builder->add('login', ChoiceType::class, [
-            'label' => 'Pracownik',
-            'choices' => $this->pobierzLoginyPracownikowParp($ldapService, $uzytkRepo),
+            'label'       => 'Pracownik',
+            'choices'     => $this->pobierzLoginyPracownikowParp($ldapService, $uzytkRepo),
             'constraints' => [
                 new NotBlank(),
                 new Length(['max' => '255']),
                 new Callback([
                     'callback' => function ($login, ExecutionContextInterface $context) use ($uzytkRepo) {
                         if ($uzytkRepo->loginIstnieje($login)) {
-                            $context->buildViolation('Użytkownik o podanym loginie został już dodany')
-                            ->atPath('login')
-                            ->addViolation();
+                            $context
+                                ->buildViolation('Użytkownik o podanym loginie został już dodany')
+                                ->atPath('login')
+                                ->addViolation()
+                            ;
                         }
                     }
                 ])

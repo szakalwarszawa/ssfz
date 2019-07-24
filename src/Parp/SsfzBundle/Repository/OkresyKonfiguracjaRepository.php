@@ -5,7 +5,7 @@ namespace Parp\SsfzBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * OkresyKonfiguracjaRepository
+ * Repozytorium OkresyKonfiguracjaRepository.
  */
 class OkresyKonfiguracjaRepository extends EntityRepository
 {
