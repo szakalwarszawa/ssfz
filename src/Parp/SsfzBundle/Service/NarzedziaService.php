@@ -3,11 +3,13 @@
 namespace Parp\SsfzBundle\Service;
 
 use Doctrine\ORM\EntityManager;
-use Parp\SsfzBundle\Entity\Slownik\FormaPrawna;
+use Parp\SsfzBundle\Entity\Slownik\FormaPrawnaFunduszu;
 use Parp\SsfzBundle\Repository\Slownik\WojewodztwoRepository;
 
 /**
- * Serwis obsługujący operacje pomocnicze
+ * Serwis obsługujący operacje pomocnicze.
+ *
+ * Klasa robi różne rzeczy w różnych miescach z różnych przyczyn. Enjoy!
  */
 class NarzedziaService
 {
@@ -17,9 +19,9 @@ class NarzedziaService
     protected $entityManager;
 
     /**
-     * Repozytorium encji BeneficjentFormaPrawna
+     * Repozytorium encji FormaPrawnaBeneficjenta
      *
-     * @var BeneficjentFormaPrawnaRepository
+     * @var FormaPrawnaBeneficjentaRepository
      */
     private $dictFormaRepo;
 
@@ -41,7 +43,7 @@ class NarzedziaService
      * Konstruktor parametryczny
      *
      * @param EntityManager $entityManager
-     * @param BeneficjentFormaPrawnaRepository $dictFormaRepo repozytorium BeneficjentFormaPrawnaRepository
+     * @param FormaPrawnaBeneficjentaRepository $dictFormaRepo repozytorium FormaPrawnaBeneficjentaRepository
      * @param WojewodztwoRepository $dictWojRepo repozytorium WojewodztwoRepository
      * @param GospodarkaDzialRepository $dictDzialRepo repozytorium GospodarkaDzialRepository
      *
@@ -61,7 +63,7 @@ class NarzedziaService
      * @param  string $sort
      * @return array
      */
-    public function getSlownikBeneficjentFormaPrawna($sort = null)
+    public function getSlownikFormaPrawnaBeneficjenta($sort = null)
     {
         if (!$sort) {
             return $this->dictFormaRepo->findBy(array(), array('id' => 'ASC'));
@@ -77,9 +79,9 @@ class NarzedziaService
      *
      * @return array
      */
-    public function getSlownikFormaPrawna($sort = null)
+    public function getSlownikFormaPrawnaFunduszu($sort = null)
     {
-        $repoFormaPrawna = $this->entityManager->getRepository(FormaPrawna::class);
+        $repoFormaPrawna = $this->entityManager->getRepository(FormaPrawnaFunduszu::class);
         
         if (!$sort) {
             return $repoFormaPrawna->findBy(array(), array('id' => 'ASC'));
@@ -119,11 +121,11 @@ class NarzedziaService
     }
 
     /**
-     * Zwraca repozytorium BeneficjentFormaPrawnaRepository
+     * Zwraca repozytorium FormaPrawnaBeneficjentaRepository
      *
-     * @return BeneficjentFormaPrawnaRepository
+     * @return FormaPrawnaBeneficjentaRepository
      */
-    public function getBeneficjentFormaPrawnaRepo()
+    public function getFormaPrawnaBeneficjentaRepo()
     {
         return $this->dictFormaRepo;
     }

@@ -1,17 +1,17 @@
 <?php
-namespace Parp\SsfzBundle\Entity;
+
+namespace Parp\SsfzBundle\Entity\Slownik;
 
 use Doctrine\ORM\Mapping as ORM;
 use Carbon\Carbon;
 
 /**
- * BeneficjentFormaPrawna
+ * FormaPrawna
  *
- * @ORM\Table(name="sfz_beneficjent_forma_prawna")
- * @ORM\Entity(repositoryClass="Parp\SsfzBundle\Repository\BeneficjentFormaPrawnaRepository")
- * @ORM\HasLifecycleCallbacks
+ * @ORM\Table(name="slownik_form_prawnych_funduszy")
+ * @ORM\Entity
  */
-class BeneficjentFormaPrawna
+class FormaPrawnaFunduszu
 {
     /**
      * @var int
@@ -25,9 +25,19 @@ class BeneficjentFormaPrawna
     /**
      * @var string
      *
-     * @ORM\Column(name="nazwa", type="string", length=200)
+     * @ORM\Column(name="nazwa", type="string", length=200, unique=true))
      */
     protected $nazwa;
+
+    /**
+     * Zwraca reprezentację tekstową obiektu.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->nazwa;
+    }
 
     /**
      * Get id

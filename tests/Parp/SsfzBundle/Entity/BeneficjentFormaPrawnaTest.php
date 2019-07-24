@@ -3,14 +3,12 @@
 namespace Test\Parp\SsfzBundle\Entity;
 
 use PHPUnit\Framework\TestCase;
-use Parp\SsfzBundle\Entity\BeneficjentFormaPrawna;
+use Parp\SsfzBundle\Entity\Slownik\FormaPrawnaBeneficjenta;
 
 /**
- * Test encji BeneficjentFormaPrawna
- *
- * @covers \Parp\SsfzBundle\Entity\BeneficjentFormaPrawna
+ * Test encji FormaPrawnaBeneficjenta
  */
-class BeneficjentFormaPrawnaTest extends TestCase
+class FormaPrawnaBeneficjentaTest extends TestCase
 {
     private $beneficjentFormaPrawna;
 
@@ -19,7 +17,7 @@ class BeneficjentFormaPrawnaTest extends TestCase
      */
     public function setUp()
     {
-        $this->beneficjentFormaPrawna = new BeneficjentFormaPrawna();
+        $this->beneficjentFormaPrawna = new FormaPrawnaBeneficjenta();
     }
 
     /**
@@ -27,7 +25,7 @@ class BeneficjentFormaPrawnaTest extends TestCase
      */
     public function testConstruct()
     {
-        $beneficjentFormaPrawna = new BeneficjentFormaPrawna();
+        $beneficjentFormaPrawna = new FormaPrawnaBeneficjenta();
         $this->assertNotNull($beneficjentFormaPrawna);
     }
 

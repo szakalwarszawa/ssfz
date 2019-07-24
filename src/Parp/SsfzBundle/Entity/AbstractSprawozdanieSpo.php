@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
-use Parp\SsfzBundle\Entity\Slownik\FormaPrawna;
+use Parp\SsfzBundle\Entity\Slownik\FormaPrawnaFunduszu;
 use Parp\SsfzBundle\Entity\Slownik\TakNie;
 use Parp\SsfzBundle\Entity\Slownik\Wojewodztwo;
 
@@ -158,7 +158,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
      *
      * @var FormaPrawna
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\FormaPrawna")
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\FormaPrawnaFunduszu")
      * @ORM\JoinColumn(name="forma_prawna_id", referencedColumnName="id", nullable=true)
      */
     protected $formaPrawna;
@@ -678,7 +678,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
      *
      * @return AbstractSprawozdanieSpo
      */
-    public function setFormaPrawna(FormaPrawna $formaPrawna = null)
+    public function setFormaPrawnaFunduszu(FormaPrawna $formaPrawna = null)
     {
         $this->formaPrawna = $formaPrawna;
 
@@ -690,7 +690,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
      *
      * @return FormaPrawna
      */
-    public function getFormaPrawna()
+    public function getFormaPrawnaFunduszu()
     {
         return $this->formaPrawna;
     }

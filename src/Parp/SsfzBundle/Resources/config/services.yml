@@ -38,16 +38,16 @@ services:
             - 'SsfzBundle:OsobaZatrudniona'
 
     ssfz.repository.beneficjent_forma_prawna_repository:
-        class: Parp\SsfzBundle\Repository\BeneficjentFormaPrawnaRepository
+        class: Parp\SsfzBundle\Repository\Slownik\FormaPrawnaBeneficjentaRepository
         factory: ['@doctrine', getRepository]
         arguments:
-            - 'SsfzBundle:BeneficjentFormaPrawna'
+            - 'Parp\SsfzBundle\Entity\Slownik\FormaPrawnaBeneficjenta'
 
     ssfz.repository.wojewodztwo_repository:
         class: Parp\SsfzBundle\Repository\Slownik\WojewodztwoRepository
         factory: ['@doctrine', getRepository]
         arguments:
-            - 'SsfzBundle:Wojewodztwo'
+            - 'Parp\SsfzBundle\Entity\Slownik\Wojewodztwo'
 
     ssfz.repository.gospodarka_dzial_repository:
         class: Parp\SsfzBundle\Repository\GospodarkaDzialRepository

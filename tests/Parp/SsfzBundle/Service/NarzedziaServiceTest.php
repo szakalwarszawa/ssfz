@@ -3,10 +3,10 @@
 namespace Test\Parp\SsfzBundle\Service;
 
 use PHPUnit\Framework\TestCase;
-use Parp\SsfzBundle\Entity\BeneficjentFormaPrawna;
+use Parp\SsfzBundle\Entity\Slownik\FormaPrawnaBeneficjenta;
 use Parp\SsfzBundle\Entity\Slownik\Wojewodztwo;
 use Parp\SsfzBundle\Entity\GospodarkaDzial;
-use Parp\SsfzBundle\Repository\BeneficjentFormaPrawnaRepository;
+use Parp\SsfzBundle\Repository\Slownik\FormaPrawnaBeneficjentaRepository;
 use Parp\SsfzBundle\Repository\Slownik\WojewodztwoRepository;
 use Parp\SsfzBundle\Repository\GospodarkaDzialRepository;
 use Parp\SsfzBundle\Service\NarzedziaService;
@@ -17,7 +17,7 @@ use Parp\SsfzBundle\Service\NarzedziaService;
 class NarzedziaServiceTest extends TestCase
 {
     /**
-     * @var BeneficjentFormaPrawnaRepository
+     * @var FormaPrawnaBeneficjentaRepository
      */
     private $dictFormaRepo;
 
@@ -37,12 +37,12 @@ class NarzedziaServiceTest extends TestCase
     public function setUp()
     {
         $this->dictFormaRepo = $this
-            ->getMockBuilder(BeneficjentFormaPrawnaRepository::class)
+            ->getMockBuilder(FormaPrawnaBeneficjentaRepository::class)
             ->disableOriginalConstructor()
             ->getMock()
         ;
 
-        $dict = new BeneficjentFormaPrawna();
+        $dict = new FormaPrawnaBeneficjenta();
         $this
             ->dictFormaRepo
             ->method('findBy')
@@ -84,13 +84,13 @@ class NarzedziaServiceTest extends TestCase
     }
 
     /**
-     * Testuje metodę getSlownikBeneficjentFormaPrawna
+     * Testuje metodę getSlownikFormaPrawnaBeneficjenta
      */
-    public function testGetSlownikBeneficjentFormaPrawna()
+    public function testGetSlownikFormaPrawnaBeneficjenta()
     {
-        $value = $this->service->getSlownikBeneficjentFormaPrawna();
+        $value = $this->service->getSlownikFormaPrawnaBeneficjenta();
         $this->assertNotNull($value);
-        $this->assertInstanceOf(BeneficjentFormaPrawna::class, $value);
+        $this->assertInstanceOf(FormaPrawnaBeneficjenta::class, $value);
     }
 
     /**
@@ -114,13 +114,13 @@ class NarzedziaServiceTest extends TestCase
     }
 
     /**
-     * Testuje metodę getBeneficjentFormaPrawnaRepo
+     * Testuje metodę getFormaPrawnaBeneficjentaRepo
      */
-    public function testGetBeneficjentFormaPrawnaRepo()
+    public function testGetFormaPrawnaBeneficjentaRepo()
     {
-        $repo = $this->service->getBeneficjentFormaPrawnaRepo();
+        $repo = $this->service->getFormaPrawnaBeneficjentaRepo();
         $this->assertNotNull($repo);
-        $this->assertInstanceOf(BeneficjentFormaPrawnaRepository::class, $repo);
+        $this->assertInstanceOf(FormaPrawnaBeneficjentaRepository::class, $repo);
     }
 
     /**

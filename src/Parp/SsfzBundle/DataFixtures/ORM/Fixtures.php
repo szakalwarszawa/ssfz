@@ -7,7 +7,7 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Parp\SsfzBundle\Entity\Rola;
 use Parp\SsfzBundle\Entity\Uzytkownik;
-use Parp\SsfzBundle\Entity\BeneficjentFormaPrawna;
+use Parp\SsfzBundle\Entity\Slownik\FormaPrawnaBeneficjenta;
 use Parp\SsfzBundle\Entity\Slownik\Wojewodztwo;
 use Parp\SsfzBundle\Entity\GospodarkaDzial;
 use Parp\SsfzBundle\Entity\Beneficjent;
@@ -225,7 +225,7 @@ class Fixtures implements FixtureInterface
         ];
 
         foreach ($beneficjentFormaPrawnaNames as $beneficjentFormaPrawnaName) {
-            $record = new BeneficjentFormaPrawna();
+            $record = new FormaPrawnaBeneficjenta();
             $record->setNazwa($beneficjentFormaPrawnaName);
             $manager->persist($record);
         }

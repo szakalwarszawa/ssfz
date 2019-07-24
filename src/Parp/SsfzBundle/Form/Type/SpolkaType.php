@@ -25,9 +25,9 @@ class SpolkaType extends AbstractType
      *
      * @return array
      */
-    private function getBeneficjentFormaPrawnaListaWartosci($narzedziaSvc)
+    private function getFormaPrawnaBeneficjentaListaWartosci($narzedziaSvc)
     {
-        $entityList = $narzedziaSvc->getSlownikBeneficjentFormaPrawna();
+        $entityList = $narzedziaSvc->getSlownikFormaPrawnaBeneficjenta();
         foreach ($entityList as $value) {
             $result[$value->getNazwa()]  = $value->getNazwa();
         }
@@ -96,7 +96,7 @@ class SpolkaType extends AbstractType
         $builder->add('forma', ChoiceType::class, array(
             'label' => 'Forma prawna',
             'placeholder' => '',
-            'choices' => $this->getBeneficjentFormaPrawnaListaWartosci($narzedziaSvc),
+            'choices' => $this->getFormaPrawnaBeneficjentaListaWartosci($narzedziaSvc),
             'constraints' => array(
                 new NotBlank(
                     array('message' => 'Należy wypełnić pole')

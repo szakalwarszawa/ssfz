@@ -3,7 +3,7 @@
 namespace Parp\SsfzBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Parp\SsfzBundle\Entity\Slownik\FormaPrawna;
+use Parp\SsfzBundle\Entity\Slownik\FormaPrawnaFunduszu;
 use Doctrine\Common\Collections\ArrayCollection;
 use Parp\SsfzBundle\Entity\Slownik\TakNie;
 use Parp\SsfzBundle\Entity\DanePoreczen;

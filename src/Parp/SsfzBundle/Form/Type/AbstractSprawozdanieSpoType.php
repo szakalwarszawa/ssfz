@@ -26,7 +26,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Parp\SsfzBundle\Entity\AbstractSprawozdanieSpo;
 use Parp\SsfzBundle\Entity\Slownik\Wojewodztwo;
-use Parp\SsfzBundle\Entity\Slownik\FormaPrawna;
+use Parp\SsfzBundle\Entity\Slownik\FormaPrawnaFunduszu;
 use Parp\SsfzBundle\Entity\Slownik\TakNie;
 use Parp\SsfzBundle\Constraints\Nip;
 
@@ -295,7 +295,7 @@ class AbstractSprawozdanieSpoType extends AbstractType
 
         $builder->add('formaPrawna', EntityType::class, [
             'label'         => 'Forma prawna',
-            'class'         => FormaPrawna::class,
+            'class'         => FormaPrawnaFunduszu::class,
             'choice_label'  => 'nazwa',
             'required'      => false,
             'placeholder'   => '',
