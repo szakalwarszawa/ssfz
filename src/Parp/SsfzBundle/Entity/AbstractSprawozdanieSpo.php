@@ -186,7 +186,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
      *
      * @var TakNie
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie")
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie", cascade={"persist"})
      * @ORM\JoinColumn(name="czy_nie_dziala_dla_zysku", referencedColumnName="id", nullable=true)
      */
     protected $czyNieDzialaDlaZysku;
@@ -196,7 +196,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
      *
      * @var TakNie
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie")
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie", cascade={"persist"})
      * @ORM\JoinColumn(name="czy_udziela_po_analizie_ryzyka", referencedColumnName="id", nullable=true)
      */
     protected $czyUdzielaPoAnalizieRyzyka;
@@ -215,7 +215,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
      *
      * @var TakNie
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie")
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie", cascade={"persist"})
      * @ORM\JoinColumn(name="czy_nie_w_trudnej_sytuacji", referencedColumnName="id", nullable=true)
      */
     protected $czyNieWTrudnejSytuacji;
@@ -225,7 +225,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
      *
      * @var TakNie
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie")
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie", cascade={"persist"})
      * @ORM\JoinColumn(name="czy_odpowiedni_potencjal_ekonomiczny", referencedColumnName="id", nullable=true)
      */
     protected $czyOdpowiedniPotencjalEkonomiczny;
@@ -235,7 +235,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
      *
      * @var TakNie
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie")
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie", cascade={"persist"})
      * @ORM\JoinColumn(name="czy_pracownicy_posiadaja_kwalifikacje", referencedColumnName="id", nullable=true)
      */
     protected $czyPracownicyPosiadajaKwalifikacje;
