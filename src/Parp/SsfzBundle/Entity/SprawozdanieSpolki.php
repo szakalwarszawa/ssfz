@@ -473,7 +473,7 @@ class SprawozdanieSpolki
      * Ustawia $sumaBilansowa
      *
      * @param float $sumaBilansowa
-     * 
+     *
      * @return SprawozdanieSpolki
      */
     public function setSumaBilansowa($sumaBilansowa)
@@ -487,7 +487,7 @@ class SprawozdanieSpolki
      * Ustawia $zatrudnienieEtaty
      *
      * @param int $zatrudnienieEtaty
-     * 
+     *
      * @return SprawozdanieSpolki
      */
     public function setZatrudnienieEtaty($zatrudnienieEtaty)

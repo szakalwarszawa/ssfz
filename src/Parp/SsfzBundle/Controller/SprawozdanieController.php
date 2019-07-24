@@ -844,10 +844,10 @@ class SprawozdanieController extends Controller
         $sprawozdanie->sprawdzCzyUzytkownikMozeEdytowac($this->getUser());
         $sprawozdanie
             ->setStatus(StatusSprawozdania::PRZESLANO_DO_PARP)
-           ->setDataPrzeslaniaDoParp(new DateTime())
+            ->setDataPrzeslaniaDoParp(new DateTime())
         ;
         
-        $entityManager = $this
+        $this
             ->getDoctrine()
             ->getManager()
             ->flush()
