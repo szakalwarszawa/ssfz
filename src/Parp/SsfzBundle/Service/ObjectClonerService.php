@@ -20,6 +20,7 @@ use Parp\SsfzBundle\Entity\SprawozdanieZalazkowe;
 use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
 use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
 use Parp\SsfzBundle\Entity\Slownik\FormaPrawnaFunduszu;
+use Parp\SsfzBundle\Entity\Slownik\FormaPrawnaBeneficjenta;
 use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
 use Parp\SsfzBundle\Entity\Slownik\Program;
 use Parp\SsfzBundle\Entity\Slownik\Skladnik;
@@ -75,9 +76,17 @@ class ObjectClonerService
         $copier->addFilter(new KeepFilter(), new PropertyNameMatcher('umowa'));
         $copier->addFilter(new KeepFilter(), new PropertyNameMatcher('okres'));
 
-        $copier->addFilter(new KeepFilter(), new PropertyTypeMatcher(Collection::class));
-        
-    //    $copier->addFilter(new DoctrineCollectionFilter(), new PropertyTypeMatcher(Collection::class));
+        $copier->addFilter(new KeepFilter(), new PropertyTypeMatcher(FormaPrawnaFunduszu::class));
+        $copier->addFilter(new KeepFilter(), new PropertyTypeMatcher(FormaPrawnaBeneficjenta::class));
+        $copier->addFilter(new KeepFilter(), new PropertyTypeMatcher(OkresSprawozdawczy::class));
+        $copier->addFilter(new KeepFilter(), new PropertyTypeMatcher(Program::class));
+        $copier->addFilter(new KeepFilter(), new PropertyTypeMatcher(Skladnik::class));
+        $copier->addFilter(new KeepFilter(), new PropertyTypeMatcher(StatusSprawozdania::class));
+        $copier->addFilter(new KeepFilter(), new PropertyTypeMatcher(TakNie::class));
+        $copier->addFilter(new KeepFilter(), new PropertyTypeMatcher(Wojewodztwo::class));
+
+        $copier->addFilter(new DoctrineCollectionFilter(), new PropertyTypeMatcher(Collection::class));
+
         $copy = $copier->copy($sprawozdanie);
 
         if (false === (bool) $sprawozdanie->getCzyNajnowsza()) {
