@@ -72,7 +72,7 @@ class ObjectClonerService
         $copy = $copier->copy($sprawozdanie);
 
         if (false === (bool) $sprawozdanie->getCzyNajnowsza()) {
-            throw new InvalidArgumentException('Prawie podlega jedynie najnowsza wersja sprawozdania.');
+            throw new InvalidArgumentException('Poprawie podlega jedynie najnowsza wersja sprawozdania.');
         }
         $sprawozdanie->setCzyNajnowsza(false);
 

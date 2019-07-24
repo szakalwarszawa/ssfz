@@ -43,7 +43,7 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
      *
      * @var TakNie
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie")
      * @ORM\JoinColumn(
      *     name="czy_posiada_wydzielony_fundusz",
      *     referencedColumnName="id",
@@ -57,7 +57,7 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
      *
      * @var bool
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie")
      * @ORM\JoinColumn(
      *     name="czy_procent_nie_nizszy_od_stopy",
      *     referencedColumnName="id",
@@ -71,7 +71,7 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
      *
      * @var bool
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie")
      * @ORM\JoinColumn(
      *     name="czy_za_wynagrodzeniem",
      *     referencedColumnName="id",
@@ -84,7 +84,7 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
      *
      * @var bool
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\TakNie")
      * @ORM\JoinColumn(
      *     name="czy_nie_przekraczaja_80_procent",
      *     referencedColumnName="id",
