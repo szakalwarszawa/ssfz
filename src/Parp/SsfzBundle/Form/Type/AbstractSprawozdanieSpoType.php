@@ -386,6 +386,7 @@ class AbstractSprawozdanieSpoType extends AbstractType
             'attr'               => [
                 'novalidate' => 'novalidate',
             ],
+            'program'           => null,
         ]);
     }
 }
