@@ -76,14 +76,19 @@ class ObjectClonerService
         $copier->addFilter(new KeepFilter(), new PropertyNameMatcher('umowa'));
         $copier->addFilter(new KeepFilter(), new PropertyNameMatcher('okres'));
 
-        $copier->addFilter(new KeepFilter(), new PropertyTypeMatcher(FormaPrawnaFunduszu::class));
-        $copier->addFilter(new KeepFilter(), new PropertyTypeMatcher(FormaPrawnaBeneficjenta::class));
-        $copier->addFilter(new KeepFilter(), new PropertyTypeMatcher(OkresSprawozdawczy::class));
-        $copier->addFilter(new KeepFilter(), new PropertyTypeMatcher(Program::class));
-        $copier->addFilter(new KeepFilter(), new PropertyTypeMatcher(Skladnik::class));
-        $copier->addFilter(new KeepFilter(), new PropertyTypeMatcher(StatusSprawozdania::class));
-        $copier->addFilter(new KeepFilter(), new PropertyTypeMatcher(TakNie::class));
-        $copier->addFilter(new KeepFilter(), new PropertyTypeMatcher(Wojewodztwo::class));
+        $keepUnchangedByType = [
+            FormaPrawnaFunduszu::class,
+            FormaPrawnaBeneficjenta::class,
+            OkresSprawozdawczy::class,
+            Program::class,
+            Skladnik::class,
+            StatusSprawozdania::class,
+            TakNie::class,
+            Wojewodztwo::class,
+        ];
+        foreach ($keepUnchangedByType as $type) {
+            $copier->addFilter(new KeepFilter(), new PropertyTypeMatcher($type));
+        }
 
         $copier->addFilter(new DoctrineCollectionFilter(), new PropertyTypeMatcher(Collection::class));
 
