@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Parp\SsfzBundle\Entity\Slownik\FormaPrawna;
 use Parp\SsfzBundle\Entity\Slownik\TakNie;
+use Parp\SsfzBundle\Entity\Slownik\Wojewodztwo;
 
 /**
  * AbstractSprawozdanieSpo
@@ -48,7 +49,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
      *
      * @var Wojewodztwo
      *
-     * @ORM\ManyToOne(targetEntity="Wojewodztwo")
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\Wojewodztwo", cascade={"persist"})
      * @ORM\JoinColumn(name="wojewodztwo_id", referencedColumnName="id", nullable=true)
      */
     protected $wojewodztwo;

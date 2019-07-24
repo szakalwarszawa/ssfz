@@ -1,6 +1,6 @@
 <?php
 
-namespace Parp\SsfzBundle\Entity;
+namespace Parp\SsfzBundle\Entity\Slownik;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Wojewodztwo
  *
  * @ORM\Table(name="sfz_wojewodztwo")
- * @ORM\Entity(repositoryClass="Parp\SsfzBundle\Repository\WojewodztwoRepository")
+ * @ORM\Entity(repositoryClass="Parp\SsfzBundle\Repository\Slownik\WojewodztwoRepository")
  * @ORM\HasLifecycleCallbacks
  */
 class Wojewodztwo

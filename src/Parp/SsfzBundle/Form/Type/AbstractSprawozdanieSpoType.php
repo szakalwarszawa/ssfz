@@ -25,7 +25,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Parp\SsfzBundle\Entity\AbstractSprawozdanieSpo;
-use Parp\SsfzBundle\Entity\Wojewodztwo;
+use Parp\SsfzBundle\Entity\Slownik\Wojewodztwo;
 use Parp\SsfzBundle\Entity\Slownik\FormaPrawna;
 use Parp\SsfzBundle\Entity\Slownik\TakNie;
 use Parp\SsfzBundle\Constraints\Nip;
@@ -98,28 +98,24 @@ class AbstractSprawozdanieSpoType extends AbstractType
             ],
         ]);
 
-        $builder->add(
-            'wojewodztwo',
-            EntityType::class,
-            array(
-                'label'         => 'Województwo',
-                'class'         => Wojewodztwo::class,
-                'choice_label'  => 'nazwa',
-                'required'      => false,
-                'placeholder'   => '',
-                'query_builder' => function (EntityRepository $repository) {
-                    return $repository
-                        ->createQueryBuilder('w')
-                        ->orderBy('w.id', 'ASC')
-                    ;
-                },
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Należy wypełnić pole',
-                    ]),
-                ],
-            )
-        );
+        $builder->add('wojewodztwo', EntityType::class, [
+            'label'         => 'Województwo',
+            'class'         => Wojewodztwo::class,
+            'choice_label'  => 'nazwa',
+            'required'      => false,
+            'placeholder'   => '',
+            'query_builder' => function (EntityRepository $repository) {
+                return $repository
+                    ->createQueryBuilder('w')
+                    ->orderBy('w.id', 'ASC')
+                ;
+            },
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
         $builder->add(
             'miejscowosc',

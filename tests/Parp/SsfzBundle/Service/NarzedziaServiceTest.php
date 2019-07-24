@@ -4,32 +4,29 @@ namespace Test\Parp\SsfzBundle\Service;
 
 use PHPUnit\Framework\TestCase;
 use Parp\SsfzBundle\Entity\BeneficjentFormaPrawna;
-use Parp\SsfzBundle\Entity\Wojewodztwo;
+use Parp\SsfzBundle\Entity\Slownik\Wojewodztwo;
 use Parp\SsfzBundle\Entity\GospodarkaDzial;
 use Parp\SsfzBundle\Repository\BeneficjentFormaPrawnaRepository;
-use Parp\SsfzBundle\Repository\WojewodztwoRepository;
+use Parp\SsfzBundle\Repository\Slownik\WojewodztwoRepository;
 use Parp\SsfzBundle\Repository\GospodarkaDzialRepository;
 use Parp\SsfzBundle\Service\NarzedziaService;
 
 /**
  * Testuje klasę NarzedziaService
- *
- * @covers \Parp\SsfzBundle\Service\NarzedziaService
  */
 class NarzedziaServiceTest extends TestCase
 {
     /**
-     *
      * @var BeneficjentFormaPrawnaRepository
      */
     private $dictFormaRepo;
+
     /**
-     *
      * @var WojewodztwoRepository
      */
     private $dictWojRepo;
+
     /**
-     *
      * @var GospodarkaDzialRepository
      */
     private $dictDzialRepo;
@@ -42,12 +39,15 @@ class NarzedziaServiceTest extends TestCase
         $this->dictFormaRepo = $this
             ->getMockBuilder(BeneficjentFormaPrawnaRepository::class)
             ->disableOriginalConstructor()
-            ->getMock();
+            ->getMock()
+        ;
 
         $dict = new BeneficjentFormaPrawna();
-        $this->dictFormaRepo
+        $this
+            ->dictFormaRepo
             ->method('findBy')
-            ->will($this->returnValue($dict));
+            ->will($this->returnValue($dict))
+        ;
 
         $this->dictWojRepo = $this
             ->getMockBuilder(WojewodztwoRepository::class)
@@ -55,24 +55,30 @@ class NarzedziaServiceTest extends TestCase
             ->getMock();
 
         $dict = new Wojewodztwo();
-        $this->dictWojRepo
+        $this
+            ->dictWojRepo
             ->method('findBy')
-            ->will($this->returnValue($dict));
+            ->will($this->returnValue($dict))
+        ;
 
-        $this->dictDzialRepo= $this
+        $this->dictDzialRepo = $this
             ->getMockBuilder(GospodarkaDzialRepository::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $dict = new GospodarkaDzial();
-        $this->dictDzialRepo
+        $this
+            ->dictDzialRepo
             ->method('findBy')
-            ->will($this->returnValue($dict));
+            ->will($this->returnValue($dict))
+        ;
 
-        $this->okresyKonfiguracjaRepo= $this
+        $this
+            ->okresyKonfiguracjaRepo= $this
             ->getMockBuilder(OkresyKonfiguracjaRepository::class)
             ->disableOriginalConstructor()
-            ->getMock();
+            ->getMock()
+        ;
 
         $this->service = new NarzedziaService($this->dictFormaRepo, $this->dictWojRepo, $this->dictDzialRepo);
     }

@@ -4,6 +4,7 @@ namespace Parp\SsfzBundle\Service;
 
 use Doctrine\ORM\EntityManager;
 use Parp\SsfzBundle\Entity\Slownik\FormaPrawna;
+use Parp\SsfzBundle\Repository\Slownik\WojewodztwoRepository;
 
 /**
  * Serwis obsługujący operacje pomocnicze

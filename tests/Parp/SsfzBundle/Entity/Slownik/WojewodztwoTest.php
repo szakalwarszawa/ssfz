@@ -1,14 +1,12 @@
 <?php
 
-namespace Test\Parp\SsfzBundle\Entity;
+namespace Test\Parp\SsfzBundle\Entity\Slownik;
 
 use PHPUnit\Framework\TestCase;
-use Parp\SsfzBundle\Entity\Wojewodztwo;
+use Parp\SsfzBundle\Entity\Slownik\Wojewodztwo;
 
 /**
  * Test encji Wojewodztwo
- *
- * @covers \Parp\SsfzBundle\Entity\Wojewodztwo
  */
 class WojewodztwoTest extends TestCase
 {

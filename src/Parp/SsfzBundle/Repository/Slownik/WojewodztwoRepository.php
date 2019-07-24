@@ -1,6 +1,6 @@
 <?php
 
-namespace Parp\SsfzBundle\Repository;
+namespace Parp\SsfzBundle\Repository\Slownik;
 
 use Doctrine\ORM\EntityRepository;
 

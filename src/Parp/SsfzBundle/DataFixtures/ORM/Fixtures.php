@@ -3,18 +3,18 @@
 namespace Ssfz\DataFixtures\ORM;
 
 use DateTime;
+use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
 use Parp\SsfzBundle\Entity\Rola;
 use Parp\SsfzBundle\Entity\Uzytkownik;
 use Parp\SsfzBundle\Entity\BeneficjentFormaPrawna;
-use Parp\SsfzBundle\Entity\Wojewodztwo;
+use Parp\SsfzBundle\Entity\Slownik\Wojewodztwo;
 use Parp\SsfzBundle\Entity\GospodarkaDzial;
 use Parp\SsfzBundle\Entity\Beneficjent;
 use Parp\SsfzBundle\Entity\Umowa;
 use Parp\SsfzBundle\Entity\Spolka;
 use Parp\SsfzBundle\Entity\SprawozdanieZalazkowe;
 use Parp\SsfzBundle\Entity\OkresyKonfiguracja;
-use Doctrine\Common\DataFixtures\FixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
 use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
 
 /**
