@@ -49,6 +49,12 @@ class NumerUmowyValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
+        // Nie są walidowane puste wartości. Dla zabezpieczenia przez niewypełnieniem
+        // pola należy użyć sprawdzenia typu NotBlank() lub podobnego.
+        if ('' === trim((string) $value)) {
+            return true;
+        }
+
         $this->pattern = $this->getRegexp($constraint->program);
 
         $result = $this->sprawdzNumerUmowy($value);

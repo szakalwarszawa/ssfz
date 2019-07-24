@@ -34,8 +34,8 @@ class DodanieSprawozdaniaSpoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('numerUmowy', null, [
-            'label'       => 'Numer umowy',
-            'attr'        => [
+            'label' => 'Numer umowy',
+            'attr'  => [
                 'readonly' => true,
             ],
         ]);

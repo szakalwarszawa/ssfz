@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Parp\SsfzBundle\Constraints;
 
 use Symfony\Component\Validator\Constraint;
-use Parp\SsfzBundle\Constraints\NumerUmowyWalidator;
+use Parp\SsfzBundle\Constraints\NumerUmowyValidator;
 use Parp\SsfzBundle\Entity\Slownik\Program;
 
 /**

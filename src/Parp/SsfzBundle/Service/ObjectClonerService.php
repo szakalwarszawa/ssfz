@@ -68,7 +68,8 @@ class ObjectClonerService
         $copier->addFilter(new SetNullFilter(), new PropertyNameMatcher('id'));
         $copier->addFilter(new KeepFilter(), new PropertyNameMatcher('umowa'));
         $copier->addFilter(new KeepFilter(), new PropertyNameMatcher('okres'));
-        $copier->addFilter(new DoctrineCollectionFilter(), new PropertyTypeMatcher(Collection::class));
+    //    $copier->addFilter(new KeepFilter(), new PropertyNameMatcher('okres'));
+    //    $copier->addFilter(new DoctrineCollectionFilter(), new PropertyTypeMatcher(Collection::class));
         $copy = $copier->copy($sprawozdanie);
 
         if (false === (bool) $sprawozdanie->getCzyNajnowsza()) {
