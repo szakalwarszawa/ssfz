@@ -5,7 +5,9 @@ namespace Parp\SsfzBundle\Entity\Slownik;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Wojewodztwo
+ * Wojewodztwo.
+ *
+ * @todo Encja została zmieniona na "słownikową", ale tabela pozostała pod starą nazwą - zmienić przy okazji.
  *
  * @ORM\Table(name="sfz_wojewodztwo")
  * @ORM\Entity(repositoryClass="Parp\SsfzBundle\Repository\Slownik\WojewodztwoRepository")

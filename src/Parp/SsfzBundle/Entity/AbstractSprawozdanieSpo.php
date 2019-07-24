@@ -158,7 +158,7 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
      *
      * @var FormaPrawna
      *
-     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\FormaPrawna")
+     * @ORM\ManyToOne(targetEntity="Parp\SsfzBundle\Entity\Slownik\FormaPrawna", cascade={"persist"})
      * @ORM\JoinColumn(name="forma_prawna_id", referencedColumnName="id", nullable=true)
      */
     protected $formaPrawna;
