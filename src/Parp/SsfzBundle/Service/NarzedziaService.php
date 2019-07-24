@@ -43,9 +43,9 @@ class NarzedziaService
      * Konstruktor parametryczny
      *
      * @param EntityManager $entityManager
-     * @param FormaPrawnaBeneficjentaRepository $dictFormaRepo repozytorium FormaPrawnaBeneficjentaRepository
-     * @param WojewodztwoRepository $dictWojRepo repozytorium WojewodztwoRepository
-     * @param GospodarkaDzialRepository $dictDzialRepo repozytorium GospodarkaDzialRepository
+     * @param FormaPrawnaBeneficjentaRepository $dictFormaRepo
+     * @param WojewodztwoRepository $dictWojRepo
+     * @param GospodarkaDzialRepository $dictDzialRepo
      *
      * @todo A gdzię są typehinty?!
      */

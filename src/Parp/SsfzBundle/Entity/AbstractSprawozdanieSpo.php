@@ -674,11 +674,11 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie
     /**
      * Set formaPrawna
      *
-     * @param FormaPrawna|null $formaPrawna
+     * @param FormaPrawnaFunduszu|null $formaPrawna
      *
      * @return AbstractSprawozdanieSpo
      */
-    public function setFormaPrawnaFunduszu(FormaPrawna $formaPrawna = null)
+    public function setFormaPrawnaFunduszu(FormaPrawnaFunduszu $formaPrawna = null)
     {
         $this->formaPrawna = $formaPrawna;
 
