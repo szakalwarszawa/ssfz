@@ -39,11 +39,9 @@
                {% endif %}
 
                {% if app.user and app.user.czyPracownikParp() %}
-                    {% set default_return_url = path('parp') %}
-                    {% set return_url = app.request.server.get('http-referer')|default(default_return_url) %}
+                    {% set return_url = path('parp') %}
                {% else %}
-                    {% set default_return_url = path('uzytkownik_lista_programow') %}
-                    {% set return_url = app.request.server.get('http-referer')|default(default_return_url) %}
+                    {% set return_url = path('beneficjent') %}
                {% endif %}
 
                <div class="pull-right">
