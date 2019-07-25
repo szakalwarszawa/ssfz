@@ -5,14 +5,14 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-        {% if tylkoDoOdczytu %}
-                Podgląd
-        {% elseif sprawozdanie.czyStatusWTrakciePoprawy %}
-                Poprawa
-        {% else %}
-            Edycja
-        {% endif %}
-        sprawozdania
+            {% if tylkoDoOdczytu %}
+                    Podgląd
+            {% elseif sprawozdanie.czyStatusWTrakciePoprawy %}
+                    Poprawa
+            {% else %}
+                Edycja
+            {% endif %}
+            sprawozdania
         </div>
             {{ form_start(form, {'attr': {'id': 'form_sprawozdanie'}}) }}
             <div class="panel-body">
@@ -32,6 +32,7 @@
                         </tr>
                     {% endif %}
                 </table>
+
                 <hr />
 
                 {% block bodyEdit %}{% endblock %}
@@ -47,8 +48,7 @@
                                 id="btn_powrot"
                                 type="button"
                                 class="btn btn-danger pull-right width-short"
-                                data-href-powrot="{{ path('lista_sprawozdan_spo', {'umowa': sprawozdanie.umowa.id}) }}"
-                            >
+                                data-href-powrot="{{ path('lista_sprawozdan_spo', {'umowa': sprawozdanie.umowa.id}) }}">
                                 <i class="fas fa-arrow-left"></i> Powrót
                             </button>
                             <input name="zapisz" value="Zapisz" type="submit" class="btn btn-primary pull-right width-short" />

@@ -38,8 +38,16 @@
                     {% include 'SsfzBundle:Sprawozdanie:dane_poreczen_odczyt.html.twig' with {'dane_poreczen': dane_poreczen} %}
                {% endif %}
 
+               {% if app.user and app.user.czyPracownikParp() %}
+                    {% set default_return_url = path('parp') %}
+                    {% set return_url = app.request.server.get('http-referer')|default(default_return_url) %}
+               {% else %}
+                    {% set default_return_url = path('uzytkownik_lista_programow') %}
+                    {% set return_url = app.request.server.get('http-referer')|default(default_return_url) %}
+               {% endif %}
+
                <div class="pull-right">
-                    <a href="{{ path('parp') }}"
+                    <a href="{{ return_url }}"
                     class="btn btn-danger pull-right"
                     role="button"><span class="fas fa-chevron-left"></span> Powrót</a>
                </div>
