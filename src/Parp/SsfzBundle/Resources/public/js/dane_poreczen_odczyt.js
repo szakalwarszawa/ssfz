@@ -36,6 +36,7 @@ $(document).ready(function () {
                 var txt;
 
                 txt = $(this).text();
+                txt = accounting.unformat(txt);
                 sum = sum + parseFloat(txt);
             });
             $('[data-vertical-group-sum='+value+']').text(sum);
