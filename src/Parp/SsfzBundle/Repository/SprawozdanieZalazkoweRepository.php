@@ -3,6 +3,7 @@
 namespace Parp\SsfzBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Parp\SsfzBundle\Entity\SprawozdanieInterface;
 use Parp\SsfzBundle\Entity\AbstractSprawozdanie;
 
 /**
@@ -77,5 +78,49 @@ class SprawozdanieZalazkoweRepository extends EntityRepository
         ;
 
         return (count($result) > 0) ? $result[0] : null;
+    }
+
+    /**
+     * Zwraca aktualne wersje sprawozdań (opcjonalnie zawężone do zadanej umowy i konta beneficjenta).
+     *
+     * @param int|null $idBeneficjenta
+     * @param int|null $idUmowy
+     *
+     * @return SprawozdanieInterface[]
+     */
+    public function findAktualneWersjeSprawozdanBeneficjenta(?int $idBeneficjenta = null, ?int $idUmowy = null): array
+    {
+        $query = $this
+            ->createQueryBuilder('s')
+            ->leftJoin('s.umowa', 'u')
+            ->where('s.czyNajnowsza = TRUE')
+        ;
+
+        if (null !== $idBeneficjenta) {
+            $query
+                ->andWhere('s.creatorId = :idBeneficjenta')
+                ->setParameter('idBeneficjenta', $idBeneficjenta)
+            ;
+        }
+
+        if (null !== $idUmowy) {
+            $query
+                ->andWhere('u.id = :idUmowy')
+                ->setParameter('idUmowy', $idUmowy)
+            ;
+        }
+
+        $query
+            ->orderBy('s.rok', 'ASC')
+            ->addOrderBy('s.okres', 'ASC')
+            ->addOrderBy('s.id', 'ASC')
+        ;
+
+        $result = $query
+            ->getQuery()
+            ->getResult()
+        ;
+
+        return $result;
     }
 }

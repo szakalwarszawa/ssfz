@@ -620,17 +620,18 @@ class SprawozdanieController extends Controller
     {
         $umowa->sprawdzCzyUzytkownikMozeWyswietlac($this->getUser());
         
-        $entityManager = $this->getDoctrine()->getManager();
-        $program = $umowa->getBeneficjent()->getProgram();
-        $this->getUser()->setAktywnyProgram($program);
-
-        $czyPozyczkowe = (Program::FUNDUSZ_POZYCZKOWY_SPO_WKP_121 === (int) $program->getId());
-
-        $sprawozdanie =
-            $czyPozyczkowe
-            ? new SprawozdaniePozyczkowe()
-            : new SprawozdaniePoreczeniowe()
+        $entityManager = $this
+            ->getDoctrine()
+            ->getManager()
         ;
+
+        $program = $umowa
+            ->getBeneficjent()
+            ->getProgram()
+        ;
+
+        $this->getUser()->setAktywnyProgram($program);
+        $sprawozdanie = $program->czyFunduszPozyczkowy() ? new SprawozdaniePozyczkowe() : new SprawozdaniePoreczeniowe();
         $sprawozdanie = $this->setDefaultValues($sprawozdanie, $umowa);
         $sprawozdanie->setNumerUmowy($umowa->getNumer());
         $okresy = $this->getOkresySprawozdawcze();
@@ -638,9 +639,7 @@ class SprawozdanieController extends Controller
             'lata'    => $okresy,
             'program' => $program,
         ]);
-        
-        $program = $umowa->getBeneficjent()->getProgram();
-        
+
         $repoSprawozdanie = $this
             ->get('ssfz.service.sprawozdanie_service')
             ->wyznaczRepozytoriumDlaProgramu($program)
@@ -673,19 +672,11 @@ class SprawozdanieController extends Controller
                     'sprawozdanieId'  => $sprawozdanie->getId()
                 ]);
             }
-        } else {
-            // Do usunięcia lub przerobienia na excpetion!
-            // var_dump((string) $form->getErrors(true, false));
         }
         
-        $listaSprawozdan = $repoSprawozdanie->findBy(
-            [
-                'creatorId' => (int) $umowa->getBeneficjent()->getId(),
-                'umowa' => $umowa
-            ],
-            ['rok' => 'ASC', 'okres' => 'ASC', 'id' => 'ASC']
-        );
-
+        $beneficjentId = (int) $umowa->getBeneficjent()->getId();
+        $listaSprawozdan = $repoSprawozdanie->findAktualneWersjeSprawozdanBeneficjenta($beneficjentId, $umowa->getId());
+ 
         $typSprawozdania = $this
             ->get('ssfz.service.guesser.typ_sprawozdania')
             ->guess($sprawozdanie)
