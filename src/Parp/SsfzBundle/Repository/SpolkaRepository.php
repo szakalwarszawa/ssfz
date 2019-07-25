@@ -203,9 +203,9 @@ class SpolkaRepository extends EntityRepository
     /**
      * Wykonanie wpisu w tabeli sfz_spolka_historia_zmian.
      *
-     * @param string         $fieldName
-     * @param string         $actual
-     * @param string         $previous
+     * @param string $fieldName
+     * @param string $actual
+     * @param string $previous
      * @param SpolkaHistoria $historia
      */
     public function createEntry($fieldName, $actual, $previous, $historia)

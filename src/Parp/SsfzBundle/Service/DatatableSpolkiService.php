@@ -2,8 +2,10 @@
 
 namespace Parp\SsfzBundle\Service;
 
+use Doctrine\ORM\Query\Expr\Join;
+
 /**
- * Serwis obsługujący grid spółek
+ * Usługa generująca siatkę danych dla spółek.
  */
 class DatatableSpolkiService
 {
@@ -80,7 +82,7 @@ class DatatableSpolkiService
     /**
      * Zwraca datatable spółek
      *
-     * @param Controller $parentObj
+     * @param Controller $parentObj Ktoś powinien nazwać ten wzorzec wstrzykiwania kontrolerów do usług i wysłać Fowlerowi.... np. wzorzec "zagmatwanie do granicy absurdu"?
      * @param int $umowaId
      *
      * @return object
@@ -91,10 +93,11 @@ class DatatableSpolkiService
             ->get('datatable')
             ->setDatatableId('dta-spolki')
             ->setEntity('SsfzBundle:Spolka', 's')
+            ->addJoin('s.umowa', 'u', Join::LEFT_JOIN)
             ->setFields($this->getDatatableSpolkiFields())
             ->setSearch(true)
             ->setRenderers($this->getDatatableSpolkiRenderers())
-            ->setWhere('s.umowaId = :umowaId', ['umowaId' => (string) $umowaId])
+            ->setWhere('u.id = :umowaId', ['umowaId' => (string) $umowaId])
         ;
     }
 }

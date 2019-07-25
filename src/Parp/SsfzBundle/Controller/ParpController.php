@@ -301,7 +301,7 @@ class ParpController extends Controller
             ->getRepository(Umowa::class)
             ->find($idUmowy)
         ;
-        if (null == $umowa) {
+        if (null === $umowa) {
             $this
                 ->get('ssfz.service.komunikaty_service')
                 ->bladKomunikat('Nie znaleziono umowy o podanym identyfikatorze.')

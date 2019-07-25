@@ -82,7 +82,7 @@ class PortfelController extends Controller
             'narzedzia_svc' => $this->get('ssfz.service.narzedzia_service'),
         ]);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
             if ($form->isValid()) {
                 $this
                     ->getDoctrine()
