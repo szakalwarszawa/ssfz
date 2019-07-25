@@ -26,12 +26,12 @@ class NumerUmowy extends Constraint
     /**
      * @var string
      */
-    public $messageFunduszPozyczkowy = 'Oczekiwany format numeru umowy: WKP_1/1.2.1/X/RRRR/YY/ZZ/u; gdzie: X-jednocyfrowy numer rundy naboru, RRRR-rok złożenia wniosku, YY-dwucyfrowy numer, ZZ-dwucyfrowy numer.';
+    public $messageFunduszPozyczkowy = 'Oczekiwany format numeru umowy: WKP_1/1.2.1/X/RRRR/YY/ZZ/u; gdzie: X-jednocyfrowy numer rundy naboru, RRRR-rok złożenia wniosku, YY-przyjmuje wartość od 1 do 99, ZZ-przyjmuje wartość od 1 do 99.';
 
     /**
      * @var string
      */
-    public $messageFunduszPoreczeniowy = 'Oczekiwany format numeru umowy: WKP_1/1.2.2/X/RRRR/YY/ZZ/u; gdzie: X-jednocyfrowy numer rundy naboru, RRRR-rok, YY-dwucyfrowy numer, ZZ-dwucyfrowy numer.';
+    public $messageFunduszPoreczeniowy = 'Oczekiwany format numeru umowy: WKP_1/1.2.2/X/RRRR/YY/ZZ/u; gdzie: X-jednocyfrowy numer rundy naboru, RRRR-rok, YY-przyjmuje wartość od 1 do 99, ZZ-przyjmuje wartość od 1 do 99.';
 
     /**
      * @var Program

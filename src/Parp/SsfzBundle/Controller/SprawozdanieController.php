@@ -284,6 +284,7 @@ class SprawozdanieController extends Controller
             'lata'        => $okresy,
         ]);
 
+        $newReport = null;
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
@@ -316,28 +317,37 @@ class SprawozdanieController extends Controller
             }
         }
 
+        // Jeśli udało się kolonowanie, to dalsza edycja powinna dotyczyć nowej wersji sprawozdania.
+        $reportToEdit = (null === $newReport) ? $report : $newReport;
+
         $typeGuesser = $this->get('ssfz.service.guesser.typ_sprawozdania');
-        if ($typeGuesser->jestPozyczkowe($report)) {
+        if ($typeGuesser->jestPozyczkowe($reportToEdit)) {
             $template = 'SsfzBundle:Sprawozdanie:pozyczkowe.html.twig';
             return $this->render($template, [
-                'sprawozdanie'     => $report,
+                'sprawozdanie'     => $reportToEdit,
                 'typ_sprawozdania' => TypSprawozdaniaGuesserService::SPRAWOZDANIE_POZYCZKOWE,
                 'tylkoDoOdczytu'   => false,
                 'form'             => $form->createView(),
             ]);
         }
         
-        if ($typeGuesser->jestPoreczeniowe($report)) {
+        if ($typeGuesser->jestPoreczeniowe($reportToEdit)) {
             $template = 'SsfzBundle:Sprawozdanie:poreczeniowe.html.twig';
             return $this->render($template, [
-                'sprawozdanie'     => $report,
+                'sprawozdanie'     => $reportToEdit,
                 'typ_sprawozdania' => TypSprawozdaniaGuesserService::SPRAWOZDANIE_PORECZENIOWE,
                 'tylkoDoOdczytu'   => false,
                 'form'             => $form->createView(),
             ]);
         }
 
-        if ($typeGuesser->jestZalazkowe($report)) {
+        if ($typeGuesser->jestZalazkowe($reportToEdit)) {
+            // TODO: Ponowne tworzenie formularz jest mało optymalne, ale nie ma czasu na refaktoryzację.
+            //       Poprawić w przyszłości. (Ogólnie rzeczy powiązane z zalążkowym są po staremu.)
+            $form = $this->createForm($formTypeClass, $reportToEdit, [
+                'showRemarks' => true,
+                'lata'        => $okresy,
+            ]);
             return $this->pokazFormularzRejestracji($form, 'edit', $umowaId);
         }
 
