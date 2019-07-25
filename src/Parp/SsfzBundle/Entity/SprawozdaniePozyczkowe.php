@@ -5,8 +5,11 @@ namespace Parp\SsfzBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Parp\SsfzBundle\Entity\DanePozyczek;
+use Parp\SsfzBundle\Entity\SprawozdaniePozyczkoweSkladnikWydzielony;
+use Parp\SsfzBundle\Entity\SprawozdaniePozyczkoweSkladnikOgolem;
 
 /**
  * SprawozdaniePozyczkowe
@@ -19,8 +22,10 @@ class SprawozdaniePozyczkowe extends AbstractSprawozdanieSpo
     /**
      * Składniki ogółem.
      *
+     * @var Collection
+     *
      * @ORM\OneToMany(
-     *      targetEntity="SprawozdaniePozyczkoweSkladnikOgolem",
+     *      targetEntity="Parp\SsfzBundle\Entity\SprawozdaniePozyczkoweSkladnikOgolem",
      *      mappedBy="sprawozdanie",
      *      orphanRemoval=true,
      *      cascade={"persist", "remove"}
@@ -31,8 +36,10 @@ class SprawozdaniePozyczkowe extends AbstractSprawozdanieSpo
     /**
      * Składniki wydzielone.
      *
+     * @var Callection
+     *
      * @ORM\OneToMany(
-     *      targetEntity="SprawozdaniePozyczkoweSkladnikWydzielony",
+     *      targetEntity="Parp\SsfzBundle\Entity\SprawozdaniePozyczkoweSkladnikWydzielony",
      *      mappedBy="sprawozdanie",
      *      orphanRemoval=true,
      *      cascade={"persist", "remove"}
@@ -166,10 +173,14 @@ class SprawozdaniePozyczkowe extends AbstractSprawozdanieSpo
      * Remove skladnikiOgolem
      *
      * @param SprawozdaniePozyczkoweSkladnikOgolem $skladnikiOgolem
+     *
+     * @return SprawozdaniePozyczkowe
      */
     public function removeSkladnikiOgolem(SprawozdaniePozyczkoweSkladnikOgolem $skladnikiOgolem)
     {
         $this->skladnikiOgolem->removeElement($skladnikiOgolem);
+
+        return $this;
     }
 
     /**
@@ -200,10 +211,14 @@ class SprawozdaniePozyczkowe extends AbstractSprawozdanieSpo
      * Remove skladnikiWydzielone
      *
      * @param SprawozdaniePozyczkoweSkladnikWydzielony $skladnikiWydzielone
+     *
+     * @return SprawozdaniePozyczkowe
      */
     public function removeSkladnikiWydzielone(SprawozdaniePozyczkoweSkladnikWydzielony $skladnikiWydzielone)
     {
         $this->skladnikiWydzielone->removeElement($skladnikiWydzielone);
+
+        return $this;
     }
 
     /**

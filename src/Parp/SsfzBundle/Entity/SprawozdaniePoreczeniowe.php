@@ -4,6 +4,7 @@ namespace Parp\SsfzBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Parp\SsfzBundle\Entity\Slownik\FormaPrawnaFunduszu;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Parp\SsfzBundle\Entity\Slownik\TakNie;
 use Parp\SsfzBundle\Entity\DanePoreczen;
@@ -19,6 +20,8 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
     /**
      * Składniki ogółem.
      *
+     * @var Collection
+     *
      * @ORM\OneToMany(
      *     targetEntity="SprawozdaniePoreczenioweSkladnikOgolem",
      *     mappedBy="sprawozdanie",
@@ -29,6 +32,8 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
 
     /**
      * Składniki wydzielone.
+     *
+     * @var Collection
      *
      * @ORM\OneToMany(
      *     targetEntity="SprawozdaniePoreczenioweSkladnikWydzielony",
@@ -237,10 +242,14 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
      * Remove skladnikiOgolem
      *
      * @param SprawozdaniePoreczenioweSkladnikOgolem $skladnikiOgolem
+     *
+     * @return SprawozdaniePoreczeniowe
      */
     public function removeSkladnikiOgolem(SprawozdaniePoreczenioweSkladnikOgolem $skladnikiOgolem)
     {
         $this->skladnikiOgolem->removeElement($skladnikiOgolem);
+
+        return $this;
     }
 
     /**
@@ -271,10 +280,14 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
      * Remove skladnikiWydzielone
      *
      * @param SprawozdaniePoreczenioweSkladnikWydzielony $skladnikiWydzielone
+     *
+     * @return SprawozdaniePoreczeniowe
      */
     public function removeSkladnikiWydzielone(SprawozdaniePoreczenioweSkladnikWydzielony $skladnikiWydzielone)
     {
         $this->skladnikiWydzielone->removeElement($skladnikiWydzielone);
+
+        return $this;
     }
 
     /**
