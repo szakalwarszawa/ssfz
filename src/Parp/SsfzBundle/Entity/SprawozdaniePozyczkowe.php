@@ -75,7 +75,8 @@ class SprawozdaniePozyczkowe extends AbstractSprawozdanieSpo
      *
      * @ORM\OneToOne(
      *     targetEntity="Parp\SsfzBundle\Entity\DanePozyczek",
-     *     mappedBy="sprawozdanie"
+     *     mappedBy="sprawozdanie",
+     *     cascade={"persist"}
      * )
      */
     protected $danePozyczek;

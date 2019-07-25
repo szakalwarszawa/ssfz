@@ -10,13 +10,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityNotFoundException;
 use Carbon\Carbon;
-use DeepCopy\DeepCopy;
-use DeepCopy\Matcher\PropertyMatcher;
-use DeepCopy\Matcher\PropertyNameMatcher;
-use DeepCopy\Matcher\PropertyTypeMatcher;
-use DeepCopy\Filter\KeepFilter;
-use DeepCopy\Filter\SetNullFilter;
-use DeepCopy\Filter\Doctrine\DoctrineCollectionFilter;
 use Parp\SsfzBundle\Entity\Umowa;
 use Parp\SsfzBundle\Entity\Uzytkownik;
 use Parp\SsfzBundle\Entity\SprawozdanieZalazkowe;
@@ -445,42 +438,5 @@ class ParpController extends Controller
         return $this->render('SsfzBundle:Sprawozdanie:dane_pozyczek_odczyt.html.twig', [
             'dane_pozyczek' => $danePozyczek,
         ]);
-    }
-
-    /**
-     * Akcja do użytku testowego. Pomijając uprawnienia wyświetla kolnuje sprawozdanie.
-     *
-     * @todo Zakomentować lub usunąć po dodaniu i sprawdzeniu usługi, która robi to samo.
-     *
-     * @Route("/klon/{idSprawozdania}", name="parp_klon_sprawozdania")
-     *
-     * @param int $idSprawozdania
-     *
-     * @return Response
-     */
-    public function klonujSprawozdanieAction(int $idSprawozdania)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $sprawozdanie = $entityManager
-            ->getRepository(SprawozdanieZalazkowe::class)
-            ->find($idSprawozdania)
-        ;
-
-        $copier = new DeepCopy(true);
-        $copier->addFilter(new SetNullFilter(), new PropertyNameMatcher('id'));
-        $copier->addFilter(new KeepFilter(), new PropertyNameMatcher('umowa'));
-        $copier->addFilter(new KeepFilter(), new PropertyNameMatcher('okres'));
-        $copier->addFilter(new DoctrineCollectionFilter(), new PropertyTypeMatcher(Collection::class));
-        $copy = $copier->copy($sprawozdanie);
-
-        $sprawozdanie->setCzyNajnowsza(false);
-        $copy->setCzyNajnowsza(true);
-        $entityManager->persist($copy);
-        $entityManager->flush();
-
-        $oldId = $sprawozdanie->getId();
-        $newId = $copy->getId();
-
-        return new Response('OLD: '. $oldId . ' vs NEW: '.$newId);
     }
 }

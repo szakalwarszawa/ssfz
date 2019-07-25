@@ -98,7 +98,8 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
      *
      * @ORM\OneToOne(
      *     targetEntity="Parp\SsfzBundle\Entity\DanePoreczen",
-     *     mappedBy="sprawozdanie"
+     *     mappedBy="sprawozdanie",
+     *     cascade={"persist"}
      * )
      */
     protected $danePoreczen;
