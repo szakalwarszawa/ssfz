@@ -315,7 +315,7 @@ class SprawozdanieController extends Controller
                     if (in_array($typSprawozdania, [
                         TypSprawozdaniaGuesserService::SPRAWOZDANIE_PORECZENIOWE,
                         TypSprawozdaniaGuesserService::SPRAWOZDANIE_POZYCZKOWE,
-                    ) {
+                    ])) {
                         return $this->redirectToRoute('lista_sprawozdan_spo', [
                             'umowa' => $newReport->getUmowa(),
                         ]);
@@ -343,7 +343,7 @@ class SprawozdanieController extends Controller
             ]);
         }
         
-        if ($typeGuesser->jestPoreczeniowe($repor)) {
+        if ($typeGuesser->jestPoreczeniowe($report)) {
             $template = 'SsfzBundle:Sprawozdanie:poreczeniowe.html.twig';
             return $this->render($template, [
                 'sprawozdanie'     => $report,
