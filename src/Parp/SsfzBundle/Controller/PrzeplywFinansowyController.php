@@ -50,12 +50,14 @@ class PrzeplywFinansowyController extends Controller
             ->getRepository(PrzeplywFinansowy::class)
             ->findOneByIdSprawozdania($sprawozdanieId)
         ;
-        if ($przeplywZBazy) {
-            $przeplyw = $przeplywZBazy[0];
+        if (null !== $przeplywZBazy) {
+            $przeplyw = $przeplywZBazy;
         }
-        if (!$przeplywZBazy) {
+
+        if (null === $przeplywZBazy) {
             $przeplyw->setSaldoPoczatkowe($this->getSaldoPoczatkowe($report, $beneficjentId, $entityManager));
         }
+
         $entityManager->flush();
 
         $form = $this->createForm(PrzeplywFinansowyType::class, $przeplyw);
