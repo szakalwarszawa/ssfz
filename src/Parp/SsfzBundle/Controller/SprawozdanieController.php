@@ -398,7 +398,7 @@ class SprawozdanieController extends Controller
             $dateNow = new DateTime('now');
             $sprawozdanie->setStatus(StatusSprawozdania::PRZESLANO_DO_PARP);
             $sprawozdanie->setDataPrzeslaniaDoParp($dateNow);
-            $$this
+            $this
                 ->get('ssfz.service.komunikaty_service')
                 ->sukcesKomunikat('Sprawozdanie wysłano do PARP', 'Wysyłka sprawozdania')
             ;

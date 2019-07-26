@@ -179,7 +179,7 @@ class SprawozdanieZalazkowe extends AbstractSprawozdanie
      */
     public function addPrzeplywyFinansowe(PrzeplywFinansowy $przeplywFinansowy)
     {
-        $$przeplywFinansowy->setSprawozdanie($this);
+        $przeplywFinansowy->setSprawozdanie($this);
         $this->przeplywyFinansowe->add($przeplywFinansowy);
 
         return $this;
