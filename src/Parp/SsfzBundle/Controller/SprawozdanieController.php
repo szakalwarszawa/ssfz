@@ -285,6 +285,7 @@ class SprawozdanieController extends Controller
         $form = $this->createForm($formTypeClass, $report, [
             'showRemarks' => true,
             'lata'        => $okresy,
+            'program'     => $program,
         ]);
 
         $reportToEdit = $report;
