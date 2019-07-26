@@ -274,10 +274,9 @@ class SprawozdanieController extends Controller
             ;
         }
 
-        $formTypeClass = $this
-            ->get('ssfz.service.guesser.typ_sprawozdania')
-            ->guessFormType($report)
-        ;
+        $typeGuesser = $this->get('ssfz.service.guesser.typ_sprawozdania');
+
+        $formTypeClass = $typeGuesser->guessFormType($report);
         $program = $report
             ->getUmowa()
             ->getBeneficjent()
@@ -312,7 +311,19 @@ class SprawozdanieController extends Controller
                         ->sukcesKomunikat('Poprawa sprawozdania zakończyła się powodzeniem', 'Poprawa sprawozdania')
                     ;
 
-                    return $this->redirectToRoute('beneficjent');
+                    $typSprawozdania = $typeGuesser->guess($report);
+                    if (in_array($typSprawozdania, [
+                        TypSprawozdaniaGuesserService::SPRAWOZDANIE_PORECZENIOWE,
+                        TypSprawozdaniaGuesserService::SPRAWOZDANIE_POZYCZKOWE,
+                    ) {
+                        return $this->redirectToRoute('lista_sprawozdan_spo', [
+                            'umowa' => $newReport->getUmowa(),
+                        ]);
+                    }
+
+                    return $this->redirectToRoute('sprawozdanie_rejestracja', [
+                        'umowaId' => $newReport->getUmowa()->getId(),
+                    ]);
                 }
             } else {
                 $this
@@ -322,7 +333,6 @@ class SprawozdanieController extends Controller
             }
         }
 
-        $typeGuesser = $this->get('ssfz.service.guesser.typ_sprawozdania');
         if ($typeGuesser->jestPozyczkowe($report)) {
             $template = 'SsfzBundle:Sprawozdanie:pozyczkowe.html.twig';
             return $this->render($template, [
