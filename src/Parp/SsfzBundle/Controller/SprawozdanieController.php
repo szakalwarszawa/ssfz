@@ -386,7 +386,7 @@ class SprawozdanieController extends Controller
             ->findOneByIdSprawozdania($sprawozdanieId)
         ;
         $umowaId = $sprawozdanie->getUmowaId();
-        if (count($przeplyw) !== 1) {
+        if (null === $przeplyw) {
             $this
                 ->get('ssfz.service.komunikaty_service')
                 ->bladKomunikat('Nie zdefiniowano przepływu finansowego', 'Wysyłka sprawozdania')
