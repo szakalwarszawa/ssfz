@@ -179,7 +179,7 @@ class SprawozdanieController extends Controller
             ->get('ssfz.service.sprawozdanie_service')
             ->checkSprawozdaniePermission($report, $beneficjentId)
         ;
-        if ($report->getStatus() != 1) {
+        if ((int) $report->getStatus() !== 1) {
             throw $this->createNotFoundException('Nie można edytować sprawozdania');
         }
         $umowaId = $report->getUmowaId();
@@ -284,6 +284,7 @@ class SprawozdanieController extends Controller
             'lata'        => $okresy,
         ]);
 
+        $reportToEdit = $report;
         $newReport = null;
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
@@ -294,7 +295,6 @@ class SprawozdanieController extends Controller
                     ->cloneSprawozdanieDoPoprawy($report, $persist)
                 ;
 
-                // TODO: Do tego powinien być napisany walidator a nie spagetti w kontrolerze.
                 if (!$this->czySprawozdanieZaDobryOkres($newReport, $umowaId, $beneficjentId)) {
                     $this
                         ->get('ssfz.service.komunikaty_service')
@@ -308,6 +308,8 @@ class SprawozdanieController extends Controller
                         ->get('ssfz.service.komunikaty_service')
                         ->sukcesKomunikat('Poprawa sprawozdania zakończyła się powodzeniem', 'Poprawa sprawozdania')
                     ;
+
+                    $reportToEdit = $newReport;
                 }
             } else {
                 $this
@@ -317,8 +319,10 @@ class SprawozdanieController extends Controller
             }
         }
 
-        // Jeśli udało się kolonowanie, to dalsza edycja powinna dotyczyć nowej wersji sprawozdania.
-        $reportToEdit = (null === $newReport) ? $report : $newReport;
+        $form = $this->createForm($formTypeClass, $reportToEdit, [
+            'showRemarks' => true,
+            'lata'        => $okresy,
+        ]);
 
         $typeGuesser = $this->get('ssfz.service.guesser.typ_sprawozdania');
         if ($typeGuesser->jestPozyczkowe($reportToEdit)) {
@@ -342,15 +346,10 @@ class SprawozdanieController extends Controller
         }
 
         if ($typeGuesser->jestZalazkowe($reportToEdit)) {
-            // TODO: Ponowne tworzenie formularz jest mało optymalne, ale nie ma czasu na refaktoryzację.
-            //       Poprawić w przyszłości. (Ogólnie rzeczy powiązane z zalążkowym są po staremu.)
-            $form = $this->createForm($formTypeClass, $reportToEdit, [
-                'showRemarks' => true,
-                'lata'        => $okresy,
-            ]);
             return $this->pokazFormularzRejestracji($form, 'edit', $umowaId);
         }
 
+        // Do tego miejsca kod nigdy nie powinien dojść.
         $message = 'Nieznany typ sprawozdania. Obsługiwane są tylko sprawozdanie poręczeniowe i pożyczkowe.';
         throw new InvalidArgumentException($message);
     }
