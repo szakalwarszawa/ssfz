@@ -311,18 +311,19 @@ class SprawozdanieController extends Controller
                         ->sukcesKomunikat('Poprawa sprawozdania zakończyła się powodzeniem', 'Poprawa sprawozdania')
                     ;
 
-                    $typSprawozdania = $typeGuesser->guess($report);
+                    $idUmowy = $newReport->getUmowa()->getId();
+                    $typSprawozdania = $typeGuesser->guess($newReport);
                     if (in_array($typSprawozdania, [
                         TypSprawozdaniaGuesserService::SPRAWOZDANIE_PORECZENIOWE,
                         TypSprawozdaniaGuesserService::SPRAWOZDANIE_POZYCZKOWE,
                     ])) {
                         return $this->redirectToRoute('lista_sprawozdan_spo', [
-                            'umowa' => $newReport->getUmowa(),
+                            'umowa' => $idUmowy,
                         ]);
                     }
 
                     return $this->redirectToRoute('sprawozdanie_rejestracja', [
-                        'umowaId' => $newReport->getUmowa()->getId(),
+                        'umowaId' => $idUmowy,
                     ]);
                 }
             } else {

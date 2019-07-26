@@ -81,7 +81,7 @@ class TypSprawozdaniaGuesserService
      */
     public function guess(AbstractSprawozdanie $sprawozdanie): string
     {
-        if ($sprawozdanie instanceof Sprawozdanie) {
+        if ($sprawozdanie instanceof SprawozdanieZalazkowe) {
             return self::SPRAWOZDANIE_ZALAZKOWE;
         }
 
