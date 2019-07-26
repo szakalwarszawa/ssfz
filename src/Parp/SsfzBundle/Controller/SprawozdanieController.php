@@ -268,6 +268,10 @@ class SprawozdanieController extends Controller
 
         if ($request->query->get('odswiezSpolki') !== null) {
             $report = $this->odswiezSpolki($report, $umowaId);
+            $this
+                ->get('ssfz.service.komunikaty_service')
+                ->sukcesKomunikat('Portfel spółek został odświeżony.')
+            ;
         }
 
         $formTypeClass = $this
@@ -285,22 +289,21 @@ class SprawozdanieController extends Controller
         ]);
 
         $reportToEdit = $report;
-        $newReport = null;
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
-                $persist = false;
-                $newReport = $this
-                    ->get('ssfz.service.object_cloner')
-                    ->cloneSprawozdanieDoPoprawy($report, $persist)
-                ;
-
-                if (!$this->czySprawozdanieZaDobryOkres($newReport, $umowaId, $beneficjentId)) {
+                if (!$this->czySprawozdanieZaDobryOkres($report, $umowaId, $beneficjentId)) {
                     $this
                         ->get('ssfz.service.komunikaty_service')
                         ->bladKomunikat('Formularz zawiera nieprawidłowe dane okresu sprawozdawczego.')
                     ;
                 } else {
+                    $persist = false;
+                    $newReport = $this
+                        ->get('ssfz.service.object_cloner')
+                        ->cloneSprawozdanieDoPoprawy($report, $persist)
+                    ;
+    
                     $entityManager->persist($newReport);
                     $entityManager->flush();
 
@@ -309,7 +312,7 @@ class SprawozdanieController extends Controller
                         ->sukcesKomunikat('Poprawa sprawozdania zakończyła się powodzeniem', 'Poprawa sprawozdania')
                     ;
 
-                    $reportToEdit = $newReport;
+                    return $this->redirectToRoute('beneficjent');
                 }
             } else {
                 $this
@@ -319,33 +322,28 @@ class SprawozdanieController extends Controller
             }
         }
 
-        $form = $this->createForm($formTypeClass, $reportToEdit, [
-            'showRemarks' => true,
-            'lata'        => $okresy,
-        ]);
-
         $typeGuesser = $this->get('ssfz.service.guesser.typ_sprawozdania');
-        if ($typeGuesser->jestPozyczkowe($reportToEdit)) {
+        if ($typeGuesser->jestPozyczkowe($report)) {
             $template = 'SsfzBundle:Sprawozdanie:pozyczkowe.html.twig';
             return $this->render($template, [
-                'sprawozdanie'     => $reportToEdit,
+                'sprawozdanie'     => $report,
                 'typ_sprawozdania' => TypSprawozdaniaGuesserService::SPRAWOZDANIE_POZYCZKOWE,
                 'tylkoDoOdczytu'   => false,
                 'form'             => $form->createView(),
             ]);
         }
         
-        if ($typeGuesser->jestPoreczeniowe($reportToEdit)) {
+        if ($typeGuesser->jestPoreczeniowe($repor)) {
             $template = 'SsfzBundle:Sprawozdanie:poreczeniowe.html.twig';
             return $this->render($template, [
-                'sprawozdanie'     => $reportToEdit,
+                'sprawozdanie'     => $report,
                 'typ_sprawozdania' => TypSprawozdaniaGuesserService::SPRAWOZDANIE_PORECZENIOWE,
                 'tylkoDoOdczytu'   => false,
                 'form'             => $form->createView(),
             ]);
         }
 
-        if ($typeGuesser->jestZalazkowe($reportToEdit)) {
+        if ($typeGuesser->jestZalazkowe($report)) {
             return $this->pokazFormularzRejestracji($form, 'edit', $umowaId);
         }
 
