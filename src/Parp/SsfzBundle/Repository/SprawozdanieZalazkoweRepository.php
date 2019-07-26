@@ -123,4 +123,36 @@ class SprawozdanieZalazkoweRepository extends EntityRepository
 
         return $result;
     }
+
+    /**
+     * Zwraca aktualne wersje sprawozdań (opcjonalnie zawężone do zadanej umowy i konta beneficjenta).
+     *
+     * @param int $creatorId
+     * @param int $umowaId
+     * @param int $okres
+     * @param int $rok
+     *
+     * @return SprawozdanieInterface[]
+     */
+    public function findPreviousReport($creatorId, $umowaId, $okresId, $rok): array
+    {
+        $result = $this
+            ->createQueryBuilder('s')
+            ->leftJoin('s.okres', 'o')
+            ->leftJoin('s.umowa', 'u')
+            ->where('s.creatorId = :creatorId')
+            ->andWhere('u.id = :umowaId')
+            ->andWhere('s.rok = :rok')
+            ->andWhere('s.czyNajnowsza = TRUE')
+            ->andWhere('o.id = :okresId')
+            ->setParameter('creatorId', $creatorId)
+            ->setParameter('umowaId', $umowaId)
+            ->setParameter('rok', $rok)
+            ->setParameter('okresId', $okresId)
+            ->getQuery()
+            ->getResult()
+        ;
+
+        return $result;
+    }
 }

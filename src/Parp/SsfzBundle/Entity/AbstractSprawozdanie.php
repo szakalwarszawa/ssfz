@@ -48,7 +48,7 @@ class AbstractSprawozdanie implements SprawozdanieInterface
     protected $previousVersionId;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Umowa", inversedBy="sprawozdania")
+     * @ORM\ManyToOne(targetEntity="Umowa", inversedBy="sprawozdaniaZalazkowe")
      * @ORM\JoinColumn(name="umowa_id", referencedColumnName="id")
      */
     protected $umowa;
