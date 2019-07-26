@@ -141,7 +141,7 @@ class TypSprawozdaniaGuesserService
      */
     public function guessFormType(AbstractSprawozdanie $sprawozdanie): string
     {
-        if ($sprawozdanie instanceof Sprawozdanie) {
+        if ($sprawozdanie instanceof SprawozdanieZalazkowe) {
             return SprawozdanieZalazkoweType::class;
         }
 
