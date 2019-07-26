@@ -51,7 +51,7 @@ class SprawozdanieService
      * Metoda pobiera sprawozdania
      *
      * @param Sprawozdanie $parentObject
-     * @param Umowa        $umowa
+     * @param Umowa $umowa
      *
      * @return Listę sprawozdań
      */
@@ -81,6 +81,7 @@ class SprawozdanieService
             ->setDatatableId('dta-sprawozdanie')
             ->setEntity($klasaEncji, 'r')
             ->addJoin('r.okres', 'o', Join::INNER_JOIN)
+            ->addJoin('r.umowa', 'u', Join::LEFT_JOIN)
             ->setFields([
                 'Status'       => 'r.status',
                 'Rok'          => 'r.rok',
@@ -91,11 +92,11 @@ class SprawozdanieService
             ])
             ->setRenderers($tabRenderers)
             ->setWhere(
-                'r.creatorId = :creatorId and r.umowaId = :umowaId and r.czyNajnowsza = :czyNajnowsza',
+                'r.creatorId = :creatorId and u.id = :umowaId and r.czyNajnowsza = :czyNajnowsza',
                 [
-                    'creatorId' => (string) $beneficjent->getId(),
+                    'creatorId'    => (string) $beneficjent->getId(),
                     'czyNajnowsza' => (string) true,
-                    'umowaId' => (string) $umowa->getId(),
+                    'umowaId'      => (string) $umowa->getId(),
                 ]
             )
             ->setOrder('r.dataRejestracji', 'desc')
