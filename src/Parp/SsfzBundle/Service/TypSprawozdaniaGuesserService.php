@@ -207,4 +207,16 @@ class TypSprawozdaniaGuesserService
     {
         return $this->guess($sprawozdanie) === self::SPRAWOZDANIE_PORECZENIOWE;
     }
+
+    /**
+     * Określa czy sprawozdanie dotyczy POIR.
+     *
+     * @param AbstractSprawozdanie $sprawozdanie
+     *
+     * @return bool
+     */
+    public function jestZalazkowe(AbstractSprawozdanie $sprawozdanie): bool
+    {
+        return $this->guess($sprawozdanie) === self::SPRAWOZDANIE_ZALAZKOWE;
+    }
 }
