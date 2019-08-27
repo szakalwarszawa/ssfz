@@ -257,23 +257,14 @@ class AbstractSprawozdanieSpoType extends AbstractType
             ],
         ]);
 
-        $builder->add(
-            'fax',
-            TextType::class,
-            array(
-                'label' => 'Fax',
-                'required' => false,
-                'attr' => array(
-                    'placeholder' => 'fax',
-                    'maxlength' => 15,
-                ),
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Należy wypełnić pole',
-                    ]),
-                ],
-            )
-        );
+        $builder->add('fax', TextType::class, [
+            'label'       => 'Fax',
+            'required'    => false,
+            'attr'        => [
+                'placeholder' => 'fax',
+                'maxlength'   => 15,
+            ],
+        ]);
 
         $builder->add(
             'rokZalozenia',
