@@ -117,41 +117,33 @@ class AbstractSprawozdanieSpoType extends AbstractType
             ],
         ]);
 
-        $builder->add(
-            'miejscowosc',
-            TextType::class,
-            array(
-                'label' => 'Miejscowość',
-                'required' => false,
-                'attr' => array(
-                    'placeholder' => 'Miejscowość',
-                    'maxlength' => 100,
-                ),
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Należy wypełnić pole',
-                    ]),
-                ],
-            )
-        );
+        $builder->add('miejscowosc', TextType::class, [
+            'label'       => 'Miejscowość',
+            'required'    => false,
+            'attr'        => [
+                'placeholder' => 'Miejscowość',
+                'maxlength'   => 100,
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
-        $builder->add(
-            'ulica',
-            TextType::class,
-            array(
-                'label' => 'Ulica',
-                'required' => false,
-                'attr' => array(
-                    'placeholder' => 'Ulica',
-                    'maxlength' => 100,
-                ),
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Należy wypełnić pole',
-                    ]),
-                ],
-            )
-        );
+        $builder->add('ulica', TextType::class, [
+            'label'       => 'Ulica',
+            'required'    => false,
+            'attr'        => [
+                'placeholder' => 'Ulica',
+                'maxlength'   => 100,
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
         $builder->add('budynek', TextType::class, [
             'label'       => 'Nr budynku',
@@ -167,23 +159,19 @@ class AbstractSprawozdanieSpoType extends AbstractType
             ],
         ]);
 
-        $builder->add(
-            'lokal',
-            TextType::class,
-            array(
-                'label' => 'Nr lokalu',
-                'required' => false,
-                'attr' => array(
-                    'placeholder' => 'nr lokalu',
-                    'maxlength' => 10,
-                ),
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Należy wypełnić pole',
-                    ]),
-                ],
-            )
-        );
+        $builder->add('lokal', TextType::class, [
+            'label'       => 'Nr lokalu',
+            'required'    => false,
+            'attr'        => [
+                'placeholder' => 'nr lokalu',
+                'maxlength'   => 10,
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
         $builder->add('kodPocztowy', TextType::class, [
             'label'       => 'Kod pocztowy',
@@ -343,15 +331,15 @@ class AbstractSprawozdanieSpoType extends AbstractType
         ]);
 
         $builder->add('inne', TextareaType::class, [
-            'label'    => 'Inne (nazwa definiowana przez fundusz)',
-            'required' => false,
-            'attr'     => [
+            'label'       => 'Inne (nazwa definiowana przez fundusz)',
+            'required'    => false,
+            'attr'        => [
                 'placeholder' => 'inne',
                 'maxlength'   => 1000,
             ],
             'constraints' => [
                 new Length([
-                    'max' => '1000',
+                    'max'        => '1000',
                     'maxMessage' => 'W polu nie może znajdować się więcej niż {{ limit }} znaków.',
                 ]),
             ],
