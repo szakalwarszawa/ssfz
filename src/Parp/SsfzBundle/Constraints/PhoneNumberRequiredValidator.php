@@ -34,7 +34,7 @@ class PhoneNumberRequiredValidator extends ConstraintValidator
             ->getData()
         ;
         if (is_object($data) && method_exists($data, 'getTelStacjonarny') && method_exists($data, 'getTelKomorkowy')) {
-            $telStacjonarny = (string) $data->getTelStancjonarny();
+            $telStacjonarny = (string) $data->getTelStacjonarny();
             $telKomorkowy = (string) $data->getTelKomorkowy();
 
             $isValid = ($telStacjonarny.$telKomorkowy !== '');
