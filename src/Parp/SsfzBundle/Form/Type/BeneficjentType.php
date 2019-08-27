@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Regex;
+use Parp\SsfzBundle\Constraints\PhoneNumberRequired;
 use Parp\SsfzBundle\Entity\Beneficjent;
 
 /**
@@ -140,18 +141,14 @@ class BeneficjentType extends AbstractType
         $builder->add('telStacjonarny', TextType::class, [
             'label'       => 'Telefon stacjonarny',
             'constraints' => [
-                new NotBlank([
-                    'message' => 'Należy wypełnić pole',
-                ]),
+                new PhoneNumberRequired(),
             ],
         ]);
 
         $builder->add('telKomorkowy', TextType::class, [
             'label'       => 'Telefon komórkowy',
             'constraints' => [
-                new NotBlank([
-                    'message' => 'Należy wypełnić pole',
-                ]),
+                new PhoneNumberRequired(),
             ],
         ]);
 

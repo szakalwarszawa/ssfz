@@ -29,6 +29,7 @@ use Parp\SsfzBundle\Entity\Slownik\Wojewodztwo;
 use Parp\SsfzBundle\Entity\Slownik\FormaPrawnaFunduszu;
 use Parp\SsfzBundle\Entity\Slownik\TakNie;
 use Parp\SsfzBundle\Constraints\Nip;
+use Parp\SsfzBundle\Constraints\PhoneNumberRequired;
 
 /**
  * Typ formularza sprawozdania
@@ -213,9 +214,7 @@ class AbstractSprawozdanieSpoType extends AbstractType
                 'maxlength'   => 15,
             ],
             'constraints' => [
-                new NotBlank([
-                    'message' => 'Należy wypełnić pole',
-                ]),
+                new PhoneNumberRequired(),
             ],
         ]);
 
@@ -225,6 +224,9 @@ class AbstractSprawozdanieSpoType extends AbstractType
             'attr'     => [
                 'placeholder' => 'nr tel.',
                 'maxlength'   => 15,
+            ],
+            'constraints' => [
+                new PhoneNumberRequired(),
             ],
         ]);
 
