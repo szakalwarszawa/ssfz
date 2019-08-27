@@ -6,7 +6,7 @@ use Symfony\Component\Validator\Constraint;
 
 /**
  * PhoneNumberRequired constraint.
- 
+ *
  * One phone number is always required.
  */
 class PhoneNumberRequired extends Constraint
