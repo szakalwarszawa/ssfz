@@ -29,6 +29,7 @@ use Parp\SsfzBundle\Entity\Slownik\Wojewodztwo;
 use Parp\SsfzBundle\Entity\Slownik\FormaPrawnaFunduszu;
 use Parp\SsfzBundle\Entity\Slownik\TakNie;
 use Parp\SsfzBundle\Constraints\Nip;
+use Parp\SsfzBundle\Constraints\PhoneNumberRequired;
 
 /**
  * Typ formularza sprawozdania
@@ -117,41 +118,33 @@ class AbstractSprawozdanieSpoType extends AbstractType
             ],
         ]);
 
-        $builder->add(
-            'miejscowosc',
-            TextType::class,
-            array(
-                'label' => 'Miejscowość',
-                'required' => false,
-                'attr' => array(
-                    'placeholder' => 'Miejscowość',
-                    'maxlength' => 100,
-                ),
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Należy wypełnić pole',
-                    ]),
-                ],
-            )
-        );
+        $builder->add('miejscowosc', TextType::class, [
+            'label'       => 'Miejscowość',
+            'required'    => false,
+            'attr'        => [
+                'placeholder' => 'Miejscowość',
+                'maxlength'   => 100,
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
-        $builder->add(
-            'ulica',
-            TextType::class,
-            array(
-                'label' => 'Ulica',
-                'required' => false,
-                'attr' => array(
-                    'placeholder' => 'Ulica',
-                    'maxlength' => 100,
-                ),
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Należy wypełnić pole',
-                    ]),
-                ],
-            )
-        );
+        $builder->add('ulica', TextType::class, [
+            'label'       => 'Ulica',
+            'required'    => false,
+            'attr'        => [
+                'placeholder' => 'Ulica',
+                'maxlength'   => 100,
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
         $builder->add('budynek', TextType::class, [
             'label'       => 'Nr budynku',
@@ -167,23 +160,19 @@ class AbstractSprawozdanieSpoType extends AbstractType
             ],
         ]);
 
-        $builder->add(
-            'lokal',
-            TextType::class,
-            array(
-                'label' => 'Nr lokalu',
-                'required' => false,
-                'attr' => array(
-                    'placeholder' => 'nr lokalu',
-                    'maxlength' => 10,
-                ),
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Należy wypełnić pole',
-                    ]),
-                ],
-            )
-        );
+        $builder->add('lokal', TextType::class, [
+            'label'       => 'Nr lokalu',
+            'required'    => false,
+            'attr'        => [
+                'placeholder' => 'nr lokalu',
+                'maxlength'   => 10,
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
         $builder->add('kodPocztowy', TextType::class, [
             'label'       => 'Kod pocztowy',
@@ -225,9 +214,7 @@ class AbstractSprawozdanieSpoType extends AbstractType
                 'maxlength'   => 15,
             ],
             'constraints' => [
-                new NotBlank([
-                    'message' => 'Należy wypełnić pole',
-                ]),
+                new PhoneNumberRequired(),
             ],
         ]);
 
@@ -237,6 +224,9 @@ class AbstractSprawozdanieSpoType extends AbstractType
             'attr'     => [
                 'placeholder' => 'nr tel.',
                 'maxlength'   => 15,
+            ],
+            'constraints' => [
+                new PhoneNumberRequired(),
             ],
         ]);
 
@@ -257,23 +247,14 @@ class AbstractSprawozdanieSpoType extends AbstractType
             ],
         ]);
 
-        $builder->add(
-            'fax',
-            TextType::class,
-            array(
-                'label' => 'Fax',
-                'required' => false,
-                'attr' => array(
-                    'placeholder' => 'fax',
-                    'maxlength' => 15,
-                ),
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Należy wypełnić pole',
-                    ]),
-                ],
-            )
-        );
+        $builder->add('fax', TextType::class, [
+            'label'       => 'Fax',
+            'required'    => false,
+            'attr'        => [
+                'placeholder' => 'fax',
+                'maxlength'   => 15,
+            ],
+        ]);
 
         $builder->add(
             'rokZalozenia',
@@ -352,15 +333,15 @@ class AbstractSprawozdanieSpoType extends AbstractType
         ]);
 
         $builder->add('inne', TextareaType::class, [
-            'label'    => 'Inne (nazwa definiowana przez fundusz)',
-            'required' => false,
-            'attr'     => [
+            'label'       => 'Inne (nazwa definiowana przez fundusz)',
+            'required'    => false,
+            'attr'        => [
                 'placeholder' => 'inne',
                 'maxlength'   => 1000,
             ],
             'constraints' => [
                 new Length([
-                    'max' => '1000',
+                    'max'        => '1000',
                     'maxMessage' => 'W polu nie może znajdować się więcej niż {{ limit }} znaków.',
                 ]),
             ],

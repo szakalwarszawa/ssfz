@@ -15,6 +15,9 @@ use Parp\SsfzBundle\Entity\SprawozdanieSpolki;
 use Parp\SsfzBundle\Entity\DanePozyczek;
 use Parp\SsfzBundle\Entity\DanePoreczen;
 
+/**
+ * Usługa generująca sprawozdania.
+ */
 class PodgladSprawozdaniaService
 {
     /**
@@ -52,8 +55,8 @@ class PodgladSprawozdaniaService
     public function __construct(
         EntityManager $entityManager,
         TwigEngine $templating,
-        SprawozdanieRepository $sprawozdanieRepository)
-    {
+        SprawozdanieRepository $sprawozdanieRepository
+    ) {
         $this->entityManager = $entityManager;
         $this->templating = $templating;
         $this->sprawozdanieRepository = $sprawozdanieRepository;

@@ -288,7 +288,6 @@ class SprawozdanieController extends Controller
             'program'     => $program,
         ]);
 
-        $reportToEdit = $report;
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
