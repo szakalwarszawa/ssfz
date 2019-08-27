@@ -21,6 +21,8 @@ class PhoneNumberRequiredValidator extends ConstraintValidator
      * @param Constraint $constraint
      *
      * @return bool
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function validate($value, Constraint $constraint)
     {
