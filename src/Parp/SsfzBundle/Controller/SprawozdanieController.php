@@ -239,7 +239,6 @@ class SprawozdanieController extends Controller
      *
      * @Route("sprawozdanie/poprawa/{umowaId}/{sprawozdanieId}", name="sprawozdanie_poprawa")
      *
-     * @param Request $request
      * @param int $umowaId
      * @param int $reportId
      *
@@ -247,13 +246,8 @@ class SprawozdanieController extends Controller
      *
      * @throws InvalidArgumentException Jeśli status sprawozdania nie pozwla na poprawę.
      */
-    public function poprawAction(Request $request, int $umowaId, int $sprawozdanieId)
+    public function poprawAction(int $umowaId, int $sprawozdanieId)
     {
-        $entityManager = $this
-            ->getDoctrine()
-            ->getManager()
-        ;
-
         $report = $this
             ->get('ssfz.service.repository.sprawozdanie')
             ->findByIdUmowyAndIdSprawozdania($umowaId, $sprawozdanieId)
