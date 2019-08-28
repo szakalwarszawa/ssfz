@@ -72,8 +72,10 @@ class ObjectClonerService
      *
      * @return int
      */
-    public function cloneSprawozdanieDoPoprawy(AbstractSprawozdanie $sprawozdanie, $persist = false): AbstractSprawozdanie
-    {
+    public function cloneSprawozdanieDoPoprawy(
+        AbstractSprawozdanie $sprawozdanie,
+        bool $persist = false
+    ): AbstractSprawozdani {
         $entityManager = $this->entityManager;
   
         $copier = new DeepCopy(true);
