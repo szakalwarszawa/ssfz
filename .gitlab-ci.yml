@@ -45,6 +45,13 @@ linelength:
         - /root/.composer/vendor/bin/phpcs --config-set encoding utf-8
         - /root/.composer/vendor/bin/phpcs -n --colors --report=full --standard="./.gitlab-ci/phpcs_line_length.xml" --extensions=php src/
 
+eofeol:
+    stage: standards
+    allow_failure: true
+    script:
+        - /root/.composer/vendor/bin/phpcs --config-set encoding utf-8
+        - /root/.composer/vendor/bin/phpcs -n --colors --report=full --standard="./.gitlab-ci/phpcs_eof.xml" --extensions=php src/
+
 twigcs:
     stage: standards
     allow_failure: false
