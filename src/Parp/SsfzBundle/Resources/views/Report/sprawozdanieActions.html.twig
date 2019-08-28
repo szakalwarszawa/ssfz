@@ -1,11 +1,21 @@
 <div class="row pull-right">
     <a href="{{ path('sprawozdanie_podglad', {'reportId': dt_obj.id}) }}" target="_blank" class="btn btn-sm btn-info" role="button"><span class="fas fa-eye-open"></span> Podgląd</a>
     {% if dt_obj.status == 1 %}
-        <a href="{{ path('sprawozdanie_zalazkowe_edycja', {'umowaId': dt_obj.umowa.id, 'reportId': dt_obj.id}) }}" class="btn btn-sm btn-primary" role="button"><span class="fas fa-edit"></span> Edytuj</a>
-        <a href="{{ path('przeplyw_rejestracja', {'sprawozdanieId': dt_obj.id}) }}" class="btn btn-sm btn-success" role="button"><span class="fas fa-plus"></span> Dodaj przepływy finansowe</a>
-        <span class="btn btn-sm btn-warning btn-send-to-parp" row-id="{{ dt_obj.id }}" onclick="send({{ dt_obj.id }})" role="button"><span class="fas fa-share-alt"></span> Prześlij do PARP</span>
+        <a href="{{ path('sprawozdanie_zalazkowe_edycja', {'umowaId': dt_obj.umowa.id, 'reportId': dt_obj.id}) }}"
+           class="btn btn-sm btn-primary"
+           role="button"><span class="fas fa-edit"></span> Edytuj</a>
+
+        <a href="{{ path('przeplyw_rejestracja', {'sprawozdanieId': dt_obj.id}) }}"
+           class="btn btn-sm btn-success"
+           role="button"><span class="fas fa-plus"></span> Dodaj przepływy finansowe</a>
+
+        <span class="btn btn-sm btn-warning btn-send-to-parp" row-id="{{ dt_obj.id }}"
+              onclick="send({{ dt_obj.id }})"
+              role="button"><span class="fas fa-share-alt"></span> Prześlij do PARP</span>
     {% elseif dt_obj.status == 4 %}
-        <a href="{{ path('sprawozdanie_poprawa', {'umowaId': dt_obj.umowa.id, 'sprawozdanieId': dt_obj.id}) }}" class="btn btn-sm btn-primary" role="button"><span class="fas fa-edit"></span> Popraw</a>
+        <a href="{{ path('sprawozdanie_poprawa', {'umowaId': dt_obj.umowa.id, 'sprawozdanieId': dt_obj.id}) }}"
+           class="btn btn-sm btn-primary"
+           role="button"><span class="fas fa-edit"></span> Popraw</a>
     {% else %}
         <span class="btn btn-sm btn-danger" ><span class="fas fa-upload"></span>&nbsp Przesłany &nbsp</span>
     {% endif %}
