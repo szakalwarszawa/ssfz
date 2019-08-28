@@ -225,27 +225,6 @@ class SprawozdanieController extends Controller
         return $this->pokazFormularzRejestracji($form, 'edit', $umowaId);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Przyjmuje sprawozdanie do poprawy.
      *
