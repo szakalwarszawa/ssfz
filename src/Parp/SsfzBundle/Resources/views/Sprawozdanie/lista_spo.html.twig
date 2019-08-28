@@ -16,8 +16,10 @@
 
                 {{ form_row(form.rok) }}
                 <div id="form-submit-div" class="row btn-toolbar">
-                    <a class="btn btn-danger pull-right width-short" href="{{ path('beneficjent') }}"><span class="glyphicon glyphicon-chevron-left"></span> Powrót</a>
-                    <button type="submit" class="btn btnRegister btn-primary pull-right width-short"><span class="glyphicon glyphicon-ok"></span> Dodaj nowe</button>
+                    <a class="btn btn-danger pull-right width-short"
+                       href="{{ path('beneficjent') }}"><span class="glyphicon glyphicon-chevron-left"></span> Powrót</a>
+                    <button type="submit"
+                            class="btn btnRegister btn-primary pull-right width-short"><span class="glyphicon glyphicon-ok"></span> Dodaj nowe</button>
                 </div>
             </div>
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
@@ -62,19 +64,27 @@
                                        role="button"><i class="fas fa-edit"></i> Edycja</a>
 
                                     {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPozyczkowy()|default(false) %}
-                                        <a href="{{ url('edycja_danych_pozyczek_dla_sprawozdania', {'id': sprawozdanie.id}) }}" class="btn btn-sm btn-success" role="button"><span class="fas fa-edit"></span> Edycja danych o pożyczkach</a>
-                                        <a href="{{ url('podglad_danych_pozyczek_dla_sprawozdania', {'id': sprawozdanie.id}) }}" class="btn btn-sm btn-success" role="button"><span class="fas fa-eye"></span> Podgląd danych o pożyczkach</a>
+                                        <a href="{{ url('edycja_danych_pozyczek_dla_sprawozdania', {'id': sprawozdanie.id}) }}"
+                                           class="btn btn-sm btn-success"
+                                           role="button"><span class="fas fa-edit"></span> Edycja danych o pożyczkach</a>
+                                        <a href="{{ url('podglad_danych_pozyczek_dla_sprawozdania', {'id': sprawozdanie.id}) }}"
+                                           class="btn btn-sm btn-success"
+                                           role="button"><span class="fas fa-eye"></span> Podgląd danych o pożyczkach</a>
                                     {% endif %}
 
                                     {% if sprawozdanie.umowa.beneficjent.program.czyFunduszPoreczeniowy()|default(false) %}
-                                        <a href="{{ url('edycja_danych_poreczen_dla_sprawozdania', {'id': sprawozdanie.id}) }}" class="btn btn-sm btn-success" role="button"><span class="fas fa-edit"></span> Edycja danych o poręczeniach</a>
+                                        <a href="{{ url('edycja_danych_poreczen_dla_sprawozdania', {'id': sprawozdanie.id}) }}"
+                                           class="btn btn-sm btn-success"
+                                           role="button"><span class="fas fa-edit"></span> Edycja danych o poręczeniach</a>
                                     {% endif %}
 
                                     <span class="btn btn-sm btn-warning btn-send-to-parp" data-href="{{ path('sprawozdania_spo_przeslij', {'typSprawozdania': typ_sprawozdania, 'sprawozdanieId': sprawozdanie.id}) }}" role="button">
                                         <span class="fas fa-share-alt"></span> Przesłanie do PARP
                                     </span>
                                 {% elseif sprawozdanie.czyStatusWTrakciePoprawy and sprawozdanie.czyNajnowsza %}
-                                    <a href="{{ path('sprawozdanie_poprawa', {'umowaId': umowa.id, 'sprawozdanieId': sprawozdanie.id}) }}" class="btn btn-sm btn-primary" role="button"><span class="fas fa-edit"></span> Popraw</a>
+                                    <a href="{{ path('sprawozdanie_poprawa', {'umowaId': umowa.id, 'sprawozdanieId': sprawozdanie.id}) }}"
+                                       class="btn btn-sm btn-primary"
+                                       role="button"><span class="fas fa-edit"></span> Popraw</a>
                                 {% elseif sprawozdanie.dataPrzeslaniaDoParp %}
                                     <span class="btn btn-sm btn-danger" ><span class="fas fa-upload"></span>&nbsp Przesłany &nbsp</span>
                                 {% endif %}

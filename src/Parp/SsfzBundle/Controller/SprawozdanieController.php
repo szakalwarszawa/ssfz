@@ -226,27 +226,35 @@ class SprawozdanieController extends Controller
     }
 
     /**
+     * Przyjmuje sprawozdanie do poprawy.
+     *
+     * Przyjęcie sprawozdania do poprawy polega na utworzeniu klona, który sprawozdawca będzie mógł
+     * edytować. Jednocześnie dla celów historycznych zostaje utrwalona pierwotna wersja, która
+     * wg pracownika PARP wymagała poprawy
+     *
+     * Modyfikacje wynikające ze zgłoszenia #87543:
+     * @see https://redmine.parp.gov.pl/issues/87543
+     * Klon jest utrwalany, a sprawozdawca po przeładowaniu strony, będzie miał dostęp do jego edycji.
+     * Wcześniej klon nie był utrwalany, a sprawozdawca od razu był kierowany na fofmularz edycji danych.
+     *
      * @Route("sprawozdanie/poprawa/{umowaId}/{sprawozdanieId}", name="sprawozdanie_poprawa")
      *
-     * @param Request $request
      * @param int $umowaId
      * @param int $reportId
      *
      * @return Response
      *
-     * @throws Exception
+     * @throws InvalidArgumentException Jeśli status sprawozdania nie pozwla na poprawę.
      */
-    public function poprawAction(Request $request, int $umowaId, int $sprawozdanieId)
+    public function poprawAction(int $umowaId, int $sprawozdanieId)
     {
-        $entityManager = $this
-            ->getDoctrine()
-            ->getManager()
-        ;
-
         $report = $this
             ->get('ssfz.service.repository.sprawozdanie')
             ->findByIdUmowyAndIdSprawozdania($umowaId, $sprawozdanieId)
         ;
+        if ((int) $report->getStatus() !== StatusSprawozdania::POPRAWA) {
+            throw new InvalidArgumentException('Nie można poprawić sprawozdania.');
+        }
 
         $beneficjentId = $this->getBeneficjentId();
         $this
@@ -254,113 +262,31 @@ class SprawozdanieController extends Controller
             ->checkSprawozdaniePermission($report, $beneficjentId)
         ;
 
-        // Po co to jest do czego tu?
+        $persist = true;
+        $newReport = $this
+            ->get('ssfz.service.object_cloner')
+            ->cloneSprawozdanieDoPoprawy($report, $persist)
+        ;
         $this
-            ->get('ssfz.service.sprawozdanie_service')
-            ->datatableSprawozdanie($this, $report->getUmowa())
+            ->get('ssfz.service.komunikaty_service')
+            ->sukcesKomunikat('Poprawa sprawozdania zakończyła się powodzeniem', 'Poprawa sprawozdania')
         ;
 
-        if ((int) $report->getStatus() !== StatusSprawozdania::POPRAWA) {
-            throw $this->createNotFoundException('Nie można poprawić sprawozdania.');
-        }
-
-        $okresy = $this->getOkresySprawozdawcze();
-
-        if ($request->query->get('odswiezSpolki') !== null) {
-            $report = $this->odswiezSpolki($report, $umowaId);
-            $this
-                ->get('ssfz.service.komunikaty_service')
-                ->sukcesKomunikat('Portfel spółek został odświeżony.')
-            ;
-        }
-
+        $idUmowy = $newReport->getUmowa()->getId();
         $typeGuesser = $this->get('ssfz.service.guesser.typ_sprawozdania');
+        $typSprawozdania = $typeGuesser->guess($newReport);
+        if (in_array($typSprawozdania, [
+            TypSprawozdaniaGuesserService::SPRAWOZDANIE_PORECZENIOWE,
+            TypSprawozdaniaGuesserService::SPRAWOZDANIE_POZYCZKOWE,
+        ])) {
+            return $this->redirectToRoute('lista_sprawozdan_spo', [
+                'umowa' => $idUmowy,
+            ]);
+        }
 
-        $formTypeClass = $typeGuesser->guessFormType($report);
-        $program = $report
-            ->getUmowa()
-            ->getBeneficjent()
-            ->getProgram()
-        ;
-        $form = $this->createForm($formTypeClass, $report, [
-            'showRemarks' => true,
-            'lata'        => $okresy,
-            'program'     => $program,
+        return $this->redirectToRoute('sprawozdanie_rejestracja', [
+            'umowaId' => $idUmowy,
         ]);
-
-        $form->handleRequest($request);
-        if ($form->isSubmitted()) {
-            if ($form->isValid()) {
-                if (!$this->czySprawozdanieZaDobryOkres($report, $umowaId, $beneficjentId)) {
-                    $this
-                        ->get('ssfz.service.komunikaty_service')
-                        ->bladKomunikat('Formularz zawiera nieprawidłowe dane okresu sprawozdawczego.')
-                    ;
-                } else {
-                    $persist = false;
-                    $newReport = $this
-                        ->get('ssfz.service.object_cloner')
-                        ->cloneSprawozdanieDoPoprawy($report, $persist)
-                    ;
-    
-                    $entityManager->persist($newReport);
-                    $entityManager->flush();
-
-                    $this
-                        ->get('ssfz.service.komunikaty_service')
-                        ->sukcesKomunikat('Poprawa sprawozdania zakończyła się powodzeniem', 'Poprawa sprawozdania')
-                    ;
-
-                    $idUmowy = $newReport->getUmowa()->getId();
-                    $typSprawozdania = $typeGuesser->guess($newReport);
-                    if (in_array($typSprawozdania, [
-                        TypSprawozdaniaGuesserService::SPRAWOZDANIE_PORECZENIOWE,
-                        TypSprawozdaniaGuesserService::SPRAWOZDANIE_POZYCZKOWE,
-                    ])) {
-                        return $this->redirectToRoute('lista_sprawozdan_spo', [
-                            'umowa' => $idUmowy,
-                        ]);
-                    }
-
-                    return $this->redirectToRoute('sprawozdanie_rejestracja', [
-                        'umowaId' => $idUmowy,
-                    ]);
-                }
-            } else {
-                $this
-                    ->get('ssfz.service.komunikaty_service')
-                    ->bladKomunikat('Formularz zawiera błędy.')
-                ;
-            }
-        }
-
-        if ($typeGuesser->jestPozyczkowe($report)) {
-            $template = 'SsfzBundle:Sprawozdanie:pozyczkowe.html.twig';
-            return $this->render($template, [
-                'sprawozdanie'     => $report,
-                'typ_sprawozdania' => TypSprawozdaniaGuesserService::SPRAWOZDANIE_POZYCZKOWE,
-                'tylkoDoOdczytu'   => false,
-                'form'             => $form->createView(),
-            ]);
-        }
-        
-        if ($typeGuesser->jestPoreczeniowe($report)) {
-            $template = 'SsfzBundle:Sprawozdanie:poreczeniowe.html.twig';
-            return $this->render($template, [
-                'sprawozdanie'     => $report,
-                'typ_sprawozdania' => TypSprawozdaniaGuesserService::SPRAWOZDANIE_PORECZENIOWE,
-                'tylkoDoOdczytu'   => false,
-                'form'             => $form->createView(),
-            ]);
-        }
-
-        if ($typeGuesser->jestZalazkowe($report)) {
-            return $this->pokazFormularzRejestracji($form, 'edit', $umowaId);
-        }
-
-        // Do tego miejsca kod nigdy nie powinien dojść.
-        $message = 'Nieznany typ sprawozdania. Obsługiwane są tylko sprawozdanie poręczeniowe i pożyczkowe.';
-        throw new InvalidArgumentException($message);
     }
 
     /**
