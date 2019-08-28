@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<ruleset name="LineLength">
+    <description>Ensures the file ends with a newline character.</description>
+    <rule ref="Generic.Files.EndFileNewline">
+    <properties></properties>
+    </rule>
+</ruleset>

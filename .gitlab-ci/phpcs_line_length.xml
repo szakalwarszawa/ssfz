@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<ruleset name="LineLength">
+    <description>Checks the length of all lines in a file - 120 chars max.</description>
+    <rule ref="Generic.Files.LineLength">
+    <properties>
+        <property name="lineLimit" value="100"/>
+        <property name="absoluteLineLimit" value="120"/>
+    </properties>
+    </rule>
+</ruleset>
