@@ -12,9 +12,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 /**
- * Testuje klasę SprawozdanieOcenType
- *
- * @covers \Parp\SsfzBundle\Form\Type\SprawozdanieOcenType
+ * Testuje klasę SprawozdanieOcenType.
  */
 class SprawozdanieOcenTypeTest extends TypeTestCase
 {
@@ -43,10 +41,10 @@ class SprawozdanieOcenTypeTest extends TypeTestCase
      */
     public function testSubmitValidData()
     {
-        $formData = array(
+        $formData = [
             'uwagi' => 'Test',
             'status' => '4'
-        );
+        ];
 
         $form = $this->factory->create(SprawozdanieOcenType::class);
         $object = new \Parp\SsfzBundle\Entity\Sprawozdanie();

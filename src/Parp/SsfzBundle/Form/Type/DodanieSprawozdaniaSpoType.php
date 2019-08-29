@@ -87,7 +87,6 @@ class DodanieSprawozdaniaSpoType extends AbstractType
             'attr'               => [
                 'novalidate' => 'novalidate',
             ],
-            'showRemarks'        => null,
             'lata'               => null,
             'allow_extra_fields' => true,
             'program'            => null,

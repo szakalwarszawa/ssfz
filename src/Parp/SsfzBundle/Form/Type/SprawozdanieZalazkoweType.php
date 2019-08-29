@@ -41,21 +41,13 @@ class SprawozdanieZalazkoweType extends AbstractType
             ->czyJestPortfelSpolek()
         ;
 
-        $this->showRemarks = $options['showRemarks'];
-
-        if ($this->showRemarks === true) {
-            $builder->add('uwagi', TextareaType::class, [
-                'label' => 'Komentarz PARP',
-                'attr'  => [
-                    'readonly' => true,
-                    'rows'     => '5',
-                ],
-            ]);
-        } else {
-            $builder->add('uwagi', HiddenType::class, [
-                'data' => '',
-            ]);
-        }
+        // Zawartość tego pola powina być wyświatlana sprawozdawcy wyłącznie do odczytu.
+        $builder->add('uwagi', HiddenType::class, [
+            'label' => 'Komentarz PARP',
+            'attr'  => [
+                'readonly' => true,
+            ],
+        ]);
 
         $builder->add('numerUmowy', null, [
             'label' => 'Numer umowy',
@@ -118,7 +110,6 @@ class SprawozdanieZalazkoweType extends AbstractType
             'attr'               => [
                 'novalidate' => 'novalidate',
             ],
-            'showRemarks'        => null,
             'lata'               => null,
             'allow_extra_fields' => true,
             'program'            => null,

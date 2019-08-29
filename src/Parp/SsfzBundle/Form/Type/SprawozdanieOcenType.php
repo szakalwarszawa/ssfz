@@ -14,8 +14,7 @@ use Parp\SsfzBundle\Entity\AbstractSprawozdanie;
 class SprawozdanieOcenType extends AbstractType
 {
     /**
-     * Buduje formularz do dodania komentarza przy cofnięciu sprawozdania
-     * do beneficjenta
+     * Buduje formularz do dodania komentarza przy cofnięciu sprawozdania do beneficjenta.
      *
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -28,7 +27,7 @@ class SprawozdanieOcenType extends AbstractType
         $builder->add('status', HiddenType::class, []);
     }
     /**
-     * Ustawia opcje konfiguracji
+     * Ustawia opcje konfiguracji.
      *
      * @param OptionsResolver $resolver
      */

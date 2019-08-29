@@ -111,7 +111,9 @@ class ObjectClonerService
             ->setPreviousVersionId($sprawozdanie->getId())
             ->setWersja($sprawozdanie->getWersja() + 1)
             ->setStatus(StatusSprawozdania::EDYCJA)
-            ->setUwagi('')
+            // Uwagi powinny być czyszczone przy akceptacji sprawozdania przez PARP - po ostatecznym
+            // zatwierdzeniu sprawozdania (np. po naniesieniu przez sprawozdawcę poprawek wynikających z uwag).
+            //->setUwagi('')
             ->setOceniajacyId(null)
             ->setDataPrzeslaniaDoParp(null)
             ->setDataZatwierdzenia(null)
