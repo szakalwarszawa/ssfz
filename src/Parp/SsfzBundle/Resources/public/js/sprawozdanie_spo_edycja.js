@@ -1,11 +1,11 @@
-var $skladnikiOgolemCollectionHolder;
-var $skladnikiWydzieloneCollectionHolder;
-var $addSkladnikOgolemLink = $('<a href="#" class="btn btn-success" role="button"><span class="fas fa-plus"></span> Dodaj składnik</a>');
-var $newLinkSkladnikOgolemDiv = $('<div></div>').append($addSkladnikOgolemLink);
-var $addSkladnikWydzielonyLink = $('<a href="#" class="btn btn-success" role="button"><span class="fas fa-plus"></span> Dodaj składnik</a>');
-var $newLinkSkladnikWydzielonyDiv = $('<div></div>').append($addSkladnikWydzielonyLink);
+var $skladnikiOgolemCollectionHolde,
+    $skladnikiWydzieloneCollectionHolde,
+    $addSkladnikOgolemLink = $('<a href="#" class="btn btn-success" role="button"><span class="fas fa-plus"></span> Dodaj składnik</a>'),
+    $newLinkSkladnikOgolemDiv = $('<div></div>').append($addSkladnikOgolemLink),
+    $addSkladnikWydzielonyLink = $('<a href="#" class="btn btn-success" role="button"><span class="fas fa-plus"></span> Dodaj składnik</a>'),
+    $newLinkSkladnikWydzielonyDiv = $('<div></div>').append($addSkladnikWydzielonyLink);
 
-$(document).ready(function() {
+$(document).ready(function () {
     $('.js-datepicker').datepicker({
         language:"pl",
         locale: "pl",
@@ -13,13 +13,13 @@ $(document).ready(function() {
     });
     
     $skladnikiOgolemCollectionHolder = $('div.skladniki-ogolem');
-    $skladnikiOgolemCollectionHolder.find('.skladnik-ogolem-row').each(function() {
+    $skladnikiOgolemCollectionHolder.find('.skladnik-ogolem-row').each(function () {
         addFormDeleteLink($(this));
     });    
     $skladnikiOgolemCollectionHolder.append($newLinkSkladnikOgolemDiv);
     $skladnikiOgolemCollectionHolder.data('index', $skladnikiOgolemCollectionHolder.find(':input').length);
 
-    $addSkladnikOgolemLink.on('click', function(e) {
+    $addSkladnikOgolemLink.on('click', function (e) {
         e.preventDefault();
         addForm($skladnikiOgolemCollectionHolder, $newLinkSkladnikOgolemDiv, 1);
         $('.js-datepicker').datepicker({
@@ -30,13 +30,13 @@ $(document).ready(function() {
     });
     
     $skladnikiWydzieloneCollectionHolder = $('div.skladniki-wydzielone');
-    $skladnikiWydzieloneCollectionHolder.find('.skladnik-wydzielony-row').each(function() {
+    $skladnikiWydzieloneCollectionHolder.find('.skladnik-wydzielony-row').each(function () {
         addFormDeleteLink($(this));
     });    
     $skladnikiWydzieloneCollectionHolder.append($newLinkSkladnikWydzielonyDiv);
     $skladnikiWydzieloneCollectionHolder.data('index', $skladnikiWydzieloneCollectionHolder.find(':input').length);
 
-    $addSkladnikWydzielonyLink.on('click', function(e) {
+    $addSkladnikWydzielonyLink.on('click', function (e) {
         e.preventDefault();
         addForm($skladnikiWydzieloneCollectionHolder, $newLinkSkladnikWydzielonyDiv, 2);
         $('.js-datepicker').datepicker({
@@ -53,14 +53,14 @@ $(document).ready(function() {
                 cancel: {
                     label: "Tak",
                     className: 'btn-info width-xshort',
-                    callback: function(){   
+                    callback: function () {
                         $('#form_sprawozdanie').submit();
                     }
                 },
                 ok: {
                     label: "Nie",
                     className: 'btn-danger width-xshort',
-                    callback: function(){
+                    callback: function () {
                         location.href = e.target.getAttribute('data-href-powrot');
                     }
                 }
@@ -92,7 +92,7 @@ function addForm($collectionHolder, $newLinkDiv, $formType) {
             break;
     }
     $newLinkDiv.before($newFormDiv);
-    addFormDeleteLink($newFormDiv);    
+    addFormDeleteLink($newFormDiv);
 }
 
 function addFormDeleteLink($formDiv) {
