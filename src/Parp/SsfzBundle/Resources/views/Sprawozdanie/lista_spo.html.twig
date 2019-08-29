@@ -81,7 +81,7 @@
                                     <span class="btn btn-sm btn-warning btn-send-to-parp" data-href="{{ path('sprawozdania_spo_przeslij', {'typSprawozdania': typ_sprawozdania, 'sprawozdanieId': sprawozdanie.id}) }}" role="button">
                                         <span class="fas fa-share-alt"></span> Przesłanie do PARP
                                     </span>
-                                {% elseif sprawozdanie.czyStatusWTrakciePoprawy and sprawozdanie.czyNajnowsza %}
+                                {% elseif sprawozdanie.czyStatusPoprawa and sprawozdanie.czyNajnowsza %}
                                     <a href="{{ path('sprawozdanie_poprawa', {'umowaId': umowa.id, 'sprawozdanieId': sprawozdanie.id}) }}"
                                        class="btn btn-sm btn-primary"
                                        role="button"><span class="fas fa-edit"></span> Popraw</a>

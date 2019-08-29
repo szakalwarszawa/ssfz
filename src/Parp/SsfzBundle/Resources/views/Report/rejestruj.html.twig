@@ -9,9 +9,9 @@
                 {{ form_row(form.okres) }}
                 {{ form_row(form.rok) }}
 
-                {% set uwagi_parp = form.uwagi.vars.value|default('')|nl2br %}
+                {% set uwagi_parp = form.uwagi.vars.value|default('') %}
                 {% if uwagi_parp != '' %}
-                    <p><strong>Komentarz PARP</stron><br />{{ uwagi_parp }}</p>
+                    <p><strong>Komentarz PARP</stron><br />{{ uwagi_parp|nl2br }}</p>
                 {% endif %}
                 {{ form_row(form.uwagi) }}
 

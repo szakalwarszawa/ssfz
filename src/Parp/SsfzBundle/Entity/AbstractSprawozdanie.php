@@ -629,13 +629,27 @@ class AbstractSprawozdanie implements SprawozdanieInterface
     }
     
     /**
-     * Informuje, czy status sprawozdania to w trakcie poprawy.
+     * Określa, czy sprawozdanie zostało przekazane/zwrócone sprawozdawcy do poprawy.
+     *
+     * W praktyce, sprawozdanie pozostaje w statusie "POPRAWA" tylko do przyjęcie
+     * go do poprawy przez sprawozdawcę. Przyjęte sprawozdanie jest klonowane i posiada
+     * już status "EDYCJA".
      *
      * @return bool
      */
-    public function czyStatusWTrakciePoprawy()
+    public function czyStatusPoprawa()
     {
         return (StatusSprawozdania::POPRAWA === $this->status);
+    }
+
+    /**
+     * Określa, czy sprawozdanie zostało jest w edycji u sprawozdawcy.
+     *
+     * @return bool
+     */
+    public function czyStatusEdycja()
+    {
+        return (StatusSprawozdania::EDYCJA === $this->status);
     }
 
     /**
