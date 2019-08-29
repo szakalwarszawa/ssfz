@@ -51,7 +51,11 @@
                                 data-href-powrot="{{ path('lista_sprawozdan_spo', {'umowa': sprawozdanie.umowa.id}) }}">
                                 <i class="fas fa-arrow-left"></i> Powrót
                             </button>
-                            <input name="zapisz" value="Zapisz" type="submit" class="btn btn-primary pull-right width-short" />
+                            <button id="zapisz"
+                                    name="zapisz"
+                                    type="submit"
+                                    value="zapisz"
+                                    class="btn btn-primary pull-right width-short"><i class="fas fa-check"></i> Zapisz</button>
                         {% endif %}
                     {% endif %}
                 </div>
