@@ -20,10 +20,6 @@ use Parp\SsfzBundle\Entity\AbstractSprawozdanie;
 use Parp\SsfzBundle\Entity\SprawozdanieZalazkowe;
 use Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe;
 use Parp\SsfzBundle\Entity\SprawozdaniePoreczeniowe;
-//use Parp\SsfzBundle\Entity\SprawozdaniePoreczenioweSkladnikOgolem;
-//use Parp\SsfzBundle\Entity\SprawozdaniePoreczenioweSkladnikWydzielony;
-//use Parp\SsfzBundle\Entity\SprawozdaniePozyczkoweSkladnikOgolem;
-//use Parp\SsfzBundle\Entity\SprawozdaniePozyczkoweSkladnikWydzielony;
 use Parp\SsfzBundle\Entity\Slownik\FormaPrawnaFunduszu;
 use Parp\SsfzBundle\Entity\Slownik\FormaPrawnaBeneficjenta;
 use Parp\SsfzBundle\Entity\Slownik\OkresSprawozdawczy;
@@ -75,7 +71,7 @@ class ObjectClonerService
     public function cloneSprawozdanieDoPoprawy(
         AbstractSprawozdanie $sprawozdanie,
         bool $persist = false
-    ): AbstractSprawozdani {
+    ): AbstractSprawozdanie {
         $entityManager = $this->entityManager;
   
         $copier = new DeepCopy(true);
