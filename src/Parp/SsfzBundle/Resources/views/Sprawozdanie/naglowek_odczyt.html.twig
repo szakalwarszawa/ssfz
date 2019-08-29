@@ -22,7 +22,7 @@
                         {% if komentarz_parp != '' %}
                             <tr>
                                 <td class="col-md-3"><strong>Komentarz PARP</strong></td>
-                                <td>{{ komentarz_parp }}</td>
+                                <td>{{ komentarz_parp|nl2br }}</td>
                             </tr>
                         {% endif %}
                     </tbody>

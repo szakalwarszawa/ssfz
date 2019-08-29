@@ -7,7 +7,7 @@
         <div class="panel-heading">
             {% if tylkoDoOdczytu %}
                     Podgląd
-            {% elseif sprawozdanie.czyStatusWTrakciePoprawy %}
+            {% elseif sprawozdanie.czyStatusPoprawa %}
                     Poprawa
             {% else %}
                 Edycja
@@ -25,12 +25,17 @@
                         <td class="etykieta">Rok</td>
                         <td>{{ sprawozdanie.rok }}</td>
                     </tr>
-                    {% if sprawozdanie.czyStatusWTrakciePoprawy %}
-                        <tr>
-                            <td class="etykieta">Komentarz PARP</td>
-                            <td>{{ sprawozdanie.uwagi|default('')|nl2br }}</td>
-                        </tr>
+
+                    {% if sprawozdanie.czyStatusPoprawa or sprawozdanie.czyStatusEdycja %}
+                        {% set komentarz_parp = sprawozdanie.uwagi|default('') %}
+                        {% if komentarz_parp != '' %}
+                            <tr>
+                                <td class="etykieta">Komentarz PARP</td>
+                                <td>{{ komentarz_parp|nl2br }}</td>
+                            </tr>
+                        {% endif %}
                     {% endif %}
+
                 </table>
 
                 <hr />
