@@ -4,7 +4,7 @@ jQuery(document).ready(function () {
 
         uwagi = $('#ocen-uwagi').val();
         if (uwagi === '') {
-            alert('Uwagi muszą być wypełnione.');
+            alert('Komentarz musi być wypełniony.');
             return false;
         }
 
