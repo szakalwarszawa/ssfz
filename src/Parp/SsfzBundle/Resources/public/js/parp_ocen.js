@@ -1,6 +1,13 @@
 jQuery(document).ready(function () {
     $('#ocena-popraw-submit').click(function () {
-        $('#sprawozdanie_ocen_uwagi').val($('#ocen-uwagi').val());
+        var uwagi = $('#ocen-uwagi').val();
+
+        if (uwagi === '') {
+            alert('Uwagi muszą być wypełnione.');
+            return false;
+        }
+
+        $('#sprawozdanie_ocen_uwagi').val(uwagi);
         $('#sprawozdanie_ocen_status').val(4);
         $('form[name=sprawozdanie_ocen]').submit();
     });
