@@ -1,7 +1,8 @@
 jQuery(document).ready(function () {
     $('#ocena-popraw-submit').click(function () {
-        var uwagi = $('#ocen-uwagi').val();
+        var uwagi = '';
 
+        uwagi = $('#ocen-uwagi').val();
         if (uwagi === '') {
             alert('Uwagi muszą być wypełnione.');
             return false;
