@@ -28,7 +28,7 @@
                     {% if sprawozdanie.czyStatusWTrakciePoprawy %}
                         <tr>
                             <td class="etykieta">Komentarz PARP</td>
-                            <td>{{ sprawozdanie.uwagi|nl2br }}</td>
+                            <td>{{ sprawozdanie.uwagi|default('')|nl2br }}</td>
                         </tr>
                     {% endif %}
                 </table>

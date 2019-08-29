@@ -217,7 +217,6 @@ class SprawozdanieSpolkiType extends AbstractType
             'attr'        => [
                 'novalidate' => 'novalidate',
             ],
-            'showRemarks' => null,
         ]);
     }
 }

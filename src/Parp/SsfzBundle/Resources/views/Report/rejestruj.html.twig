@@ -8,7 +8,13 @@
                 {{ form_row(form.numerUmowy) }}
                 {{ form_row(form.okres) }}
                 {{ form_row(form.rok) }}
+
+                {% set uwagi_parp = form.uwagi.vars.value|default('')|nl2br %}
+                {% if uwagi_parp != '' %}
+                    <p><strong>Komentarz PARP</stron><br />{{ uwagi_parp }}</p>
+                {% endif %}
                 {{ form_row(form.uwagi) }}
+
                 <div class="sprawozdaniaSpolek" data-prototype="{{ form_widget(form.sprawozdaniaSpolek.vars.prototype)|e('html_attr') }}">
                     {% for sprawozdanie in form.sprawozdaniaSpolek|default([]) %}
                         <div class="panel panel-default">
@@ -42,24 +48,24 @@
                     {% endfor %}
                 </div>
                 <div>
-                <input type="hidden" id="umowaIdHidden" value="{{ umowaId }}">
-                <input type="hidden" id="backToBeneficjent" name="backToBeneficjent" value="false">
-                <div id="form-submit-div" class="row btn-toolbar">
-                    {% if form_mode == 'create' %}
-                        <span id="sprawozdanie-powrot" class="btn btn-danger pull-right"><span class="fas fa-chevron-left"></span> Powrót</span>
-                        <button type="submit" class="btn btnRegister btn-primary pull-right"><span class="fas fa-check"></span> Zapisz</button>
-                    {% elseif form_mode == 'edit' %}
-                        <a href="?odswiezSpolki" class="btn btn-success"><span class="fas fa-refresh"></span> Odśwież portfel spółek</a>
-                        <span id="sprawozdanie-powrot" class="btn btn-danger pull-right"><span class="fas fa-chevron-left"></span> Powrót</span>
-                        <button type="submit" class="btn btnRegister btn-primary pull-right"><span class="fas fa-check"></span> Zapisz</button>
-                    {% elseif form_mode == 'read' %}
-                        <a href='{{ path('sprawozdanie_rejestracja', {'umowaId': umowaId }) }}'><span  class="btn orange-button pull-right">Powrót</span></a>
-                    {% elseif form_mode == 'not_allowed' %}
-                        <a href='{{ path('beneficjent') }}'><span class="btn orange-button pull-right">Powrót</span></a>
-                    {% endif %}
+                    <input type="hidden" id="umowaIdHidden" value="{{ umowaId }}">
+                    <input type="hidden" id="backToBeneficjent" name="backToBeneficjent" value="false">
+                    <div id="form-submit-div" class="row btn-toolbar">
+                        {% if form_mode == 'create' %}
+                            <span id="sprawozdanie-powrot" class="btn btn-danger pull-right"><span class="fas fa-chevron-left"></span> Powrót</span>
+                            <button type="submit" class="btn btnRegister btn-primary pull-right"><span class="fas fa-check"></span> Zapisz</button>
+                        {% elseif form_mode == 'edit' %}
+                            <a href="?odswiezSpolki" class="btn btn-success"><span class="fas fa-refresh"></span> Odśwież portfel spółek</a>
+                            <span id="sprawozdanie-powrot" class="btn btn-danger pull-right"><span class="fas fa-chevron-left"></span> Powrót</span>
+                            <button type="submit" class="btn btnRegister btn-primary pull-right"><span class="fas fa-check"></span> Zapisz</button>
+                        {% elseif form_mode == 'read' %}
+                            <a href='{{ path('sprawozdanie_rejestracja', {'umowaId': umowaId }) }}'><span  class="btn orange-button pull-right">Powrót</span></a>
+                        {% elseif form_mode == 'not_allowed' %}
+                            <a href='{{ path('beneficjent') }}'><span class="btn orange-button pull-right">Powrót</span></a>
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
             {{ form_end(form) }}
         </div>
     </div>

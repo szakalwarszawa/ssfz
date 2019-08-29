@@ -359,7 +359,6 @@ class AbstractSprawozdanieSpoType extends AbstractType
             'data_class'         => AbstractSprawozdanieSpo::class,
             'allow_extra_fields' => true,
             'lata'               => null,
-            'showRemarks'        => null,
             'attr'               => [
                 'novalidate' => 'novalidate',
             ],
