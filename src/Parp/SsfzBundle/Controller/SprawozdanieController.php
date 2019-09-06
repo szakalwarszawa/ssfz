@@ -665,10 +665,10 @@ class SprawozdanieController extends Controller
             : SprawozdaniePoreczenioweType::class
         ;
 
-        $form = $this->createForm(
-            $klasaFormularza,
-            $sprawozdanie
-        );
+        $form = $this->createForm($klasaFormularza, $sprawozdanie, [
+            'typ_sprawozdania' => $typSprawozdania,
+        ]);
+
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {

@@ -55,7 +55,7 @@ class DanePoreczenType extends AbstractType
         'kwotaWadiowPoreczenPozostalychOd50001Do100000Pln',
         'kwotaWadiowPoreczenPozostalychOd100001Do500000Pln',
         'kwotaWadiowPoreczenPozostalychOd500001Pln',
-        // Według działania pożyczkobiorcy
+        // Według działania poręczeniobiorcy
         'kwotaPoreczenDo50000PlnNaDzialaniaProdukcyjne',
         'kwotaPoreczenOd50001Do100000PlnNaDzialaniaProdukcyjne',
         'kwotaPoreczenOd100001Do500000PlnNaDzialaniaProdukcyjne',
@@ -236,7 +236,7 @@ class DanePoreczenType extends AbstractType
             'liczbaWadiowPoreczenPozostalychOd50001Do100000Pln',
             'liczbaWadiowPoreczenPozostalychOd100001Do500000Pln',
             'liczbaWadiowPoreczenPozostalychOd500001Pln',
-            // Według działania pożyczkobiorcy
+            // Według działania poręczeniobiorcy
             'liczbaPoreczenDo50000PlnNaDzialaniaProdukcyjne',
             'liczbaPoreczenOd50001Do100000PlnNaDzialaniaProdukcyjne',
             'liczbaPoreczenOd100001Do500000PlnNaDzialaniaProdukcyjne',

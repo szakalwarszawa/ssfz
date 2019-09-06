@@ -181,8 +181,9 @@ class SprawozdaniePozyczkoweType extends AbstractSprawozdanieSpoType
         parent::configureOptions($resolver);
 
         $resolver->setDefaults([
-            'data_class' => SprawozdaniePozyczkowe::class,
-            'program'    => null,
+            'data_class'       => SprawozdaniePozyczkowe::class,
+            'program'          => null,
+            'typ_sprawozdania' => 'sprawozdanie_pozyczkowe',
         ]);
     }
 }
