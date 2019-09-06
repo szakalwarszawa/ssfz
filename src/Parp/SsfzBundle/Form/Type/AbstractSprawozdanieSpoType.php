@@ -46,8 +46,14 @@ class AbstractSprawozdanieSpoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $typSprawozdania = 'Nazwa Funduszu';
+        if ($options['typ_sprawozdania'] === 'sprawozdanie_pozyczkowe') {
+            $typSprawozdania = $typSprawozdania.' (Nazwa instytucji prowadzącej fundusz pożyczkowy)';
+        } else if ($options['typ_sprawozdania'] === 'sprawozdanie_poreczeniowe') {
+            $typSprawozdania = $typSprawozdania.' (Nazwa instytucji prowadzącej fundusz poręczeniowy)';
+        }
         $builder->add('nazwaFunduszu', TextType::class, [
-            'label'       => 'Nazwa Funduszu (Nazwa instytucji prowadzącej fundusz pożyczkowy)',
+            'label'       => $typSprawozdania,
             'required'    => false,
             'attr'        => [
                 'placeholder' => 'nazwa funduszu',
@@ -256,23 +262,19 @@ class AbstractSprawozdanieSpoType extends AbstractType
             ],
         ]);
 
-        $builder->add(
-            'rokZalozenia',
-            TextType::class,
-            array(
-                'label' => 'Rok założenia',
-                'required' => false,
-                'attr' => array(
-                    'placeholder' => 'rok',
-                    'maxlength' => 4,
-                ),
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Należy wypełnić pole',
-                    ]),
-                ],
-            )
-        );
+        $builder->add('rokZalozenia', TextType::class, [
+            'label'       => 'Rok założenia',
+            'required'    => false,
+            'attr'        => [
+                'placeholder' => 'rok',
+                'maxlength'   => 4,
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+            ],
+        ]);
 
         $builder->add('formaPrawnaFunduszu', EntityType::class, [
             'label'         => 'Forma prawna',
@@ -363,6 +365,7 @@ class AbstractSprawozdanieSpoType extends AbstractType
                 'novalidate' => 'novalidate',
             ],
             'program'           => null,
+            'typ_sprawozdania'  => null,
         ]);
     }
 }

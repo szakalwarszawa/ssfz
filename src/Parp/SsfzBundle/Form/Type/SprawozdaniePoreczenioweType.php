@@ -191,8 +191,9 @@ class SprawozdaniePoreczenioweType extends AbstractSprawozdanieSpoType
         parent::configureOptions($resolver);
 
         $resolver->setDefaults([
-            'data_class' => SprawozdaniePoreczeniowe::class,
-            'program'    => null,
+            'data_class'       => SprawozdaniePoreczeniowe::class,
+            'program'          => null,
+            'typ_sprawozdania' => 'sprawozdanie_poreczeniowe',
         ]);
     }
 }
