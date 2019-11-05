@@ -116,7 +116,7 @@ class SprawozdaniePoreczenioweType extends AbstractSprawozdanieSpoType
             ],
         ]);
 
-        $builder->add('kwotaDotacjaKoniecOkresuSprawozdawczego',MoneyType::class, [
+        $builder->add('kwotaDotacjaKoniecOkresuSprawozdawczego', MoneyType::class, [
             'label'       => 'Kwota dotacji SPO WKP – wartość na koniec okresu sprawozdawczego (zł)',
             'required'    => true,
             'currency'    => 'PLN',
