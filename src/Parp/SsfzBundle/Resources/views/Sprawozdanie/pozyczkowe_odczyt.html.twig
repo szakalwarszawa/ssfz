@@ -78,7 +78,7 @@
                     <tbody>
                         <tr>
                             <td class="col-md-8"><strong>Kapitał Pożyczkowy Funduszu Pożyczkowego</strong></td>
-                            <td>{{ sprawozdanie.kapitalOgolem }} zł</td>
+                            <td>{{ sprawozdanie.kapitalOgolem|number_format(2, '.', ' ') }} zł</td>
                         </tr>
                     </tbody>
                 </table>
@@ -91,7 +91,7 @@
                     {% for skladnik in sprawozdanie.skladnikiOgolem %}
                         <tr>
                             <td><strong>{{ skladnik.skladnik }}</strong></td>
-                            <td>{{ skladnik.wartosc }} zł</td>
+                            <td>{{ skladnik.wartosc|trans|number_format(2, '.', ' ') }} zł</td>
                         </tr>
                     {% endfor %}
                 </table>
@@ -102,7 +102,7 @@
                     <tbody>
                         <tr>
                             <td class="col-md-8"><strong>w tym kapitał wydzielonego Funduszu Pożyczkowego prowadzonego zgodnie z zasadami gospodarowania monitorowanymi przez PARP</strong></td>
-                            <td>{{ sprawozdanie.kapitalWydzielony }} zł</td>
+                            <td>{{ sprawozdanie.kapitalWydzielony|trans|number_format(2, '.', ' ') }} zł</td>
                         </tr>
                     </tbody>
                 </table>
@@ -117,7 +117,7 @@
                             {% for skladnik in sprawozdanie.skladnikiWydzielone %}
                                 <tr>
                                     <td><strong>{{ skladnik.skladnik }}</strong></td>
-                                    <td>{{ skladnik.wartosc }} zł</td>
+                                    <td>{{ skladnik.wartosc|trans|number_format(2, '.', ' ') }} zł</td>
                                 </tr>
                             {% endfor %}
                         </tr>
