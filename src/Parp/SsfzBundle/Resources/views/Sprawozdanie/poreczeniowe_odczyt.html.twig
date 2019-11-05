@@ -186,6 +186,25 @@
                     </tbody>
                 </table>
             </div>
+            <div class="panel-heading">Dane dotyczące kapitału funduszu poręczeniowego z tytułu dotacji SPO WKP</div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <table class="table table-bordered table-condensed table-striped">
+                        <tbody>
+                        <tr>
+                            <td class="col-md-8"><strong>Kwota dotacji SPO WKP – wartość z umowy o dofinansowanie</strong></td>
+                            <td>
+                                {{ sprawozdanie.kwotaDotacjaUmowaDofinansowanie|trans|number_format(2, '.', ' ') }} zł
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kwota dotacji SPO WKP – wartość na koniec okresu sprawozdawczego</strong></td>
+                            <td>{{ sprawozdanie.kwotaDotacjaKoniecOkresuSprawozdawczego|trans|number_format(2, '.', ' ') }} zł</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

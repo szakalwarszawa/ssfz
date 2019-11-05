@@ -78,6 +78,36 @@ class SprawozdaniePozyczkowe extends AbstractSprawozdanieSpo
     protected $maksymalnaWielkoscPozyczki;
 
     /**
+     * Kwota dotacji SPO WKP – wartość z umowy o dofinansowanie
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_dotacja_umowa_dofinansowanie",
+     *     type="decimal",
+     *     precision=15,
+     *     scale=2,
+     *     nullable=true
+     * )
+     */
+    protected $kwotaDotacjaUmowaDofinansowanie;
+
+    /**
+     * Kwota dotacji SPO WKP – wartość na koniec okresu sprawozdawczego
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_dotacja_koniec_okresu_sprawozdawczego",
+     *     type="decimal",
+     *     precision=15,
+     *     scale=2,
+     *     nullable=true
+     * )
+     */
+    protected $kwotaDotacjaKoniecOkresuSprawozdawczego;
+
+    /**
      * @var DanePozyczek
      *
      * @ORM\OneToOne(
@@ -253,5 +283,37 @@ class SprawozdaniePozyczkowe extends AbstractSprawozdanieSpo
         $this->danePozyczek = $danePozyczek;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKwotaDotacjaUmowaDofinansowanie()
+    {
+        return $this->kwotaDotacjaUmowaDofinansowanie;
+    }
+
+    /**
+     * @param string $kwotaDotacjaUmowaDofinansowanie
+     */
+    public function setKwotaDotacjaUmowaDofinansowanie($kwotaDotacjaUmowaDofinansowanie)
+    {
+        $this->kwotaDotacjaUmowaDofinansowanie = $kwotaDotacjaUmowaDofinansowanie;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKwotaDotacjaKoniecOkresuSprawozdawczego()
+    {
+        return $this->kwotaDotacjaKoniecOkresuSprawozdawczego;
+    }
+
+    /**
+     * @param string $kwotaDotacjaKoniecOkresuSprawozdawczego
+     */
+    public function setKwotaDotacjaKoniecOkresuSprawozdawczego($kwotaDotacjaKoniecOkresuSprawozdawczego)
+    {
+        $this->kwotaDotacjaKoniecOkresuSprawozdawczego = $kwotaDotacjaKoniecOkresuSprawozdawczego;
     }
 }
