@@ -295,10 +295,14 @@ class SprawozdaniePozyczkowe extends AbstractSprawozdanieSpo
 
     /**
      * @param string $kwotaDotacjaUmowaDofinansowanie
+     *
+     * @return SprawozdaniePozyczkowe
      */
     public function setKwotaDotacjaUmowaDofinansowanie($kwotaDotacjaUmowaDofinansowanie)
     {
         $this->kwotaDotacjaUmowaDofinansowanie = $kwotaDotacjaUmowaDofinansowanie;
+
+        return $this;
     }
 
     /**
@@ -311,9 +315,13 @@ class SprawozdaniePozyczkowe extends AbstractSprawozdanieSpo
 
     /**
      * @param string $kwotaDotacjaKoniecOkresuSprawozdawczego
+     *
+     * @return SprawozdaniePozyczkowe
      */
     public function setKwotaDotacjaKoniecOkresuSprawozdawczego($kwotaDotacjaKoniecOkresuSprawozdawczego)
     {
         $this->kwotaDotacjaKoniecOkresuSprawozdawczego = $kwotaDotacjaKoniecOkresuSprawozdawczego;
+
+        return $this;
     }
 }
