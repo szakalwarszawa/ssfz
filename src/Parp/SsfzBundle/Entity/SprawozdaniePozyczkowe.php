@@ -83,14 +83,14 @@ class SprawozdaniePozyczkowe extends AbstractSprawozdanieSpo
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_dotacja_umowa_dofinansowanie",
+     *     name="kwota_dotacji_z_umowy_o_dofinansowanie",
      *     type="decimal",
      *     precision=15,
      *     scale=2,
      *     nullable=true
      * )
      */
-    protected $kwotaDotacjaUmowaDofinansowanie;
+    protected $kwotaDotacjiZUmowyODofinansowanie;
 
     /**
      * Kwota dotacji SPO WKP – wartość na koniec okresu sprawozdawczego
@@ -98,14 +98,14 @@ class SprawozdaniePozyczkowe extends AbstractSprawozdanieSpo
      * @var string
      *
      * @ORM\Column(
-     *     name="kwota_dotacja_koniec_okresu_sprawozdawczego",
+     *     name="kwota_dotacji_na_koniec_okresu_sprawozdawczego",
      *     type="decimal",
      *     precision=15,
      *     scale=2,
      *     nullable=true
      * )
      */
-    protected $kwotaDotacjaKoniecOkresuSprawozdawczego;
+    protected $kwotaDotacjiNaKoniecOkresuSprawozdawczego;
 
     /**
      * @var DanePozyczek
@@ -288,19 +288,19 @@ class SprawozdaniePozyczkowe extends AbstractSprawozdanieSpo
     /**
      * @return string
      */
-    public function getKwotaDotacjaUmowaDofinansowanie()
+    public function getKwotaDotacjiZUmowyODofinansowanie()
     {
-        return $this->kwotaDotacjaUmowaDofinansowanie;
+        return $this->kwotaDotacjiZUmowyODofinansowanie;
     }
 
     /**
-     * @param string $kwotaDotacjaUmowaDofinansowanie
+     * @param string $kwotaDotacjiZUmowyODofinansowanie
      *
      * @return SprawozdaniePozyczkowe
      */
-    public function setKwotaDotacjaUmowaDofinansowanie($kwotaDotacjaUmowaDofinansowanie)
+    public function setKwotaDotacjiZUmowyODofinansowanie($kwotaDotacjiZUmowyODofinansowanie)
     {
-        $this->kwotaDotacjaUmowaDofinansowanie = $kwotaDotacjaUmowaDofinansowanie;
+        $this->kwotaDotacjiZUmowyODofinansowanie = $kwotaDotacjiZUmowyODofinansowanie;
 
         return $this;
     }
@@ -308,19 +308,19 @@ class SprawozdaniePozyczkowe extends AbstractSprawozdanieSpo
     /**
      * @return string
      */
-    public function getKwotaDotacjaKoniecOkresuSprawozdawczego()
+    public function getKwotaDotacjiNaKoniecOkresuSprawozdawczego()
     {
-        return $this->kwotaDotacjaKoniecOkresuSprawozdawczego;
+        return $this->kwotaDotacjiNaKoniecOkresuSprawozdawczego;
     }
 
     /**
-     * @param string $kwotaDotacjaKoniecOkresuSprawozdawczego
+     * @param string $kwotaDotacjiNaKoniecOkresuSprawozdawczego
      *
      * @return SprawozdaniePozyczkowe
      */
-    public function setKwotaDotacjaKoniecOkresuSprawozdawczego($kwotaDotacjaKoniecOkresuSprawozdawczego)
+    public function setKwotaDotacjiNaKoniecOkresuSprawozdawczego($kwotaDotacjiNaKoniecOkresuSprawozdawczego)
     {
-        $this->kwotaDotacjaKoniecOkresuSprawozdawczego = $kwotaDotacjaKoniecOkresuSprawozdawczego;
+        $this->kwotaDotacjiNaKoniecOkresuSprawozdawczego = $kwotaDotacjiNaKoniecOkresuSprawozdawczego;
 
         return $this;
     }
