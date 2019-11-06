@@ -110,6 +110,36 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
     protected $danePoreczen;
 
     /**
+     * Kwota dotacji SPO WKP – wartość z umowy o dofinansowanie
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_dotacji_z_umowy_o_dofinansowanie",
+     *     type="decimal",
+     *     precision=15,
+     *     scale=2,
+     *     nullable=true
+     * )
+     */
+    protected $kwotaDotacjiZUmowyODofinansowanie;
+
+    /**
+     * Kwota dotacji SPO WKP – wartość na koniec okresu sprawozdawczego
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="kwota_dotacji_na_koniec_okresu_sprawozdawczego",
+     *     type="decimal",
+     *     precision=15,
+     *     scale=2,
+     *     nullable=true
+     * )
+     */
+    protected $kwotaDotacjiNaKoniecOkresuSprawozdawczego;
+
+    /**
      * Konstruktor.
      */
     public function __construct()
@@ -320,6 +350,46 @@ class SprawozdaniePoreczeniowe extends AbstractSprawozdanieSpo
     public function setDanePoreczen(DanePoreczen $danePoreczen = null)
     {
         $this->danePoreczen = $danePoreczen;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKwotaDotacjiZUmowyODofinansowanie()
+    {
+        return $this->kwotaDotacjiZUmowyODofinansowanie;
+    }
+
+    /**
+     * @param string $kwotaDotacjiZUmowyODofinansowanie
+     *
+     * @return SprawozdaniePoreczeniowe
+     */
+    public function setKwotaDotacjiZUmowyODofinansowanie($kwotaDotacjiZUmowyODofinansowanie)
+    {
+        $this->kwotaDotacjiZUmowyODofinansowanie = $kwotaDotacjiZUmowyODofinansowanie;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKwotaDotacjiNaKoniecOkresuSprawozdawczego()
+    {
+        return $this->kwotaDotacjiNaKoniecOkresuSprawozdawczego;
+    }
+
+    /**
+     * @param string $kwotaDotacjiNaKoniecOkresuSprawozdawczego
+     *
+     * @return SprawozdaniePoreczeniowe
+     */
+    public function setKwotaDotacjiNaKoniecOkresuSprawozdawczego($kwotaDotacjiNaKoniecOkresuSprawozdawczego)
+    {
+        $this->kwotaDotacjiNaKoniecOkresuSprawozdawczego = $kwotaDotacjiNaKoniecOkresuSprawozdawczego;
 
         return $this;
     }

@@ -95,6 +95,48 @@ class SprawozdaniePoreczenioweType extends AbstractSprawozdanieSpoType
             ],
         ]);
 
+        $builder->add('kwotaDotacjiZUmowyODofinansowanie', MoneyType::class, [
+            'label'       => 'Kwota dotacji SPO WKP – wartość z umowy o dofinansowanie (zł)',
+            'required'    => true,
+            'currency'    => 'PLN',
+            'mapped'      => true,
+            'attr'        => [
+                'placeholder' => 'kwota w PLN',
+                'class'       => 'width-short',
+                'maxlength'   => 12,
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+                new LessThan([
+                    'value'   => '1000000000',
+                    'message' => 'Kwota nie może przekraczać 999 999 999,99'
+                ]),
+            ],
+        ]);
+
+        $builder->add('kwotaDotacjiNaKoniecOkresuSprawozdawczego', MoneyType::class, [
+            'label'       => 'Kwota dotacji SPO WKP – wartość na koniec okresu sprawozdawczego (zł)',
+            'required'    => true,
+            'currency'    => 'PLN',
+            'mapped'      => true,
+            'attr'        => [
+                'placeholder' => 'kwota w PLN',
+                'class'       => 'width-short',
+                'maxlength'   => 12,
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Należy wypełnić pole',
+                ]),
+                new LessThan([
+                    'value'   => '1000000000',
+                    'message' => 'Kwota nie może przekraczać 999 999 999,99'
+                ]),
+            ],
+        ]);
+
         $builder->add('skladnikiOgolem', CollectionType::class, [
             'label'        => 'Kapitał Funduszu Poręczeniowego',
             'entry_type'   => SprawozdaniePoreczenioweSkladnikOgolemType::class,
