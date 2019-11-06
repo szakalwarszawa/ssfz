@@ -23,10 +23,9 @@ $(document).ready(function () {
 
         $.each(verticalGroupsInteger, function (index, value) {
             $('[data-vertical-group='+value+']').each(function () {
-                var txt;
-    
-                txt = $(this).text();
-                sum = sum + parseInt(txt);
+                var text = $(this).text();
+                sum = parseFloat(sum) + parseFloat(text);
+                sum = sum.toFixed(2);
             });
             $('[data-vertical-group-sum='+value+']').text(sum);
             sum = 0;
