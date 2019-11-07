@@ -173,11 +173,6 @@ class AbstractSprawozdanieSpoType extends AbstractType
                 'placeholder' => 'nr lokalu',
                 'maxlength'   => 10,
             ],
-            'constraints' => [
-                new NotBlank([
-                    'message' => 'Należy wypełnić pole',
-                ]),
-            ],
         ]);
 
         $builder->add('kodPocztowy', TextType::class, [
