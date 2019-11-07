@@ -19,11 +19,12 @@ $(document).ready(function () {
             verticalGroupsDecimal = ['13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'],
             horizontalGroupsInteger = ['1', '2', '3'],
             horizontalGroupsDecimal = ['4', '5', '6'],
-            sum = 0;
+            sum = 0,
+            text;
 
         $.each(verticalGroupsInteger, function (index, value) {
             $('[data-vertical-group='+value+']').each(function () {
-                var text = $(this).text();
+                text = $(this).text().replace(' ', '');
                 sum = parseFloat(sum) + parseFloat(text);
                 sum = sum.toFixed(2);
             });
