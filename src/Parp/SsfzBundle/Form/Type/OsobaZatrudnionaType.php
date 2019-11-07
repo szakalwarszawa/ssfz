@@ -51,6 +51,8 @@ class OsobaZatrudnionaType extends AbstractType
                 'na czas określony'                    => 'na czas określony',
                 'na czas wykonywania określonej pracy' => 'na czas wykonywania określonej pracy',
                 'na okres próbny'                      => 'na okres próbny',
+                'cywilno - prawna'                     => 'cywilno - prawna',
+                'inne'                                 => 'inne',
             ],
             'constraints' => [
                 new NotBlank([
