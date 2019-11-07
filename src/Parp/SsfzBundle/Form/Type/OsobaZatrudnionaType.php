@@ -45,15 +45,14 @@ class OsobaZatrudnionaType extends AbstractType
         ]);
 
         $builder->add('umowaRodzaj', ChoiceType::class, [
-            'label' => 'Podstawa zaangażowania',
             'choices' => [
                 ''                                     => '',
-                'na czas nieokreślony'                 => 'umowa na czas nieokreślony',
-                'na czas określony'                    => 'umowa na czas określony',
-                'na czas wykonywania określonej pracy' => 'umowa na czas wykonywania określonej pracy',
-                'na okres próbny'                      => 'umowa na okres próbny',
-                'cywilno - prawna'                      => 'umowa cywilno prawna',
-                'inne'                      => 'inne',
+                'na czas nieokreślony'                 => 'na czas nieokreślony',
+                'na czas określony'                    => 'na czas określony',
+                'na czas wykonywania określonej pracy' => 'na czas wykonywania określonej pracy',
+                'na okres próbny'                      => 'na okres próbny',
+                'cywilno - prawna'                     => 'cywilno - prawna',
+                'inne'                                 => 'inne',
             ],
             'constraints' => [
                 new NotBlank([
@@ -70,7 +69,7 @@ class OsobaZatrudnionaType extends AbstractType
                 'data-provide'     => 'datepicker',
                 'data-date-format' => 'yyyy-mm-dd'
             ],
-            'label'       => 'Data dokumentu zaangażowania',
+            'label'       => 'Data zawarcia umowy',
             'constraints' => [
                 new NotBlank([
                     'message' => 'Należy wypełnić pole',
@@ -86,7 +85,7 @@ class OsobaZatrudnionaType extends AbstractType
                 'data-provide'     => 'datepicker',
                 'data-date-format' => 'yyyy-mm-dd'
             ],
-            'label'       => 'Data rozpoczęcia zaangażowania',
+            'label'       => 'Data rozpoczęcia pracy',
             'constraints' => [
                 new NotBlank([
                     'message' => 'Należy wypełnić pole',
@@ -104,7 +103,7 @@ class OsobaZatrudnionaType extends AbstractType
         ]);
 
         $builder->add('wymiar', TextType::class, [
-            'label'       => 'Wymiar zaangażowania',
+            'label'       => 'Wymiar etatu',
             'constraints' => [
                 new NotBlank([
                     'message' => 'Należy wypełnić pole',
