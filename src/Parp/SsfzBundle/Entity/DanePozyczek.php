@@ -5034,7 +5034,8 @@ class DanePozyczek
      */
     public function setKwotaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw(string $kwotaPozyczek = '0.00')
     {
-        $this->kwotaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw = MoneyHelper::anyToDecimalString($kwotaPozyczek,
+        $this->kwotaPozyczekOd300001PlnDlaMikroPrzedsiebiorstw = MoneyHelper::anyToDecimalString(
+            $kwotaPozyczek,
             2,
             true
         );
@@ -8006,7 +8007,8 @@ class DanePozyczek
         $this->wspolczynnikStratWDanymOkresieWgLiczbyPozyczek = MoneyHelper::anyToDecimalString(
             $wspolczynnik,
             2,
-            true);
+            true
+        );
 
         return $this;
     }
@@ -8033,7 +8035,8 @@ class DanePozyczek
         $this->wspolczynnikStratWCalymOkresieWgLiczbyPozyczek = MoneyHelper::anyToDecimalString(
             $wspolczynnik,
             2,
-            true);
+            true
+        );
 
         return $this;
     }
@@ -8060,7 +8063,8 @@ class DanePozyczek
         $this->wspolczynnikStratWDanymOkresieWgKwotyPozyczek = MoneyHelper::anyToDecimalString(
             $wspolczynnik,
             2,
-            true);
+            true
+        );
 
         return $this;
     }
@@ -8087,7 +8091,8 @@ class DanePozyczek
         $this->wspolczynnikStratWCalymOkresieWgKwotyPozyczek = MoneyHelper::anyToDecimalString(
             $wspolczynnik,
             2,
-            true);
+            true
+        );
 
         return $this;
     }
