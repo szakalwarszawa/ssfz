@@ -657,12 +657,8 @@ class PrzeplywFinansowy
         )) + floatval(str_replace(',', '.', $this->getInneWplywy()));
         $wplywy = floatval(str_replace(',', '.', $this->getWplywy()));
         if (
-            number_format(
-                (float) $wplywy,
-                2,
-                '.',
-                ''
-            ) != number_format((float) $wplywySum, 2, '.', '')
+            number_format((float)$wplywy,2, '.', '') !=
+            number_format((float)$wplywySum, 2, '.', '')
         ) {
             $context->buildViolation('Niewłaściwa suma ' . floatval(str_replace(
                 ',',
