@@ -832,11 +832,11 @@ class Spolka
                 ''
             );
             if ((float)number_format(
-                    $this->getKwInwestycji(),
-                    2,
-                    '.',
-                    ''
-                ) !== (float)$sum
+                $this->getKwInwestycji(),
+                2,
+                '.',
+                ''
+            ) !== (float)$sum
             ) {
                 $context->buildViolation('Suma kwot ze środków wsparcia i środków prywatnych musi równać'
                     . ' się kwocie inwestycji.')
