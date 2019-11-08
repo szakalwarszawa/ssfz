@@ -6700,9 +6700,10 @@ class DanePoreczen
     public function setKwotaPoreczenDo50000PlnDlaMikroPrzedsiebiorstw(string $kwotaPoreczen = '0.00')
     {
         $this->kwotaPoreczenDo50000PlnDlaMikroPrzedsiebiorstw = MoneyHelper::anyToDecimalString(
-            $kwotaPoreczen,
-            2,
-            true);
+        $kwotaPoreczen,
+        2,
+        true
+        );
 
         return $this;
     }
@@ -10266,8 +10267,7 @@ class DanePoreczen
      */
     public function setKwotaPoreczenWyplaconychCzesciowoSplaconychDlaMikroPrzedsiebiorstw(
         string $kwotaPoreczen = '0.00'
-    )
-    {
+    ) {
         $this->kwotaPoreczenWyplaconychCzesciowoSplaconychDlaMikroPrzedsiebiorstw = MoneyHelper::anyToDecimalString(
             $kwotaPoreczen,
             2,
@@ -10296,8 +10296,7 @@ class DanePoreczen
      */
     public function setKwotaPoreczenWyplaconychCalkowicieSplaconychDlaMikroPrzedsiebiorstw(
         string $kwotaPoreczen = '0.00'
-    )
-    {
+    ) {
         $this->kwotaPoreczenWyplaconychCalkowicieSplaconychDlaMikroPrzedsiebiorstw = MoneyHelper::anyToDecimalString(
             $kwotaPoreczen,
             2,
@@ -10382,8 +10381,7 @@ class DanePoreczen
      */
     public function setKwotaPoreczenWyplaconychCzesciowoSplaconychDlaMalychPrzedsiebiorstw(
         string $kwotaPoreczen = '0.00'
-    )
-    {
+    ) {
         $this->kwotaPoreczenWyplaconychCzesciowoSplaconychDlaMalychPrzedsiebiorstw = MoneyHelper::anyToDecimalString(
             $kwotaPoreczen,
             2,
@@ -10412,8 +10410,7 @@ class DanePoreczen
      */
     public function setKwotaPoreczenWyplaconychCalkowicieSplaconychDlaMalychPrzedsiebiorstw(
         string $kwotaPoreczen = '0.00'
-    )
-    {
+    ) {
         $this->kwotaPoreczenWyplaconychCalkowicieSplaconychDlaMalychPrzedsiebiorstw = MoneyHelper::anyToDecimalString(
             $kwotaPoreczen,
             2,
@@ -10498,8 +10495,7 @@ class DanePoreczen
      */
     public function setKwotaPoreczenWyplaconychCzesciowoSplaconychDlaSrednichPrzedsiebiorstw(
         string $kwotaPoreczen = '0.00'
-    )
-    {
+    ) {
         $this->kwotaPoreczenWyplaconychCzesciowoSplaconychDlaSrednichPrzedsiebiorstw = MoneyHelper::anyToDecimalString(
             $kwotaPoreczen,
             2,
@@ -10528,8 +10524,7 @@ class DanePoreczen
      */
     public function setKwotaPoreczenWyplaconychCalkowicieSplaconychDlaSrednichPrzedsiebiorstw(
         string $kwotaPoreczen = '0.00'
-    )
-    {
+    ) {
         $this->kwotaPoreczenWyplaconychCalkowicieSplaconychDlaSrednichPrzedsiebiorstw = MoneyHelper::anyToDecimalString(
             $kwotaPoreczen,
             2,
@@ -10558,8 +10553,7 @@ class DanePoreczen
      */
     public function setKwotaPoreczenWyplaconychNieodzyskanychhDlaSrednichPrzedsiebiorstw(
         string $kwotaPoreczen = '0.00'
-    )
-    {
+    ) {
         $this->kwotaPoreczenWyplaconychNieodzyskanychhDlaSrednichPrzedsiebiorstw = MoneyHelper::anyToDecimalString(
             $kwotaPoreczen,
             2,
@@ -10980,8 +10974,7 @@ class DanePoreczen
      */
     public function setKwotaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeInwestycyjna(
         string $kwotaPoreczen = '0.00'
-    )
-    {
+    ) {
         $this->kwotaPoreczenWyplaconychCalkowicieSplaconychNaPozyczkeInwestycyjna = MoneyHelper::anyToDecimalString(
             $kwotaPoreczen,
             2,
@@ -11318,8 +11311,7 @@ class DanePoreczen
      */
     public function setKwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaProdukcyjne(
         string $kwotaPoreczen = '0.00'
-    )
-    {
+    ) {
         $this->kwotaPoreczenWyplaconychCalkowicieSplaconychNaDzialaniaProdukcyjne = MoneyHelper::anyToDecimalString(
             $kwotaPoreczen,
             2,
@@ -11964,8 +11956,7 @@ class DanePoreczen
      */
     public function setKwotaPoreczenWyplaconychCzesciowoSplaconychDlaFunduszyPozyczkowych(
         string $kwotaPoreczen = '0.00'
-    )
-    {
+    ) {
         $this->kwotaPoreczenWyplaconychCzesciowoSplaconychDlaFunduszyPozyczkowych = MoneyHelper::anyToDecimalString(
             $kwotaPoreczen,
             2,
@@ -11994,8 +11985,7 @@ class DanePoreczen
      */
     public function setKwotaPoreczenWyplaconychCalkowicieSplaconychDlaFunduszyPozyczkowych(
         string $kwotaPoreczen = '0.00'
-    )
-    {
+    ) {
         $this->kwotaPoreczenWyplaconychCalkowicieSplaconychDlaFunduszyPozyczkowych = MoneyHelper::anyToDecimalString(
             $kwotaPoreczen,
             2,
