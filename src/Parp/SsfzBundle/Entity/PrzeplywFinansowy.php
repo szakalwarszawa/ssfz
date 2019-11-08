@@ -647,15 +647,14 @@ class PrzeplywFinansowy
     public function validate(ExecutionContextInterface $context)
     {
         $wplywySum = floatval(str_replace(
-            ',',
-            '.',
-            $this->getWyjsciaZInwestycji()
-            )) + floatval(str_replace(
+                ',',
+                '.',
+                $this->getWyjsciaZInwestycji()
+        )) + floatval(str_replace(
                 ',',
                 '.',
                 $this->getUdzialWZyskach()
-            )) + floatval(str_replace(',', '.', $this->getInneWplywy())
-            );
+        )) + floatval(str_replace(',', '.', $this->getInneWplywy()));
         $wplywy = floatval(str_replace(',', '.', $this->getWplywy()));
         if (
             number_format(
@@ -670,8 +669,8 @@ class PrzeplywFinansowy
                 '.',
                 $this->getWplywy()
                 )) . ' ' . $wplywySum)
-                ->atPath('wplywy')
-                ->addViolation();
+             ->atPath('wplywy')
+             ->addViolation();
         }
 
         $wyplywySum = floatval(str_replace(',', '.', $this->getWejsciaKapitalowe())) +
@@ -681,7 +680,7 @@ class PrzeplywFinansowy
                 ',',
                 '.',
                 $this->getInneWyplywy())
-            );
+        );
         $wyplywy = floatval(str_replace(',', '.', $this->getWyplywy()));
         if (
             number_format((float) $wyplywy, 2, '.', '') !=
