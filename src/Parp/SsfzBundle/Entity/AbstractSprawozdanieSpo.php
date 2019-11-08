@@ -174,7 +174,8 @@ class AbstractSprawozdanieSpo extends AbstractSprawozdanie implements Sprawozdan
     protected $kapitalOgolem;
 
     /**
-     * w tym kapitał wydzielonego Funduszu Pożyczkowego prowadzonego zgodnie z zasadami gospodarowania monitorowanymi przez PARP.
+     * w tym kapitał wydzielonego Funduszu Pożyczkowego prowadzonego zgodnie z zasadami gospodarowania monitorowanymi
+     * przez PARP.
      *
      * @var string
      *
