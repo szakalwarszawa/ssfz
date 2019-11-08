@@ -39,7 +39,7 @@ class DanePozyczekRepository extends EntityRepository
      *
      * @return bool
      */
-    public function delete(DanePozyczek $danePozyczek)
+    public function delete(DanePozyczek $danePozyczek): bool
     {
         $this->_em->remove($danePozyczek);
         $this->_em->flush($danePozyczek);
@@ -54,7 +54,7 @@ class DanePozyczekRepository extends EntityRepository
      *
      * @return DanePozyczek
      */
-    public function persist(DanePozyczek $danePozyczek)
+    public function persist(DanePozyczek $danePozyczek): DanePozyczek
     {
         $this->_em->persist($danePozyczek);
         $this->_em->flush($danePozyczek);
@@ -81,7 +81,7 @@ class DanePozyczekRepository extends EntityRepository
      *
      * @param int $idSprawozdania
      *
-     * @return null|DanePozyczek
+     * @return DanePozyczek|null
      */
     public function findOneByIdSprawozdania(int $idSprawozdania): ?DanePozyczek
     {
@@ -102,7 +102,7 @@ class DanePozyczekRepository extends EntityRepository
      *
      * @param int $idSprawozdania
      *
-     * @return null|array
+     * @return array|null
      */
     public function findDaneZagregowaneByIdSprawozdania(int $idSprawozdania): ?array
     {
