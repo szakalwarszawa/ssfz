@@ -646,24 +646,59 @@ class PrzeplywFinansowy
      */
     public function validate(ExecutionContextInterface $context)
     {
-        $wplywySum = floatval(str_replace(',', '.', $this->getWyjsciaZInwestycji())) + floatval(str_replace(',', '.', $this->getUdzialWZyskach())) + floatval(str_replace(',', '.', $this->getInneWplywy()));
+        $wplywySum = floatval(str_replace(
+            ',',
+            '.',
+            $this->getWyjsciaZInwestycji()
+            )) + floatval(str_replace(
+                ',',
+                '.',
+                $this->getUdzialWZyskach()
+            )) + floatval(str_replace(',', '.', $this->getInneWplywy())
+            );
         $wplywy = floatval(str_replace(',', '.', $this->getWplywy()));
-        if (number_format((float) $wplywy, 2, '.', '') != number_format((float) $wplywySum, 2, '.', '')) {
-            $context->buildViolation('Niewłaściwa suma ' . floatval(str_replace(',', '.', $this->getWplywy())) . ' ' . $wplywySum)
+        if (
+            number_format(
+                (float) $wplywy,
+                2,
+                '.',
+                ''
+            ) != number_format((float) $wplywySum, 2, '.', '')
+        ) {
+            $context->buildViolation('Niewłaściwa suma ' . floatval(str_replace(
+                ',',
+                '.',
+                $this->getWplywy()
+                )) . ' ' . $wplywySum)
                 ->atPath('wplywy')
                 ->addViolation();
         }
 
-        $wyplywySum = floatval(str_replace(',', '.', $this->getWejsciaKapitalowe())) + floatval(str_replace(',', '.', $this->getPreinkubacjaPomyslow())) + floatval(str_replace(',', '.', $this->getWydatkiOperacyjne())) + floatval(str_replace(',', '.', $this->getPodatki())) + floatval(str_replace(',', '.', $this->getInneWyplywy()));
+        $wyplywySum = floatval(str_replace(',', '.', $this->getWejsciaKapitalowe())) +
+            floatval(str_replace(',', '.', $this->getPreinkubacjaPomyslow())) +
+            floatval(str_replace(',', '.', $this->getWydatkiOperacyjne())) +
+            floatval(str_replace(',', '.', $this->getPodatki())) + floatval(str_replace(
+                ',',
+                '.',
+                $this->getInneWyplywy())
+            );
         $wyplywy = floatval(str_replace(',', '.', $this->getWyplywy()));
-        if (number_format((float) $wyplywy, 2, '.', '') != number_format((float) $wyplywySum, 2, '.', '')) {
+        if (
+            number_format((float) $wyplywy, 2, '.', '') !=
+            number_format((float) $wyplywySum, 2, '.', '')
+        ) {
             $context->buildViolation('Niewłaściwa suma')
                 ->atPath('wyplywy')
                 ->addViolation();
         }
-        $saldoKoncoweSuma = floatval(str_replace(',', '.', $this->getWplywy())) +  floatval(str_replace(',', '.', $this->getSaldoPoczatkowe())) -  floatval(str_replace(',', '.', $this->getWyplywy()));
+        $saldoKoncoweSuma = floatval(str_replace(',', '.', $this->getWplywy())) +
+            floatval(str_replace(',', '.', $this->getSaldoPoczatkowe())) -
+            floatval(str_replace(',', '.', $this->getWyplywy()));
         $saldoKoncowe = floatval(str_replace(',', '.', $this->getSaldoKoncowe()));
-        if (number_format((float) $saldoKoncowe, 2, '.', '') != number_format((float) $saldoKoncoweSuma, 2, '.', '')) {
+        if (
+            number_format((float) $saldoKoncowe, 2, '.', '') !=
+            number_format((float) $saldoKoncoweSuma, 2, '.', '')
+        ) {
             $roznica = $saldoKoncoweSuma -$saldoKoncowe;
             $message = 'Niewłaściwa suma'. $roznica;
             $context->buildViolation($message)

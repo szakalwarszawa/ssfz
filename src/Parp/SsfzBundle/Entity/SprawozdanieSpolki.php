@@ -603,13 +603,16 @@ class SprawozdanieSpolki
     public function validate(ExecutionContextInterface $context)
     {
         if ($this->getZatrudnienieEtaty() != ($this->getZatrudnieniMezczyzni() + $this->getZatrudnioneKobiety())) {
-            $context->buildViolation('Suma pól "w tym kobiety" oraz "w tym mężczyźni" musi być równa wartości w polu "Zatrudnienie (etaty)" spółka ( '.$this->getNazwaSpolki().' )')
+            $context->buildViolation('Suma pól "w tym kobiety" oraz "w tym mężczyźni" musi być równa wartości'
+                . 'w polu "Zatrudnienie (etaty)" spółka ( ' . $this->getNazwaSpolki() . ' )')
                 ->atPath('rok')
                 ->addViolation();
         }
 
-        if ($this->getZatrudnienieInneFormy() != ($this->getZatrudnienieInneFormyMezczyzni() + $this->getZatrudnienieInneFormyKobiety())) {
-            $context->buildViolation('Suma pól "w tym kobiety" oraz "w tym mężczyźni" musi być równa wartości w polu "Zatrudnienie (inne formy)" spółka ( '.$this->getNazwaSpolki().' )')
+        if ($this->getZatrudnienieInneFormy() != ($this->getZatrudnienieInneFormyMezczyzni() +
+                $this->getZatrudnienieInneFormyKobiety())) {
+            $context->buildViolation('Suma pól "w tym kobiety" oraz "w tym mężczyźni" musi być równa wartości'
+                . 'w polu "Zatrudnienie (inne formy)" spółka ( ' . $this->getNazwaSpolki() . ' )')
                 ->atPath('rok')
                 ->addViolation();
         }
