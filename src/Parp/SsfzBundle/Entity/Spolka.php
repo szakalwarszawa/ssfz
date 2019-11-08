@@ -797,8 +797,7 @@ class Spolka
                 ->atPath('dataWyjscia')
                 ->addViolation();
         }
-        if (
-            1 === $this->getZakonczona() &&
+        if (1 === $this->getZakonczona() &&
             (null === $this->getKwDezinwestycji() ||
             '' === $this->getKwDezinwestycji())
         ) {
@@ -806,17 +805,15 @@ class Spolka
                 ->atPath('kwDezinwestycji')
                 ->addViolation();
         }
-        if (
-            1 === $this->getZakonczona() &&
+        if (1 === $this->getZakonczona() &&
             (null === $this->getZwrotInwestycji() ||
-            '' === $this->getZwrotInwestycji())
+                '' === $this->getZwrotInwestycji())
         ) {
             $context->buildViolation('Należy wypełnić pole')
                 ->atPath('zwrotInwestycji')
                 ->addViolation();
         }
-        if (
-            1 === $this->getZakonczona() &&
+        if (1 === $this->getZakonczona() &&
             (null === $this->getNpv() ||
             '' === $this->getNpv())
         ) {

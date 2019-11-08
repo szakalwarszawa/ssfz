@@ -656,8 +656,7 @@ class PrzeplywFinansowy
             $this->getUdzialWZyskach()
         )) + floatval(str_replace(',', '.', $this->getInneWplywy()));
         $wplywy = floatval(str_replace(',', '.', $this->getWplywy()));
-        if (
-            number_format((float)$wplywy,2, '.', '') !=
+        if (number_format((float)$wplywy, 2, '.', '') !=
             number_format((float)$wplywySum, 2, '.', '')
         ) {
             $context->buildViolation('Niewłaściwa suma ' . floatval(str_replace(
@@ -680,8 +679,7 @@ class PrzeplywFinansowy
                 )
             );
         $wyplywy = floatval(str_replace(',', '.', $this->getWyplywy()));
-        if (
-            number_format((float) $wyplywy, 2, '.', '') !=
+        if (number_format((float) $wyplywy, 2, '.', '') !=
             number_format((float) $wyplywySum, 2, '.', '')
         ) {
             $context->buildViolation('Niewłaściwa suma')
@@ -692,8 +690,7 @@ class PrzeplywFinansowy
             floatval(str_replace(',', '.', $this->getSaldoPoczatkowe())) -
             floatval(str_replace(',', '.', $this->getWyplywy()));
         $saldoKoncowe = floatval(str_replace(',', '.', $this->getSaldoKoncowe()));
-        if (
-            number_format((float) $saldoKoncowe, 2, '.', '') !=
+        if (number_format((float) $saldoKoncowe, 2, '.', '') !=
             number_format((float) $saldoKoncoweSuma, 2, '.', '')
         ) {
             $roznica = $saldoKoncoweSuma -$saldoKoncowe;
