@@ -180,8 +180,8 @@ class DatatableParpService
                         Join::LEFT_JOIN,
                         Join::WITH,
                         's' . $idx . '.rok = ' . $cfg->getRok() . ' and s' . $idx . '.czyNajnowsza = 1 and s'
-                        . $idx . '.okres = :okres' . $key)
-                ;
+                        . $idx . '.okres = :okres' . $key
+                    );
                 $idx++;
             }
         }
