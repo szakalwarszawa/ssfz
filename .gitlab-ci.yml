@@ -37,7 +37,7 @@ psr2:
     allow_failure: false
     script:
         - /root/.composer/vendor/bin/phpcs -n --colors --report=full --standard=PSR2 --extensions=php src/
-        - /root/.composer/vendor/bin/phpcs -n --colors --report=full --standard=PSR2 --extensions=php app/
+        - /root/.composer/vendor/bin/phpcs -n --colors --report=full --standard=PSR2 --extensions=php --ignore="AppKernel.php, AppCache.php" app/
 
 psr12:
     stage: standards
