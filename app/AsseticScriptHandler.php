@@ -36,7 +36,9 @@ class AsseticScriptHandler
             $console .= ' --ansi';
         }
         $process = new Process($php.' '.$console.' '.$cmd);
-        $process->run(function ($type, $buffer) use($event) { $event->getIO()->write($buffer, false); });
+        $process->run(function ($type, $buffer) use ($event) {
+            $event->getIO()->write($buffer, false);
+        });
     }
 
     protected static function getOptions($event)
