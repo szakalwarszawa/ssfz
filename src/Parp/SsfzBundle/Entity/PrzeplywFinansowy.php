@@ -668,19 +668,21 @@ class PrzeplywFinansowy
                 ',',
                 '.',
                 $this->getWplywy()
-             )) . ' ' . $wplywySum)
-             ->atPath('wplywy')
-             ->addViolation();
+            )) . ' ' . $wplywySum)
+            ->atPath('wplywy')
+            ->addViolation();
         }
 
         $wyplywySum = floatval(str_replace(',', '.', $this->getWejsciaKapitalowe())) +
             floatval(str_replace(',', '.', $this->getPreinkubacjaPomyslow())) +
             floatval(str_replace(',', '.', $this->getWydatkiOperacyjne())) +
-            floatval(str_replace(',', '.', $this->getPodatki())) + floatval(str_replace(
-            ',',
-            '.',
-            $this->getInneWyplywy())
-        );
+            floatval(str_replace(',', '.', $this->getPodatki())) + floatval(
+                str_replace(
+                    ',',
+                    '.',
+                    $this->getInneWyplywy()
+                )
+            );
         $wyplywy = floatval(str_replace(',', '.', $this->getWyplywy()));
         if (
             number_format((float) $wyplywy, 2, '.', '') !=

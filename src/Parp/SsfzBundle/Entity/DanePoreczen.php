@@ -6700,9 +6700,9 @@ class DanePoreczen
     public function setKwotaPoreczenDo50000PlnDlaMikroPrzedsiebiorstw(string $kwotaPoreczen = '0.00')
     {
         $this->kwotaPoreczenDo50000PlnDlaMikroPrzedsiebiorstw = MoneyHelper::anyToDecimalString(
-        $kwotaPoreczen,
-        2,
-        true
+            $kwotaPoreczen,
+            2,
+            true
         );
 
         return $this;
