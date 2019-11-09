@@ -50,7 +50,8 @@ class UzytkownikController extends Controller
                         $uzytkownik,
                         'Utworzono konto',
                         '@SsfzBundle/Resources/views/Email/registration.html.twig', array(
-                            'code' => $uzytkownik->getKodAktywacjaKonta(), 'login' => $uzytkownik->getLogin()
+                            'code' => $uzytkownik->getKodAktywacjaKonta(),
+                            'login' => $uzytkownik->getLogin()
                         )
                     );
                 } catch (Exception $ex) {

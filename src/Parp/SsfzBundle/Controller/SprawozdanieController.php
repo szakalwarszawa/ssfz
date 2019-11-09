@@ -321,8 +321,8 @@ class SprawozdanieController extends Controller
             return $this->redirectToRoute('sprawozdanie_rejestracja', ['umowaId' => (string) $umowaId]);
         }
         if ($this->getRequest()->isMethod(
-                'POST'
-            ) &&
+            'POST'
+        ) &&
             $sprawozdanie->getStatus() == 1 &&
             $sprawozdanie->getCreatorId() == $beneficjentId
         ) {
