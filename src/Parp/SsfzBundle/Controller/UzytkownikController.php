@@ -58,7 +58,10 @@ class UzytkownikController extends Controller
                 } catch (Exception $ex) {
                     $komunikatyService->bladKomunikat('Rejestracja nie powiodła się. Spróbuj ponownie.');
 
-                    return $this->render('SsfzBundle:Beneficjent:rejestracja.html.twig', array('form' => $form->createView()));
+                    return $this->render(
+                        'SsfzBundle:Beneficjent:rejestracja.html.twig',
+                        array('form' => $form->createView())
+                    );
                 }
 
                 return $this->render('SsfzBundle:Beneficjent:rejestracjaSukces.html.twig');

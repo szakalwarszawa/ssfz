@@ -89,7 +89,8 @@ class NumerUmowyValidator extends ConstraintValidator
     private function getRegexp($program = null): string
     {
         if (null === $program) {
-            return '/('.self::REGEXP_FUNDUSZ_ZALAZKOWY.')|('.self::REGEXP_FUNDUSZ_POZYCZKOWY.')|('.self::REGEXP_FUNDUSZ_PORECZENIOWY.')/';
+            return '/('.self::REGEXP_FUNDUSZ_ZALAZKOWY.')|('.self::REGEXP_FUNDUSZ_POZYCZKOWY.')|('.
+            self::REGEXP_FUNDUSZ_PORECZENIOWY.')/';
         }
 
         if ($program->czyFunduszZalazkowy()) {
