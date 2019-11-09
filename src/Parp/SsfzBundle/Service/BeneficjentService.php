@@ -125,8 +125,7 @@ class BeneficjentService
     public function updateBeneficjent(
         Beneficjent &$beneficjent,
         ArrayCollection $originalUmowy,
-        ArrayCollection $originalOsoby
-    )
+        ArrayCollection $originalOsoby)
     {
         $this->beneficjentRepository->updateBeneficjent($beneficjent, $originalUmowy, $originalOsoby);
     }

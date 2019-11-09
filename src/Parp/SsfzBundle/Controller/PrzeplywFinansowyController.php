@@ -41,7 +41,10 @@ class PrzeplywFinansowyController extends Controller
             ->getRepository(SprawozdanieZalazkowe::class)
             ->find($sprawozdanieId)
         ;
-        if ((int) $report->getCreatorId() !== $beneficjentId || ((int) $report->getStatus() !== 1 && (int) $report->getStatus() !== 4)) {
+        if (
+            (int) $report->getCreatorId() !== $beneficjentId ||
+            ((int) $report->getStatus() !== 1 && (int) $report->getStatus() !== 4)
+        ) {
             throw $this->createNotFoundException(
                 'Nie znaleziono sprawozdania!'
             );
@@ -74,13 +77,19 @@ class PrzeplywFinansowyController extends Controller
                 $entityManager->flush();
                 $this
                     ->getKomunikatyService()
-                    ->sukcesKomunikat('Rejestracja przepływu finansowego zakończyła się powodzeniem', 'Rejestracja przepływu finansowego')
+                    ->sukcesKomunikat(
+                        'Rejestracja przepływu finansowego zakończyła się powodzeniem',
+                        'Rejestracja przepływu finansowego'
+                    )
                 ;
             }
             if (!$creating) {
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->flush();
-                $this->getKomunikatyService()->sukcesKomunikat('Zapis przepływu finansowego zakończył się powodzeniem', 'Zapis przepływu finansowego');
+                $this->getKomunikatyService()->sukcesKomunikat(
+                    'Zapis przepływu finansowego zakończył się powodzeniem',
+                    'Zapis przepływu finansowego'
+                );
             }
 
             return $this->redirectToRoute('sprawozdanie_rejestracja', [
@@ -118,7 +127,12 @@ class PrzeplywFinansowyController extends Controller
 
             $previousReport = $entityManager
                 ->getRepository(SprawozdanieZalazkowe::class)
-                ->findPreviousReport($beneficjentId, $report->getUmowaId(), $okresStyczenCzerwiec->getId(), $report->getRok());
+                ->findPreviousReport(
+                    $beneficjentId,
+                    $report->getUmowaId(),
+                    $okresStyczenCzerwiec->getId(),
+                    $report->getRok()
+                );
         } else {
             $okresLipiecGrudzien = $entityManager
                 ->getRepository(OkresSprawozdawczy::class)
@@ -127,7 +141,12 @@ class PrzeplywFinansowyController extends Controller
 
             $previousReport = $entityManager
                 ->getRepository(SprawozdanieZalazkowe::class)
-                ->findPreviousReport($beneficjentId, $report->getUmowaId(), $okresLipiecGrudzien->getId(), ($report->getRok() - 1));
+                ->findPreviousReport(
+                    $beneficjentId,
+                    $report->getUmowaId(),
+                    $okresLipiecGrudzien->getId(),
+                    ($report->getRok() - 1)
+                );
         }
 
         if ($previousReport) {

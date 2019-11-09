@@ -42,8 +42,16 @@ class UzytkownikController extends Controller
             if (is_null($uzytkownikRepository->findOneBy(['email' => $uzytkownik->getEmail()])) &&
                     is_null($uzytkownikRepository->findOneBy(['login' => $uzytkownik->getLogin()]))) {
                 try {
-                    $uzytkownikService->persistNewUser($uzytkownik, $rolaService->findOneByCriteria(['nazwa' => 'ROLE_BENEFICJENT']));
-                    $mailerService->sendMail($uzytkownik, 'Utworzono konto', '@SsfzBundle/Resources/views/Email/registration.html.twig', array('code' => $uzytkownik->getKodAktywacjaKonta(), 'login' => $uzytkownik->getLogin()));
+                    $uzytkownikService->persistNewUser($uzytkownik, $rolaService->findOneByCriteria(
+                        ['nazwa' => 'ROLE_BENEFICJENT'])
+                    );
+                    $mailerService->sendMail(
+                        $uzytkownik,
+                        'Utworzono konto',
+                        '@SsfzBundle/Resources/views/Email/registration.html.twig', array(
+                            'code' => $uzytkownik->getKodAktywacjaKonta(), 'login' => $uzytkownik->getLogin()
+                        )
+                    );
                 } catch (Exception $ex) {
                     $komunikatyService->bladKomunikat('Rejestracja nie powiodła się. Spróbuj ponownie.');
 

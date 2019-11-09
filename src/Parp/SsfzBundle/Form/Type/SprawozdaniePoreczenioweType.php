@@ -46,7 +46,8 @@ class SprawozdaniePoreczenioweType extends AbstractSprawozdanieSpoType
         ]);
 
         $builder->add('czyOprocentowanieNieNizszeOdStopy', EntityType::class, [
-            'label'       => 'Fundusz udziela poręczeń kredytów i pożyczek nie niżej oprocentowanych niż stopa referencyjna',
+            'label'       => 'Fundusz udziela poręczeń kredytów i pożyczek nie niżej oprocentowanych niż stopa ' .
+            'referencyjna',
             'class'       => TakNie::class,
             'required'    => false,
             'expanded'    => true,
@@ -153,7 +154,8 @@ class SprawozdaniePoreczenioweType extends AbstractSprawozdanieSpoType
         ]);
 
         $builder->add('kapitalWydzielony', MoneyType::class, [
-            'label'    => 'w tym kapitał wydzielonego Funduszu Poręczeniowego prowadzonego zgodnie z zasadami gospodarowania monitorowanymi przez PARP',
+            'label'    => 'w tym kapitał wydzielonego Funduszu Poręczeniowego prowadzonego zgodnie z zasadami ' .
+            'gospodarowania monitorowanymi przez PARP',
             'disabled' => true,
             'required' => false,
             'currency' => 'PLN',
@@ -164,7 +166,8 @@ class SprawozdaniePoreczenioweType extends AbstractSprawozdanieSpoType
         ]);
 
         $builder->add('skladnikiWydzielone', CollectionType::class, [
-            'label'        => 'w tym kapitał wydzielonego Funduszu Poręczeniowego prowadzonego zgodnie z zasadami gospodarowania monitorowanymi przez PARP',
+            'label'        => 'w tym kapitał wydzielonego Funduszu Poręczeniowego prowadzonego zgodnie z zasadami ' .
+            'gospodarowania monitorowanymi przez PARP',
             'entry_type'   => SprawozdaniePoreczenioweSkladnikWydzielonyType::class,
             'allow_add'    => true,
             'by_reference' => false,

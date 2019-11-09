@@ -37,18 +37,28 @@ class HasloController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $resetLink = $form->getData();
             $uzytkownikService = $this->get('ssfz.service.uzytkownik_service');
-            $uzytkownik = $uzytkownikService->findOneByCriteria(['login' => $resetLink->getLogin(), 'email' => $resetLink->getEmail()]);
+            $uzytkownik = $uzytkownikService->findOneByCriteria(
+                ['login' => $resetLink->getLogin(),
+                 'email' => $resetLink->getEmail()]);
             if (!is_null($uzytkownik)) {
                 if (0 === $uzytkownik->getStatus()) {
                     return $this->render('SsfzBundle:Security:passwordRecoverInfo.html.twig', [
-                        'info' => 'Konto nie zostało aktywowane. Skorzystaj z linku aktywacyjnego przesłanego na adres mailowy podany przy zakładaniu konta.',
+                        'info' => 'Konto nie zostało aktywowane. Skorzystaj z linku aktywacyjnego przesłanego na
+                         adres mailowy podany przy zakładaniu konta.',
                     ]);
                 }
                 $uzytkownikService->forgottenPassword($uzytkownik);
-                $this->getMailerService()->sendMail($uzytkownik, 'Zmiana hasła', '@SsfzBundle/Resources/views/Email/resetPassword.html.twig', array('code' => $uzytkownik->getKodZapomnianeHaslo(), 'login' => $resetLink->getLogin()));
+                $this->getMailerService()->sendMail(
+                    $uzytkownik,
+                    'Zmiana hasła',
+                    '@SsfzBundle/Resources/views/Email/resetPassword.html.twig',
+                    array('code' => $uzytkownik->getKodZapomnianeHaslo(), 'login' => $resetLink->getLogin())
+                );
 
                 return $this->render('SsfzBundle:Security:passwordRecoverInfo.html.twig', [
-                    'info' => 'Wysłano link zmiany hasła na adres email ' . $uzytkownik->getEmail() . '. Na twojej skrzynce mailowej znajdują się dalsze instrukcje, które umożliwią odzyskanie hasła do konta.'
+                    'info' => 'Wysłano link zmiany hasła na adres email ' . $uzytkownik->getEmail() . '. ' .
+                    'Na twojej skrzynce mailowej znajdują się dalsze instrukcje, które umożliwią odzyskanie hasła ' .
+                    'do konta.'
                 ]);
             }
 
@@ -80,7 +90,9 @@ class HasloController extends Controller
             $uzytkownikService = $this->get('ssfz.service.uzytkownik_service');
             $uzytkownik = $uzytkownikService->findOneByCriteria(['kodZapomnianeHaslo' => $token]);
             if (is_null($uzytkownik)) {
-                return $this->render('SsfzBundle:Security:passwordRecoverInfo.html.twig', array('info' => 'Link do zmiany hasła został użyty i stracił ważność.'));
+                return $this->render('SsfzBundle:Security:passwordRecoverInfo.html.twig', array(
+                    'info' => 'Link do zmiany hasła został użyty i stracił ważność.')
+                );
             }
             $resetPassword = $form->getData();
             $uzytkownikService->newPassword($uzytkownik, $resetPassword->getNewPassword());

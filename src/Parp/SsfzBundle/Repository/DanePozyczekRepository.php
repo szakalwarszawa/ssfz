@@ -112,11 +112,11 @@ class DanePozyczekRepository extends EntityRepository
         }
 
         $pozyczkiWgPrzeznaczenia = [
-            'liczba_pozyczek_razem'                         => $result->getLiczbaPozyczekDlaWszystkichPrzeznaczenOgolem(),
-            'liczba_pozyczek_na_cele_obrotowe'              => $result->getLiczbaPozyczekObrotowychOgolem(),
-            'liczba_pozyczek_na_cele_inwestycyjne'          => $result->getLiczbaPozyczekInwestycyjnychOgolem(),
+            'liczba_pozyczek_razem'                       => $result->getLiczbaPozyczekDlaWszystkichPrzeznaczenOgolem(),
+            'liczba_pozyczek_na_cele_obrotowe'            => $result->getLiczbaPozyczekObrotowychOgolem(),
+            'liczba_pozyczek_na_cele_inwestycyjne'        => $result->getLiczbaPozyczekInwestycyjnychOgolem(),
             'liczba_pozyczek_na_cele_obrotowo_inwestycyjne' => $result->getLiczbaPozyczekInwestycyjnoObrotowychOgolem(),
-            'kwota_pozyczek_razem'                          => $result->getKwotaPozyczekDlaWszystkichPrzeznaczenOgolem(),
+            'kwota_pozyczek_razem'                         => $result->getKwotaPozyczekDlaWszystkichPrzeznaczenOgolem(),
             'kwota_pozyczek_na_cele_obrotowe'               => $result->getKwotaPozyczekObrotowychOgolem(),
             'kwota_pozyczek_na_cele_inwestycyjne'           => $result->getKwotaPozyczekInwestycyjnychOgolem(),
             'kwota_pozyczek_na_cele_obrotowo_inwestycyjne'  => $result->getKwotaPozyczekInwestycyjnoObrotowychOgolem(),
