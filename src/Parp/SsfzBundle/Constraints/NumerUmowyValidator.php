@@ -25,14 +25,16 @@ class NumerUmowyValidator extends ConstraintValidator
      *
      * @var string
      */
-    const REGEXP_FUNDUSZ_POZYCZKOWY = '^WKP\_1\/1\.2\.1\/[0-9]\/2([0-9]){3,3}\/(([1-9][0-9])|([1-9]))\/(([1-9][0-9])|([1-9]))\/u$';
+    const REGEXP_FUNDUSZ_POZYCZKOWY = '^WKP\_1\/1\.2\.1\/[0-9]\/2([0-9]){3,3}\/(([1-9][0-9])|([1-9]))\/(([1-9][0-9])' .
+    '|([1-9]))\/u$';
 
     /**
      * Regexp dla numeru umowy funduszu poręczeniowego (bez delimiterów).
      *
      * @var string
      */
-    const REGEXP_FUNDUSZ_PORECZENIOWY = '^WKP\_1\/1\.2\.2\/[0-9]\/2([0-9]){3,3}\/(([1-9][0-9])|([1-9]))\/(([1-9][0-9])|([1-9]))\/u$';
+    const REGEXP_FUNDUSZ_PORECZENIOWY = '^WKP\_1\/1\.2\.2\/[0-9]\/2([0-9]){3,3}\/(([1-9][0-9])|([1-9]))\/(([1-9][0-9]' .
+    ')|([1-9]))\/u$';
 
     /**
      * @var string

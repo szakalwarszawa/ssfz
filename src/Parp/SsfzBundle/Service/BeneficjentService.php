@@ -122,7 +122,11 @@ class BeneficjentService
      *
      * @return void
      */
-    public function updateBeneficjent(Beneficjent &$beneficjent, ArrayCollection $originalUmowy, ArrayCollection $originalOsoby)
+    public function updateBeneficjent(
+        Beneficjent &$beneficjent,
+        ArrayCollection $originalUmowy,
+        ArrayCollection $originalOsoby
+    )
     {
         $this->beneficjentRepository->updateBeneficjent($beneficjent, $originalUmowy, $originalOsoby);
     }
