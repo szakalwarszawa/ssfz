@@ -111,8 +111,9 @@ class AdministratorTechnicznyController extends Controller
             return $this->redirectToRoute('utworzPracownika');
         }
 
-        return $this->render('SsfzBundle:AdministratorTechniczny:edytujPracownika.html.twig', array(
-                'form' => $form->createView())
+        return $this->render(
+            'SsfzBundle:AdministratorTechniczny:edytujPracownika.html.twig',
+            array('form' => $form->createView())
         );
     }
 

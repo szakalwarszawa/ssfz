@@ -49,7 +49,8 @@ class UzytkownikController extends Controller
                     $mailerService->sendMail(
                         $uzytkownik,
                         'Utworzono konto',
-                        '@SsfzBundle/Resources/views/Email/registration.html.twig', array(
+                        '@SsfzBundle/Resources/views/Email/registration.html.twig',
+                        array(
                             'code' => $uzytkownik->getKodAktywacjaKonta(),
                             'login' => $uzytkownik->getLogin()
                         )
