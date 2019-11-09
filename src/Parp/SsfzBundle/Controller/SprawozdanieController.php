@@ -321,9 +321,9 @@ class SprawozdanieController extends Controller
             return $this->redirectToRoute('sprawozdanie_rejestracja', ['umowaId' => (string) $umowaId]);
         }
         if ($this->getRequest()->isMethod(
-            'POST') &&
-            $sprawozdanie->getStatus() == 1 &&
-            $sprawozdanie->getCreatorId() == $beneficjentId
+        'POST') &&
+        $sprawozdanie->getStatus() == 1 &&
+        $sprawozdanie->getCreatorId() == $beneficjentId
         ) {
             $dateNow = new DateTime('now');
             $sprawozdanie->setStatus(StatusSprawozdania::PRZESLANO_DO_PARP);

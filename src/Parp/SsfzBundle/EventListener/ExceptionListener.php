@@ -49,8 +49,8 @@ class ExceptionListener implements EventSubscriberInterface
         KernelInterface $kernel,
         RequestStack $requestStack,
         Router $router,
-        KomunikatyService $komunikatyService)
-    {
+        KomunikatyService $komunikatyService
+    ) {
         $this->kernel = $kernel;
         $this->requestStack = $requestStack;
         $this->router = $router;

@@ -348,7 +348,8 @@ class UwierzytelnianieListener implements EventSubscriberInterface
                 foreach ($formularz->get('_username')->getErrors() as $blad) {
                     if ($blad instanceof FormError) {
                         $properFormError = new FormError(
-                            $blad->getMessage(), $blad->getMessageTemplate(),
+                            $blad->getMessage(),
+                            $blad->getMessageTemplate(),
                             $blad->getMessageParameters(),
                             $blad->getMessagePluralization()
                         );

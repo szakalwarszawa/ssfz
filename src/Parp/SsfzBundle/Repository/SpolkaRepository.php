@@ -192,7 +192,8 @@ class SpolkaRepository extends EntityRepository
                 $historia->dataWyjscia != null ? $historia->dataWyjscia->format('Y-m-d H:i:s') : null,
                 $historia->dataWyjsciaP != null ? $historia->dataWyjsciaP->format(
                     'Y-m-d H:i:s'
-                ) : null, $historia
+                ) : null,
+                $historia
             );
         }
 
