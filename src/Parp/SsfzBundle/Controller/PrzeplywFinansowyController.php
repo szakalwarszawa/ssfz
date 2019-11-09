@@ -39,11 +39,10 @@ class PrzeplywFinansowyController extends Controller
 
         $report = $entityManager
             ->getRepository(SprawozdanieZalazkowe::class)
-            ->find($sprawozdanieId)
-        ;
+            ->find($sprawozdanieId);
         if (
-            (int) $report->getCreatorId() !== $beneficjentId ||
-            ((int) $report->getStatus() !== 1 && (int) $report->getStatus() !== 4)
+            (int)$report->getCreatorId() !== $beneficjentId ||
+            ((int)$report->getStatus() !== 1 && (int)$report->getStatus() !== 4)
         ) {
             throw $this->createNotFoundException(
                 'Nie znaleziono sprawozdania!'

@@ -40,10 +40,11 @@ class UzytkownikController extends Controller
             $uzytkownik = $form->getData();
             $uzytkownikRepository = $uzytkownikService->getUzytkownikRepository();
             if (is_null($uzytkownikRepository->findOneBy(['email' => $uzytkownik->getEmail()])) &&
-                    is_null($uzytkownikRepository->findOneBy(['login' => $uzytkownik->getLogin()]))) {
+                is_null($uzytkownikRepository->findOneBy(['login' => $uzytkownik->getLogin()]))) {
                 try {
-                    $uzytkownikService->persistNewUser($uzytkownik, $rolaService->findOneByCriteria(
-                        ['nazwa' => 'ROLE_BENEFICJENT'])
+                    $uzytkownikService->persistNewUser(
+                        $uzytkownik,
+                        $rolaService->findOneByCriteria(['nazwa' => 'ROLE_BENEFICJENT'])
                     );
                     $mailerService->sendMail(
                         $uzytkownik,
