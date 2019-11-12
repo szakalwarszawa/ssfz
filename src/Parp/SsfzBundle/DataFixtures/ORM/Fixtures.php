@@ -298,7 +298,8 @@ class Fixtures implements FixtureInterface
             'Ą', 'ą', 'Ć', 'ć', 'Ę', 'ę', 'Ł', 'ł', 'Ń', 'ń', 'Ó', 'ó', 'Ś', 'ś', 'Ź', 'ź', 'Ż', 'ż'
         );
         $arrayNew = array(
-            'B!!', 'b!!', 'D!!', 'd!!', 'F!!', 'f!!', 'M!!', 'm!!', 'O!!', 'o!!', 'P!!', 'p!!', 'T!!', 't!!', 'ZZ!!', 'zz!!', 'ZZZ%!!', 'zzz%!!'
+            'B!!', 'b!!', 'D!!', 'd!!', 'F!!', 'f!!', 'M!!', 'm!!', 'O!!', 'o!!', 'P!!', 'p!!', 'T!!', 't!!', 'ZZ!!',
+            'zz!!', 'ZZZ%!!', 'zzz%!!'
         );
         $text = implode('^^^', $array);
         $newtext = str_replace($arrayPol, $arrayNew, $text);

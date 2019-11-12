@@ -128,11 +128,21 @@ class SpolkaRepository extends EntityRepository
         }
 
         if (strcmp($historia->siedzibaMiasto, $historia->siedzibaMiastoP)) {
-            $this->createEntry('siedziba_miasto', $historia->siedzibaMiasto, $historia->siedzibaMiastoP, $historia);
+            $this->createEntry(
+                'siedziba_miasto',
+                $historia->siedzibaMiasto,
+                $historia->siedzibaMiastoP,
+                $historia
+            );
         }
 
         if (strcmp($historia->siedzibaWojewodztwo, $historia->siedzibaWojewodztwoP)) {
-            $this->createEntry('siedziba_wojewodztwo', $historia->siedzibaWojewodztwo, $historia->siedzibaWojewodztwoP, $historia);
+            $this->createEntry(
+                'siedziba_wojewodztwo',
+                $historia->siedzibaWojewodztwo,
+                $historia->siedzibaWojewodztwoP,
+                $historia
+            );
         }
 
         if (strcmp($historia->branza, $historia->branzaP)) {
@@ -144,7 +154,12 @@ class SpolkaRepository extends EntityRepository
         }
 
         if ($historia->dataPowolania != $historia->dataPowolaniaP) {
-            $this->createEntry('data_powolania', $historia->dataPowolania != null ? $historia->dataPowolania->format('Y-m-d H:i:s') : null, $historia->dataPowolaniaP != null ? $historia->dataPowolaniaP->format('Y-m-d H:i:s') : null, $historia);
+            $this->createEntry(
+                'data_powolania',
+                $historia->dataPowolania != null ? $historia->dataPowolania->format('Y-m-d H:i:s') : null,
+                $historia->dataPowolaniaP != null ? $historia->dataPowolaniaP->format('Y-m-d H:i:s') : null,
+                $historia
+            );
         }
 
         if (strcmp($historia->krs, $historia->krsP)) {
@@ -172,15 +187,32 @@ class SpolkaRepository extends EntityRepository
         }
 
         if ($historia->dataWyjscia != $historia->dataWyjsciaP) {
-            $this->createEntry('data_wyjscia', $historia->dataWyjscia != null ? $historia->dataWyjscia->format('Y-m-d H:i:s') : null, $historia->dataWyjsciaP != null ? $historia->dataWyjsciaP->format('Y-m-d H:i:s') : null, $historia);
+            $this->createEntry(
+                'data_wyjscia',
+                $historia->dataWyjscia != null ? $historia->dataWyjscia->format('Y-m-d H:i:s') : null,
+                $historia->dataWyjsciaP != null ? $historia->dataWyjsciaP->format(
+                    'Y-m-d H:i:s'
+                ) : null,
+                $historia
+            );
         }
 
         if (strcmp($historia->kwDezinwestycji, $historia->kwDezinwestycjiP)) {
-            $this->createEntry('kw_dezinwestycji', $historia->kwDezinwestycji, $historia->kwDezinwestycjiP, $historia);
+            $this->createEntry(
+                'kw_dezinwestycji',
+                $historia->kwDezinwestycji,
+                $historia->kwDezinwestycjiP,
+                $historia
+            );
         }
 
         if (strcmp($historia->zwrotInwestycji, $historia->zwrotInwestycjiP)) {
-            $this->createEntry('zwrot_inwestycji', $historia->zwrotInwestycji, $historia->zwrotInwestycjiP, $historia);
+            $this->createEntry(
+                'zwrot_inwestycji',
+                $historia->zwrotInwestycji,
+                $historia->zwrotInwestycjiP,
+                $historia
+            );
         }
 
         if (strcmp($historia->npv, $historia->npvP)) {
@@ -196,7 +228,12 @@ class SpolkaRepository extends EntityRepository
         }
 
         if (strcmp($historia->zarzadPozostali, $historia->zarzadPozostaliP)) {
-            $this->createEntry('zarzad_pozostali', $historia->zarzadPozostali, $historia->zarzadPozostaliP, $historia);
+            $this->createEntry(
+                'zarzad_pozostali',
+                $historia->zarzadPozostali,
+                $historia->zarzadPozostaliP,
+                $historia
+            );
         }
     }
 

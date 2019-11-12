@@ -74,11 +74,19 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->pierwszyTermin = new Carbon($this->dzisiejszaData->year . '-' . $this->getContainer()->getParameter('przypomnienie_pierwszy_termin_miesiac_dzien'));
-        $this->drugiTermin = new Carbon($this->dzisiejszaData->year . '-' . $this->getContainer()->getParameter('przypomnienie_drugi_termin_miesiac_dzien'));
+        $this->pierwszyTermin = new Carbon(
+            $this->dzisiejszaData->year . '-' .
+            $this->getContainer()->getParameter('przypomnienie_pierwszy_termin_miesiac_dzien')
+        );
+        $this->drugiTermin = new Carbon(
+            $this->dzisiejszaData->year . '-' .
+            $this->getContainer()->getParameter('przypomnienie_drugi_termin_miesiac_dzien')
+        );
         $okres = $this->getOkresRozliczenia();
-        $rolaBeneficjent = $this->getContainer()->get('ssfz.service.rola_service')->findOneByCriteria(['nazwa' => 'ROLE_BENEFICJENT']);
-        $beneficjenciKonta = $this->getContainer()->get('ssfz.service.uzytkownik_service')->findByCriteria(['rola' => $rolaBeneficjent->getId()]);
+        $rolaBeneficjent = $this->getContainer()->get('ssfz.service.rola_service')
+                                                ->findOneByCriteria(['nazwa' => 'ROLE_BENEFICJENT']);
+        $beneficjenciKonta = $this->getContainer()->get('ssfz.service.uzytkownik_service')
+                                                  ->findByCriteria(['rola' => $rolaBeneficjent->getId()]);
         
         $czyPierwszyTermin = (0 == $this->dzisiejszaData->diffInDays($this->pierwszyTermin, false));
         $czyDrugiTermin = (0 == $this->dzisiejszaData->diffInDays($this->drugiTermin, false));
@@ -127,7 +135,11 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand
                                                 'nrUmowy' => $nrUmowy,
                                                 'dzien' => $this->dzisiejszaData->format('Y-m-d')
                                             );
-                                            $this->getMailerService()->sendMailTopicInTemplate($beneficjentKonto, $template, $templateParams);
+                                            $this->getMailerService()->sendMailTopicInTemplate(
+                                                $beneficjentKonto,
+                                                $template,
+                                                $templateParams
+                                            );
                                             $sprawozdanie->setPowiadomienieWyslane(true);
                                             $this->getSprawozdanieRepository()->persist($sprawozdanie);
                                             if (!isset($this->beneficjenciZalegajacy[$sufixPliku])) {
