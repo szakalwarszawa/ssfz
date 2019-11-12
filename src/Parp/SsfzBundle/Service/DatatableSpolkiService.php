@@ -82,7 +82,8 @@ class DatatableSpolkiService
     /**
      * Zwraca datatable spółek
      *
-     * @param Controller $parentObj Ktoś powinien nazwać ten wzorzec wstrzykiwania kontrolerów do usług i wysłać Fowlerowi.... np. wzorzec "zagmatwanie do granicy absurdu"?
+     * @param Controller $parentObj Ktoś powinien nazwać ten wzorzec wstrzykiwania kontrolerów do usług i wysłać
+     * Fowlerowi.... np. wzorzec "zagmatwanie do granicy absurdu"?
      * @param int $umowaId
      *
      * @return object

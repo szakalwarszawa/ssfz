@@ -40,14 +40,28 @@ class UzytkownikController extends Controller
             $uzytkownik = $form->getData();
             $uzytkownikRepository = $uzytkownikService->getUzytkownikRepository();
             if (is_null($uzytkownikRepository->findOneBy(['email' => $uzytkownik->getEmail()])) &&
-                    is_null($uzytkownikRepository->findOneBy(['login' => $uzytkownik->getLogin()]))) {
+                is_null($uzytkownikRepository->findOneBy(['login' => $uzytkownik->getLogin()]))) {
                 try {
-                    $uzytkownikService->persistNewUser($uzytkownik, $rolaService->findOneByCriteria(['nazwa' => 'ROLE_BENEFICJENT']));
-                    $mailerService->sendMail($uzytkownik, 'Utworzono konto', '@SsfzBundle/Resources/views/Email/registration.html.twig', array('code' => $uzytkownik->getKodAktywacjaKonta(), 'login' => $uzytkownik->getLogin()));
+                    $uzytkownikService->persistNewUser(
+                        $uzytkownik,
+                        $rolaService->findOneByCriteria(['nazwa' => 'ROLE_BENEFICJENT'])
+                    );
+                    $mailerService->sendMail(
+                        $uzytkownik,
+                        'Utworzono konto',
+                        '@SsfzBundle/Resources/views/Email/registration.html.twig',
+                        array(
+                            'code' => $uzytkownik->getKodAktywacjaKonta(),
+                            'login' => $uzytkownik->getLogin()
+                        )
+                    );
                 } catch (Exception $ex) {
                     $komunikatyService->bladKomunikat('Rejestracja nie powiodła się. Spróbuj ponownie.');
 
-                    return $this->render('SsfzBundle:Beneficjent:rejestracja.html.twig', array('form' => $form->createView()));
+                    return $this->render(
+                        'SsfzBundle:Beneficjent:rejestracja.html.twig',
+                        array('form' => $form->createView())
+                    );
                 }
 
                 return $this->render('SsfzBundle:Beneficjent:rejestracjaSukces.html.twig');

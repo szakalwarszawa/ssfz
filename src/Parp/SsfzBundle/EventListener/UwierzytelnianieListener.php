@@ -210,7 +210,8 @@ class UwierzytelnianieListener implements EventSubscriberInterface
                 $user->setEncoderName($defaultPasswordEncoderName)->setHaslo($encodedPassword);
                 $entityManager->flush($user);
             }
-            $ostatniaZmianaHasla = $entityManager->getRepository('Parp\UzytkownikBundle\Entity\ZmianaHasla')->findOstatniaZmianaHasla($user);
+            $ostatniaZmianaHasla = $entityManager->getRepository('Parp\UzytkownikBundle\Entity\ZmianaHasla')
+                                                 ->findOstatniaZmianaHasla($user);
             if (null === $ostatniaZmianaHasla) {
                 $wpisHistorii = new ZmianaHasla();
                 // Historycznie obiekt Uzytkownik nie posiadał informacji o dacie ostatniej zmiany hasła.
@@ -333,7 +334,8 @@ class UwierzytelnianieListener implements EventSubscriberInterface
                 $trescBledow = array();
                 // To rozwiązanie nie działa, chociaż jest poprawne i dość zwięzłe.
                 // Dołączne do tablicy $bledy obiekty typu FormError (implementujące interfejs \Serializable)
-                // zawierają zmienną $cause, która zawiera instancję klasy Symfony\Component\Validator\ConstraintViolation.
+                // zawierają zmienną $cause, która zawiera instancję klasy
+                // Symfony\Component\Validator\ConstraintViolation.
                 // Serializacja (metodą serialize()) obiektów tej klasy powoduje wyrzucenie błędu: "You cannot serialize
                 // or unserialize PDO instances" (prawdopodobnie PDO jest jedną z jej zależności). Parametr $cause
                 // (przekazywany jako ostatni w konstruktorze obiektu typu FormError) jest prywatny i nie posiada
@@ -345,7 +347,12 @@ class UwierzytelnianieListener implements EventSubscriberInterface
                 // na nowy obiekt tego samego typu, ale pomijany jest parametr $cause (domyślnie null).
                 foreach ($formularz->get('_username')->getErrors() as $blad) {
                     if ($blad instanceof FormError) {
-                        $properFormError = new FormError($blad->getMessage(), $blad->getMessageTemplate(), $blad->getMessageParameters(), $blad->getMessagePluralization());
+                        $properFormError = new FormError(
+                            $blad->getMessage(),
+                            $blad->getMessageTemplate(),
+                            $blad->getMessageParameters(),
+                            $blad->getMessagePluralization()
+                        );
                         $trescBledow[] = $blad->getMessage();
                         $bledy['_username'][] = $properFormError;
                     }
