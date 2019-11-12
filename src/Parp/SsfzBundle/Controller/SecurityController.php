@@ -38,9 +38,11 @@ class SecurityController extends Controller
      *
      * @Route("/wyloguj", name="wyloguj")
      *
-     * @return RedirectResponse
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function wylogujAction()
+    public function wylogujAction(Request $request)
     {
         $this
             ->getUser()
@@ -51,6 +53,9 @@ class SecurityController extends Controller
             ->getManager()
             ->flush()
         ;
+
+        $session = $request->getSession();
+        $session->invalidate();
 
         return $this->redirectToRoute('logout');
     }
