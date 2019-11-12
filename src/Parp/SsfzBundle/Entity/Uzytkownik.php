@@ -363,6 +363,7 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
     {
         $options = [
             'cost' => 12,
+            'salt' => $this->getSalt()
         ];
         $this->haslo = $this->haslo !== null ? password_hash($this->haslo, PASSWORD_BCRYPT, $options) : $this->haslo;
         $this->ban = false;
@@ -393,7 +394,7 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
      */
     public function getSalt()
     {
-        return uniqid(mt_rand(), true);
+        return 'nOUIs5kJ7naTuTFkBy1veu';
     }
 
     /**
@@ -468,7 +469,8 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
             $this->utworzony,
             $this->zmodyfikowany,
             $this->status,
-            $this->kodAktywacjaKonta
+            $this->kodAktywacjaKonta,
+            $this->salt,
         ]);
     }
 
@@ -488,7 +490,8 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
             $this->utworzony,
             $this->zmodyfikowany,
             $this->status,
-            $this->kodAktywacjaKonta
+            $this->kodAktywacjaKonta,
+            $this->salt,
         ) = unserialize($serialized);
     }
 
@@ -563,7 +566,7 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
      */
     public function newPassword($newPassword)
     {
-        $this->setHaslo(password_hash($newPassword, PASSWORD_BCRYPT, array('cost' => 12)));
+        $this->setHaslo(password_hash($newPassword, PASSWORD_BCRYPT, array('cost' => 12, 'salt' => $this->getSalt())));
         $this->setKodZapomnianeHaslo(null);
     }
 
