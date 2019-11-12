@@ -393,7 +393,7 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
      */
     public function getSalt()
     {
-        return null;
+        return uniqid(mt_rand(), true);
     }
 
     /**
