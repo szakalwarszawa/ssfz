@@ -147,6 +147,11 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
     protected $aktywnyProgram;
 
     /**
+     * @ORM\Column(name="salt", type="string")
+     */
+    private $salt;
+
+    /**
      * Publiczny konstruktor
      */
     public function __construct()
@@ -361,12 +366,15 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
      */
     public function onPrePersist()
     {
+        $salt = $this->generateSalt();
+
         $options = [
             'cost' => 12,
-            'salt' => $this->getSalt()
+            'salt' => $salt,
         ];
         $this->haslo = $this->haslo !== null ? password_hash($this->haslo, PASSWORD_BCRYPT, $options) : $this->haslo;
         $this->ban = false;
+        $this->salt = $salt;
         $this->status = 0;
         $this->utworzony = new Carbon('Europe/Warsaw');
     }
@@ -390,11 +398,31 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
     }
 
     /**
-     * @return null
+     * @return string
      */
     public function getSalt()
     {
-        return 'nOUIs5kJ7naTuTFkBy1veu';
+        return $this->salt;
+    }
+
+    /**
+     * @return string
+     */
+    public function generateSalt()
+    {
+        return uniqid(mt_rand(), true);
+    }
+
+    /**
+     * @param string $salt
+     *
+     * @return Uzytkownik
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+
+        return $this;
     }
 
     /**
@@ -566,7 +594,9 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
      */
     public function newPassword($newPassword)
     {
-        $this->setHaslo(password_hash($newPassword, PASSWORD_BCRYPT, array('cost' => 12, 'salt' => $this->getSalt())));
+        $generatedSalt = $this->generateSalt();
+        $this->setHaslo(password_hash($newPassword, PASSWORD_BCRYPT, array('cost' => 12, 'salt' => $generatedSalt)));
+        $this->setSalt($generatedSalt);
         $this->setKodZapomnianeHaslo(null);
     }
 
