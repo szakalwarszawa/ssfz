@@ -276,7 +276,8 @@ class SprawozdanieController extends Controller
         $typeGuesser = $this->get('ssfz.service.guesser.typ_sprawozdania');
         $typSprawozdania = $typeGuesser->guess($newReport);
         if (
-            in_array($typSprawozdania,
+            in_array(
+                $typSprawozdania,
                 [
                  TypSprawozdaniaGuesserService::SPRAWOZDANIE_PORECZENIOWE,
                  TypSprawozdaniaGuesserService::SPRAWOZDANIE_POZYCZKOWE,
