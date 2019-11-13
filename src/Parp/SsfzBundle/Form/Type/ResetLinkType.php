@@ -33,7 +33,8 @@ class ResetLinkType extends AbstractType
 
         $builder->add('email', EmailType::class, [
             'attr' => [
-                'oninvalid' => 'this.setCustomValidity(\'Adres email nie zawiera poprawnej konstrukcji, sprawdź czy adres nie zawiera błędów.\')',
+                'oninvalid' => 'this.setCustomValidity(\'Adres email nie zawiera poprawnej konstrukcji, sprawdź czy ' .
+                    'adres nie zawiera błędów.\')',
                 'oninput'   => 'setCustomValidity(\'\')'
             ]
         ]);

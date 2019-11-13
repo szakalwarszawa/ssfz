@@ -51,7 +51,7 @@ class PoreczeniaController extends Controller
                 ->find($id)
             ;
             if (!$sprawozdanie) {
-                throw new EntityNotFoundException('Nie znaleziono sprawozdania poręczeniowego o ID: '.(string) $id);
+                throw new EntityNotFoundException('Nie znaleziono sprawozdania poręczeniowego o ID: ' . (string) $id);
             }
 
             $danePoreczen = $entityManager
@@ -89,7 +89,7 @@ class PoreczeniaController extends Controller
             ->find($id)
         ;
         if (!$danePoreczen) {
-            throw new EntityNotFoundException('Nie znaleziono danych poręczeń o ID: '.(string) $id);
+            throw new EntityNotFoundException('Nie znaleziono danych poręczeń o ID: ' . (string) $id);
         }
 
         $actionUrl = $this->generateUrl('edycja_danych_poreczen', [
@@ -112,7 +112,7 @@ class PoreczeniaController extends Controller
                 $errors = (string) $formularz->getErrors(true, false);
                 $this
                     ->get('ssfz.service.komunikaty_service')
-                    ->bladKomunikat('Formularz zawiera nieprawidłowe dane poręczeń.'."<br />".$errors)
+                    ->bladKomunikat('Formularz zawiera nieprawidłowe dane poręczeń . ' . "<br />" . $errors)
                 ;
             }
         }
@@ -145,8 +145,9 @@ class PoreczeniaController extends Controller
             ->getRepository(DanePoreczen::class)
             ->find($id)
         ;
+
         if (!$danePoreczen) {
-            throw new EntityNotFoundException('Nie znaleziono danych poręczeń o ID: '.(string) $id);
+            throw new EntityNotFoundException('Nie znaleziono danych poręczeń o ID: ' . (string) $id);
         }
 
         $sprawozdanie = $danePoreczen->getSprawozdanie();

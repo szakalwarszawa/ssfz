@@ -13,3 +13,6 @@ Zakładając, że pracujemy w katalogu zawierającym aktualny Dockerfile:
 
 Pod 'X' należy podstawić numer kolejnej wersji.
 Konieczność użycia 'sudo' może być zależna od konfiguracji konkretnego systemu operacyjnego.
+
+W przypadku konieczności przebudowy istniejącego obrazu (np. aktualizacja bibliotek PHP przez Composera ale brak zmian w Dockerfile):
+> sudo docker build --no-cache -t gitlab.parp.gov.pl:5055/ci/ssfz:vX .

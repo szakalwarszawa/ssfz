@@ -88,7 +88,8 @@ class SpolkaType extends AbstractType
                     array('message' => 'Należy wypełnić pole')
                 ),
                 new Length(
-                    array('max' => '140', 'maxMessage' => 'W polu nie może znajdować się więcej niż {{ limit }} znaków.')
+                    array('max' => '140', 'maxMessage' => 'W polu nie może znajdować się więcej niż {{ limit }} ' .
+                    'znaków.')
                 ),
             )
         ));
@@ -114,7 +115,8 @@ class SpolkaType extends AbstractType
                     array('message' => 'Należy wypełnić pole')
                 ),
                 new Length(
-                    array('max' => '140', 'maxMessage' => 'W polu nie może znajdować się więcej niż {{ limit }} znaków.')
+                    array('max' => '140', 'maxMessage' => 'W polu nie może znajdować się więcej niż {{ limit }} ' .
+                        'znaków.')
                 ),
             )
         ));
@@ -151,7 +153,8 @@ class SpolkaType extends AbstractType
                     array('message' => 'Należy wypełnić pole')
                 ),
                 new Length(
-                    array('max' => '1000', 'maxMessage' => 'W polu nie może znajdować się więcej niż {{ limit }} znaków.')
+                    array('max' => '1000', 'maxMessage' => 'W polu nie może znajdować się więcej niż {{ limit }} ' .
+                        'znaków.')
                 ),
             )
         ));
@@ -312,7 +315,8 @@ class SpolkaType extends AbstractType
                     array('message' => 'Należy wypełnić pole')
                 ),
                 new Length(
-                    array('max' => '1000', 'maxMessage' => 'W polu nie może znajdować się więcej niż {{ limit }} znaków.')
+                    array('max' => '1000', 'maxMessage' => 'W polu nie może znajdować się więcej niż {{ limit }} ' .
+                    'znaków.')
                 ),
             )
         ));
@@ -327,7 +331,8 @@ class SpolkaType extends AbstractType
                     array('message' => 'Należy wypełnić pole')
                 ),
                 new Length(
-                    array('max' => '140', 'maxMessage' => 'W polu nie może znajdować się więcej niż {{ limit }} znaków.')
+                    array('max' => '140', 'maxMessage' => 'W polu nie może znajdować się więcej niż {{ limit }} ' .
+                        'znaków.')
                 ),
             )
         ));

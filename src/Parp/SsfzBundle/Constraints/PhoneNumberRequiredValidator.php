@@ -37,7 +37,7 @@ class PhoneNumberRequiredValidator extends ConstraintValidator
             $telStacjonarny = (string) $data->getTelStacjonarny();
             $telKomorkowy = (string) $data->getTelKomorkowy();
 
-            $isValid = ($telStacjonarny.$telKomorkowy !== '');
+            $isValid = ($telStacjonarny . $telKomorkowy !== '');
         }
 
         if (!$isValid) {

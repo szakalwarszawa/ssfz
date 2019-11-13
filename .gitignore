@@ -17,4 +17,4 @@
 /web/webfonts/
 yarn-error.log
 /composer.phar
-/phpcpd.phar
+/*.phar

@@ -143,7 +143,8 @@ class SprawozdaniePozyczkoweType extends AbstractSprawozdanieSpoType
         ]);
 
         $builder->add('kapitalWydzielony', MoneyType::class, [
-            'label'    => 'w tym kapitał wydzielonego Funduszu Pożyczkowego prowadzonego zgodnie z zasadami gospodarowania monitorowanymi przez PARP',
+            'label'    => 'w tym kapitał wydzielonego Funduszu Pożyczkowego prowadzonego zgodnie z zasadami ' .
+            'gospodarowania monitorowanymi przez PARP',
             'disabled' => true,
             'required' => false,
             'currency' => 'PLN',
@@ -187,7 +188,8 @@ class SprawozdaniePozyczkoweType extends AbstractSprawozdanieSpoType
         ]);
 
         $builder->add('czyUdzielaPoAnalizieRyzyka', EntityType::class, [
-            'label'       => 'Fundusz udziela pożyczek po analizie ryzyka niespłacenia i po ustanowieniu zabezpieczenia',
+            'label'       => 'Fundusz udziela pożyczek po analizie ryzyka niespłacenia i po ustanowieniu ' .
+            'zabezpieczenia',
             'class'       => TakNie::class,
             'required'    => false,
             'expanded'    => true,

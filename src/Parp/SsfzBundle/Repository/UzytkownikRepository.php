@@ -86,7 +86,8 @@ class UzytkownikRepository extends EntityRepository implements UserProviderInter
     {
         $adresy = $this
             ->getEntityManager()
-            ->createQuery('SELECT u.email FROM SsfzBundle:Uzytkownik u JOIN SsfzBundle:Rola r WITH u.rola = r.id where r.nazwa = \'ROLE_PRACOWNIK_PARP\'')
+            ->createQuery('SELECT u.email FROM SsfzBundle:Uzytkownik u JOIN SsfzBundle:Rola r WITH u.rola = ' .
+                'r.id where r.nazwa = \'ROLE_PRACOWNIK_PARP\'')
             ->getResult()
         ;
 
@@ -106,7 +107,7 @@ class UzytkownikRepository extends EntityRepository implements UserProviderInter
     {
         $user = $this->findBy(['login' => $username]);
         if (!$user) {
-            throw new UsernameNotFoundException('No user found for username '.$username);
+            throw new UsernameNotFoundException('No user found for username ' . $username);
         }
 
         return $user;
@@ -158,7 +159,12 @@ class UzytkownikRepository extends EntityRepository implements UserProviderInter
         }
 
         if (!$refreshedUser = $this->find($user->getId())) {
-            throw new UsernameNotFoundException(sprintf('User with id %s not found', json_encode($user->getId())));
+            throw new UsernameNotFoundException(
+                sprintf(
+                    'User with id %s not found',
+                    json_encode($user->getId())
+                )
+            );
         }
 
         return $refreshedUser;

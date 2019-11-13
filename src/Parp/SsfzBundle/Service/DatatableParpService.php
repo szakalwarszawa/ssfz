@@ -147,7 +147,7 @@ class DatatableParpService
             ->dataTable
             ->addJoin('u.beneficjent', 'b', Join::INNER_JOIN)
             ->addJoin('b.program', 'p', Join::INNER_JOIN)
-            ->setWhere('p.id = '. ((int) $program->getId()))
+            ->setWhere('p.id = ' . ((int) $program->getId()))
         ;
         
         $doctrineQueryBuilder = $this
@@ -160,7 +160,7 @@ class DatatableParpService
 
         $params = [];
         foreach ($okresy as $key => $okres) {
-            $params['okres'.$key] = $okres;
+            $params['okres' . $key] = $okres;
         }
 
         $idx = 1;
@@ -168,11 +168,20 @@ class DatatableParpService
             foreach ($okresy as $key => $okres) {
                 $this
                     ->dataTable
-                    // Wydaje się, że użycie w WITH identyfikatora umowy jest zbędne, gdyż złączenie to gwarantują INNER_JOIN-y powyżej.
+                    // Wydaje się, że użycie w WITH identyfikatora umowy jest zbędne, gdyż złączenie to gwarantują
+                    // INNER_JOIN-y powyżej.
                     // Pozbywając się tej zależności, można pozbyć się redundancji informacji o umowie w encjach.
-                    // ->addJoin('u.' . $nazwaParametru, 's' . $idx, Join::LEFT_JOIN, Join::WITH, 'u.id = s' . $idx . '.umowaId and s' . $idx . '.rok = ' . $cfg->getRok() . ' and s' . $idx . '.czyNajnowsza = 1 and s' . $idx . '.okres = :okres' . $key)
-                    ->addJoin('u.' . $nazwaParametru, 's' . $idx, Join::LEFT_JOIN, Join::WITH, 's' . $idx . '.rok = ' . $cfg->getRok() . ' and s' . $idx . '.czyNajnowsza = 1 and s' . $idx . '.okres = :okres' . $key)
-                ;
+                    // ->addJoin('u.' . $nazwaParametru, 's' . $idx, Join::LEFT_JOIN, Join::WITH, 'u.id = s' . $idx .
+                    // '.umowaId and s' . $idx . '.rok = ' . $cfg->getRok() . ' and s' . $idx . '.czyNajnowsza = 1 and
+                    // s' . $idx . '.okres = :okres' . $key)
+                    ->addJoin(
+                        'u.' . $nazwaParametru,
+                        's' . $idx,
+                        Join::LEFT_JOIN,
+                        Join::WITH,
+                        's' . $idx . '.rok = ' . $cfg->getRok() . ' and s' . $idx . '.czyNajnowsza = 1 and s'
+                        . $idx . '.okres = :okres' . $key
+                    );
                 $idx++;
             }
         }

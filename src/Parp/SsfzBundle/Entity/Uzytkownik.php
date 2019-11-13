@@ -39,7 +39,8 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
      *
      * @Assert\NotBlank(groups={"rejestracja"})
      * @Assert\Length(groups={"rejestracja"}, max=64)
-     * @Assert\Regex(groups={"rejestracja"}, pattern="/[0-9a-zA-Z]{5,}/", message="Pole login musi zawierać co najmniej 5 znaków i nie więcej niż 255 znaków.")
+     * @Assert\Regex(groups={"rejestracja"}, pattern="/[0-9a-zA-Z]{5,}/", message="Pole login musi zawierać co
+     * najmniej 5 znaków i nie więcej niż 255 znaków.")
      */
     protected $login;
 
@@ -67,7 +68,8 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
      * @ORM\Column(name="email", type="string", length=250, unique=true)
      *
      * @Assert\NotBlank(groups={"rejestracja"})
-     * @Assert\Email(groups={"rejestracja"}, message="Adres email nie zawiera poprawnej konstrukcji, sprawdź czy adres nie zawiera błedów.")
+     * @Assert\Email(groups={"rejestracja"}, message="Adres email nie zawiera poprawnej konstrukcji, sprawdź czy adres
+     * nie zawiera błedów.")
      */
     protected $email;
 
