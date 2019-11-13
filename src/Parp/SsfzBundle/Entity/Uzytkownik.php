@@ -573,7 +573,7 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
     }
 
     /**
-     * @return string|void|null
+     * @return null
      */
     public function getSalt()
     {
