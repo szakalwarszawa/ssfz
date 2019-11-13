@@ -32,7 +32,7 @@ class MoneyHelper
 
         $scale = ($scale !== null) ? abs($scale) : null;
         $isNegative = ('-' === substr($input, 0, 1));
-        $input = preg_replace('#[^0-9\\'.$decimalSeparator.']#', '', $input);
+        $input = preg_replace('#[^0-9\\' . $decimalSeparator . ']#', '', $input);
 
         $hasFraction = strpos($input, '.') !== false;
         $inputArr = $hasFraction ?  explode('.', $input) : [$input];
@@ -60,10 +60,10 @@ class MoneyHelper
         }
 
         if (strlen($fraction) > 0) {
-            $fraction = '.'.$fraction;
+            $fraction = '.' . $fraction;
         }
 
-        $decimalString = $integer.$fraction;
+        $decimalString = $integer . $fraction;
         if (((float) $decimalString > 0) && $isNegative && !$unsigned) {
             $decimalString = '-' . $decimalString;
         }

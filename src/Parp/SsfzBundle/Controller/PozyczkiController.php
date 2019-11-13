@@ -51,13 +51,14 @@ class PozyczkiController extends Controller
                 ->find($id)
             ;
             if (!$sprawozdanie) {
-                throw new EntityNotFoundException('Nie znaleziono sprawozdania pożyczkowego o ID: '.(string) $id);
+                throw new EntityNotFoundException('Nie znaleziono sprawozdania pożyczkowego o ID: ' . (string) $id);
             }
 
             $danePozyczek = $entityManager
                 ->getRepository(DanePozyczek::class)
                 ->create($sprawozdanie, true)
             ;
+
             return $this->edytujDanePozyczekAction($request, $danePozyczek->getId());
         }
 
@@ -88,13 +89,15 @@ class PozyczkiController extends Controller
             ->getRepository(DanePozyczek::class)
             ->find($id)
         ;
+
         if (!$danePozyczek) {
-            throw new EntityNotFoundException('Nie znaleziono danych pożyczek o ID: '.(string) $id);
+            throw new EntityNotFoundException('Nie znaleziono danych pożyczek o ID: ' . (string) $id);
         }
 
         $actionUrl = $this->generateUrl('edycja_danych_pozyczek', [
             'id' => $id,
         ]);
+
         $formularz = $this->createForm(DanePozyczekType::class, $danePozyczek, [
             'action_url' => $actionUrl,
         ]);
@@ -112,7 +115,7 @@ class PozyczkiController extends Controller
                 $errors = (string) $formularz->getErrors(true, false);
                 $this
                     ->get('ssfz.service.komunikaty_service')
-                    ->bladKomunikat('Formularz zawiera nieprawidłowe dane pożyczek.'."<br />".$errors)
+                    ->bladKomunikat('Formularz zawiera nieprawidłowe dane pożyczek . ' . "<br />" . $errors)
                 ;
             }
         }
@@ -148,8 +151,9 @@ class PozyczkiController extends Controller
             ->getRepository(DanePozyczek::class)
             ->findDaneZagregowaneByIdSprawozdania($id)
         ;
+
         if (!$daneZagregowane) {
-            throw new EntityNotFoundException('Nie znaleziono danych pożyczek dla sprawozdania o ID: '.(string) $id);
+            throw new EntityNotFoundException('Nie znaleziono danych pożyczek dla sprawozdania o ID: ' . (string) $id);
         }
 
         return $this->render('SsfzBundle:Report:dane_pozyczek.html.twig', [
@@ -179,8 +183,9 @@ class PozyczkiController extends Controller
             ->getRepository(DanePozyczek::class)
             ->find($id)
         ;
+
         if (!$danePozyczek) {
-            throw new EntityNotFoundException('Nie znaleziono danych pożyczek o ID: '.(string) $id);
+            throw new EntityNotFoundException('Nie znaleziono danych pożyczek o ID: ' . (string) $id);
         }
 
         $sprawozdanie = $danePozyczek->getSprawozdanie();

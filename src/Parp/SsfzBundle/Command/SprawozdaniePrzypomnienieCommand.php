@@ -113,7 +113,8 @@ class SprawozdaniePrzypomnienieCommand extends ContainerAwareCommand
                                 if ($czyPierwszyTermin || $czestotliwoscPolroczna) {
                                     $sprawozdania = $umowa->getSprawozdania();
                                     foreach ($sprawozdania as $sprawozdanie) {
-                                        if (is_null($sprawozdanie->getDataPrzeslaniaDoParp())
+                                        if (
+                                            is_null($sprawozdanie->getDataPrzeslaniaDoParp())
                                             && !$sprawozdanie->getPowiadomienieWyslane()
                                             && $sprawozdanie->getRok() != $this->dzisiejszaData->year + 1
                                         ) {

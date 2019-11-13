@@ -29,19 +29,19 @@ class Fixtures implements FixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $rolaKoordynatorTechniczny = new Rola;
+        $rolaKoordynatorTechniczny = new Rola();
         $rolaKoordynatorTechniczny->setNazwa('ROLE_KOORDYNATOR_TECHNICZNY');
         $rolaKoordynatorTechniczny->setOpis('Administrator techniczny');
 
-        $rolaKoordynatorMerytoryczny = new Rola;
+        $rolaKoordynatorMerytoryczny = new Rola();
         $rolaKoordynatorMerytoryczny->setNazwa('ROLE_KOORDYNATOR_MERYTORYCZNY');
         $rolaKoordynatorMerytoryczny->setOpis('Administrator merytoryczny');
 
-        $rolaPracownikParp = new Rola;
+        $rolaPracownikParp = new Rola();
         $rolaPracownikParp->setNazwa('ROLE_PRACOWNIK_PARP');
         $rolaPracownikParp->setOpis('Pracownik PARP');
 
-        $rolaBeneficjent = new Rola;
+        $rolaBeneficjent = new Rola();
         $rolaBeneficjent->setNazwa('ROLE_BENEFICJENT');
         $rolaBeneficjent->setOpis('Beneficjent');
 
