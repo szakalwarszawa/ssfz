@@ -49,7 +49,7 @@ class AbstractSprawozdanieSpoType extends AbstractType
         $typSprawozdania = 'Nazwa Funduszu';
         if ($options['typ_sprawozdania'] === 'sprawozdanie_pozyczkowe') {
             $typSprawozdania = $typSprawozdania . ' (Nazwa instytucji prowadzącej fundusz pożyczkowy)';
-        } else if ($options['typ_sprawozdania'] === 'sprawozdanie_poreczeniowe') {
+        } elseif ($options['typ_sprawozdania'] === 'sprawozdanie_poreczeniowe') {
             $typSprawozdania = $typSprawozdania . ' (Nazwa instytucji prowadzącej fundusz poręczeniowy)';
         }
         $builder->add('nazwaFunduszu', TextType::class, [

@@ -77,8 +77,9 @@ class UzytkownikRepository extends EntityRepository implements UserProviderInter
     }
 
     /**
-     * Metoda umożliwiająca pobranie tablicy adresów email
-     * wszystkich użytkowników z rolą ROLE_PRACOWNIK_PARP
+     * Zwraca tablicę adresów email wszystkich użytkowników z rolą ROLE_PRACOWNIK_PARP
+     *
+     * @todo Metody w repozytoriach zdecydowanie nie powinny mieć nazw z prefiksem "get".
      *
      * @return array
      */
@@ -86,8 +87,12 @@ class UzytkownikRepository extends EntityRepository implements UserProviderInter
     {
         $adresy = $this
             ->getEntityManager()
-            ->createQuery('SELECT u.email FROM SsfzBundle:Uzytkownik u JOIN SsfzBundle:Rola r WITH u.rola = ' .
-                'r.id where r.nazwa = \'ROLE_PRACOWNIK_PARP\'')
+            ->createQuery(
+                'SELECT u.email '
+                . 'FROM SsfzBundle:Uzytkownik u '
+                . 'JOIN SsfzBundle:Rola r WITH u.rola = '
+                . 'r.id where r.nazwa = \'ROLE_PRACOWNIK_PARP\''
+            )
             ->getResult()
         ;
 
@@ -173,7 +178,7 @@ class UzytkownikRepository extends EntityRepository implements UserProviderInter
     /**
      * @param string $class
      *
-     * @return $class
+     * @return bool
      */
     public function supportsClass($class)
     {
