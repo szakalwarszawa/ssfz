@@ -80,6 +80,8 @@ phpmd:
     allow_failure: false
     script:
         - /root/.composer/vendor/bin/phpmd src/ text ".gitlab-ci/phpmd.xml"
+    only:
+        - merge_requests
 
 phpdoc:
     stage: standards
