@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Parp\SsfzBundle\Entity;
 
 use Date;
@@ -16,7 +18,7 @@ class SprawozdaniePozyczkoweSkladnikOgolem extends AbstractSprawozdanieSkladnik
     /**
      * Sprawozdanie.
      *
-     * @var SprawozdaniePozyczkowe
+     * @var SprawozdaniePozyczkowe|null
      *
      * @ORM\ManyToOne(
      *     targetEntity="Parp\SsfzBundle\Entity\SprawozdaniePozyczkowe",
@@ -34,7 +36,7 @@ class SprawozdaniePozyczkoweSkladnikOgolem extends AbstractSprawozdanieSkladnik
      *
      * @return SprawozdaniePozyczkoweSkladnikOgolem
      */
-    public function setSprawozdanie(SprawozdaniePozyczkowe $sprawozdanie)
+    public function setSprawozdanie(SprawozdaniePozyczkowe $sprawozdanie): SprawozdaniePozyczkoweSkladnikOgolem
     {
         $this->sprawozdanie = $sprawozdanie;
 
@@ -44,9 +46,9 @@ class SprawozdaniePozyczkoweSkladnikOgolem extends AbstractSprawozdanieSkladnik
     /**
      * Get sprawozdanie
      *
-     * @return SprawozdaniePozyczkowe
+     * @return SprawozdaniePozyczkowe|null
      */
-    public function getSprawozdanie()
+    public function getSprawozdanie(): ?SprawozdaniePozyczkowe
     {
         return $this->sprawozdanie;
     }

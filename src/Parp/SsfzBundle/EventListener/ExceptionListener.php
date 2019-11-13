@@ -45,8 +45,12 @@ class ExceptionListener implements EventSubscriberInterface
      * @param Router $router
      * @param KomunikatyService $komunikatyService
      */
-    public function __construct(KernelInterface $kernel, RequestStack $requestStack, Router $router, KomunikatyService $komunikatyService)
-    {
+    public function __construct(
+        KernelInterface $kernel,
+        RequestStack $requestStack,
+        Router $router,
+        KomunikatyService $komunikatyService
+    ) {
         $this->kernel = $kernel;
         $this->requestStack = $requestStack;
         $this->router = $router;

@@ -25,14 +25,16 @@ class NumerUmowyValidator extends ConstraintValidator
      *
      * @var string
      */
-    const REGEXP_FUNDUSZ_POZYCZKOWY = '^WKP\_1\/1\.2\.1\/[0-9]\/2([0-9]){3,3}\/(([1-9][0-9])|([1-9]))\/(([1-9][0-9])|([1-9]))\/u$';
+    const REGEXP_FUNDUSZ_POZYCZKOWY = '^WKP\_1\/1\.2\.1\/[0-9]\/2([0-9]){3,3}\/(([1-9][0-9])|([1-9]))\/(([1-9][0-9])' .
+    '|([1-9]))\/u$';
 
     /**
      * Regexp dla numeru umowy funduszu poręczeniowego (bez delimiterów).
      *
      * @var string
      */
-    const REGEXP_FUNDUSZ_PORECZENIOWY = '^WKP\_1\/1\.2\.2\/[0-9]\/2([0-9]){3,3}\/(([1-9][0-9])|([1-9]))\/(([1-9][0-9])|([1-9]))\/u$';
+    const REGEXP_FUNDUSZ_PORECZENIOWY = '^WKP\_1\/1\.2\.2\/[0-9]\/2([0-9]){3,3}\/(([1-9][0-9])|([1-9]))\/(([1-9][0-9]' .
+    ')|([1-9]))\/u$';
 
     /**
      * @var string
@@ -87,19 +89,20 @@ class NumerUmowyValidator extends ConstraintValidator
     private function getRegexp($program = null): string
     {
         if (null === $program) {
-            return '/('.self::REGEXP_FUNDUSZ_ZALAZKOWY.')|('.self::REGEXP_FUNDUSZ_POZYCZKOWY.')|('.self::REGEXP_FUNDUSZ_PORECZENIOWY.')/';
+            return '/(' . self::REGEXP_FUNDUSZ_ZALAZKOWY . ')|(' . self::REGEXP_FUNDUSZ_POZYCZKOWY . ')|(' .
+            self::REGEXP_FUNDUSZ_PORECZENIOWY . ')/';
         }
 
         if ($program->czyFunduszZalazkowy()) {
-            return '/'.self::REGEXP_FUNDUSZ_ZALAZKOWY.'/';
+            return '/' . self::REGEXP_FUNDUSZ_ZALAZKOWY . '/';
         }
 
         if ($program->czyFunduszPozyczkowy()) {
-            return '/'.self::REGEXP_FUNDUSZ_POZYCZKOWY.'/';
+            return '/' . self::REGEXP_FUNDUSZ_POZYCZKOWY . '/';
         }
 
         if ($program->czyFunduszPoreczeniowy()) {
-            return '/'.self::REGEXP_FUNDUSZ_PORECZENIOWY.'/';
+            return '/' . self::REGEXP_FUNDUSZ_PORECZENIOWY . '/';
         }
 
         throw new InvalidArgumentException('Nie można określić zasad numeracji umów dla wskazanego programu.');
@@ -121,15 +124,15 @@ class NumerUmowyValidator extends ConstraintValidator
         }
 
         if ($program->czyFunduszZalazkowy()) {
-            return $constraint->message.' '.$constraint->messageFunduszZalazkowy;
+            return $constraint->message . ' ' . $constraint->messageFunduszZalazkowy;
         }
 
         if ($program->czyFunduszPozyczkowy()) {
-            return $constraint->message.' '.$constraint->messageFunduszPozyczkowy;
+            return $constraint->message . ' ' . $constraint->messageFunduszPozyczkowy;
         }
 
         if ($program->czyFunduszPoreczeniowy()) {
-            return $constraint->message.' '.$constraint->messageFunduszPoreczeniowy;
+            return $constraint->message . ' ' . $constraint->messageFunduszPoreczeniowy;
         }
     }
 

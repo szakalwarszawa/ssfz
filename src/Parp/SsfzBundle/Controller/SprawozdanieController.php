@@ -275,10 +275,15 @@ class SprawozdanieController extends Controller
         $idUmowy = $newReport->getUmowa()->getId();
         $typeGuesser = $this->get('ssfz.service.guesser.typ_sprawozdania');
         $typSprawozdania = $typeGuesser->guess($newReport);
-        if (in_array($typSprawozdania, [
-            TypSprawozdaniaGuesserService::SPRAWOZDANIE_PORECZENIOWE,
-            TypSprawozdaniaGuesserService::SPRAWOZDANIE_POZYCZKOWE,
-        ])) {
+        if (
+            in_array(
+                $typSprawozdania,
+                [
+                 TypSprawozdaniaGuesserService::SPRAWOZDANIE_PORECZENIOWE,
+                 TypSprawozdaniaGuesserService::SPRAWOZDANIE_POZYCZKOWE,
+                ]
+            )
+        ) {
             return $this->redirectToRoute('lista_sprawozdan_spo', [
                 'umowa' => $idUmowy,
             ]);
@@ -312,6 +317,7 @@ class SprawozdanieController extends Controller
             ->findOneByIdSprawozdania($sprawozdanieId)
         ;
         $umowaId = $sprawozdanie->getUmowaId();
+
         if (null === $przeplyw) {
             $this
                 ->get('ssfz.service.komunikaty_service')
@@ -320,7 +326,12 @@ class SprawozdanieController extends Controller
 
             return $this->redirectToRoute('sprawozdanie_rejestracja', ['umowaId' => (string) $umowaId]);
         }
-        if ($this->getRequest()->isMethod('POST') && $sprawozdanie->getStatus() == 1 && $sprawozdanie->getCreatorId() == $beneficjentId) {
+
+        if (
+            $this->getRequest()->isMethod('POST')
+            && $sprawozdanie->getStatus() == 1
+            && $sprawozdanie->getCreatorId() == $beneficjentId
+        ) {
             $dateNow = new DateTime('now');
             $sprawozdanie->setStatus(StatusSprawozdania::PRZESLANO_DO_PARP);
             $sprawozdanie->setDataPrzeslaniaDoParp($dateNow);
@@ -433,7 +444,10 @@ class SprawozdanieController extends Controller
         if (null !== $report && (int) $report->getId() !== (int) $editedReportId) {
             $this
                 ->get('ssfz.service.komunikaty_service')
-                ->bladKomunikat('Sprawozdanie za wskazany okres istnieje w systemie', 'Błąd podczas próby zapisu sprawozdania')
+                ->bladKomunikat(
+                    'Sprawozdanie za wskazany okres istnieje w systemie',
+                    'Błąd podczas próby zapisu sprawozdania'
+                )
             ;
 
             return true;
@@ -577,7 +591,8 @@ class SprawozdanieController extends Controller
         ;
 
         $this->getUser()->setAktywnyProgram($program);
-        $sprawozdanie = $program->czyFunduszPozyczkowy() ? new SprawozdaniePozyczkowe() : new SprawozdaniePoreczeniowe();
+        $sprawozdanie = $program->czyFunduszPozyczkowy() ? new SprawozdaniePozyczkowe() :
+            new SprawozdaniePoreczeniowe();
         $sprawozdanie = $this->setDefaultValues($sprawozdanie, $umowa);
         $sprawozdanie->setNumerUmowy($umowa->getNumer());
         $okresy = $this->getOkresySprawozdawcze();

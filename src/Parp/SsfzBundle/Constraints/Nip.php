@@ -9,6 +9,9 @@ use Symfony\Component\Validator\Constraint;
  */
 class Nip extends Constraint
 {
+    /**
+     * @var string
+     */
     public $komunikat = 'Nieprawidłowy numer NIP';
 
     /**
@@ -18,6 +21,6 @@ class Nip extends Constraint
      */
     public function validatedBy()
     {
-        return get_class($this).'Validator';
+        return get_class($this) . 'Validator';
     }
 }

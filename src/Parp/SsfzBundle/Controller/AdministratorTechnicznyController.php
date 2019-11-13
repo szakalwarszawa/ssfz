@@ -58,13 +58,15 @@ class AdministratorTechnicznyController extends Controller
 
             $pracownik = $this->utworzPracownika($dane);
             if (null === $pracownik) {
-                $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Utworzenie konta pracownika nie powiodło się.');
+                $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Utworzenie konta pracownika nie' .
+                'powiodło się.');
 
                 return $this->redirectToRoute('utworzPracownika');
             }
             $this->persistPracownik($pracownik);
             $this->wyslijWiadomoscAktywacyjna($pracownik);
-            $this->get('ssfz.service.komunikaty_service')->sukcesKomunikat('Konto pracownika zostało utworzone poprawnie. Link aktywacyjny został wyslany na adres e-mail pracownika.');
+            $this->get('ssfz.service.komunikaty_service')->sukcesKomunikat('Konto pracownika zostało utworzone ' .
+            'poprawnie. Link aktywacyjny został wyslany na adres e-mail pracownika.');
 
             return $this->redirectToRoute('utworzPracownika');
         }
@@ -109,7 +111,10 @@ class AdministratorTechnicznyController extends Controller
             return $this->redirectToRoute('utworzPracownika');
         }
 
-        return $this->render('SsfzBundle:AdministratorTechniczny:edytujPracownika.html.twig', array('form' => $form->createView()));
+        return $this->render(
+            'SsfzBundle:AdministratorTechniczny:edytujPracownika.html.twig',
+            array('form' => $form->createView())
+        );
     }
 
     /**

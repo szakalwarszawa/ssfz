@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\Entity\Slownik;
 
 use Doctrine\ORM\Mapping as ORM;

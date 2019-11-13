@@ -39,7 +39,7 @@ class DanePozyczekRepository extends EntityRepository
      *
      * @return bool
      */
-    public function delete(DanePozyczek $danePozyczek)
+    public function delete(DanePozyczek $danePozyczek): bool
     {
         $this->_em->remove($danePozyczek);
         $this->_em->flush($danePozyczek);
@@ -54,7 +54,7 @@ class DanePozyczekRepository extends EntityRepository
      *
      * @return DanePozyczek
      */
-    public function persist(DanePozyczek $danePozyczek)
+    public function persist(DanePozyczek $danePozyczek): DanePozyczek
     {
         $this->_em->persist($danePozyczek);
         $this->_em->flush($danePozyczek);
@@ -81,7 +81,7 @@ class DanePozyczekRepository extends EntityRepository
      *
      * @param int $idSprawozdania
      *
-     * @return null|DanePozyczek
+     * @return DanePozyczek|null
      */
     public function findOneByIdSprawozdania(int $idSprawozdania): ?DanePozyczek
     {
@@ -102,7 +102,7 @@ class DanePozyczekRepository extends EntityRepository
      *
      * @param int $idSprawozdania
      *
-     * @return null|array
+     * @return array|null
      */
     public function findDaneZagregowaneByIdSprawozdania(int $idSprawozdania): ?array
     {
@@ -112,11 +112,11 @@ class DanePozyczekRepository extends EntityRepository
         }
 
         $pozyczkiWgPrzeznaczenia = [
-            'liczba_pozyczek_razem'                         => $result->getLiczbaPozyczekDlaWszystkichPrzeznaczenOgolem(),
-            'liczba_pozyczek_na_cele_obrotowe'              => $result->getLiczbaPozyczekObrotowychOgolem(),
-            'liczba_pozyczek_na_cele_inwestycyjne'          => $result->getLiczbaPozyczekInwestycyjnychOgolem(),
+            'liczba_pozyczek_razem'                       => $result->getLiczbaPozyczekDlaWszystkichPrzeznaczenOgolem(),
+            'liczba_pozyczek_na_cele_obrotowe'            => $result->getLiczbaPozyczekObrotowychOgolem(),
+            'liczba_pozyczek_na_cele_inwestycyjne'        => $result->getLiczbaPozyczekInwestycyjnychOgolem(),
             'liczba_pozyczek_na_cele_obrotowo_inwestycyjne' => $result->getLiczbaPozyczekInwestycyjnoObrotowychOgolem(),
-            'kwota_pozyczek_razem'                          => $result->getKwotaPozyczekDlaWszystkichPrzeznaczenOgolem(),
+            'kwota_pozyczek_razem'                         => $result->getKwotaPozyczekDlaWszystkichPrzeznaczenOgolem(),
             'kwota_pozyczek_na_cele_obrotowe'               => $result->getKwotaPozyczekObrotowychOgolem(),
             'kwota_pozyczek_na_cele_inwestycyjne'           => $result->getKwotaPozyczekInwestycyjnychOgolem(),
             'kwota_pozyczek_na_cele_obrotowo_inwestycyjne'  => $result->getKwotaPozyczekInwestycyjnoObrotowychOgolem(),
@@ -126,7 +126,7 @@ class DanePozyczekRepository extends EntityRepository
             'liczba_pozyczek_razem'                 => $result->getLiczbaPozyczekOgolemDlaWszystkichSektorowDzialan(),
             'liczba_pozyczek_dzialania_produkcyjne' => $result->getLiczbaPozyczekNaDzialaniaProdykcyjneOgolem(),
             'liczba_pozyczek_dzialania_handlowe'    => $result->getLiczbaPozyczekNaDzialaniaHandloweOgolem(),
-            'liczba_pozyczek_dzialania_uslugowe'    =>$result->getLiczbaPozyczekNaDzialaniaUslugoweOgolem(),
+            'liczba_pozyczek_dzialania_uslugowe'    => $result->getLiczbaPozyczekNaDzialaniaUslugoweOgolem(),
             'liczba_pozyczek_dzialania_budownicze'  => $result->getLiczbaPozyczekNaDzialaniaBudowniczeOgolem(),
             'liczba_pozyczek_dzialania_rolnicze'    => $result->getLiczbaPozyczekNaDzialaniaRolniczeOgolem(),
             'liczba_pozyczek_dzialania_inne'        => $result->getLiczbaPozyczekNaDzialaniaInneOgolem(),

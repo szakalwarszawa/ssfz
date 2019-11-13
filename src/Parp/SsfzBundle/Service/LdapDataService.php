@@ -174,7 +174,12 @@ class LdapDataService
 
         $baseDn = $this->getOption('baseDn', '');
         $searchScope = Ldap::SEARCH_SCOPE_SUB;
-        $employee = $this->ldap->searchEntries('(&(objectClass=organizationalPerson)(' . $this->uidKey . '=' . $login . '))', $baseDn, $searchScope);
+        $employee = $this->ldap->searchEntries(
+            '(&(objectClass=organizationalPerson)(' . $this->uidKey . '=' . $login . '))',
+            $baseDn,
+            $searchScope
+        );
+
         if (1 !== count($employee)) {
             throw new LdapDataServiceException('Niejednoznaczny login LDAP');
         }
@@ -238,13 +243,13 @@ class LdapDataService
     {
         $uzytkownikLdap = new UzytkownikLdap();
         $uzytkownikLdap->setLogin($data[$this->uidKey][0]);
-        if (key_exists('mail', $data)) {
+        if (array_key_exists('mail', $data)) {
             $uzytkownikLdap->setEmail($data['mail'][0]);
         }
-        if (key_exists('givenName', $data)) {
+        if (array_key_exists('givenName', $data)) {
             $uzytkownikLdap->setImie($data['givenName'][0]);
         }
-        if (key_exists('sn', $data)) {
+        if (array_key_exists('sn', $data)) {
             $uzytkownikLdap->setNazwisko($data['sn'][0]);
         }
 

@@ -21,17 +21,22 @@ class NumerUmowy extends Constraint
     /**
      * @var string
      */
-    public $messageFunduszZalazkowy = 'Oczekiwany format numeru umowy: POIG.03.01.00-00-NNN/RR-UU; gdzie: NNN-trzycyfrowy numer wniosku, RR-dwucyfrowy numer roku złożenia wniosku, UU-musi przyjmować wartość 00.';
+    public $messageFunduszZalazkowy = 'Oczekiwany format numeru umowy: POIG.03.01.00-00-NNN/RR-UU; gdzie: ' .
+    ' NNN-trzycyfrowy numer wniosku, RR-dwucyfrowy numer roku złożenia wniosku, UU-musi przyjmować wartość 00.';
 
     /**
      * @var string
      */
-    public $messageFunduszPozyczkowy = 'Oczekiwany format numeru umowy: WKP_1/1.2.1/X/RRRR/YY/ZZ/u; gdzie: X-jednocyfrowy numer rundy naboru, RRRR-rok złożenia wniosku, YY-przyjmuje wartość od 1 do 99, ZZ-przyjmuje wartość od 1 do 99.';
+    public $messageFunduszPozyczkowy = 'Oczekiwany format numeru umowy: WKP_1/1.2.1/X/RRRR/YY/ZZ/u; gdzie: ' .
+    'X-jednocyfrowy numer rundy naboru, RRRR-rok złożenia wniosku, YY-przyjmuje wartość od 1 do 99, ZZ-przyjmuje ' .
+    'wartość od 1 do 99.';
 
     /**
      * @var string
      */
-    public $messageFunduszPoreczeniowy = 'Oczekiwany format numeru umowy: WKP_1/1.2.2/X/RRRR/YY/ZZ/u; gdzie: X-jednocyfrowy numer rundy naboru, RRRR-rok, YY-przyjmuje wartość od 1 do 99, ZZ-przyjmuje wartość od 1 do 99.';
+    public $messageFunduszPoreczeniowy = 'Oczekiwany format numeru umowy: WKP_1/1.2.2/X/RRRR/YY/ZZ/u; ' .
+    'gdzie: X-jednocyfrowy numer rundy naboru, RRRR-rok, YY-przyjmuje wartość od 1 do 99, ZZ-przyjmuje wartość od ' .
+    '1 do 99.';
 
     /**
      * @var Program

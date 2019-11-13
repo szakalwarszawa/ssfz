@@ -15,6 +15,7 @@ Analityka i testy:
 Programiści:
 - Marek Korecki
 - Łukasz Lubliński
+- Hubert Pomorski
 
 ## Opieka DM
 Specyfikacja systemu:

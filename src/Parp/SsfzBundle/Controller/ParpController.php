@@ -85,7 +85,8 @@ class ParpController extends Controller
             $this->addFlash('notice', [
                 'alert'   => 'warning',
                 'title'   => '',
-                'message' => 'Sprawozdanie nie ma statusu "przesłane". Ocena sprawozdania z innym statusem jest niemożliwa.'
+                'message' => 'Sprawozdanie nie ma statusu "przesłane". Ocena sprawozdania z innym statusem jest ' .
+                'niemożliwa.'
             ]);
             return $this->redirectToRoute('parp_sprawozdanie', [
                 'idSprawozdania' => $idSprawozdania,
@@ -241,7 +242,8 @@ class ParpController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $beneficjent = $entityManager->getRepository(Beneficjent::class)->find($idBeneficjenta);
         if (null == $beneficjent) {
-            $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Nie znaleziono beneficjenta o podanym identyfikatorze.');
+            $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Nie znaleziono beneficjenta o podanym ' .
+            'identyfikatorze.');
             return $this->redirectToRoute('parp');
         }
         $this->get('ssfz.service.datatable_osoby_service')->datatableOsoby($this, $beneficjent->getId())->execute();
@@ -429,7 +431,8 @@ class ParpController extends Controller
         if (null == $danePozyczek) {
             $this
                 ->get('ssfz.service.komunikaty_service')
-                ->bladKomunikat('Nie znaleziono danych pożyczek dla sprawozdania o ID:'.(string) $idSprawozdania.'.')
+                ->bladKomunikat('Nie znaleziono danych pożyczek dla sprawozdania o ID:' . (string) $idSprawozdania .
+                '.')
             ;
 
             return $this->redirectToRoute('parp');

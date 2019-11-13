@@ -18,12 +18,16 @@ build:
     artifacts:
         expire_in: 1 day
         untracked: true
+    only:
+        - merge_requests
 
 parallellint:
     stage: tests
     allow_failure: false
     script:
         - /root/.composer/vendor/bin/parallel-lint --colors --blame --exclude vendor .
+    only:
+        - merge_requests
 
 yamllint:
     stage: tests
@@ -31,12 +35,19 @@ yamllint:
     script:
         - /root/.composer/vendor/bin/yaml-lint --format txt src/
         - /root/.composer/vendor/bin/yaml-lint --format txt app/
+    only:
+        - merge_requests
 
-psr2:
+psr12:
     stage: standards
     allow_failure: false
     script:
-        - /root/.composer/vendor/bin/phpcs -n --colors --report=full --standard=PSR2 --extensions=php src/
+        - /root/.composer/vendor/bin/phpcs -n --colors --report=full --standard=PSR12 --extensions=php src/
+        - /root/.composer/vendor/bin/phpcs -n --colors --report=full --standard=PSR12 --extensions=php
+          --ignore="AppKernel.php, AppCache.php, AsseticScriptHandler.php, SymfonyRequirements.php"
+          app/
+    only:
+        - merge_requests
 
 linelength:
     stage: standards
@@ -44,6 +55,8 @@ linelength:
     script:
         - /root/.composer/vendor/bin/phpcs --config-set encoding utf-8
         - /root/.composer/vendor/bin/phpcs -n --colors --report=full --standard="./.gitlab-ci/phpcs_line_length.xml" --extensions=php src/
+    only:
+        - merge_requests
 
 eofeol:
     stage: standards
@@ -51,24 +64,32 @@ eofeol:
     script:
         - /root/.composer/vendor/bin/phpcs --config-set encoding utf-8
         - /root/.composer/vendor/bin/phpcs -n --colors --report=full --standard="./.gitlab-ci/phpcs_eof.xml" --extensions=php src/
+    only:
+        - merge_requests
 
 twigcs:
     stage: standards
     allow_failure: false
     script:
         - /root/.composer/vendor/bin/twigcs lint src/
+    only:
+        - merge_requests
 
 phpmd:
     stage: standards
     allow_failure: false
     script:
         - /root/.composer/vendor/bin/phpmd src/ text ".gitlab-ci/phpmd.xml"
+    only:
+        - merge_requests
 
 phpdoc:
     stage: standards
     allow_failure: false
     script:
         - /root/.composer/vendor/bin/phpdoccheck --directory="src/"
+    only:
+        - merge_requests
 
 phpcpd:
     stage: stats
@@ -76,12 +97,16 @@ phpcpd:
     script:
         - sed -i 's/memory_limit = 128M/memory_limit = 1G/g' /etc/php7/php.ini
         - /root/.composer/vendor/bin/phpcpd --min-lines=10 --min-tokens=100 --verbose --exclude="tests/" src/
+    only:
+        - merge_requests
 
 phploc:
     stage: stats
     allow_failure: false
     script:
         - /root/.composer/vendor/bin/phploc src/
+    only:
+        - merge_requests
 
 sami:
     stage: doc
@@ -94,6 +119,8 @@ sami:
         expire_in: 1 day
         paths:
             - .gitlab-ci/phpdoc
+    only:
+        - merge_requests
 
 automerge:
     stage: postbuild
@@ -110,6 +137,8 @@ automerge:
         - git merge --no-ff -m "Auto merge by gitlabci job" master
         - git push origin development
     only:
-      refs:
-        - master
+        - merge_requests
+    except:
+        variables:
+            - $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != "master"
     when: on_success
