@@ -126,7 +126,7 @@ class DanePozyczekRepository extends EntityRepository
             'liczba_pozyczek_razem'                 => $result->getLiczbaPozyczekOgolemDlaWszystkichSektorowDzialan(),
             'liczba_pozyczek_dzialania_produkcyjne' => $result->getLiczbaPozyczekNaDzialaniaProdykcyjneOgolem(),
             'liczba_pozyczek_dzialania_handlowe'    => $result->getLiczbaPozyczekNaDzialaniaHandloweOgolem(),
-            'liczba_pozyczek_dzialania_uslugowe'    =>$result->getLiczbaPozyczekNaDzialaniaUslugoweOgolem(),
+            'liczba_pozyczek_dzialania_uslugowe'    => $result->getLiczbaPozyczekNaDzialaniaUslugoweOgolem(),
             'liczba_pozyczek_dzialania_budownicze'  => $result->getLiczbaPozyczekNaDzialaniaBudowniczeOgolem(),
             'liczba_pozyczek_dzialania_rolnicze'    => $result->getLiczbaPozyczekNaDzialaniaRolniczeOgolem(),
             'liczba_pozyczek_dzialania_inne'        => $result->getLiczbaPozyczekNaDzialaniaInneOgolem(),

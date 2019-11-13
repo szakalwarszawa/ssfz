@@ -25,7 +25,7 @@ class AppExtension extends AbstractExtension
     public function __construct($kernelRootDir = '')
     {
         $config = HTMLPurifier_Config::createDefault();
-        $cacheDir = $kernelRootDir.\DIRECTORY_SEPARATOR.'cache/htmlpurifier';
+        $cacheDir = $kernelRootDir . \DIRECTORY_SEPARATOR . 'cache/htmlpurifier';
         if (!file_exists($cacheDir)) {
             mkdir($cacheDir, 0775, true);
         }

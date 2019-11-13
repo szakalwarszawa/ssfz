@@ -1,4 +1,5 @@
 <?php
+
 namespace Parp\SsfzBundle\EventListener;
 
 use Doctrine\ORM\EntityManager;

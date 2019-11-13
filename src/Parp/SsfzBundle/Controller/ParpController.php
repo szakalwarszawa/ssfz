@@ -431,7 +431,8 @@ class ParpController extends Controller
         if (null == $danePozyczek) {
             $this
                 ->get('ssfz.service.komunikaty_service')
-                ->bladKomunikat('Nie znaleziono danych pożyczek dla sprawozdania o ID:'.(string) $idSprawozdania.'.')
+                ->bladKomunikat('Nie znaleziono danych pożyczek dla sprawozdania o ID:' . (string) $idSprawozdania .
+                '.')
             ;
 
             return $this->redirectToRoute('parp');

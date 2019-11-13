@@ -609,8 +609,10 @@ class SprawozdanieSpolki
                 ->addViolation();
         }
 
-        if ($this->getZatrudnienieInneFormy() != ($this->getZatrudnienieInneFormyMezczyzni() +
-                $this->getZatrudnienieInneFormyKobiety())) {
+        if (
+            $this->getZatrudnienieInneFormy()
+            != ($this->getZatrudnienieInneFormyMezczyzni() + $this->getZatrudnienieInneFormyKobiety())
+        ) {
             $context->buildViolation('Suma pól "w tym kobiety" oraz "w tym mężczyźni" musi być równa wartości'
                 . 'w polu "Zatrudnienie (inne formy)" spółka ( ' . $this->getNazwaSpolki() . ' )')
                 ->atPath('rok')

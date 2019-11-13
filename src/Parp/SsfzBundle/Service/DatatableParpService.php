@@ -147,7 +147,7 @@ class DatatableParpService
             ->dataTable
             ->addJoin('u.beneficjent', 'b', Join::INNER_JOIN)
             ->addJoin('b.program', 'p', Join::INNER_JOIN)
-            ->setWhere('p.id = '. ((int) $program->getId()))
+            ->setWhere('p.id = ' . ((int) $program->getId()))
         ;
         
         $doctrineQueryBuilder = $this
@@ -160,7 +160,7 @@ class DatatableParpService
 
         $params = [];
         foreach ($okresy as $key => $okres) {
-            $params['okres'.$key] = $okres;
+            $params['okres' . $key] = $okres;
         }
 
         $idx = 1;
