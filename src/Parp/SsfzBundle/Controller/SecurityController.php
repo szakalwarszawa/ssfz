@@ -1,11 +1,15 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Parp\SsfzBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\{
+    Request,
+    RedirectResponse
+};
 
 /**
  * Kontroler obsługujący funkcjonalności po stronie Użytkownika
@@ -23,7 +27,7 @@ class SecurityController extends Controller
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function loginAction(Request $request)
+    public function loginAction(Request $request): Response
     {
         $authUtils = $this->get('security.authentication_utils');
         $error = $authUtils->getLastAuthenticationError();
@@ -41,9 +45,9 @@ class SecurityController extends Controller
      *
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      */
-    public function wylogujAction(Request $request)
+    public function wylogujAction(Request $request): RedirectResponse
     {
         $this
             ->getUser()
