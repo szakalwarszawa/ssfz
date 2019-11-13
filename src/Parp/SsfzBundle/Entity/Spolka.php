@@ -797,33 +797,33 @@ class Spolka
                 ->atPath('dataWyjscia')
                 ->addViolation();
         }
-        if (1 === $this->getZakonczona()
-            && (null === $this->getKwDezinwestycji()
-            || '' === $this->getKwDezinwestycji())
+        if (1 === $this->getZakonczona() &&
+           (null === $this->getKwDezinwestycji() ||
+           '' === $this->getKwDezinwestycji())
         ) {
             $context->buildViolation('Należy wypełnić pole')
                 ->atPath('kwDezinwestycji')
                 ->addViolation();
         }
-        if (1 === $this->getZakonczona()
-            && (null === $this->getZwrotInwestycji()
-            || '' === $this->getZwrotInwestycji())
+        if (1 === $this->getZakonczona() &&
+           (null === $this->getZwrotInwestycji() ||
+           '' === $this->getZwrotInwestycji())
         ) {
             $context->buildViolation('Należy wypełnić pole')
                 ->atPath('zwrotInwestycji')
                 ->addViolation();
         }
-        if (1 === $this->getZakonczona()
-            && (null === $this->getNpv()
-            || '' === $this->getNpv())
+        if (1 === $this->getZakonczona() &&
+           (null === $this->getNpv() ||
+           '' === $this->getNpv())
         ) {
             $context->buildViolation('Należy wypełnić pole')
                 ->atPath('npv')
                 ->addViolation();
         }
-        if (preg_match('/^([-])?[0-9]{1,13}[\.\,][0-9]{2}$/', $this->getKwPryw())
-            && preg_match('/^([-])?[0-9]{1,13}[\.\,][0-9]{2}$/', $this->getKwWsparcia())
-            && preg_match('/^([-])?[0-9]{1,13}[\.\,][0-9]{2}$/', $this->getKwInwestycji())
+        if (preg_match('/^([-])?[0-9]{1,13}[\.\,][0-9]{2}$/', $this->getKwPryw()) &&
+            preg_match('/^([-])?[0-9]{1,13}[\.\,][0-9]{2}$/', $this->getKwWsparcia()) &&
+            preg_match('/^([-])?[0-9]{1,13}[\.\,][0-9]{2}$/', $this->getKwInwestycji())
         ) {
             $sum = number_format(
                 ($this->getKwPryw() + $this->getKwWsparcia()),
@@ -832,8 +832,8 @@ class Spolka
                 ''
             );
 
-            if ((float)number_format($this->getKwInwestycji(), 2, '.', '')
-                !== (float)$sum
+            if ((float)number_format($this->getKwInwestycji(), 2, '.', '') !==
+               (float)$sum
             ) {
                 $context->buildViolation('Suma kwot ze środków wsparcia i środków prywatnych musi równać'
                     . ' się kwocie inwestycji.')
