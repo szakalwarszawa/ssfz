@@ -28,6 +28,7 @@ framework:
     session:
         handler_id:      'session.handler.pdo'
         cookie_httponly: false
+        cookie_lifetime: 1200
     validation: { enable_annotations: true }
 
 # Twig Configuration
