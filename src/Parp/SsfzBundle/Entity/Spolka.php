@@ -798,9 +798,9 @@ class Spolka
                 ->addViolation();
         }
         if (
-           1 === $this->getZakonczona()
-           && (null === $this->getKwDezinwestycji()
-           || '' === $this->getKwDezinwestycji())
+            1 === $this->getZakonczona()
+            && (null === $this->getKwDezinwestycji()
+            || '' === $this->getKwDezinwestycji())
         ) {
             $context->buildViolation('Należy wypełnić pole')
                 ->atPath('kwDezinwestycji')

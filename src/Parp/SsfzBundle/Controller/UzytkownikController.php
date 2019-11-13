@@ -32,6 +32,7 @@ class UzytkownikController extends Controller
         $uzytkownik = new Uzytkownik();
         $form = $this->createForm(UzytkownikType::class, $uzytkownik);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $komunikatyService = $this->get('ssfz.service.komunikaty_service');
             $uzytkownikService = $this->get('ssfz.service.uzytkownik_service');
@@ -39,8 +40,11 @@ class UzytkownikController extends Controller
             $mailerService = $this->get('ssfz.service.mailer_service');
             $uzytkownik = $form->getData();
             $uzytkownikRepository = $uzytkownikService->getUzytkownikRepository();
-            if (is_null($uzytkownikRepository->findOneBy(['email' => $uzytkownik->getEmail()])) &&
-                is_null($uzytkownikRepository->findOneBy(['login' => $uzytkownik->getLogin()]))) {
+
+            if (
+                is_null($uzytkownikRepository->findOneBy(['email' => $uzytkownik->getEmail()]))
+                && is_null($uzytkownikRepository->findOneBy(['login' => $uzytkownik->getLogin()]))
+            ) {
                 try {
                     $uzytkownikService->persistNewUser(
                         $uzytkownik,

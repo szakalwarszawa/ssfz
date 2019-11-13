@@ -89,20 +89,20 @@ class NumerUmowyValidator extends ConstraintValidator
     private function getRegexp($program = null): string
     {
         if (null === $program) {
-            return '/('.self::REGEXP_FUNDUSZ_ZALAZKOWY.')|('.self::REGEXP_FUNDUSZ_POZYCZKOWY.')|('.
-            self::REGEXP_FUNDUSZ_PORECZENIOWY.')/';
+            return '/(' . self::REGEXP_FUNDUSZ_ZALAZKOWY . ')|(' . self::REGEXP_FUNDUSZ_POZYCZKOWY . ')|(' .
+            self::REGEXP_FUNDUSZ_PORECZENIOWY . ')/';
         }
 
         if ($program->czyFunduszZalazkowy()) {
-            return '/'.self::REGEXP_FUNDUSZ_ZALAZKOWY.'/';
+            return '/' . self::REGEXP_FUNDUSZ_ZALAZKOWY . '/';
         }
 
         if ($program->czyFunduszPozyczkowy()) {
-            return '/'.self::REGEXP_FUNDUSZ_POZYCZKOWY.'/';
+            return '/' . self::REGEXP_FUNDUSZ_POZYCZKOWY . '/';
         }
 
         if ($program->czyFunduszPoreczeniowy()) {
-            return '/'.self::REGEXP_FUNDUSZ_PORECZENIOWY.'/';
+            return '/' . self::REGEXP_FUNDUSZ_PORECZENIOWY . '/';
         }
 
         throw new InvalidArgumentException('Nie można określić zasad numeracji umów dla wskazanego programu.');
@@ -124,15 +124,15 @@ class NumerUmowyValidator extends ConstraintValidator
         }
 
         if ($program->czyFunduszZalazkowy()) {
-            return $constraint->message.' '.$constraint->messageFunduszZalazkowy;
+            return $constraint->message . ' ' . $constraint->messageFunduszZalazkowy;
         }
 
         if ($program->czyFunduszPozyczkowy()) {
-            return $constraint->message.' '.$constraint->messageFunduszPozyczkowy;
+            return $constraint->message . ' ' . $constraint->messageFunduszPozyczkowy;
         }
 
         if ($program->czyFunduszPoreczeniowy()) {
-            return $constraint->message.' '.$constraint->messageFunduszPoreczeniowy;
+            return $constraint->message . ' ' . $constraint->messageFunduszPoreczeniowy;
         }
     }
 

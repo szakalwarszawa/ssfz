@@ -36,7 +36,7 @@ class SpolkaRepository extends EntityRepository
 
         $this->_em->persist($spolka);
 
-        $historia = new stdClass;
+        $historia = new stdClass();
         $historia->dataZmiany = new Carbon('Europe/Warsaw');
         $historia->uzytkownikId = $idUzytkownika;
         $historia->umowa = $spolka->getUmowa();
