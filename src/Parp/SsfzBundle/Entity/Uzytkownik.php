@@ -24,6 +24,14 @@ use Parp\SsfzBundle\Entity\Slownik\Program;
 class Uzytkownik implements AdvancedUserInterface, Serializable
 {
     /**
+     * Wartości słownikowa dla statusów konta użytkownika
+     *
+     * @var int
+     */
+    private const INACTIVE_ACCOUNT = 0;
+    private const ACTIVE_ACCOUNT = 1;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -149,11 +157,6 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
     protected $aktywnyProgram;
 
     /**
-     * @ORM\Column(name="salt", type="string")
-     */
-    private $salt;
-
-    /**
      * Publiczny konstruktor
      */
     public function __construct()
@@ -271,82 +274,122 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
 
     /**
      * @param string $login
+     *
+     * @return Uzytkownik
      */
     public function setLogin($login)
     {
         $this->login = $login;
+
+        return $this;
     }
 
     /**
      * @param string $haslo
+     *
+     * @return Uzytkownik
      */
     public function setHaslo($haslo)
     {
         $this->haslo = $haslo;
+
+        return $this;
     }
 
     /**
      * @param string $email
+     *
+     * @return Uzytkownik
      */
     public function setEmail($email)
     {
         $this->email = $email;
+
+        return $this;
     }
 
     /**
      * @param Rola $rola
+     *
+     * @return Uzytkownik
      */
     public function setRola($rola)
     {
         $this->rola = $rola;
+
+        return $this;
     }
 
     /**
      * @param bool $ban
+     *
+     * @return Uzytkownik
      */
     public function setBan($ban)
     {
         $this->ban = $ban;
+
+        return $this;
     }
 
     /**
      * @param string $kodZapomnianeHaslo
+     *
+     * @return Uzytkownik
      */
     public function setKodZapomnianeHaslo($kodZapomnianeHaslo)
     {
         $this->kodZapomnianeHaslo = $kodZapomnianeHaslo;
+    
+        return $this;
     }
 
     /**
      * @param Carbon $utworzony
+     *
+     * @return Uzytkownik
      */
     public function setUtworzony(Carbon $utworzony)
     {
         $this->utworzony = $utworzony;
+    
+        return $this;
     }
 
     /**
      * @param Carbon $zmodyfikowany
+     *
+     * @return Uzytkownik
      */
     public function setZmodyfikowany(Carbon $zmodyfikowany)
     {
         $this->zmodyfikowany = $zmodyfikowany;
+    
+        return $this;
     }
 
     /**
      * @param int $status
+     *
+     * @return Uzytkownik
      */
     public function setStatus($status)
     {
         $this->status = $status;
+
+        return $this;
     }
 
     /**
      * @param string $kodAktywacjaKonta
+     *
+     * @return Uzytkownik
      */
     public function setKodAktywacjaKonta($kodAktywacjaKonta)
     {
         $this->kodAktywacjaKonta = $kodAktywacjaKonta;
+
+        return $this;
     }
 
     /**
@@ -362,69 +405,11 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
     }
 
     /**
-     * Wyzwalane przy operacji INSERT
-     *
-     * @ORM\PrePersist
-     */
-    public function onPrePersist()
-    {
-        $salt = $this->generateSalt();
-
-        $options = [
-            'cost' => 12,
-            'salt' => $salt,
-        ];
-        $this->haslo = $this->haslo !== null ? password_hash($this->haslo, PASSWORD_BCRYPT, $options) : $this->haslo;
-        $this->ban = false;
-        $this->salt = $salt;
-        $this->status = 0;
-        $this->utworzony = new Carbon('Europe/Warsaw');
-    }
-
-    /**
-     * Wyzwalane przy operacji UPDATE
-     *
-     * @ORM\PreUpdate
-     */
-    public function onPreUpdate()
-    {
-        $this->zmodyfikowany = new Carbon('Europe/Warsaw');
-    }
-
-    /**
      * @return string
      */
     public function getUsername()
     {
         return $this->login;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSalt()
-    {
-        return $this->salt;
-    }
-
-    /**
-     * @return string
-     */
-    public function generateSalt()
-    {
-        return uniqid(mt_rand(), true);
-    }
-
-    /**
-     * @param string $salt
-     *
-     * @return Uzytkownik
-     */
-    public function setSalt($salt)
-    {
-        $this->salt = $salt;
-
-        return $this;
     }
 
     /**
@@ -440,7 +425,7 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
      */
     public function getRoles()
     {
-        return array($this->getRola()->getNazwa());
+        return [$this->getRola()->getNazwa()];
     }
 
     /**
@@ -461,18 +446,26 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
 
     /**
      * @param string $imie
+     *
+     * @return Uzytkownik
      */
     public function setImie($imie)
     {
         $this->imie = $imie;
+
+        return $this;
     }
 
     /**
      * @param string $nazwisko
+     *
+     * @return Uzytkownik
      */
     public function setNazwisko($nazwisko)
     {
         $this->nazwisko = $nazwisko;
+
+        return $this;
     }
 
     /**
@@ -500,7 +493,6 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
             $this->zmodyfikowany,
             $this->status,
             $this->kodAktywacjaKonta,
-            $this->salt,
         ]);
     }
 
@@ -521,7 +513,6 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
             $this->zmodyfikowany,
             $this->status,
             $this->kodAktywacjaKonta,
-            $this->salt,
         ) = unserialize($serialized);
     }
 
@@ -562,44 +553,81 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
     }
 
     /**
-     * Aktywuje konto użytkownika
+     * Aktywuje konto użytkownika.
+     *
+     * @return Uzytkownik
      */
     public function activateAccount()
     {
-        $this->setStatus(1);
-        $this->setKodAktywacjaKonta(null);
+        $this
+            ->setStatus(self::ACTIVE_ACCOUNT)
+            ->setKodAktywacjaKonta(null)
+        ;
+
+        return $this;
     }
 
     /**
-     * Ustawia rolę nowemu użytkownikowi
+     * Inicjalizuje obiekt nowego użytkownika w stanie poprawnym.
      *
      * @param Rola $role
+     *
+     * @return Uzytkownik
      */
-    public function newUser(Rola $role)
+    public function initialize(Rola $role)
     {
-        $this->setRola($role);
-        $this->setKodAktywacjaKonta(str_replace(array('/', '+', '='), '', base64_encode(random_bytes(64))));
+        $this
+            ->setRola($role)
+            ->setKodAktywacjaKonta($this->generateOneTimeCode())
+        ;
+
+        return $this;
     }
 
     /**
-     * Generuje token do resetu hasła
+     * Ustala kod jednorazowy do odzyskania hasła
+     *
+     * @return Uzytkownik
      */
     public function forgottenPassword()
     {
-        $this->setKodZapomnianeHaslo(str_replace(array('/', '+', '='), '', base64_encode(random_bytes(64))));
+        $this->setKodZapomnianeHaslo($this->generateOneTimeCode());
+    
+        return $this;
     }
 
     /**
      * Zmiana hasła
      *
      * @param string $newPassword
+     *
+     * @return Uzytkownik
      */
-    public function newPassword($newPassword)
+    public function changePassword($newPassword)
     {
-        $generatedSalt = $this->generateSalt();
-        $this->setHaslo(password_hash($newPassword, PASSWORD_BCRYPT, array('cost' => 12, 'salt' => $generatedSalt)));
-        $this->setSalt($generatedSalt);
-        $this->setKodZapomnianeHaslo(null);
+        $encodedPassword = $this->encodePassword($newPassword);
+        $this
+            ->setHaslo($encodedPassword)
+            ->setKodZapomnianeHaslo(null)
+        ;
+
+        return $this;
+    }
+
+    /**
+     * Zwraca sól użytą podczas zakodowania hasła.
+     *
+     * @return string
+     */
+    public function getSalt()
+    {
+        $salt = '';
+        $password = trim((string) $this->haslo);
+        if (!empty($password)) {
+            $salt = substr($password, 7, 22);
+        }
+
+        return $salt;
     }
 
     /**
@@ -633,10 +661,7 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
      */
     public function getAktywnyProgramId()
     {
-        return (null !== $this->aktywnyProgram)
-            ? (int) $this->aktywnyProgram->getId()
-            : 0
-        ;
+        return (null !== $this->aktywnyProgram) ? (int) $this->aktywnyProgram->getId() : 0;
     }
 
     /**
@@ -701,5 +726,65 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
         $beneficjent->setUzytkownik($this);
         
         return $this;
+    }
+
+    /**
+     * Encodes password.
+     *
+     * @param string $password
+     *
+     * @return string|null
+     */
+    private function encodePassword($password)
+    {
+        $encodedPassword = null;
+
+        $password = trim((string) $password);
+        if (!empty($password)) {
+            $encodedPassword = password_hash($password, \PASSWORD_BCRYPT, [
+                'cost' => 12,
+            ]);
+        }
+
+        return $encodedPassword;
+    }
+
+    /**
+     * Generates one-time code.
+     *
+     * @return string
+     */
+    private function generateOneTimeCode()
+    {
+        return md5(str_replace(['/', '+', '='], '', base64_encode(random_bytes(64))));
+    }
+
+    /**
+     * Wyzwalane przy operacji INSERT
+     *
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $encodedPassword = encodePassword($this->haslo);
+        $now = new Carbon('Europe/Warsaw');
+
+        $this
+            ->setHaslo($encodedPassword)
+            ->setBan(false)
+            ->setStatus(self::INACTIVE_ACCOUNT)
+            ->setUtworzony($now)
+        ;
+    }
+
+    /**
+     * Wyzwalane przy operacji UPDATE
+     *
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $now = new Carbon('Europe/Warsaw');
+        $this->setZmodyfikowany($now);
     }
 }

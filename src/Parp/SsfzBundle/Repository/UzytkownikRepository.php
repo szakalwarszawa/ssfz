@@ -38,7 +38,7 @@ class UzytkownikRepository extends EntityRepository implements UserProviderInter
      */
     public function persistNewUser(Uzytkownik $user, Rola $role)
     {
-        $user->newUser($role);
+        $user->initialize($role);
         $this->persist($user);
     }
 
@@ -72,7 +72,7 @@ class UzytkownikRepository extends EntityRepository implements UserProviderInter
      */
     public function newPassword(Uzytkownik $user, $newPassword)
     {
-        $user->newPassword($newPassword);
+        $user->changePassword($newPassword);
         $this->persist($user);
     }
 
