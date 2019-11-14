@@ -28,8 +28,8 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
      *
      * @var int
      */
-    const INACTIVE_ACCOUNT = 0;
-    const ACTIVE_ACCOUNT = 1;
+    private const INACTIVE_ACCOUNT = 0;
+    private const ACTIVE_ACCOUNT = 1;
 
     /**
      * @var int
