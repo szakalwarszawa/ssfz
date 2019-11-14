@@ -100,11 +100,15 @@ class UzytkownikTest extends TestCase
      */
     public function testKodZapomnianeHaslo()
     {
-        $kodZapomnianeHaslo = base64_encode(random_bytes(64));
-        $kodZapomnianeHaslo = str_replace('/', '', $kodZapomnianeHaslo);
+        $uzytkownik = $this->uzytkownik;
 
-        $this->uzytkownik->setKodZapomnianeHaslo($kodZapomnianeHaslo);
-        $this->assertEquals($kodZapomnianeHaslo, $this->uzytkownik->getKodZapomnianeHaslo());
+        $oldForgottenPassword = $uzytkownik->getKodZapomnianeHaslo();
+        $this->uzytkownik->forgottenPassword();
+        $newForgottenPassword = $uzytkownik->getKodZapomnianeHaslo();
+
+        $this->assertInternalType('string', $newForgottenPassword);
+        $this->assertEquals(32, strlen($newForgottenPassword));
+        $this->assertEquals(0, strlen($oldForgottenPassword));
     }
 
     /**
@@ -142,10 +146,15 @@ class UzytkownikTest extends TestCase
      */
     public function testBeneficjent()
     {
-        $beneficjent = new Beneficjent();
+        $beneficjent = $this->createMock(Beneficjent::class);
+        $beneficjent
+            ->method('getProgram')
+            ->willReturn(1)
+        ;
 
-        $this->uzytkownik->setBeneficjent($beneficjent);
-        $this->assertEquals(1, count($this->uzytkownik->getBeneficjent()));
+        $this->uzytkownik->addBeneficjenci($beneficjent);
+
+        $this->assertEquals(1, count($this->uzytkownik->getBeneficjenci()));
     }
 
     /**
@@ -158,6 +167,23 @@ class UzytkownikTest extends TestCase
 
         $this->uzytkownik->setKodAktywacjaKonta($kodAktywacjaKonta);
         $this->assertEquals($kodAktywacjaKonta, $this->uzytkownik->getKodAktywacjaKonta());
+    }
+
+    /**
+     * Test pola sól
+     */
+    public function testSalt()
+    {
+        $uzytkownik = $this->uzytkownik;
+        $oldSalt = $uzytkownik->getSalt();
+        $uzytkownik->changePassword('test_password');
+        $newSalt = $uzytkownik->getSalt();
+
+        $this->assertInternalType('string', $oldSalt);
+        $this->assertEquals(0, strlen($oldSalt));
+
+        $this->assertInternalType('string', $newSalt);
+        $this->assertEquals(22, strlen($newSalt));
     }
 
     /**
