@@ -578,6 +578,7 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
     {
         $this
             ->setRola($role)
+            ->setStatus(self::INACTIVE_ACCOUNT)
             ->setKodAktywacjaKonta($this->generateOneTimeCode())
         ;
 
