@@ -766,7 +766,7 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
      */
     public function onPrePersist()
     {
-        $encodedPassword = encodePassword($this->haslo);
+        $encodedPassword = $this->encodePassword($this->haslo);
         $now = new Carbon('Europe/Warsaw');
 
         $this
