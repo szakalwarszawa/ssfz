@@ -170,6 +170,16 @@ class UzytkownikTest extends TestCase
     }
 
     /**
+     * Test can generate one-time code for password recovery.
+     */
+    public function testCanGeneratePasswordRecoveryCode()
+    {
+        $this->uzytkownik->forgottenPassword();
+
+        $this->assertEquals(32, strlen($this->uzytkownik->getKodZapomnianeHaslo()));
+    }
+
+    /**
      * Test pola sól
      */
     public function testSalt()
