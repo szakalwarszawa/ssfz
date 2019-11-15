@@ -4,7 +4,10 @@ namespace Parp\SsfzBundle\Entity;
 
 use Serializable;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Component\Security\Core\User\{
+    AdvancedUserInterface,
+    EquatableInterface
+};
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -21,7 +24,7 @@ use Parp\SsfzBundle\Entity\Slownik\Program;
  * @UniqueEntity(fields="login", message="Login jest już w użyciu.")
  * @UniqueEntity(fields="email", message="Adres email jest już w użyciu.")
  */
-class Uzytkownik implements AdvancedUserInterface, Serializable
+class Uzytkownik implements AdvancedUserInterface, EquatableInterface, Serializable
 {
     /**
      * Wartości słownikowa dla statusów konta użytkownika
@@ -469,11 +472,11 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
     }
 
     /**
-     * Usuwa dane poufne z użytkownika
+     * Usuwa dane poufne z użytkownika.
      */
     public function eraseCredentials()
     {
-        $this->aktywnyProgram = null;
+        $this->setAktywnyProgram(null);
     }
 
     /**
@@ -481,18 +484,11 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
      */
     public function serialize()
     {
-        return serialize([
-            $this->id,
-            $this->login,
-            $this->haslo,
-            $this->email,
-            $this->rola,
-            $this->ban,
-            $this->kodZapomnianeHaslo,
-            $this->utworzony,
-            $this->zmodyfikowany,
-            $this->status,
-            $this->kodAktywacjaKonta,
+        return json_encode([
+            'id'       => $this->id,
+            'login'    => $this->login,
+            'password' => $this->haslo,
+
         ]);
     }
 
@@ -501,19 +497,10 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
      */
     public function unserialize($serialized)
     {
-        list (
-            $this->id,
-            $this->login,
-            $this->haslo,
-            $this->email,
-            $this->rola,
-            $this->ban,
-            $this->kodZapomnianeHaslo,
-            $this->utworzony,
-            $this->zmodyfikowany,
-            $this->status,
-            $this->kodAktywacjaKonta,
-        ) = unserialize($serialized);
+        $arr = json_decode($serialized);
+        $this->setId($arr['id']);
+        $this->setLogin($arr['login']);
+        $this->setHaslo($arr['haslo']);
     }
 
     /**
@@ -535,7 +522,6 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
     }
 
     /**
-     *
      * @return bool
      */
     public function isCredentialsNonExpired()
@@ -787,5 +773,27 @@ class Uzytkownik implements AdvancedUserInterface, Serializable
     {
         $now = new Carbon('Europe/Warsaw');
         $this->setZmodyfikowany($now);
+    }
+
+    /**
+     * Określa czy dane użytkownika nie zmieniły się.
+     *
+     * Jeśli wskazane dane zmieniły się, użytkownik traci uwierzytelnienie.
+     *
+     * @param UserInterface $user
+     *
+     * @return bool
+     */
+    public function isEqualTo(UserInterface $user)
+    {
+        if (
+            $this->getId() === $user->getId()
+            && $this->getLogin() === $user->getLogin()
+            && $this->getHaslo() === $user->getHaslo()
+        ) {
+            return true;
+        }
+
+        return false;
     }
 }
