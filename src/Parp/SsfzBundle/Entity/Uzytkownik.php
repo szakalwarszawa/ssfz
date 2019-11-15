@@ -502,7 +502,7 @@ class Uzytkownik implements AdvancedUserInterface, EquatableInterface, Serializa
         $this->id = $arr['id']; // ID nie posiada mutatora.
         $this
             ->setLogin($arr['login'])
-            ->setHaslo($arr['haslo'])
+            ->setHaslo($arr['password'])
         ;
     }
 
