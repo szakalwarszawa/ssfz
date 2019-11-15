@@ -5,6 +5,7 @@ namespace Parp\SsfzBundle\Entity;
 use Serializable;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\{
+    UserInterface,
     AdvancedUserInterface,
     EquatableInterface
 };
