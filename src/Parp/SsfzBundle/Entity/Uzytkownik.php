@@ -499,9 +499,11 @@ class Uzytkownik implements AdvancedUserInterface, EquatableInterface, Serializa
     public function unserialize($serialized)
     {
         $arr = json_decode($serialized);
-        $this->setId($arr['id']);
-        $this->setLogin($arr['login']);
-        $this->setHaslo($arr['haslo']);
+        $this->id = $arr['id']; // ID nie posiada mutatora.
+        $this
+            ->setLogin($arr['login'])
+            ->setHaslo($arr['haslo'])
+        ;
     }
 
     /**
