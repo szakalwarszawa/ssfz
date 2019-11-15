@@ -489,7 +489,6 @@ class Uzytkownik implements AdvancedUserInterface, EquatableInterface, Serializa
             'id'       => $this->id,
             'login'    => $this->login,
             'password' => $this->haslo,
-
         ]);
     }
 
