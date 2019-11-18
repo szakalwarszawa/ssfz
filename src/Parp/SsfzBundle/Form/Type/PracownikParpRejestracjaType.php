@@ -23,7 +23,7 @@ class PracownikParpRejestracjaType extends AbstractType
      * Pobiera loginy pracowników PARP z LDAP
      *
      * Korzystając z LdapDataService pobiera loginy pracowników LDAP
-     * tylko tych którzy nie dodani zostali do aplikacji.
+     * tylko tych którzy nie zostali dodani do aplikacji.
      *
      * @param  LdapDataService $ldapService usługa LDAP
      *
