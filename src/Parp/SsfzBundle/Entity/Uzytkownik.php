@@ -14,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Carbon\Carbon;
 use Parp\SsfzBundle\Entity\Slownik\Program;
+use Parp\SsfzBundle\Helper\PasswordHelper;
 
 /**
  * Uzytkownik
@@ -594,7 +595,7 @@ class Uzytkownik implements AdvancedUserInterface, EquatableInterface, Serializa
      */
     public function changePassword($newPassword)
     {
-        $encodedPassword = $this->encodePassword($newPassword);
+        $encodedPassword = PasswordHelper::encodePassword($newPassword);
         $this
             ->setHaslo($encodedPassword)
             ->setKodZapomnianeHaslo(null)
@@ -610,13 +611,7 @@ class Uzytkownik implements AdvancedUserInterface, EquatableInterface, Serializa
      */
     public function getSalt()
     {
-        $salt = '';
-        $password = trim((string) $this->haslo);
-        if (!empty($password)) {
-            $salt = substr($password, 7, 22);
-        }
-
-        return $salt;
+        return PasswordHelper::extractSalt($this->haslo);
     }
 
     /**
@@ -717,26 +712,6 @@ class Uzytkownik implements AdvancedUserInterface, EquatableInterface, Serializa
         return $this;
     }
 
-    /**
-     * Encodes password.
-     *
-     * @param string $password
-     *
-     * @return string|null
-     */
-    private function encodePassword($password)
-    {
-        $encodedPassword = null;
-
-        $password = trim((string) $password);
-        if (!empty($password)) {
-            $encodedPassword = password_hash($password, \PASSWORD_BCRYPT, [
-                'cost' => 12,
-            ]);
-        }
-
-        return $encodedPassword;
-    }
 
     /**
      * Generates one-time code.
@@ -755,7 +730,7 @@ class Uzytkownik implements AdvancedUserInterface, EquatableInterface, Serializa
      */
     public function onPrePersist()
     {
-        $encodedPassword = $this->encodePassword($this->haslo);
+        $encodedPassword = PasswordHelper::encodePassword($this->haslo);
         $now = new Carbon('Europe/Warsaw');
 
         $this

@@ -1,6 +1,6 @@
 <?php
 
-namespace Test\Parp\SsfzBundle\Entity;;
+namespace Test\Parp\SsfzBundle\Helper;
 
 use PHPUnit\Framework\TestCase;
 use Parp\SsfzBundle\Helper\MoneyHelper;
@@ -15,7 +15,7 @@ class MoneyHelperTest extends TestCase
         $input = -100.123;
 
         // No changes.
-        // -100.123 to -100.123 
+        // -100.123 to -100.123
         $decimalString = MoneyHelper::anyToDecimalString($input, 3);
         $this->assertSame('-100.123', $decimalString);
 
