@@ -2,24 +2,36 @@
 
 namespace Test\Parp\SsfzBundle\Entity;
 
+use Serializable;
 use PHPUnit\Framework\TestCase;
-use Parp\SsfzBundle\Entity\Uzytkownik;
-use Parp\SsfzBundle\Entity\Rola;
-use Parp\SsfzBundle\Entity\Beneficjent;
+use Symfony\Component\Security\Core\User\{
+    UserInterface,
+    AdvancedUserInterface,
+    EquatableInterface
+};
+use Parp\SsfzBundle\Entity\{
+    Uzytkownik,
+    Rola,
+    Beneficjent
+};
 use Carbon\Carbon;
 
 /**
  * Test encji Uzytkownik
  *
- * @covers \Parp\SsfzBundle\Entity\Uzytkownik
+ * @todo Testowanie poszczególnych pól to przesada.
+ *
+ * @covers Uzytkownik
  */
 class UzytkownikTest extends TestCase
 {
-
+    /**
+     * @var Uzytkownik
+     */
     private $uzytkownik;
 
     /**
-     * Ustawienie środowiska testowego
+     * Ustawienie środowiska testowego.
      */
     public function setUp()
     {
@@ -29,70 +41,68 @@ class UzytkownikTest extends TestCase
     /**
      * Test konstruktora
      */
-    public function testConstruct()
+    public function testCabBeConstructed()
     {
-        $uzytkownik = new Uzytkownik();
+        $uzytkownik = $this->uzytkownik;
+
         $this->assertNotNull($uzytkownik);
+        $this->assertInstanceOf(UserInterface::class, $uzytkownik);
+        $this->assertInstanceOf(AdvancedUserInterface::class, $uzytkownik);
+        $this->assertInstanceOf(Uzytkownik::class, $uzytkownik);
+        $this->assertInstanceOf(EquatableInterface::class, $uzytkownik);
+        $this->assertInstanceOf(Serializable::class, $uzytkownik);
     }
 
     /**
-     * Test pola Id
+     * Testuje akcesory i mutatory.
+     *
+     * Konieczność pokrycia większości właściwości klasy akcesorami i mutatorami
+     * jest następstwem użycia ORM. Odwoływanie się w kodzie do obiektu przez getX() i setX()
+     * powinno być ograniczone do minimum (nawet jeśli jest możliwe).
+     *
+     * @return void
      */
-    public function testId()
+    public function testCanSetAndGetFields()
     {
+        $uzytkownik = $this->uzytkownik;
+
+        $role = $this->createMock(Rola::class);
+        $role
+            ->method('getNazwa')
+            ->willReturn('ROLE_BENEFICJENT')
+        ;
+
+        $beneficjent = $this->createMock(Beneficjent::class);
+        $beneficjent
+            ->method('getProgram')
+            ->willReturn(1)
+        ;
+
+        $now = new Carbon('Europe/Warsaw');
+
+        $uzytkownik
+            ->setLogin('test_login')
+            ->setHaslo('test_password')
+            ->setEmail('test_email@fake.local.xx')
+            ->setRola($role)
+            ->setBan(false)
+            ->setUtworzony($now)
+            ->setZmodyfikowany($now)
+            ->setStatus(1)
+            ->addBeneficjenci($beneficjent)
+        ;
+
         $this->assertNull($this->uzytkownik->getId());
-    }
-
-    /**
-     * Test pola login
-     */
-    public function testLogin()
-    {
-        $login = 'admin';
-        $this->uzytkownik->setLogin($login);
-        $this->assertEquals($login, $this->uzytkownik->getLogin());
-    }
-
-    /**
-     * Test pola haslo
-     */
-    public function testHaslo()
-    {
-        $haslo = 'pawiany_wchdoza_na_sciany';
-        $this->uzytkownik->setHaslo($haslo);
-        $this->assertEquals($haslo, $this->uzytkownik->getHaslo());
-    }
-
-    /**
-     * Test pola email
-     */
-    public function testEmail()
-    {
-        $email = 'admin@example.com';
-        $this->uzytkownik->setEmail($email);
-        $this->assertEquals($email, $this->uzytkownik->getEmail());
-    }
-
-    /**
-     * Test pola rola
-     */
-    public function testRola()
-    {
-        $rola = new Rola();
-        $rola->setNazwa('ROLE_BENEFICJENT');
-
-        $this->uzytkownik->setRola($rola);
-        $this->assertEquals($rola, $this->uzytkownik->getRola());
-    }
-
-    /**
-     * Test pola ban
-     */
-    public function testBan()
-    {
-        $ban = false;
-        $this->uzytkownik->setBan($ban);
-        $this->assertEquals($ban, $this->uzytkownik->getBan());
+        $this->assertEquals('test_login', $uzytkownik->getLogin());
+        $this->assertEquals('test_password', $uzytkownik->getHaslo());
+        $this->assertEquals('test_email@fake.local.xx', $uzytkownik->getEmail());
+        $this->assertInstanceOf(Rola::class, $uzytkownik->getRola());
+        $this->assertEquals('ROLE_BENEFICJENT', $uzytkownik->getRola()->getNazwa());
+        $this->assertFalse($uzytkownik->getBan());
+        $this->assertEquals($now, $uzytkownik->getUtworzony());
+        $this->assertEquals($now, $uzytkownik->getZmodyfikowany());
+        $this->assertEquals(1, $uzytkownik->getStatus());
+        $this->assertEquals(1, count($this->uzytkownik->getBeneficjenci()));
     }
 
     /**
@@ -109,52 +119,6 @@ class UzytkownikTest extends TestCase
         $this->assertInternalType('string', $newForgottenPassword);
         $this->assertEquals(32, strlen($newForgottenPassword));
         $this->assertEquals(0, strlen($oldForgottenPassword));
-    }
-
-    /**
-     * Test pola utworzony
-     */
-    public function testUtworzony()
-    {
-        $utworzony = new Carbon('Europe/Warsaw');
-        $this->uzytkownik->setUtworzony($utworzony);
-        $this->assertEquals($utworzony, $this->uzytkownik->getUtworzony());
-    }
-
-    /**
-     * Test pola zmodyfikowany
-     */
-    public function testZmodyfikowany()
-    {
-        $zmodyfikowany = new Carbon('Europe/Warsaw');
-        $this->uzytkownik->setZmodyfikowany($zmodyfikowany);
-        $this->assertEquals($zmodyfikowany, $this->uzytkownik->getZmodyfikowany());
-    }
-
-    /**
-     * Test pola status
-     */
-    public function testStatus()
-    {
-        $status = 0;
-        $this->uzytkownik->setStatus($status);
-        $this->assertEquals($status, $this->uzytkownik->getStatus());
-    }
-
-    /**
-     * Test pola utworzony
-     */
-    public function testBeneficjent()
-    {
-        $beneficjent = $this->createMock(Beneficjent::class);
-        $beneficjent
-            ->method('getProgram')
-            ->willReturn(1)
-        ;
-
-        $this->uzytkownik->addBeneficjenci($beneficjent);
-
-        $this->assertEquals(1, count($this->uzytkownik->getBeneficjenci()));
     }
 
     /**
