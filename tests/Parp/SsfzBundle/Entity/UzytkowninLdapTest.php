@@ -9,9 +9,12 @@ use Parp\SsfzBundle\Entity\Beneficjent;
 use Carbon\Carbon;
 
 /**
- * Test encji Uzytkownik
+ * Test encji Uzytkownik.
  *
- * @covers \Parp\SsfzBundle\Entity\Uzytkownik
+ * @todo Klasa UzytkownikLdap jest identyczna z klasą Uzytkownik.
+ *  Dublowanie testów wydaje się bezsensownym zwiększeniem kosztów utrzymania aplikacji.
+ *
+ * @covers Uzytkownik
  */
 class UzytkownikLdapTest extends TestCase
 {

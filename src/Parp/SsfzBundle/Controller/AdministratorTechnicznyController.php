@@ -4,12 +4,18 @@ namespace Parp\SsfzBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Parp\SsfzBundle\Entity\Rola;
-use Parp\SsfzBundle\Entity\Uzytkownik;
-use Parp\SsfzBundle\Form\Type\PracownikParpEdycjaType;
-use Parp\SsfzBundle\Form\Type\PracownikParpRejestracjaType;
+use Symfony\Component\HttpFoundation\{
+    Request,
+    Response
+};
+use Parp\SsfzBundle\Entity\{
+    Rola,
+    Uzytkownik
+};
+use Parp\SsfzBundle\Form\Type\{
+    PracownikParpEdycjaType,
+    PracownikParpRejestracjaType
+};
 use Parp\SsfzBundle\Exception\LdapDataServiceException;
 
 /**
@@ -58,15 +64,21 @@ class AdministratorTechnicznyController extends Controller
 
             $pracownik = $this->utworzPracownika($dane);
             if (null === $pracownik) {
-                $this->get('ssfz.service.komunikaty_service')->bladKomunikat('Utworzenie konta pracownika nie' .
-                'powiodło się.');
+                $this
+                    ->get('ssfz.service.komunikaty_service')
+                    ->bladKomunikat('Utworzenie konta pracownika nie powiodło się.')
+                ;
 
                 return $this->redirectToRoute('utworzPracownika');
             }
             $this->persistPracownik($pracownik);
             $this->wyslijWiadomoscAktywacyjna($pracownik);
-            $this->get('ssfz.service.komunikaty_service')->sukcesKomunikat('Konto pracownika zostało utworzone ' .
-            'poprawnie. Link aktywacyjny został wyslany na adres e-mail pracownika.');
+            $this
+                ->get('ssfz.service.komunikaty_service')
+                ->sukcesKomunikat(
+                    'Konto pracownika zostało utworzone poprawnie. '
+                    . 'Link aktywacyjny został wyslany na adres e-mail pracownika.'
+                );
 
             return $this->redirectToRoute('utworzPracownika');
         }
@@ -106,15 +118,17 @@ class AdministratorTechnicznyController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $pracownik = $form->getData();
             $this->persistPracownik($pracownik);
-            $this->get('ssfz.service.komunikaty_service')->sukcesKomunikat('Dane pracownika zostały zaktualizowane.');
+            $this
+                ->get('ssfz.service.komunikaty_service')
+                ->sukcesKomunikat('Dane pracownika zostały zaktualizowane.')
+            ;
 
             return $this->redirectToRoute('utworzPracownika');
         }
 
-        return $this->render(
-            'SsfzBundle:AdministratorTechniczny:edytujPracownika.html.twig',
-            array('form' => $form->createView())
-        );
+        return $this->render('SsfzBundle:AdministratorTechniczny:edytujPracownika.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
@@ -173,12 +187,15 @@ class AdministratorTechnicznyController extends Controller
         } catch (LdapDataServiceException $e) {
             return null;
         }
+    
         $uzytkownik = new Uzytkownik();
-        $uzytkownik->setLogin($login);
-        $uzytkownik->setImie($uzytkownikLdap->getImie());
-        $uzytkownik->setNazwisko($uzytkownik->getNazwisko());
-        $uzytkownik->setEmail($uzytkownikLdap->getEmail());
-        $uzytkownik->setStatus(0);
+        $uzytkownik
+            ->setLogin($login)
+            ->setImie($uzytkownikLdap->getImie())
+            ->setNazwisko($uzytkownik->getNazwisko())
+            ->setEmail($uzytkownikLdap->getEmail())
+            ->setStatus(0)
+        ;
 
         return $uzytkownik;
     }
@@ -246,6 +263,7 @@ class AdministratorTechnicznyController extends Controller
         if (null === !$uzytkownik) {
             return 'Użytkownik nie istnieje';
         }
+
         if (!$uzytkownik->czyPracownikParp()) {
             return 'Edytowany uzytkownik nie jest Pracownikiem PARP';
         }
