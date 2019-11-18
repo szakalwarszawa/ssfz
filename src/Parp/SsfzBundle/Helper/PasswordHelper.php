@@ -30,7 +30,14 @@ class PasswordHelper
         return $encodedPassword;
     }
 
-    public static function extractSalt($password): string
+    /**
+     * Extracts salt from the encoded password.
+     *
+     * @param string|null $password
+     *
+     * @return string
+     */
+    public static function extractSalt(string $password = null): string
     {
         $salt = '';
         $password = trim((string) $password);
